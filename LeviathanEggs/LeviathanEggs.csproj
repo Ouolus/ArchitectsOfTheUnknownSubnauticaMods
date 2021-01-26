@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F6786908-F37B-4D1E-B440-217077BB3E3F}</ProjectGuid>
+    <ProjectGuid>{43443FFC-9127-41F5-9093-FFE183375876}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LeviathanEggs</RootNamespace>
