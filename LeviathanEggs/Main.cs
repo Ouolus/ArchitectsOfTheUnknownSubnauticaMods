@@ -24,6 +24,7 @@ namespace LeviathanEggs
         internal static SeaEmperorEgg seaEmperorEgg = new SeaEmperorEgg();
         internal static SeaDragonEgg seaDragonEgg = new SeaDragonEgg();
         internal static GhostEgg ghostEgg = new GhostEgg();
+        internal static RobotEgg robotEgg = new RobotEgg();
 
         public static List<TechType> TechTypesToSkyApply = new List<TechType>() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new List<TechType>() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
@@ -34,6 +35,7 @@ namespace LeviathanEggs
             seaEmperorEgg.Patch(); 
             seaDragonEgg.Patch();
             ghostEgg.Patch();
+            robotEgg.Patch();
 
             PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
             {
@@ -56,6 +58,13 @@ namespace LeviathanEggs
                 scanTime = 2f,
                 isFragment = false
             });
+            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            {
+                key = robotEgg.TechType,
+                encyclopedia = "UnknownEgg",
+                scanTime = 2f,
+                isFragment = false
+            });
 
             WaterParkCreatureParametersSettings();
 
@@ -71,6 +80,8 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeName(TechType.SeaDragon, "Sea Dragon");
 
             LanguageHandler.SetTechTypeName(TechType.GhostLeviathanJuvenile, "Ghost Leviathan Juvenile");
+
+            LanguageHandler.SetTechTypeName(TechType.PrecursorDroid, "Alien Robot");
             #endregion
             #region Tooltips
             LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
@@ -82,6 +93,8 @@ namespace LeviathanEggs
             
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous, aggressive, eel-like apex predator, raised in containment.");
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous, aggressive, eel-like apex predator, raised in containment.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
             #endregion
             #region Sprites
             SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
@@ -92,6 +105,8 @@ namespace LeviathanEggs
 
             SpriteHandler.RegisterSprite(TechType.GhostLeviathan, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
             SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
+
+            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, SpriteManager.Get(TechType.Titanium));
             #endregion
             #region ItemSizes
             CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(4, 4));
@@ -102,6 +117,8 @@ namespace LeviathanEggs
 
             CraftDataHandler.SetItemSize(TechType.GhostLeviathanJuvenile, new Vector2int(4, 4));
             CraftDataHandler.SetItemSize(TechType.GhostLeviathan, new Vector2int(4, 4));
+
+            CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
             #endregion
             #region WaterParkCreatureParameters
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperor] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
@@ -114,11 +131,14 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.GhostLeviathan] = new WaterParkCreatureParameters(0.03f, 0.05f, 0.07f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Bleeder] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.9f, 1f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathanJuvenile] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
             #endregion
