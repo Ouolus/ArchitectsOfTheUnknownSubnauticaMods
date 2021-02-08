@@ -123,7 +123,7 @@ namespace LeviathanEggs
             #region WaterParkCreatureParameters
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperor] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperorJuvenile] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
-            WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperorBaby] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperorBaby] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaDragon] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
 
