@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch(typeof(Creature), nameof(Creature.Start))]
@@ -11,10 +12,24 @@ namespace LeviathanEggs.Patches
             if (__instance.gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
                 return;
 
+            TechType techType = CraftData.GetTechType(__instance.gameObject);
+
+            if (techType == TechType.SeaEmperorBaby)
+            {
+                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                stagedGrowing.daysToNextStage = 2;
+                stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+            }
+            else if (techType == TechType.GhostLeviathanJuvenile)
+            {
+                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                stagedGrowing.daysToNextStage = 2;
+                stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+            }
+
             if (__instance.gameObject.transform.position == Vector3.zero)
                 GameObject.DestroyImmediate(__instance.gameObject);
 
-            TechType techType = CraftData.GetTechType(__instance.gameObject);
             foreach (TechType tt in Main.TechTypesToSkyApply)
             {
                 if (techType == tt)
