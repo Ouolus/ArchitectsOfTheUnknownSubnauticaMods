@@ -9,6 +9,7 @@
   "VersionDependencies": {
     "SMLHelper": "2.9"
   },
+  "LoadAfter": [ "ImprovedAlienContainment", "UnobtaniumBatteries" ],
   "Game": "Subnautica",
   "NexusId": {
     "Subnautica": "661"
