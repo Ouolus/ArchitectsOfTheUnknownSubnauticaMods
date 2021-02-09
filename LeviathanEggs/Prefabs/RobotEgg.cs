@@ -64,5 +64,9 @@ namespace LeviathanEggs.Prefabs
 
             prefab.AddComponent<SpawnLocations>();
         }
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "RobotEgg.png"));
+        }
     }
 }
