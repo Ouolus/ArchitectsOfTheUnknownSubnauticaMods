@@ -2,47 +2,39 @@
 using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
-    [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.Teleport))]
-    class SeaEmperorBaby_Teleport_Patch
+    [HarmonyPatch(typeof(SeaEmperorBaby))]
+    class SeaEmperorBaby_Patches
     {
         [HarmonyPrefix]
-        static bool Prefix(SeaEmperorBaby __instance)
+        [HarmonyPatch(nameof(SeaEmperorBaby.Teleport))]
+        static bool Teleport_Patch(SeaEmperorBaby __instance)
         {
             if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
                 return false;
 
             return true;
         }
-    }
-    [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SetTeleporterTarget))]
-    class SeaEmperorBaby_SetTeleporterTarget_Patch
-    {
         [HarmonyPrefix]
-        static bool Prefix(SeaEmperorBaby __instance)
+        [HarmonyPatch(nameof(SeaEmperorBaby.SetTeleporterTarget))]
+        static bool SetTeleporterTarget_Patch(SeaEmperorBaby __instance)
         {
             if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
                 return false;
 
             return true;
         }
-    }
-    [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SwimToTeleporter))]
-    class SeaEmperorBaby_SwimToTeleporter_Patch
-    {
         [HarmonyPrefix]
-        static bool Prefix(SeaEmperorBaby __instance)
+        [HarmonyPatch(nameof(SeaEmperorBaby.SwimToTeleporter))]
+        static bool SwimToTeleporter_Patch(SeaEmperorBaby __instance)
         {
             if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
                 return false;
 
             return true;
         }
-    }
-    [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SwimToMother))]
-    class SeaEmperorBaby_SwimToMother_Patch
-    {
         [HarmonyPrefix]
-        static bool Prefix(SeaEmperorBaby __instance)
+        [HarmonyPatch(nameof(SeaEmperorBaby.SwimToMother))]
+        static bool SwimToMother_Patch(SeaEmperorBaby __instance)
         {
             if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
                 return false;
