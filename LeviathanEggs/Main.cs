@@ -106,7 +106,7 @@ namespace LeviathanEggs
             SpriteHandler.RegisterSprite(TechType.GhostLeviathan, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
             SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
 
-            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, SpriteManager.Get(TechType.Titanium));
+            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "PrecursorDroid.png")));
             #endregion
             #region ItemSizes
             CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(4, 4));
