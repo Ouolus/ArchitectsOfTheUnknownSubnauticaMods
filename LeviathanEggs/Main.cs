@@ -97,7 +97,7 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
             #endregion
             #region Sprites
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorBaby.png")));
             SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
             SpriteHandler.RegisterSprite(TechType.SeaEmperor, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
 
