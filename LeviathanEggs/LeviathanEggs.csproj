@@ -133,20 +133,37 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Assets\eggs" />
-    <None Include="Assets\eggs.manifest" />
+    <None Include="Assets\eggs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\eggs.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="mod_SN1.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Ghost.png" />
-    <Content Include="Assets\GhostEgg.png" />
-    <Content Include="Assets\SeaDragon.png" />
-    <Content Include="Assets\SeaDragonEgg.png" />
-    <Content Include="Assets\SeaEmperor.png" />
-    <Content Include="Assets\SeaEmperorEgg.png" />
+    <Content Include="Assets\Ghost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\GhostEgg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SeaDragon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SeaDragonEgg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SeaEmperor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SeaEmperorEgg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y
+xcopy "$(TargetDir)" "$(GameDir)\QMods\$(ProjectName)\" /q /s /y /i</PostBuildEvent>
   </PropertyGroup>
 </Project>
