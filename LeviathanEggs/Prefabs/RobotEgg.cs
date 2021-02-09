@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using UWE;
 using SMLHelper.V2.Utility;
 using ECCLibrary;
 using UnityEngine;
-using System;
 using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Prefabs
 {
@@ -66,10 +63,6 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
-        }
-        protected override Atlas.Sprite GetItemSprite()
-        {
-            return SpriteManager.Get(TechType.Titanium);
         }
     }
 }

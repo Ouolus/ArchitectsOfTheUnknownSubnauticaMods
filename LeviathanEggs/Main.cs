@@ -132,7 +132,7 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Bleeder] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
 
-            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.9f, 1f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathanJuvenile] = ghostEgg.TechType;
