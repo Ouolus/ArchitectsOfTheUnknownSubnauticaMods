@@ -17,13 +17,13 @@ namespace LeviathanEggs.Patches
             if (techType == TechType.SeaEmperorBaby)
             {
                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
-                stagedGrowing.daysToNextStage = 2;
+                stagedGrowing.daysToNextStage = 5;
                 stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
             }
             else if (techType == TechType.GhostLeviathanJuvenile)
             {
                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
-                stagedGrowing.daysToNextStage = 2;
+                stagedGrowing.daysToNextStage = 5;
                 stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
             }
 
