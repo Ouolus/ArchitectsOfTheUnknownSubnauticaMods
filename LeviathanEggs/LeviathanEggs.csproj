@@ -119,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="MonoBehaviours\ReadyToGrow.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\Creature_Start.cs" />

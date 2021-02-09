@@ -14,20 +14,23 @@ namespace LeviathanEggs.Patches
 
             TechType techType = CraftData.GetTechType(__instance.gameObject);
 
-            ReadyToGrow rtg = __instance.gameObject.GetComponent<ReadyToGrow>();
-
-            if (techType == TechType.SeaEmperorBaby && rtg != null)
+            if (techType == TechType.SeaEmperorBaby)
             {
                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                 stagedGrowing.daysToNextStage = 5;
                 stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
             }
-            else if (techType == TechType.GhostLeviathanJuvenile && rtg != null)
+            else if (techType == TechType.GhostLeviathanJuvenile)
             {
                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                 stagedGrowing.daysToNextStage = 5;
                 stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
             }
+            else if(__instance.transform.localScale.x < 0.2f)
+            {
+
+            }
+
 
             if (__instance.gameObject.transform.position == Vector3.zero)
                 GameObject.DestroyImmediate(__instance.gameObject);
