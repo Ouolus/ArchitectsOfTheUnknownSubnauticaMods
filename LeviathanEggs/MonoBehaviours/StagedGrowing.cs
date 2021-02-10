@@ -14,34 +14,22 @@ namespace LeviathanEggs.MonoBehaviours
         float startTime;
         float growTime;
         float t = 0;
-        float originalSpeed;
+        Dictionary<CreatureAction, float> originalSpeeds = new Dictionary<CreatureAction, float>();
 
-        List<CreatureAction> creatureActions;
         void Start()
         {
-            creatureActions = gameObject.GetComponentsInChildren<CreatureAction>().Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
+            List<CreatureAction> creatureActions = gameObject.GetComponentsInChildren<CreatureAction>().Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
             foreach (CreatureAction creatureAction in creatureActions)
             {
                 Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
                 if (swimVelocity.FieldExists())
                 {
-                    originalSpeed = swimVelocity.GetValue<float>();
+                    originalSpeeds[creatureAction] = swimVelocity.GetValue<float>();
                 }
             }
             startTime = DayNightCycle.main.timePassedAsFloat;
             growTime = (1200 * daysToNextStage) ;
             CoroutineHost.StartCoroutine(StartGrowing());
-        }
-        void Update()
-        {
-            foreach (CreatureAction creatureAction in creatureActions)
-            {
-                Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
-                if (swimVelocity.FieldExists())
-                {
-                    swimVelocity.SetValue(originalSpeed * transform.localScale.x);
-                }
-            }
         }
 
         IEnumerator StartGrowing()
@@ -49,12 +37,23 @@ namespace LeviathanEggs.MonoBehaviours
             var startsSize = transform.localScale.x < 1f ? transform.localScale :Vector3.one * 0.1f;
             transform.localScale = startsSize;
 
-            while ((!TryGetComponent(out WaterParkCreature WaterParkCreature) || TryGetComponent(out WaterParkCreature wpc) && !wpc.IsInsideWaterPark()) && gameObject.transform.localScale.x <= 1f)
+            while ((!gameObject.TryGetComponent(out WaterParkCreature WaterParkCreature) || !WaterParkCreature.IsInsideWaterPark()) && gameObject.transform.localScale.x <= 1f)
             {
                 if(Time.timeScale > 0f)
                 {
+
                     t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
-                    gameObject.transform.localScale = Vector3.Lerp(startsSize, Vector3.one, t);
+                    var scale = Vector3.Lerp(startsSize, Vector3.one, t);
+                    gameObject.transform.localScale = scale;
+
+                    foreach (KeyValuePair<CreatureAction, float> pair in originalSpeeds)
+                    {
+                        Traverse swimVelocity = Traverse.Create(pair.Key).Field("swimVelocity");
+                        if (swimVelocity.FieldExists())
+                        {
+                            swimVelocity.SetValue(pair.Value * scale);
+                        }
+                    }
                 }
                 yield return null;
             }
@@ -71,8 +70,8 @@ namespace LeviathanEggs.MonoBehaviours
                 nextStageObject.EnsureComponent<StagedGrowing>();
                 nextStageObject.SetActive(true);
 
-                Destroy(gameObject);
                 gameObject.SetActive(false);
+                Destroy(gameObject);
             }
             else
             {
