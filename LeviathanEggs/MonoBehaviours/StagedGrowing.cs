@@ -14,11 +14,20 @@ namespace LeviathanEggs.MonoBehaviours
         float startTime;
         float growTime;
         float t = 0;
+        float originalSpeed;
 
         List<CreatureAction> creatureActions;
         void Start()
         {
             creatureActions = gameObject.GetComponentsInChildren<CreatureAction>().Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
+            foreach (CreatureAction creatureAction in creatureActions)
+            {
+                Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
+                if (swimVelocity.FieldExists())
+                {
+                    originalSpeed = swimVelocity.GetValue<float>();
+                }
+            }
             startTime = DayNightCycle.main.timePassedAsFloat;
             growTime = (1200 * daysToNextStage) ;
             CoroutineHost.StartCoroutine(StartGrowing());
@@ -30,8 +39,7 @@ namespace LeviathanEggs.MonoBehaviours
                 Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
                 if (swimVelocity.FieldExists())
                 {
-                    float currentSpeed = swimVelocity.GetValue<float>();
-                    swimVelocity.SetValue(currentSpeed * transform.localScale.x);
+                    swimVelocity.SetValue(originalSpeed * transform.localScale.x);
                 }
             }
         }
@@ -41,7 +49,7 @@ namespace LeviathanEggs.MonoBehaviours
             var startsSize = transform.localScale.x < 1f ? transform.localScale :Vector3.one * 0.1f;
             transform.localScale = startsSize;
 
-            while ((!TryGetComponent(out WaterParkCreature WaterParkCreature) || !WaterParkCreature.IsInsideWaterPark()) && gameObject.transform.localScale.x <= 1f)
+            while ((!TryGetComponent(out WaterParkCreature WaterParkCreature) || TryGetComponent(out WaterParkCreature wpc) && !wpc.IsInsideWaterPark()) && gameObject.transform.localScale.x <= 1f)
             {
                 if(Time.timeScale > 0f)
                 {

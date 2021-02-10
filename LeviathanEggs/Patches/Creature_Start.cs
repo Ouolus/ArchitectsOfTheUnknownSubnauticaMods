@@ -16,9 +16,21 @@ namespace LeviathanEggs.Patches
 
             if (techType == TechType.SeaEmperorBaby)
             {
-                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
-                stagedGrowing.daysToNextStage = 5;
-                stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                if (Main.Config.GlobalStagedGrowth)
+                {
+                    if (__instance.gameObject.GetComponent<WaterParkCreature>() != null)
+                    {
+                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                    }
+                }
+                else if (!Main.Config.GlobalStagedGrowth)
+                {
+                    StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                    stagedGrowing.daysToNextStage = 5;
+                    stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                }
             }
             else if (techType == TechType.GhostLeviathanJuvenile)
             {
