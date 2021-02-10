@@ -30,6 +30,7 @@ namespace LeviathanEggs
         public static List<TechType> TechTypesToSkyApply = new List<TechType>() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new List<TechType>() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
         public static List<TechType> TechTypesToTweak = new List<TechType>() { TechType.Bleeder, TechType.Rockgrub };
+        private static List<TechType> techTypesToAddEntry = new List<TechType>() { seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType };
         [QModPatch]
         public static void Load()
         {
@@ -41,34 +42,16 @@ namespace LeviathanEggs
             ghostEgg.Patch();
             robotEgg.Patch();
 
-            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            foreach (TechType tt in techTypesToAddEntry)
             {
-                key = seaEmperorEgg.TechType,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            });
-            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
-            {
-                key = seaDragonEgg.TechType,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            });
-            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
-            {
-                key = ghostEgg.TechType,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            });
-            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
-            {
-                key = robotEgg.TechType,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            });
+                PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+                {
+                    key = tt,
+                    encyclopedia = "UnknownEgg",
+                    scanTime = 2f,
+                    isFragment = false
+                });
+            }
 
             WaterParkCreatureParametersSettings();
 
