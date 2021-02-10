@@ -10,7 +10,7 @@ using LeviathanEggs.Prefabs;
 using UnityEngine;
 using static LootDistributionData;
 using UWE;
-using LeviathanEggs.MonoBehaviours;
+using LeviathanEggs.Configurations;
 namespace LeviathanEggs
 {
     [QModCore]
@@ -20,6 +20,7 @@ namespace LeviathanEggs
         private static string ModPath = Path.GetDirectoryName(myAssembly.Location);
         internal static string AssetsFolder = Path.Combine(ModPath, "Assets");
         public const string version = "1.0.0.0";
+        internal static Config Config { get; private set; }
         internal static AssetBundle assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, "eggs"));
         internal static SeaEmperorEgg seaEmperorEgg = new SeaEmperorEgg();
         internal static SeaDragonEgg seaDragonEgg = new SeaDragonEgg();
@@ -32,6 +33,9 @@ namespace LeviathanEggs
         [QModPatch]
         public static void Load()
         {
+            Config = OptionsPanelHandler.RegisterModOptions<Config>();
+            IngameMenuHandler.RegisterOnSaveEvent(Config.Save);
+
             seaEmperorEgg.Patch(); 
             seaDragonEgg.Patch();
             ghostEgg.Patch();

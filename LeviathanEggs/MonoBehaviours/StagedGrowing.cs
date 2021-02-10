@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
+using HarmonyLib;
 using UnityEngine;
 using UWE;
 namespace LeviathanEggs.MonoBehaviours
@@ -12,11 +15,25 @@ namespace LeviathanEggs.MonoBehaviours
         float growTime;
         float t = 0;
 
+        List<CreatureAction> creatureActions;
         void Start()
         {
+            creatureActions = gameObject.GetComponentsInChildren<CreatureAction>().Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
             startTime = DayNightCycle.main.timePassedAsFloat;
             growTime = (1200 * daysToNextStage) ;
             CoroutineHost.StartCoroutine(StartGrowing());
+        }
+        void Update()
+        {
+            foreach (CreatureAction creatureAction in creatureActions)
+            {
+                Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
+                if (swimVelocity.FieldExists())
+                {
+                    float currentSpeed = swimVelocity.GetValue<float>();
+                    swimVelocity.SetValue(currentSpeed * transform.localScale.x);
+                }
+            }
         }
 
         IEnumerator StartGrowing()

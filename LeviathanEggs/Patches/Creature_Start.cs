@@ -26,7 +26,7 @@ namespace LeviathanEggs.Patches
                 stagedGrowing.daysToNextStage = 5;
                 stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
             }
-            else if(__instance.transform.localScale.x < 0.8f)
+            else if(Main.Config.GlobalGrowth && __instance.transform.localScale.x < 0.8f)
             {
                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                 stagedGrowing.daysToNextStage = 5;
