@@ -51,7 +51,7 @@ namespace LeviathanEggs.MonoBehaviours
                         Traverse swimVelocity = Traverse.Create(pair.Key).Field("swimVelocity");
                         if (swimVelocity.FieldExists())
                         {
-                            swimVelocity.SetValue(pair.Value * scale);
+                            swimVelocity.SetValue(pair.Value * scale.x);
                         }
                     }
                 }
