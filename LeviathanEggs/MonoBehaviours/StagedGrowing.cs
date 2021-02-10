@@ -18,7 +18,7 @@ namespace LeviathanEggs.MonoBehaviours
 
         void Start()
         {
-            List<CreatureAction> creatureActions = gameObject.GetComponentsInChildren<CreatureAction>().Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
+            List<CreatureAction> creatureActions = gameObject.GetComponentsInChildren<CreatureAction>(true).Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
             foreach (CreatureAction creatureAction in creatureActions)
             {
                 Traverse swimVelocity = Traverse.Create(creatureAction).Field("swimVelocity");
@@ -34,25 +34,32 @@ namespace LeviathanEggs.MonoBehaviours
 
         IEnumerator StartGrowing()
         {
-            var startsSize = transform.localScale.x < 1f ? transform.localScale :Vector3.one * 0.1f;
+            var startsSize = gameObject.transform.localScale.sqrMagnitude < Vector3.one.sqrMagnitude ? transform.localScale : Vector3.one * 0.1f;
             transform.localScale = startsSize;
 
-            while ((!gameObject.TryGetComponent(out WaterParkCreature WaterParkCreature) || !WaterParkCreature.IsInsideWaterPark()) && gameObject.transform.localScale.x <= 1f)
+            while (t < 1)
             {
-                if(Time.timeScale > 0f)
+                if (Time.timeScale > 0f)
                 {
-
-                    t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
-                    var scale = Vector3.Lerp(startsSize, Vector3.one, t);
-                    gameObject.transform.localScale = scale;
-
-                    foreach (KeyValuePair<CreatureAction, float> pair in originalSpeeds)
+                    WaterParkCreature waterParkCreature = gameObject.GetComponent<WaterParkCreature>();
+                    if (waterParkCreature is null || !waterParkCreature.IsInsideWaterPark())
                     {
-                        Traverse swimVelocity = Traverse.Create(pair.Key).Field("swimVelocity");
-                        if (swimVelocity.FieldExists())
+                        t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
+                        var scale = Vector3.Lerp(startsSize, Vector3.one, t);
+                        gameObject.transform.localScale = scale;
+
+                        foreach (KeyValuePair<CreatureAction, float> pair in originalSpeeds)
                         {
-                            swimVelocity.SetValue(pair.Value * scale.x);
+                            Traverse swimVelocity = Traverse.Create(pair.Key).Field("swimVelocity");
+                            if (swimVelocity.FieldExists())
+                            {
+                                swimVelocity.SetValue(pair.Value * scale.x);
+                            }
                         }
+                    }
+                    else
+                    {
+                        t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
                     }
                 }
                 yield return null;
@@ -66,15 +73,38 @@ namespace LeviathanEggs.MonoBehaviours
                 GameObject prefab = task.GetResult();
                 prefab.SetActive(false);
 
-                GameObject nextStageObject = Instantiate(prefab, transform.position, transform.rotation, new Vector3(0.1f, 0.1f, 0.1f), true);
+                GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one*0.1f, false);
+
+                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                {
+                    gameObject.SetActive(false);
+                    WaterParkCreature parkCreature = nextStageObject.EnsureComponent<WaterParkCreature>();
+                    Pickupable pickupable = nextStageObject.EnsureComponent<Pickupable>();
+                    WaterParkCreatureParameters waterParkCreatureParameters = WaterParkCreature.GetParameters(nextStageTechType);
+                    WaterPark waterPark = waterParkCreature.currentWaterPark;
+
+                    parkCreature.age = 0f;
+                    parkCreature.parameters = waterParkCreatureParameters;
+                    parkCreature.pickupable = pickupable;
+                    pickupable.isPickupable = true;
+                    pickupable.timeDropped = Time.time;
+
+                    waterPark.RemoveItem(waterParkCreature);
+                    waterPark.AddItem(parkCreature);
+
+                }
+
                 nextStageObject.EnsureComponent<StagedGrowing>();
+                nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
                 nextStageObject.SetActive(true);
 
-                gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             else
             {
+                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;
+
                 Destroy(this);
             }
 

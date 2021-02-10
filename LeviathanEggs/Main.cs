@@ -118,14 +118,12 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.GhostLeviathan] = new WaterParkCreatureParameters(0.03f, 0.05f, 0.07f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Bleeder] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
-
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
             #endregion
             #region Creature Eggs
-            WaterParkCreature.creatureEggs[TechType.GhostLeviathanJuvenile] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
-            WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.SeaEmperor] = seaEmperorEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
