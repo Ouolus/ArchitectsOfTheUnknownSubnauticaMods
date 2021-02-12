@@ -123,7 +123,7 @@ namespace LeviathanEggs
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
-            WaterParkCreature.creatureEggs[TechType.SeaEmperor] = seaEmperorEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
