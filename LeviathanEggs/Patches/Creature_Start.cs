@@ -81,6 +81,14 @@ namespace LeviathanEggs.Patches
                         eatable.foodValue = -1f;
                         eatable.waterValue = -5f;
                         break;
+                    case TechType.Biter:
+                        eatable.foodValue = 12f;
+                        eatable.waterValue = 1f;
+                        break;
+                    case TechType.Blighter:
+                        eatable.foodValue = 13f;
+                        eatable.waterValue = 2f;
+                        break;
                     default:
                         eatable.foodValue = 10f;
                         eatable.waterValue = 4f;

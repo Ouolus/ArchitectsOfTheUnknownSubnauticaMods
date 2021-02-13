@@ -29,7 +29,7 @@ namespace LeviathanEggs
 
         public static List<TechType> TechTypesToSkyApply = new List<TechType>() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new List<TechType>() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
-        public static List<TechType> TechTypesToTweak = new List<TechType>() { TechType.Bleeder, TechType.Rockgrub };
+        public static List<TechType> TechTypesToTweak = new List<TechType>() { TechType.Bleeder, TechType.Rockgrub, TechType.Biter, TechType.Blighter };
         private static List<TechType> techTypesToAddEntry = new List<TechType>() { seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType };
         [QModPatch]
         public static void Load()
