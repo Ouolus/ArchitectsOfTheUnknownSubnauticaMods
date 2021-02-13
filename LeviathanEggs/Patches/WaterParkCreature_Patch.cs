@@ -2,11 +2,28 @@
 using UnityEngine;
 namespace LeviathanEggs.Patches
 {
-    [HarmonyPatch(typeof(WaterParkCreature), nameof(WaterParkCreature.Update))]
+    [HarmonyPatch(typeof(WaterParkCreature))]
     class WaterParkCreature_Patch
     {
         [HarmonyPostfix]
-        static void Postfix(WaterParkCreature __instance)
+        [HarmonyPatch(nameof(WaterParkCreature.Start))]
+        static void Start_Patch(WaterParkCreature __instance)
+        {
+            TechType techType = CraftData.GetTechType(__instance.gameObject);
+
+            if (techType == TechType.SeaEmperorBaby)
+            {
+                SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
+                if (seb != null)
+                {
+                    SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
+                    seb.hatched = true;
+                }
+            }
+        }
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(WaterParkCreature.Update))]
+        static void Update_Patch(WaterParkCreature __instance)
         {
             TechType techType = CraftData.GetTechType(__instance.gameObject);
             foreach (TechType tt in Main.TechTypesToSkyApply)
@@ -24,6 +41,25 @@ namespace LeviathanEggs.Patches
                     skyApplier.emissiveFromPower = false;
                     skyApplier.hideFlags = HideFlags.None;
                     skyApplier.enabled = true;
+                }
+            }
+        }
+    }
+    [HarmonyPatch(typeof(WaterParkCreature), nameof(WaterParkCreature.Start))]
+    class WaterParkCreature_Start_Patch
+    {
+        [HarmonyPostfix]
+        static void Postfix(WaterParkCreature __instance)
+        {
+            TechType techType = CraftData.GetTechType(__instance.gameObject);
+            
+            if (techType == TechType.SeaEmperorBaby)
+            {
+                SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
+                if (seb != null)
+                {
+                    SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
+                    seb.hatched = true;
                 }
             }
         }

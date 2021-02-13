@@ -1,7 +1,7 @@
 {
   "Id": "LeviathanEggs",
   "DisplayName": "Leviathan Eggs",
-  "Author": "Metious",
+  "Author": "SpaceCatCreations",
   "Version": "1.0.0",
   "Dependencies": [
     "SMLHelper"
@@ -9,6 +9,7 @@
   "VersionDependencies": {
     "SMLHelper": "2.9"
   },
+  "LoadAfter": [ "ImprovedAlienContainment", "UnobtaniumBatteries" ],
   "Game": "Subnautica",
   "NexusId": {
     "Subnautica": "661"

@@ -1,18 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using UWE;
 using SMLHelper.V2.Utility;
 using ECCLibrary;
 using UnityEngine;
-using System;
 using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Prefabs
 {
     class RobotEgg : CreatureEggAsset
     {
         public RobotEgg()
-            :base("RobotEgg", "Robot Egg", "Robot Egg that makes me go yes", Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 2f)
+            :base("RobotEgg", "Robot Egg", "Robot Egg that makes me go yes", Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
         {
         }
         public override bool AcidImmune => true;
@@ -32,7 +29,7 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.4f
             }
         };
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
+        public override Vector2int SizeInInventory => new Vector2int(2, 2);
         public override float GetMaxHealth => 60f;
         public override bool ManualEggExplosion => false;
         public override void AddCustomBehaviours()
@@ -69,7 +66,7 @@ namespace LeviathanEggs.Prefabs
         }
         protected override Atlas.Sprite GetItemSprite()
         {
-            return SpriteManager.Get(TechType.Titanium);
+            return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "RobotEgg.png"));
         }
     }
 }

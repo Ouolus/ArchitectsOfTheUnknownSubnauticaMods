@@ -14,7 +14,7 @@ namespace LeviathanEggs.Prefabs
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Creature Egg", "An unknown Creature hatches from this", 
                   Main.assetBundle.LoadAsset<GameObject>("SeaEmperorEgg.prefab"),
-                  TechType.SeaEmperorJuvenile, null, 1f)
+                  TechType.SeaEmperorBaby, null, 5f)
         {
         }
         public override bool AcidImmune => true;

@@ -12,7 +12,7 @@ namespace LeviathanEggs.Prefabs
         public SeaDragonEgg()
             :base("SeaDragonEgg", "Creature Egg", "An unknown Creature hatches from this", 
                  Main.assetBundle.LoadAsset<GameObject>("SeaDragonEgg.prefab"),
-                 TechType.SeaDragon, null, 1f)
+                 TechType.SeaDragon, null, 5f)
         {
             
         }
