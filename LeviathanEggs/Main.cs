@@ -21,7 +21,7 @@ namespace LeviathanEggs
         internal static string AssetsFolder = Path.Combine(ModPath, "Assets");
         public const string version = "1.0.0.0";
         internal static Config Config { get; private set; }
-        internal static AssetBundle assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, "eggs"));
+        internal static AssetBundle assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, "creatureeggs"));
         internal static SeaEmperorEgg seaEmperorEgg = new SeaEmperorEgg();
         internal static SeaDragonEgg seaDragonEgg = new SeaDragonEgg();
         internal static GhostEgg ghostEgg = new GhostEgg();
