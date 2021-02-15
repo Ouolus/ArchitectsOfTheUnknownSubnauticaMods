@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HarmonyLib;
 using QModManager.API.ModLoading;
 using SMLHelper.V2.Handlers;
@@ -62,13 +61,6 @@ namespace LeviathanEggs
             #region TechTypeNames
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorBaby, "Sea Emperor Baby");
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorJuvenile, "Sea Emperor Juvenile");
-            LanguageHandler.SetTechTypeName(TechType.SeaEmperor, "Sea Emperor");
-
-            LanguageHandler.SetTechTypeName(TechType.SeaDragon, "Sea Dragon");
-
-            LanguageHandler.SetTechTypeName(TechType.GhostLeviathanJuvenile, "Ghost Leviathan Juvenile");
-
-            LanguageHandler.SetTechTypeName(TechType.PrecursorDroid, "Alien Robot");
             #endregion
             #region Tooltips
             LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
