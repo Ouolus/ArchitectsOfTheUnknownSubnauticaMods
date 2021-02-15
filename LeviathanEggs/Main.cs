@@ -82,6 +82,8 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous, aggressive, eel-like apex predator, raised in containment.");
 
             LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Bleeder, "ewww tastes like shit.\ndont eat it or you're fucked!");
             #endregion
             #region Sprites
             SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorBaby.png")));
@@ -106,6 +108,9 @@ namespace LeviathanEggs
             CraftDataHandler.SetItemSize(TechType.GhostLeviathan, new Vector2int(4, 4));
 
             CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
+
+            CraftDataHandler.SetItemSize(TechType.Bleeder, new Vector2int(1, 1));
+            CraftDataHandler.SetItemSize(TechType.Rockgrub, new Vector2int(1, 1));
             #endregion
             #region WaterParkCreatureParameters
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperor] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
