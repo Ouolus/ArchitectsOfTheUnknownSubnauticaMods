@@ -110,7 +110,6 @@ namespace LeviathanEggs.Patches
                 pickupable.isPickupable = true;
 
                 AquariumFish aquariumFish = __instance.gameObject.EnsureComponent<AquariumFish>();
-                aquariumFish.model = __instance.gameObject;
 
                 Eatable eatable = __instance.gameObject.EnsureComponent<Eatable>();
                 switch (techType)
@@ -132,7 +131,14 @@ namespace LeviathanEggs.Patches
                         eatable.waterValue = 4f;
                         break;
                 }
+                GameObject obj = GameObject.Instantiate(__instance.gameObject);
 
+                foreach (Component component in obj.GetComponents<Component>())
+                {
+                    GameObject.DestroyImmediate(component);
+                }
+                aquariumFish.model = obj;
+                obj.SetActive(false);
             }
         }
     }
