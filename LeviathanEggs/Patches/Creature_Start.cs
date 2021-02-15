@@ -28,15 +28,36 @@ namespace LeviathanEggs.Patches
                             stagedGrowing.daysToNextStage = 5;
                             stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
                         }
+                        else
+                        {
+                            if (__instance.gameObject.GetComponent<WaterParkCreature>() != null)
+                            {
+                                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                                stagedGrowing.daysToNextStage = 5;
+                                stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                            }
+                        }
 
                         break;
                     }
 
                 case TechType.GhostLeviathanJuvenile:
                     {
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
-                        stagedGrowing.daysToNextStage = 5;
-                        stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                        if (!Main.Config.GlobalStagedGrowth)
+                        {
+                            StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                            stagedGrowing.daysToNextStage = 5;
+                            stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                        }
+                        else
+                        {
+                            if (__instance.gameObject.GetComponent<WaterParkCreature>() != null)
+                            {
+                                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                                stagedGrowing.daysToNextStage = 5;
+                                stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                            }
+                        }
                         break;
                     }
 

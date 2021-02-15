@@ -124,6 +124,7 @@
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\Creature_Start.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
+    <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
@@ -133,10 +134,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Assets\eggs">
+    <None Include="Assets\creatureeggs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Assets\eggs.manifest">
+    <None Include="Assets\creatureeggs.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="mod_SN1.json" />
