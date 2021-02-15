@@ -77,6 +77,7 @@ namespace LeviathanEggs.Prefabs
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
         public override float GetMaxHealth => 60f;
+        public override bool ManualEggExplosion => false;
         protected override Atlas.Sprite GetItemSprite()
         {
             return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaDragonEgg.png"));
