@@ -110,6 +110,7 @@ namespace LeviathanEggs
             CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
 
             CraftDataHandler.SetItemSize(TechType.Bleeder, new Vector2int(1, 1));
+
             CraftDataHandler.SetItemSize(TechType.Rockgrub, new Vector2int(1, 1));
             #endregion
             #region WaterParkCreatureParameters
@@ -123,6 +124,9 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.GhostLeviathan] = new WaterParkCreatureParameters(0.03f, 0.05f, 0.07f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Bleeder] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.Rockgrub] = new WaterParkCreatureParameters(0.4f, 1f, 1f, 1f, true);
+
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
             #endregion
             #region Creature Eggs
