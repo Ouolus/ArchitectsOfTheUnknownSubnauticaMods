@@ -63,6 +63,7 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
+            prefab.EnsureComponent<RobotEggPulsating>();
         }
         protected override Atlas.Sprite GetItemSprite()
         {
