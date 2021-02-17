@@ -70,8 +70,8 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal reptilian carnivore, raised in containment.");
 
             
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous territorial predator, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous territorial predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous territorial, eel-like predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous territorial, eel-like predator, raised in containment.");
 
             LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
 
