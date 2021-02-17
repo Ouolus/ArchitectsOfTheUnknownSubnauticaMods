@@ -63,9 +63,9 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorJuvenile, "Sea Emperor Juvenile");
             #endregion
             #region Tooltips
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
 
             LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal, territorial Leviathan with reptilian features, raised in containment.");
 
@@ -129,7 +129,7 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
 
-            WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.15f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.2f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
