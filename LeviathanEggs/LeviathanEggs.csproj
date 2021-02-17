@@ -144,12 +144,17 @@
     <None Include="mod_SN1.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Biter.png" />
+    <Content Include="Assets\Bleeder.png" />
+    <Content Include="Assets\Blighter.png" />
     <Content Include="Assets\Ghost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\GhostEgg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\RobotEgg.png" />
+    <Content Include="Assets\Rockgrub.png" />
     <Content Include="Assets\SeaDragon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -159,6 +164,7 @@
     <Content Include="Assets\SeaEmperor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\SeaEmperorBaby.png" />
     <Content Include="Assets\SeaEmperorEgg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

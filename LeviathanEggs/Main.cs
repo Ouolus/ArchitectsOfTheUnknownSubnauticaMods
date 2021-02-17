@@ -128,14 +128,18 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.Rockgrub] = new WaterParkCreatureParameters(0.4f, 1f, 1f, 1f, true);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.15f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.ReefbackBaby] = TechType.ReefbackEgg;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
+            WaterParkCreature.creatureEggs.Remove(TechType.Reefback);
             #endregion
             #region Loot Distributon
             #region Reefback Egg Spawns
