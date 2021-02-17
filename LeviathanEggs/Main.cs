@@ -63,11 +63,11 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorJuvenile, "Sea Emperor Juvenile");
             #endregion
             #region Tooltips
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic Sapient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sapient filter-feeder, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic sapient filter-feeder, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic sapient filter-feeder, raised in containment.");
 
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal, territorial Leviathan with reptilian features, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal reptilian carnivore, raised in containment.");
 
             
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous, aggressive, eel-like apex predator, raised in containment.");
@@ -112,6 +112,9 @@ namespace LeviathanEggs
             CraftDataHandler.SetItemSize(TechType.Bleeder, new Vector2int(1, 1));
 
             CraftDataHandler.SetItemSize(TechType.Rockgrub, new Vector2int(1, 1));
+
+            CraftDataHandler.SetItemSize(TechType.Biter, new Vector2int(1, 1));
+            CraftDataHandler.SetItemSize(TechType.Blighter, new Vector2int(1, 1));
             #endregion
             #region WaterParkCreatureParameters
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperor] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
