@@ -14,7 +14,6 @@ namespace LeviathanEggs.Prefabs
                  Main.assetBundle.LoadAsset<GameObject>("SeaDragonEgg.prefab"),
                  TechType.SeaDragon, null, 5f)
         {
-            
         }
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;

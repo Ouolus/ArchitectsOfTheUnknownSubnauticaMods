@@ -108,40 +108,5 @@ namespace LeviathanEggs.Prefabs
         {
             return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "GhostEgg.png"));
         }
-        /*private static GameObject GetGhostEgg()
-        {
-            var model = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
-            var obj = GameObject.Instantiate(model);
-
-            GameObject tree = obj.FindChild("lost_river_cove_tree_01");
-
-            GameObject.DestroyImmediate(obj.GetComponent<ConstructionObstacle>());
-
-            foreach (Transform transform in tree.transform)
-            {
-                if (string.Compare(transform.name, "lost_river_cove_tree_01", true, CultureInfo.InvariantCulture) != 0)
-                    GameObject.DestroyImmediate(transform);
-                else
-                    foreach (Transform tr in transform)
-                        if (!tr.name.StartsWith("lost_river_cove_tree_01_eggs", true, CultureInfo.InvariantCulture))
-                            GameObject.DestroyImmediate(tr);
-            }
-            Renderer[] renderers = obj.GetAllComponentsInChildren<Renderer>();
-            foreach (var renderer in renderers)
-                if (!renderer.name.StartsWith("lost_river_cove_tree_01_eggs", true, CultureInfo.InvariantCulture))
-                    renderer.enabled = false;
-
-            Collider[] colliders = obj.GetAllComponentsInChildren<Collider>();
-            for (int i = 0; i < colliders.Length; i++)
-                GameObject.DestroyImmediate(colliders[i]);
-
-            BoxCollider box = obj.AddComponent<BoxCollider>();
-            box.size = new Vector3(1f, 0.8f, 1f);
-            box.center = new Vector3(box.center.x, box.center.y + 0.4f, box.center.z + 0.3f);
-
-            model.SetActive(false);
-
-            return obj;
-        }*/
     }
 }

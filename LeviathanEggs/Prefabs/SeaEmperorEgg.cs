@@ -8,9 +8,6 @@ namespace LeviathanEggs.Prefabs
 {
     public class SeaEmperorEgg : CreatureEggAsset
     {
-        // "WorldEntities/Eggs/EmperorEgg"
-        // "WorldEntities/Doodads/Lost_river/Lost_river_tree_01"
-        // "WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell"
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Creature Egg", "An unknown Creature hatches from this", 
                   Main.assetBundle.LoadAsset<GameObject>("SeaEmperorEgg.prefab"),
