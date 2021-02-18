@@ -70,12 +70,17 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal reptilian carnivore, raised in containment.");
 
             
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous territorial, eel-like predator, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous territorial, eel-like predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Massive territorial eel-like predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Massive territorial eel-like predator, raised in containment.");
 
-            LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
+            LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "Small, efficient, durable maintenance unit, deployed in containment.");
 
-            LanguageHandler.SetTechTypeTooltip(TechType.Bleeder, "ewww tastes like shit.\ndont eat it or you're fucked!");
+            LanguageHandler.SetTechTypeTooltip(TechType.Bleeder, "Small, blood-sucking parasite. Tastes slimy and awful.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Biter, "Small, aggressive, edible pack-hunter. High protein count.");
+            LanguageHandler.SetTechTypeTooltip(TechType.Blighter, "Small, edible ambush predator. High protein count.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Rockgrub, "Small, bioluminescent scavenger. Tastes like shrimp");
             #endregion
             #region Sprites
             SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorBaby.png")));

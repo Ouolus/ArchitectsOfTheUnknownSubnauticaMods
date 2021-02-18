@@ -9,7 +9,8 @@ namespace LeviathanEggs.Prefabs
     class RobotEgg : CreatureEggAsset
     {
         public RobotEgg()
-            :base("RobotEgg", "Robot Egg", "Robot Egg that makes me go yes", Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
+            :base("RobotEgg", "Alien Robot Egg", "Unknown Alien technology that appears to store some kind of device.",
+                 Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
         {
         }
         public override bool AcidImmune => true;
