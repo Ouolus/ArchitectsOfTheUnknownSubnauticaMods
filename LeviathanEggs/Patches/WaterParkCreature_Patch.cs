@@ -80,6 +80,7 @@ namespace LeviathanEggs.Patches
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
+                        __instance.canBreed = false;
                         break;
                     }
 
