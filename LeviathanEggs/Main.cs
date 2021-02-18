@@ -138,7 +138,7 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Rockgrub] = new WaterParkCreatureParameters(0.4f, 1f, 1f, 1f, true);
 
-            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.2f, 1f, false);
             #endregion
