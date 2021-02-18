@@ -159,6 +159,7 @@
     <Content Include="Assets\GhostEgg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\PrecursorDroid.png" />
     <Content Include="Assets\RobotEgg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
