@@ -98,7 +98,7 @@ namespace LeviathanEggs
             SpriteHandler.RegisterSprite(TechType.Blighter, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Blighter.png")));
             #endregion
             #region ItemSizes
-            CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(4, 4));
+            CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(3, 3));
             CraftDataHandler.SetItemSize(TechType.SeaEmperorJuvenile, new Vector2int(4, 4));
             CraftDataHandler.SetItemSize(TechType.SeaEmperor, new Vector2int(4, 4));
 
