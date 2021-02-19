@@ -98,20 +98,20 @@ namespace LeviathanEggs.Patches
                 switch (techType)
                 {
                     case TechType.Bleeder:
-                        eatable.foodValue = -1f;
-                        eatable.waterValue = -5f;
+                        eatable.foodValue = -3f;
+                        eatable.waterValue = 6f;
                         break;
                     case TechType.Biter:
-                        eatable.foodValue = 12f;
-                        eatable.waterValue = 1f;
+                        eatable.foodValue = 22f;
+                        eatable.waterValue = 4f;
                         break;
                     case TechType.Blighter:
-                        eatable.foodValue = 13f;
-                        eatable.waterValue = 2f;
+                        eatable.foodValue = 19f;
+                        eatable.waterValue = 5f;
                         break;
                     default:
                         eatable.foodValue = 10f;
-                        eatable.waterValue = 4f;
+                        eatable.waterValue = 2f;
                         break;
                 }
                 GameObject obj = GameObject.Instantiate(__instance.gameObject);
