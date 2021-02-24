@@ -27,6 +27,7 @@ namespace LeviathanEggs.Patches
                             StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                             stagedGrowing.daysToNextStage = 5;
                             stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                            stagedGrowing.nextStageStartSize = 0.1f;
                         }
                         else
                         {
@@ -35,6 +36,7 @@ namespace LeviathanEggs.Patches
                                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                                 stagedGrowing.daysToNextStage = 5;
                                 stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                                stagedGrowing.nextStageStartSize = 0.1f;
                             }
                         }
 
@@ -48,6 +50,7 @@ namespace LeviathanEggs.Patches
                             StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                             stagedGrowing.daysToNextStage = 5;
                             stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                            stagedGrowing.nextStageStartSize = 0.1f;
                         }
                         else
                         {
@@ -56,6 +59,28 @@ namespace LeviathanEggs.Patches
                                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                                 stagedGrowing.daysToNextStage = 5;
                                 stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                                stagedGrowing.nextStageStartSize = 0.1f;
+                            }
+                        }
+                        break;
+                    }
+                case TechType.ReefbackBaby:
+                    {
+                        if (!Main.Config.GlobalStagedGrowth)
+                        {
+                            StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                            stagedGrowing.daysToNextStage = 5;
+                            stagedGrowing.nextStageTechType = TechType.Reefback;
+                            stagedGrowing.nextStageStartSize = 0.3f;
+                        }
+                        else
+                        {
+                            if (__instance.gameObject.GetComponent<WaterParkCreature>() != null)
+                            {
+                                StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                                stagedGrowing.daysToNextStage = 5;
+                                stagedGrowing.nextStageTechType = TechType.Reefback;
+                                stagedGrowing.nextStageStartSize = 0.3f;
                             }
                         }
                         break;
@@ -89,9 +114,6 @@ namespace LeviathanEggs.Patches
 
             if (Main.TechTypesToTweak.Contains(techType))
             {
-                Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
-                pickupable.isPickupable = true;
-
                 AquariumFish aquariumFish = __instance.gameObject.EnsureComponent<AquariumFish>();
 
                 Eatable eatable = __instance.gameObject.EnsureComponent<Eatable>();

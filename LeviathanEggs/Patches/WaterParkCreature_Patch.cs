@@ -25,6 +25,7 @@ namespace LeviathanEggs.Patches
                         StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
                         stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                        stagedGrowing.nextStageStartSize = 0.1f;
                         __instance.canBreed = false;
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
@@ -35,8 +36,7 @@ namespace LeviathanEggs.Patches
                     {
                         StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
-                        stagedGrowing.nextStageTechType = TechType.SeaEmperor;
-                        __instance.canBreed = false;
+                        __instance.canBreed = true;
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -48,6 +48,7 @@ namespace LeviathanEggs.Patches
                         StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
                         stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                        stagedGrowing.nextStageStartSize = 0.65f;
                         __instance.canBreed = false;
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
@@ -61,8 +62,23 @@ namespace LeviathanEggs.Patches
                         pickupable.timeDropped = Time.time;
                         break;
                     }
-                case TechType.SeaEmperor:
+                case TechType.ReefbackBaby:
                     {
+                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        stagedGrowing.nextStageTechType = TechType.Reefback;
+                        stagedGrowing.nextStageStartSize = 0.3f;
+                        __instance.canBreed = false;
+                        Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
+                        pickupable.isPickupable = true;
+                        pickupable.timeDropped = Time.time;
+                        break;
+                    }
+                case TechType.Reefback:
+                    {
+                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        __instance.canBreed = true;
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -107,9 +123,6 @@ namespace LeviathanEggs.Patches
 
             if (Main.TechTypesToTweak.Contains(techType))
             {
-                Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
-                pickupable.isPickupable = true;
-
                 AquariumFish aquariumFish = __instance.gameObject.EnsureComponent<AquariumFish>();
 
                 Eatable eatable = __instance.gameObject.EnsureComponent<Eatable>();
