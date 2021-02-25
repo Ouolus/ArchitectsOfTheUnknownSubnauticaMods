@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3981799970
+CRC: 1024644348
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2e209eacdb751567bd37ac9bdad3a68b
+    Hash: 2c6758b70e3b42d9512475b1398c4f92
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 73f31bffd76fd63fd4d018cfc15483dc
+    Hash: f973995b5dd1f0ca6fa905869fd9b538
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,13 +29,28 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 135
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
 - Assets/Prefabs/GhostEgg.prefab
+- Assets/Sprites/SeaDragon.png
+- Assets/Sprites/SeaDragonEgg.png
+- Assets/Sprites/Rockgrub.png
 - Assets/RobotEggIllum.png
 - Assets/Prefabs/RobotEgg.prefab
+- Assets/Sprites/Bleeder.png
+- Assets/Sprites/Biter.png
 - Assets/RobotEggSpecular.png
 - Assets/RobotEggDiffuse.png
 - Assets/Prefabs/SeaEmperorEgg.prefab
+- Assets/Sprites/Blighter.png
+- Assets/Sprites/PrecursorDroid.png
+- Assets/Sprites/SeaEmperorEgg.png
 - Assets/RobotEggNormal.png
+- Assets/Sprites/SeaEmperor.png
+- Assets/Sprites/SeaEmperorBaby.png
+- Assets/Sprites/GhostEgg.png
+- Assets/Sprites/Ghost.png
+- Assets/Sprites/RobotEgg.png
 - Assets/Prefabs/SeaDragonEgg.prefab
 Dependencies: []

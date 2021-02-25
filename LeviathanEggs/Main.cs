@@ -83,24 +83,24 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.Rockgrub, "Small, bioluminescent scavenger. Tastes like shrimp");
             #endregion
             #region Sprites
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorBaby.png")));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperor, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, assetBundle.LoadAsset<Sprite>("SeaEmperorBaby"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperor, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
 
-            SpriteHandler.RegisterSprite(TechType.SeaDragon, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaDragon.png")));
+            SpriteHandler.RegisterSprite(TechType.SeaDragon, assetBundle.LoadAsset<Sprite>("SeaDragon"));
 
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, assetBundle.LoadAsset<Sprite>("Ghost"));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, assetBundle.LoadAsset<Sprite>("Ghost"));
 
-            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "PrecursorDroid.png")));
+            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, assetBundle.LoadAsset<Sprite>("PrecursorDroid"));
 
-            SpriteHandler.RegisterSprite(TechType.Rockgrub, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Rockgrub.png")));
+            SpriteHandler.RegisterSprite(TechType.Rockgrub, assetBundle.LoadAsset<Sprite>("Rockgrub"));
 
-            SpriteHandler.RegisterSprite(TechType.Bleeder, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Bleeder.png")));
+            SpriteHandler.RegisterSprite(TechType.Bleeder, assetBundle.LoadAsset<Sprite>("Bleeder"));
 
-            SpriteHandler.RegisterSprite(TechType.Biter, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Biter.png")));
+            SpriteHandler.RegisterSprite(TechType.Biter, assetBundle.LoadAsset<Sprite>("Biter"));
 
-            SpriteHandler.RegisterSprite(TechType.Blighter, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Blighter.png")));
+            SpriteHandler.RegisterSprite(TechType.Blighter, assetBundle.LoadAsset<Sprite>("Blighter"));
             #endregion
             #region ItemSizes
             CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(3, 3));

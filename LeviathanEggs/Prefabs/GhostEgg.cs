@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using UWE;
-using SMLHelper.V2.Utility;
+using SMLHelper.V2.Handlers;
 using ECCLibrary;
 using UnityEngine;
 using System;
@@ -16,6 +13,10 @@ namespace LeviathanEggs.Prefabs
                   Main.assetBundle.LoadAsset<GameObject>("GhostEgg.prefab"),
                   TechType.GhostLeviathanJuvenile, null, 1f)
         {
+            OnFinishedPatching += () =>
+            {
+                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("GhostEgg"));
+            };
         }
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
@@ -103,10 +104,6 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
-        }
-        protected override Atlas.Sprite GetItemSprite()
-        {
-            return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "GhostEgg.png"));
         }
     }
 }
