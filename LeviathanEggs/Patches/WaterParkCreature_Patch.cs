@@ -12,6 +12,7 @@ namespace LeviathanEggs.Patches
         {
             TechType techType = CraftData.GetTechType(__instance.gameObject);
 
+            // TODO: fix the staged growth for ACU creatures or get rid of it completely.
             switch (techType)
             {
                 case TechType.SeaEmperorBaby:
@@ -22,11 +23,11 @@ namespace LeviathanEggs.Patches
                             SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
                             seb.hatched = true;
                         }
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
                         stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
                         stagedGrowing.nextStageStartSize = 0.1f;
-                        __instance.canBreed = false;
+                        __instance.canBreed = false;*/
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -34,9 +35,9 @@ namespace LeviathanEggs.Patches
                     }
                 case TechType.SeaEmperorJuvenile:
                     {
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
-                        __instance.canBreed = true;
+                        __instance.canBreed = true;*/
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -45,11 +46,11 @@ namespace LeviathanEggs.Patches
 
                 case TechType.GhostLeviathanJuvenile:
                     {
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
                         stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
                         stagedGrowing.nextStageStartSize = 0.65f;
-                        __instance.canBreed = false;
+                        __instance.canBreed = false;*/
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -64,21 +65,11 @@ namespace LeviathanEggs.Patches
                     }
                 case TechType.ReefbackBaby:
                     {
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                         stagedGrowing.daysToNextStage = 5;
                         stagedGrowing.nextStageTechType = TechType.Reefback;
-                        stagedGrowing.nextStageStartSize = 0.3f;
-                        __instance.canBreed = false;
-                        Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
-                        pickupable.isPickupable = true;
-                        pickupable.timeDropped = Time.time;
-                        break;
-                    }
-                case TechType.Reefback:
-                    {
-                        StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
-                        stagedGrowing.daysToNextStage = 5;
-                        __instance.canBreed = true;
+                        stagedGrowing.nextStageStartSize = 0.3f;*/
+                        //__instance.canBreed = false;
                         Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                         pickupable.isPickupable = true;
                         pickupable.timeDropped = Time.time;
@@ -99,7 +90,6 @@ namespace LeviathanEggs.Patches
                         __instance.canBreed = false;
                         break;
                     }
-
             }
 
 
@@ -119,40 +109,6 @@ namespace LeviathanEggs.Patches
             {
                 Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
                 pickupable.isPickupable = false;
-            }
-
-            if (Main.TechTypesToTweak.Contains(techType))
-            {
-                AquariumFish aquariumFish = __instance.gameObject.EnsureComponent<AquariumFish>();
-
-                Eatable eatable = __instance.gameObject.EnsureComponent<Eatable>();
-                switch (techType)
-                {
-                    case TechType.Bleeder:
-                        eatable.foodValue = -3f;
-                        eatable.waterValue = 6f;
-                        break;
-                    case TechType.Biter:
-                        eatable.foodValue = 22f;
-                        eatable.waterValue = 4f;
-                        break;
-                    case TechType.Blighter:
-                        eatable.foodValue = 19f;
-                        eatable.waterValue = 5f;
-                        break;
-                    default:
-                        eatable.foodValue = 10f;
-                        eatable.waterValue = 2f;
-                        break;
-                }
-                GameObject obj = GameObject.Instantiate(__instance.gameObject);
-
-                foreach (Component component in obj.GetComponents<Component>())
-                {
-                    GameObject.DestroyImmediate(component);
-                }
-                aquariumFish.model = obj;
-                obj.SetActive(false);
             }
         }
     }

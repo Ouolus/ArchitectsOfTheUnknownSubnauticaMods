@@ -75,7 +75,8 @@ namespace LeviathanEggs.MonoBehaviours
 
                 GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one * nextStageStartSize, false);
 
-                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                // TODO: fix Staged Growth for the ACU creatures or get rid of it completely.
+                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
                 {
                     gameObject.SetActive(false);
                     WaterParkCreature parkCreature = nextStageObject.EnsureComponent<WaterParkCreature>();
@@ -92,7 +93,7 @@ namespace LeviathanEggs.MonoBehaviours
                     waterPark.RemoveItem(waterParkCreature);
                     waterPark.AddItem(parkCreature);
 
-                }
+                }*/
 
                 nextStageObject.EnsureComponent<StagedGrowing>();
                 nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
@@ -102,8 +103,8 @@ namespace LeviathanEggs.MonoBehaviours
             }
             else
             {
-                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
-                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;
+                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;*/
 
                 Destroy(this);
             }
