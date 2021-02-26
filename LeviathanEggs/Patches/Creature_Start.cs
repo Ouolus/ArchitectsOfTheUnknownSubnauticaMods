@@ -43,6 +43,16 @@ namespace LeviathanEggs.Patches
                         break;
                     }
 
+                case TechType.SeaEmperorJuvenile:
+                    {
+                        if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
+                        {
+                            if (__instance.gameObject.transform.localScale.x != 0.1f)
+                                __instance.gameObject.transform.localScale = Vector3.one * 0.1f;
+                        }
+                        break;
+                    }
+
                 case TechType.GhostLeviathanJuvenile:
                     {
                         if (!Main.Config.GlobalStagedGrowth)
@@ -50,7 +60,7 @@ namespace LeviathanEggs.Patches
                             StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                             stagedGrowing.daysToNextStage = 5;
                             stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
-                            stagedGrowing.nextStageStartSize = 0.1f;
+                            stagedGrowing.nextStageStartSize = 0.65f;
                         }
                         else
                         {
@@ -59,8 +69,17 @@ namespace LeviathanEggs.Patches
                                 StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
                                 stagedGrowing.daysToNextStage = 5;
                                 stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
-                                stagedGrowing.nextStageStartSize = 0.1f;
+                                stagedGrowing.nextStageStartSize = 0.65f;
                             }
+                        }
+                        break;
+                    }
+                case TechType.GhostLeviathan:
+                    {
+                        if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
+                        {
+                            if (__instance.gameObject.transform.localScale.x != 0.65f)
+                                __instance.gameObject.transform.localScale = Vector3.one * 0.65f;
                         }
                         break;
                     }
@@ -82,6 +101,15 @@ namespace LeviathanEggs.Patches
                                 stagedGrowing.nextStageTechType = TechType.Reefback;
                                 stagedGrowing.nextStageStartSize = 0.3f;
                             }
+                        }
+                        break;
+                    }
+                case TechType.Reefback:
+                    {
+                        if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
+                        {
+                            if (__instance.gameObject.transform.localScale.x != 0.3f)
+                                __instance.gameObject.transform.localScale = Vector3.one * 0.3f;
                         }
                         break;
                     }

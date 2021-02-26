@@ -4,6 +4,7 @@ using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UWE;
+using LeviathanEggs.Helpers;
 namespace LeviathanEggs.MonoBehaviours
 {
     public class StagedGrowing : MonoBehaviour
@@ -75,6 +76,8 @@ namespace LeviathanEggs.MonoBehaviours
 
                 GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one * nextStageStartSize, false);
 
+                gameObject.SemiInActive();
+
                 // TODO: fix Staged Growth for the ACU creatures or get rid of it completely.
                 /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
                 {
@@ -94,11 +97,10 @@ namespace LeviathanEggs.MonoBehaviours
                     waterPark.AddItem(parkCreature);
 
                 }*/
-
-                nextStageObject.EnsureComponent<StagedGrowing>();
-                nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                //nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
                 nextStageObject.SetActive(true);
-
+                nextStageObject.transform.localScale = Vector3.one * nextStageStartSize;
+                nextStageObject.EnsureComponent<StagedGrowing>();
                 Destroy(gameObject);
             }
             else

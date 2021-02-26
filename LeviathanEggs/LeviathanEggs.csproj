@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
