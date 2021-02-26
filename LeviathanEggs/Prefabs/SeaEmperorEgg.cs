@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using ECCLibrary;
 using UnityEngine;
-using SMLHelper.V2.Utility;
+using SMLHelper.V2.Handlers;
 using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Prefabs
 {
     public class SeaEmperorEgg : CreatureEggAsset
     {
-        // "WorldEntities/Eggs/EmperorEgg"
-        // "WorldEntities/Doodads/Lost_river/Lost_river_tree_01"
-        // "WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell"
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Creature Egg", "An unknown Creature hatches from this", 
                   Main.assetBundle.LoadAsset<GameObject>("SeaEmperorEgg.prefab"),
                   TechType.SeaEmperorBaby, null, 5f)
         {
+            OnFinishedPatching += () =>
+            {
+                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("SeaEmperorEgg"));
+            };
         }
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
@@ -72,9 +72,6 @@ namespace LeviathanEggs.Prefabs
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
         public override float GetMaxHealth => 60f;
-        protected override Atlas.Sprite GetItemSprite()
-        {
-            return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorEgg.png"));
-        }
+        public override bool ManualEggExplosion => false;
     }
 }

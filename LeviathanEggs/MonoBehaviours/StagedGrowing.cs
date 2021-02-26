@@ -4,13 +4,16 @@ using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UWE;
+using LeviathanEggs.Helpers;
 namespace LeviathanEggs.MonoBehaviours
 {
     public class StagedGrowing : MonoBehaviour
     {
         public TechType nextStageTechType = TechType.None;
         public float daysToNextStage = 5;
+        public float nextStageStartSize = 1f; // the next creature start size
 
+        Vector3 startSize;
         float startTime;
         float growTime;
         float t = 0;
@@ -18,6 +21,7 @@ namespace LeviathanEggs.MonoBehaviours
 
         void Start()
         {
+            startSize = gameObject.transform.localScale;
             List<CreatureAction> creatureActions = gameObject.GetComponentsInChildren<CreatureAction>(true).Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
             foreach (CreatureAction creatureAction in creatureActions)
             {
@@ -34,9 +38,6 @@ namespace LeviathanEggs.MonoBehaviours
 
         IEnumerator StartGrowing()
         {
-            var startsSize = gameObject.transform.localScale.sqrMagnitude < Vector3.one.sqrMagnitude ? transform.localScale : Vector3.one * 0.1f;
-            transform.localScale = startsSize;
-
             while (t < 1)
             {
                 if (Time.timeScale > 0f)
@@ -45,7 +46,7 @@ namespace LeviathanEggs.MonoBehaviours
                     if (waterParkCreature is null || !waterParkCreature.IsInsideWaterPark())
                     {
                         t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
-                        var scale = Vector3.Lerp(startsSize, Vector3.one, t);
+                        var scale = Vector3.Lerp(startSize, Vector3.one, t);
                         gameObject.transform.localScale = scale;
 
                         foreach (KeyValuePair<CreatureAction, float> pair in originalSpeeds)
@@ -73,9 +74,12 @@ namespace LeviathanEggs.MonoBehaviours
                 GameObject prefab = task.GetResult();
                 prefab.SetActive(false);
 
-                GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one*0.1f, false);
+                GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one * nextStageStartSize, false);
 
-                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                gameObject.SemiInActive();
+
+                // TODO: fix Staged Growth for the ACU creatures or get rid of it completely.
+                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
                 {
                     gameObject.SetActive(false);
                     WaterParkCreature parkCreature = nextStageObject.EnsureComponent<WaterParkCreature>();
@@ -92,18 +96,17 @@ namespace LeviathanEggs.MonoBehaviours
                     waterPark.RemoveItem(waterParkCreature);
                     waterPark.AddItem(parkCreature);
 
-                }
-
-                nextStageObject.EnsureComponent<StagedGrowing>();
-                nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                }*/
+                //nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
                 nextStageObject.SetActive(true);
-
+                nextStageObject.transform.localScale = Vector3.one * nextStageStartSize;
+                nextStageObject.EnsureComponent<StagedGrowing>();
                 Destroy(gameObject);
             }
             else
             {
-                if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
-                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;
+                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
+                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;*/
 
                 Destroy(this);
             }

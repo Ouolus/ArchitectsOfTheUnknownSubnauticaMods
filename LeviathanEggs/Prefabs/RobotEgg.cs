@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using SMLHelper.V2.Utility;
+using SMLHelper.V2.Handlers;
 using ECCLibrary;
 using UnityEngine;
 using LeviathanEggs.MonoBehaviours;
@@ -9,8 +8,13 @@ namespace LeviathanEggs.Prefabs
     class RobotEgg : CreatureEggAsset
     {
         public RobotEgg()
-            :base("RobotEgg", "Robot Egg", "Robot Egg that makes me go yes", Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
+            :base("RobotEgg", "Alien Robot Egg", "Unknown Alien technology that appears to store some kind of device.",
+                 Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
         {
+            OnFinishedPatching += () =>
+            {
+                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("RobotEgg"));
+            };
         }
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
@@ -63,10 +67,7 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
-        }
-        protected override Atlas.Sprite GetItemSprite()
-        {
-            return ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "RobotEgg.png"));
+            prefab.EnsureComponent<RobotEggPulsating>();
         }
     }
 }

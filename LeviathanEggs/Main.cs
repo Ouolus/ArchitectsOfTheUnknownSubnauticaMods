@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HarmonyLib;
 using QModManager.API.ModLoading;
 using SMLHelper.V2.Handlers;
@@ -62,41 +61,49 @@ namespace LeviathanEggs
             #region TechTypeNames
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorBaby, "Sea Emperor Baby");
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorJuvenile, "Sea Emperor Juvenile");
-            LanguageHandler.SetTechTypeName(TechType.SeaEmperor, "Sea Emperor");
-
-            LanguageHandler.SetTechTypeName(TechType.SeaDragon, "Sea Dragon");
-
-            LanguageHandler.SetTechTypeName(TechType.GhostLeviathanJuvenile, "Ghost Leviathan Juvenile");
-
-            LanguageHandler.SetTechTypeName(TechType.PrecursorDroid, "Alien Robot");
             #endregion
             #region Tooltips
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic sentient filter-feeder, with a passive demeanor and unique healing properties, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorBaby, "Gigantic sapient filter-feeder, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperorJuvenile, "Gigantic sapient filter-feeder, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaEmperor, "Gigantic sapient filter-feeder, raised in containment.");
 
-            LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal, territorial Leviathan with reptilian features, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaDragon, "Colossal reptilian carnivore, raised in containment.");
 
             
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Enormous, aggressive, eel-like apex predator, raised in containment.");
-            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Enormous, aggressive, eel-like apex predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Massive territorial eel-like predator, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Massive territorial eel-like predator, raised in containment.");
 
-            LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "A Precursor Robot");
+            LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "Small, efficient, durable maintenance unit, deployed in containment.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Bleeder, "Small, blood-sucking parasite. Tastes slimy and awful.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Biter, "Small, aggressive, edible pack-hunter. High protein count.");
+            LanguageHandler.SetTechTypeTooltip(TechType.Blighter, "Small, edible ambush predator. High protein count.");
+
+            LanguageHandler.SetTechTypeTooltip(TechType.Rockgrub, "Small, bioluminescent scavenger. Tastes like shrimp");
             #endregion
             #region Sprites
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperorBaby.png")));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperor, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaEmperor.png")));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, assetBundle.LoadAsset<Sprite>("SeaEmperorBaby"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperor, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
 
-            SpriteHandler.RegisterSprite(TechType.SeaDragon, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "SeaDragon.png")));
+            SpriteHandler.RegisterSprite(TechType.SeaDragon, assetBundle.LoadAsset<Sprite>("SeaDragon"));
 
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "Ghost.png")));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, assetBundle.LoadAsset<Sprite>("Ghost"));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, assetBundle.LoadAsset<Sprite>("Ghost"));
 
-            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, ImageUtils.LoadSpriteFromFile(Path.Combine(AssetsFolder, "PrecursorDroid.png")));
+            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, assetBundle.LoadAsset<Sprite>("PrecursorDroid"));
+
+            SpriteHandler.RegisterSprite(TechType.Rockgrub, assetBundle.LoadAsset<Sprite>("Rockgrub"));
+
+            SpriteHandler.RegisterSprite(TechType.Bleeder, assetBundle.LoadAsset<Sprite>("Bleeder"));
+
+            SpriteHandler.RegisterSprite(TechType.Biter, assetBundle.LoadAsset<Sprite>("Biter"));
+
+            SpriteHandler.RegisterSprite(TechType.Blighter, assetBundle.LoadAsset<Sprite>("Blighter"));
             #endregion
             #region ItemSizes
-            CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(4, 4));
+            CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(3, 3));
             CraftDataHandler.SetItemSize(TechType.SeaEmperorJuvenile, new Vector2int(4, 4));
             CraftDataHandler.SetItemSize(TechType.SeaEmperor, new Vector2int(4, 4));
 
@@ -106,6 +113,13 @@ namespace LeviathanEggs
             CraftDataHandler.SetItemSize(TechType.GhostLeviathan, new Vector2int(4, 4));
 
             CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
+
+            CraftDataHandler.SetItemSize(TechType.Bleeder, new Vector2int(1, 1));
+
+            CraftDataHandler.SetItemSize(TechType.Rockgrub, new Vector2int(1, 1));
+
+            CraftDataHandler.SetItemSize(TechType.Biter, new Vector2int(1, 1));
+            CraftDataHandler.SetItemSize(TechType.Blighter, new Vector2int(1, 1));
             #endregion
             #region WaterParkCreatureParameters
             WaterParkCreature.waterParkCreatureParameters[TechType.SeaEmperor] = new WaterParkCreatureParameters(0.03f, 0.04f, 0.07f, 1f, false);
@@ -118,15 +132,25 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.GhostLeviathan] = new WaterParkCreatureParameters(0.03f, 0.05f, 0.07f, 1f, false);
 
             WaterParkCreature.waterParkCreatureParameters[TechType.Bleeder] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
-            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.2f, 0.6f, 0.8f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.Biter] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
+            WaterParkCreature.waterParkCreatureParameters[TechType.Blighter] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, true);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.Rockgrub] = new WaterParkCreatureParameters(0.4f, 1f, 1f, 1f, true);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.2f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.ReefbackBaby] = TechType.ReefbackEgg;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
+            WaterParkCreature.creatureEggs.Remove(TechType.Reefback);
             #endregion
             #region Loot Distributon
             #region Reefback Egg Spawns

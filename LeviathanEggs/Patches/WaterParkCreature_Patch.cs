@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch(typeof(WaterParkCreature))]
@@ -11,56 +12,73 @@ namespace LeviathanEggs.Patches
         {
             TechType techType = CraftData.GetTechType(__instance.gameObject);
 
-            if (techType == TechType.SeaEmperorBaby)
+            // TODO: fix the staged growth for ACU creatures or get rid of it completely.
+            switch (techType)
             {
-                SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
-                if (seb != null)
-                {
-                    SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
-                    seb.hatched = true;
-                }
-            }
-        }
-        [HarmonyPostfix]
-        [HarmonyPatch(nameof(WaterParkCreature.Update))]
-        static void Update_Patch(WaterParkCreature __instance)
-        {
-            TechType techType = CraftData.GetTechType(__instance.gameObject);
-            foreach (TechType tt in Main.TechTypesToSkyApply)
-            {
-                if (techType == tt)
-                {
-                    SkyApplier skyApplier = __instance.gameObject.EnsureComponent<SkyApplier>();
+                case TechType.SeaEmperorBaby:
+                    {
+                        SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
+                        if (seb != null)
+                        {
+                            SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
+                            seb.hatched = true;
+                        }
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        stagedGrowing.nextStageTechType = TechType.SeaEmperorJuvenile;
+                        stagedGrowing.nextStageStartSize = 0.1f;
+                        __instance.canBreed = false;*/
+                        break;
+                    }
+                case TechType.SeaEmperorJuvenile:
+                    {
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        __instance.canBreed = true;*/
+                        break;
+                    }
 
-                    if (__instance.gameObject.TryGetComponent(out __instance) && __instance.IsInsideWaterPark())
-                        skyApplier.anchorSky = Skies.BaseInterior;
-                    else
-                        skyApplier.anchorSky = Skies.Auto;
-                    skyApplier.renderers = __instance.gameObject.GetAllComponentsInChildren<Renderer>();
-                    skyApplier.dynamic = true;
-                    skyApplier.emissiveFromPower = false;
-                    skyApplier.hideFlags = HideFlags.None;
-                    skyApplier.enabled = true;
-                }
+                case TechType.GhostLeviathanJuvenile:
+                    {
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        stagedGrowing.nextStageTechType = TechType.GhostLeviathan;
+                        stagedGrowing.nextStageStartSize = 0.65f;
+                        __instance.canBreed = false;*/
+                        break;
+                    }
+                case TechType.GhostLeviathan:
+                    {
+                        Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
+                        pickupable.isPickupable = true;
+                        break;
+                    }
+                case TechType.ReefbackBaby:
+                    {
+                        /*StagedGrowing stagedGrowing = __instance.gameObject.EnsureComponent<StagedGrowing>();
+                        stagedGrowing.daysToNextStage = 5;
+                        stagedGrowing.nextStageTechType = TechType.Reefback;
+                        stagedGrowing.nextStageStartSize = 0.3f;*/
+                        //__instance.canBreed = false;
+                        break;
+                    }
+                case TechType.PrecursorDroid:
+                    {
+                        __instance.canBreed = false;
+                        break;
+                    }
             }
-        }
-    }
-    [HarmonyPatch(typeof(WaterParkCreature), nameof(WaterParkCreature.Start))]
-    class WaterParkCreature_Start_Patch
-    {
-        [HarmonyPostfix]
-        static void Postfix(WaterParkCreature __instance)
-        {
-            TechType techType = CraftData.GetTechType(__instance.gameObject);
-            
-            if (techType == TechType.SeaEmperorBaby)
+
+            if (Main.TechTypesToSkyApply.Contains(techType))
             {
-                SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
-                if (seb != null)
-                {
-                    SafeAnimator.SetBool(seb.GetAnimator(), "hatched", true);
-                    seb.hatched = true;
-                }
+                SkyApplier skyApplier = __instance.gameObject.EnsureComponent<SkyApplier>();
+
+                skyApplier.anchorSky = Skies.Auto;
+                skyApplier.renderers = __instance.gameObject.GetAllComponentsInChildren<Renderer>();
+                skyApplier.dynamic = true;
+                skyApplier.emissiveFromPower = false;
+                skyApplier.hideFlags = HideFlags.None;
+                skyApplier.enabled = true;
             }
         }
     }

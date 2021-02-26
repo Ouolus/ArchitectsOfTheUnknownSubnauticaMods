@@ -119,11 +119,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\Creature_Start.cs" />
+    <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
+    <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
@@ -133,33 +137,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Assets\eggs">
+    <None Include="Assets\creatureeggs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Assets\eggs.manifest">
+    <None Include="Assets\creatureeggs.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="mod_SN1.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Ghost.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\GhostEgg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\SeaDragon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\SeaDragonEgg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\SeaEmperor.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\SeaEmperorEgg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
