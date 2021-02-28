@@ -119,12 +119,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
-    <Compile Include="Patches\Creature_Start.cs" />
+    <Compile Include="Patches\Creature_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
