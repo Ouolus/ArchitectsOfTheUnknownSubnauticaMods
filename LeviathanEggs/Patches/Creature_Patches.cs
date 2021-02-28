@@ -4,7 +4,7 @@ using LeviathanEggs.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch]
-    class Creature_Start
+    class Creature_Patches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Creature), nameof(Creature.Start))]

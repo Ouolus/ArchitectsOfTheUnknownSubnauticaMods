@@ -10,6 +10,7 @@ using UnityEngine;
 using static LootDistributionData;
 using UWE;
 using LeviathanEggs.Configurations;
+using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs
 {
     [QModCore]
@@ -83,24 +84,24 @@ namespace LeviathanEggs
             LanguageHandler.SetTechTypeTooltip(TechType.Rockgrub, "Small, bioluminescent scavenger. Tastes like shrimp");
             #endregion
             #region Sprites
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, assetBundle.LoadAsset<Sprite>("SeaEmperorBaby"));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
-            SpriteHandler.RegisterSprite(TechType.SeaEmperor, assetBundle.LoadAsset<Sprite>("SeaEmperor"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorBaby, LoadSprite("SeaEmperorBaby"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperorJuvenile, LoadSprite("SeaEmperor"));
+            SpriteHandler.RegisterSprite(TechType.SeaEmperor, LoadSprite("SeaEmperor"));
 
-            SpriteHandler.RegisterSprite(TechType.SeaDragon, assetBundle.LoadAsset<Sprite>("SeaDragon"));
+            SpriteHandler.RegisterSprite(TechType.SeaDragon, LoadSprite("SeaDragon"));
 
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, assetBundle.LoadAsset<Sprite>("Ghost"));
-            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, assetBundle.LoadAsset<Sprite>("Ghost"));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathan, LoadSprite("Ghost"));
+            SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, LoadSprite("Ghost"));
 
-            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, assetBundle.LoadAsset<Sprite>("PrecursorDroid"));
+            SpriteHandler.RegisterSprite(TechType.PrecursorDroid, LoadSprite("PrecursorDroid"));
 
-            SpriteHandler.RegisterSprite(TechType.Rockgrub, assetBundle.LoadAsset<Sprite>("Rockgrub"));
+            SpriteHandler.RegisterSprite(TechType.Rockgrub, LoadSprite("Rockgrub"));
 
-            SpriteHandler.RegisterSprite(TechType.Bleeder, assetBundle.LoadAsset<Sprite>("Bleeder"));
+            SpriteHandler.RegisterSprite(TechType.Bleeder, LoadSprite("Bleeder"));
 
-            SpriteHandler.RegisterSprite(TechType.Biter, assetBundle.LoadAsset<Sprite>("Biter"));
+            SpriteHandler.RegisterSprite(TechType.Biter, LoadSprite("Biter"));
 
-            SpriteHandler.RegisterSprite(TechType.Blighter, assetBundle.LoadAsset<Sprite>("Blighter"));
+            SpriteHandler.RegisterSprite(TechType.Blighter, LoadSprite("Blighter"));
             #endregion
             #region ItemSizes
             CraftDataHandler.SetItemSize(TechType.SeaEmperorBaby, new Vector2int(3, 3));

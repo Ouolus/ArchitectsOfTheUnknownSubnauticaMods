@@ -3,13 +3,14 @@ using SMLHelper.V2.Handlers;
 using ECCLibrary;
 using UnityEngine;
 using LeviathanEggs.MonoBehaviours;
+using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
     class RobotEgg : CreatureEggAsset
     {
         public RobotEgg()
             :base("RobotEgg", "Alien Robot Egg", "Unknown Alien technology that appears to store some kind of device.",
-                 Main.assetBundle.LoadAsset<GameObject>("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
+                 LoadGameObject("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
         {
             OnFinishedPatching += () =>
             {
@@ -40,15 +41,15 @@ namespace LeviathanEggs.Prefabs
         {
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
-                mainTexture = Main.assetBundle.LoadAsset<Texture2D>("RobotEggDiffuse"),
+                mainTexture = LoadTexture2D("RobotEggDiffuse"),
             };
             material.EnableKeyword("MARMO_NORMALMAP");
             material.EnableKeyword("MARMO_SPECMAP");
             material.EnableKeyword("MARMO_EMISSION");
 
-            material.SetTexture(ShaderPropertyID._Illum, Main.assetBundle.LoadAsset<Texture2D>("RobotEggIllum"));
-            material.SetTexture(ShaderPropertyID._SpecTex, Main.assetBundle.LoadAsset<Texture2D>("RobotEggDiffuse"));
-            material.SetTexture(ShaderPropertyID._BumpMap, Main.assetBundle.LoadAsset<Texture2D>("RobotEggNormal"));
+            material.SetTexture(ShaderPropertyID._Illum, LoadTexture2D("RobotEggIllum"));
+            material.SetTexture(ShaderPropertyID._SpecTex, LoadTexture2D("RobotEggDiffuse"));
+            material.SetTexture(ShaderPropertyID._BumpMap, LoadTexture2D("RobotEggNormal"));
 
             Renderer[] renderers = prefab.GetAllComponentsInChildren<Renderer>();
             foreach (var rend in renderers)

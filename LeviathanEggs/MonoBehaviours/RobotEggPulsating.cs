@@ -10,10 +10,9 @@ namespace LeviathanEggs.MonoBehaviours
         float _nextStrength = 2f;
         float _changeTime = 2f;
         float _timer = 0f;
-        void Awake()
-        {
-            renderers = gameObject.GetComponentsInChildren<Renderer>();
-        }
+
+        void Awake() => renderers = gameObject.GetComponentsInChildren<Renderer>();
+
         void Update()
         {
             _timer += Time.deltaTime;
