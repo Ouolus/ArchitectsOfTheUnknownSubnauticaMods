@@ -12,7 +12,7 @@ namespace ProjectAncients
     {
         public static AssetBundle assetBundle;
 
-        public static GargantuanPrefab gargantuanPrefab;
+        public static GargantuanJuvenile gargJuvenilePrefab;
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -24,8 +24,8 @@ namespace ProjectAncients
 
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
 
-            gargantuanPrefab = new GargantuanPrefab("gargantuanleviathan", "Gargantuan leviathan", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("Garg_Prefab"), null);
-            gargantuanPrefab.Patch();
+            gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan leviathan juvenile", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
+            gargJuvenilePrefab.Patch();
         }
     }
 }
