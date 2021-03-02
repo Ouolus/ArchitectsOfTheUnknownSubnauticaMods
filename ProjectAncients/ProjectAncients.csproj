@@ -36,6 +36,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <OutputPath>C:\Program Files %28x86%29\Steam\steamapps\common\Subnautica\QMods\ReturnOfTheAncients\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -121,9 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
+    <Compile Include="Mono\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\GargantuanRoar.cs" />
     <Compile Include="Mono\GargantuanBehaviour.cs" />
-    <Compile Include="Mono\GargantuanMeleeAttack.cs" />
+    <Compile Include="Mono\GargantuanMouthAttack.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
     <Compile Include="Prefabs\GargantuanJuvenile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

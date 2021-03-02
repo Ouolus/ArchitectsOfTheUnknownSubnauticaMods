@@ -8,10 +8,11 @@ using ECCLibrary;
 
 namespace ProjectAncients.Mono
 {
-    public class GargantuanMeleeAttack : MeleeAttack
+    public class GargantuanTentacleAttack : MeleeAttack
     {
 		private AudioSource attackSource;
 		private ECCAudio.AudioClipPool biteClipPool;
+		private GargantuanBehaviour behaviour;
 
 		void Start()
 		{
@@ -20,9 +21,10 @@ namespace ProjectAncients.Mono
 			attackSource.maxDistance = 40f;
 			attackSource.spatialBlend = 1f;
 			attackSource.volume = ECCHelpers.GetECCVolume();
-			biteClipPool = ECCAudio.CreateClipPool("");
-			gameObject.SearchChild("Mouth").GetComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
-			gameObject.SearchChild("Mouth").GetComponent<OnTouch>().onTouch.AddListener(OnTouch);
+			biteClipPool = ECCAudio.CreateClipPool("GargTentacleAttack");
+			gameObject.SearchChild("TentacleTrigger").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
+			gameObject.SearchChild("TentacleTrigger").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
+			behaviour = GetComponent<GargantuanBehaviour>();
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
@@ -30,14 +32,17 @@ namespace ProjectAncients.Mono
 			{
 				return;
 			}
-			if (liveMixin.IsAlive() && Time.time > timeLastBite + biteInterval) //If it can attack, continue
+			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain) //If it can attack, continue
 			{
-				Creature component = gameObject.GetComponent<Creature>();
-				if (component.Aggression.Value >= 0.1f) //This creature must have at least some level of aggression to bite
+				Creature thisCreature = gameObject.GetComponent<Creature>();
+				if (thisCreature.Aggression.Value >= 0.9f && thisCreature.Hunger.Value >= 0.6f) //This creature must be super angry to do this
 				{
 					GameObject target = GetTarget(collider);
-					GargantuanBehaviour blazaBehaviour = GetComponent<GargantuanBehaviour>();
-					if (!blazaBehaviour.IsHoldingVehicle())
+					if (!behaviour.Edible(target))
+					{
+						return;
+					}
+					if (!behaviour.IsHoldingVehicle())
 					{
 						Player player = target.GetComponent<Player>();
 						if (player != null)
@@ -47,20 +52,20 @@ namespace ProjectAncients.Mono
 								return;
 							}
 						}
-						else if (blazaBehaviour.GetCanGrabVehicle())
+						else if (behaviour.GetCanGrabVehicle())
 						{
 							SeaMoth component4 = target.GetComponent<SeaMoth>();
 							if (component4 && !component4.docked)
 							{
-								blazaBehaviour.GrabGenericSub(component4);
-								component.Aggression.Value -= 0.25f;
+								behaviour.GrabGenericSub(component4);
+								thisCreature.Aggression.Value -= 0.25f;
 								return;
 							}
 							Exosuit component5 = target.GetComponent<Exosuit>();
 							if (component5 && !component5.docked)
 							{
-								blazaBehaviour.GrabExosuit(component5);
-								component.Aggression.Value -= 0.25f;
+								behaviour.GrabExosuit(component5);
+								thisCreature.Aggression.Value -= 0.25f;
 								return;
 							}
 						}
@@ -77,12 +82,12 @@ namespace ProjectAncients.Mono
 						else
 						{
 							StartCoroutine(PerformBiteAttack(target));
-							timeLastBite = Time.time;
+							behaviour.timeCanAttackAgain = Time.time + 4f;
 							attackSource.clip = biteClipPool.GetRandomClip();
 							attackSource.Play();
 						}
 						creature.GetAnimator().SetTrigger("bite");
-						component.Aggression.Value -= 0.15f;
+						thisCreature.Aggression.Value -= 0.15f;
 					}
 				}
 			}
@@ -113,7 +118,7 @@ namespace ProjectAncients.Mono
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
-			timeLastBite = Time.time;
+			behaviour.timeCanAttackAgain = Time.time + 4f;
 		}
 		private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
 		{

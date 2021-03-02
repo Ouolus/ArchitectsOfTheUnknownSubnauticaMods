@@ -14,13 +14,14 @@ namespace ProjectAncients.Mono
         private Vector3 vehicleInitialPosition;
         private AudioSource vehicleGrabSound;
         private Transform vehicleHoldPoint;
-        private GargantuanMeleeAttack mouthAttack;
+        private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
         float damagePerSecond = 120f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
 
         public Creature creature;
+        public float timeCanAttackAgain;
 
         void Start()
         {
@@ -29,7 +30,7 @@ namespace ProjectAncients.Mono
             vehicleHoldPoint = gameObject.SearchChild("AttackBone").transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
-            mouthAttack = GetComponent<GargantuanMeleeAttack>();
+            mouthAttack = GetComponent<GargantuanMouthAttack>();
             roar = GetComponent<RoarAbility>();
         }
 
@@ -45,6 +46,11 @@ namespace ProjectAncients.Mono
             source.maxDistance = 20f;
             source.spatialBlend = 1f;
             return source;
+        }
+
+        public bool Edible(GameObject target)
+        {
+            return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>();
         }
 
         public bool IsHoldingVehicle()

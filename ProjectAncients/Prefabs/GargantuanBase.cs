@@ -95,29 +95,33 @@ namespace ProjectAncients.Prefabs
             CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
 
             MakeAggressiveTo(35f, 2, EcoTargetType.Shark, 0.2f, 2f);
+            MakeAggressiveTo(25f, 2, EcoTargetType.MediumFish, 0.2f, 2f);
             MakeAggressiveTo(100f, 3, EcoTargetType.Leviathan, 0.3f, 5f);
 
-            GargantuanBehaviour gulperBehaviour = prefab.AddComponent<GargantuanBehaviour>();
-            gulperBehaviour.creature = components.creature;
+            GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
+            gargBehaviour.creature = components.creature;
 
             GameObject mouth = prefab.SearchChild("Mouth");
-            GargantuanMeleeAttack meleeAttack = prefab.AddComponent<GargantuanMeleeAttack>();
-            meleeAttack.mouth = mouth;
-            meleeAttack.canBeFed = false;
-            meleeAttack.biteInterval = 2f;
-            meleeAttack.biteDamage = 75f;
-            meleeAttack.eatHungerDecrement = 0.05f;
-            meleeAttack.eatHappyIncrement = 0.1f;
-            meleeAttack.biteAggressionDecrement = 0.02f;
-            meleeAttack.biteAggressionThreshold = 0.1f;
-            meleeAttack.lastTarget = components.lastTarget;
-            meleeAttack.creature = components.creature;
-            meleeAttack.liveMixin = components.liveMixin;
-            meleeAttack.animator = components.creature.GetAnimator();
+            GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
+            mouthAttack.mouth = mouth;
+            mouthAttack.canBeFed = false;
+            mouthAttack.biteInterval = 2f;
+            mouthAttack.lastTarget = components.lastTarget;
+            mouthAttack.creature = components.creature;
+            mouthAttack.liveMixin = components.liveMixin;
+            mouthAttack.animator = components.creature.GetAnimator();
+
+            GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
+            GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
+            tentacleAttack.mouth = tentacleTrigger;
+            tentacleAttack.canBeFed = false;
+            tentacleAttack.biteInterval = 2f;
+            tentacleAttack.lastTarget = components.lastTarget;
+            tentacleAttack.creature = components.creature;
+            tentacleAttack.liveMixin = components.liveMixin;
+            tentacleAttack.animator = components.creature.GetAnimator();
 
             prefab.AddComponent<GargantuanRoar>();
-
-            mouth.AddComponent<OnTouch>();
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
