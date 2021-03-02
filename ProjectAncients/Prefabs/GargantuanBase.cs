@@ -95,7 +95,7 @@ namespace ProjectAncients.Prefabs
             CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
 
             MakeAggressiveTo(35f, 2, EcoTargetType.Shark, 0.2f, 2f);
-            MakeAggressiveTo(25f, 2, EcoTargetType.MediumFish, 0.2f, 2f);
+            MakeAggressiveTo(35f, 2, EcoTargetType.Whale, 0.2f, 2f);
             MakeAggressiveTo(100f, 3, EcoTargetType.Leviathan, 0.3f, 5f);
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
