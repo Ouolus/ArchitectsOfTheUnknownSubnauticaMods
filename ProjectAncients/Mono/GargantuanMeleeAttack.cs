@@ -103,7 +103,7 @@ namespace ProjectAncients.Mono
 			}
 			return true;
 		}
-		protected override float GetBiteDamage(GameObject target) //Extra damage to Cyclops. Otherwise, does its base damage.
+		public override float GetBiteDamage(GameObject target) //Extra damage to Cyclops. Otherwise, does its base damage.
 		{
 			if (target.GetComponent<SubControl>() != null)
 			{
