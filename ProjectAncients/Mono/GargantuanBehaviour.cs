@@ -124,7 +124,7 @@ namespace ProjectAncients.Mono
         {
             if (heldVehicle != null)
             {
-                heldVehicle.liveMixin.TakeDamage(damagePerSecond, default, DamageType.Normal, null);
+                heldVehicle.liveMixin.TakeDamage(damagePerSecond, type: DamageType.Normal);
             }
         }
         public void ReleaseVehicle()
