@@ -38,7 +38,7 @@ namespace ProjectAncients.Mono
 				if (thisCreature.Aggression.Value >= 0.9f && thisCreature.Hunger.Value >= 0.6f) //This creature must be super angry to do this
 				{
 					GameObject target = GetTarget(collider);
-					if (!behaviour.Edible(target))
+					if(lastTarget.target != target)
 					{
 						return;
 					}
