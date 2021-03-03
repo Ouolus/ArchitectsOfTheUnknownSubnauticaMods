@@ -13,12 +13,14 @@ namespace ProjectAncients.Mono
         AudioSource audioSource;
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
+        Transform currentSpawn;
         const float delayMin = 10f;
         const float delayMax = 25f;
 
         private IEnumerator Start()
         {
             InitializeAudioSource();
+            currentSpawn = gameObject.SearchChild("CurrentSpawn").transform;
             float distance;
             AudioClip clipToPlay;
             for(; ; )
@@ -59,7 +61,7 @@ namespace ProjectAncients.Mono
 
         private void DoWaterDisplacement()
         {
-            WorldForces.AddExplosion(transform.position, DayNightCycle.main.timePassed, 100f, 25f);
+            WorldForces.AddExplosion(currentSpawn.position, DayNightCycle.main.timePassed, 100f, 25f);
         }
     }
 }
