@@ -122,7 +122,7 @@ namespace ProjectAncients.Mono
 		}
 		private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
 		{
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(3f);
 			if(target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target));
 		}
 	}
