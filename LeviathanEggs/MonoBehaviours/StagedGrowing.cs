@@ -4,7 +4,6 @@ using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UWE;
-using LeviathanEggs.Helpers;
 namespace LeviathanEggs.MonoBehaviours
 {
     public class StagedGrowing : MonoBehaviour
@@ -21,7 +20,6 @@ namespace LeviathanEggs.MonoBehaviours
 
         void Start()
         {
-            startSize = gameObject.transform.localScale;
             List<CreatureAction> creatureActions = gameObject.GetComponentsInChildren<CreatureAction>(true).Where((x) => x.GetType().GetField("swimVelocity") != null)?.ToList() ?? new List<CreatureAction>();
             foreach (CreatureAction creatureAction in creatureActions)
             {
@@ -31,6 +29,7 @@ namespace LeviathanEggs.MonoBehaviours
                     originalSpeeds[creatureAction] = swimVelocity.GetValue<float>();
                 }
             }
+            startSize = gameObject.transform.localScale;
             startTime = DayNightCycle.main.timePassedAsFloat;
             growTime = (1200 * daysToNextStage) ;
             CoroutineHost.StartCoroutine(StartGrowing());

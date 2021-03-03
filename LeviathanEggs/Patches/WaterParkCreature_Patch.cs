@@ -49,8 +49,8 @@ namespace LeviathanEggs.Patches
                     }
                 case TechType.GhostLeviathan:
                     {
-                        Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
-                        pickupable.isPickupable = true;
+                        /*Pickupable pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
+                        pickupable.isPickupable = true;*/
                         break;
                     }
                 case TechType.ReefbackBaby:

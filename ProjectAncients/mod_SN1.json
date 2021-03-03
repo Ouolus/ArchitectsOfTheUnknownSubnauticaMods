@@ -1,0 +1,15 @@
+{
+  "Id": "ProjectAncients",
+  "DisplayName": "Project Ancients",
+  "Author": "SpaceCatCreations",
+  "Version": "1.0.0",
+  "Dependencies": [
+    "SMLHelper"
+  ],
+  "VersionDependencies": {
+    "SMLHelper": "2.9"
+  },
+  "Game": "Subnautica",
+  "AssemblyName": "ProjectAncients.dll",
+  "Enable": true
+}

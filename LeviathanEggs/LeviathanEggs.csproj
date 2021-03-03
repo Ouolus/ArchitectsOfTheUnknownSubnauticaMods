@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="..\GameDir.targets" />
+  <Import Project="$(SolutionDir)\Dependencies\GameDir.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -119,12 +119,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
-    <Compile Include="Patches\Creature_Start.cs" />
+    <Compile Include="Patches\Creature_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
@@ -135,14 +136,10 @@
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Assets\creatureeggs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\creatureeggs.manifest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="mod_SN1.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

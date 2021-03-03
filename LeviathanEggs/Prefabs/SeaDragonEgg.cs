@@ -3,18 +3,19 @@ using ECCLibrary;
 using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
+using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
     class SeaDragonEgg : CreatureEggAsset
     {
         public SeaDragonEgg()
             :base("SeaDragonEgg", "Creature Egg", "An unknown Creature hatches from this", 
-                 Main.assetBundle.LoadAsset<GameObject>("SeaDragonEgg.prefab"),
+                 LoadGameObject("SeaDragonEgg.prefab"),
                  TechType.SeaDragon, null, 5f)
         {
             OnFinishedPatching += () =>
             {
-                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("SeaDragonEgg"));
+                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("SeaDragonEgg"));
             };
         }
         public override bool AcidImmune => true;

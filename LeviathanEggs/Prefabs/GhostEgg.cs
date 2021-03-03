@@ -4,18 +4,19 @@ using ECCLibrary;
 using UnityEngine;
 using System;
 using LeviathanEggs.MonoBehaviours;
+using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
     class GhostEgg : CreatureEggAsset
     {
         public GhostEgg()
             : base("GhostEgg", "Creature Egg", "An unknown Creature hatches from this",
-                  Main.assetBundle.LoadAsset<GameObject>("GhostEgg.prefab"),
+                  LoadGameObject("GhostEgg.prefab"),
                   TechType.GhostLeviathanJuvenile, null, 1f)
         {
             OnFinishedPatching += () =>
             {
-                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("GhostEgg"));
+                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("GhostEgg"));
             };
         }
         public override bool AcidImmune => true;

@@ -3,18 +3,19 @@ using ECCLibrary;
 using UnityEngine;
 using SMLHelper.V2.Handlers;
 using LeviathanEggs.MonoBehaviours;
+using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
     public class SeaEmperorEgg : CreatureEggAsset
     {
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Creature Egg", "An unknown Creature hatches from this", 
-                  Main.assetBundle.LoadAsset<GameObject>("SeaEmperorEgg.prefab"),
+                  LoadGameObject("SeaEmperorEgg.prefab"),
                   TechType.SeaEmperorBaby, null, 5f)
         {
             OnFinishedPatching += () =>
             {
-                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("SeaEmperorEgg"));
+                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("SeaEmperorEgg"));
             };
         }
         public override bool AcidImmune => true;
