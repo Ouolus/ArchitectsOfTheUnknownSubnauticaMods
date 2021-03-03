@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
+    <Compile Include="Mono\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\GargantuanRoar.cs" />
     <Compile Include="Mono\GargantuanBehaviour.cs" />

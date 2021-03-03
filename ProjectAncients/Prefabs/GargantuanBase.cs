@@ -122,6 +122,7 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.animator = components.creature.GetAnimator();
 
             prefab.AddComponent<GargantuanRoar>();
+            prefab.AddComponent<GargantuanSwimAmbience>();
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
