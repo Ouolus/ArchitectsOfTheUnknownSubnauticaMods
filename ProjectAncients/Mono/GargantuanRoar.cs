@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono
         const float delayMin = 10f;
         const float delayMax = 25f;
 
-        IEnumerator Start()
+        private IEnumerator Start()
         {
             InitializeAudioSource();
             float distance;
@@ -24,22 +24,28 @@ namespace ProjectAncients.Mono
             for(; ; )
             {
                 distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-                if(distance < 150f)
-                {
-                    clipToPlay = closeSounds.GetRandomClip();
-                }
-                else
-                {
-                    clipToPlay = farSounds.GetRandomClip();
-                }
+                clipToPlay = GetAudioClip(distance);
                 audioSource.clip = clipToPlay;
                 audioSource.Play();
+                DoWaterDisplacement();
                 float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
                 yield return new WaitForSeconds(timeToWait);
             }
         }
 
-        void InitializeAudioSource()
+        private AudioClip GetAudioClip(float distance)
+        {
+            if (distance < 150f)
+            {
+                return closeSounds.GetRandomClip();
+            }
+            else
+            {
+                return farSounds.GetRandomClip();
+            }
+        }
+
+        private void InitializeAudioSource()
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
@@ -49,6 +55,11 @@ namespace ProjectAncients.Mono
 
             closeSounds = ECCAudio.CreateClipPool("garg_roar");
             farSounds = ECCAudio.CreateClipPool("garg_for_anth_distant");
+        }
+
+        private void DoWaterDisplacement()
+        {
+            WorldForces.AddExplosion(transform.position, DayNightCycle.main.timePassed, 20f, 20f);
         }
     }
 }
