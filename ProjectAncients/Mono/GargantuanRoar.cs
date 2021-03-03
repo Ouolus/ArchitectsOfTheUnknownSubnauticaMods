@@ -59,7 +59,7 @@ namespace ProjectAncients.Mono
 
         private void DoWaterDisplacement()
         {
-            WorldForces.AddExplosion(transform.position, DayNightCycle.main.timePassed, 20f, 20f);
+            WorldForces.AddExplosion(transform.position, DayNightCycle.main.timePassed, 100f, 25f);
         }
     }
 }
