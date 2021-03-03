@@ -74,7 +74,7 @@ namespace ProjectAncients.Prefabs
                     }
                 }
             }
-            CreateTrail(prefab.SearchChild("Spine1"), spines.ToArray(), components, 0.1f);
+            CreateTrail(prefab.SearchChild("Spine1"), spines.ToArray(), components, 0.075f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
