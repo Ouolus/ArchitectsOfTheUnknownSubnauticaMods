@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ECCLibrary;
+using ECCLibrary.Internal;
 
 namespace ProjectAncients.Mono
 {
@@ -13,6 +14,7 @@ namespace ProjectAncients.Mono
 		private AudioSource attackSource;
 		private ECCAudio.AudioClipPool biteClipPool;
 		private GargantuanBehaviour behaviour;
+		private GameObject throat;
 
 		void Start()
 		{
@@ -22,6 +24,7 @@ namespace ProjectAncients.Mono
 			attackSource.spatialBlend = 1f;
 			attackSource.volume = ECCHelpers.GetECCVolume();
 			biteClipPool = ECCAudio.CreateClipPool("GargBiteAttack");
+			throat = gameObject.SearchChild("Head");
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
 			behaviour = GetComponent<GargantuanBehaviour>();
@@ -69,9 +72,9 @@ namespace ProjectAncients.Mono
 								return;
 							}
 						}
-						LiveMixin liveMixin = target.GetComponent<LiveMixin>();
-						if (liveMixin == null) return;
-						if (!liveMixin.IsAlive())
+						LiveMixin targetLm = target.GetComponent<LiveMixin>();
+						if (targetLm == null) return;
+						if (!targetLm.IsAlive())
 						{
 							return;
 						}
@@ -79,15 +82,23 @@ namespace ProjectAncients.Mono
 						{
 							return;
 						}
+						if (behaviour.CanSwallowWhole(target, targetLm))
+						{
+							creature.GetAnimator().SetTrigger("bite");
+							thisCreature.Hunger.Value -= 0.15f;
+							var swallowing = target.AddComponent<BeingSuckedInWhole>();
+							swallowing.target = throat.transform;
+							swallowing.animationLength = 1f;
+						}
 						else
 						{
 							StartCoroutine(PerformBiteAttack(target));
 							this.behaviour.timeCanAttackAgain = Time.time + 2f;
 							attackSource.clip = biteClipPool.GetRandomClip();
 							attackSource.Play();
+							thisCreature.Aggression.Value -= 0.15f;
+							creature.GetAnimator().SetTrigger("bite");
 						}
-						creature.GetAnimator().SetTrigger("bite");
-						thisCreature.Aggression.Value -= 0.15f;
 					}
 				}
 			}

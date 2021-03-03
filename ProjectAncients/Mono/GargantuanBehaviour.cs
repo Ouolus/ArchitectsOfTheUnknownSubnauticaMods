@@ -53,6 +53,35 @@ namespace ProjectAncients.Mono
             return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>();
         }
 
+        public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
+        {
+            if (gameObject.GetComponentInParent<Player>())
+            {
+                return false;
+            }
+            if (gameObject.GetComponentInChildren<Player>())
+            {
+                return false;
+            }
+            if (gameObject.GetComponentInParent<Vehicle>())
+            {
+                return false;
+            }
+            if (gameObject.GetComponentInParent<SubRoot>())
+            {
+                return false;
+            }
+            if (liveMixin.maxHealth > 600f)
+            {
+                return false;
+            }
+            if (liveMixin.invincible)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool IsHoldingVehicle()
         {
             return heldVehicleType != VehicleType.None;

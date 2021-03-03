@@ -7,9 +7,9 @@ namespace ProjectAncients.Mono
 {
     public class GargantuanSwimAmbience : MonoBehaviour
     {
-        public string swimSoundPrefix = "GargSwim";
-        public int audioSourceCount = 3;
-        public float delay = 2f;
+        public string swimSoundPrefix = "garg_swim_loop_2";
+        public int audioSourceCount = 2;
+        public float delay = 26.742f;
 
         ECCAudio.AudioClipPool clipPool;
         AudioSource[] myAudioSources;
@@ -30,7 +30,8 @@ namespace ProjectAncients.Mono
             AudioSource source;
             source = gameObject.AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume();
-            source.maxDistance = 40f;
+            source.minDistance = 30f;
+            source.maxDistance = 60f;
             source.spatialBlend = 1f;
             return source;
         }
@@ -52,11 +53,10 @@ namespace ProjectAncients.Mono
         {
             for (; ; )
             {
-                yield return new WaitForSeconds(delay);
                 AudioSource nextSource = GetAvailableSource();
                 nextSource.clip = clipPool.GetRandomClip();
-                nextSource.pitch = Random.Range(0.9f, 1.1f);
                 nextSource.Play();
+                yield return new WaitForSeconds(delay);
             }
         }
     }
