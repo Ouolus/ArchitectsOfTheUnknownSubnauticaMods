@@ -26,6 +26,9 @@ namespace ProjectAncients
 
             gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan leviathan juvenile", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
+
+            var expRoar = new ExplosionRoarInitializer();
+            expRoar.Patch();
         }
     }
 }
