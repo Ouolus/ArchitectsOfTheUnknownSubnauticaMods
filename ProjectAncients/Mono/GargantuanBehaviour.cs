@@ -160,6 +160,13 @@ namespace ProjectAncients.Mono
             if (heldVehicle != null)
             {
                 heldVehicle.liveMixin.TakeDamage(damagePerSecond, type: DamageType.Normal);
+                if (!heldVehicle.liveMixin.IsAlive())
+                {
+                    if(Player.main.currentMountedVehicle == heldVehicle)
+                    {
+                        Player.main.liveMixin.Kill(DamageType.Cold);
+                    }
+                }
             }
         }
         public void ReleaseVehicle()
