@@ -121,23 +121,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
+    <Compile Include="Mono\AdultGargSingleton.cs" />
+    <Compile Include="Mono\AdultGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\GargantuanRoar.cs" />
     <Compile Include="Mono\GargantuanBehaviour.cs" />
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
+    <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
+    <Compile Include="Prefabs\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\ExplosionRoarInitializer.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
     <Compile Include="Prefabs\GargantuanJuvenile.cs" />
+    <Compile Include="Prefabs\VoidGargantuanPrefab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Patches" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>

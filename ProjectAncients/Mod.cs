@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Reflection;
 using ProjectAncients.Prefabs;
 using SMLHelper.V2.Handlers;
+using HarmonyLib;
 
 namespace ProjectAncients
 {
@@ -13,6 +14,7 @@ namespace ProjectAncients
         public static AssetBundle assetBundle;
 
         public static GargantuanJuvenile gargJuvenilePrefab;
+        public static GargantuanVoid gargVoidPrefab;
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -27,8 +29,17 @@ namespace ProjectAncients
             gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan leviathan juvenile", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
 
+            gargVoidPrefab = new GargantuanVoid("GargantuanVoid", "Gargantuan leviathan", "A titan-class lifeform. Indigineous to the void.", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
+            gargVoidPrefab.Patch();
+
             var expRoar = new ExplosionRoarInitializer();
             expRoar.Patch();
+
+            var adultGargSpawner = new AdultGargSpawnerInitializer();
+            adultGargSpawner.Patch();
+
+            Harmony harmony = new Harmony("SCC.ProjectAncients");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
     }
 }
