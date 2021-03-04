@@ -21,7 +21,7 @@ namespace ProjectAncients.Prefabs
 
         public override float TurnSpeed => 0.1f;
 
-        public override float EyeFov => 0.6f;
+        public override float EyeFov => -1f;
 
         public override EcoTargetType EcoTargetType => EcoTargetType.Leviathan;
 
