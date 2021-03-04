@@ -123,9 +123,9 @@ namespace ProjectAncients.Mono
 		{
 			if (target.GetComponent<SubControl>() != null)
 			{
-				return 300f; //cyclops damage
+				return 500f; //cyclops damage
 			}
-			return 100f; //base damage
+			return 1000f; //base damage
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
