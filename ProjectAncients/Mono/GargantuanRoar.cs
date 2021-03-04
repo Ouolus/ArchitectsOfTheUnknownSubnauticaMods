@@ -25,6 +25,11 @@ namespace ProjectAncients.Mono
             AudioClip clipToPlay;
             for(; ; )
             {
+                if (!gameObject.GetComponent<LiveMixin>().IsAlive())
+                {
+                    Destroy(this);
+                    yield break;
+                }
                 distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
                 clipToPlay = GetAudioClip(distance);
                 audioSource.clip = clipToPlay;
