@@ -121,8 +121,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
-    <Compile Include="Mono\AdultGargSingleton.cs" />
-    <Compile Include="Mono\AdultGargSpawner.cs" />
+    <Compile Include="Mono\VoidGargSingleton.cs" />
+    <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\GargantuanTentacleAttack.cs" />
@@ -130,6 +130,7 @@
     <Compile Include="Mono\GargantuanBehaviour.cs" />
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
+    <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\ExplosionRoarInitializer.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
