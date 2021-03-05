@@ -60,7 +60,7 @@ namespace ProjectAncients.Prefabs
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
-                    if (currentSpine.name.Contains("end"))
+                    if (currentSpine.name.Contains("32"))
                     {
                         break;
                     }
