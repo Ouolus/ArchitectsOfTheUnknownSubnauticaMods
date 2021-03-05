@@ -131,8 +131,8 @@
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
-    <Compile Include="Prefabs\AdultGargSpawnerInitializer.cs" />
-    <Compile Include="Prefabs\ExplosionRoarInitializer.cs" />
+    <Compile Include="Prefabs\Initializer\AdultGargSpawnerInitializer.cs" />
+    <Compile Include="Prefabs\Initializer\ExplosionRoarInitializer.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
     <Compile Include="Prefabs\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\VoidGargantuanPrefab.cs" />
