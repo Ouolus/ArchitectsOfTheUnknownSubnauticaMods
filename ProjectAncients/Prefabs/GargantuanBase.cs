@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool EnableAggression => true;
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 40f, 25f, 30f, 17f, 30f);
 
         public override float Mass => 10000f;
 
