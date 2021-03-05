@@ -11,7 +11,6 @@ namespace ProjectAncients.Mono
     {
         LastTarget lastTarget;
         Quaternion defaultLocalRotation;
-        Vector3 defaultUp;
 
         void Start()
         {
