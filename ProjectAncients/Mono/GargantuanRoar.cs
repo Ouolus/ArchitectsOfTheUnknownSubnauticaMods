@@ -11,8 +11,8 @@ namespace ProjectAncients.Mono
         ECCAudio.AudioClipPool farSounds;
         Transform currentSpawn;
         Creature creature;
-        const float delayMin = 10f;
-        const float delayMax = 25f;
+        const float delayMin = 11f;
+        const float delayMax = 18f;
 
         private IEnumerator Start()
         {

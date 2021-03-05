@@ -152,7 +152,7 @@ namespace ProjectAncients.Mono
 		private IEnumerator PerformPlayerCinematic(Player player)
 		{
 			playerDeathCinematic.StartCinematicMode(player);
-			float length = 3.84f;
+			float length = 3f;
 			behaviour.timeCanAttackAgain = Time.time + length;
 			yield return new WaitForSeconds(length);
 			Player.main.liveMixin.Kill(DamageType.Normal);

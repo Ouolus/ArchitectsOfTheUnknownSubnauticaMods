@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool EnableAggression => true;
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 30f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 90f, 25f, 30f, 17f, 30f);
 
         public override float Mass => 10000f;
 
@@ -93,6 +93,12 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(60f, 2, EcoTargetType.Shark, 0.2f, 2f);
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
+
+            var atkLast = prefab.GetComponent<AttackLastTarget>();
+            atkLast.resetAggressionOnTime = false;
+            atkLast.swimInterval = 0.2f;
+
+            components.locomotion.maxAcceleration = 45f;
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
             gargBehaviour.creature = components.creature;

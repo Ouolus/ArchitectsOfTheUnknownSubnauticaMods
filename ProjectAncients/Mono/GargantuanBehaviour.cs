@@ -146,6 +146,10 @@ namespace ProjectAncients.Mono
             {
                 ECCLog.AddMessage("Unknown Vehicle Type detected");
             }
+            foreach(Collider col in vehicle.GetComponentsInChildren<Collider>())
+            {
+                col.enabled = false; //its going to be destroyed  anyway...
+            }
             vehicleGrabSound.Play();
             InvokeRepeating("DamageVehicle", 1f, 1f);
             float attackLength = 6f;
