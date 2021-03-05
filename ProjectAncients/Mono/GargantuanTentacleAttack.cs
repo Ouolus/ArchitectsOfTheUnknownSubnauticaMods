@@ -9,6 +9,8 @@ namespace ProjectAncients.Mono
 		private AudioSource attackSource;
 		private ECCAudio.AudioClipPool biteClipPool;
 		private GargantuanBehaviour behaviour;
+		private TrailManager leftTentacleTrail;
+		private TrailManager rightTentacleTrail;
 
 		void Start()
 		{
@@ -21,6 +23,8 @@ namespace ProjectAncients.Mono
 			gameObject.SearchChild("TentacleTrigger").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
 			gameObject.SearchChild("TentacleTrigger").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
 			behaviour = GetComponent<GargantuanBehaviour>();
+			leftTentacleTrail = gameObject.SearchChild("MLT").GetComponent<TrailManager>();
+			rightTentacleTrail = gameObject.SearchChild("MRT").GetComponent<TrailManager>();
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
@@ -82,7 +86,7 @@ namespace ProjectAncients.Mono
 							attackSource.clip = biteClipPool.GetRandomClip();
 							attackSource.Play();
 						}
-						creature.GetAnimator().SetTrigger("bite");
+						StartCoroutine(PlayTentacleAnimation());
 						thisCreature.Aggression.Value -= 0.15f;
 					}
 				}
@@ -110,7 +114,15 @@ namespace ProjectAncients.Mono
 			{
 				return 300f; //cyclops damage
 			}
-			return 100f; //base damage
+			if (target.GetComponent<Player>())
+			{
+				return 50f;
+			}
+			if (target.GetComponent<Vehicle>())
+			{
+				return 100f;
+			}
+			return 2500f; //base damage
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
@@ -118,8 +130,26 @@ namespace ProjectAncients.Mono
 		}
 		private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
 		{
-			yield return new WaitForSeconds(3f);
+			yield return new WaitForSeconds(2f);
 			if(target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target));
+		}
+		IEnumerator PlayTentacleAnimation()
+		{
+			float random = Random.value;
+			creature.GetAnimator().SetFloat("random", random);
+			TrailManager trailToDisable;
+			if(random < 0.5f)
+			{
+				trailToDisable = rightTentacleTrail;
+			}
+			else
+			{
+				trailToDisable = leftTentacleTrail;
+			}
+			creature.GetAnimator().SetTrigger("tentacleattack");
+			trailToDisable.SetEnabled(false);
+			yield return new WaitForSeconds(4f);
+			trailToDisable.SetEnabled(true);
 		}
 	}
 }

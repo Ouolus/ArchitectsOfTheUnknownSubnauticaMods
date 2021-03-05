@@ -5,6 +5,8 @@ using System.Reflection;
 using ProjectAncients.Prefabs;
 using SMLHelper.V2.Handlers;
 using HarmonyLib;
+using System;
+using ProjectAncients.Patches;
 
 namespace ProjectAncients
 {
@@ -15,6 +17,8 @@ namespace ProjectAncients
 
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
+
+        public static EggBaseSignal eggBaseSignal;
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -38,8 +42,27 @@ namespace ProjectAncients
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
 
+            eggBaseSignal = new EggBaseSignal();
+            eggBaseSignal.Patch();
+
+            var outpostInitializer = new OutpostBaseInitializer();
+            outpostInitializer.Patch();
+
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+            FixMapModIfNeeded(harmony);
+        }
+
+        static void FixMapModIfNeeded(Harmony harmony)
+        {
+            var type = Type.GetType("SubnauticaMap.PingMapIcon, SubnauticaMap", false, false);
+            if (type != null)
+            {
+                var pingOriginal = AccessTools.Method(type, "Refresh");
+                var pingPrefix = new HarmonyMethod(AccessTools.Method(typeof(PingMapIcon_Patch), "Prefix"));
+                harmony.Patch(pingOriginal, pingPrefix);
+            }
         }
     }
 }

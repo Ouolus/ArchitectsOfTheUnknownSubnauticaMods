@@ -16,6 +16,8 @@ namespace ProjectAncients.Mono
 		private GargantuanBehaviour behaviour;
 		private GameObject throat;
 
+		private PlayerCinematicController playerDeathCinematic;
+
 		void Start()
 		{
 			attackSource = gameObject.AddComponent<AudioSource>();
@@ -28,6 +30,12 @@ namespace ProjectAncients.Mono
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
 			behaviour = GetComponent<GargantuanBehaviour>();
+
+			playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
+			playerDeathCinematic.animatedTransform = gameObject.SearchChild("AttachBone").transform;
+			playerDeathCinematic.animator = creature.GetAnimator();
+			playerDeathCinematic.animParamReceivers = new GameObject[0];
+			playerDeathCinematic.animParam = "cin_player";
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
@@ -35,7 +43,7 @@ namespace ProjectAncients.Mono
 			{
 				return;
 			}
-			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain) //If it can attack, continue
+			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
 			{
 				Creature thisCreature = gameObject.GetComponent<Creature>();
 				if (thisCreature.Aggression.Value >= 0.1f) //This creature must have at least some level of aggression to bite
@@ -52,6 +60,11 @@ namespace ProjectAncients.Mono
 						{
 							if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive)
 							{
+								return;
+							}
+							else
+							{
+								StartCoroutine(PerformPlayerCinematic(player));
 								return;
 							}
 						}
@@ -125,7 +138,7 @@ namespace ProjectAncients.Mono
 			{
 				return 500f; //cyclops damage
 			}
-			return 1000f; //base damage
+			return 2500f; //base damage
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
@@ -135,6 +148,14 @@ namespace ProjectAncients.Mono
 		{
 			yield return new WaitForSeconds(0.5f);
 			if(target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target));
+		}
+		private IEnumerator PerformPlayerCinematic(Player player)
+		{
+			playerDeathCinematic.StartCinematicMode(player);
+			float length = 3.84f;
+			behaviour.timeCanAttackAgain = Time.time + length;
+			yield return new WaitForSeconds(length);
+			Player.main.liveMixin.Kill(DamageType.Normal);
 		}
 	}
 }

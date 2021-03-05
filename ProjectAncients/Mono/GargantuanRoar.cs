@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using ECCLibrary;
 
@@ -14,12 +10,14 @@ namespace ProjectAncients.Mono
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
         Transform currentSpawn;
+        Creature creature;
         const float delayMin = 10f;
         const float delayMax = 25f;
 
         private IEnumerator Start()
         {
             InitializeAudioSource();
+            creature = GetComponent<Creature>();
             currentSpawn = gameObject.SearchChild("CurrentSpawn").transform;
             float distance;
             AudioClip clipToPlay;
@@ -34,6 +32,8 @@ namespace ProjectAncients.Mono
                 clipToPlay = GetAudioClip(distance);
                 audioSource.clip = clipToPlay;
                 audioSource.Play();
+                creature.GetAnimator().SetFloat("random", Random.value);
+                creature.GetAnimator().SetTrigger("roar");
                 DoWaterDisplacement();
                 float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
                 yield return new WaitForSeconds(timeToWait);

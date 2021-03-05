@@ -121,7 +121,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mod.cs" />
-    <Compile Include="Mono\VoidGargSingleton.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
+    <Compile Include="Mono\GargEyeTracker.cs" />
+    <Compile Include="Mono\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\GargantuanSwimAmbience.cs" />
@@ -129,12 +133,15 @@
     <Compile Include="Mono\GargantuanRoar.cs" />
     <Compile Include="Mono\GargantuanBehaviour.cs" />
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
+    <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
-    <Compile Include="Prefabs\Initializer\AdultGargSpawnerInitializer.cs" />
-    <Compile Include="Prefabs\Initializer\ExplosionRoarInitializer.cs" />
+    <Compile Include="Prefabs\Signals\EggBaseSignal.cs" />
+    <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
+    <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
     <Compile Include="Prefabs\GargantuanJuvenile.cs" />
+    <Compile Include="Prefabs\Initializers\OutpostBaseInitializer.cs" />
     <Compile Include="Prefabs\VoidGargantuanPrefab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

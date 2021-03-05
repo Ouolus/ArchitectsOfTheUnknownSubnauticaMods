@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono
         private Transform vehicleHoldPoint;
         private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
-        float damagePerSecond = 120f;
+        float damagePerSecond = 40f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
 
@@ -27,7 +27,7 @@ namespace ProjectAncients.Mono
         {
             creature = GetComponent<Creature>();
             vehicleGrabSound = AddVehicleGrabSound();
-            vehicleHoldPoint = gameObject.SearchChild("AttackBone").transform;
+            vehicleHoldPoint = gameObject.SearchChild("AttachBone").transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
@@ -159,7 +159,9 @@ namespace ProjectAncients.Mono
         {
             if (heldVehicle != null)
             {
-                heldVehicle.liveMixin.TakeDamage(damagePerSecond, type: DamageType.Normal);
+                float dps = damagePerSecond;
+                if (IsHoldingExosuit()) dps *= 3f;
+                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
                 if (!heldVehicle.liveMixin.IsAlive())
                 {
                     if(Player.main.currentMountedVehicle == heldVehicle)
@@ -199,8 +201,7 @@ namespace ProjectAncients.Mono
             {
                 ReleaseVehicle();
             }
-            SafeAnimator.SetBool(creature.GetAnimator(), "sub_attack", IsHoldingGenericSub());
-            SafeAnimator.SetBool(creature.GetAnimator(), "exo_attack", IsHoldingExosuit());
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingVehicle());
             if (heldVehicle != null)
             {
                 Transform holdPoint = GetHoldPoint();
@@ -208,11 +209,11 @@ namespace ProjectAncients.Mono
                 if (num >= 1f)
                 {
                     heldVehicle.transform.position = holdPoint.position;
-                    heldVehicle.transform.rotation = holdPoint.transform.rotation;
+                    heldVehicle.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation);
                     return;
                 }
                 heldVehicle.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
-                heldVehicle.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
+                heldVehicle.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num);
             }
         }
         public void OnTakeDamage(DamageInfo damageInfo)
