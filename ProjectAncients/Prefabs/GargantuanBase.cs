@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool EnableAggression => true;
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 40f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 22f, 25f, 30f, 17f, 30f);
 
         public override float Mass => 10000f;
 
@@ -74,13 +74,17 @@ namespace ProjectAncients.Prefabs
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
+            components.locomotion.driftFactor = 1f;
+            components.locomotion.forwardRotationSpeed = 0.3f;
+            components.locomotion.upRotationSpeed = 0.3f;
+
             const float tentacleSnapSpeed = 5f;
-            CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("LTT"), components, tentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("RTT"), components, tentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed);
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed));
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed));
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("LTT"), components, tentacleSnapSpeed));
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("RTT"), components, tentacleSnapSpeed));
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed));
+            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed));
 
             const float jawTentacleSnapSpeed = 6f;
             CreateTrail(prefab.SearchChild("BLA"), components, jawTentacleSnapSpeed);
@@ -137,6 +141,14 @@ namespace ProjectAncients.Prefabs
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
         {
             liveMixinData.maxHealth = 50000f;
+        }
+
+        void FitTentacleRotationMultipliers(TrailManager tm)
+        {
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.26f) });
+            tm.pitchMultiplier = curve;
+            tm.rollMultiplier = curve;
+            tm.yawMultiplier = curve;
         }
     }
 }
