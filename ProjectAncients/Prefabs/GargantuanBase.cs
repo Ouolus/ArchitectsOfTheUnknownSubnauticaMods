@@ -70,7 +70,7 @@ namespace ProjectAncients.Prefabs
                     }
                 }
             }
-            CreateTrail(prefab.SearchChild("Spine1"), spines.ToArray(), components, 0.075f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine1"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
@@ -79,12 +79,12 @@ namespace ProjectAncients.Prefabs
             components.locomotion.upRotationSpeed = 0.3f;
 
             const float tentacleSnapSpeed = 5f;
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed));
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed));
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("LTT"), components, tentacleSnapSpeed));
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("RTT"), components, tentacleSnapSpeed));
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed));
-            FitTentacleRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed));
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("LTT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("RTT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
 
             const float jawTentacleSnapSpeed = 6f;
             CreateTrail(prefab.SearchChild("BLA"), components, jawTentacleSnapSpeed);
@@ -143,9 +143,9 @@ namespace ProjectAncients.Prefabs
             liveMixinData.maxHealth = 50000f;
         }
 
-        void FitTentacleRotationMultipliers(TrailManager tm)
+        void FixRotationMultipliers(TrailManager tm, float min, float max)
         {
-            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.26f) });
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, min), new Keyframe(1f, max) });
             tm.pitchMultiplier = curve;
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
