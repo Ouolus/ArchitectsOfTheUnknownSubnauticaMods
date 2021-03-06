@@ -12,7 +12,7 @@ namespace ProjectAncients.Patches
         {
             FieldInfo field = __instance.GetType().GetField("ping");
             PingInstance ping = field.GetValue(__instance) as PingInstance;
-            if (ping.pingType == EggBaseSignal.pingType)
+            if (ping.pingType == GenericSignalPrefab.pingType)
             {
                 FieldInfo field2 = __instance.GetType().GetField("icon");
                 uGUI_Icon icon = field2.GetValue(__instance) as uGUI_Icon;

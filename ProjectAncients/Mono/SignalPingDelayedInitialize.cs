@@ -14,6 +14,11 @@ namespace ProjectAncients.Mono
 
         void Start()
         {
+            Refresh();
+        }
+
+        public void Refresh()
+        {
             var signal = GetComponent<SignalPing>();
             signal.pos = position;
             transform.position = position;

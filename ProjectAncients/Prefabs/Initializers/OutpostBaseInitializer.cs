@@ -30,7 +30,7 @@ namespace ProjectAncients.Prefabs
 
         public override GameObject GetGameObject()
         {
-            GameObject obj = new GameObject();
+            GameObject obj = new GameObject("GargOutpost");
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             obj.EnsureComponent<OutpostBaseSpawner>();
             obj.SetActive(true);

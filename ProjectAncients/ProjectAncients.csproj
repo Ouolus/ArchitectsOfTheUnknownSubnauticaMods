@@ -123,6 +123,7 @@
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
+    <Compile Include="Mono\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\GargEyeTracker.cs" />
     <Compile Include="Mono\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
@@ -136,7 +137,10 @@
     <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
-    <Compile Include="Prefabs\Signals\EggBaseSignal.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
+    <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
     <Compile Include="Prefabs\GargantuanBase.cs" />
