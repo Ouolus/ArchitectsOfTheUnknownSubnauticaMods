@@ -14,7 +14,7 @@ namespace ProjectAncients.Prefabs
         {
             OnFinishedPatching = () =>
             {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, new Vector3(0f, 0f, 0f),
+                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, new Vector3(776, -410, -1392),
                     "GargOutpost1", 200f));
             };
         }

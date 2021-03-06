@@ -98,7 +98,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     {
                         Vector3 rawPosition = new Vector3(x, y, z);
                         Vector3 spacedPosition = Vector3.Scale(rawPosition, spacing * individualScale);
-                        Vector3 positionWithOffset = spacedPosition - (Vector3.Scale(size, (spacing * individualScale) / 2f)) + offset;
+                        Vector3 positionWithOffset = spacedPosition - (Vector3.Scale(size, (spacing * individualScale) / 2f)) + offset - (individualScale * 0.5f);
                         SpawnPrefab(classId, positionWithOffset, Quaternion.identity.eulerAngles, individualScale);
                     }
                 }
