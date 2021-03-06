@@ -59,7 +59,7 @@ namespace ProjectAncients
             #endregion
 
             #region Data download ency data
-            PatchEncy("PrimaryOutpostData", "DownloadedData/Codes", "Primary Outpost Data", "This outpost contains coordinates for two secondary outposts.");
+            PatchEncy("PrimaryOutpostData", "DownloadedData/Codes", "Primary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.");
             #endregion
 
             #region Generic precursor stuff
