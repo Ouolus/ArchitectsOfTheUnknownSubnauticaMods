@@ -108,7 +108,7 @@ namespace ProjectAncients.Mono
         {
             GrabVehicle(vehicle, VehicleType.GenericSub);
         }
-        public void GrabExosuit(Vehicle exosuit)
+        public void GrabExosuit(Vehicle exosuit)    
         {
             GrabVehicle(exosuit, VehicleType.Exosuit);
         }
@@ -213,11 +213,11 @@ namespace ProjectAncients.Mono
                 if (num >= 1f)
                 {
                     heldVehicle.transform.position = holdPoint.position;
-                    heldVehicle.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation);
+                    heldVehicle.transform.rotation = holdPoint.transform.rotation;
                     return;
                 }
                 heldVehicle.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
-                heldVehicle.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num);
+                heldVehicle.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
             }
         }
         public void OnTakeDamage(DamageInfo damageInfo)
