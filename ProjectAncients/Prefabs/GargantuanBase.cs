@@ -54,13 +54,13 @@ namespace ProjectAncients.Prefabs
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             List<Transform> spines = new List<Transform>();
-            GameObject currentSpine = prefab.SearchChild("Spine1");
+            GameObject currentSpine = prefab.SearchChild("Spine");
             while(currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
-                    if (currentSpine.name.Contains("32"))
+                    if (currentSpine.name.Contains("65"))
                     {
                         break;
                     }
@@ -70,7 +70,7 @@ namespace ProjectAncients.Prefabs
                     }
                 }
             }
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine1"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
