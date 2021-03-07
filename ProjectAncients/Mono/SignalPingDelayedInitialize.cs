@@ -10,14 +10,17 @@ namespace ProjectAncients.Mono
     public class SignalPingDelayedInitialize : MonoBehaviour
     {
         public Vector3 position;
+        public string pingTypeName;
         public string label;
+
+        public static List<string> spawnedPingTypes = new List<string>();
 
         void Start()
         {
             Refresh();
         }
 
-        public void Refresh()
+        void Refresh()
         {
             var signal = GetComponent<SignalPing>();
             signal.pos = position;
@@ -25,6 +28,12 @@ namespace ProjectAncients.Mono
             signal.descriptionKey = label;
             signal.UpdateLabel();
             signal.pingInstance.SetColor(3);
+            spawnedPingTypes.Add(pingTypeName);
+        }
+
+        void OnDisable()
+        {
+            spawnedPingTypes.Remove(pingTypeName);
         }
     }
 }

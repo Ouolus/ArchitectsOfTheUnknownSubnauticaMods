@@ -43,9 +43,12 @@ namespace ProjectAncients.Prefabs.AlienBase
                 {
                     if (!string.IsNullOrEmpty(str))
                     {
-                        DataTerminalUnlockPing unlockPing = obj.AddComponent<DataTerminalUnlockPing>();
-                        unlockPing.classId = str;
-                        unlockPing.pos = pingPosition;
+                        if (!SignalPingDelayedInitialize.spawnedPingTypes.Contains(str))
+                        {
+                            DataTerminalUnlockPing unlockPing = obj.AddComponent<DataTerminalUnlockPing>();
+                            unlockPing.classId = str;
+                            unlockPing.pos = pingPosition;
+                        }
                     }
                 }
             }
