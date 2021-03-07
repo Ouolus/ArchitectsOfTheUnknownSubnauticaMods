@@ -13,10 +13,13 @@ namespace ProjectAncients.Prefabs
         public static PingType pingType;
         Vector3 position;
         int defaultColorIndex;
+        string pingTypeName;
+        string labelKey;
 
-        public GenericSignalPrefab(string classId, string textureName, string pingTypeName, string displayName, Vector3 position, int defaultColorIndex = 0)
+        public GenericSignalPrefab(string classId, string textureName, string pingTypeName, string displayName, string label, Vector3 position, int defaultColorIndex = 0)
             : base(classId, displayName, ".")
         {
+            this.pingTypeName = pingTypeName;
             this.defaultColorIndex = defaultColorIndex;
             this.position = position;
             OnFinishedPatching = () =>
@@ -25,6 +28,9 @@ namespace ProjectAncients.Prefabs
                 SpriteHandler.RegisterSprite(SpriteManager.Group.Pings, pingTypeName, pingSprite);
                 pingType = PingHandler.RegisterNewPingType(pingTypeName, SpriteManager.Get(SpriteManager.Group.Pings, pingTypeName));
                 LanguageHandler.SetLanguageLine(pingTypeName, displayName);
+
+                labelKey = string.Format("{0}_label", new object[] { pingTypeName});
+                LanguageHandler.SetLanguageLine(labelKey, label);
             };
         }
 
@@ -57,7 +63,8 @@ namespace ProjectAncients.Prefabs
 
             var delayedInit = obj.AddComponent<SignalPingDelayedInitialize>(); //to override the serializer
             delayedInit.position = position;
-            delayedInit.label = FriendlyName;
+            delayedInit.label = labelKey;
+            delayedInit.pingTypeName = pingTypeName;
 
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.SetActive(true);
