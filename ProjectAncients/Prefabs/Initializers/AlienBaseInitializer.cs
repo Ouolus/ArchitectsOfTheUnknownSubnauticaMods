@@ -4,18 +4,20 @@ using ProjectAncients.Mono;
 using UnityEngine;
 using UWE;
 using ProjectAncients.Mono.AlienBaseSpawners;
+using System;
 
 namespace ProjectAncients.Prefabs
 {
-    class OutpostBaseInitializer : Spawnable
+    class AlienBaseInitializer<T> : Spawnable where T : AlienBaseSpawner
     {
-        public OutpostBaseInitializer()
-            : base("PrecursorGargOutpost", ".", ".")
+
+        public AlienBaseInitializer(string classId, Vector3 coords)
+            : base(classId, ".", ".")
         {
             OnFinishedPatching = () =>
             {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, new Vector3(776, -410, -1392),
-                    "GargOutpost1", 200f));
+                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, coords,
+                    classId, 200f));
             };
         }
 
@@ -30,9 +32,9 @@ namespace ProjectAncients.Prefabs
 
         public override GameObject GetGameObject()
         {
-            GameObject obj = new GameObject("GargOutpost");
+            GameObject obj = new GameObject(ClassID);
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
-            obj.EnsureComponent<OutpostBaseSpawner>();
+            obj.EnsureComponent<T>();
             obj.SetActive(true);
             return obj;
         }
