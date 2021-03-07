@@ -8,6 +8,7 @@ using HarmonyLib;
 using System;
 using ProjectAncients.Patches;
 using ProjectAncients.Prefabs.AlienBase;
+using ProjectAncients.Mono.AlienBaseSpawners;
 
 namespace ProjectAncients
 {
@@ -26,7 +27,9 @@ namespace ProjectAncients
         public static TabletTerminalPrefab whiteTabletTerminal;
         public static PrecursorDoorPrefab redTabletDoor;
         public static PrecursorDoorPrefab whiteTabletDoor;
-        public static DataTerminalPrefab peeperTerminalTest;
+        public static DataTerminalPrefab outpostABTerminal;
+
+        const string coordinateDisplayName = "Downloaded co-ordinates";
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -51,10 +54,10 @@ namespace ProjectAncients
             adultGargSpawner.Patch();
 
             #region Signals
-            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "EggBasePingIcon", "OutpostC", "Outpost C", new Vector3(500f, 0f, 0f), 3);
+            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "EggBasePingIcon", "OutpostC", coordinateDisplayName, "Outpost C", new Vector3(500f, 0f, 0f), 3);
             outpostCSignal.Patch();
 
-            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "EggBasePingIcon", "OutpostD", "Outpost D", new Vector3(-500f, 0f, 0f), 3);
+            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "EggBasePingIcon", "OutpostD", coordinateDisplayName, "Outpost D", new Vector3(-500f, 0f, 0f), 3);
             outpostDSignal.Patch();
             #endregion
 
@@ -76,12 +79,15 @@ namespace ProjectAncients
             whiteTabletDoor.Patch();
             #endregion
 
-            peeperTerminalTest = new DataTerminalPrefab("OutpostATerminal", "PrimaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
-            peeperTerminalTest.Patch();
+            outpostABTerminal = new DataTerminalPrefab("OutpostATerminal", "PrimaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
+            outpostABTerminal.Patch();
 
 
-            var outpostInitializer = new OutpostBaseInitializer();
-            outpostInitializer.Patch();
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
+            outpostAInitializer.Patch();
+
+            var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
+            outpostBInitializer.Patch();
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
