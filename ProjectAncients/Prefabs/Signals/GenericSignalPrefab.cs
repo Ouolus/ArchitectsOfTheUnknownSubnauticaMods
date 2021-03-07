@@ -16,10 +16,10 @@ namespace ProjectAncients.Prefabs
         string pingTypeName;
         string labelKey;
 
-        public GenericSignalPrefab(string classId, string textureName, string pingTypeName, string displayName, string label, Vector3 position, int defaultColorIndex = 0)
+        public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0)
             : base(classId, displayName, ".")
         {
-            this.pingTypeName = pingTypeName;
+            this.pingTypeName = classId;
             this.defaultColorIndex = defaultColorIndex;
             this.position = position;
             OnFinishedPatching = () =>

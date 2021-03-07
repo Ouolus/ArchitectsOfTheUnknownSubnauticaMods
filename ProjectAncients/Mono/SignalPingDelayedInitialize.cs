@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECCLibrary.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace ProjectAncients.Mono
         void Start()
         {
             Refresh();
+            spawnedPings.Add(this);
         }
 
         void Refresh()
@@ -30,12 +32,7 @@ namespace ProjectAncients.Mono
                 signal.pingInstance.SetColor(3);
         }
 
-        void OnEnable()
-        {
-            spawnedPings.Add(this);
-        }
-
-        void OnDisable()
+        void OnDestroy()
         {
             spawnedPings.Remove(this);
         }

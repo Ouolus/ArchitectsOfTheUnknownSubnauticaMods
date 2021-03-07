@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECCLibrary.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,12 @@ namespace ProjectAncients.Mono
 
         public void OnStoryHandTarget()
         {
-            foreach(SignalPingDelayedInitialize spawnedPing in SignalPingDelayedInitialize.spawnedPings) {
+            foreach (SignalPingDelayedInitialize spawnedPing in SignalPingDelayedInitialize.spawnedPings) {
                 {
-                    if (spawnedPing == null) continue;
+                    if (spawnedPing == null)
+                    {
+                        continue;
+                    }
                     if (spawnedPing.pingTypeName == pingTypeName)
                     {
                         return;

@@ -54,10 +54,10 @@ namespace ProjectAncients
             adultGargSpawner.Patch();
 
             #region Signals
-            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "EggBasePingIcon", "OutpostC", coordinateDisplayName, "Outpost C", new Vector3(500f, 0f, 0f), 3);
+            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "EggBasePingIcon", coordinateDisplayName, "Outpost C", new Vector3(500f, 0f, 0f), 3);
             outpostCSignal.Patch();
 
-            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "EggBasePingIcon", "OutpostD", coordinateDisplayName, "Outpost D", new Vector3(-500f, 0f, 0f), 3);
+            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "EggBasePingIcon", coordinateDisplayName, "Outpost D", new Vector3(-500f, 0f, 0f), 3);
             outpostDSignal.Patch();
             #endregion
 
@@ -83,11 +83,11 @@ namespace ProjectAncients
             outpostABTerminal.Patch();
 
 
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
+            /*var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
             outpostAInitializer.Patch();
 
             var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
-            outpostBInitializer.Patch();
+            outpostBInitializer.Patch();*/
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
