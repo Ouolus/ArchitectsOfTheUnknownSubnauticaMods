@@ -29,7 +29,6 @@ namespace ProjectAncients.Mono
                 transform.position = position;
                 signal.descriptionKey = label;
                 signal.UpdateLabel();
-                signal.pingInstance.SetColor(3);
         }
 
         void OnDestroy()

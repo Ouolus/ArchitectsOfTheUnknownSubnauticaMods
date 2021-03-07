@@ -54,15 +54,15 @@ namespace ProjectAncients
             adultGargSpawner.Patch();
 
             #region Signals
-            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "EggBasePingIcon", coordinateDisplayName, "Outpost C", new Vector3(500f, 0f, 0f), 3);
+            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Secondary Outpost A", new Vector3(500f, 0f, 0f), 3);
             outpostCSignal.Patch();
 
-            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "EggBasePingIcon", coordinateDisplayName, "Outpost D", new Vector3(-500f, 0f, 0f), 3);
+            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Secondary Outpost B", new Vector3(-500f, 0f, 0f), 3);
             outpostDSignal.Patch();
             #endregion
 
             #region Data download ency data
-            PatchEncy("PrimaryOutpostData", "DownloadedData/Codes", "Primary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.");
+            PatchEncy("TertiaryOutpostData", "DownloadedData/Codes", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.");
             #endregion
 
             #region Generic precursor stuff
@@ -79,15 +79,15 @@ namespace ProjectAncients
             whiteTabletDoor.Patch();
             #endregion
 
-            outpostABTerminal = new DataTerminalPrefab("OutpostATerminal", "PrimaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
+            outpostABTerminal = new DataTerminalPrefab("OutpostATerminal", "TertiaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
             outpostABTerminal.Patch();
 
 
-            /*var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
             outpostAInitializer.Patch();
 
             var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
-            outpostBInitializer.Patch();*/
+            outpostBInitializer.Patch();
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());

@@ -3,6 +3,7 @@ using ProjectAncients.Mono;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
@@ -10,7 +11,8 @@ namespace ProjectAncients.Prefabs
 {
     public class GenericSignalPrefab : Spawnable
     {
-        public static PingType pingType;
+        public static List<PingType> registeredPingTypes = new List<PingType>();
+        PingType pingType;
         Vector3 position;
         int defaultColorIndex;
         string pingTypeName;
@@ -27,6 +29,7 @@ namespace ProjectAncients.Prefabs
                 Atlas.Sprite pingSprite = ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>(textureName));
                 SpriteHandler.RegisterSprite(SpriteManager.Group.Pings, pingTypeName, pingSprite);
                 pingType = PingHandler.RegisterNewPingType(pingTypeName, SpriteManager.Get(SpriteManager.Group.Pings, pingTypeName));
+                registeredPingTypes.Add(pingType);
                 LanguageHandler.SetLanguageLine(pingTypeName, displayName);
 
                 labelKey = string.Format("{0}_label", new object[] { pingTypeName});
@@ -51,7 +54,6 @@ namespace ProjectAncients.Prefabs
             PingInstance ping = obj.EnsureComponent<PingInstance>();
             ping.pingType = pingType;
             ping.origin = obj.transform;
-            ping.SetColor(defaultColorIndex);
 
             SphereCollider trigger = obj.AddComponent<SphereCollider>(); //if you enter this trigger the ping gets disabled
             trigger.isTrigger = true;
