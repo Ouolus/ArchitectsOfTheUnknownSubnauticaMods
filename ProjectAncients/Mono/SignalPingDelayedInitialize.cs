@@ -13,7 +13,7 @@ namespace ProjectAncients.Mono
         public string pingTypeName;
         public string label;
 
-        public static List<string> spawnedPingTypes = new List<string>();
+        public static List<SignalPingDelayedInitialize> spawnedPings = new List<SignalPingDelayedInitialize>();
 
         void Start()
         {
@@ -23,17 +23,21 @@ namespace ProjectAncients.Mono
         void Refresh()
         {
             var signal = GetComponent<SignalPing>();
-            signal.pos = position;
-            transform.position = position;
-            signal.descriptionKey = label;
-            signal.UpdateLabel();
-            signal.pingInstance.SetColor(3);
-            spawnedPingTypes.Add(pingTypeName);
+                signal.pos = position;
+                transform.position = position;
+                signal.descriptionKey = label;
+                signal.UpdateLabel();
+                signal.pingInstance.SetColor(3);
+        }
+
+        void OnEnable()
+        {
+            spawnedPings.Add(this);
         }
 
         void OnDisable()
         {
-            spawnedPingTypes.Remove(pingTypeName);
+            spawnedPings.Remove(this);
         }
     }
 }
