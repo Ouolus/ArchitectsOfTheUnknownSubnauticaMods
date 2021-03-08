@@ -3,21 +3,22 @@ using ECCLibrary;
 using UnityEngine;
 using SMLHelper.V2.Handlers;
 using LeviathanEggs.MonoBehaviours;
+using LeviathanEggs.Prefabs.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    public class SeaEmperorEgg : CreatureEggAsset
+    public class SeaEmperorEgg : EggPrefab
     {
         public SeaEmperorEgg()
-            : base("SeaEmperorEgg", "Creature Egg", "An unknown Creature hatches from this", 
-                  LoadGameObject("SeaEmperorEgg.prefab"),
-                  TechType.SeaEmperorBaby, null, 5f)
-        {
-            OnFinishedPatching += () =>
-            {
-                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("SeaEmperorEgg"));
-            };
-        }
+            : base("SeaEmperorEgg", "Sea Emperor Egg", "Sea Emperors Hatch from these")
+        {}
+        public override GameObject Model => LoadGameObject("SeaEmperorEgg.prefab");
+        public override TechType HatchingCreature => TechType.SeaEmperorBaby;
+        public override float HatchingTime => 5f;
+        public override Sprite ItemSprite => LoadSprite("SeaEmperorEgg");
+
+        public override OverrideTechType MakeATechTypeToOverride => new OverrideTechType("SeaEmperorEggUndiscovered",
+            "Creature Egg", "An unknown Creature hatches from this");
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
@@ -35,8 +36,11 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.1f
             },
         };
-        public override void AddCustomBehaviours()
+
+        public override GameObject GetGameObject()
         {
+            var prefab = base.GetGameObject();
+            
             GameObject seaEmperorEgg = Resources.Load<GameObject>("WorldEntities/Eggs/EmperorEgg");
             Renderer[] aRenderer = seaEmperorEgg.GetComponentsInChildren<Renderer>();
             Material shell = null;
@@ -60,8 +64,6 @@ namespace LeviathanEggs.Prefabs
             }
             seaEmperorEgg.SetActive(false);
 
-            prefab.GetComponent<Rigidbody>().mass = 100f;
-
             ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
             resourceTracker.techType = this.TechType;
             resourceTracker.overrideTechType = TechType.GenericEgg;
@@ -70,9 +72,9 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
+
+            return prefab;
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
-        public override float GetMaxHealth => 60f;
-        public override bool ManualEggExplosion => false;
     }
 }
