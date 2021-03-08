@@ -24,22 +24,27 @@ namespace ProjectAncients.Patches
         {
             if (!__instance.biomeLookup.ContainsKey("void"))
             {
+                GameObject skyPrefab = null;
+                if (__instance.biomeLookup.TryGetValue("LostRiver_BonesField", out int index))
+                {
+                    skyPrefab = __instance.biomeSettings[index].skyPrefab;
+                }
                 WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
                 {
                     absorption = new Vector3(125f, 20f, 4f),
                     ambientScale = 0f,
                     emissiveScale = 0f,
                     sunlightScale = 1f,
-                    murkiness = 0.1f,
+                    murkiness = 0.5f,
                     startDistance = 50f,
-                    scatteringColor = Color.black,
+                    scatteringColor = Color.green,
                     temperature = 0f,
-                    scattering = 0f
+                    scattering = 0.15f
                 };
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
                     name = "void",
-                    skyPrefab = null,
+                    skyPrefab = skyPrefab,
                     settings = waterscapeSettings
                 };
                 __instance.biomeSettings.Add(biomeSettings);
