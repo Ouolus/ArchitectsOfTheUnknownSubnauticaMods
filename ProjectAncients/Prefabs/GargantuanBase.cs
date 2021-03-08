@@ -81,8 +81,8 @@ namespace ProjectAncients.Prefabs
             const float tentacleSnapSpeed = 5f;
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("LTT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("RTT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
 
