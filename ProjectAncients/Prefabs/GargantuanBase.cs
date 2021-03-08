@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool EnableAggression => true;
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 22f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 25f, 30f, 17f, 30f);
 
         public override float Mass => 10000f;
 
@@ -76,7 +76,7 @@ namespace ProjectAncients.Prefabs
 
             components.locomotion.driftFactor = 1f;
             components.locomotion.forwardRotationSpeed = 0.3f;
-            components.locomotion.upRotationSpeed = 0.3f;
+            components.locomotion.upRotationSpeed = 1f;
 
             const float tentacleSnapSpeed = 5f;
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
@@ -102,7 +102,7 @@ namespace ProjectAncients.Prefabs
             atkLast.resetAggressionOnTime = false;
             atkLast.swimInterval = 0.2f;
 
-            components.locomotion.maxAcceleration = 45f;
+            components.locomotion.maxAcceleration = 18f;
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
             gargBehaviour.creature = components.creature;
@@ -117,7 +117,7 @@ namespace ProjectAncients.Prefabs
             mouthAttack.liveMixin = components.liveMixin;
             mouthAttack.animator = components.creature.GetAnimator();
 
-            GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
+            /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
             tentacleAttack.mouth = tentacleTrigger;
             tentacleAttack.canBeFed = false;
@@ -125,7 +125,7 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.lastTarget = components.lastTarget;
             tentacleAttack.creature = components.creature;
             tentacleAttack.liveMixin = components.liveMixin;
-            tentacleAttack.animator = components.creature.GetAnimator();
+            tentacleAttack.animator = components.creature.GetAnimator();*/
 
             prefab.AddComponent<GargantuanRoar>();
             prefab.AddComponent<GargantuanSwimAmbience>();
