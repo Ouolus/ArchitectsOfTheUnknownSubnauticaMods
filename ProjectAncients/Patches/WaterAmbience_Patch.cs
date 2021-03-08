@@ -32,9 +32,9 @@ namespace ProjectAncients.Patches
                     sunlightScale = 1f,
                     murkiness = 0.1f,
                     startDistance = 50f,
-                    scatteringColor = Color.green,
+                    scatteringColor = Color.black,
                     temperature = 0f,
-                    scattering = 0.1f
+                    scattering = 0f
                 };
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
