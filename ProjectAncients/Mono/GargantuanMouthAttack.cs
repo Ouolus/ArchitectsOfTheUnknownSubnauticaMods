@@ -13,6 +13,7 @@ namespace ProjectAncients.Mono
     {
 		private AudioSource attackSource;
 		private ECCAudio.AudioClipPool biteClipPool;
+		private ECCAudio.AudioClipPool cinematicClipPool;
 		private GargantuanBehaviour behaviour;
 		private GameObject throat;
 
@@ -26,6 +27,7 @@ namespace ProjectAncients.Mono
 			attackSource.spatialBlend = 1f;
 			attackSource.volume = ECCHelpers.GetECCVolume();
 			biteClipPool = ECCAudio.CreateClipPool("GargBiteAttack");
+			cinematicClipPool = ECCAudio.CreateClipPool("GargBiteAttack5");
 			throat = gameObject.SearchChild("Head");
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
@@ -152,7 +154,9 @@ namespace ProjectAncients.Mono
 		private IEnumerator PerformPlayerCinematic(Player player)
 		{
 			playerDeathCinematic.StartCinematicMode(player);
-			float length = 3f;
+			float length = 2f;
+			attackSource.clip = cinematicClipPool.GetRandomClip();
+			attackSource.Play();
 			behaviour.timeCanAttackAgain = Time.time + length;
 			yield return new WaitForSeconds(length);
 			Player.main.liveMixin.Kill(DamageType.Normal);
