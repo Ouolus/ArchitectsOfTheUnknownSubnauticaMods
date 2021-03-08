@@ -4,21 +4,22 @@ using ECCLibrary;
 using UnityEngine;
 using System;
 using LeviathanEggs.MonoBehaviours;
+using LeviathanEggs.Prefabs.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    class GhostEgg : CreatureEggAsset
+    class GhostEgg : EggPrefab
     {
         public GhostEgg()
-            : base("GhostEgg", "Creature Egg", "An unknown Creature hatches from this",
-                  LoadGameObject("GhostEgg.prefab"),
-                  TechType.GhostLeviathanJuvenile, null, 1f)
-        {
-            OnFinishedPatching += () =>
-            {
-                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("GhostEgg"));
-            };
-        }
+            : base("GhostEgg", "Ghost Leviathan Egg", "Ghosts Hatch from these.")
+        {}
+
+        public override GameObject Model => LoadGameObject("GhostEgg.prefab");
+        public override OverrideTechType MakeATechTypeToOverride =>
+            new OverrideTechType("GhostEggUndiscovered", "Creature Egg", "An unknown Creature hatches from this");
+        public override TechType HatchingCreature => TechType.GhostLeviathanJuvenile;
+        public override Sprite ItemSprite => LoadSprite("GhostEgg");
+        public override float HatchingTime => 5f;
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
@@ -36,11 +37,11 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.4f
             }
         };
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
-        public override float GetMaxHealth => 60f;
-        public override bool ManualEggExplosion => false;
-        public override void AddCustomBehaviours()
+
+        public override GameObject GetGameObject()
         {
+            var prefab = base.GetGameObject();
+            
             GameObject ghostEgg = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
             Renderer[] aRenderer = ghostEgg.GetAllComponentsInChildren<Renderer>();
             Material shell = null;
@@ -91,12 +92,9 @@ namespace LeviathanEggs.Prefabs
                 ErrorMessage.AddMessage("embryo material is null");
                 Console.WriteLine("Embryo material is null");
             }
+
             ghostEgg.SetActive(false);
-
-            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
-
-            prefab.GetComponent<Rigidbody>().mass = 100f;
-
+            
             ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
             resourceTracker.techType = this.TechType;
             resourceTracker.overrideTechType = TechType.GenericEgg;
@@ -105,6 +103,10 @@ namespace LeviathanEggs.Prefabs
             resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
+
+            return prefab;
         }
+
+        public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }
 }
