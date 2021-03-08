@@ -24,6 +24,7 @@ namespace ProjectAncients.Mono
             audioSource.clip = ECCAudio.CreateClipPool(clipPrefix).GetRandomClip();
             audioSource.volume = ECCHelpers.GetECCVolume();
             audioSource.Play();
+            Destroy(this);
         }
     }
 }

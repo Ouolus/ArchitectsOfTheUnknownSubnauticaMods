@@ -24,6 +24,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
+        public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
         public const string tabletDoor_orange = "83a70a58-f7da-4f18-b9b2-815dc8a7ffb4";
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
         public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
@@ -39,6 +40,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_titaniumIngot = "41919ae1-1471-4841-a524-705feb9c2d20";
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
+        public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
 
         private List<GameObject> spawnedChildren;
 

@@ -26,6 +26,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(starfish, new Vector3(-5f, yOffset, -4f));
             SpawnPrefab(starfish, new Vector3(3f, yOffset, 3f));
             SpawnPrefab(creature_alienRobot, new Vector3(3f, yOffset, 3f));
+            SpawnPrefab(creature_alienRobot, new Vector3(-3f, yOffset, -3f));
             SpawnPrefab(structure_column, new Vector3(0, 0, 0));
             SpawnPrefab(prop_claw, new Vector3(0, -2, 0));
             const float smallLightYOffset = -4.3f;

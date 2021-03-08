@@ -54,15 +54,15 @@ namespace ProjectAncients
             adultGargSpawner.Patch();
 
             #region Signals
-            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Secondary Outpost A", new Vector3(500f, 0f, 0f), 3);
+            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Signal A", new Vector3(500f, 0f, 0f), 3);
             outpostCSignal.Patch();
 
-            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Secondary Outpost B", new Vector3(-500f, 0f, 0f), 3);
+            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Alien Signal B", new Vector3(-500f, 0f, 0f), 3);
             outpostDSignal.Patch();
             #endregion
 
             #region Data download ency data
-            PatchEncy("TertiaryOutpostData", "DownloadedData/Codes", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.");
+            PatchEncy("TertiaryOutpostData", "DownloadedData/Codes", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "BlueGlyph");
             #endregion
 
             #region Generic precursor stuff
@@ -106,13 +106,19 @@ namespace ProjectAncients
             }
         }
 
-        static void PatchEncy(string key, string path, string title, string desc)
+        static void PatchEncy(string key, string path, string title, string desc, string popupName = null)
         {
+            Sprite sprite = null;
+            if (!string.IsNullOrEmpty(popupName))
+            {
+                sprite = assetBundle.LoadAsset<Sprite>(popupName);
+            }
             PDAEncyclopediaHandler.AddCustomEntry(new PDAEncyclopedia.EntryData()
             {
                 key = key,
                 path = path,
-                nodes = path.Split('/')
+                nodes = path.Split('/'),
+                popup = sprite
             });
             LanguageHandler.SetLanguageLine("Ency_" + key, title);
             LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
