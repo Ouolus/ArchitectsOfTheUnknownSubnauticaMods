@@ -52,7 +52,7 @@ namespace LeviathanEggs
                     isFragment = false
                 });
             }
-
+            
             WaterParkCreatureParametersSettings();
 
             Harmony.CreateAndPatchAll(myAssembly, $"Metious_{myAssembly.GetName().Name}");

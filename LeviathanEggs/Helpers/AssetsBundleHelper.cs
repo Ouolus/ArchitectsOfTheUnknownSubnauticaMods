@@ -2,7 +2,7 @@
 
 namespace LeviathanEggs.Helpers
 {
-    public class AssetsBundleHelper
+    public static class AssetsBundleHelper
     {
         public static Sprite LoadSprite(string fileName) => Main.assetBundle.LoadAsset<Sprite>(fileName);
         public static GameObject LoadGameObject(string fileName) => Main.assetBundle.LoadAsset<GameObject>(fileName);
