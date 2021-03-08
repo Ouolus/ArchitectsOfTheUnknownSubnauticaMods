@@ -26,14 +26,15 @@ namespace ProjectAncients.Patches
             {
                 WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
                 {
-                    absorption = Vector3.one,
+                    absorption = new Vector3(125f, 20f, 4f),
                     ambientScale = 0f,
-                    emissive = Color.green,
                     emissiveScale = 0f,
                     sunlightScale = 1f,
-                    murkiness = 10f,
-                    startDistance = 40f,
-                    scatteringColor = Color.grey
+                    murkiness = 0.1f,
+                    startDistance = 50f,
+                    scatteringColor = Color.green,
+                    temperature = 0f,
+                    scattering = 0.1f
                 };
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
