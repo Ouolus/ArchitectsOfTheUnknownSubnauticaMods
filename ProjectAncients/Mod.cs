@@ -62,7 +62,7 @@ namespace ProjectAncients
             #endregion
 
             #region Data download ency data
-            PatchEncy("TertiaryOutpostData", "DownloadedData/Codes", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "BlueGlyph");
+            PatchEncy("TertiaryOutpostData", "DownloadedData/Precursor/Terminal", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup");
             #endregion
 
             #region Generic precursor stuff
