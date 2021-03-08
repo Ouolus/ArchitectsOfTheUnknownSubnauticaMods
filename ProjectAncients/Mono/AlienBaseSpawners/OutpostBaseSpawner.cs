@@ -39,6 +39,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(structure_column, new Vector3(7f, columnYOffset, -9f));
             SpawnPrefab(structure_column, new Vector3(-9f, columnYOffset, 7f));
             SpawnPrefab(structure_column, new Vector3(-9f, columnYOffset, -9f));
+            SpawnPrefab(atmosphereVolume_cache, Vector3.zero, Vector3.zero, new Vector3(18f, 26f, 18f));
         }
     }
 }
