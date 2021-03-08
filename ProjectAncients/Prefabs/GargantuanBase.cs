@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool EnableAggression => true;
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 24f, 25f, 30f, 17f, 30f);
 
         public override float Mass => 10000f;
 
@@ -102,7 +102,7 @@ namespace ProjectAncients.Prefabs
             atkLast.resetAggressionOnTime = false;
             atkLast.swimInterval = 0.2f;
 
-            components.locomotion.maxAcceleration = 18f;
+            components.locomotion.maxAcceleration = 27f;
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
             gargBehaviour.creature = components.creature;
