@@ -19,7 +19,7 @@ namespace ProjectAncients.Prefabs
 
         public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 150f);
 
-        public override float TurnSpeed => 0.1f;
+        public override float TurnSpeed => 0.3f;
 
         public override float EyeFov => -1f;
 
