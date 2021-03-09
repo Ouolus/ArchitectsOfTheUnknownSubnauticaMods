@@ -59,13 +59,6 @@ namespace LeviathanEggs.Prefabs
             }
             seaEmperorEgg.SetActive(false);
 
-            ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
-            resourceTracker.techType = this.TechType;
-            resourceTracker.overrideTechType = TechType.GenericEgg;
-            resourceTracker.rb = prefab.GetComponent<Rigidbody>();
-            resourceTracker.prefabIdentifier = prefab.GetComponent<PrefabIdentifier>();
-            resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
-
             prefab.AddComponent<SpawnLocations>();
 
             return prefab;

@@ -56,13 +56,6 @@ namespace LeviathanEggs.Prefabs
                 rend.material = material;
                 rend.sharedMaterial = material;
             }
-            
-            ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
-            resourceTracker.techType = this.TechType;
-            resourceTracker.overrideTechType = TechType.GenericEgg;
-            resourceTracker.rb = prefab.GetComponent<Rigidbody>();
-            resourceTracker.prefabIdentifier = prefab.GetComponent<PrefabIdentifier>();
-            resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
 
             prefab.AddComponent<SpawnLocations>();
             prefab.EnsureComponent<RobotEggPulsating>();
