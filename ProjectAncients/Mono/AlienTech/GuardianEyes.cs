@@ -13,8 +13,8 @@ namespace ProjectAncients.Mono.AlienTech
         Renderer renderer;
         Material material;
         Light[] lights;
-        private float lightBaseIntensity = 1.2f;
-        private float minFlickerSpeed = 0.1f;
+        private float lightBaseIntensity = 3f;
+        private float minFlickerSpeed = 0.2f;
         private float maxFlickerSpeed = 0.3f;
 
         void Start()
@@ -38,6 +38,10 @@ namespace ProjectAncients.Mono.AlienTech
                 material.SetFloat("_GlowStrength", intensity);
                 SetLightsIntensity(intensity);
                 yield return new WaitForSeconds(Random.Range(minFlickerSpeed, maxFlickerSpeed));
+                if(Random.value < 0.1f)
+                {
+                    yield return new WaitForSeconds(0.5f + Random.value);
+                }
             }
         }
 

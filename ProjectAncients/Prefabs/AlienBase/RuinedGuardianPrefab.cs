@@ -20,7 +20,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             OnFinishedPatching = () =>
             {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(0f, 0f, 0f),
+                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(367.1f, -341f, -1747f),
                     "DestroyedGuardian", 200f));
             };
         }

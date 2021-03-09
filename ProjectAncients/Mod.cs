@@ -44,6 +44,7 @@ namespace ProjectAncients
             ECCAudio.RegisterClips(assetBundle);
 
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Gargantuan Mod (name WIP)");
 
             gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan leviathan juvenile", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
@@ -65,12 +66,11 @@ namespace ProjectAncients
             outpostDSignal.Patch();
             #endregion
 
-            LanguageHandler.SetLanguageLine(modEncyPath, "Gargantuan Mod (name WIP)");
 
             #region Ency
             PatchEncy("TertiaryOutpostData", modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy("RuinedGuardian", modEncyPath, "Mysterious Wreckage", "I'll write something here... some time in the future.");
+            PatchEncy("RuinedGuardian", modEncyPath, "Mysterious Wreckage", "This large object appears to be the remnants of an autonomous defensive machine. A single, large dent indicates it was taken out with extreme ease.\n\n1. Design:\nThis machine resembles a large shark-like creature. With an interesting color scheme and unique engravings, it is certainly alien in design. Several prongs lining either side of the body suggest an electric defense ability.\n\n2. Purpose:\nThe purpose of this machine is largely a mystery. It may have been a simple form of transportation for those who constructed it, or a resilient defense unit. Whatever its objective, it has failed.", "Guardian_Popup", "Guardian_Ency");
 
             #endregion
 
