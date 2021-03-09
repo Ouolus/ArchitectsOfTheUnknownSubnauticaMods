@@ -1,16 +1,13 @@
-using System.Collections;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
-using Logger = QModManager.Utility.Logger;
 
 namespace LeviathanEggs.Prefabs.API
 {
-    public class EggPrefab : Spawnable
+    public abstract class EggPrefab : Spawnable
     {
         private TechType overridenTechType;
-        private GameObject _model;
         public EggPrefab(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
@@ -31,8 +28,8 @@ namespace LeviathanEggs.Prefabs.API
             };
         }
         public virtual GameObject Model { get; }
-        public virtual TechType HatchingCreature { get; }
-        public virtual float HatchingTime { get; }
+        public abstract TechType HatchingCreature { get; }
+        public abstract float HatchingTime { get; }
         public virtual Sprite ItemSprite { get; }
         public virtual float Mass => 100f;
         public virtual float MaxHealth => 60f;
