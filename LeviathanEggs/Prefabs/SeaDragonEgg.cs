@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using ECCLibrary;
-using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
 using LeviathanEggs.Prefabs.API;
