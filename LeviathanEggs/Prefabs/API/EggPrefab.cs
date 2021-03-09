@@ -1,3 +1,4 @@
+using LeviathanEggs.Handlers;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace LeviathanEggs.Prefabs.API
             OnFinishedPatching += () =>
             {
                 if (AcidImmune)
-                    ECCLibrary.ECCHelpers.MakeAcidImmune(this.TechType);
+                    AHWHandler.MakeItemAcidImmune(this.TechType);
                 
                 SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
                 SpriteHandler.RegisterSprite(overridenTechType, ItemSprite);
@@ -33,8 +34,11 @@ namespace LeviathanEggs.Prefabs.API
         public virtual Sprite ItemSprite { get; }
         public virtual float Mass => 100f;
         public virtual float MaxHealth => 60f;
+        public virtual bool MakeObjectScannable => true;
         public virtual bool AcidImmune => true;
-        public virtual OverrideTechType MakeATechTypeToOverride { get; }
+
+        public virtual OverrideTechType MakeATechTypeToOverride =>
+            new OverrideTechType(ClassID + "Undiscovered", "Creature Egg", "An unknown Creature hatches from this");
 
         public sealed override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
@@ -75,6 +79,9 @@ namespace LeviathanEggs.Prefabs.API
             creatureEgg.daysBeforeHatching = HatchingTime;
             if (overridenTechType != TechType.None)
                 creatureEgg.overrideEggType = overridenTechType;
+            
+            if (MakeObjectScannable)
+                AHWHandler.MakeObjectScannable(obj);
 
             return obj;
         }
