@@ -29,9 +29,13 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab whiteTabletDoor;
         public static DataTerminalPrefab outpostABTerminal;
 
+        public static RuinedGuardianPrefab prop_ruinedGuardian;
+
         const string coordinateDisplayName = "Downloaded co-ordinates";
 
         private const string assetBundleName = "projectancientsassets";
+
+        private const string modEncyPath = "DownloadedData/Precursor/GargMod";
 
         [QModPatch]
         public static void Patch()
@@ -61,8 +65,13 @@ namespace ProjectAncients
             outpostDSignal.Patch();
             #endregion
 
-            #region Data download ency data
-            PatchEncy("TertiaryOutpostData", "DownloadedData/Precursor/Terminal", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BLueGlyph_Ency");
+            LanguageHandler.SetLanguageLine(modEncyPath, "Gargantuan Mod (name WIP)");
+
+            #region Ency
+            PatchEncy("TertiaryOutpostData", modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
+
+            PatchEncy("RuinedGuardian", modEncyPath, "Mysterious Wreckage", "I'll write something here... some time in the future.");
+
             #endregion
 
             #region Generic precursor stuff
@@ -77,17 +86,21 @@ namespace ProjectAncients
 
             whiteTabletDoor = new PrecursorDoorPrefab("WhiteTabletDoor", "White tablet door", whiteTabletTerminal.ClassID);
             whiteTabletDoor.Patch();
+
+            prop_ruinedGuardian = new RuinedGuardianPrefab();
+            prop_ruinedGuardian.Patch();
+            MakeObjectScannable(prop_ruinedGuardian.TechType, "RuinedGuardian", 6f);
             #endregion
 
             outpostABTerminal = new DataTerminalPrefab("OutpostATerminal", "TertiaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
             outpostABTerminal.Patch();
 
 
-            /*var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
             outpostAInitializer.Patch();
 
             var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
-            outpostBInitializer.Patch();*/
+            outpostBInitializer.Patch();
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -128,6 +141,17 @@ namespace ProjectAncients
             });
             LanguageHandler.SetLanguageLine("Ency_" + key, title);
             LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
+        }
+
+        static void MakeObjectScannable(TechType techType, string encyKey, float scanTime)
+        {
+            PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            {
+                key = techType,
+                encyclopedia = encyKey,
+                scanTime = scanTime,
+                isFragment = false
+            });
         }
     }
 }
