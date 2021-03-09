@@ -62,7 +62,7 @@ namespace ProjectAncients
             #endregion
 
             #region Data download ency data
-            PatchEncy("TertiaryOutpostData", "DownloadedData/Precursor/Terminal", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup");
+            PatchEncy("TertiaryOutpostData", "DownloadedData/Precursor/Terminal", "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BLueGlyph_Ency");
             #endregion
 
             #region Generic precursor stuff
@@ -83,11 +83,11 @@ namespace ProjectAncients
             outpostABTerminal.Patch();
 
 
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", Vector3.forward * 50f);
+            /*var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
             outpostAInitializer.Patch();
 
             var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
-            outpostBInitializer.Patch();
+            outpostBInitializer.Patch();*/
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -106,19 +106,25 @@ namespace ProjectAncients
             }
         }
 
-        static void PatchEncy(string key, string path, string title, string desc, string popupName = null)
+        static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
         {
-            Sprite sprite = null;
+            Sprite popup = null;
             if (!string.IsNullOrEmpty(popupName))
             {
-                sprite = assetBundle.LoadAsset<Sprite>(popupName);
+                popup = assetBundle.LoadAsset<Sprite>(popupName);
+            }
+            Texture2D encyImg = null;
+            if (!string.IsNullOrEmpty(encyImageName))
+            {
+                encyImg = assetBundle.LoadAsset<Texture2D>(encyImageName);
             }
             PDAEncyclopediaHandler.AddCustomEntry(new PDAEncyclopedia.EntryData()
             {
                 key = key,
                 path = path,
                 nodes = path.Split('/'),
-                popup = sprite
+                popup = popup,
+                image = encyImg
             });
             LanguageHandler.SetLanguageLine("Ency_" + key, title);
             LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
