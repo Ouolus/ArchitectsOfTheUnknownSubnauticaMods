@@ -16,9 +16,6 @@ namespace LeviathanEggs.Prefabs
         public override TechType HatchingCreature => TechType.SeaEmperorBaby;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SeaEmperorEgg");
-
-        public override OverrideTechType MakeATechTypeToOverride => new OverrideTechType("SeaEmperorEggUndiscovered",
-            "Creature Egg", "An unknown Creature hatches from this");
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()

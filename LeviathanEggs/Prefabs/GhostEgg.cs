@@ -15,8 +15,6 @@ namespace LeviathanEggs.Prefabs
         {}
 
         public override GameObject Model => LoadGameObject("GhostEgg.prefab");
-        public override OverrideTechType MakeATechTypeToOverride =>
-            new OverrideTechType("GhostEggUndiscovered", "Creature Egg", "An unknown Creature hatches from this");
         public override TechType HatchingCreature => TechType.GhostLeviathanJuvenile;
         public override Sprite ItemSprite => LoadSprite("GhostEgg");
         public override float HatchingTime => 5f;
