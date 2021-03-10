@@ -38,7 +38,7 @@ namespace LeviathanEggs.Prefabs.API
         public virtual bool AcidImmune => true;
 
         public virtual OverrideTechType MakeATechTypeToOverride =>
-            new OverrideTechType(ClassID + "Undiscovered", "Creature Egg", "An unknown Creature hatches from this");
+            new OverrideTechType(ClassID + "Undiscovered", "Creature Egg", "An unidentified egg.");
 
         public sealed override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {

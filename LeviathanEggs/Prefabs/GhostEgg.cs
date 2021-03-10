@@ -9,7 +9,7 @@ namespace LeviathanEggs.Prefabs
     class GhostEgg : EggPrefab
     {
         public GhostEgg()
-            : base("GhostEgg", "Ghost Leviathan Egg", "Ghosts Hatch from these.")
+            : base("GhostEgg", "Ghost Leviathan Egg", "Ghosts hatch from these.")
         {}
 
         public override GameObject Model => LoadGameObject("GhostEgg.prefab");

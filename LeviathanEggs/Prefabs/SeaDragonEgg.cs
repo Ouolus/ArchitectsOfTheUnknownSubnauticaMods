@@ -8,7 +8,7 @@ namespace LeviathanEggs.Prefabs
     class SeaDragonEgg : EggPrefab
     {
         public SeaDragonEgg()
-            :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons Hatch from these")
+            :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons hatch from these.")
         {}
 
         public override GameObject Model => LoadGameObject("SeaDragonEgg.prefab");

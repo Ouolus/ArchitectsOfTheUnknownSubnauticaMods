@@ -8,7 +8,7 @@ namespace LeviathanEggs.Prefabs
     public class SeaEmperorEgg : EggPrefab
     {
         public SeaEmperorEgg()
-            : base("SeaEmperorEgg", "Sea Emperor Egg", "Sea Emperors Hatch from these")
+            : base("SeaEmperorEgg", "Sea Emperor Egg", "Sea Emperors hatch from these.")
         {}
         public override GameObject Model => LoadGameObject("SeaEmperorEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaEmperorBaby;
