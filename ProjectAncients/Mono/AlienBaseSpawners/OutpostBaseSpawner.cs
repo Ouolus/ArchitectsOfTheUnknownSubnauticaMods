@@ -34,12 +34,17 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(7f, smallLightYOffset, -9f));
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, 7f));
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, -9f));
-            const float columnYOffset = -16f;
-            SpawnPrefab(structure_column, new Vector3(7f, columnYOffset, 7f));
-            SpawnPrefab(structure_column, new Vector3(7f, columnYOffset, -9f));
-            SpawnPrefab(structure_column, new Vector3(-9f, columnYOffset, 7f));
-            SpawnPrefab(structure_column, new Vector3(-9f, columnYOffset, -9f));
+            SpawnColumns(-16f);
+
             SpawnPrefab(atmosphereVolume_cache, Vector3.zero, Vector3.zero, new Vector3(18f, 26f, 18f));
+        }
+
+        protected void SpawnColumns(float yOffset)
+        {
+            SpawnPrefab(structure_column, new Vector3(7f, yOffset, 7f));
+            SpawnPrefab(structure_column, new Vector3(7f, yOffset, -9f));
+            SpawnPrefab(structure_column, new Vector3(-9f, yOffset, 7f));
+            SpawnPrefab(structure_column, new Vector3(-9f, yOffset, -9f));
         }
     }
 }

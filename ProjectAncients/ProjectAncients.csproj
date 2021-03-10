@@ -123,6 +123,7 @@
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />

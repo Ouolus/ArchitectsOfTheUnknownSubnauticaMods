@@ -120,8 +120,11 @@ namespace ProjectAncients
             var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
             outpostAInitializer.Patch();
 
-            var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", Vector3.forward * -50f);
+            var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", new Vector3(967, -62, 184));
             outpostBInitializer.Patch();
+
+            var towerOutpostInitializer = new AlienBaseInitializer<TowerOutpostSpawner>("TowerOutpost", new Vector3(-526, -58, 22));
+            towerOutpostInitializer.Patch();
 
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
