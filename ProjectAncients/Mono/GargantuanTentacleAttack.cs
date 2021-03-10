@@ -81,10 +81,14 @@ namespace ProjectAncients.Mono
 						}
 						else
 						{
-							StartCoroutine(PerformBiteAttack(target));
-							behaviour.timeCanAttackAgain = Time.time + 4f;
-							attackSource.clip = biteClipPool.GetRandomClip();
-							attackSource.Play();
+							var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
+							if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+							{
+								StartCoroutine(PerformBiteAttack(target));
+								behaviour.timeCanAttackAgain = Time.time + 4f;
+								attackSource.clip = biteClipPool.GetRandomClip();
+								attackSource.Play();
+							}
 						}
 						StartCoroutine(PlayTentacleAnimation());
 						thisCreature.Aggression.Value -= 0.15f;

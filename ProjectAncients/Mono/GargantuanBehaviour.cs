@@ -55,6 +55,10 @@ namespace ProjectAncients.Mono
 
         public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
         {
+            if (liveMixin.health - DamageSystem.CalculateDamage(600f, DamageType.Normal, gameObject) <= 0)
+            {
+                return false;
+            }
             if (gameObject.GetComponentInParent<Player>())
             {
                 return false;
