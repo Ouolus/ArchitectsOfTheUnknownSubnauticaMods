@@ -66,8 +66,12 @@ namespace ProjectAncients.Mono
 							}
 							else
 							{
-								StartCoroutine(PerformPlayerCinematic(player));
-								return;
+								var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
+								if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+								{
+									StartCoroutine(PerformPlayerCinematic(player));
+									return;
+								}
 							}
 						}
 						else if (behaviour.GetCanGrabVehicle())
@@ -107,12 +111,16 @@ namespace ProjectAncients.Mono
 						}
 						else
 						{
-							StartCoroutine(PerformBiteAttack(target));
-							this.behaviour.timeCanAttackAgain = Time.time + 2f;
-							attackSource.clip = biteClipPool.GetRandomClip();
-							attackSource.Play();
-							thisCreature.Aggression.Value -= 0.15f;
-							creature.GetAnimator().SetTrigger("bite");
+							var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
+							if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+							{
+								StartCoroutine(PerformBiteAttack(target));
+								this.behaviour.timeCanAttackAgain = Time.time + 2f;
+								attackSource.clip = biteClipPool.GetRandomClip();
+								attackSource.Play();
+								thisCreature.Aggression.Value -= 0.15f;
+								creature.GetAnimator().SetTrigger("bite");
+							}
 						}
 					}
 				}
