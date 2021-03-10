@@ -63,7 +63,6 @@ namespace LeviathanEggs.Prefabs
                 renderer.material.shader = shader;
 
                 renderer.material = shell;
-                renderer.material = shell;
             }
             seaDragonEgg.SetActive(false);
 
