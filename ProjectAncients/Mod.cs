@@ -88,7 +88,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "This large object appears to be the remnants of an autonomous defensive machine. A single, large dent indicates it was taken out with extreme ease.\n\n1. Design:\nThis machine resembles a large shark-like creature. With an interesting color scheme and unique engravings, it is certainly alien in design. Several prongs lining either side of the body suggest an electric defense ability.\n\n2. Purpose:\nThe purpose of this machine is largely a mystery. It may have been a simple form of transportation for those who constructed it, or a resilient defense unit. Whatever its objective, it has failed.", "Guardian_Popup", "Guardian_Ency");
             
-            PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal linked a.", "Guardian_Popup");
+            PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a mysterious tracking chip. Frequent, powerful pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
             #endregion
 
