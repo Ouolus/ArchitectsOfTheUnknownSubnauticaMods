@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono
         private Transform vehicleHoldPoint;
         private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
-        float damagePerSecond = 19f;
+        float damagePerSecond = 26f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
 
