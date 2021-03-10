@@ -49,7 +49,7 @@ namespace ProjectAncients.Prefabs
 
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.metal;
 
-        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(4f, 5f, 2f);
+        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(10f, 1f, 2f);
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
