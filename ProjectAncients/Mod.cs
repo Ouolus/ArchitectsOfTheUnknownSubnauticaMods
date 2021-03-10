@@ -20,14 +20,17 @@ namespace ProjectAncients
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
 
-        public static GenericSignalPrefab outpostCSignal;
-        public static GenericSignalPrefab outpostDSignal;
+        public static GenericSignalPrefab signal_outpostC;
+        public static GenericSignalPrefab signal_outpostD;
+        public static GenericSignalPrefab signal_ruinedGuardian;
 
         public static TabletTerminalPrefab redTabletTerminal;
         public static TabletTerminalPrefab whiteTabletTerminal;
         public static PrecursorDoorPrefab redTabletDoor;
         public static PrecursorDoorPrefab whiteTabletDoor;
-        public static DataTerminalPrefab outpostABTerminal;
+
+        public static DataTerminalPrefab tertiaryOutpostTerminal;
+        public static DataTerminalPrefab guardianTerminal;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -37,40 +40,55 @@ namespace ProjectAncients
 
         private const string modEncyPath = "DownloadedData/Precursor/GargMod";
 
+        private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
+        private const string ency_ruinedGuardian = "RuinedGuardian";
+        private const string ency_distressSignal = "GuardianTerminalData";
+
         [QModPatch]
         public static void Patch()
         {
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
 
+            #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Gargantuan Mod (name WIP)");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Anomaly");
+            #endregion
 
+            #region Creatures
             gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan leviathan juvenile", "A titan-class lifeform. How did it get in your inventory?", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
 
             gargVoidPrefab = new GargantuanVoid("GargantuanVoid", "Gargantuan leviathan", "A titan-class lifeform. Indigineous to the void.", assetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargVoidPrefab.Patch();
+            #endregion
 
+            #region Initializers
             var expRoar = new ExplosionRoarInitializer();
             expRoar.Patch();
 
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
+            #endregion
 
             #region Signals
-            outpostCSignal = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Signal A", new Vector3(500f, 0f, 0f), 3);
-            outpostCSignal.Patch();
+            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Alien Signal A", new Vector3(500f, 0f, 0f), 3);
+            signal_outpostC.Patch();
 
-            outpostDSignal = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Alien Signal B", new Vector3(-500f, 0f, 0f), 3);
-            outpostDSignal.Patch();
+            signal_outpostD = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Alien Signal B", new Vector3(-500f, 0f, 0f), 3);
+            signal_outpostD.Patch();
+
+            signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747));
+            signal_ruinedGuardian.Patch();
             #endregion
 
 
             #region Ency
-            PatchEncy("TertiaryOutpostData", modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy("RuinedGuardian", modEncyPath, "Mysterious Wreckage", "This large object appears to be the remnants of an autonomous defensive machine. A single, large dent indicates it was taken out with extreme ease.\n\n1. Design:\nThis machine resembles a large shark-like creature. With an interesting color scheme and unique engravings, it is certainly alien in design. Several prongs lining either side of the body suggest an electric defense ability.\n\n2. Purpose:\nThe purpose of this machine is largely a mystery. It may have been a simple form of transportation for those who constructed it, or a resilient defense unit. Whatever its objective, it has failed.", "Guardian_Popup", "Guardian_Ency");
+            PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "This large object appears to be the remnants of an autonomous defensive machine. A single, large dent indicates it was taken out with extreme ease.\n\n1. Design:\nThis machine resembles a large shark-like creature. With an interesting color scheme and unique engravings, it is certainly alien in design. Several prongs lining either side of the body suggest an electric defense ability.\n\n2. Purpose:\nThe purpose of this machine is largely a mystery. It may have been a simple form of transportation for those who constructed it, or a resilient defense unit. Whatever its objective, it has failed.", "Guardian_Popup", "Guardian_Ency");
+            
+            PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal linked a.", "Guardian_Popup");
 
             #endregion
 
@@ -89,11 +107,14 @@ namespace ProjectAncients
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
-            MakeObjectScannable(prop_ruinedGuardian.TechType, "RuinedGuardian", 6f);
-            #endregion
+            MakeObjectScannable(prop_ruinedGuardian.TechType, ency_ruinedGuardian, 6f);
 
-            outpostABTerminal = new DataTerminalPrefab("OutpostATerminal", "TertiaryOutpostData", new string[] { outpostCSignal.ClassID, outpostDSignal.ClassID });
-            outpostABTerminal.Patch();
+            tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID });
+            tertiaryOutpostTerminal.Patch();
+
+            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2" );
+            guardianTerminal.Patch();
+            #endregion
 
 
             var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));

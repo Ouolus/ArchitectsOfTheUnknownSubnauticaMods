@@ -21,7 +21,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, -9f));
             SpawnPrefab(pedestal_empty2, new Vector3(-9f, yOffset, 7f));
             SpawnPrefab(pedestal_empty2, new Vector3(-9f, yOffset, -9f));
-            SpawnPrefab(Mod.outpostABTerminal.ClassID, new Vector3(0f, yOffset,-5f), new Vector3(0f, 180f, 0f));
+            SpawnPrefab(Mod.tertiaryOutpostTerminal.ClassID, new Vector3(0f, yOffset,-5f), new Vector3(0f, 180f, 0f));
             SpawnPrefab(starfish, new Vector3(0f, yOffset, -6f));
             SpawnPrefab(starfish, new Vector3(-5f, yOffset, -4f));
             SpawnPrefab(starfish, new Vector3(3f, yOffset, 3f));
