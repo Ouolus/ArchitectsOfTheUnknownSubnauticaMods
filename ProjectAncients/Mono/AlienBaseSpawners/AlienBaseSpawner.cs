@@ -169,13 +169,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        const float midCableSpacing = 1.5f;
+        const float midCableSpacing = 1.25f;
         private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
         {
             List<CableSegment> segments = new List<CableSegment>();
             segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
             segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
-            int maxSegments = Mathf.RoundToInt(midCableSpacing * Vector3.Distance(basePosition, terrainPosition));
+            int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / midCableSpacing);
             for(int i = 0; i < maxSegments; i++)
             {
                 float percent = (float)i / (float)maxSegments;
