@@ -169,7 +169,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        const float midCableSpacing = 1f;
+        const float midCableSpacing = 1.5f;
         private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
         {
             List<CableSegment> segments = new List<CableSegment>();
@@ -205,9 +205,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     forwardBefore = (lastSegmentPosition - position).normalized;
                 }
 
-                Vector3 forward = Vector3.Slerp(forwardBefore, forwardAfter, 0.5f);
-
-                segments.Add(new CableSegment(GetMiddleCableRandom(i), position, forward));
+                segments.Add(new CableSegment(GetMiddleCableRandom(i), position, forwardAfter));
             }
             return segments;
         }
