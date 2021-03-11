@@ -169,7 +169,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        const float midCableSpacing = 1.25f;
+        const float midCableSpacing = 1.05f;
         private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
         {
             List<CableSegment> segments = new List<CableSegment>();
