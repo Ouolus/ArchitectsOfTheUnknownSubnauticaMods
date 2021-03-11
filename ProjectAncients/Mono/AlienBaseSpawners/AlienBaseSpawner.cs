@@ -197,14 +197,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     forwardAfter = (position - nextSegmentPosition).normalized;
                 }
 
-                Vector3 forwardBefore = baseAttachForward;
-                float lastPercent = Mathf.Clamp01((i - 1) / maxSegments);
-                if(lastPercent > 0f)
-                {
-                    Vector3 lastSegmentPosition = GetPositionOfCable(basePosition, terrainPosition, lastPercent, offsetDirection, quadraticMagnitude);
-                    forwardBefore = (lastSegmentPosition - position).normalized;
-                }
-
                 segments.Add(new CableSegment(GetMiddleCableRandom(i), position, forwardAfter));
             }
             return segments;
