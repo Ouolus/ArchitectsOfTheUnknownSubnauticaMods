@@ -26,11 +26,27 @@ namespace LeviathanEggs
         internal static SeaDragonEgg seaDragonEgg = new SeaDragonEgg();
         internal static GhostEgg ghostEgg = new GhostEgg();
         internal static RobotEgg robotEgg = new RobotEgg();
+        internal static ReaperEgg reaperEgg = new ReaperEgg();
+        internal static SeaTreaderEgg seaTreaderEgg = new SeaTreaderEgg();
+        internal static LavaLarvaEgg lavaLarvaEgg = new LavaLarvaEgg();
+        internal static GhostRayRedEgg ghostRayRedEgg = new GhostRayRedEgg();
+        internal static GhostRayBlueEgg ghostRayBlueEgg = new GhostRayBlueEgg();
+        internal static ShuttleBugEgg shuttleBugEgg = new ShuttleBugEgg();
+        internal static CaveCrawlerEgg caveCrawlerEgg = new CaveCrawlerEgg();
+        internal static WarperEgg warperEgg = new WarperEgg();
+        internal static SpineEelEgg spineEelEgg = new SpineEelEgg();
 
         public static List<TechType> TechTypesToSkyApply = new List<TechType>() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new List<TechType>() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
         public static List<TechType> TechTypesToTweak = new List<TechType>() { TechType.Bleeder, TechType.Rockgrub, TechType.Biter, TechType.Blighter };
-        private static List<TechType> techTypesToAddEntry = new List<TechType>() { seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType };
+
+        private static List<TechType> techTypesToAddEntry = new List<TechType>()
+        {
+            seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType, reaperEgg.TechType,
+            seaTreaderEgg.TechType, lavaLarvaEgg.TechType, ghostRayRedEgg.TechType, ghostRayBlueEgg.TechType,
+            shuttleBugEgg.TechType, caveCrawlerEgg.TechType,
+            warperEgg.TechType, spineEelEgg.TechType
+        };
         [QModPatch]
         public static void Load()
         {
@@ -41,6 +57,15 @@ namespace LeviathanEggs
             seaDragonEgg.Patch();
             ghostEgg.Patch();
             robotEgg.Patch();
+            reaperEgg.Patch();
+            seaTreaderEgg.Patch();
+            lavaLarvaEgg.Patch();
+            ghostRayRedEgg.Patch();
+            ghostRayBlueEgg.Patch();
+            shuttleBugEgg.Patch();
+            caveCrawlerEgg.Patch();
+            warperEgg.Patch();
+            spineEelEgg.Patch();
 
             foreach (TechType tt in techTypesToAddEntry)
             {
@@ -73,7 +98,24 @@ namespace LeviathanEggs
             
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathanJuvenile, "Massive territorial eel-like predator, raised in containment.");
             LanguageHandler.SetTechTypeTooltip(TechType.GhostLeviathan, "Massive territorial eel-like predator, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.ReaperLeviathan, "Huge aggressive streamlined hunter, raised in containment.");
 
+            LanguageHandler.SetTechTypeTooltip(TechType.SeaTreader, "Vast bipedal herbivore, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.LavaLarva, "Grub-like energy parasite, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostRayRed, "Large docile scavenger ray, raised in containment");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.GhostRayBlue, "Large translucent herbivorous deep-sea ray, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.Shuttlebug, "Agile, territorial, amphibious carrion-feeders, raised in containment.");
+            LanguageHandler.SetTechTypeTooltip(TechType.CaveCrawler, "Agile, territorial deep-sea scavenger, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.SpineEel, "Fast, agile, eel-like predator, raised in containment.");
+            
+            LanguageHandler.SetTechTypeTooltip(TechType.Warper, "Mechanically enhanced, genetically modified, Self-Warping Quarantine Enforcement Unit, raised in containment.\nWARNING; Will exterminate any infected individuals.");
+            
             LanguageHandler.SetTechTypeTooltip(TechType.PrecursorDroid, "Small, efficient, durable maintenance unit, deployed in containment.");
 
             LanguageHandler.SetTechTypeTooltip(TechType.Bleeder, "Small, blood-sucking parasite. Tastes slimy and awful.");
@@ -92,7 +134,23 @@ namespace LeviathanEggs
 
             SpriteHandler.RegisterSprite(TechType.GhostLeviathan, LoadSprite("Ghost"));
             SpriteHandler.RegisterSprite(TechType.GhostLeviathanJuvenile, LoadSprite("Ghost"));
+            
+            SpriteHandler.RegisterSprite(TechType.ReaperLeviathan, LoadSprite("Reaper"));
 
+            SpriteHandler.RegisterSprite(TechType.SeaTreader, LoadSprite("SeaTreader"));
+            
+            SpriteHandler.RegisterSprite(TechType.LavaLarva, LoadSprite("LavaLarva"));
+            
+            SpriteHandler.RegisterSprite(TechType.GhostRayRed, LoadSprite("CrimsonRay"));
+            SpriteHandler.RegisterSprite(TechType.GhostRayBlue, LoadSprite("GhostRay"));
+            
+            SpriteHandler.RegisterSprite(TechType.Shuttlebug, LoadSprite("CaveCrawler"));
+            SpriteHandler.RegisterSprite(TechType.CaveCrawler, LoadSprite("BloodCrawler"));
+            
+            SpriteHandler.RegisterSprite(TechType.SpineEel, LoadSprite("SpineEel"));
+            
+            SpriteHandler.RegisterSprite(TechType.Warper, LoadSprite("Warper"));
+            
             SpriteHandler.RegisterSprite(TechType.PrecursorDroid, LoadSprite("PrecursorDroid"));
 
             SpriteHandler.RegisterSprite(TechType.Rockgrub, LoadSprite("Rockgrub"));
@@ -112,9 +170,27 @@ namespace LeviathanEggs
 
             CraftDataHandler.SetItemSize(TechType.GhostLeviathanJuvenile, new Vector2int(4, 4));
             CraftDataHandler.SetItemSize(TechType.GhostLeviathan, new Vector2int(4, 4));
+            
+            CraftDataHandler.SetItemSize(TechType.ReefbackBaby, new Vector2int(4, 4));
+            
+            CraftDataHandler.SetItemSize(TechType.ReaperLeviathan, new Vector2int(4, 4));
+            
+            CraftDataHandler.SetItemSize(TechType.SeaTreader, new Vector2int(4, 4));
 
             CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
+            
+            CraftDataHandler.SetItemSize(TechType.LavaLarva, new Vector2int(2, 2));
 
+            CraftDataHandler.SetItemSize(TechType.GhostRayRed, new Vector2int(3, 3));
+            CraftDataHandler.SetItemSize(TechType.GhostRayBlue, new Vector2int(3, 3));
+            
+            CraftDataHandler.SetItemSize(TechType.Shuttlebug, new Vector2int(2, 2));
+            CraftDataHandler.SetItemSize(TechType.CaveCrawler, new Vector2int(2, 2));
+            
+            CraftDataHandler.SetItemSize(TechType.Warper, new Vector2int(3, 3));
+            
+            CraftDataHandler.SetItemSize(TechType.SpineEel, new Vector2int(3, 3));
+            
             CraftDataHandler.SetItemSize(TechType.Bleeder, new Vector2int(1, 1));
 
             CraftDataHandler.SetItemSize(TechType.Rockgrub, new Vector2int(1, 1));
@@ -141,13 +217,38 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
 
+            WaterParkCreature.waterParkCreatureParameters[TechType.Shuttlebug] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.CaveCrawler] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
+            
             WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.2f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.ReaperLeviathan] = new WaterParkCreatureParameters(0.02f, 0.05f, 0.07f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.SeaTreader] = new WaterParkCreatureParameters(0.02f, 0.05f, 0.07f, 1f, false);
+            
+            WaterParkCreature.waterParkCreatureParameters[TechType.LavaLarva] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, false);
+            
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayRed] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayBlue] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            
+            WaterParkCreature.waterParkCreatureParameters[TechType.Warper] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            
+            WaterParkCreature.waterParkCreatureParameters[TechType.SpineEel] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaDragon] = seaDragonEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SeaEmperorJuvenile] = seaEmperorEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.PrecursorDroid] = robotEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.ReaperLeviathan] = reaperEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.SeaTreader] = seaTreaderEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.LavaLarva] = lavaLarvaEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.GhostRayRed] = ghostRayRedEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.GhostRayBlue] = ghostRayBlueEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.Shuttlebug] = shuttleBugEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.CaveCrawler] = caveCrawlerEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.Warper] = warperEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.SpineEel] = spineEelEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.ReefbackBaby] = TechType.ReefbackEgg;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);

@@ -129,10 +129,19 @@
     <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
     <Compile Include="Prefabs\API\EggPrefab.cs" />
+    <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
+    <Compile Include="Prefabs\GhostRayBlueEgg.cs" />
+    <Compile Include="Prefabs\GhostRayRedEgg.cs" />
+    <Compile Include="Prefabs\LavaLarvaEgg.cs" />
+    <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
+    <Compile Include="Prefabs\SeaTreaderEgg.cs" />
+    <Compile Include="Prefabs\ShuttleBugEgg.cs" />
+    <Compile Include="Prefabs\SpineEelEgg.cs" />
+    <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
