@@ -46,6 +46,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_reactorRod = "cfdd714a-55fb-40df-86e5-6acf0d013b34";
         public const string supplies_titaniumIngot = "41919ae1-1471-4841-a524-705feb9c2d20";
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
+        public const string supplies_whiteTablet = "WhiteTabletFixed";
+        public const string supplies_redTablet = "RedTabletFixed";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string entry_1 = "c3f2225b-718c-4868-bae3-39ce3914e992";
