@@ -144,7 +144,6 @@
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
-    <Compile Include="Prefabs\AlienBase\PrecursorKeyFixerPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
