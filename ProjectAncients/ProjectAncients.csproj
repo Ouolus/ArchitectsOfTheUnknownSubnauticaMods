@@ -141,6 +141,7 @@
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
+    <Compile Include="Patches\PrecursorTabletFixer.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
