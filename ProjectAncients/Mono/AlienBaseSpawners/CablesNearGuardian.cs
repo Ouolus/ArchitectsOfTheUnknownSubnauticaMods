@@ -1,0 +1,13 @@
+﻿using UnityEngine;
+
+namespace ProjectAncients.Mono.AlienBaseSpawners
+{
+    public class CablesNearGuardian : AlienBaseSpawner
+    {
+        public override void ConstructBase()
+        {
+            GenerateCable(new Vector3(354, -378, 1774), Vector3.down, new Vector3(356, -348, -1756), new Vector3(0.2f, 0, -1), Vector3.up, 14f);
+            GenerateCable(new Vector3(382, -374, -1759), Vector3.down, new Vector3(376, -351, -1748), new Vector3(0.5f, 0.1f, -0.9f), Vector3.up, 14f);
+        }
+    }
+}

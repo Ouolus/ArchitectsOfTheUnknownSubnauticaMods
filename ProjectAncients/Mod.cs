@@ -86,7 +86,7 @@ namespace ProjectAncients
             #region Ency
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming Leviathan - Class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
+            PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
             
             PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a mysterious tracking chip. Frequent, powerful pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
@@ -117,6 +117,7 @@ namespace ProjectAncients
             #endregion
 
 
+            #region Alien bases
             var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
             outpostAInitializer.Patch();
 
@@ -126,9 +127,14 @@ namespace ProjectAncients
             var towerOutpostInitializer = new AlienBaseInitializer<TowerOutpostSpawner>("TowerOutpost", new Vector3(-526, -58, 22));
             towerOutpostInitializer.Patch();
 
+            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762));
+            guardianCablesInitializer.Patch();
+            #endregion
+
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
+            SMLHelper.V2.Handler.CraftDataHandler.SetItemSize(TechType.PrecursorKey_Red, new Vector2int(1, 1));
             FixMapModIfNeeded(harmony);
         }
 

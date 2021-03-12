@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
