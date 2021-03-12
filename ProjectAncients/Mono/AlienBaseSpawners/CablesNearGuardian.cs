@@ -13,6 +13,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabGlobally(ambience_greenLight, new Vector3(371, -338, -1747));
             SpawnPrefabGlobally(ambience_greenLight, new Vector3(371, -341, -1753));
             SpawnPrefabGlobally(ambience_greenLight, new Vector3(366, -344, -1753));
+            SpawnPrefabGlobally(ambience_greenLight, new Vector3(364, -338, -1746));
         }
     }
 }
