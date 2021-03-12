@@ -112,7 +112,7 @@ namespace ProjectAncients
             tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID });
             tertiaryOutpostTerminal.Patch();
 
-            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2" );
+            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", "81cf2223-455d-4400-bac3-a5bcd02b3638");
             guardianTerminal.Patch();
             #endregion
 
@@ -131,10 +131,11 @@ namespace ProjectAncients
             guardianCablesInitializer.Patch();
             #endregion
 
+            SMLHelper.V2.Handler.CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
+
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            SMLHelper.V2.Handler.CraftDataHandler.SetItemSize(TechType.PrecursorKey_Red, new Vector2int(1, 1));
             FixMapModIfNeeded(harmony);
         }
 
