@@ -50,7 +50,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_redTablet = "7d19f47b-6ec6-4a25-9b28-b3fd7f5661b7";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
+        public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string entry_1 = "c3f2225b-718c-4868-bae3-39ce3914e992";
+        public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
+        public const string natural_rockBlade2 = "282cdcbc-8670-4f9a-ae1d-9d8a09f9e880";
+        public const string natural_coralClumpYellow = "5e8261d5-acce-4ec6-b77c-0f138770d5cb";
+        public const string natural_coralClumpYellow_small = "339d91c3-9203-4c8f-8592-14b72ba7d5cc";
+        public const string natural_coralClumpYellow_variant = "db86ef34-e1fa-4eb2-aa18-dda5af30cb45";
+        public const string natural_boulder_small = "3e581d94-c873-4ad7-a2f4-a35ec6ac3ecb";
+        public const string natural_boulder_big = "8d13d081-431e-4ed5-bc99-2b8b9fabe9c2";
 
         private List<GameObject> spawnedChildren;
 
@@ -110,6 +118,19 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
+                return spawnedObject;
+            }
+            return null;
+        }
+
+        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition)
+        {
+            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            {
+                GameObject spawnedObject = GameObject.Instantiate(prefab);
+                spawnedObject.transform.position = worldPosition;
+                spawnedObject.SetActive(true);
+                LargeWorld.main.streamer.cellManager.RegisterCellEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
             }
             return null;
