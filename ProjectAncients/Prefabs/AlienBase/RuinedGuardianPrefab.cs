@@ -46,6 +46,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
                 prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
                 prefab.EnsureComponent<GuardianEyes>();
+                prefab.EnsureComponent<AudioClipEmitter>().clipPoolPrefix = "Creaking";
                 ECCHelpers.ApplySNShaders(prefab, new UBERMaterialProperties(5f, 1f, 1f));
                 AddVolumetricLight(prefab.SearchChild("LightPos1", ECCStringComparison.Equals).transform);
                 AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform);
