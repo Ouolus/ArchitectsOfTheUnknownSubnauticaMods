@@ -12,7 +12,8 @@ namespace ProjectAncients.Mono.AlienTech
         public string clipPoolPrefix;
         public float delayMin = 1f;
         public float delayMax = 2f;
-        public float maxDistance = 20f;
+        public float minDistance = 5f;
+        public float maxDistance = 30f;
 
         ECCAudio.AudioClipPool clipPool;
         AudioSource audioSource;

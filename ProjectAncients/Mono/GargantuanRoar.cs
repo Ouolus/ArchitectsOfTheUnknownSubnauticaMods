@@ -13,6 +13,11 @@ namespace ProjectAncients.Mono
         Creature creature;
         const float delayMin = 11f;
         const float delayMax = 18f;
+        public string closeSoundsPrefix;
+        public string distantSoundsPrefix;
+
+        public float minDistance = 50f;
+        public float maxDistance = 600f;
 
         private IEnumerator Start()
         {
@@ -57,11 +62,11 @@ namespace ProjectAncients.Mono
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = 50f;
-            audioSource.maxDistance = 600f;
+            audioSource.minDistance = minDistance;
+            audioSource.maxDistance = maxDistance;
 
-            closeSounds = ECCAudio.CreateClipPool("garg_roar");
-            farSounds = ECCAudio.CreateClipPool("garg_for_anth_distant");
+            closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
+            farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);
         }
 
         private void DoWaterDisplacement()

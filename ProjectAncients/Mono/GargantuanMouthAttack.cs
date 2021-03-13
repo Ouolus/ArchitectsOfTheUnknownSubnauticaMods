@@ -19,6 +19,8 @@ namespace ProjectAncients.Mono
 
 		private PlayerCinematicController playerDeathCinematic;
 
+		public bool canAttackPlayer = true;
+
 		void Start()
 		{
 			attackSource = gameObject.AddComponent<AudioSource>();
@@ -60,6 +62,10 @@ namespace ProjectAncients.Mono
 						Player player = target.GetComponent<Player>();
 						if (player != null)
 						{
+							if (!canAttackPlayer)
+							{
+								return;
+							}
 							if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive)
 							{
 								return;
@@ -74,7 +80,7 @@ namespace ProjectAncients.Mono
 								}
 							}
 						}
-						else if (behaviour.GetCanGrabVehicle())
+						else if (canAttackPlayer && behaviour.GetCanGrabVehicle())
 						{
 							SeaMoth component4 = target.GetComponent<SeaMoth>();
 							if (component4 && !component4.docked)

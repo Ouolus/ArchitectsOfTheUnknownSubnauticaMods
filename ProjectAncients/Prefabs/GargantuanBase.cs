@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ECCLibrary;
 using ProjectAncients.Mono;
 using UnityEngine;
@@ -78,13 +79,12 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.3f;
             components.locomotion.upRotationSpeed = 1f;
 
-            const float tentacleSnapSpeed = 5f;
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, tentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
 
             const float jawTentacleSnapSpeed = 6f;
             CreateTrail(prefab.SearchChild("BLA"), components, jawTentacleSnapSpeed);
@@ -94,9 +94,7 @@ namespace ProjectAncients.Prefabs
             CreateTrail(prefab.SearchChild("LJT"), components, jawTentacleSnapSpeed);
             CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
 
-            MakeAggressiveTo(60f, 2, EcoTargetType.Shark, 0.2f, 2f);
-            MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
-            MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
+            ApplyAggression();
 
             var atkLast = prefab.GetComponent<AttackLastTarget>();
             atkLast.resetAggressionOnTime = false;
@@ -127,8 +125,15 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.liveMixin = components.liveMixin;
             tentacleAttack.animator = components.creature.GetAnimator();*/
 
-            prefab.AddComponent<GargantuanRoar>();
-            prefab.AddComponent<GargantuanSwimAmbience>();
+            GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
+            roar.closeSoundsPrefix = CloseRoarPrefix;
+            roar.distantSoundsPrefix = DistantRoarPrefix;
+            roar.minDistance = RoarSoundMinMax.Item1;
+            roar.maxDistance = RoarSoundMinMax.Item2;
+            if (UseSwimSounds)
+            {
+                prefab.AddComponent<GargantuanSwimAmbience>();
+            }
 
             prefab.SearchChild("BLEye").AddComponent<GargEyeTracker>();
             prefab.SearchChild("BREye").AddComponent<GargEyeTracker>();
@@ -136,6 +141,53 @@ namespace ProjectAncients.Prefabs
             prefab.SearchChild("FREye").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MLEye").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MREye").AddComponent<GargEyeTracker>();
+        }
+
+        public virtual void ApplyAggression()
+        {
+            MakeAggressiveTo(60f, 2, EcoTargetType.Shark, 0.2f, 2f);
+            MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
+            MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
+        }
+
+        public virtual bool UseSwimSounds
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public virtual string CloseRoarPrefix
+        {
+            get
+            {
+                return "garg_roar";
+            }
+        }
+
+        public virtual string DistantRoarPrefix
+        {
+            get
+            {
+                return "garg_for_anth_distant";
+            }
+        }
+
+        public virtual (float, float) RoarSoundMinMax
+        {
+            get
+            {
+                return (50f, 600f);
+            }
+        }
+
+        public virtual float TentacleSnapSpeed
+        {
+            get
+            {
+                return 5f;
+            }
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)

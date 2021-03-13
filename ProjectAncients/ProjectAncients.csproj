@@ -148,6 +148,7 @@
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
+    <Compile Include="Prefabs\GargantuanBaby.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
