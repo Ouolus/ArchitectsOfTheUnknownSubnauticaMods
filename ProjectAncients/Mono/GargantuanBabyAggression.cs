@@ -74,6 +74,7 @@ namespace ProjectAncients.Mono
 					if(roar != null)
 					{
 						roar.PlayOnce();
+						creature.Aggression.Value = 1f;
 					}
 				}
 			}
