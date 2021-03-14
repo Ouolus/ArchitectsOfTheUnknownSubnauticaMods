@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Reflection;
 using ProjectAncients.Prefabs;
 using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Crafting;
 using HarmonyLib;
 using System;
 using ProjectAncients.Patches;
@@ -134,8 +135,13 @@ namespace ProjectAncients
             guardianCablesInitializer.Patch();
             #endregion
 
-            SMLHelper.V2.Handler.CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
-
+            CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
+            CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
+            CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.AluminumOxide, 2) }) { craftAmount = 1});
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2)}) { craftAmount = 1 });
+            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
+            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
