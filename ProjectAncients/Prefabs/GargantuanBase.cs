@@ -114,6 +114,7 @@ namespace ProjectAncients.Prefabs
             mouthAttack.creature = components.creature;
             mouthAttack.liveMixin = components.liveMixin;
             mouthAttack.animator = components.creature.GetAnimator();
+            mouthAttack.canAttackPlayer = AttackPlayer;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
@@ -187,6 +188,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return 5f;
+            }
+        }
+
+        public virtual bool AttackPlayer
+        {
+            get
+            {
+                return true;
             }
         }
 
