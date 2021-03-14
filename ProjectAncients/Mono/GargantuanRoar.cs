@@ -39,10 +39,19 @@ namespace ProjectAncients.Mono
                 audioSource.Play();
                 creature.GetAnimator().SetFloat("random", Random.value);
                 creature.GetAnimator().SetTrigger("roar");
-                DoWaterDisplacement();
                 float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
                 yield return new WaitForSeconds(timeToWait);
             }
+        }
+
+        public void PlayOnce()
+        {
+            float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
+            AudioClip clipToPlay = GetAudioClip(distance);
+            audioSource.clip = clipToPlay;
+            audioSource.Play();
+            creature.GetAnimator().SetFloat("random", Random.value);
+            creature.GetAnimator().SetTrigger("roar");
         }
 
         private AudioClip GetAudioClip(float distance)
