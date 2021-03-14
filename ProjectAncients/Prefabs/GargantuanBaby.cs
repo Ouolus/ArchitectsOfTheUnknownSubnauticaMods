@@ -10,9 +10,10 @@ namespace ProjectAncients.Prefabs
 {
     public class GargantuanBaby : GargantuanBase
     {
-        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 5f, 1f, 0.1f);
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 8f, 1f, 0.1f);
         public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 10f);
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.organic;
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 10f, 6f, 7f, 2f, 25f);
         public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 1f, 2f, false);
 
         public GargantuanBaby(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
