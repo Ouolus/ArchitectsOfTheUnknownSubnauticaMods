@@ -120,11 +120,12 @@ namespace ProjectAncients
             guardianTerminal.Patch();
             #endregion
 
+
             #region Alien bases
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780));
             outpostAInitializer.Patch();
 
-            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
+            var outpostBInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostB", new Vector3(967, -62, 184));
             outpostBInitializer.Patch();
 
             var towerOutpostInitializer = new AlienBaseInitializer<TowerOutpostSpawner>("TowerOutpost", new Vector3(-526, -58, 22));
