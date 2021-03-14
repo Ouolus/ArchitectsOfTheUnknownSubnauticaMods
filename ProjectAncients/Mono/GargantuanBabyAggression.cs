@@ -65,6 +65,10 @@ namespace ProjectAncients.Mono
 			{
 				return;
 			}
+			if(lastTarget.target != null)
+			{
+				return;
+			}
 			if (EcoRegionManager.main != null)
 			{
 				GameObject aggressionTarget = GetAggressionTarget();
