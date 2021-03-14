@@ -129,6 +129,8 @@
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
+    <Compile Include="Mono\GargantuanBabyAggression.cs" />
+    <Compile Include="Mono\GargantuanBabyTeleport.cs" />
     <Compile Include="Mono\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
