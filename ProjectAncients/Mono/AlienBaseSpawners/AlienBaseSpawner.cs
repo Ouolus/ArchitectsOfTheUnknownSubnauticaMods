@@ -59,6 +59,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_coralClumpYellow_variant = "db86ef34-e1fa-4eb2-aa18-dda5af30cb45";
         public const string natural_boulder_small = "3e581d94-c873-4ad7-a2f4-a35ec6ac3ecb";
         public const string natural_boulder_big = "8d13d081-431e-4ed5-bc99-2b8b9fabe9c2";
+        public const string natural_lr_hangingplant1_1 = "87f8fd44-43ca-44df-94c6-28b5962a6524";
+        public const string natural_lr_hangingplant1_2 = "31d941ee-b00b-437c-abea-c2d42526ba0a";
+        public const string natural_lr_hangingplant1_3 = "6d535e87-a4b1-4044-802b-f99491fe21fd";
+        public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
+        public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
+        public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
 
         private List<GameObject> spawnedChildren;
 
