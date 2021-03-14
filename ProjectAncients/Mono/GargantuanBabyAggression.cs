@@ -42,6 +42,10 @@ namespace ProjectAncients.Mono
 			{
 				return false;
 			}
+			if(obj == this.gameObject)
+			{
+				return false;
+			}
             return true;
         }
 
