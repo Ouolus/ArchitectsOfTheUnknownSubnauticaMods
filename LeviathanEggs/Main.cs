@@ -137,8 +137,8 @@ namespace LeviathanEggs
             
             SpriteHandler.RegisterSprite(TechType.ReaperLeviathan, LoadSprite("Reaper"));
 
-            SpriteHandler.RegisterSprite(TechType.SeaTreader, SpriteManager.Get(TechType.Titanium));
-            
+            SpriteHandler.RegisterSprite(TechType.SeaTreader, LoadSprite("SeaTreader"));
+
             SpriteHandler.RegisterSprite(TechType.LavaLarva, LoadSprite("LavaLarva"));
             
             SpriteHandler.RegisterSprite(TechType.GhostRayRed, LoadSprite("CrimsonRay"));
