@@ -10,6 +10,7 @@ using System;
 using ProjectAncients.Patches;
 using ProjectAncients.Prefabs.AlienBase;
 using ProjectAncients.Mono.AlienBaseSpawners;
+using System.Collections.Generic;
 
 namespace ProjectAncients
 {
@@ -142,6 +143,7 @@ namespace ProjectAncients
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2)}) { craftAmount = 1 });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
+            KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorKey_Purple, new List<TechType>() { });
             Harmony harmony = new Harmony("SCC.ProjectAncients");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
