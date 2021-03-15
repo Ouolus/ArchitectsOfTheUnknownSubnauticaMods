@@ -53,10 +53,6 @@
       <HintPath>$(GameDir)\$(DataFolder)\Managed\publicized_assemblies\Assembly-CSharp_publicized.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ECCLibrary">
-      <HintPath>$(GameDir)\QMods\ECCLibrary\ECCLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>$(GameDir)\$(DataFolder)\Managed\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -119,8 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Handlers\AHWHandler.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Helpers\GameObjectExtensions.cs" />
+    <Compile Include="Interfaces\IAhwHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
@@ -130,14 +128,21 @@
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
+    <Compile Include="Prefabs\API\EggPrefab.cs" />
+    <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
+    <Compile Include="Prefabs\GhostRayBlueEgg.cs" />
+    <Compile Include="Prefabs\GhostRayRedEgg.cs" />
+    <Compile Include="Prefabs\LavaLarvaEgg.cs" />
+    <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
+    <Compile Include="Prefabs\SeaTreaderEgg.cs" />
+    <Compile Include="Prefabs\ShuttleBugEgg.cs" />
+    <Compile Include="Prefabs\SpineEelEgg.cs" />
+    <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mod_SN1.json" />

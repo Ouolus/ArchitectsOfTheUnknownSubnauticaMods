@@ -1,22 +1,21 @@
 ﻿using System.Collections.Generic;
-using SMLHelper.V2.Handlers;
-using ECCLibrary;
 using UnityEngine;
 using LeviathanEggs.MonoBehaviours;
+using LeviathanEggs.Prefabs.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    class RobotEgg : CreatureEggAsset
+    class RobotEgg : EggPrefab
     {
         public RobotEgg()
-            :base("RobotEgg", "Alien Robot Egg", "Unknown Alien technology that appears to store some kind of device.",
-                 LoadGameObject("RobotEgg.prefab"), TechType.PrecursorDroid, null, 3f)
-        {
-            OnFinishedPatching += () =>
-            {
-                SpriteHandler.RegisterSprite(this.TechType, Main.assetBundle.LoadAsset<Sprite>("RobotEgg"));
-            };
-        }
+            :base("RobotEgg", "Alien Robot Egg", "Alien Robots are deployed from these.")
+        {}
+        public override OverrideTechType MakeATechTypeToOverride =>
+            new OverrideTechType("RobotEggUndiscovered", "Unknown Alien Artifact", "Unknown Alien technology that appears to store some kind of device.");
+        public override GameObject Model => LoadGameObject("RobotEgg.prefab");
+        public override TechType HatchingCreature => TechType.PrecursorDroid;
+        public override float HatchingTime => 3f;
+        public override Sprite ItemSprite => LoadSprite("RobotEgg");
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
@@ -34,11 +33,11 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.4f
             }
         };
-        public override Vector2int SizeInInventory => new Vector2int(2, 2);
-        public override float GetMaxHealth => 60f;
-        public override bool ManualEggExplosion => false;
-        public override void AddCustomBehaviours()
+
+        public override GameObject GetGameObject()
         {
+            var prefab = base.GetGameObject();
+            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -58,17 +57,11 @@ namespace LeviathanEggs.Prefabs
                 rend.sharedMaterial = material;
             }
 
-            prefab.GetComponent<Rigidbody>().mass = 100f;
-
-            ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
-            resourceTracker.techType = this.TechType;
-            resourceTracker.overrideTechType = TechType.GenericEgg;
-            resourceTracker.rb = prefab.GetComponent<Rigidbody>();
-            resourceTracker.prefabIdentifier = prefab.GetComponent<PrefabIdentifier>();
-            resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
-
             prefab.AddComponent<SpawnLocations>();
             prefab.EnsureComponent<RobotEggPulsating>();
+
+            return prefab;
         }
+        public override Vector2int SizeInInventory => new Vector2int(2, 2);
     }
 }
