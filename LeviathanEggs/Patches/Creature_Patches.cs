@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using LeviathanEggs.MonoBehaviours;
+using ArchitectsLibrary.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch]

@@ -122,20 +122,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
-    <Compile Include="Handlers\AHWHandler.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
-    <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Interfaces\IAhwHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
-    <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\Creature_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
-    <Compile Include="Prefabs\API\EggPrefab.cs" />
     <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
     <Compile Include="Prefabs\GhostRayBlueEgg.cs" />

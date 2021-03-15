@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
-using LeviathanEggs.Prefabs.API;
+using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {

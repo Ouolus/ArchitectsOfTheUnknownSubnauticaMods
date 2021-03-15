@@ -1,5 +1,5 @@
 using LeviathanEggs.MonoBehaviours;
-using LeviathanEggs.Prefabs.API;
+using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 using UnityEngine;
 
