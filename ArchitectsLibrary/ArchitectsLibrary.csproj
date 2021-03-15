@@ -1,95 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{186F2F6E-7408-4879-8FDB-23E631AF7FE7}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>ArchitectsLibrary</RootNamespace>
-        <AssemblyName>ArchitectsLibrary</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>8</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'BZ|AnyCPU' ">
-      <OutputPath>bin\BZ\</OutputPath>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1|AnyCPU' ">
-      <OutputPath>bin\SN1\</OutputPath>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="0Harmony">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\core\0Harmony.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\publicized_assemblies\Assembly-CSharp_publicized.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="Assembly-CSharp-firstpass">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\publicized_assemblies\Assembly-CSharp-firstpass_publicized.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="QModInstaller">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\QModManager\QModInstaller.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="SMLHelper">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\QMods\Modding Helper\SMLHelper.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Xml" />
-        <Reference Include="UnityEngine">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.AnimationModule">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.AssetBundleModule">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.PhysicsModule">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.UI">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.UI.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.UIModule">
-          <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="API\EggPrefab.cs" />
-        <Compile Include="Handlers\AUHandler.cs" />
-        <Compile Include="Interfaces\IAuHandler.cs" />
-        <Compile Include="Main.cs" />
-        <Compile Include="MonoBehaviours\StagedGrowing.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Utility\GameObjectExtensions.cs" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{186F2F6E-7408-4879-8FDB-23E631AF7FE7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArchitectsLibrary</RootNamespace>
+    <AssemblyName>ArchitectsLibrary</AssemblyName>
+	<OutputPath>$(SolutionDir)..\Qmods\$(Configuration)\$(AssemblyName)\</OutputPath>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>8</LangVersion>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'BZ|AnyCPU' ">
+	<DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
+	<Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1|AnyCPU' ">
+	<DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
+	<Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(DepDir)\0Harmony.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass_publicized">
+      <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp_publicized">
+      <HintPath>$(DepDir)\Assembly-CSharp_publicized.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(DepDir)\Newtonsoft.Json.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="QModInstaller">
+      <HintPath>$(DepDir)\QModInstaller.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="SMLHelper">
+      <HintPath>$(DepDir)\SMLHelper.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>$(DepDir)\UnityEngine.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(DepDir)\UnityEngine.AnimationModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(DepDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(DepDir)\UnityEngine.AudioModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(DepDir)\UnityEngine.CoreModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(DepDir)\UnityEngine.PhysicsModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(DepDir)\UnityEngine.TextCoreModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(DepDir)\UnityEngine.UIModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\EggPrefab.cs" />
+    <Compile Include="Handlers\AUHandler.cs" />
+    <Compile Include="Interfaces\IAuHandler.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\StagedGrowing.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\GameObjectExtensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
     </Target>
     <Target Name="AfterBuild">
     </Target>
     -->
-
 </Project>
