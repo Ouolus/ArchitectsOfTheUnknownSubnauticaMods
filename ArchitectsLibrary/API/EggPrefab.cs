@@ -41,7 +41,7 @@ namespace ArchitectsLibrary.API
         /// <summary>
         /// override this Property to define you egg's prefab.
         /// </summary>
-        public virtual GameObject Model { get; }
+        public abstract GameObject Model { get; }
         
         /// <summary>
         /// the creature that's gonna hatch from this egg.
@@ -56,7 +56,7 @@ namespace ArchitectsLibrary.API
         /// <summary>
         /// override this Property to define the <see cref="Sprite"/> of your egg.
         /// </summary>
-        public virtual Sprite ItemSprite { get; }
+        public abstract Sprite ItemSprite { get; }
         
         /// <summary>
         /// Mass of the egg by KG. defaulted to 100.
