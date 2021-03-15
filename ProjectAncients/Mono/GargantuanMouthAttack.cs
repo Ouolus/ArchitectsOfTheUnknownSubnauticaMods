@@ -13,8 +13,13 @@ namespace ProjectAncients.Mono
     {
 		private AudioSource attackSource;
 		private ECCAudio.AudioClipPool biteClipPool;
+		private ECCAudio.AudioClipPool cinematicClipPool;
 		private GargantuanBehaviour behaviour;
 		private GameObject throat;
+
+		private PlayerCinematicController playerDeathCinematic;
+
+		public bool canAttackPlayer = true;
 
 		void Start()
 		{
@@ -24,10 +29,17 @@ namespace ProjectAncients.Mono
 			attackSource.spatialBlend = 1f;
 			attackSource.volume = ECCHelpers.GetECCVolume();
 			biteClipPool = ECCAudio.CreateClipPool("GargBiteAttack");
+			cinematicClipPool = ECCAudio.CreateClipPool("GargBiteAttack5");
 			throat = gameObject.SearchChild("Head");
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
 			gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
 			behaviour = GetComponent<GargantuanBehaviour>();
+
+			playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
+			playerDeathCinematic.animatedTransform = gameObject.SearchChild("AttachBone").transform;
+			playerDeathCinematic.animator = creature.GetAnimator();
+			playerDeathCinematic.animParamReceivers = new GameObject[0];
+			playerDeathCinematic.animParam = "cin_player";
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
@@ -35,7 +47,7 @@ namespace ProjectAncients.Mono
 			{
 				return;
 			}
-			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain) //If it can attack, continue
+			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
 			{
 				Creature thisCreature = gameObject.GetComponent<Creature>();
 				if (thisCreature.Aggression.Value >= 0.1f) //This creature must have at least some level of aggression to bite
@@ -50,12 +62,25 @@ namespace ProjectAncients.Mono
 						Player player = target.GetComponent<Player>();
 						if (player != null)
 						{
+							if (!canAttackPlayer)
+							{
+								return;
+							}
 							if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive)
 							{
 								return;
 							}
+							else
+							{
+								var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
+								if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+								{
+									StartCoroutine(PerformPlayerCinematic(player));
+									return;
+								}
+							}
 						}
-						else if (behaviour.GetCanGrabVehicle())
+						else if (canAttackPlayer && behaviour.GetCanGrabVehicle())
 						{
 							SeaMoth component4 = target.GetComponent<SeaMoth>();
 							if (component4 && !component4.docked)
@@ -92,12 +117,16 @@ namespace ProjectAncients.Mono
 						}
 						else
 						{
-							StartCoroutine(PerformBiteAttack(target));
-							this.behaviour.timeCanAttackAgain = Time.time + 2f;
-							attackSource.clip = biteClipPool.GetRandomClip();
-							attackSource.Play();
-							thisCreature.Aggression.Value -= 0.15f;
-							creature.GetAnimator().SetTrigger("bite");
+							var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
+							if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+							{
+								StartCoroutine(PerformBiteAttack(target));
+								this.behaviour.timeCanAttackAgain = Time.time + 2f;
+								attackSource.clip = biteClipPool.GetRandomClip();
+								attackSource.Play();
+								thisCreature.Aggression.Value -= 0.15f;
+								creature.GetAnimator().SetTrigger("bite");
+							}
 						}
 					}
 				}
@@ -123,9 +152,9 @@ namespace ProjectAncients.Mono
 		{
 			if (target.GetComponent<SubControl>() != null)
 			{
-				return 300f; //cyclops damage
+				return 500f; //cyclops damage
 			}
-			return 100f; //base damage
+			return 2500f; //base damage
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
@@ -135,6 +164,16 @@ namespace ProjectAncients.Mono
 		{
 			yield return new WaitForSeconds(0.5f);
 			if(target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target));
+		}
+		private IEnumerator PerformPlayerCinematic(Player player)
+		{
+			playerDeathCinematic.StartCinematicMode(player);
+			float length = 2f;
+			attackSource.clip = cinematicClipPool.GetRandomClip();
+			attackSource.Play();
+			behaviour.timeCanAttackAgain = Time.time + length;
+			yield return new WaitForSeconds(length);
+			Player.main.liveMixin.Kill(DamageType.Normal);
 		}
 	}
 }

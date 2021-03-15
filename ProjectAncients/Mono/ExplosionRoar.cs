@@ -24,6 +24,8 @@ namespace ProjectAncients.Mono
             yield return new WaitUntil(() => _ship.IsExploded());
             yield return new WaitForSeconds(21f);
             _audioSource.Play();
+            yield return new WaitForSeconds(5f);
+            ErrorMessage.AddMessage("Something has awoken...");
         }
     }
 }
