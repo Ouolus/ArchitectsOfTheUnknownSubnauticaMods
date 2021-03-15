@@ -1,7 +1,7 @@
 {
   "Id": "ProjectAncients",
   "DisplayName": "Project Ancients",
-  "Author": "SpaceCatCreations",
+  "Author": "ArchitectsOfTheUnknown",
   "Version": "1.0.0",
   "Dependencies": [
     "SMLHelper"

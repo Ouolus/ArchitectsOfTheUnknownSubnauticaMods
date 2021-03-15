@@ -80,7 +80,7 @@ namespace LeviathanEggs
             
             WaterParkCreatureParametersSettings();
 
-            Harmony.CreateAndPatchAll(myAssembly, $"Metious_{myAssembly.GetName().Name}");
+            Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
         }
         private static void WaterParkCreatureParametersSettings()
         {

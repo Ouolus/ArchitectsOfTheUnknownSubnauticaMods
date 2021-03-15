@@ -17,7 +17,7 @@ namespace Draconis
         [QModPatch]
         public static void Load()
         {
-            Harmony.CreateAndPatchAll(myAssembly, $"SpaceCatCreations_{myAssembly.GetName().Name}");
+            Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
         }
     }
 }

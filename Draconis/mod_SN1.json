@@ -1,7 +1,7 @@
 {
   "Id": "Draconis",
   "DisplayName": "Draconis",
-  "Author": "SpaceCatCreations",
+  "Author": "ArchitectsOfTheUnknown",
   "Version": "1.0.0",
   "Dependencies": [
     "SMLHelper"

@@ -47,6 +47,8 @@ namespace ProjectAncients
         private const string ency_ruinedGuardian = "RuinedGuardian";
         private const string ency_distressSignal = "GuardianTerminalData";
 
+        private static Assembly myAssembly = Assembly.GetExecutingAssembly();
+
         [QModPatch]
         public static void Patch()
         {
@@ -144,7 +146,7 @@ namespace ProjectAncients
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
             KnownTechHandler.SetAnalysisTechEntry(TechType.PrecursorKey_Purple, new List<TechType>() { });
-            Harmony harmony = new Harmony("SCC.ProjectAncients");
+            Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             FixMapModIfNeeded(harmony);
