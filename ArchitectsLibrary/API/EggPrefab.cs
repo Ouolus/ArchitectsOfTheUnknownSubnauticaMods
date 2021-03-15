@@ -6,37 +6,82 @@ using UWE;
 
 namespace HAWCreations.API
 {
+    /// <summary>
+    /// an abstract class inheriting from <see cref="Spawnable"/> that simplifies the process of making a Custom Egg.
+    /// </summary>
     public abstract class EggPrefab : Spawnable
     {
-        private TechType overridenTechType;
+        private TechType _overridenTechType;
+        
+        /// <summary>
+        /// Initializes a new <see cref="EggPrefab"/>
+        /// </summary>
+        /// <param name="classId">The main internal identifier for this item. Your item's <see cref="TechType"/> will be created using this name.</param>
+        /// <param name="friendlyName">The name displayed in-game for this item whether in the open world or in the inventory.</param>
+        /// <param name="description">The description for this item, Typically seen in the PDA, Inventory, or crafting screens.</param>
         public EggPrefab(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
             OnStartedPatching += () =>
             {
-                overridenTechType = TechTypeHandler.AddTechType(MakeATechTypeToOverride.classId,
+                _overridenTechType = TechTypeHandler.AddTechType(MakeATechTypeToOverride.classId,
                     MakeATechTypeToOverride.friendlyName,
                     MakeATechTypeToOverride.description);
             };
             OnFinishedPatching += () =>
             {
                 if (AcidImmune)
-                    HAWHandler.MakeItemAcidImmune(this.TechType);
+                    AUHandler.MakeItemAcidImmune(this.TechType);
                 
                 SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
-                SpriteHandler.RegisterSprite(overridenTechType, ItemSprite);
-                CraftDataHandler.SetItemSize(overridenTechType, this.SizeInInventory);
+                SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
+                CraftDataHandler.SetItemSize(_overridenTechType, this.SizeInInventory);
             };
         }
+        /// <summary>
+        /// override this Property to define you egg's prefab.
+        /// </summary>
         public virtual GameObject Model { get; }
+        
+        /// <summary>
+        /// the creature that's gonna hatch from this egg.
+        /// </summary>
         public abstract TechType HatchingCreature { get; }
+        
+        /// <summary>
+        /// amount of in-game days this egg will take to hatch the <seealso cref="HatchingCreature"/>.
+        /// </summary>
         public abstract float HatchingTime { get; }
+        
+        /// <summary>
+        /// override this Property to define the <see cref="Sprite"/> of your egg.
+        /// </summary>
         public virtual Sprite ItemSprite { get; }
+        
+        /// <summary>
+        /// Mass of the egg by KG. defaulted to 100.
+        /// </summary>
         public virtual float Mass => 100f;
+        
+        /// <summary>
+        /// Health of the egg. defaulted to 60.
+        /// </summary>
         public virtual float MaxHealth => 60f;
+        
+        /// <summary>
+        /// makes the egg scannable via the Scanner Room.
+        /// </summary>
         public virtual bool MakeObjectScannable => true;
+        
+        /// <summary>
+        /// makes the egg immune to the Lost River's Acidic Brine.
+        /// </summary>
         public virtual bool AcidImmune => true;
 
+        /// <summary>
+        /// determines the TechType of the undiscovered version of this egg. the friendlyName and the description of
+        /// this egg will appear if this egg hasn't been Hatched at least once.
+        /// </summary>
         public virtual OverrideTechType MakeATechTypeToOverride =>
             new OverrideTechType(ClassID + "Undiscovered", "Creature Egg", "An unidentified egg.");
 
@@ -46,6 +91,10 @@ namespace HAWCreations.API
             slotType = EntitySlot.Type.Medium, techType = this.TechType
         };
 
+        /// <summary>
+        /// override this if you want more functionality for your egg.
+        /// </summary>
+        /// <returns></returns>
         public override GameObject GetGameObject()
         {
             GameObject prefab = Model;
@@ -77,20 +126,34 @@ namespace HAWCreations.API
             creatureEgg.animator = obj.EnsureComponent<Animator>();
             creatureEgg.hatchingCreature = HatchingCreature;
             creatureEgg.daysBeforeHatching = HatchingTime;
-            if (overridenTechType != TechType.None)
-                creatureEgg.overrideEggType = overridenTechType;
+            if (_overridenTechType != TechType.None)
+                creatureEgg.overrideEggType = _overridenTechType;
             
             if (MakeObjectScannable)
-                HAWHandler.MakeObjectScannable(obj);
+                AUHandler.SetObjectScannable(obj);
 
             return obj;
         }
 
+        /// <summary>
+        /// determines the TechType of the undiscovered version of the egg.
+        /// </summary>
         public struct OverrideTechType
         {
             public string classId;
             public string friendlyName;
             public string description;
+            
+            /// <summary>
+            /// determines the TechType of the undiscovered version of the egg. the <see cref="friendlyName"/>,
+            /// <see cref="description"/> of this <see cref="TechType"/> will replace the original ones of this egg
+            ///  if the said egg hasn't Hatched at least once.
+            /// </summary>
+            /// <param name="classId">determines the <see cref="TechType"/>.</param>
+            /// <param name="friendlyName">the friendlyName that's gonna replace the original egg's friendlyName
+            /// if it hasn't Hatched at least once.</param>
+            /// <param name="description">the description that's gonna replace the original egg's description
+            /// if it hasn't Hatched at least once.</param>
             public OverrideTechType(string classId, string friendlyName, string description)
             {
                 this.classId = classId;

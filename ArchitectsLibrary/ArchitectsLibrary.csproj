@@ -77,8 +77,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="API\EggPrefab.cs" />
-        <Compile Include="Handlers\HAWHandler.cs" />
-        <Compile Include="Interfaces\IHawHandler.cs" />
+        <Compile Include="Handlers\AUHandler.cs" />
+        <Compile Include="Interfaces\IAuHandler.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

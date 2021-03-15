@@ -5,11 +5,11 @@ using Logger = QModManager.Utility.Logger;
 
 namespace HAWCreations.Handlers
 {
-    public class HAWHandler : IHawHandler
+    public class AUHandler : IAuHandler
     {
-        public static IHawHandler Main { get; } = new HAWHandler();
+        public static IAuHandler Main { get; } = new AUHandler();
 
-        private HAWHandler()
+        private AUHandler()
         {
             // hide constructor
         }
@@ -19,7 +19,7 @@ namespace HAWCreations.Handlers
         /// </summary>
         /// <param name="gameObject">Game Object to make Scannable</param>
         /// <param name="categoryTechType">Category in the Scanner Room</param>
-        void IHawHandler.MakeObjectScannable(GameObject gameObject, TechType categoryTechType)
+        void IAuHandler.SetObjectScannable(GameObject gameObject, TechType categoryTechType)
         {
             var tt = CraftData.GetTechType(gameObject);
 
@@ -33,10 +33,10 @@ namespace HAWCreations.Handlers
                 resourceTracker.pickupable = gameObject.GetComponent<Pickupable>();
             }
             else
-                Logger.Log(Logger.Level.Error, "TechType to get from MakeObjectScannable() is null");
+                Logger.Log(Logger.Level.Warn, "TechType to get from SetObjectScannable() is null");
         }
 
-        void IHawHandler.MakeItemAcidImmune(TechType techType)
+        void IAuHandler.MakeItemAcidImmune(TechType techType)
         {
             var acidToList = DamageSystem.acidImmune.ToList();
             
@@ -51,8 +51,8 @@ namespace HAWCreations.Handlers
         /// </summary>
         /// <param name="gameObject">Game Object to make Scannable</param>
         /// <param name="categoryTechType">Category in the Scanner Room</param>
-        public static void MakeObjectScannable(GameObject gameObject, TechType categoryTechType = TechType.GenericEgg) =>
-            Main.MakeObjectScannable(gameObject, categoryTechType);
+        public static void SetObjectScannable(GameObject gameObject, TechType categoryTechType = TechType.GenericEgg) =>
+            Main.SetObjectScannable(gameObject, categoryTechType);
 
         public static void MakeItemAcidImmune(TechType techType) => Main.MakeItemAcidImmune(techType);
     }
