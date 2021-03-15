@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draconis", "Draconis\Dracon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAncients", "ProjectAncients\ProjectAncients.csproj", "{50CD2D6F-A5B2-492D-BC69-C1F79A3BE3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAWCreations", "HAWCreations\HAWCreations.csproj", "{186F2F6E-7408-4879-8FDB-23E631AF7FE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchitectsLibrary", "ArchitectsLibrary\ArchitectsLibrary.csproj", "{186F2F6E-7408-4879-8FDB-23E631AF7FE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
