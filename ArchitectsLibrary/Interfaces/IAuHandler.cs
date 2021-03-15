@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HAWCreations.Interfaces
+namespace ArchitectsLibrary.Interfaces
 {
     public interface IAuHandler
     {

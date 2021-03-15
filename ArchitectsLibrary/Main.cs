@@ -3,7 +3,7 @@ using HarmonyLib;
 using QModManager.API.ModLoading;
 using QModManager.Utility;
 
-namespace HAWCreations
+namespace ArchitectsLibrary
 {
     [QModCore]
     public static class Main

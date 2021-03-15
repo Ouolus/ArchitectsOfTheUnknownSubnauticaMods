@@ -1,10 +1,10 @@
-using HAWCreations.Handlers;
+using ArchitectsLibrary.Handlers;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
 
-namespace HAWCreations.API
+namespace ArchitectsLibrary.API
 {
     /// <summary>
     /// an abstract class inheriting from <see cref="Spawnable"/> that simplifies the process of making a Custom Egg.

@@ -1,9 +1,9 @@
 using System.Linq;
-using HAWCreations.Interfaces;
+using ArchitectsLibrary.Interfaces;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
-namespace HAWCreations.Handlers
+namespace ArchitectsLibrary.Handlers
 {
     public class AUHandler : IAuHandler
     {
