@@ -46,6 +46,9 @@
       <HintPath>$(DepDir)\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="ArchitectsLibrary">
+      <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
       <Private>False</Private>
@@ -95,9 +98,6 @@
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\Dependencies\SN1\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
