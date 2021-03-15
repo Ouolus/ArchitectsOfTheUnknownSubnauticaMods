@@ -123,7 +123,6 @@
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
-    <Compile Include="Interfaces\IAhwHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
