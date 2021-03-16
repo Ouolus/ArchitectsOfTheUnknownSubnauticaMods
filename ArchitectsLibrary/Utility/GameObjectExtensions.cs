@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-namespace LeviathanEggs
+using UnityEngine;
+
+namespace ArchitectsLibrary.Utility
 {
     public static class GameObjectExtensions
     {

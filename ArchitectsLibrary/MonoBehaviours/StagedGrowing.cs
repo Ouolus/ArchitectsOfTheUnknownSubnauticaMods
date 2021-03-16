@@ -1,10 +1,11 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UWE;
-namespace LeviathanEggs.MonoBehaviours
+using ArchitectsLibrary.Utility;
+namespace ArchitectsLibrary.MonoBehaviours
 {
     public class StagedGrowing : MonoBehaviour
     {
@@ -85,16 +86,13 @@ namespace LeviathanEggs.MonoBehaviours
                     Pickupable pickupable = nextStageObject.EnsureComponent<Pickupable>();
                     WaterParkCreatureParameters waterParkCreatureParameters = WaterParkCreature.GetParameters(nextStageTechType);
                     WaterPark waterPark = waterParkCreature.currentWaterPark;
-
                     parkCreature.age = 0f;
                     parkCreature.parameters = waterParkCreatureParameters;
                     parkCreature.pickupable = pickupable;
                     pickupable.isPickupable = true;
                     pickupable.timeDropped = Time.time;
-
                     waterPark.RemoveItem(waterParkCreature);
                     waterPark.AddItem(parkCreature);
-
                 }*/
                 //nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
                 nextStageObject.SetActive(true);

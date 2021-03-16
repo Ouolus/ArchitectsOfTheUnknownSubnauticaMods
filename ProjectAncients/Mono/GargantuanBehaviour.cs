@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono
         private Transform vehicleHoldPoint;
         private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
-        float damagePerSecond = 120f;
+        float damagePerSecond = 26f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
 
@@ -27,7 +27,7 @@ namespace ProjectAncients.Mono
         {
             creature = GetComponent<Creature>();
             vehicleGrabSound = AddVehicleGrabSound();
-            vehicleHoldPoint = gameObject.SearchChild("AttackBone").transform;
+            vehicleHoldPoint = gameObject.SearchChild("AttachBone").transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
@@ -55,6 +55,10 @@ namespace ProjectAncients.Mono
 
         public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
         {
+            if (liveMixin.health - DamageSystem.CalculateDamage(600f, DamageType.Normal, gameObject) <= 0)
+            {
+                return false;
+            }
             if (gameObject.GetComponentInParent<Player>())
             {
                 return false;
@@ -108,7 +112,7 @@ namespace ProjectAncients.Mono
         {
             GrabVehicle(vehicle, VehicleType.GenericSub);
         }
-        public void GrabExosuit(Vehicle exosuit)
+        public void GrabExosuit(Vehicle exosuit)    
         {
             GrabVehicle(exosuit, VehicleType.Exosuit);
         }
@@ -146,6 +150,10 @@ namespace ProjectAncients.Mono
             {
                 ECCLog.AddMessage("Unknown Vehicle Type detected");
             }
+            foreach(Collider col in vehicle.GetComponentsInChildren<Collider>())
+            {
+                col.enabled = false; //its going to be destroyed  anyway...
+            }
             vehicleGrabSound.Play();
             InvokeRepeating("DamageVehicle", 1f, 1f);
             float attackLength = 6f;
@@ -159,7 +167,16 @@ namespace ProjectAncients.Mono
         {
             if (heldVehicle != null)
             {
-                heldVehicle.liveMixin.TakeDamage(damagePerSecond, type: DamageType.Normal);
+                float dps = damagePerSecond;
+                if (IsHoldingExosuit()) dps *= 3f;
+                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
+                if (!heldVehicle.liveMixin.IsAlive())
+                {
+                    if(Player.main.currentMountedVehicle == heldVehicle)
+                    {
+                        Player.main.liveMixin.Kill(DamageType.Cold);
+                    }
+                }
             }
         }
         public void ReleaseVehicle()
@@ -192,8 +209,7 @@ namespace ProjectAncients.Mono
             {
                 ReleaseVehicle();
             }
-            SafeAnimator.SetBool(creature.GetAnimator(), "sub_attack", IsHoldingGenericSub());
-            SafeAnimator.SetBool(creature.GetAnimator(), "exo_attack", IsHoldingExosuit());
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingVehicle());
             if (heldVehicle != null)
             {
                 Transform holdPoint = GetHoldPoint();

@@ -352,3 +352,10 @@ MigrationBackup/
 
 # Custom Ignores
 Dependencies/GameDir.targets
+Assembly-CSharp-firstpass_publicized.dll
+Assembly-CSharp_publicized.dll
+
+Assembly-CSharp-firstpass.dll
+Assembly-CSharp.dll
+
+ArchitectsLibrary.dll

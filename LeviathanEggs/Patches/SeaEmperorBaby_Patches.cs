@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using LeviathanEggs.MonoBehaviours;
+using ArchitectsLibrary.MonoBehaviours;
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch(typeof(SeaEmperorBaby))]

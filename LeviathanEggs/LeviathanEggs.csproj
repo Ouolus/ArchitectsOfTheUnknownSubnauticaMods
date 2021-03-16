@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="$(SolutionDir)\Dependencies\GameDir.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -23,6 +22,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <GameDir>$(CommonDir)SubnauticaZero</GameDir>
+    <DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
     <DataFolder>SubnauticaZero_Data</DataFolder>
     <SMLHelperFolder>SMLHelper_BZ</SMLHelperFolder>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +34,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <GameDir>$(CommonDir)Subnautica</GameDir>
+    <DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
     <DataFolder>Subnautica_Data</DataFolder>
     <SMLHelperFolder>Modding Helper</SMLHelperFolder>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,102 +43,108 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>$(GameDir)\BepInEx\core\0Harmony.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ArchitectsLibrary">
+      <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\publicized_assemblies\Assembly-CSharp-firstpass_publicized.dll</HintPath>
+      <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\publicized_assemblies\Assembly-CSharp_publicized.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ECCLibrary">
-      <HintPath>$(GameDir)\QMods\ECCLibrary\ECCLibrary.dll</HintPath>
+      <HintPath>$(DepDir)\Assembly-CSharp_publicized.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="QModInstaller">
-      <HintPath>$(GameDir)\BepInEx\plugins\QModManager\QModInstaller.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\QModInstaller.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="SMLHelper">
-      <HintPath>$(GameDir)\QMods\$(SMLHelperFolder)\SMLHelper.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\SMLHelper.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UnityEngine">
+      <HintPath>$(DepDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.AudioModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.InputModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(DepDir)\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>$(GameDir)\$(DataFolder)\Managed\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(DepDir)\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Config.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
-    <Compile Include="Helpers\GameObjectExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
-    <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\Creature_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
+    <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
+    <Compile Include="Prefabs\GhostRayBlueEgg.cs" />
+    <Compile Include="Prefabs\GhostRayRedEgg.cs" />
+    <Compile Include="Prefabs\LavaLarvaEgg.cs" />
+    <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
+    <Compile Include="Prefabs\SeaTreaderEgg.cs" />
+    <Compile Include="Prefabs\ShuttleBugEgg.cs" />
+    <Compile Include="Prefabs\SpineEelEgg.cs" />
+    <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mod_SN1.json" />

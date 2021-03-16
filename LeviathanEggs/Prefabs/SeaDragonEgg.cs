@@ -1,23 +1,20 @@
 ﻿using UnityEngine;
-using ECCLibrary;
-using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
+using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    class SeaDragonEgg : CreatureEggAsset
+    class SeaDragonEgg : EggPrefab
     {
         public SeaDragonEgg()
-            :base("SeaDragonEgg", "Creature Egg", "An unknown Creature hatches from this", 
-                 LoadGameObject("SeaDragonEgg.prefab"),
-                 TechType.SeaDragon, null, 5f)
-        {
-            OnFinishedPatching += () =>
-            {
-                SpriteHandler.RegisterSprite(this.TechType, LoadSprite("SeaDragonEgg"));
-            };
-        }
+            :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons hatch from these.")
+        {}
+
+        public override GameObject Model => LoadGameObject("SeaDragonEgg.prefab");
+        public override TechType HatchingCreature => TechType.SeaDragon;
+        public override float HatchingTime => 5f;
+        public override Sprite ItemSprite => LoadSprite("SeaDragonEgg");
         public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
@@ -41,10 +38,13 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.15f
             }
         };
-        public override void AddCustomBehaviours()
+
+        public override GameObject GetGameObject()
         {
-            GameObject SeaDragonEgg = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
-            Renderer[] aRenderers = SeaDragonEgg.GetComponentsInChildren<Renderer>();
+            var prefab = base.GetGameObject();
+            
+            GameObject seaDragonEgg = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
+            Renderer[] aRenderers = seaDragonEgg.GetComponentsInChildren<Renderer>();
             Material shell = null;
             Shader shader = Shader.Find("MarmosetUBER");
             foreach (var renderer in aRenderers)
@@ -63,22 +63,13 @@ namespace LeviathanEggs.Prefabs
                 renderer.material.shader = shader;
 
                 renderer.material = shell;
-                renderer.material = shell;
             }
-            SeaDragonEgg.SetActive(false);
-            prefab.GetComponent<Rigidbody>().mass = 100f;
-
-            ResourceTracker resourceTracker = prefab.EnsureComponent<ResourceTracker>();
-            resourceTracker.techType = this.TechType;
-            resourceTracker.overrideTechType = TechType.GenericEgg;
-            resourceTracker.rb = prefab.GetComponent<Rigidbody>();
-            resourceTracker.prefabIdentifier = prefab.GetComponent<PrefabIdentifier>();
-            resourceTracker.pickupable = prefab.GetComponent<Pickupable>();
+            seaDragonEgg.SetActive(false);
 
             prefab.AddComponent<SpawnLocations>();
+
+            return prefab;
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
-        public override float GetMaxHealth => 60f;
-        public override bool ManualEggExplosion => false;
     }
 }
