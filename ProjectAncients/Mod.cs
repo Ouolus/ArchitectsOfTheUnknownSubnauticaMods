@@ -11,6 +11,7 @@ using ProjectAncients.Patches;
 using ProjectAncients.Prefabs.AlienBase;
 using ProjectAncients.Mono.AlienBaseSpawners;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ProjectAncients
 {
@@ -27,13 +28,19 @@ namespace ProjectAncients
         public static GenericSignalPrefab signal_outpostD;
         public static GenericSignalPrefab signal_ruinedGuardian;
 
+        public static TabletTerminalPrefab purpleTabletTerminal;
         public static TabletTerminalPrefab redTabletTerminal;
         public static TabletTerminalPrefab whiteTabletTerminal;
-        public static PrecursorDoorPrefab redTabletDoor;
+        public static TabletTerminalPrefab orangeTabletTerminal;
+        public static TabletTerminalPrefab blueTabletTerminal;
+
+        public static PrecursorDoorPrefab door_supplyCache;
         public static PrecursorDoorPrefab whiteTabletDoor;
 
         public static DataTerminalPrefab tertiaryOutpostTerminal;
         public static DataTerminalPrefab guardianTerminal;
+
+        public static GenericWorldPrefab secondaryBaseModel;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -101,14 +108,23 @@ namespace ProjectAncients
             #endregion
 
             #region Generic precursor stuff
+            orangeTabletTerminal = new TabletTerminalPrefab("OrangeTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Orange);
+            orangeTabletTerminal.Patch();
+
+            blueTabletTerminal = new TabletTerminalPrefab("BlueTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Blue);
+            blueTabletTerminal.Patch();
+
+            purpleTabletTerminal = new TabletTerminalPrefab("PurpleTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Purple);
+            purpleTabletTerminal.Patch();
+
             redTabletTerminal = new TabletTerminalPrefab("RedTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red);
             redTabletTerminal.Patch();
 
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
             whiteTabletTerminal.Patch();
 
-            redTabletDoor = new PrecursorDoorPrefab("RedTabletDoor", "Red tablet door", redTabletTerminal.ClassID);
-            redTabletDoor.Patch();
+            door_supplyCache = new PrecursorDoorPrefab("BaseCDoor", "Supply cache tablet door", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8.5f), new Vector3(0f, 0f, 0f));
+            door_supplyCache.Patch();
 
             whiteTabletDoor = new PrecursorDoorPrefab("WhiteTabletDoor", "White tablet door", whiteTabletTerminal.ClassID);
             whiteTabletDoor.Patch();
@@ -122,6 +138,9 @@ namespace ProjectAncients
 
             guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", "81cf2223-455d-4400-bac3-a5bcd02b3638");
             guardianTerminal.Patch();
+
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(8f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel.Patch();
             #endregion
 
             #region Alien bases
@@ -136,6 +155,9 @@ namespace ProjectAncients
 
             var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762));
             guardianCablesInitializer.Patch();
+
+            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183));
+            supplyCacheBase.Patch();
             #endregion
 
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));

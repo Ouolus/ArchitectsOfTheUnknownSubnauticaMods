@@ -122,9 +122,11 @@
   <ItemGroup>
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SupplyCacheBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\BonesFieldsOutpostSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
     <Compile Include="Prefabs\GargantuanBaby.cs" />
+    <Compile Include="Prefabs\GenericWorldPrefab.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />

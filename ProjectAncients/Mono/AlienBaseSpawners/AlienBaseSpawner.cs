@@ -1,4 +1,5 @@
-﻿using ECCLibrary.Internal;
+﻿using ECCLibrary;
+using ECCLibrary.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -24,6 +25,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string pedestal_empty1 = "78009225-a9fa-4d21-9580-8719a3368373";
         public const string pedestal_empty2 = "3bbf8830-e34f-43a1-bbb3-743c7e6860ac";
         public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        /// <summary>
+        /// 2x8x2
+        /// </summary>
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
@@ -51,7 +55,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
-        public const string entry_1 = "c3f2225b-718c-4868-bae3-39ce3914e992";
+        public const string entry_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
         public const string natural_rockBlade2 = "282cdcbc-8670-4f9a-ae1d-9d8a09f9e880";
         public const string natural_coralClumpYellow = "5e8261d5-acce-4ec6-b77c-0f138770d5cb";
@@ -136,7 +140,22 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterCellEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                return spawnedObject;
+            }
+            return null;
+        }
+
+        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale)
+        {
+            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            {
+                GameObject spawnedObject = GameObject.Instantiate(prefab);
+                spawnedObject.transform.position = worldPosition;
+                spawnedObject.transform.eulerAngles = worldRotation;
+                spawnedObject.transform.localScale = scale;
+                spawnedObject.SetActive(true);
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
             }
             return null;
@@ -157,7 +176,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     spawnedObject.transform.forward = direction;
                 }
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterCellEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
             }
             return null;
@@ -270,6 +289,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             else
             {
                 return cables_mid03;
+            }
+        }
+
+        public void GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
+        {
+            GameObject parent = placeholderHolder.SearchChild(parentName);
+            foreach(Transform child in parent.transform)
+            {
+                SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale);
             }
         }
     }
