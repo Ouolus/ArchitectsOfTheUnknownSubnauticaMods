@@ -69,6 +69,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
         public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
         public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
+        /// <summary>
+        /// Faces up by default.
+        /// </summary>
+        public const string vfx_entrance = "8b5e6a02-533c-44cb-9f34-d2773aa82dc4";
 
         private List<GameObject> spawnedChildren;
 
