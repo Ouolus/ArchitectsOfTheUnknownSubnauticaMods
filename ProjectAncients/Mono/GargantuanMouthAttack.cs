@@ -43,10 +43,10 @@ namespace ProjectAncients.Mono
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
-			if (frozen) //Stasis rifle = no attack
+			/*if (frozen) Forget the stasis rifle, this thing is too powerfulf or that
 			{
 				return;
-			}
+			}*/
 			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
 			{
 				Creature thisCreature = gameObject.GetComponent<Creature>();
