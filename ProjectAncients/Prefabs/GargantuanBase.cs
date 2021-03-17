@@ -61,7 +61,7 @@ namespace ProjectAncients.Prefabs
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
-                    if (currentSpine.name.Contains("65"))
+                    if (currentSpine.name.Contains("59"))
                     {
                         break;
                     }
@@ -87,10 +87,10 @@ namespace ProjectAncients.Prefabs
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
 
             const float jawTentacleSnapSpeed = 6f;
-            CreateTrail(prefab.SearchChild("BLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("BRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("FLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("FRA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LLA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LRA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SLA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SRA"), components, jawTentacleSnapSpeed);
             CreateTrail(prefab.SearchChild("LJT"), components, jawTentacleSnapSpeed);
             CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
 
@@ -136,12 +136,12 @@ namespace ProjectAncients.Prefabs
                 prefab.AddComponent<GargantuanSwimAmbience>();
             }
 
-            prefab.SearchChild("BLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("BREye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FREye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MREye").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
         }
 
         public virtual void ApplyAggression()
