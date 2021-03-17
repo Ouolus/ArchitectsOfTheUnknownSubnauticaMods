@@ -23,6 +23,7 @@ namespace ProjectAncients
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
         public static GargantuanBaby gargBabyPrefab;
+        public static GargantuanEgg gargEgg;
 
         public static GenericSignalPrefab signal_outpostC;
         public static GenericSignalPrefab signal_outpostD;
@@ -76,6 +77,9 @@ namespace ProjectAncients
 
             gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan baby", "A very young specimen, raised in containment.", assetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), null);
             gargBabyPrefab.Patch();
+
+            gargEgg = new GargantuanEgg();
+            gargEgg.Patch();
             #endregion
 
             #region Initializers
