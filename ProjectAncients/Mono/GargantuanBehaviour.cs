@@ -58,7 +58,7 @@ namespace ProjectAncients.Mono
 
         public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
         {
-            if (liveMixin.health - DamageSystem.CalculateDamage(600f, DamageType.Normal, gameObject) <= 0)
+            if ((liveMixin.health - DamageSystem.CalculateDamage(600f, DamageType.Normal, gameObject)) <= 0)
             {
                 return false;
             }
@@ -230,10 +230,6 @@ namespace ProjectAncients.Mono
                 }
                 heldVehicle.GetComponent<Rigidbody>().isKinematic = false;
                 heldVehicle.collisionModel.SetActive(true);
-                foreach (Collider col in heldVehicle.GetComponentsInChildren<Collider>(true))
-                {
-                    col.enabled = true;
-                }
                 heldVehicle = null;
             }
             if(heldSubroot != null)
