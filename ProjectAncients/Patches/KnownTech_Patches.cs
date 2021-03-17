@@ -3,67 +3,64 @@ using ECCLibrary.Internal;
 using HarmonyLib;
 using ProjectAncients.Prefabs;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ProjectAncients.Patches
 {
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(KnownTech))]
     public static class KnownTech_Patches
     {
-        public static PDAData pdaData;
-        [HarmonyPatch(typeof(KnownTech), nameof(KnownTech.Initialize))]
-        [HarmonyPrefix]
-        public static void KnownTech_Initialize_Patch(PDAData data)
-        {
-            pdaData = data;
-            ReplaceAnalysisTech(TechType.PrecursorKey_Purple, new List<TechType>() { TechType.PrecursorKey_Purple });
-            ReplaceAnalysisTech(TechType.PrecursorKey_White, new List<TechType>() { TechType.PrecursorKey_White });
-            ReplaceAnalysisTech(TechType.PrecursorKey_Red, new List<TechType>() { TechType.PrecursorKey_Red });
-        }
+        private static bool _initialized = false;
 
-        static void ReplaceAnalysisTech(TechType techType, List<TechType> unlockTechTypes)
-        {
-            GetAnalysisTech(techType).unlockTechTypes = unlockTechTypes;
-        }
+        private static FMODAsset _unlockSound;
 
-        static void RemoveAnalysisTech(TechType techType, List<TechType> techTypesToRemove)
+        [HarmonyPatch(nameof(KnownTech.Deinitialize))]
+        [HarmonyPostfix]
+        static void DeInitialize_Postfix()
         {
-            ECCLog.AddMessage("Removing analysis tech");
-            List<TechType> allAnalysisTech = GetAnalysisTech(techType).unlockTechTypes;
-            ECCLog.AddMessage("Got analysis tech");
-            foreach (TechType tech in techTypesToRemove)
+            _initialized = false;
+        }
+        
+        [HarmonyPatch(nameof(KnownTech.Initialize))]
+        [HarmonyPostfix]
+        static void Initialize_Postfix()
+        {
+            if (_initialized)
+                return;
+
+            _initialized = true;
+
+            foreach (var i in KnownTech.analysisTech)
             {
-                ECCLog.AddMessage("Attempting removal of {0}", tech.ToString());
-                if (allAnalysisTech.Contains(tech))
+                if (i.unlockSound != null && i.techType == TechType.BloodOil)
+                    _unlockSound = i.unlockSound;
+
+                if (i.techType == TechType.PrecursorKey_Purple)
                 {
-                    ECCLog.AddMessage("Removing {0}", tech.ToString());
-                    allAnalysisTech.Remove(tech);
+                    i.unlockTechTypes.Clear();
                 }
             }
+
+            var analysisTech = KnownTech.analysisTech.ToHashSet();
+            
+            AddAnalysisTech(analysisTech, TechType.PrecursorKey_Purple);
+            AddAnalysisTech(analysisTech, TechType.PrecursorKey_Red);
+            AddAnalysisTech(analysisTech, TechType.PrecursorKey_White);
+            
+            KnownTech.analysisTech = analysisTech.ToList();
         }
 
-        static void RemoveUnlockTechTypes(TechType techType, List<TechType> unlockTechTypes)
+        static void AddAnalysisTech(HashSet<KnownTech.AnalysisTech> analysisTech, TechType techTypeToAnalyze)
         {
-            GetAnalysisTech(techType).unlockTechTypes = unlockTechTypes;
-        }
-
-        static KnownTech.AnalysisTech GetAnalysisTech(TechType techType)
-        {
-            foreach (KnownTech.AnalysisTech tech in pdaData.analysisTech)
+            analysisTech.Add(new KnownTech.AnalysisTech()
             {
-                if (tech.techType == techType)
-                {
-                    ECCLog.AddMessage("Found AnalysisTech for TT {0}", techType);
-                    return tech;
-                }
-            }
-            ECCLog.AddMessage("Creating new AnalysisTech for TT {0}", techType);
-            return new KnownTech.AnalysisTech()
-            {
-                techType = techType,
+                techType = techTypeToAnalyze,
                 unlockMessage = "NotificationBlueprintUnlocked",
-                unlockTechTypes = new List<TechType>()
-            };
+                unlockPopup = null,
+                unlockSound = _unlockSound,
+                unlockTechTypes = new List<TechType>() {techTypeToAnalyze},
+            });
         }
     }
 }
