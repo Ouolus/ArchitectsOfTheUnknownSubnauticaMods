@@ -58,5 +58,7 @@ namespace ProjectAncients.Prefabs
         public override bool AttackPlayer => false;
 
         public override float Mass => 600f;
+
+        public override float BiteDamage => 500f;
     }
 }

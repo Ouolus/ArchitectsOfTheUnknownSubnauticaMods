@@ -158,7 +158,7 @@ namespace ProjectAncients.Mono
 			{
 				return 500f; //cyclops damage
 			}
-			return 2500f; //base damage
+			return biteDamage; //base damage
 		}
 		public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
 		{
