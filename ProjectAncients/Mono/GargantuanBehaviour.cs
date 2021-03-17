@@ -53,7 +53,7 @@ namespace ProjectAncients.Mono
 
         public bool Edible(GameObject target)
         {
-            return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>();
+            return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>() || target.GetComponent<SubRoot>();
         }
 
         public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
