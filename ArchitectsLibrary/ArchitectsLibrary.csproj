@@ -10,6 +10,7 @@
     <RootNamespace>ArchitectsLibrary</RootNamespace>
     <AssemblyName>ArchitectsLibrary</AssemblyName>
 	<OutputPath>$(SolutionDir)..\Qmods\$(Configuration)\$(AssemblyName)\</OutputPath>
+	<DocumentationFile>$(OutputPath)\ArchitectsLibrary.xml</DocumentationFile>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>8</LangVersion>
@@ -18,10 +19,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'BZ|AnyCPU' ">
 	<DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
+	<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	<Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1|AnyCPU' ">
 	<DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
+	<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	<Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
