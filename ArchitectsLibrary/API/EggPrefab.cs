@@ -1,6 +1,7 @@
 using ArchitectsLibrary.Handlers;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Utility;
 using UnityEngine;
 using UWE;
 
@@ -32,9 +33,18 @@ namespace ArchitectsLibrary.API
             {
                 if (AcidImmune)
                     AUHandler.MakeItemAcidImmune(this.TechType);
+
+                if (ItemSprite != null)
+                {
+                    SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
+                    SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
+                }
+                else if (ItemSpriteFromTexture != null)
+                {
+                    SpriteHandler.RegisterSprite(this.TechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
+                    SpriteHandler.RegisterSprite(_overridenTechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
+                }
                 
-                SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
-                SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
                 CraftDataHandler.SetItemSize(_overridenTechType, this.SizeInInventory);
                 
                 if (MakeCreatureLayEggs)
@@ -55,11 +65,16 @@ namespace ArchitectsLibrary.API
         /// amount of in-game days this egg will take to hatch the <seealso cref="HatchingCreature"/>.
         /// </summary>
         public abstract float HatchingTime { get; }
-        
+
         /// <summary>
         /// override this Property to define the <see cref="Sprite"/> of your egg.
         /// </summary>
-        public abstract Sprite ItemSprite { get; }
+        public virtual Sprite ItemSprite { get; } = null;
+
+        /// <summary>
+        /// override this Property to define the <see cref="Sprite"/> of your egg from a Texture2D.
+        /// </summary>
+        public virtual Texture2D ItemSpriteFromTexture { get; } = null;
         
         /// <summary>
         /// Mass of the egg by KG. defaulted to 100.
