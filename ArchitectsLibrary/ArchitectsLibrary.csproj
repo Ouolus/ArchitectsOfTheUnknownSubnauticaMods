@@ -105,11 +105,13 @@
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
+    <Compile Include="Initializer.cs" />
     <Compile Include="Interfaces\IAuHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GameObjectExtensions.cs" />
+    <Compile Include="Utility\HashDictionary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
