@@ -36,7 +36,7 @@ namespace ProjectAncients.Mono
 			behaviour = GetComponent<GargantuanBehaviour>();
 
 			playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
-			playerDeathCinematic.animatedTransform = gameObject.SearchChild("AttachBone").transform;
+			playerDeathCinematic.animatedTransform = gameObject.SearchChild("Head.001").transform;
 			playerDeathCinematic.animator = creature.GetAnimator();
 			playerDeathCinematic.animParamReceivers = new GameObject[0];
 			playerDeathCinematic.animParam = "cin_player";

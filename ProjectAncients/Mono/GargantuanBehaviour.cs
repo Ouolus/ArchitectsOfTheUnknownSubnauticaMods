@@ -27,7 +27,7 @@ namespace ProjectAncients.Mono
         {
             creature = GetComponent<Creature>();
             vehicleGrabSound = AddVehicleGrabSound();
-            vehicleHoldPoint = gameObject.SearchChild("AttachBone").transform;
+            vehicleHoldPoint = gameObject.SearchChild("Head.001").transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
