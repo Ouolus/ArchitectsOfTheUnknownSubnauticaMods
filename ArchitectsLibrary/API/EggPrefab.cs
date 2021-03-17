@@ -1,4 +1,5 @@
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
@@ -151,6 +152,8 @@ namespace ArchitectsLibrary.API
             
             if (MakeObjectScannable)
                 AUHandler.SetObjectScannable(obj);
+            
+            MaterialUtils.ApplySNShaders(obj);
 
             return obj;
         }
