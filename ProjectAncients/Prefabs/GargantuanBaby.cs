@@ -1,9 +1,5 @@
 ﻿using ProjectAncients.Mono;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 
 namespace ProjectAncients.Prefabs
@@ -38,6 +34,14 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
+
+            var waterParkCreature = prefab.GetComponent<WaterParkCreature>();
+
+            if (waterParkCreature != null && !waterParkCreature.isInside)
+            {
+                var stagedGrowing = prefab.EnsureComponent<StagedGrowing>();
+                stagedGrowing.daysToNextStage = 20f;
+            }
         }
 
         public override bool UseSwimSounds => false;
