@@ -86,14 +86,21 @@ namespace ProjectAncients.Mono
 							if (component4 && !component4.docked)
 							{
 								behaviour.GrabGenericSub(component4);
-								thisCreature.Aggression.Value -= 0.25f;
+								thisCreature.Aggression.Value -= 0.5f;
 								return;
 							}
 							Exosuit component5 = target.GetComponent<Exosuit>();
 							if (component5 && !component5.docked)
 							{
 								behaviour.GrabExosuit(component5);
-								thisCreature.Aggression.Value -= 0.25f;
+								thisCreature.Aggression.Value -= 0.5f;
+								return;
+							}
+							SubRoot subRoot = target.GetComponent<SubRoot>();
+							if (subRoot && Player.main.GetCurrentSub() == subRoot && subRoot.live != null)
+							{
+								behaviour.GrabLargeSub(subRoot);
+								thisCreature.Aggression.Value -= 1f;
 								return;
 							}
 						}
@@ -118,15 +125,12 @@ namespace ProjectAncients.Mono
 						else
 						{
 							var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
-							if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
-							{
-								StartCoroutine(PerformBiteAttack(target));
-								this.behaviour.timeCanAttackAgain = Time.time + 2f;
-								attackSource.clip = biteClipPool.GetRandomClip();
-								attackSource.Play();
-								thisCreature.Aggression.Value -= 0.15f;
-								creature.GetAnimator().SetTrigger("bite");
-							}
+							StartCoroutine(PerformBiteAttack(target));
+							this.behaviour.timeCanAttackAgain = Time.time + 2f;
+							attackSource.clip = biteClipPool.GetRandomClip();
+							attackSource.Play();
+							thisCreature.Aggression.Value -= 0.15f;
+							creature.GetAnimator().SetTrigger("bite");
 						}
 					}
 				}
