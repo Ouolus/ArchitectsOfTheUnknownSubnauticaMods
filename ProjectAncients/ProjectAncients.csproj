@@ -37,6 +37,10 @@
       <HintPath>$(DepDir)\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="ArchitectsLibrary">
+      <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
+	  <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp-firstpass_publicized">
       <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
       <Private>False</Private>
@@ -155,6 +159,7 @@
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
     <Compile Include="Prefabs\GargantuanBaby.cs" />
+    <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
