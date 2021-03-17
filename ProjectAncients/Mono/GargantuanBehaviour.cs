@@ -7,6 +7,7 @@ namespace ProjectAncients.Mono
     class GargantuanBehaviour : MonoBehaviour
     {
         private Vehicle heldVehicle;
+        private SubRoot heldSubroot;
         private VehicleType heldVehicleType;
         private float timeVehicleGrabbed;
         private float timeVehicleReleased;
@@ -16,9 +17,10 @@ namespace ProjectAncients.Mono
         private Transform vehicleHoldPoint;
         private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
-        float damagePerSecond = 26f;
+        float damagePerSecond = 52f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
+        private ECCAudio.AudioClipPool cyclopsSounds;
 
         public Creature creature;
         public float timeCanAttackAgain;
@@ -30,6 +32,7 @@ namespace ProjectAncients.Mono
             vehicleHoldPoint = gameObject.SearchChild("Head.001").transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
+            cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
             roar = GetComponent<RoarAbility>();
         }
@@ -98,6 +101,14 @@ namespace ProjectAncients.Mono
         {
             return heldVehicleType == VehicleType.GenericSub;
         }
+        /// <summary>
+        /// Holding a Cyclops.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsHoldingLargeSub()
+        {
+            return heldVehicleType == VehicleType.Cyclops;
+        }
         public bool IsHoldingExosuit()
         {
             return heldVehicleType == VehicleType.Exosuit;
@@ -106,7 +117,12 @@ namespace ProjectAncients.Mono
         {
             None = 0,
             Exosuit = 1,
-            GenericSub = 2
+            GenericSub = 2,
+            Cyclops
+        }
+        public void GrabLargeSub(SubRoot subRoot)
+        {
+            GrabSubRoot(subRoot);
         }
         public void GrabGenericSub(Vehicle vehicle)
         {
@@ -119,6 +135,21 @@ namespace ProjectAncients.Mono
         public bool GetCanGrabVehicle()
         {
             return timeVehicleReleased + 10f < Time.time && !IsHoldingVehicle();
+        }
+        private void GrabSubRoot(SubRoot subRoot)
+        {
+            heldSubroot = subRoot;
+            heldVehicleType = VehicleType.Cyclops;
+            subRoot.rigidbody.isKinematic = true;
+            timeVehicleGrabbed = Time.time;
+            vehicleInitialRotation = subRoot.transform.rotation;
+            vehicleInitialPosition = subRoot.transform.position;
+            vehicleGrabSound.clip = cyclopsSounds.GetRandomClip();
+            vehicleGrabSound.Play();
+            InvokeRepeating("DamageVehicle", 1f, 1f);
+            float attackLength = 4f;
+            Invoke("ReleaseVehicle", attackLength);
+            MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
         }
         private void GrabVehicle(Vehicle vehicle, VehicleType vehicleType)
         {
@@ -152,11 +183,11 @@ namespace ProjectAncients.Mono
             }
             foreach(Collider col in vehicle.GetComponentsInChildren<Collider>())
             {
-                col.enabled = false; //its going to be destroyed  anyway...
+                col.enabled = false;
             }
             vehicleGrabSound.Play();
             InvokeRepeating("DamageVehicle", 1f, 1f);
-            float attackLength = 6f;
+            float attackLength = 2f;
             Invoke("ReleaseVehicle", attackLength);
             if (Player.main.GetVehicle() == heldVehicle)
             {
@@ -178,6 +209,11 @@ namespace ProjectAncients.Mono
                     }
                 }
             }
+            if(heldSubroot != null)
+            {
+                const float cyclopsDps = 100f;
+                heldSubroot.live.TakeDamage(cyclopsDps, type: DamageType.Normal);
+            }
         }
         public void ReleaseVehicle()
         {
@@ -194,34 +230,53 @@ namespace ProjectAncients.Mono
                 }
                 heldVehicle.GetComponent<Rigidbody>().isKinematic = false;
                 heldVehicle.collisionModel.SetActive(true);
+                foreach (Collider col in heldVehicle.GetComponentsInChildren<Collider>(true))
+                {
+                    col.enabled = true;
+                }
                 heldVehicle = null;
-                timeVehicleReleased = Time.time;
             }
+            if(heldSubroot != null)
+            {
+                heldSubroot.rigidbody.isKinematic = false;
+                heldSubroot = null;
+            }
+            timeVehicleReleased = Time.time;
             heldVehicleType = VehicleType.None;
             CancelInvoke("DamageVehicle");
             mouthAttack.OnVehicleReleased();
             MainCameraControl.main.ShakeCamera(0f, 0f);
-            roar.PlayRoar();
         }
+
         public void Update()
         {
-            if (heldVehicleType != VehicleType.None && heldVehicle == null)
+            if (heldVehicleType != VehicleType.None && (heldVehicle == null && heldSubroot == null))
             {
                 ReleaseVehicle();
             }
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingVehicle());
-            if (heldVehicle != null)
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
+            GameObject held = null;
+            if(heldVehicle != null)
+            {
+                held = heldVehicle.gameObject;
+            }
+            if(heldSubroot != null)
+            {
+                held = heldSubroot.gameObject;
+            }
+            if (held != null)
             {
                 Transform holdPoint = GetHoldPoint();
                 float num = Mathf.Clamp01(Time.time - timeVehicleGrabbed);
                 if (num >= 1f)
                 {
-                    heldVehicle.transform.position = holdPoint.position;
-                    heldVehicle.transform.rotation = holdPoint.transform.rotation;
+                    held.transform.position = holdPoint.position;
+                    held.transform.rotation = holdPoint.transform.rotation;
                     return;
                 }
-                heldVehicle.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
-                heldVehicle.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
+                held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
+                held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
             }
         }
         public void OnTakeDamage(DamageInfo damageInfo)
