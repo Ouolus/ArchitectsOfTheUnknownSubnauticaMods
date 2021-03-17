@@ -36,6 +36,9 @@ namespace ArchitectsLibrary.API
                 SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
                 SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
                 CraftDataHandler.SetItemSize(_overridenTechType, this.SizeInInventory);
+                
+                if (MakeCreatureLayEggs)
+                    AUHandler.SetCreatureEgg(HatchingCreature, this.TechType);
             };
         }
         /// <summary>
@@ -77,6 +80,8 @@ namespace ArchitectsLibrary.API
         /// makes the egg immune to the Lost River's Acidic Brine.
         /// </summary>
         public virtual bool AcidImmune => true;
+
+        public virtual bool MakeCreatureLayEggs => true;
 
         /// <summary>
         /// determines the TechType of the undiscovered version of this egg. the friendlyName and the description of
