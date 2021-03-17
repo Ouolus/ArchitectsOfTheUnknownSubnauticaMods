@@ -114,14 +114,10 @@
     <Compile Include="Utility\HashDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mod.json" />
+    <Content Include="mod_SN1.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+  <PropertyGroup>
+      <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
