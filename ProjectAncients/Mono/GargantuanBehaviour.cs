@@ -17,19 +17,20 @@ namespace ProjectAncients.Mono
         private Transform vehicleHoldPoint;
         private GargantuanMouthAttack mouthAttack;
         private RoarAbility roar;
-        float damagePerSecond = 52f;
         private ECCAudio.AudioClipPool seamothSounds;
         private ECCAudio.AudioClipPool exosuitSounds;
         private ECCAudio.AudioClipPool cyclopsSounds;
 
         public Creature creature;
         public float timeCanAttackAgain;
+        public string attachBoneName;
+        public float vehicleDamagePerSecond;
 
         void Start()
         {
             creature = GetComponent<Creature>();
             vehicleGrabSound = AddVehicleGrabSound();
-            vehicleHoldPoint = gameObject.SearchChild("Head.001").transform;
+            vehicleHoldPoint = gameObject.SearchChild(attachBoneName).transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
@@ -187,7 +188,7 @@ namespace ProjectAncients.Mono
             }
             vehicleGrabSound.Play();
             InvokeRepeating("DamageVehicle", 1f, 1f);
-            float attackLength = 2f;
+            float attackLength = 4f;
             Invoke("ReleaseVehicle", attackLength);
             if (Player.main.GetVehicle() == heldVehicle)
             {
@@ -198,8 +199,7 @@ namespace ProjectAncients.Mono
         {
             if (heldVehicle != null)
             {
-                float dps = damagePerSecond;
-                if (IsHoldingExosuit()) dps *= 3f;
+                float dps = vehicleDamagePerSecond;
                 heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
                 if (!heldVehicle.liveMixin.IsAlive())
                 {
