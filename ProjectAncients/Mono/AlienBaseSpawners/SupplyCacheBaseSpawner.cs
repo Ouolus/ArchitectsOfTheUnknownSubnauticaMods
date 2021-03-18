@@ -8,7 +8,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             base.ConstructBase();
             SpawnPrefab(Mod.door_supplyCache.ClassID, new Vector3(centerLocalX, floorLocalY, 24f));
-            SpawnPrefab(supplies_whiteTablet, new Vector3(-2.66f, floorLocalY, 0.4f));
             SpawnPrefab(structure_column, new Vector3(centerLocalX - 14f, floorLocalY, 0f));
             SpawnPrefab(structure_column, new Vector3(centerLocalX - 14f, floorLocalY, -6f));
             SpawnPrefab(structure_column, new Vector3(centerLocalX - 14f, floorLocalY, 6f));
