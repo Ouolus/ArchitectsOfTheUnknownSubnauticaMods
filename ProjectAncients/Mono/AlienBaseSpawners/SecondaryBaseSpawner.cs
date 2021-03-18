@@ -28,6 +28,17 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 18f, -3.17f, 0f), ceilingLightRotation);
             SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX + 5f, floorLocalY, 5f));
             SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX - 5f, floorLocalY, 5f));
+
+            SpawnPrefab(prop_tabletPedestal, new Vector3(centerLocalX, -3.17f, 20f));
+            SpawnPrefab(TabletClassId, new Vector3(centerLocalX, floorLocalY + 2.2f, 20f), new Vector3(22.5f, 0f, 0f));
+        }
+
+        protected virtual string TabletClassId
+        {
+            get
+            {
+                return supplies_whiteTablet;
+            }
         }
     }
 }
