@@ -14,8 +14,11 @@ namespace ProjectAncients.Prefabs.AlienBase
         private string audioClipPrefix;
         private Vector3 pingPosition;
         private float delay = 7f;
+        public const string greenTerminalCID = "625d01c2-40b7-4c87-a1cc-493ad6101c34";
+        public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
+        public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
 
-        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = "b629c806-d3cd-4ee4-ae99-7b1359b60049")
+        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID)
             : base(classId, "Data terminal", ".")
         {
             this.encyKey = encyKey;
