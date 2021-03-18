@@ -24,6 +24,7 @@ namespace ProjectAncients.Prefabs
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
+            base.AddCustomBehaviour(components);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             renderer.materials[1].SetFloat("_EmissionLM", 1.5f);
             renderer.materials[1].SetFloat("_EmissionLMNight", 1.5f);
