@@ -28,5 +28,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(natural_lr_hangingplant1_3, new Vector3(centerLocalX + -5f, foundationUnderLocalY, -22));
             SpawnPrefab(natural_lr_hangingplant1_1, new Vector3(centerLocalX + -2f, foundationUnderLocalY, -19.5f));
         }
+
+        protected override string TerminalClassId => Mod.supplyCacheTerminal.ClassID;
     }
 }
