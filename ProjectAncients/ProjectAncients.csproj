@@ -154,6 +154,7 @@
     <Compile Include="Patches\PrecursorTabletFixer.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
+    <Compile Include="Prefabs\AdultGargantuan.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
