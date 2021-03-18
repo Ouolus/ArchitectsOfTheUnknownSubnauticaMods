@@ -35,6 +35,8 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
+
+            prefab.EnsureComponent<GargantuanBabyGrowthManager>();
         }
 
         public override bool UseSwimSounds => false;
