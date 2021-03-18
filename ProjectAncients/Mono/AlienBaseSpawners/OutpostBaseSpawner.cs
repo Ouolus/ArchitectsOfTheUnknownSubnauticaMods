@@ -10,7 +10,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GameObject.Destroy(outpost.GetComponent<TechTag>());
             SpawnPrefabsArray(box2x1x2, 2f, new Vector3(10, 1, 10), Vector3.one, new Vector3(0f, -7.3f, 0f));
             const float yOffset = -7.3f;
-            SpawnPrefab(supplies_drillableTitanium, new Vector3(0f, yOffset, 1f));
+            SpawnPrefab(supplies_drillableTitanium, new Vector3(-4f, yOffset, 1f));
             SpawnPrefab(supplies_drillableTitanium, new Vector3(4f, yOffset, -6f));
             SpawnPrefab(supplies_drillableTitanium, new Vector3(1f, yOffset, 3f));
             SpawnPrefab(pedestal_ionCrystal, new Vector3(0f, yOffset, 0f));
