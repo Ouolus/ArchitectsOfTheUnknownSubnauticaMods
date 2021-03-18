@@ -38,6 +38,7 @@ namespace ProjectAncients
 
         public static DataTerminalPrefab tertiaryOutpostTerminal;
         public static DataTerminalPrefab guardianTerminal;
+        public static DataTerminalPrefab supplyCacheTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
 
@@ -50,6 +51,7 @@ namespace ProjectAncients
         private const string modEncyPath = "DownloadedData/Precursor/GargMod";
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
+        private const string ency_supplyCacheTerminal = "SupplyCacheData";
         private const string ency_ruinedGuardian = "RuinedGuardian";
         private const string ency_distressSignal = "GuardianTerminalData";
 
@@ -103,6 +105,8 @@ namespace ProjectAncients
             #region Ency
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "A supply cache.");
+
             PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
             
             PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a mysterious tracking chip. Frequent, powerful pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
@@ -138,8 +142,11 @@ namespace ProjectAncients
             tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID });
             tertiaryOutpostTerminal.Patch();
 
-            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", "81cf2223-455d-4400-bac3-a5bcd02b3638");
+            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", DataTerminalPrefab.orangeTerminalCID);
             guardianTerminal.Patch();
+
+            supplyCacheTerminal = new DataTerminalPrefab("SupplyCacheTerminal", ency_supplyCacheTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID);
+            supplyCacheTerminal.Patch();
 
             secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(8f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
