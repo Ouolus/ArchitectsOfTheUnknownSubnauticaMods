@@ -132,13 +132,16 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.liveMixin = components.liveMixin;
             tentacleAttack.animator = components.creature.GetAnimator();*/
 
-            AttackCyclops actionAtkCyclops = prefab.AddComponent<AttackCyclops>();
-            actionAtkCyclops.swimVelocity = 25f;
-            actionAtkCyclops.aggressiveToNoise = new CreatureTrait(0f, 0.02f);
-            actionAtkCyclops.evaluatePriority = 0.5f;
-            actionAtkCyclops.priorityMultiplier = ECCHelpers.Curve_Flat();
-            actionAtkCyclops.maxDistToLeash = 110f;
-            actionAtkCyclops.attackAggressionThreshold = 0.65f;
+            if (AttackPlayer)
+            {
+                AttackCyclops actionAtkCyclops = prefab.AddComponent<AttackCyclops>();
+                actionAtkCyclops.swimVelocity = 25f;
+                actionAtkCyclops.aggressiveToNoise = new CreatureTrait(0f, 0.02f);
+                actionAtkCyclops.evaluatePriority = 0.5f;
+                actionAtkCyclops.priorityMultiplier = ECCHelpers.Curve_Flat();
+                actionAtkCyclops.maxDistToLeash = 110f;
+                actionAtkCyclops.attackAggressionThreshold = 0.65f;
+            }
 
 
             GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
