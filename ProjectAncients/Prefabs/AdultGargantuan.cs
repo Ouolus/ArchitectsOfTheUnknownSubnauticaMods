@@ -18,5 +18,7 @@ namespace ProjectAncients.Prefabs
         public override string AttachBoneName => "AttachBone";
 
         public override float VehicleDamagePerSecond => 200f;
+
+        public override bool OneShotsPlayer => true;
     }
 }

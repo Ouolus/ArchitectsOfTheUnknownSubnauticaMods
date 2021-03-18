@@ -20,6 +20,7 @@ namespace ProjectAncients.Mono
 		private PlayerCinematicController playerDeathCinematic;
 
 		public bool canAttackPlayer = true;
+		public bool oneShotPlayer;
 
 		void Start()
 		{
@@ -59,6 +60,7 @@ namespace ProjectAncients.Mono
 					}
 					if (!behaviour.IsHoldingVehicle())
 					{
+						LiveMixin targetLm = target.GetComponent<LiveMixin>();
 						Player player = target.GetComponent<Player>();
 						if (player != null)
 						{
@@ -72,11 +74,24 @@ namespace ProjectAncients.Mono
 							}
 							else
 							{
-								var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
-								if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
+								float baseDmg;
+								if (oneShotPlayer)
+								{
+									baseDmg = 1000f;
+								}
+								else
+								{
+									baseDmg = 80f;
+								}
+								var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
+								if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
 								{
 									StartCoroutine(PerformPlayerCinematic(player));
 									return;
+								}
+								else
+								{
+									targetLm.TakeDamage(baseDmg, transform.position, DamageType.Normal, gameObject);
 								}
 							}
 						}
@@ -104,7 +119,6 @@ namespace ProjectAncients.Mono
 								return;
 							}
 						}
-						LiveMixin targetLm = target.GetComponent<LiveMixin>();
 						if (targetLm == null) return;
 						if (!targetLm.IsAlive())
 						{
