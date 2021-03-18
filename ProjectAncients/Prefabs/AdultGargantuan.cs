@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECCLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +21,12 @@ namespace ProjectAncients.Prefabs
         public override float VehicleDamagePerSecond => 200f;
 
         public override bool OneShotsPlayer => true;
+
+        public override void AddCustomBehaviour(CreatureComponents components)
+        {
+            Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            renderer.materials[1].SetFloat("_EmissionLM", 1.5f);
+            renderer.materials[1].SetFloat("_EmissionLMNight", 1.5f);
+        }
     }
 }
