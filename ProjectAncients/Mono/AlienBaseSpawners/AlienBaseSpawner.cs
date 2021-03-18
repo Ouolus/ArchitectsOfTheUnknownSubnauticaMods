@@ -51,6 +51,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_bigWater = "$545c54a8-b23e-41bc-9d7c-af0b729e502f";
         public const string supplies_ionCube = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
         public const string supplies_drillableIonCube = "41406e76-4b4c-4072-86f8-f5b8e6523b73";
+        public const string supplies_drillableLithium = "846c3df6-ffbf-4206-b591-72f5ba11ed40";
+        public const string supplies_drillableTitanium = "9f855246-76c4-438b-8e4d-9cd6d7ce4224";
         public const string supplies_reactorRod = "cfdd714a-55fb-40df-86e5-6acf0d013b34";
         public const string supplies_titaniumIngot = "41919ae1-1471-4841-a524-705feb9c2d20";
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
