@@ -21,6 +21,7 @@ namespace ProjectAncients.Mono
 
 		public bool canAttackPlayer = true;
 		public bool oneShotPlayer;
+		public string attachBoneName;
 
 		void Start()
 		{
@@ -37,17 +38,13 @@ namespace ProjectAncients.Mono
 			behaviour = GetComponent<GargantuanBehaviour>();
 
 			playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
-			playerDeathCinematic.animatedTransform = gameObject.SearchChild("Head.001").transform;
+			playerDeathCinematic.animatedTransform = gameObject.SearchChild(attachBoneName).transform;
 			playerDeathCinematic.animator = creature.GetAnimator();
 			playerDeathCinematic.animParamReceivers = new GameObject[0];
 			playerDeathCinematic.animParam = "cin_player";
 		}
 		public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
 		{
-			/*if (frozen) Forget the stasis rifle, this thing is too powerfulf or that
-			{
-				return;
-			}*/
 			if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
 			{
 				Creature thisCreature = gameObject.GetComponent<Creature>();

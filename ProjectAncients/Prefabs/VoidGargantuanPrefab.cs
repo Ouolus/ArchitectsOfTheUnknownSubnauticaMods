@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProjectAncients.Prefabs
 {
-    public class GargantuanVoid : AdultGargantuan //eventually change it to inherit from GargantuanAdult
+    public class GargantuanVoid : AdultGargantuan
     {
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
 

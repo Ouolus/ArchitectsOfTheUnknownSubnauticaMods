@@ -119,6 +119,7 @@ namespace ProjectAncients.Prefabs
             mouthAttack.canAttackPlayer = AttackPlayer;
             mouthAttack.biteDamage = BiteDamage;
             mouthAttack.oneShotPlayer = OneShotsPlayer;
+            mouthAttack.attachBoneName = AttachBoneName;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
