@@ -2,7 +2,7 @@
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
-    public class SecondaryBaseSpawner : AlienBaseSpawner
+    public abstract class SecondaryBaseSpawner : AlienBaseSpawner
     {
         public const float centerLocalX = 2.2f;
         public const float floorLocalY = -2.885f;
@@ -21,7 +21,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, 8f), ceilingLightRotation);
             SpawnPrefab(pedestal_ionCrystal, new Vector3(centerLocalX, floorLocalY, 0f), ceilingLightRotation);
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, -8), ceilingLightRotation);
-            SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, -16f), ceilingLightRotation);
+            SpawnPrefab(TerminalClassId, new Vector3(centerLocalX, floorLocalY, -16f), new Vector3(0f, 180f, 0f));
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.17f, 0f), ceilingLightRotation);
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 18f, -3.17f, 0f), ceilingLightRotation);
             SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 10f, -3.17f, 0f), ceilingLightRotation);
@@ -29,8 +29,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX + 5f, floorLocalY, 5f));
             SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX - 5f, floorLocalY, 5f));
 
-            SpawnPrefab(prop_tabletPedestal, new Vector3(centerLocalX, -3.17f, 20f));
-            SpawnPrefab(TabletClassId, new Vector3(centerLocalX, floorLocalY + 2.2f, 20f), new Vector3(22.5f, 0f, 0f));
+            SpawnPrefab(prop_tabletPedestal, new Vector3(centerLocalX, -3.17f - 1f, 19f));
+            SpawnPrefab(TabletClassId, new Vector3(centerLocalX, floorLocalY + 2.4f - 1f, 19f), new Vector3(22.5f, 0f, 0f));
         }
 
         protected virtual string TabletClassId
@@ -39,6 +39,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             {
                 return supplies_whiteTablet;
             }
+        }
+
+        protected abstract string TerminalClassId
+        {
+            get;
         }
     }
 }
