@@ -40,6 +40,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
         public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
+        /// <summary>
+        /// Slightly higher than 2m tall, has a 22.5ish degree angle.
+        /// </summary>
+        public const string prop_tabletPedestal = "814beddb-62cf-4c55-a86d-5da0684932a8";
         public const string genericDataTerminal = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
         public const string supplies_nutrientBlock = "30373750-1292-4034-9797-387cf576d150";
         public const string supplies_smallWater = "22b0ce08-61c9-4442-a83d-ba7fb99f26b0";
