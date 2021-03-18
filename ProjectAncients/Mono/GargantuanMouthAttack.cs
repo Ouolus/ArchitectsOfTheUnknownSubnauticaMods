@@ -92,6 +92,7 @@ namespace ProjectAncients.Mono
 								else
 								{
 									targetLm.TakeDamage(baseDmg, transform.position, DamageType.Normal, gameObject);
+									behaviour.timeCanAttackAgain = Time.time + 2f;
 								}
 							}
 						}
@@ -140,7 +141,7 @@ namespace ProjectAncients.Mono
 						{
 							var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
 							StartCoroutine(PerformBiteAttack(target));
-							this.behaviour.timeCanAttackAgain = Time.time + 2f;
+							behaviour.timeCanAttackAgain = Time.time + 2f;
 							attackSource.clip = biteClipPool.GetRandomClip();
 							attackSource.Play();
 							thisCreature.Aggression.Value -= 0.15f;
