@@ -18,6 +18,7 @@ namespace ProjectAncients.Mono
             {
                 var stagedGrowing = gameObject.EnsureComponent<StagedGrowing>();
                 stagedGrowing.daysToNextStage = 25f;
+                stagedGrowing.maxGrowSize = 4f;
             }
         }
     }
