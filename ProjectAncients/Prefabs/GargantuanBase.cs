@@ -141,6 +141,7 @@ namespace ProjectAncients.Prefabs
                 actionAtkCyclops.priorityMultiplier = ECCHelpers.Curve_Flat();
                 actionAtkCyclops.maxDistToLeash = 110f;
                 actionAtkCyclops.attackAggressionThreshold = 0.65f;
+                actionAtkCyclops.aggressPerSecond = 5f;
             }
 
 
