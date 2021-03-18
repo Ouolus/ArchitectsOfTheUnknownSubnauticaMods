@@ -104,6 +104,8 @@ namespace ProjectAncients.Prefabs
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
             gargBehaviour.creature = components.creature;
+            gargBehaviour.attachBoneName = AttachBoneName;
+            gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
 
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
@@ -188,7 +190,18 @@ namespace ProjectAncients.Prefabs
         {
             get
             {
-                return 2500f;
+                return 1500f;
+            }
+        }
+
+        /// <summary>
+        /// Seamoth has 300 health. Vehicle attack lasts 4 seconds.
+        /// </summary>
+        public virtual float VehicleDamagePerSecond
+        {
+            get
+            {
+                return 49f;
             }
         }
 
@@ -205,6 +218,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return true;
+            }
+        }
+        
+        public virtual string AttachBoneName
+        {
+            get
+            {
+                return "Head.001";
             }
         }
 
