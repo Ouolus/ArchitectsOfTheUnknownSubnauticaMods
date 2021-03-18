@@ -28,5 +28,7 @@ namespace ProjectAncients.Prefabs
             renderer.materials[1].SetFloat("_EmissionLM", 1.5f);
             renderer.materials[1].SetFloat("_EmissionLMNight", 1.5f);
         }
+
+        public override bool CanPerformCyclopsCinematic => true;
     }
 }

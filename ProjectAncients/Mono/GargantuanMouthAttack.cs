@@ -22,6 +22,7 @@ namespace ProjectAncients.Mono
 		public bool canAttackPlayer = true;
 		public bool oneShotPlayer;
 		public string attachBoneName;
+		public bool canPerformCyclopsCinematic;
 
 		void Start()
 		{
@@ -109,12 +110,15 @@ namespace ProjectAncients.Mono
 								thisCreature.Aggression.Value -= 0.5f;
 								return;
 							}
-							SubRoot subRoot = target.GetComponent<SubRoot>();
-							if (subRoot && Player.main.GetCurrentSub() == subRoot && subRoot.live != null)
+							if (canPerformCyclopsCinematic)
 							{
-								behaviour.GrabLargeSub(subRoot);
-								thisCreature.Aggression.Value -= 1f;
-								return;
+								SubRoot subRoot = target.GetComponent<SubRoot>();
+								if (subRoot && Player.main.GetCurrentSub() == subRoot && subRoot.live != null)
+								{
+									behaviour.GrabLargeSub(subRoot);
+									thisCreature.Aggression.Value -= 1f;
+									return;
+								}
 							}
 						}
 						if (targetLm == null) return;

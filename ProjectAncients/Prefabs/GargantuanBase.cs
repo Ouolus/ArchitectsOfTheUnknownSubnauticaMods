@@ -120,6 +120,7 @@ namespace ProjectAncients.Prefabs
             mouthAttack.biteDamage = BiteDamage;
             mouthAttack.oneShotPlayer = OneShotsPlayer;
             mouthAttack.attachBoneName = AttachBoneName;
+            mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
@@ -130,6 +131,15 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.creature = components.creature;
             tentacleAttack.liveMixin = components.liveMixin;
             tentacleAttack.animator = components.creature.GetAnimator();*/
+
+            AttackCyclops actionAtkCyclops = prefab.AddComponent<AttackCyclops>();
+            actionAtkCyclops.swimVelocity = 25f;
+            actionAtkCyclops.aggressiveToNoise = new CreatureTrait(0f, 0.02f);
+            actionAtkCyclops.evaluatePriority = 0.5f;
+            actionAtkCyclops.priorityMultiplier = ECCHelpers.Curve_Flat();
+            actionAtkCyclops.maxDistToLeash = 110f;
+            actionAtkCyclops.attackAggressionThreshold = 0.65f;
+
 
             GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
             roar.closeSoundsPrefix = CloseRoarPrefix;
@@ -161,6 +171,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return true;
+            }
+        }
+
+        public virtual bool CanPerformCyclopsCinematic
+        {
+            get
+            {
+                return false;
             }
         }
 
