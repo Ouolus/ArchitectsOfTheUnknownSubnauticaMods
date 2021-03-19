@@ -7,18 +7,23 @@ namespace ProjectAncients.Mono
     {
         WaterParkCreature _waterParkCreature;
 
+        bool _initialized = false;
         void Awake()
         {
             _waterParkCreature = gameObject.GetComponent<WaterParkCreature>();
         }
-        
-        public void OnDrop()
+
+        void Update()
         {
-            if (_waterParkCreature != null && !_waterParkCreature.isInside)
+            if (_initialized)
+                Destroy(this);
+            
+            if (_waterParkCreature != null && !_waterParkCreature.IsInsideWaterPark())
             {
                 var stagedGrowing = gameObject.EnsureComponent<StagedGrowing>();
                 stagedGrowing.daysToNextStage = 25f;
                 stagedGrowing.maxGrowSize = 4f;
+                _initialized = true;
             }
         }
     }
