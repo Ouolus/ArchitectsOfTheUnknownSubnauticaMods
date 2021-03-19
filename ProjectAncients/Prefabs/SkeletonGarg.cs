@@ -22,15 +22,6 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
-            Renderer renderer = prefab.SearchChild("Gargantuan.001", ECCStringComparison.Equals).GetComponent<SkinnedMeshRenderer>();
-            MakeMaterialSlotInvisible(renderer, 0);
-            MakeMaterialSlotInvisible(renderer, 1);
-            MakeMaterialSlotInvisible(renderer, 2);
-        }
-
-        void MakeMaterialSlotInvisible(Renderer renderer, int index)
-        {
-            renderer.materials[index].EnableKeyword("MARMO_ALPHA_CLIP");
         }
 
         public override void ApplyAggression()
@@ -61,5 +52,6 @@ namespace ProjectAncients.Prefabs
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Near;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
+        public override string AttachBoneName => "AttachBone";
     }
 }
