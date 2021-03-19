@@ -141,12 +141,17 @@ namespace ProjectAncients.Mono
         {
             heldSubroot = subRoot;
             heldVehicleType = VehicleType.Cyclops;
-            subRoot.rigidbody.isKinematic = true;
             timeVehicleGrabbed = Time.time;
             vehicleInitialRotation = subRoot.transform.rotation;
             vehicleInitialPosition = subRoot.transform.position;
             vehicleGrabSound.clip = cyclopsSounds.GetRandomClip();
             vehicleGrabSound.Play();
+            FreezeRigidbodyWhenFar freezeRb = subRoot.GetComponent<FreezeRigidbodyWhenFar>();
+            if (freezeRb)
+            {
+                freezeRb.enabled = false;
+            }
+            subRoot.rigidbody.isKinematic = true;
             InvokeRepeating("DamageVehicle", 1f, 1f);
             float attackLength = 4f;
             Invoke("ReleaseVehicle", attackLength);
@@ -235,6 +240,12 @@ namespace ProjectAncients.Mono
             if(heldSubroot != null)
             {
                 heldSubroot.rigidbody.isKinematic = false;
+                FreezeRigidbodyWhenFar freezeRb = heldSubroot.GetComponent<FreezeRigidbodyWhenFar>();
+                if (freezeRb)
+                {
+                    freezeRb.enabled = false;
+                }
+                heldSubroot.rigidbody.isKinematic = true;
                 heldSubroot = null;
             }
             timeVehicleReleased = Time.time;
