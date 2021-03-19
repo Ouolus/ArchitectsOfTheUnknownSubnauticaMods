@@ -170,6 +170,7 @@
     <Compile Include="Prefabs\GargantuanBase.cs" />
     <Compile Include="Prefabs\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Initializers\AlienBaseInitializer.cs" />
+    <Compile Include="Prefabs\SkeletonGarg.cs" />
     <Compile Include="Prefabs\VoidGargantuanPrefab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
