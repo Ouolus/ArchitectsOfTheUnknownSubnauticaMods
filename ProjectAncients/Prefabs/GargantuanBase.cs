@@ -71,6 +71,13 @@ namespace ProjectAncients.Prefabs
                     }
                 }
             }
+            spines.Add(prefab.SearchChild("Tail", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail1", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail2", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail3", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
