@@ -13,9 +13,8 @@
 	<DocumentationFile>$(OutputPath)\ArchitectsLibrary.xml</DocumentationFile>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <LangVersion>8</LangVersion>
+    <LangVersion>9</LangVersion>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'BZ|AnyCPU' ">
 	<DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
