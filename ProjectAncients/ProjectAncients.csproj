@@ -20,7 +20,7 @@
     <Optimize>true</Optimize>
     <DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SN1|AnyCPU'">
@@ -29,7 +29,7 @@
     <Optimize>true</Optimize>
     <DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
