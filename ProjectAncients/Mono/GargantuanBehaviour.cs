@@ -21,6 +21,8 @@ namespace ProjectAncients.Mono
         private ECCAudio.AudioClipPool exosuitSounds;
         private ECCAudio.AudioClipPool cyclopsSounds;
 
+        private Collider[] subrootStoredColliders;
+
         public Creature creature;
         public float timeCanAttackAgain;
         public string attachBoneName;
@@ -151,6 +153,8 @@ namespace ProjectAncients.Mono
             {
                 freezeRb.enabled = false;
             }
+            subrootStoredColliders = subRoot.GetComponentsInChildren<Collider>(false);
+            ToggleSubrootColliders(false);
             subRoot.rigidbody.isKinematic = true;
             InvokeRepeating("DamageVehicle", 1f, 1f);
             float attackLength = 4f;
@@ -245,6 +249,7 @@ namespace ProjectAncients.Mono
                     freezeRb.enabled = false;
                 }
                 heldSubroot.rigidbody.isKinematic = false;
+                ToggleSubrootColliders(true);
                 heldSubroot = null;
             }
             timeVehicleReleased = Time.time;
@@ -254,6 +259,16 @@ namespace ProjectAncients.Mono
             MainCameraControl.main.ShakeCamera(0f, 0f);
         }
 
+        private void ToggleSubrootColliders(bool active)
+        {
+            if (subrootStoredColliders != null)
+            {
+                foreach (Collider col in subrootStoredColliders)
+                {
+                    col.enabled = active;
+                }
+            }
+        }
         public void Update()
         {
             if (heldVehicleType != VehicleType.None && (heldVehicle == null && heldSubroot == null))
