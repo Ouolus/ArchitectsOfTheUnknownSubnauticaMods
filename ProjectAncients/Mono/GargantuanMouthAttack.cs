@@ -113,7 +113,7 @@ namespace ProjectAncients.Mono
 							if (canPerformCyclopsCinematic)
 							{
 								SubRoot subRoot = target.GetComponent<SubRoot>();
-								if (subRoot && !subRoot.rb.isKinematic && Player.main.GetCurrentSub() == subRoot && subRoot.live is not null)
+								if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
 								{
 									behaviour.GrabLargeSub(subRoot);
 									thisCreature.Aggression.Value -= 1f;
