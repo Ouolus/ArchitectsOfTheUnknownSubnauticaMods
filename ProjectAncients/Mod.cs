@@ -10,6 +10,7 @@ using System;
 using ProjectAncients.Patches;
 using ProjectAncients.Prefabs.AlienBase;
 using ProjectAncients.Mono.AlienBaseSpawners;
+using ProjectAncients.Prefabs.Modules;
 
 namespace ProjectAncients
 {
@@ -17,6 +18,8 @@ namespace ProjectAncients
     public class Mod
     {
         public static AssetBundle assetBundle;
+
+        public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
 
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
@@ -63,6 +66,9 @@ namespace ProjectAncients
         {
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
+
+            electricalDefenseMk2 = new();
+            electricalDefenseMk2.Patch();
 
             #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
