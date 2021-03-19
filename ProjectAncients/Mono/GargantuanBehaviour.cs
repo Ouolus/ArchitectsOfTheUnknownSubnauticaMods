@@ -239,13 +239,12 @@ namespace ProjectAncients.Mono
             }
             if(heldSubroot != null)
             {
-                heldSubroot.rigidbody.isKinematic = false;
                 FreezeRigidbodyWhenFar freezeRb = heldSubroot.GetComponent<FreezeRigidbodyWhenFar>();
                 if (freezeRb)
                 {
                     freezeRb.enabled = false;
                 }
-                heldSubroot.rigidbody.isKinematic = true;
+                heldSubroot.rigidbody.isKinematic = false;
                 heldSubroot = null;
             }
             timeVehicleReleased = Time.time;
