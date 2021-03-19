@@ -27,6 +27,7 @@ namespace ProjectAncients.Mono
 		void Awake()
 		{
 			main = this;
+			InvokeRepeating("CheckDistance", Random.value, 10f);
 		}
 
 		void CheckDistance()
