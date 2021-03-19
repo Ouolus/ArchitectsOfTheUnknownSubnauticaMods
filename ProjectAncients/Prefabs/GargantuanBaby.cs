@@ -13,6 +13,7 @@ namespace ProjectAncients.Prefabs
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 15f, 6f, 7f, 2f, 15f);
         public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, false);
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
+        public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
         public GargantuanBaby(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
         {
