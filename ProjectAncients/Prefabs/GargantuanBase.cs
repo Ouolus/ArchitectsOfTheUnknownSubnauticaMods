@@ -104,8 +104,11 @@ namespace ProjectAncients.Prefabs
             ApplyAggression();
 
             var atkLast = prefab.GetComponent<AttackLastTarget>();
-            atkLast.resetAggressionOnTime = false;
-            atkLast.swimInterval = 0.2f;
+            if (atkLast)
+            {
+                atkLast.resetAggressionOnTime = false;
+                atkLast.swimInterval = 0.2f;
+            }
 
             components.locomotion.maxAcceleration = 27f;
 
