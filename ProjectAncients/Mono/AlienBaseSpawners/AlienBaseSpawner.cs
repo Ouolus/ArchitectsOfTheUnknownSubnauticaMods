@@ -86,7 +86,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             spawnedChildren = new List<GameObject>();
             ConstructBase();
-            foreach(GameObject obj in spawnedChildren)
+            foreach (GameObject obj in spawnedChildren)
             {
                 obj.transform.parent = null;
                 LargeWorld.main.streamer.cellManager.RegisterEntity(obj.GetComponent<LargeWorldEntity>());
@@ -194,11 +194,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
         public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default)
         {
-            for(int x = 0; x < size.x; x++)
+            for (int x = 0; x < size.x; x++)
             {
-                for(int y = 0; y < size.y; y++)
+                for (int y = 0; y < size.y; y++)
                 {
-                    for(int z = 0; z < size.z; z++)
+                    for (int z = 0; z < size.z; z++)
                     {
                         Vector3 rawPosition = new Vector3(x, y, z);
                         Vector3 spacedPosition = Vector3.Scale(rawPosition, spacing * individualScale);
@@ -221,7 +221,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
         {
             List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude);
-            foreach(CableSegment segment in segments)
+            foreach (CableSegment segment in segments)
             {
                 SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true);
             }
@@ -234,10 +234,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
             segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
             int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / midCableSpacing);
-            for(int i = 0; i < maxSegments; i++)
+            for (int i = 0; i < maxSegments; i++)
             {
                 float percent = (float)i / (float)maxSegments;
-                if(percent == 0f)
+                if (percent == 0f)
                 {
                     continue;
                 }
@@ -245,7 +245,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
                 Vector3 forwardAfter = baseAttachForward;
                 float nextPercent = Mathf.Clamp01((i + 1) / maxSegments);
-                if(nextPercent == 1f)
+                if (nextPercent == 1f)
                 {
                     forwardAfter = terrainAttachForward;
                 }
@@ -288,7 +288,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         static string GetMiddleCableRandom(int index)
         {
             int value = index % 3;
-            if(value == 2)
+            if (value == 2)
             {
                 return cables_mid01;
             }
@@ -305,7 +305,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public void GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
         {
             GameObject parent = placeholderHolder.SearchChild(parentName);
-            foreach(Transform child in parent.transform)
+            foreach (Transform child in parent.transform)
             {
                 SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale);
             }

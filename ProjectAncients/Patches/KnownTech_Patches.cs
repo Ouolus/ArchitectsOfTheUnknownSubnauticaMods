@@ -21,7 +21,7 @@ namespace ProjectAncients.Patches
         {
             _initialized = false;
         }
-        
+
         [HarmonyPatch(nameof(KnownTech.Initialize))]
         [HarmonyPostfix]
         static void Initialize_Postfix()
@@ -43,11 +43,11 @@ namespace ProjectAncients.Patches
             }
 
             var analysisTech = KnownTech.analysisTech.ToHashSet();
-            
+
             AddAnalysisTech(analysisTech, TechType.PrecursorKey_Purple);
             AddAnalysisTech(analysisTech, TechType.PrecursorKey_Red);
             AddAnalysisTech(analysisTech, TechType.PrecursorKey_White);
-            
+
             KnownTech.analysisTech = analysisTech.ToList();
         }
 
@@ -59,7 +59,7 @@ namespace ProjectAncients.Patches
                 unlockMessage = "NotificationBlueprintUnlocked",
                 unlockPopup = null,
                 unlockSound = _unlockSound,
-                unlockTechTypes = new List<TechType>() {techTypeToAnalyze},
+                unlockTechTypes = new List<TechType>() { techTypeToAnalyze },
             });
         }
     }

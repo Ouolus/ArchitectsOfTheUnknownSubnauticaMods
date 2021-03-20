@@ -17,22 +17,22 @@ namespace ProjectAncients.Prefabs.Modules
                 CraftData.energyCost[this.TechType] = 5f;
             };
         }
-		
-		public override EquipmentType EquipmentType => EquipmentType.SeamothModule;
+
+        public override EquipmentType EquipmentType => EquipmentType.SeamothModule;
         public override QuickSlotType QuickSlotType => QuickSlotType.SelectableChargeable;
 
         public override GameObject GetGameObject()
         {
             var prefab = CraftData.GetPrefabForTechType(TechType.SeamothElectricalDefense);
             prefab.SetActive(false);
-            
-            
+
+
             var obj = Object.Instantiate(prefab);
             obj.SetActive(true);
-            
+
             return obj;
         }
-        
+
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData()

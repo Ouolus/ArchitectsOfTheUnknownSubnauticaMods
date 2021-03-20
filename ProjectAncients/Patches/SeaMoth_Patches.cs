@@ -15,13 +15,13 @@ namespace ProjectAncients.Patches
             {
                 var obj = Object.Instantiate(__instance.seamothElectricalDefensePrefab);
                 obj.name = "ElectricalDefenseMK2";
-                
+
                 var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
                 if (ed is not null)
                 {
                     Object.Destroy(ed);
                 }
-                
+
                 var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
                 if (edMk2 is not null)
                 {

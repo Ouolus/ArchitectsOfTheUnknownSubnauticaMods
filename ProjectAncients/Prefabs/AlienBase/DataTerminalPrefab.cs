@@ -43,9 +43,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
             storyHandTarget.goal = new Story.StoryGoal(encyKey, Story.GoalType.Encyclopedia, delay);
             obj.SetActive(false);
-            if(pingClassId != null && pingClassId.Length > 0)
+            if (pingClassId != null && pingClassId.Length > 0)
             {
-                foreach(string str in pingClassId)
+                foreach (string str in pingClassId)
                 {
                     if (!string.IsNullOrEmpty(str))
                     {

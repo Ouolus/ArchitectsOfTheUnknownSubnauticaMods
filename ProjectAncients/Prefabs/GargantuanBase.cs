@@ -56,7 +56,7 @@ namespace ProjectAncients.Prefabs
         {
             List<Transform> spines = new List<Transform>();
             GameObject currentSpine = prefab.SearchChild("Spine");
-            while(currentSpine != null)
+            while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
@@ -262,7 +262,7 @@ namespace ProjectAncients.Prefabs
                 return true;
             }
         }
-        
+
         public virtual string AttachBoneName
         {
             get

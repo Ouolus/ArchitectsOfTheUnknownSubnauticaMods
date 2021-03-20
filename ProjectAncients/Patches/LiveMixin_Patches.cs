@@ -21,7 +21,7 @@ namespace ProjectAncients.Patches
                     BindingFlags.Public | BindingFlags.Static);
 
             bool found = false;
-            
+
 
             for (int i = 0; i < codes.Count(); i++)
             {
@@ -36,7 +36,7 @@ namespace ProjectAncients.Patches
                     break;
                 }
             }
-            
+
             if (found is false)
                 Logger.Log(Logger.Level.Error, "Cannot find LiveMixin.TakeDamage target location.", showOnScreen: true);
             else
@@ -63,7 +63,7 @@ namespace ProjectAncients.Patches
                 {
                     renderer.material.SetColor("_Color", Color.green);
                 }
-                
+
                 var obj = UWE.Utils.InstantiateWrap(electricFX, bounds.center,
                     Quaternion.identity);
                 obj.transform.parent = liveMixin.transform;

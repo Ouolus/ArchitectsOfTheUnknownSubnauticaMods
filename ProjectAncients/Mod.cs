@@ -52,7 +52,7 @@ namespace ProjectAncients
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
         /// </summary>
         internal static DamageType architectElect = (DamageType)259745135;
-        
+
         const string coordinateDisplayName = "Downloaded co-ordinates";
 
         private const string assetBundleName = "projectancientsassets";
@@ -123,7 +123,7 @@ namespace ProjectAncients
             PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "A supply cache.");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
-            
+
             PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a mysterious tracking chip. Frequent, powerful pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
             #endregion
@@ -187,8 +187,8 @@ namespace ProjectAncients
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.AluminumOxide, 2) }) { craftAmount = 1});
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2)}) { craftAmount = 1 });
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.AluminumOxide, 2) }) { craftAmount = 1 });
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2) }) { craftAmount = 1 });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
 

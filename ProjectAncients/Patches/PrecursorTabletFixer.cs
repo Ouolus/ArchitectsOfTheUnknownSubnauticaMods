@@ -14,7 +14,7 @@ namespace ProjectAncients.Patches
         public static void InspectOnFirstPickup_Start_Patch(InspectOnFirstPickup __instance)
         {
             TechTag techTag = __instance.GetComponent<TechTag>();
-            if(techTag == null)
+            if (techTag == null)
             {
                 return;
             }
