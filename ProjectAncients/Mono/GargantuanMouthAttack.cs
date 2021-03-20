@@ -91,6 +91,8 @@ namespace ProjectAncients.Mono
 								{
 									targetLm.TakeDamage(baseDmg, transform.position, DamageType.Normal, gameObject);
 									behaviour.timeCanAttackAgain = Time.time + 2f;
+									animator.SetTrigger("bite");
+									return;
 								}
 							}
 						}
