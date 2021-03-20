@@ -156,7 +156,7 @@ namespace ProjectAncients.Prefabs
 
             if (CanBeScaredByElectricity)
             {
-                prefab.AddComponent<Mono.RunAwayWhenScared>();
+                prefab.AddComponent<RunAwayWhenScared>();
             }
 
             GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
