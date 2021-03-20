@@ -11,6 +11,8 @@ using ProjectAncients.Patches;
 using ProjectAncients.Prefabs.AlienBase;
 using ProjectAncients.Mono.AlienBaseSpawners;
 using ProjectAncients.Prefabs.Modules;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ProjectAncients
 {
@@ -187,8 +189,8 @@ namespace ProjectAncients
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.AluminumOxide, 2) }) { craftAmount = 1 });
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new Ingredient[] { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2) }) { craftAmount = 1 });
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.AluminumOxide, 2) }) { craftAmount = 1 });
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.Silver, 2) }) { craftAmount = 1 });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
 
