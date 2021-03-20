@@ -11,40 +11,38 @@ namespace ProjectAncients.Patches
         [HarmonyPostfix]
         static void OnUpgradeModuleUse_Postfix(SeaMoth __instance, TechType techType, int slotID)
         {
-            float cooldown = 0;
             if (techType == Mod.electricalDefenseMk2.TechType)
             {
                 var obj = Object.Instantiate(__instance.seamothElectricalDefensePrefab);
+                obj.name = "ElectricalDefenseMK2";
                 
                 var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
                 if (ed is not null)
                 {
-                    var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
-                    if (edMk2 is not null)
-                    {
-                        edMk2.fxElectSpheres = ed.fxElecSpheres;
-                        edMk2.defenseSound = ed.defenseSound;
-                        
-                        Object.Destroy(ed, 0.1f);
-                    }
+                    Object.Destroy(ed);
+                }
+                
+                var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
+                if (edMk2 is not null)
+                {
+                    edMk2.fxElectSpheres = __instance.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
+                    edMk2.defenseSound = __instance.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().defenseSound;
                 }
 
                 float charge = __instance.quickSlotCharge[slotID];
                 float slotCharge = __instance.GetSlotCharge(slotID);
 
                 var electricalDefense = Utils
-                    .SpawnZeroedAt(__instance.seamothElectricalDefensePrefab, __instance.transform)
+                    .SpawnZeroedAt(obj, __instance.transform)
                     .GetComponent<ElectricalDefenseMK2>();
                 if (electricalDefense is not null)
                 {
                     electricalDefense.charge = charge;
                     electricalDefense.chargeScalar = slotCharge;
                 }
-                cooldown = 5;
+                __instance.quickSlotTimeUsed[slotID] = Time.time;
+                __instance.quickSlotCooldown[slotID] = 5;
             }
-
-            __instance.quickSlotTimeUsed[slotID] = Time.time;
-            __instance.quickSlotCooldown[slotID] = cooldown;
         }
     }
 }

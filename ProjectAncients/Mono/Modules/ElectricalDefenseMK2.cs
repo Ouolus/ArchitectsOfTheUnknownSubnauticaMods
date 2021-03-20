@@ -19,7 +19,8 @@ namespace ProjectAncients.Mono.Modules
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
 
-            foreach (var electSphere in fxElectSpheres)
+            var fxElects = (GameObject[]) fxElectSpheres.Clone();
+            foreach (var electSphere in fxElects)
             {
                 var renderers = electSphere.GetComponentsInChildren<Renderer>();
                 foreach (var renderer in renderers)
@@ -33,10 +34,10 @@ namespace ProjectAncients.Mono.Modules
             
             Utils.PlayFMODAsset(defenseSound, transform);
 
-            int getObjIndex = Mathf.Clamp((int)(chargeScalar * fxElectSpheres.Length), 0,
-                fxElectSpheres.Length - 1);
+            int getObjIndex = Mathf.Clamp((int)(chargeScalar * fxElects.Length), 0,
+                fxElects.Length - 1);
 
-            Utils.SpawnZeroedAt(fxElectSpheres[getObjIndex], transform);
+            Utils.SpawnZeroedAt(fxElects[getObjIndex], transform);
 
             int fxSpawnedIn = UWE.Utils.OverlapSphereIntoSharedBuffer(transform.position, radius);
 
@@ -52,7 +53,7 @@ namespace ProjectAncients.Mono.Modules
 
                 if (creature is not null && liveMixin is not null)
                 {
-                    liveMixin.TakeDamage(originalDamage, transform.position, DamageType.Electrical, gameObject);
+                    liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
                 }
             }
             Destroy(gameObject, 5f);
