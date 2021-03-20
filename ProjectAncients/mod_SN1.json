@@ -4,11 +4,15 @@
   "Author": "ArchitectsOfTheUnknown",
   "Version": "1.0.0",
   "Dependencies": [
-    "SMLHelper"
+    "SMLHelper",
+    "ArchitectsLibrary"
   ],
   "VersionDependencies": {
     "SMLHelper": "2.9"
   },
+  "LoadAfter": [
+     "DecorationsMod"
+  ],
   "Game": "Subnautica",
   "AssemblyName": "ProjectAncients.dll",
   "Enable": true
