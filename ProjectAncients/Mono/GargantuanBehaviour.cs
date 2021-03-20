@@ -302,7 +302,7 @@ namespace ProjectAncients.Mono
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
-            if (damageInfo.type == Mod.ar && heldVehicle != null)
+            if (damageInfo.type == Mod.architectElect && heldVehicle != null)
             {
                 ReleaseVehicle();
             }

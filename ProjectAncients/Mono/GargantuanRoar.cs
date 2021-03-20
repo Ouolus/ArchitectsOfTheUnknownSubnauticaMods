@@ -24,7 +24,7 @@ namespace ProjectAncients.Mono
             creature = GetComponent<Creature>();
             float distance;
             AudioClip clipToPlay;
-            for(; ; )
+            for (; ; )
             {
                 if (!gameObject.GetComponent<LiveMixin>().IsAlive())
                 {
