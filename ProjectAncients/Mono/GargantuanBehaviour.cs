@@ -4,7 +4,7 @@ using ECCLibrary.Internal;
 
 namespace ProjectAncients.Mono
 {
-    class GargantuanBehaviour : MonoBehaviour
+    class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage
     {
         private Vehicle heldVehicle;
         private SubRoot heldSubroot;
@@ -131,7 +131,7 @@ namespace ProjectAncients.Mono
         {
             GrabVehicle(vehicle, VehicleType.GenericSub);
         }
-        public void GrabExosuit(Vehicle exosuit)    
+        public void GrabExosuit(Vehicle exosuit)
         {
             GrabVehicle(exosuit, VehicleType.Exosuit);
         }
@@ -191,7 +191,7 @@ namespace ProjectAncients.Mono
             {
                 ECCLog.AddMessage("Unknown Vehicle Type detected");
             }
-            foreach(Collider col in vehicle.GetComponentsInChildren<Collider>())
+            foreach (Collider col in vehicle.GetComponentsInChildren<Collider>())
             {
                 col.enabled = false;
             }
@@ -212,13 +212,13 @@ namespace ProjectAncients.Mono
                 heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
                 if (!heldVehicle.liveMixin.IsAlive())
                 {
-                    if(Player.main.currentMountedVehicle == heldVehicle)
+                    if (Player.main.currentMountedVehicle == heldVehicle)
                     {
                         Player.main.liveMixin.Kill(DamageType.Cold);
                     }
                 }
             }
-            if(heldSubroot != null)
+            if (heldSubroot != null)
             {
                 const float cyclopsDps = 100f;
                 heldSubroot.live.TakeDamage(cyclopsDps, type: DamageType.Normal);
@@ -241,7 +241,7 @@ namespace ProjectAncients.Mono
                 heldVehicle.collisionModel.SetActive(true);
                 heldVehicle = null;
             }
-            if(heldSubroot != null)
+            if (heldSubroot != null)
             {
                 FreezeRigidbodyWhenFar freezeRb = heldSubroot.GetComponent<FreezeRigidbodyWhenFar>();
                 if (freezeRb)
@@ -278,11 +278,11 @@ namespace ProjectAncients.Mono
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
             GameObject held = null;
-            if(heldVehicle != null)
+            if (heldVehicle != null)
             {
                 held = heldVehicle.gameObject;
             }
-            if(heldSubroot != null)
+            if (heldSubroot != null)
             {
                 held = heldSubroot.gameObject;
             }
@@ -302,7 +302,7 @@ namespace ProjectAncients.Mono
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
-            if ((damageInfo.type == DamageType.Electrical || damageInfo.type == DamageType.Poison) && heldVehicle != null)
+            if (damageInfo.type == Mod.ar && heldVehicle != null)
             {
                 ReleaseVehicle();
             }
