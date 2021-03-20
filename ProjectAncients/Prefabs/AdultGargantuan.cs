@@ -24,6 +24,8 @@ namespace ProjectAncients.Prefabs
 
         public override float TentacleSnapSpeed => 8f;
 
+        public override bool CanBeScaredByElectricity => true;
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);

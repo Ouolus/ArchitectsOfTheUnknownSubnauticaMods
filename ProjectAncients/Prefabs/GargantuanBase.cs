@@ -154,6 +154,10 @@ namespace ProjectAncients.Prefabs
                 actionAtkCyclops.aggressPerSecond = 5f;
             }
 
+            if (CanBeScaredByElectricity)
+            {
+                prefab.AddComponent<Mono.RunAwayWhenScared>();
+            }
 
             GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
             roar.closeSoundsPrefix = CloseRoarPrefix;
@@ -185,6 +189,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return true;
+            }
+        }
+
+        public virtual bool CanBeScaredByElectricity
+        {
+            get
+            {
+                return false;
             }
         }
 

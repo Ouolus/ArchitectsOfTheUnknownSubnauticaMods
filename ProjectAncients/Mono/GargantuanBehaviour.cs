@@ -302,9 +302,16 @@ namespace ProjectAncients.Mono
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
-            if (damageInfo.type == Mod.architectElect && heldVehicle != null)
+            if (damageInfo.type == Mod.architectElect)
             {
-                ReleaseVehicle();
+                if(heldVehicle is not null)
+                {
+                    ReleaseVehicle();
+                }
+                else
+                {
+                    creature.Scared.Value = 1f;
+                }
             }
         }
         void OnDisable()

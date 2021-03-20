@@ -10,6 +10,8 @@ namespace ProjectAncients.Prefabs
 
         public override bool OneShotsPlayer => false;
 
+        public override bool CanBeScaredByElectricity => true;
+
         public GargantuanJuvenile(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
         {
         }

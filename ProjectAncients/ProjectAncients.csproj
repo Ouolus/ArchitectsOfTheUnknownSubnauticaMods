@@ -142,6 +142,7 @@
     <Compile Include="Mono\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
+    <Compile Include="Mono\RunAwayWhenScared.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
