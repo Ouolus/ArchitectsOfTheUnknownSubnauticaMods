@@ -251,7 +251,7 @@ namespace ProjectAncients.Prefabs
         {
             get
             {
-                return 5f;
+                return 6f;
             }
         }
 
