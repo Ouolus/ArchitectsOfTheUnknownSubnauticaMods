@@ -19,11 +19,16 @@ namespace ProjectAncients.Patches
                 var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
                 if (ed is not null)
                 {
-                    Object.Destroy(obj.GetComponent<ElectricalDefense>());
+                    var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
+                    if (edMk2 is not null)
+                    {
+                        edMk2.fxElectSpheres = ed.fxElecSpheres;
+                        edMk2.defenseSound = ed.defenseSound;
+                        
+                        Object.Destroy(ed, 0.1f);
+                    }
                 }
 
-                obj.EnsureComponent<ElectricalDefenseMK2>();
-                
                 float charge = __instance.quickSlotCharge[slotID];
                 float slotCharge = __instance.GetSlotCharge(slotID);
 
