@@ -11,29 +11,6 @@ namespace ProjectAncients.Patches
     [HarmonyPatch(typeof(LiveMixin))]
     public class LiveMixin_Patches
     {
-        //static bool changeToGreen = false;
-        
-        /*[HarmonyPatch(nameof(LiveMixin.electricalDamageEffect), MethodType.Getter)]
-        [HarmonyPrefix]
-        static bool ElectricalDamageEffect_Prefix(LiveMixin __instance, ref GameObject __result)
-        {
-            //if (changeToGreen)
-            //{
-                ErrorMessage.AddMessage("Lol");
-                var obj = __instance.data.electricalDamageEffect;
-
-                var renderers = obj.GetComponentsInChildren<Renderer>(true);
-                ErrorMessage.AddMessage($"{renderers.Length}");
-                foreach (var renderer in renderers)
-                {
-                    renderer.material.SetColor("_Color", Color.green);
-                }
-                __result = obj;
-                return false;
-            //}
-            //return true;
-        }*/
-        
         [HarmonyPatch(nameof(LiveMixin.TakeDamage))]
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> TakeDamage_Transpiler(IEnumerable<CodeInstruction> instructions)
