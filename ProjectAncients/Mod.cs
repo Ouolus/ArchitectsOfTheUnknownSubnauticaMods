@@ -48,6 +48,11 @@ namespace ProjectAncients
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
+        /// <summary>
+        /// this value is only used by this mod, please dont use it or it'll cause conflicts.
+        /// </summary>
+        internal static DamageType architectElect = (DamageType)259745135;
+        
         const string coordinateDisplayName = "Downloaded co-ordinates";
 
         private const string assetBundleName = "projectancientsassets";

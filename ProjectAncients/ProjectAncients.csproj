@@ -151,6 +151,7 @@
     <Compile Include="Mono\GargantuanBehaviour.cs" />
     <Compile Include="Mono\GargantuanMouthAttack.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
+    <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\PrecursorTabletFixer.cs" />

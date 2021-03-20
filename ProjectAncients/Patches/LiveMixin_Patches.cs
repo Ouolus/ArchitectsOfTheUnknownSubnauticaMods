@@ -1,0 +1,98 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using HarmonyLib;
+using UnityEngine;
+using Logger = QModManager.Utility.Logger;
+
+namespace ProjectAncients.Patches
+{
+    [HarmonyPatch(typeof(LiveMixin))]
+    public class LiveMixin_Patches
+    {
+        //static bool changeToGreen = false;
+        
+        /*[HarmonyPatch(nameof(LiveMixin.electricalDamageEffect), MethodType.Getter)]
+        [HarmonyPrefix]
+        static bool ElectricalDamageEffect_Prefix(LiveMixin __instance, ref GameObject __result)
+        {
+            //if (changeToGreen)
+            //{
+                ErrorMessage.AddMessage("Lol");
+                var obj = __instance.data.electricalDamageEffect;
+
+                var renderers = obj.GetComponentsInChildren<Renderer>(true);
+                ErrorMessage.AddMessage($"{renderers.Length}");
+                foreach (var renderer in renderers)
+                {
+                    renderer.material.SetColor("_Color", Color.green);
+                }
+                __result = obj;
+                return false;
+            //}
+            //return true;
+        }*/
+        
+        [HarmonyPatch(nameof(LiveMixin.TakeDamage))]
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> TakeDamage_Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            List<CodeInstruction> codes = new(instructions);
+            MethodInfo architectElectEffect =
+                typeof(LiveMixin_Patches).GetMethod(nameof(ArchitectElectEffect),
+                    BindingFlags.Public | BindingFlags.Static);
+
+            bool found = false;
+            
+
+            for (int i = 0; i < codes.Count(); i++)
+            {
+                if (codes[i].opcode == OpCodes.Ldstr &&
+                    (string)codes[i].operand == "LiveMixin.TakeDamage.DamageEffect" &&
+                    codes[i + 1].opcode == OpCodes.Call)
+                {
+                    found = true;
+                    codes.Insert(i + 2, new CodeInstruction(OpCodes.Ldarg_0));
+                    codes.Insert(i + 3, new CodeInstruction(OpCodes.Ldarg_3));
+                    codes.Insert(i + 4, new CodeInstruction(OpCodes.Call, architectElectEffect));
+                    break;
+                }
+            }
+            
+            if (found is false)
+                Logger.Log(Logger.Level.Error, "Cannot find LiveMixin.TakeDamage target location.", showOnScreen: true);
+            else
+                Logger.Log(Logger.Level.Info, "LiveMixin.TakeDamage Transpiler Succeeded.");
+
+            return codes.AsEnumerable();
+        }
+
+        public static void ArchitectElectEffect(LiveMixin liveMixin, DamageType type)
+        {
+            if (Time.time > liveMixin.timeLastElecDamageEffect + 2.5f && type == Mod.architectElect &&
+                liveMixin.electricalDamageEffect is not null)
+            {
+                var fixedBounds = liveMixin.gameObject.GetComponent<FixedBounds>();
+                Bounds bounds;
+                if (fixedBounds is not null)
+                    bounds = fixedBounds.bounds;
+                else
+                    bounds = UWE.Utils.GetEncapsulatedAABB(liveMixin.gameObject);
+
+                var electricFX = Object.Instantiate(liveMixin.electricalDamageEffect);
+                var renderers = electricFX.GetComponentsInChildren<Renderer>(true);
+                foreach (var renderer in renderers)
+                {
+                    renderer.material.SetColor("_Color", Color.green);
+                }
+                
+                var obj = UWE.Utils.InstantiateWrap(electricFX, bounds.center,
+                    Quaternion.identity);
+                obj.transform.parent = liveMixin.transform;
+                obj.transform.localScale = bounds.size * 0.65f;
+                liveMixin.timeLastElecDamageEffect = Time.time;
+            }
+        }
+    }
+}
