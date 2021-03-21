@@ -10,10 +10,10 @@ namespace ProjectAncients.Mono.Modules
         public float charge;
         public float chargeScalar;
 
-        float _damage = 1f;
-        float _radius = 15f;
-        float _chargeRadius = 1f;
-        float _chargeDamage = 2f;
+        float _damage = 7f;
+        float _radius = 18f;
+        float _chargeRadius = 1.5f;
+        float _chargeDamage = 3.5f;
 
         IEnumerator Start()
         {
