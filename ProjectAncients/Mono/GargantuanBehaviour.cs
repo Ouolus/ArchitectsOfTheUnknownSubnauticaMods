@@ -311,6 +311,7 @@ namespace ProjectAncients.Mono
                 else
                 {
                     creature.Scared.Value = 1f;
+                    creature.Aggression.Value = 0f;
                 }
             }
         }
