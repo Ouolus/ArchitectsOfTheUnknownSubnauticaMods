@@ -312,6 +312,7 @@ namespace ProjectAncients.Mono
                 {
                     creature.Scared.Value = 1f;
                     creature.Aggression.Value = 0f;
+                    timeCanAttackAgain = Time.time + 5f;
                 }
             }
         }
