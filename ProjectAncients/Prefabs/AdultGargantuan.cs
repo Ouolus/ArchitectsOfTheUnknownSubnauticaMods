@@ -37,8 +37,8 @@ namespace ProjectAncients.Prefabs
 
         void UpdateGargMaterial(Material material)
         {
-            material.SetFloat("_EmissionLM", 1.5f);
-            material.SetFloat("_EmissionLMNight", 1.5f);
+            //material.SetFloat("_EmissionLM", 0.4f);
+            //material.SetFloat("_EmissionLMNight", 0.4f);
         }
 
         public override bool CanPerformCyclopsCinematic => true;
