@@ -68,6 +68,30 @@ namespace ProjectAncients
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
+        [QModPostPatch]
+        public static void PostPatch()
+        {
+            var redTabletTD = new TechData
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient(TechType.PrecursorIonCrystal, 1),
+                    new Ingredient(TechType.AluminumOxide, 2)
+                }
+            };
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, redTabletTD);
+            var whiteTabletTD = new TechData
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient(TechType.PrecursorIonCrystal, 1),
+                    new Ingredient(TechType.Silver, 2)
+                }
+            };
+            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
+        }
         [QModPatch]
         public static void Patch()
         {
@@ -189,26 +213,6 @@ namespace ProjectAncients
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            var redTabletTD = new TechData
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>
-                {
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
-                    new Ingredient(TechType.AluminumOxide, 2)
-                }
-            };
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, redTabletTD);
-            var whiteTabletTD = new TechData
-            {
-                craftAmount = 1,
-                Ingredients = new List<Ingredient>
-                {
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
-                    new Ingredient(TechType.Silver, 2)
-                }
-            };
-            CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
 
