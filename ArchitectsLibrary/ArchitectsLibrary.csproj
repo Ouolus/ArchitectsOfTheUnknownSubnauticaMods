@@ -20,11 +20,19 @@
 	<DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
 	<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	<Optimize>true</Optimize>
+	<DefineConstants>BZBELOwZERO;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1|AnyCPU' ">
 	<DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
 	<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	<Optimize>true</Optimize>
+	<DefineConstants>SN1;SUBNAUTICA</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
+    <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
+	<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	<Optimize>true</Optimize>
+	<DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">

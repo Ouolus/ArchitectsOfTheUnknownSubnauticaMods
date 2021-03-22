@@ -1,3 +1,4 @@
+using System.Collections;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
@@ -111,7 +112,7 @@ namespace ArchitectsLibrary.API
             classId = this.ClassID, cellLevel = LargeWorldEntity.CellLevel.Medium, localScale = Vector3.one, prefabZUp = false,
             slotType = EntitySlot.Type.Medium, techType = this.TechType
         };
-
+#if SN1
         /// <summary>
         /// override this if you want more functionality for your egg.
         /// </summary>
@@ -157,8 +158,68 @@ namespace ArchitectsLibrary.API
 
             return obj;
         }
+#elif SN1_exp
+        public delegate void GameObjectEnhancements(GameObject gameObject);
 
         /// <summary>
+        /// logic for your GameObject that will get executed before the core logic of your GameObject.
+        /// </summary>
+        public GameObjectEnhancements earlyEnhancements;
+        
+        /// <summary>
+        /// logic for your GameObject that will get executed after the core logic of your GameObject.
+        /// </summary>
+        public GameObjectEnhancements lateEnhancements;
+       public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+       {
+           GameObject prefab = Model;
+           var obj = GameObject.Instantiate(prefab);
+
+           if (earlyEnhancements is not null)
+               earlyEnhancements.Invoke(obj);
+           
+           obj.EnsureComponent<TechTag>().type = this.TechType;
+           obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
+
+           var skyApplier = obj.EnsureComponent<SkyApplier>();
+           skyApplier.anchorSky = Skies.Auto;
+           skyApplier.emissiveFromPower = false;
+           skyApplier.dynamic = false;
+           skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
+           skyApplier.enabled = true;
+
+           obj.EnsureComponent<Pickupable>();
+                
+           var rb = obj.EnsureComponent<Rigidbody>();
+           rb.mass = Mass;
+           rb.isKinematic = true;
+
+           var wf = obj.EnsureComponent<WorldForces>();
+           wf.useRigidbody = rb;
+                
+           var liveMixin = obj.EnsureComponent<LiveMixin>();
+           liveMixin.health = MaxHealth;
+                
+           var creatureEgg = obj.EnsureComponent<CreatureEgg>();
+           creatureEgg.animator = obj.EnsureComponent<Animator>();
+           creatureEgg.hatchingCreature = HatchingCreature;
+           creatureEgg.daysBeforeHatching = HatchingTime;
+           if (_overridenTechType != TechType.None)
+               creatureEgg.overrideEggType = _overridenTechType;
+            
+           if (MakeObjectScannable)
+               AUHandler.SetObjectScannable(obj);
+            
+           MaterialUtils.ApplySNShaders(obj);
+
+           if (lateEnhancements is not null)
+               lateEnhancements.Invoke(obj);
+           
+           yield return null;
+           gameObject.Set(obj);
+       }
+#endif
+       /// <summary>
         /// determines the TechType of the undiscovered version of the egg.
         /// </summary>
         public struct OverrideTechType
