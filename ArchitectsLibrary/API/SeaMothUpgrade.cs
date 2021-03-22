@@ -7,8 +7,17 @@ using UnityEngine;
 
 namespace ArchitectsLibrary.API
 {
+    /// <summary>
+    /// an abstract class inheriting from <see cref="Equipable"/> that simplifies the process of making a Custom Seamoth Upgrade.
+    /// </summary>
     public abstract class SeaMothUpgrade : Equipable
     {
+        /// <summary>
+        /// Initializes a new <see cref="SeaMothUpgrade"/>
+        /// </summary>
+        /// <param name="classId">The main internal identifier for this item. Your item's <see cref="TechType"/> will be created using this name.</param>
+        /// <param name="friendlyName">The name displayed in-game for this item whether in the open world or in the inventory.</param>
+        /// <param name="description">The description for this item, Typically seen in the PDA, Inventory, or crafting screens.</param>
         public SeaMothUpgrade(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
