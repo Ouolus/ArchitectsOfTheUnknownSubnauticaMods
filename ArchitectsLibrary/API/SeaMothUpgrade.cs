@@ -24,6 +24,11 @@ namespace ArchitectsLibrary.API
                 {
                     SeaMothPatches.seaMothOnUses[this.TechType] = seaMothOnUse;
                 }
+
+                if (this is ISeaMothOnEquip seaMothOnEquip)
+                {
+                    SeaMothPatches.SeaMothOnEquips[this.TechType] = seaMothOnEquip;
+                }
             };
         }
         public sealed override EquipmentType EquipmentType => EquipmentType.SeamothModule;
