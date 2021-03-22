@@ -32,6 +32,11 @@ namespace ArchitectsLibrary.API
         public virtual float? EnergyCost { get; }
         public virtual float? MaxCharge { get; }
 
+        public sealed override GameObject GetGameObject()
+        {
+            return base.GetGameObject();
+        }
+
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (ModelTemplate != TechType.None)
