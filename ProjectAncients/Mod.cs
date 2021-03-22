@@ -40,11 +40,14 @@ namespace ProjectAncients
         public static TabletTerminalPrefab blueTabletTerminal;
 
         public static PrecursorDoorPrefab door_supplyCache;
+        public static PrecursorDoorPrefab door_researchBase;
         public static PrecursorDoorPrefab whiteTabletDoor;
 
         public static DataTerminalPrefab tertiaryOutpostTerminal;
         public static DataTerminalPrefab guardianTerminal;
+        public static DataTerminalPrefab researchBaseTerminal;
         public static DataTerminalPrefab supplyCacheTerminal;
+        public static DataTerminalPrefab archElectricityTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
 
@@ -63,6 +66,8 @@ namespace ProjectAncients
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
         private const string ency_supplyCacheTerminal = "SupplyCacheData";
+        private const string ency_researchBaseTerminal = "ResearchBaseData";
+        private const string ency_archElectricityTerminal = "ArchitectElectricityData";
         private const string ency_ruinedGuardian = "RuinedGuardian";
         private const string ency_distressSignal = "GuardianTerminalData";
 
@@ -148,9 +153,13 @@ namespace ProjectAncients
 
             PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "A supply cache.");
 
+            PatchEncy(ency_researchBaseTerminal, modEncyPath, "Destructive Weapons Research Base Data", "Data related", "SignalPopup", "BlueGlyph_Ency");
+
             PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
             PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a mysterious tracking chip. Frequent, powerful pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
+
+            PatchEncy(ency_archElectricityTerminal, modEncyPath, "Arch Electricity", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful charge with a distinctive green glow. This phenomenon appears to be consistent with other advanced technology found on the planet.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.");
 
             #endregion
 
@@ -170,8 +179,11 @@ namespace ProjectAncients
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
             whiteTabletTerminal.Patch();
 
-            door_supplyCache = new PrecursorDoorPrefab("BaseCDoor", "Supply cache tablet door", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8.5f), new Vector3(0f, 0f, 0f));
+            door_supplyCache = new PrecursorDoorPrefab("BaseCDoor", "Supply cache door", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
+
+            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_researchBase.Patch();
 
             whiteTabletDoor = new PrecursorDoorPrefab("WhiteTabletDoor", "White tablet door", whiteTabletTerminal.ClassID);
             whiteTabletDoor.Patch();
@@ -183,11 +195,17 @@ namespace ProjectAncients
             tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID });
             tertiaryOutpostTerminal.Patch();
 
-            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", DataTerminalPrefab.orangeTerminalCID);
+            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminal2", DataTerminalPrefab.blueTerminalCID);
             guardianTerminal.Patch();
 
             supplyCacheTerminal = new DataTerminalPrefab("SupplyCacheTerminal", ency_supplyCacheTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID);
             supplyCacheTerminal.Patch();
+
+            researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", ency_researchBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID);
+            researchBaseTerminal.Patch();
+
+            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID);
+            archElectricityTerminal.Patch();
 
             secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(8f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
@@ -208,6 +226,9 @@ namespace ProjectAncients
 
             var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183));
             supplyCacheBase.Patch();
+
+            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(0, 15, 0));
+            researchBase.Patch();
             #endregion
 
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
