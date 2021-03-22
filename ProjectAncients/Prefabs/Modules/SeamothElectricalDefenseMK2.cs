@@ -1,7 +1,6 @@
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Interfaces;
 using ProjectAncients.Mono.Modules;
-using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 
