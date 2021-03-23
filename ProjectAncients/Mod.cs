@@ -146,7 +146,7 @@ namespace ProjectAncients
             #endregion
 
             #region Signals
-            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Alien Signal A", new Vector3(500f, 0f, 0f), 3);
+            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Alien Signal A", new Vector3(-11, -178, -1155), 3);
             signal_outpostC.Patch();
 
             signal_outpostD = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Alien Signal B", new Vector3(-500f, 0f, 0f), 3);
@@ -160,9 +160,9 @@ namespace ProjectAncients
             #region Ency
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "A supply cache.");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
 
-            PatchEncy(ency_researchBaseTerminal, modEncyPath, "Destructive Weapons Research Base Data", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_researchBaseTerminal, modEncyPath, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
@@ -188,7 +188,7 @@ namespace ProjectAncients
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
             whiteTabletTerminal.Patch();
 
-            door_supplyCache = new PrecursorDoorPrefab("BaseCDoor", "Supply cache door", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
 
             door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
