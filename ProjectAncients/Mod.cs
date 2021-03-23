@@ -168,7 +168,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a complicated tracking device. Frequent and intense electromagnetic pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
-            PatchEncy(ency_archElectricityTerminal, modEncyPath, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nThis phenomenon appears to be consistent with other advanced technology found on the planet.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.");
+            PatchEncy(ency_archElectricityTerminal, modEncyPath, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.");
 
             #endregion
 
