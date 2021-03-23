@@ -53,6 +53,8 @@ namespace ProjectAncients
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
+        public static TechType architectElectricityMasterTech;
+
         /// <summary>
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
         /// </summary>
@@ -103,12 +105,20 @@ namespace ProjectAncients
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
 
-            electricalDefenseMk2 = new();
-            electricalDefenseMk2.Patch();
 
             #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Anomaly");
+            #endregion
+
+            #region Modules
+            electricalDefenseMk2 = new();
+            electricalDefenseMk2.Patch();
+            #endregion
+
+            #region Tech
+            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", null, false);
+            KnownTechHandler.SetAnalysisTechEntry(architectElectricityMasterTech, new List<TechType>() { electricalDefenseMk2.TechType});
             #endregion
 
             #region Creatures
