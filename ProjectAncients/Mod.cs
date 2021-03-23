@@ -112,7 +112,7 @@ namespace ProjectAncients
             #endregion
 
             #region Tech
-            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilites.", false);
+            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
             #endregion
 
             #region Modules
@@ -130,7 +130,7 @@ namespace ProjectAncients
             gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan baby", "A very young specimen, raised in containment.", assetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), null);
             gargBabyPrefab.Patch();
 
-            skeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan skeleton", "Spooky", assetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
+            skeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan skeleton", "Spooky.", assetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
             skeletonGargPrefab.Patch();
 
             gargEgg = new GargantuanEgg();
