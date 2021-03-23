@@ -117,7 +117,7 @@ namespace ProjectAncients
             #endregion
 
             #region Tech
-            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", null, false);
+            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilites.", false);
             KnownTechHandler.SetAnalysisTechEntry(architectElectricityMasterTech, new List<TechType>() { electricalDefenseMk2.TechType});
             #endregion
 
