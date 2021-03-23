@@ -32,8 +32,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, 7f));
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, -9f));
             SpawnColumns(-16f);
-
-            SpawnPrefab(atmosphereVolume_cache, Vector3.zero, Vector3.zero, new Vector3(22f, 26f, 22f));
         }
 
         protected void SpawnColumns(float yOffset)
