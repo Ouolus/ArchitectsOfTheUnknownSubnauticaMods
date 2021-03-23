@@ -16,9 +16,11 @@ namespace ProjectAncients.Prefabs.Modules
         public override TechType ModelTemplate => TechType.SeamothElectricalDefense;
         public override float? MaxCharge => 30f;
         public override float? EnergyCost => 5f;
+        public override CraftTree.Type FabricatorType => CraftTree.Type.Workbench;
+        public override string[] StepsToFabricatorTab => new string[] { "SeamothMenu" };
 
         #region Interface Implementation
-        
+
         public float Cooldown => 5f;
         public void OnUpgradeUse(int slotID, SeaMoth seaMoth)
         {
