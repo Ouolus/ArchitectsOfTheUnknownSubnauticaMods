@@ -19,6 +19,7 @@ namespace ProjectAncients.Prefabs.Modules
         public override CraftTree.Type FabricatorType => CraftTree.Type.Workbench;
         public override string[] StepsToFabricatorTab => new string[] { "SeamothMenu" };
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
+        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
         #region Interface Implementation
 
