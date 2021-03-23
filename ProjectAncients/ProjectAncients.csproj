@@ -134,6 +134,7 @@
     <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
