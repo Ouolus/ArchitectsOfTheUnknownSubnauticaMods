@@ -111,14 +111,13 @@ namespace ProjectAncients
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Anomaly");
             #endregion
 
+            #region Tech
+            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilites.", false);
+            #endregion
+
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
-            #endregion
-
-            #region Tech
-            architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilites.", false);
-            KnownTechHandler.SetAnalysisTechEntry(architectElectricityMasterTech, new List<TechType>() { electricalDefenseMk2.TechType});
             #endregion
 
             #region Creatures
