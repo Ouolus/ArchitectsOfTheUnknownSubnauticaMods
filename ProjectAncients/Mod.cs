@@ -65,9 +65,9 @@ namespace ProjectAncients
         private const string assetBundleName = "projectancientsassets";
 
         private const string modEncyPath_root = "DownloadedData/Precursor/GargMod";
-        private const string modEncyPath_information = "DownloadedData/Precursor/GargMod/Information";
-        private const string modEncyPath_analysis = "DownloadedData/Precursor/GargMod/Analysis";
-        private const string modEncyPath_tech = "DownloadedData/Precursor/GargMod/Tech";
+        private const string modEncyPath_information = "DownloadedData/Precursor/GargMod/GargModInformation";
+        private const string modEncyPath_analysis = "DownloadedData/Precursor/GargMod/GargModPrecursorAnalysis";
+        private const string modEncyPath_tech = "DownloadedData/Precursor/GargMod/GargModPrecursorTech";
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
         private const string ency_supplyCacheTerminal = "SupplyCacheData";
@@ -170,7 +170,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_information, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
+            PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
             PatchEncy(ency_distressSignal, modEncyPath_tech, "Abnormal Distress Signal", "This terminal has given your PDA access to a complicated tracking device. Frequent and intense electromagnetic pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
