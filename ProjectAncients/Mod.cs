@@ -64,7 +64,10 @@ namespace ProjectAncients
 
         private const string assetBundleName = "projectancientsassets";
 
-        private const string modEncyPath = "DownloadedData/Precursor/GargMod";
+        private const string modEncyPath_root = "DownloadedData/Precursor/GargMod";
+        private const string modEncyPath_information = "DownloadedData/Precursor/GargMod/Information";
+        private const string modEncyPath_analysis = "DownloadedData/Precursor/GargMod/Analysis";
+        private const string modEncyPath_tech = "DownloadedData/Precursor/GargMod/Tech";
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
         private const string ency_supplyCacheTerminal = "SupplyCacheData";
@@ -108,7 +111,10 @@ namespace ProjectAncients
 
             #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath), "Anomaly");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_root), "Anomaly");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_analysis), "Analysis");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_information), "Information");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             #endregion
 
             #region Tech
@@ -158,17 +164,17 @@ namespace ProjectAncients
 
 
             #region Ency
-            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath, "Tertiary Outpost Data", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_information, "Tertiary Outpost Anaylsis", "This data terminal contains co-ordinates pointing to two secondary outposts. The existence for this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath, "Supply Cache Data", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath_information, "Supply Cache Anaylsis", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
 
-            PatchEncy(ency_researchBaseTerminal, modEncyPath, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_researchBaseTerminal, modEncyPath_information, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_ruinedGuardian, modEncyPath, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
+            PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\n\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
-            PatchEncy(ency_distressSignal, modEncyPath, "Abnormal Distress Signal", "This terminal has given your PDA access to a complicated tracking device. Frequent and intense electromagnetic pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
+            PatchEncy(ency_distressSignal, modEncyPath_tech, "Abnormal Distress Signal", "This terminal has given your PDA access to a complicated tracking device. Frequent and intense electromagnetic pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
 
-            PatchEncy(ency_archElectricityTerminal, modEncyPath, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.");
+            PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.");
 
             #endregion
 
@@ -236,7 +242,7 @@ namespace ProjectAncients
             var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183));
             supplyCacheBase.Patch();
 
-            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(0, 15, 0));
+            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -180, -650));
             researchBase.Patch();
             #endregion
 
