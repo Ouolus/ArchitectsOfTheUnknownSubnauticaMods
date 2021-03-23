@@ -18,6 +18,7 @@ namespace ProjectAncients.Prefabs.Modules
         public override float? EnergyCost => 5f;
         public override CraftTree.Type FabricatorType => CraftTree.Type.Workbench;
         public override string[] StepsToFabricatorTab => new string[] { "SeamothMenu" };
+        public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
 
         #region Interface Implementation
 
