@@ -359,5 +359,4 @@ Assembly-CSharp-firstpass.dll
 Assembly-CSharp.dll
 
 ArchitectsLibrary.dll
-Dependencies/SN1/ArchitectsLibrary.xml
-Dependencies/SN1.exp/ArchitectsLibrary.xml
+ArchitectsLibrary.xml
