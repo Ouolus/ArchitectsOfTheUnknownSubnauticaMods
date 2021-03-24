@@ -12,14 +12,16 @@ namespace ProjectAncients.Prefabs.AlienBase
         bool overrideTerminalPosition;
         Vector3 terminalPosition;
         Vector3 terminalRotation;
+        string rootClassId;
 
-        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default)
+        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23")
             : base(classId, displayName, ".")
         {
             this.terminalClassId = terminalClassId;
             this.overrideTerminalPosition = overrideTerminalPosition;
             this.terminalPosition = terminalLocalPosition;
             this.terminalRotation = terminalLocalRotation;
+            this.rootClassId = rootPrefabClassId;
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -33,7 +35,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
         public override GameObject GetGameObject()
         {
-            PrefabDatabase.TryGetPrefab("b816abb4-8f6c-4d70-b4c5-662e69696b23", out GameObject prefab);
+            PrefabDatabase.TryGetPrefab(rootClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
             terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
