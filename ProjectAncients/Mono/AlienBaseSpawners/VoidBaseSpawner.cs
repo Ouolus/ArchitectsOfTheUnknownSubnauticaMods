@@ -8,8 +8,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             GameObject baseModel = SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero);
             GenerateAtmospheres(baseModel, "AtmosphereRoot", atmosphereVolume_cache);
-            SpawnPrefab(airlock_1, new Vector3(0f, 3f, 19.75f), Vector3.zero, new Vector3(1.7f, 1.5f, 1f));
-            SpawnPrefab(vfx_entrance, new Vector3(0f, 3f, 19.75f), new Vector3(90, 0, 0), new Vector3(1.7f, 1.5f, 1f));
+            SpawnPrefab(airlock_1, new Vector3(-0.5f, 3f, 19.75f), Vector3.zero, new Vector3(1.30f, 1.5f, 1f));
+            SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f, 19.75f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1f));
             SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, -5f), Vector3.up * 130f);
             SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, -5f), Vector3.up * 55f);
             SpawnPrefab(natural_coralClumpYellow, new Vector3(4.413f, -10f, -0.28f), Vector3.up * 60);
