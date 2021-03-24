@@ -26,19 +26,41 @@ namespace ProjectAncients.Prefabs
 
         public override bool CanBeScaredByElectricity => true;
 
+        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
-            UpdateGargMaterial(renderer.materials[0]);
-            UpdateGargMaterial(renderer.materials[1]);
-            UpdateGargMaterial(renderer.materials[2]);
+            UpdateGargTransparentMaterial(renderer.materials[0]);
+            UpdateGargTransparentMaterial(renderer.materials[1]);
+            UpdateGargTransparentMaterial(renderer.materials[2]);
+            UpdateGargSkeletonMaterial(renderer.materials[3]);
+            UpdateGargGutsMaterial(renderer.materials[4]);
         }
 
-        void UpdateGargMaterial(Material material)
+        void UpdateGargTransparentMaterial(Material material)
         {
-            //material.SetFloat("_EmissionLM", 0.4f);
-            //material.SetFloat("_EmissionLMNight", 0.4f);
+            material.SetInt("_ZWrite", 1);
+            material.SetFloat("_Frensel", 1);
+        }
+
+        void UpdateGargSkeletonMaterial(Material material)
+        {
+            material.SetFloat("_Frensel", 1);
+            material.SetFloat("_SpecInt", 50);
+            material.SetFloat("_GlowStrength", 6f);
+            material.SetFloat("_GlowStrengthNight", 6f);
+        }
+
+        void UpdateGargGutsMaterial(Material material)
+        {
+            material.EnableKeyword("MARMO_ALPHA_CLIP");
+            material.SetFloat("_Fresnel", 1f);
+            material.SetFloat("_SpecInt", 50);
+            material.SetFloat("_GlowStrength", 10f);
+            material.SetFloat("_GlowStrengthNight", 10f);
+
         }
 
         public override bool CanPerformCyclopsCinematic => true;
