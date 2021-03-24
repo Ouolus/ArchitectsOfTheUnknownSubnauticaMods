@@ -18,9 +18,9 @@ namespace ProjectAncients.Patches
             voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = "void";
 
             GameObject musicParent = __instance.gameObject.SearchChild("music");
-            GameObject dunesMusic = GameObject.Instantiate(musicParent.SearchChild("dunes"), musicParent.transform);
-            dunesMusic.name = "voidAmbience";
-            dunesMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
+            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("precursorCave"), musicParent.transform);
+            referenceMusic.name = "voidAmbience";
+            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
         }
 
         [HarmonyPostfix]
