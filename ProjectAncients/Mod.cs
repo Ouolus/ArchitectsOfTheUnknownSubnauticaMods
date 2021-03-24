@@ -43,6 +43,8 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab door_researchBase;
         public static PrecursorDoorPrefab whiteTabletDoor;
 
+        public static PrecursorDoorPrefab voidDoor_red;
+
         public static DataTerminalPrefab tertiaryOutpostTerminal;
         public static DataTerminalPrefab guardianTerminal;
         public static DataTerminalPrefab researchBaseTerminal;
@@ -203,6 +205,8 @@ namespace ProjectAncients
 
             whiteTabletDoor = new PrecursorDoorPrefab("WhiteTabletDoor", "White tablet door", whiteTabletTerminal.ClassID);
             whiteTabletDoor.Patch();
+
+            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", whiteTabletTerminal.ClassID, true, Vector3.zero, Vector3.zero, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
