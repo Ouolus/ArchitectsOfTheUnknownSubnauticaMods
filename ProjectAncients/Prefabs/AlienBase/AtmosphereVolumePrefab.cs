@@ -4,7 +4,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 {
     public class AtmosphereVolumePrefab : Spawnable
     {
-        public AtmosphereVolumePrefab(string classId, ) : base(classId, ".", ".")
+        public AtmosphereVolumePrefab(string classId) : base(classId, ".", ".")
         {
         }
     }
