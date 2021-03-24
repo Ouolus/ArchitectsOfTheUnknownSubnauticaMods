@@ -50,6 +50,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab archElectricityTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
+        public static GenericWorldPrefab voidBaseModel;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -222,8 +223,11 @@ namespace ProjectAncients
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: architectElectricityMasterTech);
             archElectricityTerminal.Patch();
 
-            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(8f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(3f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
+
+            voidBaseModel = new GenericWorldPrefab("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(3f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
+            voidBaseModel.Patch();
             #endregion
 
             #region Alien bases
@@ -244,6 +248,9 @@ namespace ProjectAncients
 
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -180, -650));
             researchBase.Patch();
+
+            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1780));
+            eggBase.Patch();
             #endregion
 
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
