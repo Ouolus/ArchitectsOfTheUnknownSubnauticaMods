@@ -190,12 +190,16 @@ namespace ProjectAncients.Mono
         private IEnumerator PerformPlayerCinematic(Player player)
         {
             playerDeathCinematic.StartCinematicMode(player);
-            float length = 2f;
+            float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
             behaviour.timeCanAttackAgain = Time.time + length;
-            yield return new WaitForSeconds(length);
-            Player.main.liveMixin.Kill(DamageType.Normal);
+            yield return new WaitForSeconds(length / 3f);
+            Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
+            yield return new WaitForSeconds(length / 3f);
+            Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
+            yield return new WaitForSeconds(length / 3f);
+            Player.main.liveMixin.TakeDamage(250f, transform.position, DamageType.Normal, gameObject);
         }
     }
 }
