@@ -22,7 +22,7 @@ namespace ProjectAncients.Prefabs
 
         public override bool OneShotsPlayer => true;
 
-        public override float TentacleSnapSpeed => 8f;
+        public override float TentacleSnapSpeed => 12f;
 
         public override bool CanBeScaredByElectricity => true;
 
