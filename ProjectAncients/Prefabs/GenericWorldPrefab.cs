@@ -31,13 +31,13 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
-                foreach(Renderer renderer in prefab.GetComponents<Renderer>())
+                ECCHelpers.ApplySNShaders(prefab, materialProperties);
+                foreach (Renderer renderer in prefab.GetComponents<Renderer>())
                 {
                     renderer.material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
                     renderer.material.SetFloat("_SpecInt", 8f);
                     renderer.material.SetFloat("_Fresnel", 0.4f);
                 }
-                ECCHelpers.ApplySNShaders(prefab, materialProperties);
                 foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
                 {
                     col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
