@@ -189,6 +189,7 @@ namespace ProjectAncients.Mono
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {
+            playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
@@ -199,6 +200,7 @@ namespace ProjectAncients.Mono
             yield return new WaitForSeconds(length / 3f);
             Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
             yield return new WaitForSeconds(length / 3f);
+            playerDeathCinematic.enabled = false;
             Player.main.liveMixin.TakeDamage(250f, transform.position, DamageType.Normal, gameObject);
         }
     }
