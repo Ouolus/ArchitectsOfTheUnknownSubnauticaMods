@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ProjectAncients.Mono;
 
 namespace ProjectAncients.Prefabs
 {
@@ -37,6 +38,9 @@ namespace ProjectAncients.Prefabs
             UpdateGargTransparentMaterial(renderer.materials[2]);
             UpdateGargSkeletonMaterial(renderer.materials[3]);
             UpdateGargGutsMaterial(renderer.materials[4]);
+            var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
+            gargPresence.swimSoundPrefix = "GargPresence";
+            gargPresence.delay = 54f;
         }
 
         void UpdateGargTransparentMaterial(Material material)
