@@ -42,12 +42,12 @@ namespace ProjectAncients.Prefabs
         void UpdateGargTransparentMaterial(Material material)
         {
             material.SetInt("_ZWrite", 1);
-            material.SetFloat("_Frensel", 1);
+            material.SetFloat("_Fresnel", 1);
         }
 
         void UpdateGargSkeletonMaterial(Material material)
         {
-            material.SetFloat("_Frensel", 1);
+            material.SetFloat("_Fresnel", 1);
             material.SetFloat("_SpecInt", 50);
             material.SetFloat("_GlowStrength", 6f);
             material.SetFloat("_GlowStrengthNight", 6f);
