@@ -18,6 +18,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(natural_rockBlade1, new Vector3(-4f, -10f, -7f), Vector3.up * 15f, Vector3.one * 0.2f);
             SpawnPrefab(natural_rockBlade1, new Vector3(3f, -10f, 6f), Vector3.up * 135f, Vector3.one * 0.21f);
             SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, -5f), Vector3.up * -60f, Vector3.one * 0.22f);
-            SpawnPrefab(light_big_animated, new Vector3(0f, 11f, 0f), new Vector3(180f, 0f, 0f));        }
+            SpawnPrefab(light_big_animated, new Vector3(0f, 11f, 0f), new Vector3(180f, 0f, 0f));
+            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f, 35));
+            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f, 35));
+
+            GenerateCable(new Vector3(388, -393, -1805), new Vector3(0.7f, 0f, 0.7f), new Vector3(396, -395, -1762), new Vector3(-0.3f, -0.1f, 0.9f), Vector3.right, 6f);
+            GenerateCable(new Vector3(383, -412, -1810), new Vector3(0.7f, 0f, 0.7f), new Vector3(383, -416, -1763), new Vector3(0, 0, 1), Vector3.down, 8f);
+            GenerateCable(new Vector3(381, -424, -1812), new Vector3(0.7f, 0f, 0.7f), new Vector3(370.5f, -426, -1769.7f), new Vector3(0.4f, -0.1f, 0.9f), Vector3.down, 8f);
+            GenerateCable(new Vector3(379, -436, -1814), new Vector3(0.7f, 0f, 0.7f), new Vector3(398, -451, -1769.9f), new Vector3(-0.1f, 0, 1), Vector3.down, 8f);
+        }
     }
 }
