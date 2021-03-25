@@ -192,7 +192,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             return null;
         }
 
-        public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default)
+        public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default, Vector3 individualEulers = default)
         {
             for (int x = 0; x < size.x; x++)
             {
@@ -203,7 +203,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                         Vector3 rawPosition = new Vector3(x, y, z);
                         Vector3 spacedPosition = Vector3.Scale(rawPosition, spacing * individualScale);
                         Vector3 positionWithOffset = spacedPosition - (Vector3.Scale(size, (spacing * individualScale) / 2f)) + offset;
-                        SpawnPrefab(classId, positionWithOffset, Quaternion.identity.eulerAngles, individualScale);
+                        SpawnPrefab(classId, positionWithOffset, individualEulers, individualScale);
                     }
                 }
             }
