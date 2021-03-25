@@ -36,7 +36,7 @@ namespace ProjectAncients.Patches
                 }
                 WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
                 {
-                    absorption = new Vector3(125f, 20f, 4f),
+                    absorption = new Vector3(6f, 6f, 6f),
                     ambientScale = 0f,
                     emissiveScale = 0f,
                     sunlightScale = 1f,
