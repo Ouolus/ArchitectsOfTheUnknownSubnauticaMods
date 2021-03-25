@@ -51,6 +51,17 @@ namespace ProjectAncients.Prefabs.AlienBase
             {
                 globalKeyActivator.doorActivationKey = doorKey;
             }
+            if(prefab.transform.childCount >= 1)
+            {
+                Transform firstChild = prefab.transform.GetChild(0);
+                if (firstChild != null)
+                {
+                    if(firstChild.name == "pedestal")
+                    {
+                        GameObject.Destroy(firstChild.gameObject);
+                    }
+                }
+            }
             obj.SetActive(false);
             return obj;
         }
