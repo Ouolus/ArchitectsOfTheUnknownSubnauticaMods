@@ -40,6 +40,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
         public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
+        public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
         /// </summary>
