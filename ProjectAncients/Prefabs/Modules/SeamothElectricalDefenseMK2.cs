@@ -9,7 +9,7 @@ namespace ProjectAncients.Prefabs.Modules
     public class SeamothElectricalDefenseMK2 : SeaMothUpgrade, ISeaMothOnUse
     {
         public SeamothElectricalDefenseMK2()
-            : base("SeamothElectricalDefenseMK2", "Seamoth Perimeter Defense MK2",
+            : base("SeamothElectricalDefenseMK2", "Ion Perimeter Defense System",
                 "Implements a nanotechnology system that generates an extremely powerful plasma-like substance. Defensive capabilities against leviathan-class predators. Use with caution.")
         {}
         public override QuickSlotType QuickSlotType => QuickSlotType.SelectableChargeable;
