@@ -168,6 +168,7 @@
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
     <Compile Include="Prefabs\GargantuanBaby.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
