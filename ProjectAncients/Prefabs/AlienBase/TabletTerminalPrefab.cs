@@ -31,6 +31,11 @@ namespace ProjectAncients.Prefabs.AlienBase
             GameObject obj = GameObject.Instantiate(prefab);
             obj.GetComponent<PrecursorKeyTerminal>().acceptKeyType = keyType;
             obj.SetActive(false);
+            SphereCollider trigger = prefab.GetComponentInChildren<SphereCollider>();
+            if (trigger)
+            {
+                trigger.radius = 12f;
+            }
             return obj;
         }
     }
