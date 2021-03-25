@@ -210,19 +210,19 @@ namespace ProjectAncients
             whiteTabletDoor = new PrecursorDoorPrefab("WhiteTabletDoor", "White tablet door", whiteTabletTerminal.ClassID);
             whiteTabletDoor.Patch();
 
-            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, true, new Vector3(0f, 0f, 16f), Vector3.zero, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
+            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, true, new Vector3(0f, 0f, 16f), Vector3.up * 180f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
             voidDoor_red.Patch();
 
-            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * -45f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
+            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * -225f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
             voidDoor_blue.Patch();
 
-            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, true, new Vector3(-5f, 0f, 11f), Vector3.up * -90f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
+            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, true, new Vector3(-5f, 0f, 11f), Vector3.up * -270f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
             voidDoor_purple.Patch();
 
-            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, true, new Vector3(5f, 0f, 11f), Vector3.up * 90f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
+            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, true, new Vector3(5f, 0f, 11f), Vector3.up * 270f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
             voidDoor_orange.Patch();
 
-            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 45f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
+            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 225f, "4ea69565-60e4-4554-bbdb-671eaba6dffb");
             voidDoor_white.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
