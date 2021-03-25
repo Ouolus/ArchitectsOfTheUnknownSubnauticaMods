@@ -26,7 +26,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                     prefab.SetActive(false);
                 }
             }
-
+            gameObject.Set(prefab);
         }
     }
 }

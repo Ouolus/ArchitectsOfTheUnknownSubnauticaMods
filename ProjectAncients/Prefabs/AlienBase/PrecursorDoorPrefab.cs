@@ -66,7 +66,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                prefab.SearchChild("Precursor_Gun_BeachEntry", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             return obj;
