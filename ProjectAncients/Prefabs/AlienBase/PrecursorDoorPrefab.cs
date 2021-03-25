@@ -14,8 +14,9 @@ namespace ProjectAncients.Prefabs.AlienBase
         Vector3 terminalRotation;
         string rootClassId;
         string doorKey;
+        private bool voidInteriorDoor;
 
-        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23")
+        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool voidInteriorDoor = false)
             : base(classId, displayName, ".")
         {
             this.terminalClassId = terminalClassId;
@@ -24,6 +25,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.terminalRotation = terminalLocalRotation;
             this.rootClassId = rootPrefabClassId;
             this.doorKey = doorKey;
+            this.voidInteriorDoor = voidInteriorDoor;
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -61,6 +63,10 @@ namespace ProjectAncients.Prefabs.AlienBase
                         GameObject.Destroy(firstChild.gameObject);
                     }
                 }
+            }
+            if (voidInteriorDoor)
+            {
+                prefab.SearchChild("Precursor_Gun_BeachEntry", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             return obj;
