@@ -26,6 +26,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GenerateCable(new Vector3(383, -412, -1810), new Vector3(0.7f, 0f, 0.7f), new Vector3(383, -416, -1763), new Vector3(0, 0, 1), Vector3.down, 8f);
             GenerateCable(new Vector3(381, -424, -1812), new Vector3(0.7f, 0f, 0.7f), new Vector3(370.5f, -426, -1769.7f), new Vector3(0.4f, -0.1f, 0.9f), Vector3.down, 8f);
             GenerateCable(new Vector3(379, -436, -1814), new Vector3(0.7f, 0f, 0.7f), new Vector3(398, -451, -1769.9f), new Vector3(-0.1f, 0, 1), Vector3.down, 8f);
+
+            SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f));
+            SpawnPrefab(Mod.voidDoor_orange.ClassID, new Vector3(0f, 0f, 24f));
+            SpawnPrefab(Mod.voidDoor_white.ClassID, new Vector3(0f, 0f, 24f));
+            SpawnPrefab(Mod.voidDoor_blue.ClassID, new Vector3(0f, 0f, 24f));
+            SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, 0f, 24f));
         }
     }
 }
