@@ -32,7 +32,7 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
-                foreach (Renderer renderer in prefab.GetComponents<Renderer>())
+                foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
                 {
                     renderer.material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
                     renderer.material.SetFloat("_SpecInt", 8f);
