@@ -20,8 +20,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f, 35));
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f, 35));
 
-            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 5), Vector3.one, new Vector3(-3f + 0.5f, 0.5f, 14f));
-            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 5), Vector3.one, new Vector3(3f + 1.5f, 0.5f, 14f));
+            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 5), Vector3.one, new Vector3(-3f + 0.5f, 0.5f, 18f));
+            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 5), Vector3.one, new Vector3(3f + 1.5f, 0.5f, 18f));
 
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 8), Vector3.one, new Vector3(-3f + 0.5f, 11.5f, 14f), Vector3.left * 180f);
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 8), Vector3.one, new Vector3(3f + 1.5f, 11.5f, 14f), Vector3.left * 180f);
