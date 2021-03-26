@@ -104,6 +104,10 @@
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>$(DepDir)\Unity.ResourceManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
       <Private>False</Private>
