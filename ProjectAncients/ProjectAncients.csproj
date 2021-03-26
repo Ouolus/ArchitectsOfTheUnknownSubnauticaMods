@@ -32,6 +32,9 @@
     <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
+    <OutputPath>bin\SN1.exp\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>$(DepDir)\0Harmony.dll</HintPath>

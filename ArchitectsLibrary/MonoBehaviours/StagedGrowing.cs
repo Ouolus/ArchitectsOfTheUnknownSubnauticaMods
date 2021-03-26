@@ -12,6 +12,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         public TechType nextStageTechType = TechType.None;
         public float daysToNextStage = 5;
         public float nextStageStartSize = 1f; // the next creature start size
+        public float maxGrowSize = 1f;
 
         Vector3 startSize;
         float startTime;
@@ -46,7 +47,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                     if (waterParkCreature is null || !waterParkCreature.IsInsideWaterPark())
                     {
                         t = (DayNightCycle.main.timePassedAsFloat - startTime) / growTime;
-                        var scale = Vector3.Lerp(startSize, Vector3.one, t);
+                        var scale = Vector3.Lerp(startSize, Vector3.one * maxGrowSize, t);
                         gameObject.transform.localScale = scale;
 
                         foreach (KeyValuePair<CreatureAction, float> pair in originalSpeeds)
