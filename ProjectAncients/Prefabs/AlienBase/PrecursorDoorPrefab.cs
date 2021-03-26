@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using System.Collections;
+using SMLHelper.V2.Assets;
 using ECCLibrary;
 using ProjectAncients.Mono;
 using UnityEngine;
@@ -36,7 +37,8 @@ namespace ProjectAncients.Prefabs.AlienBase
             slotType = EntitySlot.Type.Large,
             techType = TechType
         };
-
+        
+#if SN1
         public override GameObject GetGameObject()
         {
             PrefabDatabase.TryGetPrefab(rootClassId, out GameObject prefab);
@@ -71,5 +73,45 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.SetActive(false);
             return obj;
         }
+#elif SN1_exp
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(rootClassId);
+            yield return request;
+            request.TryGetPrefab(out GameObject prefab);
+            
+            GameObject obj = GameObject.Instantiate(prefab);
+            GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
+            terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
+            if (overrideTerminalPosition)
+            {
+                terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
+                terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
+            }
+            PrecursorGlobalKeyActivator globalKeyActivator = prefab.GetComponent<PrecursorGlobalKeyActivator>();
+            if (globalKeyActivator)
+            {
+                globalKeyActivator.doorActivationKey = doorKey;
+            }
+            if(prefab.transform.childCount >= 1)
+            {
+                Transform firstChild = prefab.transform.GetChild(0);
+                if (firstChild != null)
+                {
+                    if(firstChild.name == "pedestal")
+                    {
+                        GameObject.Destroy(firstChild.gameObject);
+                    }
+                }
+            }
+            if (voidInteriorDoor)
+            {
+                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+            }
+            obj.SetActive(false);
+            
+            gameObject.Set(obj);
+        }
+#endif
     }
 }
