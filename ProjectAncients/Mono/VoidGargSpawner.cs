@@ -1,5 +1,6 @@
 ﻿using ECCLibrary.Internal;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,10 +46,19 @@ namespace ProjectAncients.Mono
             {
                 if (!VoidGargSingleton.AdultGargExists)
                 {
-                    GameObject newGargantuan = Instantiate(CraftData.GetPrefabForTechType(adultPrefab), GetGargSpawnPoint(Player.main.transform.position), Quaternion.LookRotation(Vector3.up));
-                    newGargantuan.SetActive(true);
+                    StartCoroutine(AdultSpawner());
                 }
             }
+        }
+
+        IEnumerator AdultSpawner()
+        {
+            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(adultPrefab);
+            yield return task;
+            
+            var obj = task.GetResult();
+            GameObject newGargantuan = Instantiate(obj, GetGargSpawnPoint(Player.main.transform.position), Quaternion.LookRotation(Vector3.up));
+            newGargantuan.SetActive(true);
         }
 
         public static bool IsVoidBiome(string biomeName)
