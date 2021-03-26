@@ -33,7 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
-    <OutputPath>bin\SN1.exp\</OutputPath>
+    <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
