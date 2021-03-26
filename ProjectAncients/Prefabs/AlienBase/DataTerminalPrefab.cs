@@ -43,7 +43,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
-            PrefabDatabase(terminalClassId, out GameObject prefab);
+            PrefabDatabase.TryGetPrefab(terminalClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
             if (!string.IsNullOrEmpty(encyKey))
