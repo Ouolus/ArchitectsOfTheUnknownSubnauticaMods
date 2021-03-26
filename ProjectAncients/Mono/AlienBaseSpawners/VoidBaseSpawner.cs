@@ -8,14 +8,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             GameObject baseModel = SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero);
             GenerateAtmospheres(baseModel, "AtmosphereRoot", atmosphereVolume_cache);
-            SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, -5f), Vector3.up * 130f);
-            SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, -5f), Vector3.up * 55f);
-            SpawnPrefab(natural_coralClumpYellow, new Vector3(4.413f, -10f, -0.28f), Vector3.up * 60);
-            SpawnPrefab(natural_coralClumpYellow, new Vector3(-3f, -10f, 4f), Vector3.up * 92f);
-            SpawnPrefab(natural_coralClumpYellow_variant, new Vector3(5f, -10f, -6f), Vector3.up * -50f);
-            SpawnPrefab(natural_rockBlade1, new Vector3(-4f, -10f, -7f), Vector3.up * 15f, Vector3.one * 0.2f);
-            SpawnPrefab(natural_rockBlade1, new Vector3(3f, -10f, 6f), Vector3.up * 135f, Vector3.one * 0.21f);
-            SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, -5f), Vector3.up * -60f, Vector3.one * 0.22f);
             SpawnPrefab(light_big_animated, new Vector3(0f, -0.5f, 36f), new Vector3(0f, 0f, 0f));
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f, 35));
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f, 35));
@@ -40,7 +32,21 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(0f, 0f, -8f));
             SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f, 24f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1f));
 
-            SpawnPrefab(vfx_entrance, new Vector3(0f, -0.345f, 0f), new Vector3(0f, 0f, 0f), new Vector3(2f, 1f, 2f)); //Aquarium
+            //Aquarium
+            SpawnPrefab(vfx_entrance, new Vector3(0f, -0.345f, 0f), new Vector3(0f, 0f, 0f), new Vector3(2f, 1f, 2f));
+            SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, -5f), Vector3.up * 130f);
+            SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, -5f), Vector3.up * 55f);
+            SpawnPrefab(natural_coralClumpYellow, new Vector3(4.413f, -10f, -0.28f), Vector3.up * 60);
+            SpawnPrefab(natural_coralClumpYellow, new Vector3(-3f, -10f, 4f), Vector3.up * 92f);
+            SpawnPrefab(natural_coralClumpYellow_variant, new Vector3(5f, -10f, -6f), Vector3.up * -50f);
+            SpawnPrefab(natural_rockBlade1, new Vector3(-4f, -10f, -7f), Vector3.up * 15f, Vector3.one * 0.2f);
+            SpawnPrefab(natural_rockBlade1, new Vector3(3f, -10f, 6f), Vector3.up * 135f, Vector3.one * 0.21f);
+            SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, -5f), Vector3.up * -60f, Vector3.one * 0.22f);
+
+
+            //Supplies
+            SpawnPrefab(supplies_purpleTablet, new Vector3(13f, -7.3f, -7.5f), Vector3.up * 64f);
+
 
         }
     }
