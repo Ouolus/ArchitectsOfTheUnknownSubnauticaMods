@@ -1,11 +1,7 @@
 ﻿using ECCLibrary;
 using ProjectAncients.Mono.AlienTech;
 using SMLHelper.V2.Assets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using UWE;
 
@@ -35,7 +31,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             techType = this.TechType
         };
 
-        public override GameObject GetGameObject()
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (prefab == null)
             {
@@ -48,15 +44,21 @@ namespace ProjectAncients.Prefabs.AlienBase
                 prefab.EnsureComponent<GuardianEyes>();
                 prefab.EnsureComponent<AudioClipEmitter>().clipPoolPrefix = "Creaking";
                 ECCHelpers.ApplySNShaders(prefab, new UBERMaterialProperties(5f, 1f, 1f));
-                AddVolumetricLight(prefab.SearchChild("LightPos1", ECCStringComparison.Equals).transform);
-                AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform);
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos1", ECCStringComparison.Equals).transform));
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform));
             }
-            return prefab;
+            
+            yield return null;
+            
+            gameObject.Set(prefab);
         }
 
-        private void AddVolumetricLight(Transform transform)
+        IEnumerator AddVolumetricLight(Transform transform)
         {
-            if (PrefabDatabase.TryGetPrefab(volumetricLight, out GameObject volumetricPrefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(volumetricLight);
+            yield return request;
+            
+            if (request.TryGetPrefab(out GameObject volumetricPrefab))
             {
                 GameObject child = GameObject.Instantiate(volumetricPrefab, transform);
                 child.transform.localPosition = Vector3.zero;
