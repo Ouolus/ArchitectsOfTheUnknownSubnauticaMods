@@ -39,6 +39,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(0f, 0f, -8f));
             SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f, 24f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1f));
+
+            SpawnPrefab(vfx_entrance, new Vector3(0f, -0.345f, 0f), new Vector3(0f, 0f, 0f), new Vector3(2f, 1f, 2f)); //Aquarium
+
         }
     }
 }
