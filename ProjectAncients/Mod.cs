@@ -203,10 +203,10 @@ namespace ProjectAncients
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
             whiteTabletTerminal.Patch();
 
-            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", "SupplyCacheDoor", orangeTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
 
-            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", "ResearchBaseDoor", whiteTabletTerminal.ClassID, true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_researchBase.Patch();
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
