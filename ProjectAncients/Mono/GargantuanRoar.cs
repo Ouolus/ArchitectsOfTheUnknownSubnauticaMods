@@ -9,7 +9,6 @@ namespace ProjectAncients.Mono
         AudioSource audioSource;
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
-        Transform currentSpawn;
         Creature creature;
         const float delayMin = 11f;
         const float delayMax = 18f;
@@ -23,10 +22,9 @@ namespace ProjectAncients.Mono
         {
             InitializeAudioSource();
             creature = GetComponent<Creature>();
-            currentSpawn = gameObject.SearchChild("CurrentSpawn").transform;
             float distance;
             AudioClip clipToPlay;
-            for(; ; )
+            for (; ; )
             {
                 if (!gameObject.GetComponent<LiveMixin>().IsAlive())
                 {
@@ -76,11 +74,6 @@ namespace ProjectAncients.Mono
 
             closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
             farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);
-        }
-
-        private void DoWaterDisplacement()
-        {
-            WorldForces.AddExplosion(currentSpawn.position, DayNightCycle.main.timePassed, 100f, 25f);
         }
     }
 }

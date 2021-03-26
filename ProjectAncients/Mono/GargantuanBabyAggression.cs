@@ -71,6 +71,7 @@ namespace ProjectAncients.Mono
 			}
 			if(lastTarget.target != null)
 			{
+				creature.Aggression.Value = 1f;
 				return;
 			}
 			if (EcoRegionManager.main != null)
@@ -79,10 +80,10 @@ namespace ProjectAncients.Mono
 				if (aggressionTarget != null)
 				{
 					lastTarget.SetTarget(aggressionTarget);
-					if(roar != null)
+					creature.Aggression.Value = 1f;
+					if (roar != null)
 					{
 						roar.PlayOnce();
-						creature.Aggression.Value = 1f;
 					}
 				}
 			}

@@ -1,4 +1,5 @@
-﻿using ECCLibrary.Internal;
+﻿using ECCLibrary;
+using ECCLibrary.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -24,6 +25,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string pedestal_empty1 = "78009225-a9fa-4d21-9580-8719a3368373";
         public const string pedestal_empty2 = "3bbf8830-e34f-43a1-bbb3-743c7e6860ac";
         public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        /// <summary>
+        /// 2x8x2
+        /// </summary>
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
@@ -36,6 +40,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
         public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
+        public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
+        /// <summary>
+        /// Slightly higher than 2m tall, has a 22.5ish degree angle.
+        /// </summary>
+        public const string prop_tabletPedestal = "814beddb-62cf-4c55-a86d-5da0684932a8";
         public const string genericDataTerminal = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
         public const string supplies_nutrientBlock = "30373750-1292-4034-9797-387cf576d150";
         public const string supplies_smallWater = "22b0ce08-61c9-4442-a83d-ba7fb99f26b0";
@@ -43,6 +52,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_bigWater = "$545c54a8-b23e-41bc-9d7c-af0b729e502f";
         public const string supplies_ionCube = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
         public const string supplies_drillableIonCube = "41406e76-4b4c-4072-86f8-f5b8e6523b73";
+        public const string supplies_drillableLithium = "846c3df6-ffbf-4206-b591-72f5ba11ed40";
+        public const string supplies_drillableTitanium = "9f855246-76c4-438b-8e4d-9cd6d7ce4224";
         public const string supplies_reactorRod = "cfdd714a-55fb-40df-86e5-6acf0d013b34";
         public const string supplies_titaniumIngot = "41919ae1-1471-4841-a524-705feb9c2d20";
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
@@ -51,7 +62,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
-        public const string entry_1 = "c3f2225b-718c-4868-bae3-39ce3914e992";
+        public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
         public const string natural_rockBlade2 = "282cdcbc-8670-4f9a-ae1d-9d8a09f9e880";
         public const string natural_coralClumpYellow = "5e8261d5-acce-4ec6-b77c-0f138770d5cb";
@@ -65,6 +76,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
         public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
         public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
+        /// <summary>
+        /// Faces up by default.
+        /// </summary>
+        public const string vfx_entrance = "8b5e6a02-533c-44cb-9f34-d2773aa82dc4";
 
         private List<GameObject> spawnedChildren;
 
@@ -72,7 +87,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             spawnedChildren = new List<GameObject>();
             ConstructBase();
-            foreach(GameObject obj in spawnedChildren)
+            foreach (GameObject obj in spawnedChildren)
             {
                 obj.transform.parent = null;
                 LargeWorld.main.streamer.cellManager.RegisterEntity(obj.GetComponent<LargeWorldEntity>());
@@ -136,7 +151,22 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterCellEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                return spawnedObject;
+            }
+            return null;
+        }
+
+        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale)
+        {
+            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            {
+                GameObject spawnedObject = GameObject.Instantiate(prefab);
+                spawnedObject.transform.position = worldPosition;
+                spawnedObject.transform.eulerAngles = worldRotation;
+                spawnedObject.transform.localScale = scale;
+                spawnedObject.SetActive(true);
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
             }
             return null;
@@ -157,24 +187,24 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     spawnedObject.transform.forward = direction;
                 }
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterCellEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
             }
             return null;
         }
 
-        public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default)
+        public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default, Vector3 individualEulers = default)
         {
-            for(int x = 0; x < size.x; x++)
+            for (int x = 0; x < size.x; x++)
             {
-                for(int y = 0; y < size.y; y++)
+                for (int y = 0; y < size.y; y++)
                 {
-                    for(int z = 0; z < size.z; z++)
+                    for (int z = 0; z < size.z; z++)
                     {
                         Vector3 rawPosition = new Vector3(x, y, z);
                         Vector3 spacedPosition = Vector3.Scale(rawPosition, spacing * individualScale);
                         Vector3 positionWithOffset = spacedPosition - (Vector3.Scale(size, (spacing * individualScale) / 2f)) + offset;
-                        SpawnPrefab(classId, positionWithOffset, Quaternion.identity.eulerAngles, individualScale);
+                        SpawnPrefab(classId, positionWithOffset, individualEulers, individualScale);
                     }
                 }
             }
@@ -192,7 +222,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
         {
             List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude);
-            foreach(CableSegment segment in segments)
+            foreach (CableSegment segment in segments)
             {
                 SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true);
             }
@@ -205,10 +235,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
             segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
             int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / midCableSpacing);
-            for(int i = 0; i < maxSegments; i++)
+            for (int i = 0; i < maxSegments; i++)
             {
                 float percent = (float)i / (float)maxSegments;
-                if(percent == 0f)
+                if (percent == 0f)
                 {
                     continue;
                 }
@@ -216,7 +246,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
                 Vector3 forwardAfter = baseAttachForward;
                 float nextPercent = Mathf.Clamp01((i + 1) / maxSegments);
-                if(nextPercent == 1f)
+                if (nextPercent == 1f)
                 {
                     forwardAfter = terrainAttachForward;
                 }
@@ -259,7 +289,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         static string GetMiddleCableRandom(int index)
         {
             int value = index % 3;
-            if(value == 2)
+            if (value == 2)
             {
                 return cables_mid01;
             }
@@ -270,6 +300,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             else
             {
                 return cables_mid03;
+            }
+        }
+
+        public void GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
+        {
+            GameObject parent = placeholderHolder.SearchChild(parentName);
+            foreach (Transform child in parent.transform)
+            {
+                SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale);
             }
         }
     }

@@ -13,10 +13,18 @@ namespace ProjectAncients.Patches
         [HarmonyPostfix]
         public static void InspectOnFirstPickup_Start_Patch(InspectOnFirstPickup __instance)
         {
-            BoxCollider boxCol = __instance.pickupAble.GetComponent<BoxCollider>();
-            if (boxCol)
+            TechTag techTag = __instance.GetComponent<TechTag>();
+            if (techTag == null)
             {
-                boxCol.isTrigger = false;
+                return;
+            }
+            if (techTag.type == TechType.PrecursorKey_White || techTag.type == TechType.PrecursorKey_Red)
+            {
+                BoxCollider boxCol = __instance.pickupAble.GetComponent<BoxCollider>();
+                if (boxCol)
+                {
+                    boxCol.isTrigger = false;
+                }
             }
         }
     }

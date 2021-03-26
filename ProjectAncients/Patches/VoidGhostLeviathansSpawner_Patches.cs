@@ -15,7 +15,7 @@ namespace ProjectAncients.Patches
             ecoTarget.type = EcoTargetType.Leviathan;
             ghostLeviPrefab.GetComponent<Locomotion>().maxAcceleration = 17f;
             CreatureFollowPlayer followPlayer = ghostLeviPrefab.GetComponent<CreatureFollowPlayer>();
-            if(followPlayer != null)
+            if (followPlayer != null)
             {
                 Object.Destroy(followPlayer);
             }

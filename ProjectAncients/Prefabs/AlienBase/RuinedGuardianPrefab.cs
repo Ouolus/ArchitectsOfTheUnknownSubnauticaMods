@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
         public override GameObject GetGameObject()
         {
-            if(prefab == null)
+            if (prefab == null)
             {
                 prefab = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("Guardian_Destroyed"));
                 prefab.SetActive(false);

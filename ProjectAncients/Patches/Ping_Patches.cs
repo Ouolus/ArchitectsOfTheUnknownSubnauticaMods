@@ -19,7 +19,7 @@ namespace ProjectAncients.Patches
             return false;
         }
 
-        [HarmonyPrefix] 
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(uGUI_Pings), nameof(uGUI_Pings.OnColor))]
         public static bool uGUI_Pings_OnColor_Postfix(uGUI_Pings __instance, int id)
         {
