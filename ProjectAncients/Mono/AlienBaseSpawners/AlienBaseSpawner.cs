@@ -59,6 +59,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
         public const string supplies_whiteTablet = "066e533d-f854-435d-82c6-b28ba59858e0";
         public const string supplies_redTablet = "7d19f47b-6ec6-4a25-9b28-b3fd7f5661b7";
+        public const string supplies_purpleTablet = "92fb421e-a3f6-4b0b-8542-fd4faee4202a";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
