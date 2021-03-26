@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using System.Collections;
+using SMLHelper.V2.Assets;
 using ECCLibrary;
 using ProjectAncients.Mono;
 using UnityEngine;
@@ -39,9 +40,10 @@ namespace ProjectAncients.Prefabs.AlienBase
             techType = this.TechType
         };
 
+#if SN1
         public override GameObject GetGameObject()
         {
-            PrefabDatabase.TryGetPrefab(terminalClassId, out GameObject prefab);
+            PrefabDatabase(terminalClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
             if (!string.IsNullOrEmpty(encyKey))
@@ -76,5 +78,47 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             return obj;
         }
+#elif SN1_exp
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(terminalClassId);
+            yield return request;
+            request.TryGetPrefab(out GameObject prefab);
+            
+            GameObject obj = GameObject.Instantiate(prefab);
+            StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
+            if (!string.IsNullOrEmpty(encyKey))
+            {
+                storyHandTarget.goal = new Story.StoryGoal(encyKey, Story.GoalType.Encyclopedia, delay);
+            }
+            else
+            {
+                storyHandTarget.goal = null;
+            }
+            obj.SetActive(false);
+            if (pingClassId != null && pingClassId.Length > 0)
+            {
+                foreach (string str in pingClassId)
+                {
+                    if (!string.IsNullOrEmpty(str))
+                    {
+                        DataTerminalUnlockPing unlockPing = obj.AddComponent<DataTerminalUnlockPing>();
+                        unlockPing.classId = str;
+                        unlockPing.pos = pingPosition;
+                        unlockPing.pingTypeName = str;
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(audioClipPrefix))
+            {
+                obj.AddComponent<StoryHandTargetPlayAudioClip>().clipPrefix = audioClipPrefix;
+            }
+            if(techToUnlock != TechType.None)
+            {
+                obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = techToUnlock;
+            }
+            gameObject.Set(obj);
+        }
+#endif
     }
 }
