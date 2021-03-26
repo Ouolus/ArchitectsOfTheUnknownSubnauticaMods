@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
+    <DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
     <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
   </PropertyGroup>
   <ItemGroup>
