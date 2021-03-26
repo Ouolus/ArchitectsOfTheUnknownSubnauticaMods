@@ -1,5 +1,5 @@
-# SpaceCatCreationsSubnauticaMods
-a Collection of Subnautica mods made by the Space Cat Creations team.
+# ArchitectsOfTheUnknownSubnauticaMods
+a Collection of Subnautica mods made by the Architects of the Unknown team.
 
 to contribute, fork the project and create a pull request.   
 
