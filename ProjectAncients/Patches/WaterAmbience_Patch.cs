@@ -16,6 +16,11 @@ namespace ProjectAncients.Patches
             GameObject voidAmbience = GameObject.Instantiate(ambienceParent.SearchChild("arcticAmbience"), ambienceParent.transform);
             voidAmbience.name = "voidAmbience";
             voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = "void";
+
+            GameObject musicParent = __instance.gameObject.SearchChild("music");
+            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("precursorCave"), musicParent.transform);
+            referenceMusic.name = "voidAmbience";
+            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
         }
 
         [HarmonyPostfix]
@@ -31,7 +36,7 @@ namespace ProjectAncients.Patches
                 }
                 WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
                 {
-                    absorption = new Vector3(125f, 20f, 4f),
+                    absorption = new Vector3(6f, 6f, 6f),
                     ambientScale = 0f,
                     emissiveScale = 0f,
                     sunlightScale = 1f,

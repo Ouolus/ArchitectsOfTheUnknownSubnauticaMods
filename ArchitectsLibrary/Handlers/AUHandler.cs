@@ -1,5 +1,7 @@
 using System.Linq;
+using System.Collections.Generic;
 using ArchitectsLibrary.Interfaces;
+using ArchitectsLibrary.Utility;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
@@ -7,6 +9,12 @@ namespace ArchitectsLibrary.Handlers
 {
     public class AUHandler : IAuHandler
     {
+        internal static IDictionary<TechType, TechType> customCreatureEggDictionary = 
+            new HashDictionary<TechType, TechType>();
+
+        internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
+            new HashDictionary<TechType, WaterParkCreatureParameters>();
+        
         public static IAuHandler Main { get; } = new AUHandler();
 
         private AUHandler()
@@ -46,6 +54,17 @@ namespace ArchitectsLibrary.Handlers
             DamageSystem.acidImmune = acidToList.ToArray();
         }
 
+        void IAuHandler.SetCreatureEgg(TechType creatureType, TechType eggType)
+        {
+            customCreatureEggDictionary[creatureType] = eggType;
+        }
+
+        void IAuHandler.SetCreatureParameters(TechType creatureType,
+            WaterParkCreatureParameters waterParkCreatureParameters)
+        {
+            customWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
+        }
+
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
@@ -55,5 +74,12 @@ namespace ArchitectsLibrary.Handlers
             Main.SetObjectScannable(gameObject, categoryTechType);
 
         public static void MakeItemAcidImmune(TechType techType) => Main.MakeItemAcidImmune(techType);
+
+        public static void SetCreatureEgg(TechType creatureType, TechType eggType) =>
+            Main.SetCreatureEgg(creatureType, eggType);
+
+        public static void SetCreatureParameters(TechType creatureType,
+            WaterParkCreatureParameters waterParkCreatureParameters) =>
+            Main.SetCreatureParameters(creatureType, waterParkCreatureParameters);
     }
 }

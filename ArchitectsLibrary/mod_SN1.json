@@ -1,0 +1,18 @@
+{
+  "Id": "ArchitectsLibrary",
+  "DisplayName": "Architects Library",
+  "Author": "ArchitectsOfTheUnknown",
+  "Version": "1.0.0",
+  "Dependencies": [
+    "SMLHelper"
+  ],
+  "VersionDependencies": {
+    "SMLHelper": "2.9.2"
+  },
+  "Game": "Subnautica",
+  "NexusId": {
+    "Subnautica": "661"
+  },
+  "AssemblyName": "ArchitectsLibrary.dll",
+  "Enable": true
+}

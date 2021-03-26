@@ -35,6 +35,11 @@
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
+    <DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
+    <Optimize>true</Optimize>
+    <DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>$(DepDir)\0Harmony.dll</HintPath>

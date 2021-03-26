@@ -29,6 +29,7 @@ namespace ProjectAncients.Mono
                     }
                 }
             }
+#if SN1
             if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
             {
                 GameObject pingObj = Instantiate(prefab);
@@ -36,6 +37,17 @@ namespace ProjectAncients.Mono
                 pingObj.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterCellEntity(pingObj.GetComponent<LargeWorldEntity>());
             }
+#elif SN1_exp
+            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
+            {
+                GameObject prefab = _.Result;
+
+                GameObject pingObj = Instantiate(prefab);
+                pingObj.transform.position = pos;
+                pingObj.SetActive(true);
+                LargeWorld.main.streamer.cellManager.RegisterCellEntity(pingObj.GetComponent<LargeWorldEntity>());
+            };
+#endif
         }
     }
 }

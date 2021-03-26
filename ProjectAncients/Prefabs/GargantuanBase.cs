@@ -50,18 +50,18 @@ namespace ProjectAncients.Prefabs
 
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.metal;
 
-        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(10f, 1f, 2f);
+        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(5f, 1f, 2f);
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             List<Transform> spines = new List<Transform>();
             GameObject currentSpine = prefab.SearchChild("Spine");
-            while(currentSpine != null)
+            while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
-                    if (currentSpine.name.Contains("65"))
+                    if (currentSpine.name.Contains("59"))
                     {
                         break;
                     }
@@ -71,6 +71,13 @@ namespace ProjectAncients.Prefabs
                     }
                 }
             }
+            spines.Add(prefab.SearchChild("Tail", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail1", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail2", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail3", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
+            spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
@@ -87,23 +94,28 @@ namespace ProjectAncients.Prefabs
             FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
 
             const float jawTentacleSnapSpeed = 6f;
-            CreateTrail(prefab.SearchChild("BLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("BRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("FLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("FRA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LLA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LRA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SLA"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SRA"), components, jawTentacleSnapSpeed);
             CreateTrail(prefab.SearchChild("LJT"), components, jawTentacleSnapSpeed);
             CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
 
             ApplyAggression();
 
             var atkLast = prefab.GetComponent<AttackLastTarget>();
-            atkLast.resetAggressionOnTime = false;
-            atkLast.swimInterval = 0.2f;
+            if (atkLast)
+            {
+                atkLast.resetAggressionOnTime = false;
+                atkLast.swimInterval = 0.2f;
+            }
 
             components.locomotion.maxAcceleration = 27f;
 
             GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
             gargBehaviour.creature = components.creature;
+            gargBehaviour.attachBoneName = AttachBoneName;
+            gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
 
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
@@ -115,6 +127,10 @@ namespace ProjectAncients.Prefabs
             mouthAttack.liveMixin = components.liveMixin;
             mouthAttack.animator = components.creature.GetAnimator();
             mouthAttack.canAttackPlayer = AttackPlayer;
+            mouthAttack.biteDamage = BiteDamage;
+            mouthAttack.oneShotPlayer = OneShotsPlayer;
+            mouthAttack.attachBoneName = AttachBoneName;
+            mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
@@ -126,6 +142,23 @@ namespace ProjectAncients.Prefabs
             tentacleAttack.liveMixin = components.liveMixin;
             tentacleAttack.animator = components.creature.GetAnimator();*/
 
+            if (AttackPlayer)
+            {
+                AttackCyclops actionAtkCyclops = prefab.AddComponent<AttackCyclops>();
+                actionAtkCyclops.swimVelocity = 25f;
+                actionAtkCyclops.aggressiveToNoise = new CreatureTrait(0f, 0.02f);
+                actionAtkCyclops.evaluatePriority = 0.5f;
+                actionAtkCyclops.priorityMultiplier = ECCHelpers.Curve_Flat();
+                actionAtkCyclops.maxDistToLeash = 110f;
+                actionAtkCyclops.attackAggressionThreshold = 0.65f;
+                actionAtkCyclops.aggressPerSecond = 5f;
+            }
+
+            if (CanBeScaredByElectricity)
+            {
+                prefab.AddComponent<RunAwayWhenScared>();
+            }
+
             GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
             roar.closeSoundsPrefix = CloseRoarPrefix;
             roar.distantSoundsPrefix = DistantRoarPrefix;
@@ -136,12 +169,12 @@ namespace ProjectAncients.Prefabs
                 prefab.AddComponent<GargantuanSwimAmbience>();
             }
 
-            prefab.SearchChild("BLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("BREye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FREye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MLEye").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MREye").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
+            prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
         }
 
         public virtual void ApplyAggression()
@@ -159,11 +192,35 @@ namespace ProjectAncients.Prefabs
             }
         }
 
+        public virtual bool CanBeScaredByElectricity
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public virtual bool CanPerformCyclopsCinematic
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public virtual string CloseRoarPrefix
         {
             get
             {
                 return "garg_roar";
+            }
+        }
+
+        public virtual bool OneShotsPlayer
+        {
+            get
+            {
+                return false;
             }
         }
 
@@ -183,11 +240,30 @@ namespace ProjectAncients.Prefabs
             }
         }
 
+        public virtual float BiteDamage
+        {
+            get
+            {
+                return 1500f;
+            }
+        }
+
+        /// <summary>
+        /// Seamoth has 300 health. Vehicle attack lasts 4 seconds.
+        /// </summary>
+        public virtual float VehicleDamagePerSecond
+        {
+            get
+            {
+                return 49f;
+            }
+        }
+
         public virtual float TentacleSnapSpeed
         {
             get
             {
-                return 5f;
+                return 6f;
             }
         }
 
@@ -196,6 +272,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return true;
+            }
+        }
+
+        public virtual string AttachBoneName
+        {
+            get
+            {
+                return "Head.001";
             }
         }
 

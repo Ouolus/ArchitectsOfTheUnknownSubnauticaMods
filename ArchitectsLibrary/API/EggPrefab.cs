@@ -1,6 +1,9 @@
+using System.Collections;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Utility;
 using UnityEngine;
 using UWE;
 
@@ -32,10 +35,22 @@ namespace ArchitectsLibrary.API
             {
                 if (AcidImmune)
                     AUHandler.MakeItemAcidImmune(this.TechType);
+
+                if (ItemSprite != null)
+                {
+                    SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
+                    SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
+                }
+                else if (ItemSpriteFromTexture != null)
+                {
+                    SpriteHandler.RegisterSprite(this.TechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
+                    SpriteHandler.RegisterSprite(_overridenTechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
+                }
                 
-                SpriteHandler.RegisterSprite(this.TechType, ItemSprite);
-                SpriteHandler.RegisterSprite(_overridenTechType, ItemSprite);
                 CraftDataHandler.SetItemSize(_overridenTechType, this.SizeInInventory);
+                
+                if (MakeCreatureLayEggs)
+                    AUHandler.SetCreatureEgg(HatchingCreature, this.TechType);
             };
         }
         /// <summary>
@@ -52,11 +67,16 @@ namespace ArchitectsLibrary.API
         /// amount of in-game days this egg will take to hatch the <seealso cref="HatchingCreature"/>.
         /// </summary>
         public abstract float HatchingTime { get; }
-        
+
         /// <summary>
         /// override this Property to define the <see cref="Sprite"/> of your egg.
         /// </summary>
-        public abstract Sprite ItemSprite { get; }
+        public virtual Sprite ItemSprite { get; } = null;
+
+        /// <summary>
+        /// override this Property to define the <see cref="Sprite"/> of your egg from a Texture2D.
+        /// </summary>
+        public virtual Texture2D ItemSpriteFromTexture { get; } = null;
         
         /// <summary>
         /// Mass of the egg by KG. defaulted to 100.
@@ -78,6 +98,8 @@ namespace ArchitectsLibrary.API
         /// </summary>
         public virtual bool AcidImmune => true;
 
+        public virtual bool MakeCreatureLayEggs => true;
+
         /// <summary>
         /// determines the TechType of the undiscovered version of this egg. the friendlyName and the description of
         /// this egg will appear if this egg hasn't been Hatched at least once.
@@ -90,7 +112,7 @@ namespace ArchitectsLibrary.API
             classId = this.ClassID, cellLevel = LargeWorldEntity.CellLevel.Medium, localScale = Vector3.one, prefabZUp = false,
             slotType = EntitySlot.Type.Medium, techType = this.TechType
         };
-
+#if SN1
         /// <summary>
         /// override this if you want more functionality for your egg.
         /// </summary>
@@ -131,11 +153,73 @@ namespace ArchitectsLibrary.API
             
             if (MakeObjectScannable)
                 AUHandler.SetObjectScannable(obj);
+            
+            MaterialUtils.ApplySNShaders(obj);
 
             return obj;
         }
+#elif SN1_exp
+        public delegate void GameObjectEnhancements(GameObject gameObject);
 
         /// <summary>
+        /// logic for your GameObject that will get executed before the core logic of your GameObject.
+        /// </summary>
+        public GameObjectEnhancements earlyEnhancements;
+        
+        /// <summary>
+        /// logic for your GameObject that will get executed after the core logic of your GameObject.
+        /// </summary>
+        public GameObjectEnhancements lateEnhancements;
+       public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+       {
+           GameObject prefab = Model;
+           var obj = GameObject.Instantiate(prefab);
+
+           if (earlyEnhancements is not null)
+               earlyEnhancements.Invoke(obj);
+           
+           obj.EnsureComponent<TechTag>().type = this.TechType;
+           obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
+
+           var skyApplier = obj.EnsureComponent<SkyApplier>();
+           skyApplier.anchorSky = Skies.Auto;
+           skyApplier.emissiveFromPower = false;
+           skyApplier.dynamic = false;
+           skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
+           skyApplier.enabled = true;
+
+           obj.EnsureComponent<Pickupable>();
+                
+           var rb = obj.EnsureComponent<Rigidbody>();
+           rb.mass = Mass;
+           rb.isKinematic = true;
+
+           var wf = obj.EnsureComponent<WorldForces>();
+           wf.useRigidbody = rb;
+                
+           var liveMixin = obj.EnsureComponent<LiveMixin>();
+           liveMixin.health = MaxHealth;
+                
+           var creatureEgg = obj.EnsureComponent<CreatureEgg>();
+           creatureEgg.animator = obj.EnsureComponent<Animator>();
+           creatureEgg.hatchingCreature = HatchingCreature;
+           creatureEgg.daysBeforeHatching = HatchingTime;
+           if (_overridenTechType != TechType.None)
+               creatureEgg.overrideEggType = _overridenTechType;
+            
+           if (MakeObjectScannable)
+               AUHandler.SetObjectScannable(obj);
+            
+           MaterialUtils.ApplySNShaders(obj);
+
+           if (lateEnhancements is not null)
+               lateEnhancements.Invoke(obj);
+           
+           yield return null;
+           gameObject.Set(obj);
+       }
+#endif
+       /// <summary>
         /// determines the TechType of the undiscovered version of the egg.
         /// </summary>
         public struct OverrideTechType

@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using System.Collections;
+using SMLHelper.V2.Assets;
 using ECCLibrary;
 using ProjectAncients.Mono;
 using UnityEngine;
@@ -24,14 +25,38 @@ namespace ProjectAncients.Prefabs.AlienBase
             slotType = EntitySlot.Type.Large,
             techType = this.TechType
         };
-
+        
+#if SN1
         public override GameObject GetGameObject()
         {
             PrefabDatabase.TryGetPrefab("c718547d-fe06-4247-86d0-efd1e3747af0", out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             obj.GetComponent<PrecursorKeyTerminal>().acceptKeyType = keyType;
             obj.SetActive(false);
+            SphereCollider trigger = prefab.GetComponentInChildren<SphereCollider>();
+            if (trigger)
+            {
+                trigger.radius = 12f;
+            }
             return obj;
         }
+#elif SN1_exp
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync("c718547d-fe06-4247-86d0-efd1e3747af0");
+            yield return request;
+            request.TryGetPrefab(out GameObject prefab);
+            
+            GameObject obj = GameObject.Instantiate(prefab);
+            obj.GetComponent<PrecursorKeyTerminal>().acceptKeyType = keyType;
+            obj.SetActive(false);
+            SphereCollider trigger = prefab.GetComponentInChildren<SphereCollider>();
+            if (trigger)
+            {
+                trigger.radius = 12f;
+            }
+            gameObject.Set(obj);
+        }
+#endif
     }
 }

@@ -15,9 +15,12 @@ namespace ArchitectsLibrary
         {
             Logger.Log(Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
+            Initializer.PatchAllDictionaries();
+            
             Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
             
             Logger.Log(Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
+        
     }
 }
