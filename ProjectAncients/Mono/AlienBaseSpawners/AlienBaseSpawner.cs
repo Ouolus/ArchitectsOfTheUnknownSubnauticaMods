@@ -31,6 +31,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
+        public const string structure_skeletonScanner1 = "4f5905f8-ea50-49e8-b24f-44139c6bddcf";
+        public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
+        public const string structure_skeletonScanner3 = "ac2b0798-e311-4cb1-9074-fae59cd7347a";
         public const string cables_attachToBase = "18aa16f9-d1d8-4ccd-8a10-7ad32a5fd283";
         public const string cables_mid01 = "69cd7462-7cd2-456c-bfff-50903c391737";
         public const string cables_mid02 = "94933bb3-0587-4e8d-a38d-b7ec4c859b1a";
