@@ -22,7 +22,7 @@ namespace ProjectAncients.Mono
             }
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.clip = ECCAudio.CreateClipPool(clipPrefix).GetRandomClip();
-            audioSource.volume = ECCHelpers.GetECCVolume();
+            audioSource.volume = ECCHelpers.GetECCVolume() * 0.75f; //arbitrary volume scale
             audioSource.Play();
             Destroy(this);
         }
