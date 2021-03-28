@@ -30,7 +30,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
             capsule.radius = 1.4889f;
-            capsule.direction = 2;
+            capsule.direction = 1;
             obj.EnsureComponent<SkyApplier>().renderers = obj.GetComponentsInChildren<Renderer>();
             obj.EnsureComponent<TechTag>().type = TechType;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
