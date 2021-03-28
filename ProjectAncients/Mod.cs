@@ -61,6 +61,8 @@ namespace ProjectAncients
         public static GenericWorldPrefab voidBaseModel;
         public static GenericWorldPrefab guardianTailfinModel;
 
+        public static AlienRelicPrefab ingotRelic;
+
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
         public static TechType architectElectricityMasterTech;
@@ -267,6 +269,9 @@ namespace ProjectAncients
             guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
+
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structure Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"));
+            ingotRelic.Patch();
             #endregion
 
             #region Alien bases
