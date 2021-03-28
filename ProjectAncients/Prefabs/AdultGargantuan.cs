@@ -49,13 +49,13 @@ namespace ProjectAncients.Prefabs
             gargPresence.delay = 54f;
         }
 
-        void UpdateGargTransparentMaterial(Material material)
+        public static void UpdateGargTransparentMaterial(Material material)
         {
             material.SetInt("_ZWrite", 1);
             material.SetFloat("_Fresnel", 1);
         }
 
-        void UpdateGargSkeletonMaterial(Material material)
+        public static void UpdateGargSkeletonMaterial(Material material)
         {
             material.SetFloat("_Fresnel", 1);
             material.SetFloat("_SpecInt", 50);
@@ -63,7 +63,7 @@ namespace ProjectAncients.Prefabs
             material.SetFloat("_GlowStrengthNight", 6f);
         }
 
-        void UpdateGargGutsMaterial(Material material)
+        public static void UpdateGargGutsMaterial(Material material)
         {
             material.EnableKeyword("MARMO_ALPHA_CLIP");
             material.SetFloat("_Fresnel", 1f);
@@ -71,11 +71,6 @@ namespace ProjectAncients.Prefabs
             material.SetFloat("_GlowStrength", 10f);
             material.SetFloat("_GlowStrengthNight", 10f);
 
-        }
-
-        void UpdateGargDstBlend2(Material material)
-        {
-            material.SetFloat("_DstBlend2", 5.68f);
         }
 
         public override bool CanPerformCyclopsCinematic => true;
