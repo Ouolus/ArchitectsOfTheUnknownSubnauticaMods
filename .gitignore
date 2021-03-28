@@ -360,4 +360,5 @@ Assembly-CSharp.dll
 
 ArchitectsLibrary.dll
 ArchitectsLibrary.xml
-Dependencies/SN1/ECCLibrary.xml
+
+ECCLibrary.xml
