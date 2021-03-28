@@ -18,10 +18,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 8), Vector3.one, new Vector3(-3f + 0.5f, 11.5f, 14f), Vector3.left * 180f);
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 8), Vector3.one, new Vector3(3f + 1.5f, 11.5f, 14f), Vector3.left * 180f);
 
-            GenerateCable(new Vector3(388, -393, -1865), new Vector3(0.7f, 0f, 0.7f), new Vector3(396, -395, -1762), new Vector3(-0.3f, -0.1f, 0.9f), Vector3.right, 6f);
-            GenerateCable(new Vector3(383, -412, -1870), new Vector3(0.7f, 0f, 0.7f), new Vector3(383, -416, -1763), new Vector3(0, 0, 1), Vector3.down, 8f);
-            GenerateCable(new Vector3(381, -424, -1872), new Vector3(0.7f, 0f, 0.7f), new Vector3(370.5f, -426, -1769.7f), new Vector3(0.4f, -0.1f, 0.9f), Vector3.down, 8f);
-            GenerateCable(new Vector3(379, -436, -1874), new Vector3(0.7f, 0f, 0.7f), new Vector3(398, -451, -1769.9f), new Vector3(-0.1f, 0, 1), Vector3.down, 8f);
+            GenerateCable(new Vector3(388, -393, -1865), new Vector3(0.7f, 0f, 0.7f), new Vector3(396, -395, -1762), new Vector3(-0.3f, -0.1f, 0.9f), Vector3.right, 6f, 2f);
+            GenerateCable(new Vector3(383, -412, -1870), new Vector3(0.7f, 0f, 0.7f), new Vector3(383, -416, -1763), new Vector3(0, 0, 1), Vector3.down, 8f, 2f);
+            GenerateCable(new Vector3(381, -424, -1872), new Vector3(0.7f, 0f, 0.7f), new Vector3(370.5f, -426, -1769.7f), new Vector3(0.4f, -0.1f, 0.9f), Vector3.down, 8f, 2f);
+            GenerateCable(new Vector3(379, -436, -1874), new Vector3(0.7f, 0f, 0.7f), new Vector3(398, -451, -1769.9f), new Vector3(-0.1f, 0, 1), Vector3.down, 8f, 2f);
 
             SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f));
             SpawnPrefab(Mod.voidDoor_orange.ClassID, new Vector3(0f, 0f, 24f));
@@ -55,7 +55,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -13.5f));
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -18.5f));
 
-            GenerateCable(new Vector3(373.11f, -389.00f, -1896.07f), Vector3.down, new Vector3(373.11f, -395.68f, -1895.97f), Vector3.down, Vector3.zero, 0f);
+            GenerateCable(new Vector3(373.11f, -389.00f, -1896.07f), Vector3.down, new Vector3(373.11f, -395.68f, -1895.97f), Vector3.down, Vector3.zero, 0f, 0.5f);
         }
     }
 }
