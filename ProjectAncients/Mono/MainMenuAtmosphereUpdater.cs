@@ -7,8 +7,10 @@ namespace ProjectAncients.Mono
         void Start()
         {
             uSkyManager skyManager = FindObjectOfType<uSkyManager>();
-            skyManager.Timeline = 2f;
+            skyManager.Timeline = 4f;
+            skyManager.StarIntensity = 2f;
             skyManager.NightSky = uSkyManager.NightModes.Rotation;
+            skyManager.planetRadius = 500f;
         }
     }
 }
