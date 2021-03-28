@@ -2,6 +2,7 @@
 using ECCLibrary.Internal;
 using HarmonyLib;
 using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Patches
 {
@@ -33,26 +34,26 @@ namespace ProjectAncients.Patches
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
-                murkiness = 0.5f,
+                murkiness = 1f,
                 startDistance = 50f,
                 scatteringColor = new Color(0f, 0.2f, 0.02f),
                 temperature = 0f,
-                scattering = 0.15f
+                scattering = 0.25f
             };
-            PatchBiomeFog(__instance, "void", voidWaterscapeSettings);
-            PatchBiomeFog(__instance, string.Empty, voidWaterscapeSettings);
+            PatchBiomeFog(__instance, "void", voidWaterscapeSettings, __instance.biomeSkies[0]);
         }
 
-        static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings)
+        static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings, mset.Sky sky)
         {
             if (!waterBiomeManager.biomeLookup.ContainsKey(biomeName))
             {
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
                     name = biomeName,
-                    skyPrefab = null,
+                    skyPrefab = sky.gameObject,
                     settings = waterScapeSettings
                 };
+                waterBiomeManager.biomeSkies.Add(sky);
                 waterBiomeManager.biomeSettings.Add(biomeSettings);
                 int indexForNew = waterBiomeManager.biomeSettings.Count - 1;
                 waterBiomeManager.biomeLookup.Add(biomeName, indexForNew);
