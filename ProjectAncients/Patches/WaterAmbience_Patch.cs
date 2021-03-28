@@ -18,7 +18,7 @@ namespace ProjectAncients.Patches
             voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = "void";
 
             GameObject musicParent = __instance.gameObject.SearchChild("music");
-            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("precursorCave"), musicParent.transform);
+            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("dunes"), musicParent.transform);
             referenceMusic.name = "voidAmbience";
             referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
         }
@@ -29,13 +29,13 @@ namespace ProjectAncients.Patches
         {
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                absorption = new Vector3(6f, 6f, 6f),
+                absorption = new Vector3(3f, 3f, 3f),
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
                 murkiness = 0.5f,
                 startDistance = 50f,
-                scatteringColor = Color.green,
+                scatteringColor = new Color(0f, 0.1f, 0.02f),
                 temperature = 0f,
                 scattering = 0.15f
             };
