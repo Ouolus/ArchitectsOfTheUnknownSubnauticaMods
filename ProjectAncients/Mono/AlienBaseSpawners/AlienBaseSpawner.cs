@@ -274,7 +274,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 #endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight)
+        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f)
         {
 #if SN1
             if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
@@ -289,6 +289,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 {
                     spawnedObject.transform.forward = direction;
                 }
+                spawnedObject.transform.localScale = Vector3.one * scaleFactor;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 return spawnedObject;
@@ -310,7 +311,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 {
                     spawnedObject.transform.forward = direction;
                 }
-
+                spawnedObject.transform.localScale = Vector3.one * scaleFactor;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
                 result = spawnedObject;
@@ -345,22 +346,22 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// <param name="terrainAttachForward"></param>
         /// <param name="offsetDirection"></param>
         /// <param name="quadraticMagnitude"></param>
-        public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
+        public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
         {
-            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude);
+            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale);
             foreach (CableSegment segment in segments)
             {
-                SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true);
+                SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
             }
         }
 
         const float midCableSpacing = 1.05f;
-        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
+        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale)
         {
             List<CableSegment> segments = new List<CableSegment>();
             segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
             segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
-            int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / midCableSpacing);
+            int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / (midCableSpacing * scale));
             for (int i = 0; i < maxSegments; i++)
             {
                 float percent = (float)i / (float)maxSegments;
