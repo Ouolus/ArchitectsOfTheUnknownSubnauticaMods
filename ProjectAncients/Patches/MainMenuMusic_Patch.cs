@@ -24,7 +24,8 @@ namespace ProjectAncients.Patches
 
             Light[] lights = Object.FindObjectsOfType<Light>();
             Light highlight = lights[0];
-            highlight.enabled = false;
+            highlight.enabled = true;
+            highlight.color = Color.magenta;
             Light sun = lights[1];
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
