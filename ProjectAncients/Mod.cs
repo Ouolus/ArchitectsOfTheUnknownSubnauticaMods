@@ -270,7 +270,7 @@ namespace ProjectAncients
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
 
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structure Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.5f);
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structure Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             #endregion
 
