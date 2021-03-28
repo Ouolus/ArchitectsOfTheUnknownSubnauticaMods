@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ECCLibrary;
+using UnityEngine;
 
 namespace ProjectAncients.Prefabs
 {
@@ -11,6 +12,8 @@ namespace ProjectAncients.Prefabs
         public override bool OneShotsPlayer => false;
 
         public override bool CanBeScaredByElectricity => true;
+
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), null);
 
         public GargantuanJuvenile(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
         {

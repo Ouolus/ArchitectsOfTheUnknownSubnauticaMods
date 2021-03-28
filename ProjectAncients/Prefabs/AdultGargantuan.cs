@@ -29,6 +29,10 @@ namespace ProjectAncients.Prefabs
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
 
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 18f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), null);
+
+        public override string GetEncyDesc => "Adult gargantuan text";
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);

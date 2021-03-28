@@ -1,6 +1,7 @@
 ﻿using ProjectAncients.Mono;
 using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
+using ECCLibrary;
 
 namespace ProjectAncients.Prefabs
 {
@@ -14,6 +15,11 @@ namespace ProjectAncients.Prefabs
         public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, false);
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
+
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), null);
+
+        public override string GetEncyDesc => "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite emotionally attached to its adopter. It even goes to the extent of warding off predators much larger than itself.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.";
+
 
         public GargantuanBaby(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
         {
