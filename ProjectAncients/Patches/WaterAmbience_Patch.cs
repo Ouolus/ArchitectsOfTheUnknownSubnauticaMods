@@ -29,13 +29,13 @@ namespace ProjectAncients.Patches
         {
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                absorption = new Vector3(3f, 3f, 3f),
+                absorption = new Vector3(7f, 6f, 6f),
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
                 murkiness = 0.5f,
                 startDistance = 50f,
-                scatteringColor = new Color(0f, 0.1f, 0.02f),
+                scatteringColor = new Color(0f, 0.2f, 0.02f),
                 temperature = 0f,
                 scattering = 0.15f
             };
