@@ -66,7 +66,9 @@ namespace ProjectAncients.Prefabs.Modules
                 craftAmount = 1,
                 Ingredients =
                 {
-                    new Ingredient(TechType.Titanium, 2)
+                    new Ingredient(TechType.SeamothElectricalDefense, 1),
+                    new Ingredient(TechType.AdvancedWiringKit, 2),
+                    new Ingredient(TechType.PrecursorIonCrystal, 1),
                 }
             };
         }
