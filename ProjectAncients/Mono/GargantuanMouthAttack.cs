@@ -145,6 +145,10 @@ namespace ProjectAncients.Mono
                             var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
                             StartCoroutine(PerformBiteAttack(target));
                             behaviour.timeCanAttackAgain = Time.time + 2f;
+                            if (canAttackPlayer)
+                            {
+                                creature.Aggression.Value = 0f;
+                            }
                             attackSource.clip = biteClipPool.GetRandomClip();
                             attackSource.Play();
                             thisCreature.Aggression.Value -= 0.15f;
