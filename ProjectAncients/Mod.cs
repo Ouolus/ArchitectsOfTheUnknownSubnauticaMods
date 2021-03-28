@@ -85,6 +85,7 @@ namespace ProjectAncients
         private const string ency_archElectricityTerminal = "ArchitectElectricityData";
         private const string ency_ruinedGuardian = "RuinedGuardian";
         private const string ency_distressSignal = "GuardianTerminalData";
+        private const string ency_tailfin = "GuardianTailfin";
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
@@ -186,6 +187,8 @@ namespace ProjectAncients
 
             PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.", "IonicCharge_Popup", "OrangeGlyph_Ency");
 
+            PatchEncy(ency_tailfin, modEncyPath_tech, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was uncoupled by choice.");
+
             #endregion
 
             #region Generic precursor stuff
@@ -259,6 +262,7 @@ namespace ProjectAncients
 
             guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
             guardianTailfinModel.Patch();
+            MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
             #endregion
 
             #region Alien bases
