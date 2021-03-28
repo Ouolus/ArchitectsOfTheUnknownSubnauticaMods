@@ -16,6 +16,29 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.model = model;
         }
 
+#if SN1
+        public override GameObject GetGameObject()
+        {
+            ValidateSoundAsset();
+            GameObject obj = new();
+            obj.SetActive(false);
+            GameObject.Instantiate(model, obj.transform, false);
+            CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
+            capsule.height = 6.296409f;
+            capsule.radius = 1.4889f;
+            capsule.direction = 2;
+            obj.EnsureComponent<SkyApplier>().renderers = obj.GetComponentsInChildren<Renderer>();
+            obj.EnsureComponent<TechTag>().type = TechType;
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
+            obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+            ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
+            Mod.ApplyPrecursorMaterials(obj);
+            var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
+            soundEmitter.asset = relicSoundAsset;
+            soundEmitter.playOnAwake = true;
+            return obj;
+        }
+#elif SN1_exp
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             ValidateSoundAsset();
@@ -38,6 +61,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             yield return null;
             gameObject.Set(obj);
         }
+#endif
 
         void ValidateSoundAsset()
         {
