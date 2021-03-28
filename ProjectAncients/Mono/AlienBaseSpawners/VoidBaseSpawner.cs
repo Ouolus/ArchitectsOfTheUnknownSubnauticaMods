@@ -55,7 +55,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -13.5f));
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -18.5f));
 
-            GenerateCable(new Vector3(373.11f, -389.00f, -1896.07f), Vector3.down, new Vector3(373.11f, -396.68f, -1895.97f), Vector3.down, Vector3.zero, 0f);
+            GenerateCable(new Vector3(373.11f, -389.00f, -1896.07f), Vector3.down, new Vector3(373.11f, -395.68f, -1895.97f), Vector3.down, Vector3.zero, 0f);
         }
     }
 }
