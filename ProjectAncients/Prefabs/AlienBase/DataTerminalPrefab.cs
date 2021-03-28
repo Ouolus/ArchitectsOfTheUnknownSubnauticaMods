@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using SMLHelper.V2.Assets;
-using ECCLibrary;
+﻿using SMLHelper.V2.Assets;
 using ProjectAncients.Mono;
 using UnityEngine;
 using UWE;
