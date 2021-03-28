@@ -154,7 +154,8 @@
     <Compile Include="Mono\GargantuanBabyTeleport.cs" />
     <Compile Include="Mono\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
-    <Compile Include="Mono\MainMenuAtmosphereUpdater.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
     <Compile Include="Mono\RunAwayWhenScared.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
@@ -198,6 +199,7 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
