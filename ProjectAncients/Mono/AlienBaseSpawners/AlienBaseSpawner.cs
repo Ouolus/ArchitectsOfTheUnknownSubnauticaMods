@@ -81,6 +81,20 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
         public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
         public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
+        public const string bone_reaperMandible = "501c0536-7993-4ed6-be77-6287cedd8d02";
+        public const string bone_reaperSkull = "50031120-ab7a-4f10-b497-3a97f63b4de1";
+        public const string bone_reaperSpine1Rib = "949d8657-1e5c-4418-8948-76b8b712fc57";
+        public const string bone_reaperFullRibcage_normal = "358012ab-6be8-412d-85ee-263a733c88ba";
+        public const string bone_reaperFullRibcage_chipped = "0b6ea118-1c0b-4039-afdb-2d9b26401ad2";
+        public const string bone_reaperHalfRibcage = "e10ff9a1-5f1e-4c4d-bf5f-170dba9e321b";
+        public const string bone_curly = "70c0c560-1a47-46ea-9659-30c8072eb792";
+        public const string bone_generic1 = "db44e245-1bf5-42b7-9da2-ab7c33e91241";
+        public const string bone_generic2 = "33c42808-c360-42b6-954d-5f10d0bffdeb";
+        public const string bone_lessCurly = "6be26bed-91eb-42b9-be92-314d3bd028d6";
+        public const string bone_lessCurly2 = "7c5425d4-2339-436c-822a-d6b3922b489a";
+        public const string bone_lessCurly3 = "e64676d7-0648-4f1e-9ab0-8e37ec877ef9";
+        public const string bone_lessCurly4 = "08b4a416-2cdf-4c6b-8772-f58255e525d7";
+        public const string bone_lessCurly_chipped = "6bf7e935-6e27-4b93-bc9c-25b7ec95c45e";
         /// <summary>
         /// Faces up by default.
         /// </summary>
