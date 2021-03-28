@@ -16,11 +16,11 @@ namespace ProjectAncients.Patches
         [HarmonyPrefix]
         public static void Prefix(MainMenuMusic __instance)
         {
-            FMODAsset dunesMusic = ScriptableObject.CreateInstance<FMODAsset>();
-            dunesMusic.path = "event:/env/music/wreak_ambience_big_music";
-            dunesMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
-            //bloodKelpMusic.id = "{644c6e32-9488-46dc-b223-ae50a312432f}";
-            __instance.music = dunesMusic;
+            FMODAsset wreakMusic = ScriptableObject.CreateInstance<FMODAsset>();
+            wreakMusic.path = "event:/env/music/wreak_ambience_big_music";
+            wreakMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
+
+            __instance.music = wreakMusic;
 
             Light[] lights = Object.FindObjectsOfType<Light>();
             Light highlight = lights[0];
