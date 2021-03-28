@@ -67,7 +67,7 @@ namespace ProjectAncients.Mono
 
         public static bool IsVoidBiome(string biomeName)
         {
-            return string.Equals(biomeName, "void", StringComparison.OrdinalIgnoreCase);
+            return string.Equals(biomeName, "void", StringComparison.OrdinalIgnoreCase) || biomeName == string.Empty;
         }
 
         private static Vector3 GetGargSpawnPoint(Vector3 playerWorldPosition)
