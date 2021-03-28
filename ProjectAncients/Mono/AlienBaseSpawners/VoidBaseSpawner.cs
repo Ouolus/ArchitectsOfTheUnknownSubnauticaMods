@@ -47,7 +47,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Supplies
             SpawnPrefab(supplies_purpleTablet, new Vector3(13f, -7.3f, -7.5f), Vector3.up * 64f);
 
-
+            //Egg stuff
+            SpawnPrefab(structure_specialPlatform, new Vector3(0f, 0f, -16f));
+            SpawnPrefab(Mod.gargEgg.ClassID, new Vector3(0f, 2f, -16f));
+            SpawnPrefab(light_small, new Vector3(2f, 0f, -14f));
+            SpawnPrefab(light_small, new Vector3(2f, 0f, -18f));
+            SpawnPrefab(light_small, new Vector3(-2f, 0f, -14f));
+            SpawnPrefab(light_small, new Vector3(-2f, 0f, -18f));
         }
     }
 }
