@@ -31,6 +31,8 @@ namespace ProjectAncients.Prefabs
 
         public override ScannableItemData ScannableSettings => new ScannableItemData(true, 18f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), null);
 
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 31f, 25f, 30f, 17f, 30f);
+
         public override string GetEncyDesc => "Adult gargantuan text";
 
         public override void AddCustomBehaviour(CreatureComponents components)
