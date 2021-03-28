@@ -332,10 +332,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public void SpawnRelicInCase(Vector3 localPosition, string relicClassId)
+        public void SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset)
         {
             SpawnPrefab(artifactHolder, localPosition);
-            SpawnPrefab(relicClassId, localPosition);
+            SpawnPrefab(relicClassId, localPosition + relicOffset);
         }
 
         /// <summary>
