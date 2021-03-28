@@ -190,7 +190,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_tailfin, modEncyPath_tech, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was uncoupled intentionally.");
 
-            PatchEncy(ency_secondaryBaseModel, modEncyPath_tech, "Large Cache Structure", "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.");
+            PatchEncy(ency_secondaryBaseModel, modEncyPath_tech, "Cache Structure", "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.");
 
             #endregion
 
