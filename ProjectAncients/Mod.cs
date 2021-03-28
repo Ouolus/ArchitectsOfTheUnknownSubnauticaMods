@@ -315,6 +315,30 @@ namespace ProjectAncients
             }
         }
 
+        public static void ApplyPrecursorMaterials(GameObject prefab)
+        {
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                Material material = renderer.material;
+                material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
+                material.SetFloat("_SpecInt", 8f);
+                material.SetFloat("_Fresnel", 0.4f);
+                if (ECCHelpers.CompareStrings(material.name, "Transparent", ECCStringComparison.Contains))
+                {
+                    material.SetFloat("_SrcBlend", 5f);
+                    material.SetFloat("_DstBlend", 10f);
+                    material.SetFloat("_SrcBlend2", 5f);
+                    material.SetFloat("_DstBlend2", 10f);
+                    material.SetFloat("_AddSrcBlend", 5f);
+                    material.SetFloat("_AddDstBlend", 1f);
+                    material.SetFloat("_AddSrcBlend2", 5f);
+                    material.SetFloat("_AddDstBlend2", 1f);
+                    material.SetInt("_ZWrite", 0);
+                    material.EnableKeyword("MARMO_SIMPLE_GLASS");
+                }
+            }
+        }
+
         static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
         {
             Sprite popup = null;
