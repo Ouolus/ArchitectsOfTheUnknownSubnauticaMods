@@ -22,6 +22,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabGlobally(bone_reaperFullRibcage_chipped, new Vector3(-805.79f, -183.85f, -576.63f), new Vector3(335.11f, 358.04f, 8.85f), Vector3.one);
             SpawnPrefabGlobally(bone_reaperMandible, new Vector3(-815.81f, -196.04f, -610.00f), new Vector3(342.22f, 85.71f, 337.03f), Vector3.one);
             SpawnPrefabGlobally(bone_reaperMandible, new Vector3(-809.74f, -190f, -587.91f), new Vector3(351.43f, 68.57f, 0f), Vector3.one);
+            SpawnPrefabGlobally(bone_reaperFullRibcage_normal, new Vector3(-874.98f, -193.72f, -591.03f), new Vector3(4.39f, 0.69f, 17.87f), Vector3.one);
         }
     }
 }
