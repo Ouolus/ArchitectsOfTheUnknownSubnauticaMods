@@ -59,6 +59,7 @@ namespace ProjectAncients
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
+        public static GenericWorldPrefab guardianTailfinModel;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -255,6 +256,9 @@ namespace ProjectAncients
 
             voidBaseModel = new GenericWorldPrefab("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Far);
             voidBaseModel.Patch();
+
+            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
+            guardianTailfinModel.Patch();
             #endregion
 
             #region Alien bases
