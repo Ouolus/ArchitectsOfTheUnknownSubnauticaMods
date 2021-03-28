@@ -9,11 +9,13 @@ namespace ProjectAncients.Prefabs.AlienBase
     public class AlienRelicPrefab : Spawnable
     {
         static FMODAsset relicSoundAsset;
+        private float scale;
 
         GameObject model;
-        public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model) : base(classId, friendlyName, description)
+        public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model, float scale) : base(classId, friendlyName, description)
         {
             this.model = model;
+            this.scale = scale;
         }
 
 #if SN1
@@ -22,7 +24,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
-            GameObject.Instantiate(model, obj.transform, false);
+            GameObject instantiatedModel = GameObject.Instantiate(model, obj.transform, false);
+            instantiatedModel.transform.localPosition = Vector3.zero;
+            instantiatedModel.transform.localScale = Vector3.one * 0.5f;
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
             capsule.radius = 1.4889f;
@@ -44,7 +48,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
-            GameObject.Instantiate(model, obj.transform, false);
+            GameObject instantiatedModel = GameObject.Instantiate(model, obj.transform, false);
+            instantiatedModel.transform.localPosition = Vector3.zero;
+            instantiatedModel.transform.localScale = Vector3.one * 0.5f;
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
             capsule.radius = 1.4889f;
