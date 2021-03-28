@@ -28,7 +28,7 @@ namespace ProjectAncients.Mono
             PlayRoar();
             for(; ; )
             {
-                yield return new WaitForSeconds(Random.Range(22f, 34f));
+                yield return new WaitForSeconds(Random.Range(22f, 44f));
                 PlayRoar();
             }
         }
