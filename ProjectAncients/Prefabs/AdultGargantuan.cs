@@ -44,6 +44,10 @@ namespace ProjectAncients.Prefabs
             UpdateGargTransparentMaterial(renderer.materials[2]);
             UpdateGargSkeletonMaterial(renderer.materials[3]);
             UpdateGargGutsMaterial(renderer.materials[4]);
+            UpdateGargDstBlend2(renderer.materials[0]);
+            UpdateGargDstBlend2(renderer.materials[1]);
+            UpdateGargDstBlend2(renderer.materials[2]);
+            UpdateGargDstBlend2(renderer.materials[4]);
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
@@ -71,6 +75,11 @@ namespace ProjectAncients.Prefabs
             material.SetFloat("_GlowStrength", 10f);
             material.SetFloat("_GlowStrengthNight", 10f);
 
+        }
+
+        void UpdateGargDstBlend2(Material material)
+        {
+            material.SetFloat("_DstBlend2", 5.68f);
         }
 
         public override bool CanPerformCyclopsCinematic => true;
