@@ -6,8 +6,9 @@ namespace ProjectAncients.Mono
     {
         void Start()
         {
-            Material material = RenderSettings.skybox;
-            material.SetVector("_SunDir", new Vector4(0f, 1f, 0f, 0f));
+            uSkyManager skyManager = FindObjectOfType<uSkyManager>();
+            skyManager.Timeline = 2f;
+            skyManager.NightSky = uSkyManager.NightModes.Rotation;
         }
     }
 }
