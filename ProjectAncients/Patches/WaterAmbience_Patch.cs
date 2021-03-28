@@ -27,34 +27,35 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.Start))]
         public static void WaterBiomeManager_Start_Postfix(WaterBiomeManager __instance)
         {
-            if (!__instance.biomeLookup.ContainsKey("void"))
+            WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                GameObject skyPrefab = null;
-                if (__instance.biomeLookup.TryGetValue("LostRiver_BonesField", out int index))
-                {
-                    skyPrefab = __instance.biomeSettings[index].skyPrefab;
-                }
-                WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
-                {
-                    absorption = new Vector3(6f, 6f, 6f),
-                    ambientScale = 0f,
-                    emissiveScale = 0f,
-                    sunlightScale = 1f,
-                    murkiness = 0.5f,
-                    startDistance = 50f,
-                    scatteringColor = Color.green,
-                    temperature = 0f,
-                    scattering = 0.15f
-                };
+                absorption = new Vector3(6f, 6f, 6f),
+                ambientScale = 0f,
+                emissiveScale = 0f,
+                sunlightScale = 1f,
+                murkiness = 0.5f,
+                startDistance = 50f,
+                scatteringColor = Color.green,
+                temperature = 0f,
+                scattering = 0.15f
+            };
+            PatchBiomeFog(__instance, "void", voidWaterscapeSettings);
+            PatchBiomeFog(__instance, string.Empty, voidWaterscapeSettings);
+        }
+
+        static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings)
+        {
+            if (!waterBiomeManager.biomeLookup.ContainsKey(biomeName))
+            {
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
-                    name = "void",
-                    skyPrefab = skyPrefab,
-                    settings = waterscapeSettings
+                    name = biomeName,
+                    skyPrefab = null,
+                    settings = waterScapeSettings
                 };
-                __instance.biomeSettings.Add(biomeSettings);
-                int indexForNew = __instance.biomeSettings.Count - 1;
-                __instance.biomeLookup.Add("void", indexForNew);
+                waterBiomeManager.biomeSettings.Add(biomeSettings);
+                int indexForNew = waterBiomeManager.biomeSettings.Count - 1;
+                waterBiomeManager.biomeLookup.Add(biomeName, indexForNew);
             }
         }
     }
