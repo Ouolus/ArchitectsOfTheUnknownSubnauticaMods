@@ -92,6 +92,23 @@ namespace ProjectAncients.Mono
             return true;
         }
 
+        public bool IsVehicle(GameObject gameObject)
+        {
+            if(gameObject is null)
+            {
+                return false;
+            }
+            if (gameObject.GetComponentInParent<Vehicle>())
+            {
+                return true;
+            }
+            if (gameObject.GetComponentInParent<SubRoot>())
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool IsHoldingVehicle()
         {
             return heldVehicleType != VehicleType.None;

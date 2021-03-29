@@ -140,7 +140,7 @@ namespace ProjectAncients.Mono
                             swallowing.target = throat.transform;
                             swallowing.animationLength = 1f;
                         }
-                        else
+                        else if(canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
                         {
                             var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
                             StartCoroutine(PerformBiteAttack(target));
