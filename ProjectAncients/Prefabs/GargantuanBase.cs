@@ -166,6 +166,8 @@ namespace ProjectAncients.Prefabs
             roar.distantSoundsPrefix = DistantRoarPrefix;
             roar.minDistance = RoarSoundMinMax.Item1;
             roar.maxDistance = RoarSoundMinMax.Item2;
+            roar.delayMin = RoarDelayMinMax.Item1;
+            roar.delayMax = RoarDelayMinMax.Item2;
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
@@ -186,6 +188,13 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
         }
 
+        public virtual (float, float) RoarDelayMinMax
+        {
+            get
+            {
+                return (11f, 18f);
+            }
+        }
         public virtual bool UseSwimSounds
         {
             get

@@ -10,8 +10,8 @@ namespace ProjectAncients.Mono
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
         Creature creature;
-        const float delayMin = 11f;
-        const float delayMax = 18f;
+        public float delayMin = 11f;
+        public float delayMax = 18f;
         public string closeSoundsPrefix;
         public string distantSoundsPrefix;
 
