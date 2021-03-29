@@ -34,7 +34,7 @@ namespace ProjectAncients.Prefabs
 
         public override string GetEncyTitle => "[REDACTED]";
 
-        public override string GetEncyDesc => "[REDACTED]\n\n(Coming soon)";
+        public override string GetEncyDesc => "[REDACTED]";
 
         public override bool EnableAggression => true;
 

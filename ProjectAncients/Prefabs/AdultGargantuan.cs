@@ -34,6 +34,7 @@ namespace ProjectAncients.Prefabs
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 31f, 25f, 30f, 17f, 30f);
 
         public override string GetEncyDesc => "Adult gargantuan text";
+        public override string GetEncyTitle => "Gargantuan Leviathan";
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
