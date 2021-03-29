@@ -78,7 +78,7 @@ namespace ProjectAncients.Prefabs
             spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
@@ -187,7 +187,14 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
         }
-
+        
+        public virtual float SpineBoneSnapSpeed
+        {
+            get
+            {
+                return 0.075f;
+            }
+        }
         public virtual (float, float) RoarDelayMinMax
         {
             get

@@ -65,5 +65,7 @@ namespace ProjectAncients.Prefabs
         public override float Mass => 600f;
 
         public override float BiteDamage => 500f;
+
+        public override float SpineBoneSnapSpeed => 1f;
     }
 }
