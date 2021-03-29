@@ -11,6 +11,16 @@ namespace ProjectAncients.Patches
     [HarmonyPatch(typeof(LiveMixin))]
     public class LiveMixin_Patches
     {
+        [HarmonyPatch(nameof(LiveMixin.Kill))]
+        [HarmonyPrefix]
+        static bool Kill_Prefix(LiveMixin __instance)
+        {
+            if (__instance.invincible)
+                return false;
+
+            return true;
+        }
+        
         [HarmonyPatch(nameof(LiveMixin.TakeDamage))]
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> TakeDamage_Transpiler(IEnumerable<CodeInstruction> instructions)
