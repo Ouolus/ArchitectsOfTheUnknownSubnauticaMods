@@ -18,27 +18,31 @@ namespace ProjectAncients.Mono
         public float minDistance = 50f;
         public float maxDistance = 600f;
 
-        private IEnumerator Start()
+        float timeRoarAgain = 0f;
+
+        private void Start()
         {
             InitializeAudioSource();
             creature = GetComponent<Creature>();
-            float distance;
-            AudioClip clipToPlay;
-            for (; ; )
+        }
+
+        void Update()
+        {
+            if (!creature.liveMixin.IsAlive())
             {
-                if (!gameObject.GetComponent<LiveMixin>().IsAlive())
-                {
-                    Destroy(this);
-                    yield break;
-                }
-                distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-                clipToPlay = GetAudioClip(distance);
+                Destroy(this);
+                return;
+            }
+            if(Time.time > timeRoarAgain)
+            {
+                float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
+                AudioClip clipToPlay = GetAudioClip(distance);
                 audioSource.clip = clipToPlay;
                 audioSource.Play();
                 creature.GetAnimator().SetFloat("random", Random.value);
                 creature.GetAnimator().SetTrigger("roar");
                 float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
-                yield return new WaitForSeconds(timeToWait);
+                timeRoarAgain = Time.time + timeToWait;
             }
         }
 
