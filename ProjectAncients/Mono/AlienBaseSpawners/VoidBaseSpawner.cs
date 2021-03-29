@@ -68,10 +68,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Left room
             SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f);
 
-            GenerateCable(new Vector3(373.11f + 5f, -389.00f, -1896.07f + 5f), Vector3.down, new Vector3(373.11f + 5f, -399.00f - 1f, -1896.97f + 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 5f, -389.00f, -1896.07f + 5f), Vector3.down, new Vector3(373.11f - 5f, -399.00f - 1f, -1896.97f + 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f + 5f, -389.00f, -1896.07f - 5f), Vector3.down, new Vector3(373.11f + 5f, -399.00f - 1f, -1896.97f - 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 5f, -389.00f, -1896.07f - 5f), Vector3.down, new Vector3(373.11f - 5f, -399.00f - 1f, -1896.97f - 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f + 6f), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f + 6f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f + 6f), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f + 6f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f - 6f), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f - 6f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f - 6f), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f - 6f), Vector3.down, Vector3.zero, 0f, 0.5f);
         }
     }
 }
