@@ -24,7 +24,7 @@ namespace ProjectAncients.Mono
 
         IEnumerator RoarLoop()
         {
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(1f);
             PlayRoar();
             for(; ; )
             {
