@@ -15,6 +15,12 @@ namespace ProjectAncients.Prefabs
         {
         }
 
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 12f, "Lifeforms/Fauna/Leviathans", null, null);
+
+        public override string GetEncyTitle => "Gargantuan Skeleton";
+
+        public override string GetEncyDesc => "This thing shouldn't exist.";
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
