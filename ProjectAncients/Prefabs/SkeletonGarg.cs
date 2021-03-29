@@ -15,7 +15,7 @@ namespace ProjectAncients.Prefabs
         {
         }
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 12f, "Lifeforms/Fauna/Leviathans", null, null);
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 5f, "Lifeforms/Fauna/Leviathans", null, null);
 
         public override string GetEncyTitle => "Gargantuan Skeleton";
 
