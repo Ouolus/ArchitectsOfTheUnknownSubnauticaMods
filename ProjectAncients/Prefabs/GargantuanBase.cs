@@ -117,6 +117,8 @@ namespace ProjectAncients.Prefabs
             gargBehaviour.attachBoneName = AttachBoneName;
             gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
 
+            components.liveMixin.invincible = true;
+            
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
             mouthAttack.mouth = mouth;
