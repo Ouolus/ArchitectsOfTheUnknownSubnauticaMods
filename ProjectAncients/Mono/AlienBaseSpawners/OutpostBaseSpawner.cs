@@ -6,8 +6,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
     {
         public override void ConstructBase()
         {
-            GameObject outpost = SpawnPrefab(structure_outpost_1, Vector3.zero);
-            GameObject.Destroy(outpost.GetComponent<TechTag>());
+            SpawnPrefab(structure_outpost_1, Vector3.zero);
             SpawnPrefabsArray(box2x1x2, 2f, new Vector3(10, 1, 10), Vector3.one, new Vector3(0f, -7.3f, 0f));
             const float yOffset = -7.3f;
             SpawnPrefab(supplies_drillableTitanium, new Vector3(-4f, yOffset, 1f));
