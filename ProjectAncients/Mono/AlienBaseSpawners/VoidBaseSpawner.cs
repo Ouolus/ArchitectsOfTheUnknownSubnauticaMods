@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class VoidBaseSpawner : AlienBaseSpawner
     {
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
-            GameObject baseModel = SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero);
-            GenerateAtmospheres(baseModel, "AtmosphereRoot", atmosphereVolume_antechamber);
+            TaskResult<GameObject> baseModel = new TaskResult<GameObject>();
+            yield return SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero, baseModel);
+            GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", atmosphereVolume_antechamber);
 
             //Exterior platform
             SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f));
@@ -32,6 +34,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GenerateCable(new Vector3(363, -412, -1870 + Mod.voidBaseZOffset), new Vector3(-0.7f, 0f, 0.7f), new Vector3(344f, -418, -1763), new Vector3(0, 0, 1), Vector3.down, cableDrop, 2f);
             GenerateCable(new Vector3(365, -424, -1872 + Mod.voidBaseZOffset), new Vector3(-0.7f, 0f, 0.7f), new Vector3(338, -427, -1770), new Vector3(0f, 0f, 1f), Vector3.down, cableDrop, 2f);
             GenerateCable(new Vector3(367, -436, -1874 + Mod.voidBaseZOffset), new Vector3(-0.7f, 0f, 0.7f), new Vector3(340f, -450f, -1771f), new Vector3(0.2f, -0.2f, 0.9f), Vector3.down, cableDrop, 2f);
+
+            yield return null;
         }
     }
 }

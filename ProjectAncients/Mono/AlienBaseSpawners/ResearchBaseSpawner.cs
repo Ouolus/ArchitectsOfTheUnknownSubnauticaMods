@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
@@ -8,9 +9,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
         protected override string TabletClassId => supplies_redTablet;
 
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
-            base.ConstructBase();
+            yield return base.ConstructBase();
             SpawnPrefab(Mod.door_researchBase.ClassID, new Vector3(centerLocalX, floorLocalY, 24f));
             SpawnPrefab(Mod.researchBaseTerminal.ClassID, new Vector3(centerLocalX + 22f, floorLocalY, 0f), new Vector3(0f, 90f, 0f));
             SpawnPrefab(Mod.archElectricityTerminal.ClassID, new Vector3(centerLocalX - 22f, floorLocalY, 0f), new Vector3(0f, -90f, 0f));

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class OutpostBaseSpawner : AlienBaseSpawner
     {
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
             SpawnPrefab(structure_outpost_1, Vector3.zero);
             SpawnPrefabsArray(box2x1x2, 2f, new Vector3(10, 1, 10), Vector3.one, new Vector3(0f, -7.3f, 0f));
@@ -31,6 +32,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, 7f));
             SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, -9f));
             SpawnColumns(-16f);
+            yield return null;
         }
 
         protected void SpawnColumns(float yOffset)

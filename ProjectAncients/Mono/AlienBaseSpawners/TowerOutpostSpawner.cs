@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class TowerOutpostSpawner : OutpostBaseSpawner
     {
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
-            base.ConstructBase();
+            yield return base.ConstructBase();
             SpawnColumns(-24f);
             SpawnColumns(-32f);
             SpawnColumns(-40f);

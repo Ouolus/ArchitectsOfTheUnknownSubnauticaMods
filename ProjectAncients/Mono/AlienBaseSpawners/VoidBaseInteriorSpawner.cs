@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class VoidBaseInteriorSpawner : AlienBaseSpawner
     {
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
             //Entrance hallway
             SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 5), Vector3.one, new Vector3(-3f + 0.5f, 0.5f, 18f));
@@ -46,6 +47,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             //Left room
             SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f);
+
+            yield return null;
         }
     }
 }

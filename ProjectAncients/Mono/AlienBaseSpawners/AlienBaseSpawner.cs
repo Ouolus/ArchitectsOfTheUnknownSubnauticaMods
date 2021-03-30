@@ -1,5 +1,6 @@
 ﻿using ECCLibrary;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UWE;
 
@@ -98,10 +99,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
         private List<GameObject> spawnedChildren;
 
-        private void Start()
+        private IEnumerator Start()
         {
             spawnedChildren = new List<GameObject>();
-            ConstructBase();
+            yield return ConstructBase();
             foreach (GameObject obj in spawnedChildren)
             {
                 obj.transform.parent = null;
@@ -112,12 +113,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// <summary>
         /// Override this method to spawn the prefabs;
         /// </summary>
-        public abstract void ConstructBase();
+        public abstract IEnumerator ConstructBase();
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -125,31 +126,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if(spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-                
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localRotation = Quaternion.identity;
-                spawnedObject.transform.localScale = Vector3.one;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
+            yield return null;
         }
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -157,31 +142,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localEulerAngles = localRotation;
-                spawnedObject.transform.localScale = Vector3.one;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
+            yield return null;
         }
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -189,25 +158,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localEulerAngles = localRotation;
-                spawnedObject.transform.localScale = scale;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
+            yield return null;
         }
 
         public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition)

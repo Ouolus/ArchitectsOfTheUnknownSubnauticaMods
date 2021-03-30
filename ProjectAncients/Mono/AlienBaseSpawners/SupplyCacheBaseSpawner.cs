@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class SupplyCacheBaseSpawner : SecondaryBaseSpawner
     {
-        public override void ConstructBase()
+        public override IEnumerator ConstructBase()
         {
-            base.ConstructBase();
+            yield return base.ConstructBase();
             SpawnPrefab(Mod.door_supplyCache.ClassID, new Vector3(centerLocalX, floorLocalY, 24f));
             SpawnPrefab(structure_column, new Vector3(centerLocalX - 14f, floorLocalY, 0f));
             SpawnPrefab(structure_column, new Vector3(centerLocalX - 14f, floorLocalY, -6f));
