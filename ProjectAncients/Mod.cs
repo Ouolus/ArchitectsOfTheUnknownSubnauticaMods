@@ -89,6 +89,7 @@ namespace ProjectAncients
         private const string ency_distressSignal = "GuardianTerminalData";
         private const string ency_tailfin = "GuardianTailfin";
         private const string ency_secondaryBaseModel = "SecondaryBaseModel";
+        private const string ency_voidBaseModel = "VoidBaseModel";
         private const string ency_precingot = "PrecursorIngot";
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
@@ -187,15 +188,17 @@ namespace ProjectAncients
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup");
 
-            PatchEncy(ency_distressSignal, modEncyPath_tech, "Abnormal Distress Signal", "This terminal has given your PDA access to a complicated tracking device. Frequent and intense electromagnetic pulses suggest it is under distress. Make sure to come prepared.", "Guardian_Popup");
+            PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has linked your PDA to a complex tracking device. Intense and frequent electromagnetic pulses suggest it is under distress. Come prepared.", "Guardian_Popup");
 
             PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.", "IonicCharge_Popup", "OrangeGlyph_Ency");
 
-            PatchEncy(ency_tailfin, modEncyPath_analysis, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was uncoupled intentionally.");
+            PatchEncy(ency_tailfin, modEncyPath_analysis, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was designed for intentional uncoupling.");
 
             PatchEncy(ency_secondaryBaseModel, modEncyPath_analysis, "Cache Structure", "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.");
 
-            PatchEncy(ency_precingot, modEncyPath_analysis, "Alien Structure Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner wiring.\n\nNo applications detected.");
+            PatchEncy(ency_voidBaseModel, modEncyPath_analysis, "Suspended Platform", "A massive structure. It is impossible to determine any applications of a base this large in such a dangerous area.\n\nThe unique design with little room for interior space suggests a non-conventional use. More information may be located inside the structure.");
+
+            PatchEncy(ency_precingot, modEncyPath_analysis, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.");
             #endregion
 
             #region Generic precursor stuff
@@ -272,7 +275,7 @@ namespace ProjectAncients
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
 
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structure Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
             #endregion
