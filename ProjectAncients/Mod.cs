@@ -56,6 +56,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab researchBaseTerminal;
         public static DataTerminalPrefab supplyCacheTerminal;
         public static DataTerminalPrefab archElectricityTerminal;
+        public static DataTerminalPrefab voidBaseTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -77,7 +78,7 @@ namespace ProjectAncients
         private const string assetBundleName = "projectancientsassets";
 
         private const string modEncyPath_root = "GargMod";
-        private const string modEncyPath_information = "GargMod/GargModInformation";
+        private const string modEncyPath_terminalInfo = "GargMod/GargModInformation";
         private const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
         private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
 
@@ -85,6 +86,7 @@ namespace ProjectAncients
         private const string ency_supplyCacheTerminal = "SupplyCacheData";
         private const string ency_researchBaseTerminal = "ResearchBaseData";
         private const string ency_archElectricityTerminal = "ArchitectElectricityData";
+        private const string ency_voidBaseTerminal = "VoidBaseData";
         private const string ency_ruinedGuardian = "RuinedGuardian";
         private const string ency_distressSignal = "GuardianTerminalData";
         private const string ency_tailfin = "GuardianTailfin";
@@ -129,7 +131,7 @@ namespace ProjectAncients
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_root), "Return of the Ancients");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_analysis), "Analysis");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_information), "Information");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             #endregion
 
@@ -180,17 +182,19 @@ namespace ProjectAncients
 
 
             #region Ency
-            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_information, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_terminalInfo, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath_information, "Alien Supply Cache", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
 
-            PatchEncy(ency_researchBaseTerminal, modEncyPath_information, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup");
 
             PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has linked your PDA to a complex tracking device. Intense and frequent electromagnetic pulses suggest it is under distress. Come prepared.", "Guardian_Popup");
 
             PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.", "IonicCharge_Popup", "OrangeGlyph_Ency");
+
+            PatchEncy(ency_voidBaseTerminal, modEncyPath_terminalInfo, "Emperor Communications Apparatus", "This data terminal describes the original purpose of this facility.\n\nDue to the outbreak of the kharaa bacterium, the aliens were desperate to develop a vaccine. The only known cure at the time, found in the last known 'Sea Emperor', is too diluted to provide any definite use.\n\nDue to belief that more of these 'Sea Emperors' may exist, far away from the crater, this apparatus was constructed. While initially appearing similar to any other alien structure on the planet, schematics show an odd ability to expand downwards, exposing a significant number of complex machines.\n\nThis machinery was designed to communicate with and attract any stray Sea Emperors. Obviously, this plan has failed. However, it did attract another unusual juvenile specimen.\n\nThe base was eventually repurposed for the private studies of an individual.", "SignalPopup", "BlueGlyph_Ency");
 
             PatchEncy(ency_tailfin, modEncyPath_analysis, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was designed for intentional uncoupling.");
 
@@ -263,6 +267,9 @@ namespace ProjectAncients
 
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
+
+            voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data...");
+            voidBaseTerminal.Patch();
 
             secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
