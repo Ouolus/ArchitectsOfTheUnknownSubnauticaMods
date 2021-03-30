@@ -113,6 +113,11 @@ namespace ArchitectsLibrary.API
         public virtual bool MakeCreatureLayEggs => true;
 
         /// <summary>
+        /// Determines how close you have to be to the egg for it to appear.
+        /// </summary>
+        public virtual LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Medium;
+
+        /// <summary>
         /// determines the TechType of the undiscovered version of this egg. the friendlyName and the description of
         /// this egg will appear if this egg hasn't been Hatched at least once.
         /// </summary>
@@ -122,7 +127,7 @@ namespace ArchitectsLibrary.API
         public sealed override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
             classId = this.ClassID,
-            cellLevel = LargeWorldEntity.CellLevel.Medium,
+            cellLevel = CellLevel,
             localScale = Vector3.one,
             prefabZUp = false,
             slotType = EntitySlot.Type.Medium,
@@ -141,6 +146,7 @@ namespace ArchitectsLibrary.API
 
             obj.EnsureComponent<TechTag>().type = this.TechType;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
+            obj.EnsureComponent<LargeWorldEntity>().cellLevel = CellLevel;
 
             var skyApplier = obj.EnsureComponent<SkyApplier>();
             skyApplier.anchorSky = Skies.Auto;
