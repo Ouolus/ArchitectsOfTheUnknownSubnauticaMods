@@ -31,12 +31,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(natural_lr_hangingplant1_1, new Vector3(centerLocalX + -4f, foundationUnderLocalY, -19));
             SpawnPrefab(natural_lr_hangingplant1_3, new Vector3(centerLocalX + -5f, foundationUnderLocalY, -22));
             SpawnPrefab(natural_lr_hangingplant1_1, new Vector3(centerLocalX + -2f, foundationUnderLocalY, -19.5f));
-            SpawnRelicInCase(new Vector3(8f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
-            SpawnRelicInCase(new Vector3(8f, floorLocalY, 17f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
-            SpawnRelicInCase(new Vector3(8f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
-            SpawnRelicInCase(new Vector3(-8f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
-            SpawnRelicInCase(new Vector3(-8f, floorLocalY, 17f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
-            SpawnRelicInCase(new Vector3(-8f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX + 6f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX + 6f, floorLocalY, 17f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX + 6f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 17f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
+            SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f));
         }
 
         protected override string TerminalClassId => Mod.supplyCacheTerminal.ClassID;
