@@ -102,11 +102,22 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         private IEnumerator Start()
         {
             spawnedChildren = new List<GameObject>();
-            yield return ConstructBase();
+            yield return StartCoroutine(ConstructBase());
             foreach (GameObject obj in spawnedChildren)
             {
+                if(obj is null)
+                {
+                    ECCLibrary.Internal.ECCLog.AddMessage("Spawned child is null");
+                    continue;
+                }
                 obj.transform.parent = null;
-                LargeWorld.main.streamer.cellManager.RegisterEntity(obj.GetComponent<LargeWorldEntity>());
+                LargeWorldEntity lwe = obj.GetComponent<LargeWorldEntity>();
+                if(lwe is null)
+                {
+                    ECCLibrary.Internal.ECCLog.AddMessage("Spawned child {0} has no LWE", obj.gameObject.name);
+                    continue;
+                }
+                LargeWorld.main.streamer.cellManager.RegisterEntity(lwe);
             }
         }
 
