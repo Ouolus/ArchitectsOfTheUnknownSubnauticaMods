@@ -84,18 +84,17 @@ namespace ProjectAncients
         private const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
         private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
 
-        private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalEncy";
-        private const string ency_supplyCacheTerminal = "SupplyCacheTerminalEncy";
-        private const string ency_researchBaseTerminal = "ResearchBaseTerminalEncy";
-        private const string ency_archElectricityTerminal = "ArchitectElectricityEncy";
-        private const string ency_voidBaseTerminal = "VoidBaseTerminalEncy";
-        private const string ency_ruinedGuardian = "RuinedGuardianEncy";
-        private const string ency_distressSignal = "GuardianTerminalEncy";
-        private const string ency_tailfin = "GuardianTailfinEncy";
-        private const string ency_secondaryBaseModel = "SecondaryBaseModelEncy";
-        private const string ency_voidBaseModel = "VoidBaseModelEncy";
-        private const string ency_precingot = "PrecursorIngotEncy";
-        private const string ency_cachePings = "CachePingsEncy";
+        private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
+        private const string ency_supplyCacheTerminal = "SupplyCacheData";
+        private const string ency_researchBaseTerminal = "ResearchBaseData";
+        private const string ency_archElectricityTerminal = "ArchitectElectricityData";
+        private const string ency_voidBaseTerminal = "VoidBaseData";
+        private const string ency_ruinedGuardian = "RuinedGuardian";
+        private const string ency_distressSignal = "GuardianTerminalData";
+        private const string ency_tailfin = "GuardianTailfin";
+        private const string ency_secondaryBaseModel = "SecondaryBaseModel";
+        private const string ency_voidBaseModel = "VoidBaseModel";
+        private const string ency_precingot = "PrecursorIngot";
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
@@ -182,6 +181,7 @@ namespace ProjectAncients
             signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747));
             signal_ruinedGuardian.Patch();
             #endregion
+
 
             #region Ency
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_terminalInfo, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
