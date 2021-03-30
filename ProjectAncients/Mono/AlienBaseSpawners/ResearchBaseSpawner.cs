@@ -24,6 +24,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabGlobally(bone_reaperMandible, new Vector3(-809.74f, -190f, -587.91f), new Vector3(351.43f, 68.57f, 0f), Vector3.one);
             SpawnPrefabGlobally(bone_reaperFullRibcage_normal, new Vector3(-874.98f, -193.72f, -591.03f), new Vector3(4.39f, 0.69f, 17.87f), Vector3.one);
             SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one);
+            SpawnPrefabsArray(creature_alienRobot, 1f, new Vector3(8, 1, 2), Vector3.one, new Vector3(0f, 5f, 0f));
         }
     }
 }
