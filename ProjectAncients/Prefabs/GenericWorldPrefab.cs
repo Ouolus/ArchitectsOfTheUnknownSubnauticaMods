@@ -1,6 +1,7 @@
 ﻿using ECCLibrary;
 using SMLHelper.V2.Assets;
 using UnityEngine;
+using ArchitectsLibrary.Utility;
 
 namespace ProjectAncients.Prefabs
 {
@@ -32,7 +33,7 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
-                Mod.ApplyPrecursorMaterials(prefab, 35f);
+                MaterialUtils.ApplyPrecursorMaterials(prefab, 35f);
                 foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
                 {
                     col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;

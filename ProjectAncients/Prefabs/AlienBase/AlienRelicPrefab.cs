@@ -3,6 +3,7 @@ using UnityEngine;
 using UWE;
 using System.Collections;
 using ECCLibrary;
+using ArchitectsLibrary.Utility;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
@@ -36,7 +37,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
-            Mod.ApplyPrecursorMaterials(obj, 35f);
+            MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
