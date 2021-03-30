@@ -309,7 +309,7 @@ namespace ProjectAncients
             var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880)); //Void
             eggBase.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880), 50f); //Void
+            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880), 40f, LargeWorldEntity.CellLevel.Near); //Void
             eggBaseInterior.Patch();
             #endregion
 
