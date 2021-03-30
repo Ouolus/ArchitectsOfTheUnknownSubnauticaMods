@@ -39,10 +39,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(structure_column, new Vector3(0f, 6f, -16f), Vector3.zero, new Vector3(1f, 0.87f, 1f));
             SpawnPrefab(pedestal_empty2, new Vector3(0f, 6f, -16f), (Vector3.left * 180f), new Vector3(1.5f, 0.5f, 1.5f));
             SpawnPrefab(light_small, new Vector3(0f, 4.5f, -16f), Vector3.left * 180f);
-            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f + 5f), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f + 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f + 5f), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f + 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f - 5f), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f - 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f - 5f), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f - 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
+            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
 
             //Left room
             SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f);

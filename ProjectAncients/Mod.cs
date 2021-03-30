@@ -75,6 +75,8 @@ namespace ProjectAncients
 
         const string coordinateDisplayName = "Downloaded co-ordinates";
 
+        public const float voidBaseZOffset = 20f;
+
         private const string assetBundleName = "projectancientsassets";
 
         private const string modEncyPath_root = "GargMod";
@@ -306,10 +308,10 @@ namespace ProjectAncients
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880)); //Void
+            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset)); //Void
             eggBase.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880), 40f, LargeWorldEntity.CellLevel.Near); //Void
+            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 40f, LargeWorldEntity.CellLevel.Near); //Void
             eggBaseInterior.Patch();
             #endregion
 
