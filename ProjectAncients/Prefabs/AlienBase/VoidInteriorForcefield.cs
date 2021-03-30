@@ -18,8 +18,8 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab("2d72ad6c-d30d-41be-baa7-0c1dba757b7c", out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject.Destroy(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
-            GameObject.Destroy(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
+            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
+            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
             obj.SetActive(false);
             return obj;
         }
