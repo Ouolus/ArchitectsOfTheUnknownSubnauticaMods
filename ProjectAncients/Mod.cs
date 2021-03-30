@@ -180,9 +180,9 @@ namespace ProjectAncients
 
 
             #region Ency
-            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_information, "Tertiary Outpost Anaylsis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_information, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "SignalPopup", "BlueGlyph_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath_information, "Supply Cache Anaylsis", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath_information, "Alien Supply Cache", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.");
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_information, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "SignalPopup", "BlueGlyph_Ency");
 
