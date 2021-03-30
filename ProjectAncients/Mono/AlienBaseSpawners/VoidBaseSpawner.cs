@@ -62,6 +62,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefab(light_small, new Vector3(2.5f, 0f, -18.5f));
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -13.5f));
             SpawnPrefab(light_small, new Vector3(-2.5f, 0f, -18.5f));
+            SpawnPrefab(creature_alienRobot, new Vector3(-4f, 0f, -18.5f));
+            SpawnPrefab(creature_alienRobot, new Vector3(4f, 0f, -18.5f));
             SpawnPrefab(structure_column, new Vector3(0f, 6f, -16f), Vector3.zero, new Vector3(1f, 0.87f, 1f));
             SpawnPrefab(pedestal_empty2, new Vector3(0f, 6f, -16f), (Vector3.left * 180f), new Vector3(1.5f, 0.5f, 1.5f));
             SpawnPrefab(light_small, new Vector3(0f, 4.5f, -16f), Vector3.left * 180f);
