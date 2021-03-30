@@ -7,7 +7,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public override void ConstructBase()
         {
             GameObject baseModel = SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero);
-            GenerateAtmospheres(baseModel, "AtmosphereRoot", atmosphereVolume_cache);
+            GenerateAtmospheres(baseModel, "AtmosphereRoot", atmosphereVolume_antechamber);
 
             //Exterior platform
             SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f));
