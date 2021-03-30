@@ -76,10 +76,10 @@ namespace ProjectAncients
 
         private const string assetBundleName = "projectancientsassets";
 
-        private const string modEncyPath_root = "DownloadedData/Precursor/GargMod";
-        private const string modEncyPath_information = "DownloadedData/Precursor/GargMod/GargModInformation";
-        private const string modEncyPath_analysis = "DownloadedData/Precursor/GargMod/GargModPrecursorAnalysis";
-        private const string modEncyPath_tech = "DownloadedData/Precursor/GargMod/GargModPrecursorTech";
+        private const string modEncyPath_root = "GargMod";
+        private const string modEncyPath_information = "GargMod/GargModInformation";
+        private const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
+        private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalData";
         private const string ency_supplyCacheTerminal = "SupplyCacheData";
@@ -89,6 +89,7 @@ namespace ProjectAncients
         private const string ency_distressSignal = "GuardianTerminalData";
         private const string ency_tailfin = "GuardianTailfin";
         private const string ency_secondaryBaseModel = "SecondaryBaseModel";
+        private const string ency_precingot = "PrecursorIngot";
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
@@ -125,7 +126,7 @@ namespace ProjectAncients
 
             #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_root), "Anomaly");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_root), "Return of the Ancients");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_analysis), "Analysis");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_information), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
@@ -190,10 +191,11 @@ namespace ProjectAncients
 
             PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.", "IonicCharge_Popup", "OrangeGlyph_Ency");
 
-            PatchEncy(ency_tailfin, modEncyPath_tech, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was uncoupled intentionally.");
+            PatchEncy(ency_tailfin, modEncyPath_analysis, "Alien Machine Tail Segment", "Appears to be the tail of some sort of segmented machine. A lack of intensive damage suggests it was uncoupled intentionally.");
 
-            PatchEncy(ency_secondaryBaseModel, modEncyPath_tech, "Cache Structure", "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.");
+            PatchEncy(ency_secondaryBaseModel, modEncyPath_analysis, "Cache Structure", "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.");
 
+            PatchEncy(ency_precingot, modEncyPath_analysis, "Alien Structure Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner wiring.\n\nNo applications detected.");
             #endregion
 
             #region Generic precursor stuff
@@ -272,6 +274,7 @@ namespace ProjectAncients
 
             ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structure Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
+            MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
             #endregion
 
             #region Alien bases
