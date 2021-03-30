@@ -11,13 +11,13 @@ namespace ProjectAncients.Prefabs
     class AlienBaseInitializer<T> : Spawnable where T : AlienBaseSpawner
     {
 
-        public AlienBaseInitializer(string classId, Vector3 coords)
+        public AlienBaseInitializer(string classId, Vector3 coords, float distanceToLoad = 200f)
             : base(classId, ".", ".")
         {
             OnFinishedPatching = () =>
             {
                 StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, coords,
-                    classId, 200f));
+                    classId, distanceToLoad));
             };
         }
 
