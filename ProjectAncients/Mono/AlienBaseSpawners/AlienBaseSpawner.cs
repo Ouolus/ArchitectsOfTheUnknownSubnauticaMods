@@ -61,6 +61,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_orangeTablet = "58247109-68b9-411f-b90f-63461df9753a";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
+        public const string atmosphereVolume_antechamber = "d645d7c7-76a2-4818-86b0-5c3e37a51e31";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
