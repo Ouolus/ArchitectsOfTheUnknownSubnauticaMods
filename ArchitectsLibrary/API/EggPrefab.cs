@@ -15,7 +15,7 @@ namespace ArchitectsLibrary.API
     public abstract class EggPrefab : Spawnable
     {
         private TechType _overridenTechType;
-        
+
         /// <summary>
         /// Initializes a new <see cref="EggPrefab"/>
         /// </summary>
@@ -46,9 +46,9 @@ namespace ArchitectsLibrary.API
                     SpriteHandler.RegisterSprite(this.TechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
                     SpriteHandler.RegisterSprite(_overridenTechType, ImageUtils.LoadSpriteFromTexture(ItemSpriteFromTexture));
                 }
-                
+
                 CraftDataHandler.SetItemSize(_overridenTechType, this.SizeInInventory);
-                
+
                 if (MakeCreatureLayEggs)
                     AUHandler.SetCreatureEgg(HatchingCreature, this.TechType);
             };
@@ -59,22 +59,22 @@ namespace ArchitectsLibrary.API
         /// logic for your GameObject that will get executed before the core logic of your GameObject.
         /// </summary>
         public GameObjectEnhancements EarlyEnhancements;
-        
+
         /// <summary>
         /// logic for your GameObject that will get executed after the core logic of your GameObject.
         /// </summary>
         public GameObjectEnhancements LateEnhancements;
-        
+
         /// <summary>
         /// override this Property to define you egg's prefab.
         /// </summary>
         public abstract GameObject Model { get; }
-        
+
         /// <summary>
         /// the creature that's gonna hatch from this egg.
         /// </summary>
         public abstract TechType HatchingCreature { get; }
-        
+
         /// <summary>
         /// amount of in-game days this egg will take to hatch the <seealso cref="HatchingCreature"/>.
         /// </summary>
@@ -89,22 +89,22 @@ namespace ArchitectsLibrary.API
         /// override this Property to define the <see cref="Sprite"/> of your egg from a Texture2D.
         /// </summary>
         public virtual Texture2D ItemSpriteFromTexture { get; } = null;
-        
+
         /// <summary>
         /// Mass of the egg by KG. defaulted to 100.
         /// </summary>
         public virtual float Mass => 100f;
-        
+
         /// <summary>
         /// Health of the egg. defaulted to 60.
         /// </summary>
         public virtual float MaxHealth => 60f;
-        
+
         /// <summary>
         /// makes the egg scannable via the Scanner Room.
         /// </summary>
         public virtual bool MakeObjectScannable => true;
-        
+
         /// <summary>
         /// makes the egg immune to the Lost River's Acidic Brine.
         /// </summary>
@@ -121,61 +121,65 @@ namespace ArchitectsLibrary.API
 
         public sealed override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
-            classId = this.ClassID, cellLevel = LargeWorldEntity.CellLevel.Medium, localScale = Vector3.one, prefabZUp = false,
-            slotType = EntitySlot.Type.Medium, techType = this.TechType
+            classId = this.ClassID,
+            cellLevel = LargeWorldEntity.CellLevel.Medium,
+            localScale = Vector3.one,
+            prefabZUp = false,
+            slotType = EntitySlot.Type.Medium,
+            techType = this.TechType
         };
 
         public sealed override GameObject GetGameObject() => base.GetGameObject();
-        
+
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-           GameObject prefab = Model;
-           var obj = GameObject.Instantiate(prefab);
+            GameObject prefab = Model;
+            var obj = GameObject.Instantiate(prefab);
 
 
-           EarlyEnhancements?.Invoke(obj);
-           
-           obj.EnsureComponent<TechTag>().type = this.TechType;
-           obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
+            EarlyEnhancements?.Invoke(obj);
 
-           var skyApplier = obj.EnsureComponent<SkyApplier>();
-           skyApplier.anchorSky = Skies.Auto;
-           skyApplier.emissiveFromPower = false;
-           skyApplier.dynamic = false;
-           skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
-           skyApplier.enabled = true;
+            obj.EnsureComponent<TechTag>().type = this.TechType;
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
 
-           obj.EnsureComponent<Pickupable>();
-                
-           var rb = obj.EnsureComponent<Rigidbody>();
-           rb.mass = Mass;
-           rb.isKinematic = true;
+            var skyApplier = obj.EnsureComponent<SkyApplier>();
+            skyApplier.anchorSky = Skies.Auto;
+            skyApplier.emissiveFromPower = false;
+            skyApplier.dynamic = false;
+            skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
+            skyApplier.enabled = true;
 
-           var wf = obj.EnsureComponent<WorldForces>();
-           wf.useRigidbody = rb;
-                
-           var liveMixin = obj.EnsureComponent<LiveMixin>();
-           liveMixin.health = MaxHealth;
-                
-           var creatureEgg = obj.EnsureComponent<CreatureEgg>();
-           creatureEgg.animator = obj.EnsureComponent<Animator>();
-           creatureEgg.hatchingCreature = HatchingCreature;
-           creatureEgg.daysBeforeHatching = HatchingTime;
-           if (_overridenTechType != TechType.None)
-               creatureEgg.overrideEggType = _overridenTechType;
-            
-           if (MakeObjectScannable)
-               AUHandler.SetObjectScannable(obj);
-            
-           MaterialUtils.ApplySNShaders(obj);
-           
-           LateEnhancements?.Invoke(obj);
-           
-           yield return null;
-           gameObject.Set(obj);
-       }
+            obj.EnsureComponent<Pickupable>();
 
-       /// <summary>
+            var rb = obj.EnsureComponent<Rigidbody>();
+            rb.mass = Mass;
+            rb.isKinematic = true;
+
+            var wf = obj.EnsureComponent<WorldForces>();
+            wf.useRigidbody = rb;
+
+            var liveMixin = obj.EnsureComponent<LiveMixin>();
+            liveMixin.health = MaxHealth;
+
+            var creatureEgg = obj.EnsureComponent<CreatureEgg>();
+            creatureEgg.animator = obj.EnsureComponent<Animator>();
+            creatureEgg.hatchingCreature = HatchingCreature;
+            creatureEgg.daysBeforeHatching = HatchingTime;
+            if (_overridenTechType != TechType.None)
+                creatureEgg.overrideEggType = _overridenTechType;
+
+            if (MakeObjectScannable)
+                AUHandler.SetObjectScannable(obj);
+
+            MaterialUtils.ApplySNShaders(obj);
+
+            LateEnhancements?.Invoke(obj);
+
+            yield return null;
+            gameObject.Set(obj);
+        }
+
+        /// <summary>
         /// determines the TechType of the undiscovered version of the egg.
         /// </summary>
         public struct OverrideTechType
@@ -183,7 +187,7 @@ namespace ArchitectsLibrary.API
             public string classId;
             public string friendlyName;
             public string description;
-            
+
             /// <summary>
             /// determines the TechType of the undiscovered version of the egg. the <see cref="friendlyName"/>,
             /// <see cref="description"/> of this <see cref="TechType"/> will replace the original ones of this egg
