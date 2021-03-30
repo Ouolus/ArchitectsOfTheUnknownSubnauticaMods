@@ -12,15 +12,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", atmosphereVolume_antechamber);
 
             //Exterior platform
-            SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f));
-            SpawnPrefab(Mod.voidDoor_orange.ClassID, new Vector3(0f, 0f, 24f));
-            SpawnPrefab(Mod.voidDoor_white.ClassID, new Vector3(0f, 0f, 24f));
-            SpawnPrefab(Mod.voidDoor_blue.ClassID, new Vector3(0f, 0f, 24f));
-            SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, 0f, 24f));
-            SpawnPrefab(light_big_animated, new Vector3(0f, -0.5f, 36f), new Vector3(0f, 0f, 0f));
-            SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f, 24f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1f));
-            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f, 35));
-            SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f, 35));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, 0f, 24f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_orange.ClassID, new Vector3(0f, 0f, 24f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_white.ClassID, new Vector3(0f, 0f, 24f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_blue.ClassID, new Vector3(0f, 0f, 24f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, 0f, 24f)));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(0f, -0.5f, 36f), new Vector3(0f, 0f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f, 24f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1f)));
+            yield return StartCoroutine(SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f, 35)));
+            yield return StartCoroutine(SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f, 35)));
 
             //Exterior cables
             const float cableDrop = 12f;
