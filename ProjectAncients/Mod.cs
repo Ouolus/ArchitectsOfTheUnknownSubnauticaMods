@@ -320,14 +320,14 @@ namespace ProjectAncients
             }
         }
 
-        public static void ApplyPrecursorMaterials(GameObject prefab)
+        public static void ApplyPrecursorMaterials(GameObject prefab, float specint)
         {
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
             {
                 foreach(Material material in renderer.materials)
                 {
                     material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
-                    material.SetFloat("_SpecInt", 8f);
+                    material.SetFloat("_SpecInt", specint);
                     material.SetFloat("_Fresnel", 0.4f);
                     if (ECCHelpers.CompareStrings(material.name, "Transparent", ECCStringComparison.Contains))
                     {

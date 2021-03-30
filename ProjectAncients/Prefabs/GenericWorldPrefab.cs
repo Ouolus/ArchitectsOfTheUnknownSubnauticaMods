@@ -32,7 +32,7 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
-                Mod.ApplyPrecursorMaterials(prefab);
+                Mod.ApplyPrecursorMaterials(prefab, 35f);
                 foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
                 {
                     col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;

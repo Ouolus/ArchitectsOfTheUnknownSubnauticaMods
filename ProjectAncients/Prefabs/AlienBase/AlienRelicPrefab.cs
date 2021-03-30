@@ -36,7 +36,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
-            Mod.ApplyPrecursorMaterials(obj);
+            Mod.ApplyPrecursorMaterials(obj, 35f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
