@@ -118,6 +118,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
             if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
@@ -134,6 +135,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
             if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
@@ -150,6 +152,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
             if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
