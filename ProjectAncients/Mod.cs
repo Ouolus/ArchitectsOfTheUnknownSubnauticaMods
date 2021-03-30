@@ -345,11 +345,12 @@ namespace ProjectAncients
                         material.SetFloat("_AddDstBlend", 1f);
                         material.SetFloat("_AddSrcBlend2", 0f);
                         material.SetFloat("_AddDstBlend2", 10f);
+                        material.SetColor("_SpecColor", new Color(0.54f, 0.87f, 0.74f));
                         material.SetColor("_GlowColor", new Color(0.09f, 0.86f, 0.42f));
-                        material.SetFloat("_GlowStrength", 0.4f);
-                        material.SetFloat("_GlowStrengthNight", 0.4f);
-                        material.SetFloat("_SpecInt", 3f);
-                        material.SetFloat("_Shininess", 8f);
+                        material.SetFloat("_GlowStrength", 0.05f);
+                        material.SetFloat("_GlowStrengthNight", 0.05f);
+                        material.SetFloat("_SpecInt", 1f);
+                        material.SetFloat("_Shininess", 7f);
                         material.SetFloat("_Mode", 3f);
                         material.SetFloat("_Fresnel", 0.3f);
                         material.SetInt("_ZWrite", 0);
@@ -357,6 +358,7 @@ namespace ProjectAncients
                         material.EnableKeyword("MARMO_SIMPLE_GLASS");
                         material.EnableKeyword("WBOIT");
                         material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                        material.EnableKeyword("MARMO_SPECMAP");
                     }
                 }
             }
