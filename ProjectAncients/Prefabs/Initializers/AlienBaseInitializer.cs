@@ -11,9 +11,12 @@ namespace ProjectAncients.Prefabs
     class AlienBaseInitializer<T> : Spawnable where T : AlienBaseSpawner
     {
 
-        public AlienBaseInitializer(string classId, Vector3 coords, float distanceToLoad = 200f)
+        private LargeWorldEntity.CellLevel cellLevel;
+
+        public AlienBaseInitializer(string classId, Vector3 coords, float distanceToLoad = 200f, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Medium)
             : base(classId, ".", ".")
         {
+            this.cellLevel = cellLevel;
             OnFinishedPatching = () =>
             {
                 StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, coords,
@@ -24,7 +27,7 @@ namespace ProjectAncients.Prefabs
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
             classId = ClassID,
-            cellLevel = LargeWorldEntity.CellLevel.Medium,
+            cellLevel = cellLevel,
             localScale = Vector3.one,
             slotType = EntitySlot.Type.Creature,
             techType = this.TechType
@@ -33,7 +36,7 @@ namespace ProjectAncients.Prefabs
         public override GameObject GetGameObject()
         {
             GameObject obj = new GameObject(ClassID);
-            obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            obj.EnsureComponent<LargeWorldEntity>().cellLevel = cellLevel;
             obj.EnsureComponent<T>();
             obj.SetActive(true);
             return obj;
