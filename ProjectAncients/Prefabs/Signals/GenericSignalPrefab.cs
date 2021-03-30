@@ -51,6 +51,9 @@ namespace ProjectAncients.Prefabs
             GameObject obj = new GameObject(ClassID);
             obj.SetActive(false);
 
+            obj.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+            obj.EnsureComponent<TechTag>().type = TechType;
+
             PingInstance ping = obj.EnsureComponent<PingInstance>();
             ping.pingType = pingType;
             ping.origin = obj.transform;
