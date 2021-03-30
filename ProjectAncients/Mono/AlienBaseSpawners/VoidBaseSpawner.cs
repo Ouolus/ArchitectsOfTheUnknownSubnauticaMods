@@ -41,7 +41,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GenerateCable(new Vector3(367, -436, -1874), new Vector3(-0.7f, 0f, 0.7f), new Vector3(340f, -450f, -1771f), new Vector3(0.2f, -0.2f, 0.9f), Vector3.down, cableDrop, 2f);
 
             //Aquarium
-            SpawnPrefab(vfx_entrance, new Vector3(0f, -0.345f, 0f), new Vector3(0f, 0f, 0f), new Vector3(2f, 1f, 2f));
             SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, -5f), Vector3.up * 130f);
             SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, -5f), Vector3.up * 55f);
             SpawnPrefab(natural_coralClumpYellow, new Vector3(4.413f, -10f, -0.28f), Vector3.up * 60);
