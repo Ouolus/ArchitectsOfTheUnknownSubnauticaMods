@@ -337,16 +337,26 @@ namespace ProjectAncients
                     material.SetFloat("_Fresnel", 0.4f);
                     if (ECCHelpers.CompareStrings(material.name, "Transparent", ECCStringComparison.Contains))
                     {
-                        material.SetFloat("_SrcBlend", 5f);
-                        material.SetFloat("_DstBlend", 10f);
-                        material.SetFloat("_SrcBlend2", 5f);
+                        material.SetFloat("_SrcBlend", 1f);
+                        material.SetFloat("_DstBlend", 1f);
+                        material.SetFloat("_SrcBlend2", 0f);
                         material.SetFloat("_DstBlend2", 10f);
-                        material.SetFloat("_AddSrcBlend", 5f);
+                        material.SetFloat("_AddSrcBlend", 1f);
                         material.SetFloat("_AddDstBlend", 1f);
-                        material.SetFloat("_AddSrcBlend2", 5f);
-                        material.SetFloat("_AddDstBlend2", 1f);
+                        material.SetFloat("_AddSrcBlend2", 0f);
+                        material.SetFloat("_AddDstBlend2", 10f);
+                        material.SetColor("_GlowColor", new Color(0.09f, 0.86f, 0.42f));
+                        material.SetFloat("_GlowStrength", 0.4f);
+                        material.SetFloat("_GlowStrengthNight", 0.4f);
+                        material.SetFloat("_SpecInt", 3f);
+                        material.SetFloat("_Shininess", 8f);
+                        material.SetFloat("_Mode", 3f);
+                        material.SetFloat("_Fresnel", 0.3f);
                         material.SetInt("_ZWrite", 0);
+                        material.EnableKeyword("MARMO_EMISSION");
                         material.EnableKeyword("MARMO_SIMPLE_GLASS");
+                        material.EnableKeyword("WBOIT");
+                        material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
                     }
                 }
             }
