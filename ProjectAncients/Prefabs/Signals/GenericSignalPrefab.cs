@@ -68,7 +68,7 @@ namespace ProjectAncients.Prefabs
             ping.origin = obj.transform;
             if(defaultColorIndex >= 0)
             {
-                ping.colorIndex = defaultColorIndex;
+                ping.SetColor(defaultColorIndex);
             }
 
             SphereCollider trigger = obj.AddComponent<SphereCollider>(); //if you enter this trigger the ping gets disabled
