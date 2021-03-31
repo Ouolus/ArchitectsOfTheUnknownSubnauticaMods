@@ -32,6 +32,10 @@ namespace ProjectAncients
         public static GenericSignalPrefab signal_outpostC;
         public static GenericSignalPrefab signal_outpostD;
         public static GenericSignalPrefab signal_ruinedGuardian;
+        public static GenericSignalPrefab signal_cache_bloodKelp;
+        public static GenericSignalPrefab signal_cache_sparseReef;
+        public static GenericSignalPrefab signal_cache_dunes;
+        public static GenericSignalPrefab signal_cache_lostRiver;
 
         public static TabletTerminalPrefab purpleTabletTerminal;
         public static TabletTerminalPrefab redTabletTerminal;
@@ -74,8 +78,6 @@ namespace ProjectAncients
         /// </summary>
         internal static DamageType architectElect = (DamageType)259745135;
 
-        const string coordinateDisplayName = "Downloaded co-ordinates";
-
         public const float voidBaseZOffset = 20f;
 
         private const string assetBundleName = "projectancientsassets";
@@ -97,6 +99,8 @@ namespace ProjectAncients
         private const string ency_voidBaseModel = "VoidBaseModelEncy";
         private const string ency_precingot = "PrecursorIngotEncy";
         private const string ency_cachePings = "CachePingsEncy";
+
+        private const string alienSignalName = "Alien Signal";
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
@@ -174,14 +178,26 @@ namespace ProjectAncients
             #endregion
 
             #region Signals
-            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", coordinateDisplayName, "Alien Signal A", new Vector3(-11, -178, -1155), 3);
+            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3);
             signal_outpostC.Patch();
 
-            signal_outpostD = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", coordinateDisplayName, "Alien Signal B", new Vector3(-810f, -184f, -590f), 3);
+            signal_outpostD = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3);
             signal_outpostD.Patch();
 
             signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747));
             signal_ruinedGuardian.Patch();
+
+            signal_cache_bloodKelp = new GenericSignalPrefab("BloodKelpCacheSignal", "Precursor_Symbol01", "Blood Kelp Zone Sanctuary", alienSignalName, new Vector3(-554, -534, 1518));
+            signal_cache_bloodKelp.Patch();
+
+            signal_cache_sparseReef = new GenericSignalPrefab("SparseReefCacheSignal", "Precursor_Symbol01", "Deep Sparse Reef Sanctuary", alienSignalName, new Vector3(-929, -287, -760));
+            signal_cache_sparseReef.Patch();
+
+            signal_cache_dunes = new GenericSignalPrefab("DunesCacheSignal", "Precursor_Symbol01", "Dunes Sanctuary", alienSignalName, new Vector3(-1187, -378, 1130));
+            signal_cache_dunes.Patch();
+
+            signal_cache_lostRiver = new GenericSignalPrefab("LostRiverCacheSignal", "Precursor_Symbol01", "Lost River Laboratory Cache", alienSignalName, new Vector3(-1111, -685, -655));
+            signal_cache_lostRiver.Patch();
             #endregion
 
             #region Ency
@@ -258,6 +274,24 @@ namespace ProjectAncients
             prop_ruinedGuardian.Patch();
             MakeObjectScannable(prop_ruinedGuardian.TechType, ency_ruinedGuardian, 6f);
 
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel.Patch();
+            MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
+
+            voidBaseModel = new GenericWorldPrefab("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
+            voidBaseModel.Patch();
+            MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
+
+            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
+            guardianTailfinModel.Patch();
+            MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
+
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
+            ingotRelic.Patch();
+            MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
+            #endregion
+
+            #region Alien terminals
             tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminal.Patch();
 
@@ -276,22 +310,7 @@ namespace ProjectAncients
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data...");
             voidBaseTerminal.Patch();
 
-            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
-            secondaryBaseModel.Patch();
-            MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
-
-            voidBaseModel = new GenericWorldPrefab("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
-            voidBaseModel.Patch();
-
-            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
-            guardianTailfinModel.Patch();
-            MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
-
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
-            ingotRelic.Patch();
-            MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
-
-            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID});
             cachePingsTerminal.Patch();
             #endregion
 

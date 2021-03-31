@@ -18,6 +18,15 @@ namespace ProjectAncients.Prefabs
         string pingTypeName;
         string labelKey;
 
+        /// <summary>
+        /// Constructor for a generic signal.
+        /// </summary>
+        /// <param name="classId">Must be unique.</param>
+        /// <param name="textureName"></param>
+        /// <param name="displayName">Shows up in the beacon manager only.</param>
+        /// <param name="label">Shows up in the HUD.</param>
+        /// <param name="position"></param>
+        /// <param name="defaultColorIndex"></param>
         public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0)
             : base(classId, displayName, ".")
         {
