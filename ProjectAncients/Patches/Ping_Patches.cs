@@ -9,7 +9,7 @@ namespace ProjectAncients.Patches
     [HarmonyPatch]
     public static class Ping_Patches
     {
-        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "RuinedGuardian_Ping", "CacheSymbol1", "CacheSymbol2", "CacheSymbol3", "CacheSymbol4" };
+        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "RuinedGuardian_Ping"};
         static bool ShouldBeWhite(string textureName)
         {
             if (whitePings.Contains(textureName))
