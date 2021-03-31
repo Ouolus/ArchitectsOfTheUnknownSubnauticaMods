@@ -11,10 +11,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
         public override IEnumerator ConstructBase()
         {
-            yield return base.ConstructBase();
-            SpawnPrefab(Mod.door_researchBase.ClassID, new Vector3(centerLocalX, floorLocalY, 24f));
-            SpawnPrefab(Mod.researchBaseTerminal.ClassID, new Vector3(centerLocalX + 22f, floorLocalY, 0f), new Vector3(0f, 90f, 0f));
-            SpawnPrefab(Mod.archElectricityTerminal.ClassID, new Vector3(centerLocalX - 22f, floorLocalY, 0f), new Vector3(0f, -90f, 0f));
+            yield return StartCoroutine(base.ConstructBase());
+            yield return StartCoroutine(SpawnPrefab(Mod.door_researchBase.ClassID, new Vector3(centerLocalX, floorLocalY, 24f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.researchBaseTerminal.ClassID, new Vector3(centerLocalX + 22f, floorLocalY, 0f), new Vector3(0f, 90f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.archElectricityTerminal.ClassID, new Vector3(centerLocalX - 22f, floorLocalY, 0f), new Vector3(0f, -90f, 0f)));
 
             SpawnPrefabGlobally(bone_curly, new Vector3(-891.40f, -197.51f, -597.30f), Vector3.up, false);
             SpawnPrefabGlobally(bone_generic1, new Vector3(-861.62f, -193.75f, -575.27f), new Vector3(6f, 0f, 9f), Vector3.one);
@@ -25,8 +25,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabGlobally(bone_reaperMandible, new Vector3(-809.74f, -190f, -587.91f), new Vector3(351.43f, 68.57f, 0f), Vector3.one);
             SpawnPrefabGlobally(bone_reaperFullRibcage_normal, new Vector3(-874.98f, -193.72f, -591.03f), new Vector3(4.39f, 0.69f, 17.87f), Vector3.one);
             SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one);
-            SpawnPrefabsArray(creature_alienRobot, 2f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 5f, 0f));
-            SpawnPrefabsArray(creature_alienRobot, 3f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 6f, 44.93f));
+            yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 2f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 5f, 0f)));
+            yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 3f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 6f, 44.93f)));
         }
     }
 }

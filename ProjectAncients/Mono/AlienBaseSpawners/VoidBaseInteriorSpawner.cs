@@ -47,8 +47,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             //Left room
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f));
-
-            yield return null;
         }
     }
 }

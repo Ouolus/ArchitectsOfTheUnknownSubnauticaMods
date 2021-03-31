@@ -300,10 +300,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public void SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset)
+        public IEnumerator SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset)
         {
-            SpawnPrefab(artifactHolder, localPosition);
-            SpawnPrefab(relicClassId, localPosition + relicOffset);
+            yield return StartCoroutine(SpawnPrefab(artifactHolder, localPosition));
+            yield return StartCoroutine(SpawnPrefab(relicClassId, localPosition + relicOffset));
         }
 
         /// <summary>
