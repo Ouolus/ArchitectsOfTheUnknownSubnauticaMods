@@ -40,10 +40,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0f, 6f, -16f), Vector3.zero, new Vector3(1f, 0.87f, 1f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(0f, 6f, -16f), (Vector3.left * 180f), new Vector3(1.5f, 0.5f, 1.5f)));
             yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(0f, 4.5f, -16f), Vector3.left * 180f));
-            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f);
+            yield return StartCoroutine(GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return StartCoroutine(GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f + 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f + 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return StartCoroutine(GenerateCable(new Vector3(373.11f + 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f + 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return StartCoroutine(GenerateCable(new Vector3(373.11f - 6f, -389.00f, -1896.07f - 5f + Mod.voidBaseZOffset), Vector3.down, new Vector3(373.11f - 6f, -399.00f - 1f, -1896.97f - 5f + Mod.voidBaseZOffset), Vector3.down, Vector3.zero, 0f, 0.5f));
 
             //Left room
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f));
@@ -52,13 +52,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(12.44f, 0f, 6.51f), new Vector3(0f, -27f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(16.03f, 0f, 7.45f), new Vector3(0f, -86.6f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(13.28f, 0f, -8.81f), new Vector3(0f, -123f, 0f)));
-            GenerateCable(transform.position + new Vector3(21f, 10f, 5f), Vector3.down, transform.position + new Vector3(21f, 0f, 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(transform.position + new Vector3(21f, 10f, -5f), Vector3.down, transform.position + new Vector3(21f, 0f, -5f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(21f, 10f, 5f), Vector3.down, transform.position + new Vector3(21f, 0f, 5f), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(21f, 10f, -5f), Vector3.down, transform.position + new Vector3(21f, 0f, -5f), Vector3.down, Vector3.zero, 0f, 0.5f));
 
             //Right room
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(-21f, 0f, 0f), new Vector3(0f, -90f, 0f)));
-            GenerateCable(transform.position + new Vector3(-21f, 10f, 5f), Vector3.down, transform.position + new Vector3(-21f, 0f, 5f), Vector3.down, Vector3.zero, 0f, 0.5f);
-            GenerateCable(transform.position + new Vector3(-21f, 10f, -5f), Vector3.down, transform.position + new Vector3(-21f, 0f, -5f), Vector3.down, Vector3.zero, 0f, 0.5f);
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(-21f, 10f, 5f), Vector3.down, transform.position + new Vector3(-21f, 0f, 5f), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(-21f, 10f, -5f), Vector3.down, transform.position + new Vector3(-21f, 0f, -5f), Vector3.down, Vector3.zero, 0f, 0.5f));
         }
     }
 }

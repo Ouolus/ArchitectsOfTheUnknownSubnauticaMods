@@ -32,7 +32,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, 7f)));
             yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, -9f)));
             yield return StartCoroutine(SpawnColumns(-16f));
-            yield return null;
         }
 
         protected IEnumerator SpawnColumns(float yOffset)
