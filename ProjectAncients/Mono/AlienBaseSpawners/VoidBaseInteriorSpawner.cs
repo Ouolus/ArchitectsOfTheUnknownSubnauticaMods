@@ -48,7 +48,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Left room
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(15.45f, 0f, -2.19f), Vector3.up * -68f));
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(21f, 0f, 0f), new Vector3(0f, 90f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(12.44f, 0f, 6.51f), new Vector3(0f, -27f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(13.02f, 0f, 10.4f), new Vector3(0f, 27f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(12.44f, 0f, 6.51f), new Vector3(0f, -27f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(16.03f, 0f, 7.45f), new Vector3(0f, -86.6f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(13.28f, 0f, -8.81f), new Vector3(0f, -123f, 0f)));
