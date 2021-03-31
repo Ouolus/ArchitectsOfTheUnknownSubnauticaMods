@@ -62,7 +62,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 {
                     if(firstChild.name == "pedestal")
                     {
-                        GameObject.Destroy(firstChild.gameObject);
+                        GameObject.DestroyImmediate(firstChild.gameObject);
                     }
                 }
             }
@@ -100,7 +100,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 {
                     if(firstChild.name == "pedestal")
                     {
-                        GameObject.Destroy(firstChild.gameObject);
+                        GameObject.DestroyImmediate(firstChild.gameObject);
                     }
                 }
             }
