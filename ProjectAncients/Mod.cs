@@ -68,6 +68,7 @@ namespace ProjectAncients
         public static GenericWorldPrefab guardianTailfinModel;
 
         public static AlienRelicPrefab ingotRelic;
+        public static AlienRelicPrefab rifleRelic;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -86,6 +87,7 @@ namespace ProjectAncients
         private const string modEncyPath_terminalInfo = "GargMod/GargModInformation";
         private const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
         private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
+        private const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
 
         private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalEncy";
         private const string ency_supplyCacheTerminal = "SupplyCacheTerminalEncy";
@@ -99,6 +101,7 @@ namespace ProjectAncients
         private const string ency_voidBaseModel = "VoidBaseModelEncy";
         private const string ency_precingot = "PrecursorIngotEncy";
         private const string ency_cachePings = "CachePingsEncy";
+        private const string ency_precrifle = "PrecursorRifleEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -141,6 +144,7 @@ namespace ProjectAncients
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_analysis), "Analysis");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
             #endregion
 
             #region Tech
@@ -203,11 +207,11 @@ namespace ProjectAncients
             #region Ency
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_terminalInfo, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "Popup_Blue", "BlueGlyph_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This appears to be a large structure designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.", "Popup_Green", "GreenGlyph_Ency");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use. Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.", "Popup_Green", "GreenGlyph_Ency");
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of potentially dangerous technology. Examples include a powerful ionic pulse defense mechanism and some kind of sentry unit. The usage of this technology appears to have contributed to the destruction of the local ecosystem which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "GreenGlyph_Ency");
 
-            PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup");
+            PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
             PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has linked your PDA to a complex tracking device. Intense and frequent electromagnetic pulses suggest it is under distress. Come prepared.", "Popup_Blue", "BlueGlyph_Ency");
 
@@ -221,9 +225,11 @@ namespace ProjectAncients
 
             PatchEncy(ency_voidBaseModel, modEncyPath_analysis, "Suspended Platform", "A massive structure. It is impossible to determine any applications of a base this large in such a dangerous area.\n\nThe unique design with little room for interior space suggests a non-conventional use. More information may be located inside the structure.");
 
-            PatchEncy(ency_precingot, modEncyPath_analysis, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.");
+            PatchEncy(ency_precingot, modEncyPath_relics, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.");
 
             PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This terminal contains several co-ordinates relative to this base. All locations have been uploaded to your PDA.", "Popup_Blue", "BlueGlyph_Ency");
+
+            PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.");
             #endregion
 
             #region Generic precursor stuff
@@ -289,6 +295,10 @@ namespace ProjectAncients
             ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
+
+            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", "An alien rifle.", assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.3f);
+            rifleRelic.Patch();
+            MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
             #endregion
 
             #region Alien terminals
@@ -333,7 +343,7 @@ namespace ProjectAncients
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset)); //Void
+            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset), 250f); //Void
             eggBase.Patch();
 
             var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 40f, LargeWorldEntity.CellLevel.Near); //Void
