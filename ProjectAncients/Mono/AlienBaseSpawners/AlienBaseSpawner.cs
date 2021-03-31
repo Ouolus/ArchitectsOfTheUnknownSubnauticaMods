@@ -259,12 +259,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// <param name="terrainAttachForward"></param>
         /// <param name="offsetDirection"></param>
         /// <param name="quadraticMagnitude"></param>
-        public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
+        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
         {
             List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale);
             foreach (CableSegment segment in segments)
             {
-                SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
+                yield return SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
             }
         }
 
@@ -348,7 +348,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             GameObject parent = placeholderHolder.SearchChild(parentName);
             foreach (Transform child in parent.transform)
             {
-                SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale);
+                yield return StartCoroutine(SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale));
             }
         }
     }
