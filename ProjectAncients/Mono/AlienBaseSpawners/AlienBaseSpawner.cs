@@ -140,7 +140,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedChildren.Add(spawnedObject);
                 if(spawned != null) spawned.Set(spawnedObject);
             }
-            yield return null;
         }
 
         public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, IOut<GameObject> spawned = null)
@@ -157,7 +156,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedChildren.Add(spawnedObject);
                 if (spawned != null) spawned.Set(spawnedObject);
             }
-            yield return null;
         }
 
         public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale, IOut<GameObject> spawned = null)
@@ -174,7 +172,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedChildren.Add(spawnedObject);
                 if (spawned != null) spawned.Set(spawnedObject);
             }
-            yield return null;
         }
 
         public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition)
