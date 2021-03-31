@@ -174,7 +174,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, IOut<GameObject> outGameObject = null)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
             yield return request;
@@ -184,11 +184,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.position = worldPosition;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                outGameObject.Set(spawnedObject);
+                if (spawned != null) spawned.Set(spawnedObject);
             }
         }
 
-        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale, IOut<GameObject> outGameObject = null)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
             yield return request;
@@ -200,11 +200,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                outGameObject.Set(spawnedObject);
+                if (spawned != null) spawned.Set(spawnedObject);
             }
         }
 
-        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f, IOut<GameObject> outGameObject = null)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f, IOut<GameObject> spawned = null)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
             yield return request;
@@ -223,7 +223,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one * scaleFactor;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                outGameObject.Set(spawnedObject);
+                if (spawned != null) spawned.Set(spawnedObject);
             }
         }
 
