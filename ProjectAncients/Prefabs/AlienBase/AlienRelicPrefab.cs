@@ -27,7 +27,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.SetActive(false);
             GameObject instantiatedModel = GameObject.Instantiate(model, obj.transform, false);
             instantiatedModel.transform.localPosition = Vector3.zero;
-            instantiatedModel.transform.localScale = Vector3.one * 0.5f;
+            instantiatedModel.transform.localScale = Vector3.one * scale;
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
             capsule.radius = 1.4889f;
