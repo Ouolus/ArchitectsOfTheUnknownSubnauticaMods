@@ -47,10 +47,15 @@ namespace ProjectAncients.Patches
         {
             if (!waterBiomeManager.biomeLookup.ContainsKey(biomeName))
             {
+                GameObject skyPrefab = null;
+                if (sky)
+                {
+                    skyPrefab = sky.gameObject;
+                }
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
                     name = biomeName,
-                    skyPrefab = sky.gameObject,
+                    skyPrefab = skyPrefab,
                     settings = waterScapeSettings
                 };
                 waterBiomeManager.biomeSkies.Add(sky);
