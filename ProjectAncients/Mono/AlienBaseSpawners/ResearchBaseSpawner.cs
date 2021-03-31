@@ -27,7 +27,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one);
             yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 2f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 5f, 0f)));
             yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 3f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 6f, 44.93f)));
-            yield return StartCoroutine(SpawnRelicInCase(new Vector3(-8.23f, floorLocalY, -2.71f), Mod.rifleRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
+            yield return StartCoroutine(SpawnRelicInCase(new Vector3(-8.23f, floorLocalY, -5f), Mod.rifleRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
         }
     }
 }
