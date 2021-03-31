@@ -110,6 +110,10 @@ namespace ArchitectsLibrary.API
         /// </summary>
         public virtual bool AcidImmune => true;
 
+        /// <summary>
+        /// <para>makes the Creature lay eggs in the ACU when it breeds, if this property is set to <see langword="false" />, it will breed creatures.</para>
+        /// defaulted to <see langword="true" />.
+        /// </summary>
         public virtual bool MakeCreatureLayEggs => true;
 
         /// <summary>
