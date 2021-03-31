@@ -57,6 +57,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab supplyCacheTerminal;
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
+        public static DataTerminalPrefab cachePingsTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -205,6 +206,8 @@ namespace ProjectAncients
             PatchEncy(ency_voidBaseModel, modEncyPath_analysis, "Suspended Platform", "A massive structure. It is impossible to determine any applications of a base this large in such a dangerous area.\n\nThe unique design with little room for interior space suggests a non-conventional use. More information may be located inside the structure.");
 
             PatchEncy(ency_precingot, modEncyPath_analysis, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.");
+
+            PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This terminal contains several co-ordinates relative to this base. All locations have been uploaded to your PDA.");
             #endregion
 
             #region Generic precursor stuff
@@ -287,6 +290,9 @@ namespace ProjectAncients
             ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
+
+            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            cachePingsTerminal.Patch();
             #endregion
 
             #region Alien bases
