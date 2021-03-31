@@ -66,10 +66,6 @@ namespace ProjectAncients.Prefabs
             PingInstance ping = obj.EnsureComponent<PingInstance>();
             ping.pingType = pingType;
             ping.origin = obj.transform;
-            if(defaultColorIndex >= 0)
-            {
-                ping.SetColor(defaultColorIndex);
-            }
 
             SphereCollider trigger = obj.AddComponent<SphereCollider>(); //if you enter this trigger the ping gets disabled
             trigger.isTrigger = true;
@@ -83,6 +79,7 @@ namespace ProjectAncients.Prefabs
             delayedInit.position = position;
             delayedInit.label = labelKey;
             delayedInit.pingTypeName = pingTypeName;
+            delayedInit.colorIndex = defaultColorIndex;
 
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.SetActive(true);
