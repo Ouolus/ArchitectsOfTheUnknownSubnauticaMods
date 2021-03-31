@@ -9,7 +9,7 @@ namespace ProjectAncients.Patches
     [HarmonyPatch]
     public static class Ping_Patches
     {
-        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "RuinedGuardian_Ping" };
+        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "RuinedGuardian_Ping", "CacheSymbol1", "CacheSymbol2", "CacheSymbol3", "CacheSymbol4" };
         static bool ShouldBeWhite(string textureName)
         {
             if (whitePings.Contains(textureName))
@@ -49,8 +49,11 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(uGUI_PingEntry), nameof(uGUI_PingEntry.SetColor))]
         public static void uGUI_PingEntry_SetColor_Postfix(uGUI_PingEntry __instance)
         {
-            __instance.icon.color = Color.white;
-            __instance.colorSelectionIndicator.position = __instance.colorSelectors[0].targetGraphic.rectTransform.position;
+            if (ShouldBeWhite(__instance.icon.mainTexture.name))
+            {
+                __instance.icon.color = Color.white;
+                __instance.colorSelectionIndicator.position = __instance.colorSelectors[0].targetGraphic.rectTransform.position;
+            }
         }
     }
 }
