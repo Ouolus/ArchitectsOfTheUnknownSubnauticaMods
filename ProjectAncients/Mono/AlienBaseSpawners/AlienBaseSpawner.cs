@@ -174,38 +174,25 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, IOut<GameObject> outGameObject = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                outGameObject.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale, IOut<GameObject> outGameObject = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
@@ -213,31 +200,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                outGameObject.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                spawnedObject.transform.eulerAngles = worldRotation;
-                spawnedObject.transform.localScale = scale;
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f, IOut<GameObject> outGameObject = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
@@ -252,32 +223,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one * scaleFactor;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                outGameObject.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                if (directionIsRight)
-                {
-                    spawnedObject.transform.right = direction;
-                }
-                else
-                {
-                    spawnedObject.transform.forward = direction;
-                }
-                spawnedObject.transform.localScale = Vector3.one * scaleFactor;
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
         public IEnumerator SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default, Vector3 individualEulers = default)
@@ -396,7 +343,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public void GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
+        public IEnumerator GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
         {
             GameObject parent = placeholderHolder.SearchChild(parentName);
             foreach (Transform child in parent.transform)
