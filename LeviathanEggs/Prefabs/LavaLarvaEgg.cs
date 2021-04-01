@@ -9,16 +9,16 @@ namespace LeviathanEggs.Prefabs
     {
         public LavaLarvaEgg()
             : base("LavaLarvaEgg", "LavaLarva Egg", "LavaLarva hatch from these.")
-        {}
+        {
+            LateEnhancements += InitializeObject;
+        }
         public override GameObject Model => LoadGameObject("RobotEgg");
         public override TechType HatchingCreature => TechType.LavaLarva;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -39,8 +39,6 @@ namespace LeviathanEggs.Prefabs
             }
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
     }
 }
