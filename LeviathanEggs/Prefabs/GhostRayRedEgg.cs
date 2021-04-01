@@ -12,7 +12,7 @@ namespace LeviathanEggs.Prefabs
         {
             LateEnhancements += InitializeObject;
         }
-        public override GameObject Model => LoadGameObject("CrimsonRayEgg");
+        public override GameObject Model => LoadGameObject("CrimsonRayEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostRayRed;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");

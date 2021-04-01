@@ -14,7 +14,7 @@ namespace LeviathanEggs.Prefabs
             LateEnhancements += InitializeObject;
         }
 
-        public override GameObject Model => LoadGameObject("ReaperEgg");
+        public override GameObject Model => LoadGameObject("ReaperEgg.prefab");
         public override TechType HatchingCreature => TechType.ReaperLeviathan;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");
