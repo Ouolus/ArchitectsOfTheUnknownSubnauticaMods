@@ -31,7 +31,7 @@ namespace ProjectAncients.Prefabs
 
         public override ScannableItemData ScannableSettings => new ScannableItemData(true, 18f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), null);
 
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 31f, 25f, 30f, 17f, 30f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
         public override string GetEncyDesc => "Adult gargantuan text";
         public override string GetEncyTitle => "Gargantuan Leviathan";
@@ -48,6 +48,7 @@ namespace ProjectAncients.Prefabs
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
+            components.locomotion.maxAcceleration = 45f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
@@ -71,6 +72,14 @@ namespace ProjectAncients.Prefabs
             material.SetFloat("_SpecInt", 50);
             material.SetFloat("_GlowStrength", 10f);
             material.SetFloat("_GlowStrengthNight", 10f);
+
+        }
+
+        public override void ApplyAggression()
+        {
+            MakeAggressiveTo(120f, 6, EcoTargetType.Shark, 0.2f, 3f);
+            MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
+            MakeAggressiveTo(200f, 7, EcoTargetType.Leviathan, 0.3f, 3f);
 
         }
 
