@@ -137,9 +137,56 @@ namespace ArchitectsLibrary.API
             slotType = EntitySlot.Type.Medium,
             techType = this.TechType
         };
+#if SN1
+        public sealed override GameObject GetGameObject()
+        {
+            GameObject prefab = Model;
+            var obj = GameObject.Instantiate(prefab);
 
-        public sealed override GameObject GetGameObject() => base.GetGameObject();
 
+            EarlyEnhancements?.Invoke(obj);
+
+            obj.EnsureComponent<TechTag>().type = this.TechType;
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = this.ClassID;
+            obj.EnsureComponent<LargeWorldEntity>().cellLevel = CellLevel;
+
+            var skyApplier = obj.EnsureComponent<SkyApplier>();
+            skyApplier.anchorSky = Skies.Auto;
+            skyApplier.emissiveFromPower = false;
+            skyApplier.dynamic = false;
+            skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
+            skyApplier.enabled = true;
+
+            obj.EnsureComponent<Pickupable>();
+
+            var rb = obj.EnsureComponent<Rigidbody>();
+            rb.mass = Mass;
+            rb.isKinematic = true;
+
+            var wf = obj.EnsureComponent<WorldForces>();
+            wf.useRigidbody = rb;
+
+            var liveMixin = obj.EnsureComponent<LiveMixin>();
+            liveMixin.health = MaxHealth;
+
+            var creatureEgg = obj.EnsureComponent<CreatureEgg>();
+            creatureEgg.animator = obj.EnsureComponent<Animator>();
+            creatureEgg.hatchingCreature = HatchingCreature;
+            creatureEgg.daysBeforeHatching = HatchingTime;
+            creatureEgg.explodeOnHatch
+            if (_overridenTechType != TechType.None)
+                creatureEgg.overrideEggType = _overridenTechType;
+
+            if (MakeObjectScannable)
+                AUHandler.SetObjectScannable(obj);
+
+            MaterialUtils.ApplySNShaders(obj);
+
+            LateEnhancements?.Invoke(obj);
+
+            return obj;
+        }
+#endif
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             GameObject prefab = Model;
