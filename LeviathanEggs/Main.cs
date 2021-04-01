@@ -31,7 +31,7 @@ namespace LeviathanEggs
         internal static LavaLarvaEgg lavaLarvaEgg = new LavaLarvaEgg();
         internal static GhostRayRedEgg ghostRayRedEgg = new GhostRayRedEgg();
         internal static GhostRayBlueEgg ghostRayBlueEgg = new GhostRayBlueEgg();
-        internal static ShuttleBugEgg shuttleBugEgg = new ShuttleBugEgg();
+        internal static BloodCrawlerEgg shuttleBugEgg = new BloodCrawlerEgg();
         internal static CaveCrawlerEgg caveCrawlerEgg = new CaveCrawlerEgg();
         internal static WarperEgg warperEgg = new WarperEgg();
         internal static SpineEelEgg spineEelEgg = new SpineEelEgg();
