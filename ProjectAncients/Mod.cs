@@ -69,6 +69,7 @@ namespace ProjectAncients
 
         public static AlienRelicPrefab ingotRelic;
         public static AlienRelicPrefab rifleRelic;
+        public static AlienRelicPrefab bladeRelic;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -102,6 +103,7 @@ namespace ProjectAncients
         private const string ency_precingot = "PrecursorIngotEncy";
         private const string ency_cachePings = "CachePingsEncy";
         private const string ency_precrifle = "PrecursorRifleEncy";
+        private const string ency_precblade = "PrecursorBladeEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -230,6 +232,8 @@ namespace ProjectAncients
             PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This terminal contains several co-ordinates relative to this base. All locations have been uploaded to your PDA.", "Popup_Blue", "BlueGlyph_Ency");
 
             PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.");
+
+            PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is commonly found in most alien technology, suggests it is no longer powered.");
             #endregion
 
             #region Generic precursor stuff
@@ -299,6 +303,10 @@ namespace ProjectAncients
             rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", "An alien rifle.", assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
+
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.2f);
+            bladeRelic.Patch();
+            MakeObjectScannable(rifleRelic.TechType, ency_precblade, 2f);
             #endregion
 
             #region Alien terminals
