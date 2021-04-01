@@ -183,7 +183,7 @@ namespace ProjectAncients.Prefabs
 
         public virtual void ApplyAggression()
         {
-            MakeAggressiveTo(60f, 2, EcoTargetType.Shark, 0.2f, 2f);
+            MakeAggressiveTo(80f, 2, EcoTargetType.Shark, 0.2f, 2f);
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
         }
