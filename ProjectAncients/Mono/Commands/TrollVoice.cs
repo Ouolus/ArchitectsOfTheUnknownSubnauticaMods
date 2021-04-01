@@ -19,9 +19,14 @@ namespace ProjectAncients.Mono.Commands
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.clip = clipPool.GetRandomClip();
-                audioSource.Play();
+                Invoke(nameof(PlayAudio), 2f);
             }
+        }
+
+        void PlayAudio()
+        {
+            audioSource.clip = clipPool.GetRandomClip();
+            audioSource.Play();
         }
     }
 }
