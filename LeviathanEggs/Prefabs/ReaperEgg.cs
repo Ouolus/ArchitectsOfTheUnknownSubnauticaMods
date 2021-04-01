@@ -10,17 +10,17 @@ namespace LeviathanEggs.Prefabs
     {
         public ReaperEgg()
             : base("ReaperEgg", "Reaper Leviathan Egg", "Reapers hatch from these.")
-        {}
+        {
+            LateEnhancements += InitializeObject;
+        }
 
         public override GameObject Model => LoadGameObject("RobotEgg");
         public override TechType HatchingCreature => TechType.ReaperLeviathan;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -41,8 +41,6 @@ namespace LeviathanEggs.Prefabs
             }
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
     }
 }
