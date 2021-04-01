@@ -9,7 +9,9 @@ namespace LeviathanEggs.Prefabs
     {
         public RobotEgg()
             :base("RobotEgg", "Alien Robot Egg", "Alien Robots are deployed from these.")
-        {}
+        {
+            EarlyEnhancements += InitializeObject;
+        }
         public override OverrideTechType MakeATechTypeToOverride =>
             new OverrideTechType("RobotEggUndiscovered", "Unknown Alien Artifact", "Unknown Alien technology that appears to store some kind of device.");
         public override GameObject Model => LoadGameObject("RobotEgg.prefab");
@@ -34,10 +36,8 @@ namespace LeviathanEggs.Prefabs
             }
         };
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -59,8 +59,6 @@ namespace LeviathanEggs.Prefabs
 
             prefab.AddComponent<SpawnLocations>();
             prefab.EnsureComponent<RobotEggPulsating>();
-
-            return prefab;
         }
         public override Vector2int SizeInInventory => new Vector2int(2, 2);
     }
