@@ -39,6 +39,7 @@ namespace ProjectAncients.Prefabs
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = cellLevel;
             obj.EnsureComponent<T>();
             obj.SetActive(true);
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             return obj;
         }
 

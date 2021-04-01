@@ -32,6 +32,7 @@ namespace ProjectAncients.Prefabs
             GameObject obj = new GameObject("AdultGargSpawner");
             obj.EnsureComponent<VoidGargSpawner>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
             return obj;
         }
