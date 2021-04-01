@@ -15,7 +15,7 @@ namespace ProjectAncients.Mono.Commands
             garg.FindChild("AdultGargModel").SetActive(false);
             GameObject trollFace = garg.FindChild("TrollFace");
             trollFace.SetActive(true);
-            trollFace.AddComponent<GargEyeTracker>();
+            trollFace.AddComponent<TrollFaceTracker>();
         }
     }
 }

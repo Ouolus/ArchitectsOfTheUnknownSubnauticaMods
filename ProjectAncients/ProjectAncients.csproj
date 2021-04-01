@@ -151,6 +151,7 @@
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\Commands\SecretCommand.cs" />
+    <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
     <Compile Include="Mono\GargantuanBabyAggression.cs" />
     <Compile Include="Mono\GargantuanBabyGrowthManager.cs" />
     <Compile Include="Mono\GargantuanBabyTeleport.cs" />
