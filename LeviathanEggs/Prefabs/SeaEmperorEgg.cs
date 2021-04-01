@@ -9,7 +9,9 @@ namespace LeviathanEggs.Prefabs
     {
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Sea Emperor Egg", "Sea Emperors hatch from these.")
-        {}
+        {
+            LateEnhancements += InitializeObject;
+        }
         public override GameObject Model => LoadGameObject("SeaEmperorEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaEmperorBaby;
         public override float HatchingTime => 5f;
@@ -32,10 +34,8 @@ namespace LeviathanEggs.Prefabs
             },
         };
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             GameObject seaEmperorEgg = Resources.Load<GameObject>("WorldEntities/Eggs/EmperorEgg");
             Renderer[] aRenderer = seaEmperorEgg.GetComponentsInChildren<Renderer>();
             Material shell = null;
@@ -60,8 +60,6 @@ namespace LeviathanEggs.Prefabs
             seaEmperorEgg.SetActive(false);
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }
