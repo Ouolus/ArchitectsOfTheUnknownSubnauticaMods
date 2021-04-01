@@ -11,7 +11,7 @@ namespace ProjectAncients.Mono.Commands
         void Start()
         {
             clipPool = ECCAudio.CreateClipPool("Troll");
-            audioSource = gameObject.EnsureComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
         }
 
