@@ -6,7 +6,7 @@ namespace ProjectAncients.Mono.Commands
     {
         void Start()
         {
-            DevConsole.RegisterConsoleCommand(this, "garg", false, true);
+            DevConsole.RegisterConsoleCommand(this, "togglecinematic ", false, true);
         }
 
         private void OnConsoleCommand_garg(NotificationCenter.Notification n)
