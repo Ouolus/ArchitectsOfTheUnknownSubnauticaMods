@@ -140,7 +140,7 @@
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
     <Compile Include="Prefabs\SeaTreaderEgg.cs" />
-    <Compile Include="Prefabs\ShuttleBugEgg.cs" />
+    <Compile Include="Prefabs\BloodCrawlerEgg.cs" />
     <Compile Include="Prefabs\SpineEelEgg.cs" />
     <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
