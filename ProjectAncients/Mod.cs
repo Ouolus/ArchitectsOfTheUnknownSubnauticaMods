@@ -304,9 +304,9 @@ namespace ProjectAncients
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
 
-            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.2f);
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f);
             bladeRelic.Patch();
-            MakeObjectScannable(rifleRelic.TechType, ency_precblade, 2f);
+            MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
             #endregion
 
             #region Alien terminals
