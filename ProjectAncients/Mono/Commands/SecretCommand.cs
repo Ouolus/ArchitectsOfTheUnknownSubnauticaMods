@@ -14,7 +14,7 @@ namespace ProjectAncients.Mono.Commands
             GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
             foreach(GameObject go in gameObjects)
             {
-                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid", ECCLibrary.ECCStringComparison.Equals))
+                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid(Clone)", ECCLibrary.ECCStringComparison.Equals))
                 {
                     go.FindChild("AdultGargModel").SetActive(false);
                     GameObject trollFace = go.FindChild("TrollFace");
@@ -41,7 +41,7 @@ namespace ProjectAncients.Mono.Commands
                         roar.audioSource.enabled = true;
                         roar.enabled = true;
                     }
-                    go.name = "GargantuanVoid";
+                    go.name = "GargantuanVoid(Clone)";
                     go.GetComponent<TrollVoice>().enabled = false;
                     trollFace.GetComponent<TrollFaceTracker>().enabled = false;
                     continue;
