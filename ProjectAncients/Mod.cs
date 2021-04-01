@@ -229,11 +229,11 @@ namespace ProjectAncients
 
             PatchEncy(ency_precingot, modEncyPath_relics, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.");
 
-            PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This terminal contains several co-ordinates relative to this base. All locations have been uploaded to your PDA.", "Popup_Blue", "BlueGlyph_Ency");
+            PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This terminal points to many positions relative to this base. Co-ordinates have been uploaded to your PDA.\n\nLocational data:\n- Sanctuary Alpha: Found in the depths of a barren biome. Requires a purple tablet.\n- Sanctuary Beta: Found deep underwater in a dark cave system. Requires a purple tablet.\n- Sanctuary Gamma: Found near a mysterious crater. Requires a purple tablet.\n- Laboratory: Found in a well-lit cave system. Requires an orange tablet.\n\nCo-ordinates that are unusually pointing to the equator have not been uploaded. Traveling that far of a distance would be close to impossible.", "Popup_Blue", "BlueGlyph_Ency");
 
             PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.");
 
-            PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is commonly found in most alien technology, suggests it is no longer powered.");
+            PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is rarely found in most alien technology, suggests it is no longer powered.");
             #endregion
 
             #region Generic precursor stuff
@@ -351,7 +351,7 @@ namespace ProjectAncients
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset), 250f); //Void
+            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset), 300f, LargeWorldEntity.CellLevel.Far); //Void
             eggBase.Patch();
 
             var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 40f, LargeWorldEntity.CellLevel.Near); //Void
