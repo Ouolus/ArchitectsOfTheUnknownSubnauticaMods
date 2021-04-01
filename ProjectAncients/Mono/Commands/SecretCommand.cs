@@ -14,19 +14,37 @@ namespace ProjectAncients.Mono.Commands
             GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
             foreach(GameObject go in gameObjects)
             {
-                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid", ECCLibrary.ECCStringComparison.Contains))
+                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid", ECCLibrary.ECCStringComparison.Equals))
                 {
                     go.FindChild("AdultGargModel").SetActive(false);
                     GameObject trollFace = go.FindChild("TrollFace");
                     trollFace.SetActive(true);
-                    trollFace.EnsureComponent<TrollFaceTracker>();
+                    trollFace.EnsureComponent<TrollFaceTracker>().enabled = true;
                     GargantuanRoar roar = go.GetComponent<GargantuanRoar>();
                     if (roar != null)
                     {
-                        Destroy(roar.audioSource);
-                        Destroy(roar);
+                        roar.audioSource.enabled = false;
+                        roar.enabled = false;
                     }
-                    go.EnsureComponent<TrollVoice>();
+                    go.EnsureComponent<TrollVoice>().enabled = true;
+                    go.name = "GargantuanVoidTroll";
+                    continue;
+                }
+                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoidTroll", ECCLibrary.ECCStringComparison.Contains))
+                {
+                    go.FindChild("AdultGargModel").SetActive(true);
+                    GameObject trollFace = go.FindChild("TrollFace");
+                    trollFace.SetActive(false);
+                    GargantuanRoar roar = go.GetComponent<GargantuanRoar>();
+                    if (roar != null)
+                    {
+                        roar.audioSource.enabled = true;
+                        roar.enabled = true;
+                    }
+                    go.name = "GargantuanVoid";
+                    go.GetComponent<TrollVoice>().enabled = false;
+                    trollFace.GetComponent<TrollFaceTracker>().enabled = false;
+                    continue;
                 }
             }
         }
