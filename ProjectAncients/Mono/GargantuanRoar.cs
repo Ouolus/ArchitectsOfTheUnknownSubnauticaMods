@@ -6,7 +6,7 @@ namespace ProjectAncients.Mono
 {
     public class GargantuanRoar : MonoBehaviour
     {
-        AudioSource audioSource;
+        public AudioSource audioSource;
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
         Creature creature;

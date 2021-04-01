@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ProjectAncients.Mono
+namespace ProjectAncients.Mono.Commands
 {
     public class TrollFaceTracker : MonoBehaviour
     {

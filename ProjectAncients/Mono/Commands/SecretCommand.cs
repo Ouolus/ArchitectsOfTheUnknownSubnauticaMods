@@ -9,13 +9,26 @@ namespace ProjectAncients.Mono.Commands
             DevConsole.RegisterConsoleCommand(this, "togglecinematic ", false, true);
         }
 
-        private void OnConsoleCommand_garg(NotificationCenter.Notification n)
+        private void OnConsoleCommand_togglecinematic(NotificationCenter.Notification n)
         {
-            GameObject garg = GameObject.Find("GargantuanVoid(Clone)");
-            garg.FindChild("AdultGargModel").SetActive(false);
-            GameObject trollFace = garg.FindChild("TrollFace");
-            trollFace.SetActive(true);
-            trollFace.AddComponent<TrollFaceTracker>();
+            GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
+            foreach(GameObject go in gameObjects)
+            {
+                if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid", ECCLibrary.ECCStringComparison.Contains))
+                {
+                    go.FindChild("AdultGargModel").SetActive(false);
+                    GameObject trollFace = go.FindChild("TrollFace");
+                    trollFace.SetActive(true);
+                    trollFace.EnsureComponent<TrollFaceTracker>();
+                    GargantuanRoar roar = go.GetComponent<GargantuanRoar>();
+                    if (roar != null)
+                    {
+                        Destroy(roar.audioSource);
+                        Destroy(roar);
+                    }
+                    go.EnsureComponent<TrollVoice>();
+                }
+            }
         }
     }
 }
