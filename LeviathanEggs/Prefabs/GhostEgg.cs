@@ -10,7 +10,9 @@ namespace LeviathanEggs.Prefabs
     {
         public GhostEgg()
             : base("GhostEgg", "Ghost Leviathan Egg", "Ghosts hatch from these.")
-        {}
+        {
+            LateEnhancements += InitializeObject;
+        }
 
         public override GameObject Model => LoadGameObject("GhostEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostLeviathanJuvenile;
@@ -34,10 +36,8 @@ namespace LeviathanEggs.Prefabs
             }
         };
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             GameObject ghostEgg = Resources.Load<GameObject>("WorldEntities/Doodads/Lost_river/lost_river_cove_tree_01");
             Renderer[] aRenderer = ghostEgg.GetAllComponentsInChildren<Renderer>();
             Material shell = null;
@@ -92,8 +92,6 @@ namespace LeviathanEggs.Prefabs
             ghostEgg.SetActive(false);
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
 
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
