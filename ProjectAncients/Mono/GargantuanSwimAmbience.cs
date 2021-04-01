@@ -45,7 +45,6 @@ namespace ProjectAncients.Mono
                     return myAudioSources[i];
                 }
             }
-            ECCLog.AddMessage("No empty source found");
             return null;
         }
 
@@ -54,8 +53,11 @@ namespace ProjectAncients.Mono
             for (; ; )
             {
                 AudioSource nextSource = GetAvailableSource();
-                nextSource.clip = clipPool.GetRandomClip();
-                nextSource.Play();
+                if (nextSource)
+                {
+                    nextSource.clip = clipPool.GetRandomClip();
+                    nextSource.Play();
+                }
                 yield return new WaitForSeconds(delay);
             }
         }
