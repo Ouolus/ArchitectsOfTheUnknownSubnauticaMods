@@ -30,7 +30,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             instantiatedModel.transform.localScale = Vector3.one * scale;
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
-            capsule.radius = 1.4889f;
+            capsule.radius = 1.1f;
             capsule.direction = 1;
             obj.EnsureComponent<SkyApplier>().renderers = obj.GetComponentsInChildren<Renderer>();
             obj.EnsureComponent<TechTag>().type = TechType;
