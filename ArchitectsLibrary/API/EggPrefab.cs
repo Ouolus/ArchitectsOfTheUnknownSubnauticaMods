@@ -173,7 +173,6 @@ namespace ArchitectsLibrary.API
             creatureEgg.animator = obj.EnsureComponent<Animator>();
             creatureEgg.hatchingCreature = HatchingCreature;
             creatureEgg.daysBeforeHatching = HatchingTime;
-            creatureEgg.explodeOnHatch
             if (_overridenTechType != TechType.None)
                 creatureEgg.overrideEggType = _overridenTechType;
 
