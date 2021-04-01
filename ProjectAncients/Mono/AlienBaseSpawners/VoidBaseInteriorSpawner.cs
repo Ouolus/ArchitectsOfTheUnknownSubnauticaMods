@@ -15,14 +15,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray (light_big_animated, 2f, new Vector3(1, 1, 8), Vector3.one, new Vector3(3f + 1.5f, 11.5f, 14f), Vector3.left * 180f));
 
             //Aquarium
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, -5f), Vector3.up * 130f));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, -5f), Vector3.up * 55f));
+            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-0.3f, -10f, 6f), Vector3.up * 130f));
+            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow_small, new Vector3(2.8f, -10f, 3f), Vector3.up * 55f));
             yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(4.413f, -10f, -0.28f), Vector3.up * 60));
             yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-3f, -10f, 4f), Vector3.up * 92f));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow_variant, new Vector3(5f, -10f, -6f), Vector3.up * -50f));
-            yield return StartCoroutine(SpawnPrefab(natural_rockBlade1, new Vector3(-4f, -10f, -7f), Vector3.up * 15f, Vector3.one * 0.2f));
+            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow_variant, new Vector3(6f, -10f, 3f), Vector3.up * -50f));
+            yield return StartCoroutine(SpawnPrefab(natural_rockBlade1, new Vector3(-4f, -10f, 4f), Vector3.up * 15f, Vector3.one * 0.2f));
             yield return StartCoroutine(SpawnPrefab(natural_rockBlade1, new Vector3(3f, -10f, 6f), Vector3.up * 135f, Vector3.one * 0.21f));
-            yield return StartCoroutine(SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, -5f), Vector3.up * -60f, Vector3.one * 0.22f));
+            yield return StartCoroutine(SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, 7f), Vector3.up * -60f, Vector3.one * 0.22f));
 
             //Egg room
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(0f, 0f, -8f)));
