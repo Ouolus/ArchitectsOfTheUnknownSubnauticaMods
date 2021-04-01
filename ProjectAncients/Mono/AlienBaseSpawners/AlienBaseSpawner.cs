@@ -119,6 +119,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 }
                 LargeWorld.main.streamer.cellManager.RegisterEntity(lwe);
             }
+            Destroy(gameObject);
         }
 
         /// <summary>
