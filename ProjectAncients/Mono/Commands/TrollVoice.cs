@@ -7,6 +7,7 @@ namespace ProjectAncients.Mono.Commands
     {
         AudioSource audioSource;
         ECCAudio.AudioClipPool clipPool;
+        float timePlayAgain = 0f;
 
         void Start()
         {
@@ -17,15 +18,21 @@ namespace ProjectAncients.Mono.Commands
 
         void Update()
         {
+            if(Time.time > timePlayAgain)
+            {
+                AudioClip nextClip = clipPool.GetRandomClip();
+                PlayAudio(nextClip);
+                timePlayAgain = Time.time + 2f + nextClip.length;
+            }
             if (!audioSource.isPlaying)
             {
                 Invoke(nameof(PlayAudio), 2f);
             }
         }
 
-        void PlayAudio()
+        void PlayAudio(AudioClip clip)
         {
-            audioSource.clip = clipPool.GetRandomClip();
+            audioSource.clip = clip;
             audioSource.Play();
         }
     }
