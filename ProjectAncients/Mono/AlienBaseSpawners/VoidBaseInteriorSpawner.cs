@@ -24,9 +24,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(natural_rockBlade1, new Vector3(3f, -10f, 6f), Vector3.up * 135f, Vector3.one * 0.21f));
             yield return StartCoroutine(SpawnPrefab(natural_rockBlade2, new Vector3(2f, -10f, -5f), Vector3.up * -60f, Vector3.one * 0.22f));
 
-            //Supplies
-            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(13f, -7.3f, -7.5f), Vector3.up * 64f));
-
             //Egg room
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(0f, 0f, -8f)));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, new Vector3(0f, 0f, -16f)));
