@@ -8,7 +8,7 @@ namespace LeviathanEggs.Prefabs
     public class CaveCrawlerEgg : EggPrefab
     {
         public CaveCrawlerEgg()
-            : base("CaveCrawlerEgg", "Blood Crawler Egg", "Blood Crawlers hatch from these.")
+            : base("CaveCrawlerEgg", "Cave Crawler Egg", "Cave Crawlers hatch from these.")
         {}
         public override GameObject Model => LoadGameObject("RobotEgg");
         public override TechType HatchingCreature => TechType.CaveCrawler;
