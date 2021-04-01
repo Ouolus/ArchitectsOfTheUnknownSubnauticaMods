@@ -150,6 +150,7 @@
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
+    <Compile Include="Mono\Commands\SecretCommand.cs" />
     <Compile Include="Mono\GargantuanBabyAggression.cs" />
     <Compile Include="Mono\GargantuanBabyGrowthManager.cs" />
     <Compile Include="Mono\GargantuanBabyTeleport.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Prefabs\GargantuanBaby.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
+    <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
