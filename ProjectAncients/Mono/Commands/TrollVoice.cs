@@ -5,21 +5,22 @@ namespace ProjectAncients.Mono.Commands
 {
     public class TrollVoice : MonoBehaviour
     {
-        AudioSource clipSource;
+        AudioSource audioSource;
         ECCAudio.AudioClipPool clipPool;
 
         void Start()
         {
             clipPool = ECCAudio.CreateClipPool("Troll");
-            clipSource.volume = ECCHelpers.GetECCVolume();
+            audioSource = gameObject.EnsureComponent<AudioSource>();
+            audioSource.volume = ECCHelpers.GetECCVolume();
         }
 
         void Update()
         {
-            if (!clipSource.isPlaying)
+            if (!audioSource.isPlaying)
             {
-                clipSource.clip = clipPool.GetRandomClip();
-                clipSource.Play();
+                audioSource.clip = clipPool.GetRandomClip();
+                audioSource.Play();
             }
         }
     }
