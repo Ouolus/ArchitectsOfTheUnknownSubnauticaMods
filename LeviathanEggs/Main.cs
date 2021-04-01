@@ -217,8 +217,8 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.PrecursorDroid] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
 
-            WaterParkCreature.waterParkCreatureParameters[TechType.Shuttlebug] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
-            WaterParkCreature.waterParkCreatureParameters[TechType.CaveCrawler] = new WaterParkCreatureParameters(0.6f, 0.6f, 0.8f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.Shuttlebug] = new WaterParkCreatureParameters(0.2f, 0.4f, 0.6f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.CaveCrawler] = new WaterParkCreatureParameters(0.2f, 0.5f, 0.7f, 1f, false);
             
             WaterParkCreature.waterParkCreatureParameters[TechType.ReefbackBaby] = new WaterParkCreatureParameters(0.02f, 0.1f, 0.2f, 1f, false);
 
@@ -228,12 +228,12 @@ namespace LeviathanEggs
             
             WaterParkCreature.waterParkCreatureParameters[TechType.LavaLarva] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, false);
             
-            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayRed] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
-            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayBlue] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayRed] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayBlue] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
             
-            WaterParkCreature.waterParkCreatureParameters[TechType.Warper] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.Warper] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
             
-            WaterParkCreature.waterParkCreatureParameters[TechType.SpineEel] = new WaterParkCreatureParameters(0.3f, 0.5f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.SpineEel] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
