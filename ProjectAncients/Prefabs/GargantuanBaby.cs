@@ -75,5 +75,9 @@ namespace ProjectAncients.Prefabs
         public override float BioReactorCharge => 99999999999f;
 
         public override RespawnData RespawnSettings => new RespawnData(true, 15f);
+
+        public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(20f, 50f, 100f);
+
+        public override ItemSoundsType ItemSounds => ItemSoundsType.Fish;
     }
 }
