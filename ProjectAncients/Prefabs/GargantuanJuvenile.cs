@@ -20,5 +20,7 @@ namespace ProjectAncients.Prefabs
         public GargantuanJuvenile(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
         {
         }
+
+        public override float VehicleDamagePerSecond => 30f;
     }
 }

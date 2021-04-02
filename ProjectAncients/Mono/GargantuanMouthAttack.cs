@@ -79,7 +79,7 @@ namespace ProjectAncients.Mono
                                 }
                                 else
                                 {
-                                    baseDmg = 80f;
+                                    baseDmg = 70;
                                 }
                                 var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
                                 if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
