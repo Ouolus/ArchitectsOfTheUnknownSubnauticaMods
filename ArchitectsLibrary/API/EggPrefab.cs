@@ -170,7 +170,12 @@ namespace ArchitectsLibrary.API
             liveMixin.health = MaxHealth;
 
             var creatureEgg = obj.EnsureComponent<CreatureEgg>();
-            creatureEgg.animator = obj.EnsureComponent<Animator>();
+            Animator eggAnimator = obj.GetComponentInChildren<Animator>();
+            if(eggAnimator is null)
+            {
+                eggAnimator = obj.EnsureComponent<Animator>();
+            }
+            creatureEgg.animator = eggAnimator;
             creatureEgg.hatchingCreature = HatchingCreature;
             creatureEgg.daysBeforeHatching = HatchingTime;
             if (_overridenTechType != TechType.None)
@@ -218,7 +223,12 @@ namespace ArchitectsLibrary.API
             liveMixin.health = MaxHealth;
 
             var creatureEgg = obj.EnsureComponent<CreatureEgg>();
-            creatureEgg.animator = obj.EnsureComponent<Animator>();
+            Animator eggAnimator = obj.GetComponentInChildren<Animator>();
+            if (eggAnimator is null)
+            {
+                eggAnimator = obj.EnsureComponent<Animator>();
+            }
+            creatureEgg.animator = eggAnimator;
             creatureEgg.hatchingCreature = HatchingCreature;
             creatureEgg.daysBeforeHatching = HatchingTime;
             if (_overridenTechType != TechType.None)
