@@ -66,8 +66,16 @@ namespace ProjectAncients.Mono
 			}
 			if(lastTarget.target != null)
 			{
-				creature.Aggression.Value = 1f;
-				return;
+				LiveMixin lm = lastTarget.GetComponent<LiveMixin>();
+				if(lm == null || !lm.IsAlive())
+                {
+					lastTarget.SetTarget(null);
+                }
+                else
+                {
+					creature.Aggression.Value = 1f;
+					return;
+				}
 			}
 			if (EcoRegionManager.main != null)
 			{
