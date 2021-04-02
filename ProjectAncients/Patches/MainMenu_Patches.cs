@@ -36,8 +36,17 @@ namespace ProjectAncients.Patches
         [HarmonyPrefix]
 		public static void Prefix(uGUI_SceneLoading __instance)
 		{
-            Sprite loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen");
-			Image[] componentsInChildren = __instance.loadingBackground.GetComponentsInChildren<Image>();
+            Sprite loadingScreen;
+            float random = Random.value;
+            if(random > 0.5f)
+            {
+                loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen");
+            }
+            else
+            {
+                loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen2");
+            }
+            Image[] componentsInChildren = __instance.loadingBackground.GetComponentsInChildren<Image>();
 			foreach (Image image in componentsInChildren)
 			{
 				image.sprite = loadingScreen;
