@@ -2,6 +2,8 @@ using ArchitectsLibrary.API;
 using ArchitectsLibrary.Interfaces;
 using ProjectAncients.Mono.Modules;
 using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Utility;
 using UnityEngine;
 
 namespace ProjectAncients.Prefabs.Modules
@@ -75,7 +77,7 @@ namespace ProjectAncients.Prefabs.Modules
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return SpriteManager.Get(TechType.SeamothElectricalDefense);
+            return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("SeamothElectricalDefenseMk2"));
         }
     }
 }
