@@ -56,7 +56,7 @@ namespace ProjectAncients.Prefabs
 
         public override Vector2int SizeInInventory => new Vector2int(5, 3);
 
-        public override (float, float) RoarSoundMinMax => (5f, 15f);
+        public override (float, float) RoarSoundMinMax => (1f, 10f);
 
         public override float TentacleSnapSpeed => 3.5f;
 
