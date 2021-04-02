@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="ArchitectsLibrary">
       <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
+        <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
@@ -93,6 +94,7 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+        <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
