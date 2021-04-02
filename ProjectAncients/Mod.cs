@@ -177,6 +177,7 @@ namespace ProjectAncients
 
             #region CreatureSpawns
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1245, -40, -716), "GargBehindAurora", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1450, -220, 180), "GargBehindAurora2", 400f));
             #endregion
 
             #region Initializers
