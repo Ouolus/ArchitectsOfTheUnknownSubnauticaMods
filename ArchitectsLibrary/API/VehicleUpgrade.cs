@@ -54,11 +54,38 @@ namespace ArchitectsLibrary.API
             };
         }
 
+        /// <summary>
+        /// Gets the type of Vehicle this item can fit into.
+        /// </summary>
+        /// <value>
+        /// The type of Vehicle that is compatible with this item.
+        /// </value>
         public abstract ModuleEquipmentType EquipmentType { get; }
 
+        /// <summary>
+        /// Gets the type of equipment slot this item can fit into.
+        /// </summary>
+        /// <value>
+        /// The type of the equipment slot compatible with this item.
+        /// </value>
         public virtual QuickSlotType QuickSlotType => QuickSlotType.None;
+        
+        /// <summary>
+        /// TechType that this module will instantiate its prefab and copy it as its own.
+        /// </summary>
         public virtual TechType ModelTemplate => TechType.SeamothSolarCharge;
+        
+        /// <summary>
+        /// Amount of Energy this module will cost on use
+        /// </summary>
         public virtual float? EnergyCost { get; }
+        
+        /// <summary>
+        /// <para>the total max charge that this module cant bypass when its charging up its shot.</para>
+        /// 
+        /// this Property is relavant only if your module's <see cref="QuickSlotType"/> is set as <see cref="QuickSlotType.Chargeable"/> or
+        /// <see cref="QuickSlotType.SelectableChargeable"/>.
+        /// </summary>
         public virtual float? MaxCharge { get; }
 
 #if SN1
