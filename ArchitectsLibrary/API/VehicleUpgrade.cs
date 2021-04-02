@@ -47,6 +47,11 @@ namespace ArchitectsLibrary.API
                     SeaMothPatches.SeaMothOnEquips[this.TechType] = seaMothOnEquip;
                 }
 
+                if (this is ISeaMothOnToggle seaMothOnToggle)
+                {
+                    SeaMothPatches.SeaMothOnToggles[this.TechType] = seaMothOnToggle;
+                }
+
                 if (this is IExosuitOnEquip exosuitOnEquip)
                 {
                     ExosuitPatches.ExosuitOnEquips[this.TechType] = exosuitOnEquip;

@@ -121,9 +121,11 @@
     <Compile Include="Interfaces\IAuHandler.cs" />
     <Compile Include="Interfaces\IExosuitOnEquip.cs" />
     <Compile Include="Interfaces\ISeaMothOnEquip.cs" />
+    <Compile Include="Interfaces\ISeaMothOnToggle.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Interfaces\IVehicleHandler.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\SeaMothOnToggle.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\ExosuitPatches.cs" />
     <Compile Include="Patches\SeaMothPatches.cs" />
