@@ -16,7 +16,7 @@ namespace LeviathanEggs.Prefabs
         public override GameObject Model => LoadGameObject("SeaTreaderEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaTreader;
         public override float HatchingTime => 5f;
-        public override Sprite ItemSprite => LoadSprite("RobotEgg");
+        public override Sprite ItemSprite => LoadSprite("SeaTreaderEgg");
 
         public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
