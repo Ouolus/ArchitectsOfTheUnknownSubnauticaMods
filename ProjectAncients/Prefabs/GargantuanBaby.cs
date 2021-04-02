@@ -43,6 +43,7 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
+            prefab.GetComponent<AttackLastTarget>().swimInterval = 0.05f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
         }
@@ -80,6 +81,6 @@ namespace ProjectAncients.Prefabs
 
         public override ItemSoundsType ItemSounds => ItemSoundsType.Fish;
 
-        public override float TurnSpeed => 0.7f;
+        public override float TurnSpeed => 1f;
     }
 }
