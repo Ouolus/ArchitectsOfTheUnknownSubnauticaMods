@@ -12,7 +12,7 @@ namespace ProjectAncients.Prefabs
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.38f, true, 5f);
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.organic;
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 15f, 6f, 7f, 2f, 15f);
-        public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, false);
+        public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, true);
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
@@ -67,5 +67,11 @@ namespace ProjectAncients.Prefabs
         public override float BiteDamage => 500f;
 
         public override float SpineBoneSnapSpeed => 1f;
+
+        public override HeldFishData ViewModelSettings => new HeldFishData(TechType.Peeper, "GargModel", "GargModel_FP");
+
+        public override bool Pickupable => true;
+
+        public override float BioReactorCharge => 99999999999f;
     }
 }
