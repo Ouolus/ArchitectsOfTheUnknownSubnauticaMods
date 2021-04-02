@@ -30,7 +30,7 @@ namespace LeviathanEggs
         internal static SeaTreaderEgg seaTreaderEgg = new SeaTreaderEgg();
         internal static LavaLarvaEgg lavaLarvaEgg = new LavaLarvaEgg();
         internal static CrimsonRayEgg crimsonRayEgg = new CrimsonRayEgg();
-        internal static GhostRayBlueEgg ghostRayBlueEgg = new GhostRayBlueEgg();
+        internal static GhostRayEgg ghostRayEgg = new GhostRayEgg();
         internal static BloodCrawlerEgg shuttleBugEgg = new BloodCrawlerEgg();
         internal static CaveCrawlerEgg caveCrawlerEgg = new CaveCrawlerEgg();
         internal static WarperEgg warperEgg = new WarperEgg();
@@ -43,7 +43,7 @@ namespace LeviathanEggs
         private static List<TechType> techTypesToAddEntry = new List<TechType>()
         {
             seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType, reaperEgg.TechType,
-            seaTreaderEgg.TechType, lavaLarvaEgg.TechType, crimsonRayEgg.TechType, ghostRayBlueEgg.TechType,
+            seaTreaderEgg.TechType, lavaLarvaEgg.TechType, crimsonRayEgg.TechType, ghostRayEgg.TechType,
             shuttleBugEgg.TechType, caveCrawlerEgg.TechType,
             warperEgg.TechType, spineEelEgg.TechType
         };
@@ -61,7 +61,7 @@ namespace LeviathanEggs
             seaTreaderEgg.Patch();
             lavaLarvaEgg.Patch();
             crimsonRayEgg.Patch();
-            ghostRayBlueEgg.Patch();
+            ghostRayEgg.Patch();
             shuttleBugEgg.Patch();
             caveCrawlerEgg.Patch();
             warperEgg.Patch();
@@ -244,7 +244,7 @@ namespace LeviathanEggs
             WaterParkCreature.creatureEggs[TechType.SeaTreader] = seaTreaderEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.LavaLarva] = lavaLarvaEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.GhostRayRed] = crimsonRayEgg.TechType;
-            WaterParkCreature.creatureEggs[TechType.GhostRayBlue] = ghostRayBlueEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.GhostRayBlue] = ghostRayEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.Shuttlebug] = shuttleBugEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.CaveCrawler] = caveCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.Warper] = warperEgg.TechType;

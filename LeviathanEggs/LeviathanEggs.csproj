@@ -134,7 +134,7 @@
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
     <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
-    <Compile Include="Prefabs\GhostRayBlueEgg.cs" />
+    <Compile Include="Prefabs\GhostRayEgg.cs" />
     <Compile Include="Prefabs\CrimsonRayEgg.cs" />
     <Compile Include="Prefabs\LavaLarvaEgg.cs" />
     <Compile Include="Prefabs\ReaperEgg.cs" />

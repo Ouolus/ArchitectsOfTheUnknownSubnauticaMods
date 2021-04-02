@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace LeviathanEggs.Prefabs
 {
-    public class GhostRayBlueEgg : EggPrefab
+    public class GhostRayEgg : EggPrefab
     {
-        public GhostRayBlueEgg()
-            : base("GhostRayBlueEgg", "Ghost Ray Egg", "Ghost Rays hatch from these.")
+        public GhostRayEgg()
+            : base("GhostRayEgg", "Ghost Ray Egg", "Ghost Rays hatch from these.")
         {
             LateEnhancements += InitializeObject;
         }
