@@ -45,7 +45,7 @@ namespace ProjectAncients.Mono
 		}
 
 		public float warpInterval = 5f;
-		public float warpDistance = 40f;
+		public float warpDistance = 30f;
 		public Creature creature;
 		public GameObject cinematicTarget;
 
