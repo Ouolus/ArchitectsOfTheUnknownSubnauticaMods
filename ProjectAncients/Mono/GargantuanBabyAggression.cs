@@ -29,6 +29,10 @@ namespace ProjectAncients.Mono
             {
                 return false;
             }
+            if (obj.GetComponent<GargantuanRoar>() is not null) //Lazy way of checking if it's another Garg
+            {
+				return false;
+            }
             if (obj == Player.main.gameObject)
             {
                 return false;
