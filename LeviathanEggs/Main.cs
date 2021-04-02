@@ -16,35 +16,35 @@ namespace LeviathanEggs
     [QModCore]
     public static class Main
     {
-        private static Assembly myAssembly = Assembly.GetExecutingAssembly();
-        private static string ModPath = Path.GetDirectoryName(myAssembly.Location);
+        static Assembly myAssembly = Assembly.GetExecutingAssembly();
+        static string ModPath = Path.GetDirectoryName(myAssembly.Location);
         internal static string AssetsFolder = Path.Combine(ModPath, "Assets");
         public const string version = "1.0.0.0";
         internal static Config Config { get; private set; }
         internal static AssetBundle assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, "creatureeggs"));
-        internal static SeaEmperorEgg seaEmperorEgg = new SeaEmperorEgg();
-        internal static SeaDragonEgg seaDragonEgg = new SeaDragonEgg();
-        internal static GhostEgg ghostEgg = new GhostEgg();
-        internal static RobotEgg robotEgg = new RobotEgg();
-        internal static ReaperEgg reaperEgg = new ReaperEgg();
-        internal static SeaTreaderEgg seaTreaderEgg = new SeaTreaderEgg();
-        internal static LavaLarvaEgg lavaLarvaEgg = new LavaLarvaEgg();
-        internal static CrimsonRayEgg crimsonRayEgg = new CrimsonRayEgg();
-        internal static GhostRayEgg ghostRayEgg = new GhostRayEgg();
-        internal static BloodCrawlerEgg shuttleBugEgg = new BloodCrawlerEgg();
-        internal static CaveCrawlerEgg caveCrawlerEgg = new CaveCrawlerEgg();
-        internal static WarperEgg warperEgg = new WarperEgg();
-        internal static SpineEelEgg spineEelEgg = new SpineEelEgg();
+        internal static SeaEmperorEgg seaEmperorEgg = new();
+        internal static SeaDragonEgg seaDragonEgg = new();
+        internal static GhostEgg ghostEgg = new();
+        internal static RobotEgg robotEgg = new();
+        internal static ReaperEgg reaperEgg = new();
+        internal static SeaTreaderEgg seaTreaderEgg = new();
+        internal static LavaLarvaEgg lavaLarvaEgg = new();
+        internal static CrimsonRayEgg crimsonRayEgg = new();
+        internal static GhostRayEgg ghostRayEgg = new();
+        internal static BloodCrawlerEgg bloodCrawlerEgg = new();
+        internal static CaveCrawlerEgg caveCrawlerEgg = new();
+        internal static WarperEgg warperEgg = new();
+        internal static SpineEelEgg spineEelEgg = new();
 
-        public static List<TechType> TechTypesToSkyApply = new List<TechType>() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
-        public static List<TechType> TechTypesToMakePickupable = new List<TechType>() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
-        public static List<TechType> TechTypesToTweak = new List<TechType>() { TechType.Bleeder, TechType.Rockgrub, TechType.Biter, TechType.Blighter };
+        public static List<TechType> TechTypesToSkyApply = new() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
+        public static List<TechType> TechTypesToMakePickupable = new() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
+        public static List<TechType> TechTypesToTweak = new() { TechType.Bleeder, TechType.Rockgrub, TechType.Biter, TechType.Blighter };
 
-        private static List<TechType> techTypesToAddEntry = new List<TechType>()
+        static List<TechType> techTypesToAddEntry = new()
         {
             seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType, reaperEgg.TechType,
             seaTreaderEgg.TechType, lavaLarvaEgg.TechType, crimsonRayEgg.TechType, ghostRayEgg.TechType,
-            shuttleBugEgg.TechType, caveCrawlerEgg.TechType,
+            bloodCrawlerEgg.TechType, caveCrawlerEgg.TechType,
             warperEgg.TechType, spineEelEgg.TechType
         };
         [QModPatch]
@@ -62,7 +62,7 @@ namespace LeviathanEggs
             lavaLarvaEgg.Patch();
             crimsonRayEgg.Patch();
             ghostRayEgg.Patch();
-            shuttleBugEgg.Patch();
+            bloodCrawlerEgg.Patch();
             caveCrawlerEgg.Patch();
             warperEgg.Patch();
             spineEelEgg.Patch();
@@ -82,7 +82,7 @@ namespace LeviathanEggs
 
             Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
         }
-        private static void WaterParkCreatureParametersSettings()
+        static void WaterParkCreatureParametersSettings()
         {
             #region TechTypeNames
             LanguageHandler.SetTechTypeName(TechType.SeaEmperorBaby, "Sea Emperor Baby");
@@ -245,7 +245,7 @@ namespace LeviathanEggs
             WaterParkCreature.creatureEggs[TechType.LavaLarva] = lavaLarvaEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.GhostRayRed] = crimsonRayEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.GhostRayBlue] = ghostRayEgg.TechType;
-            WaterParkCreature.creatureEggs[TechType.Shuttlebug] = shuttleBugEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.Shuttlebug] = bloodCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.CaveCrawler] = caveCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.Warper] = warperEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SpineEel] = spineEelEgg.TechType;
