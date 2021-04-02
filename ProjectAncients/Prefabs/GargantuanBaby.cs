@@ -73,5 +73,7 @@ namespace ProjectAncients.Prefabs
         public override bool Pickupable => true;
 
         public override float BioReactorCharge => 99999999999f;
+
+        public override RespawnData RespawnSettings => new RespawnData(true, 15f);
     }
 }
