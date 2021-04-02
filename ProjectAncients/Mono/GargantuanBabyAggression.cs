@@ -66,7 +66,7 @@ namespace ProjectAncients.Mono
 			}
 			if(lastTarget.target != null)
 			{
-				LiveMixin lm = lastTarget.GetComponent<LiveMixin>();
+				LiveMixin lm = lastTarget.target.GetComponent<LiveMixin>();
 				if(lm == null || !lm.IsAlive())
                 {
 					lastTarget.SetTarget(null);
