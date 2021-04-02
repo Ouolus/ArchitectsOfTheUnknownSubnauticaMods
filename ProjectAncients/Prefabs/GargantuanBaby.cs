@@ -52,7 +52,7 @@ namespace ProjectAncients.Prefabs
         public override string CloseRoarPrefix => "GargBaby";
         public override string DistantRoarPrefix => "GargBaby";
 
-        public override (float, float) RoarDelayMinMax => (4f, 8f);
+        public override (float, float) RoarDelayMinMax => (18f, 30f);
 
         public override Vector2int SizeInInventory => new Vector2int(5, 3);
 
