@@ -175,6 +175,10 @@ namespace ProjectAncients
             gargEgg.Patch();
             #endregion
 
+            #region CreatureSpawns
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1531f, -40f, -318f), "GargBehindAurora", 300f));
+            #endregion
+
             #region Initializers
             var expRoar = new ExplosionRoarInitializer();
             expRoar.Patch();
