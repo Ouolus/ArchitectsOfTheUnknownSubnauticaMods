@@ -16,6 +16,7 @@ namespace LeviathanEggs.Prefabs
         public override TechType HatchingCreature => TechType.GhostRayRed;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("CrimsonRayEgg");
+        public override Vector2int SizeInInventory { get; } = new(2, 2);
 
         public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
 
