@@ -1,11 +1,7 @@
-﻿using ECCLibrary;
-using ECCLibrary.Internal;
-using HarmonyLib;
-using ProjectAncients.Prefabs;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HarmonyLib;
 using UnityEngine;
 using ProjectAncients.Mono;
+using UnityEngine.UI;
 
 namespace ProjectAncients.Patches
 {
@@ -32,4 +28,18 @@ namespace ProjectAncients.Patches
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
     }
+
+    [HarmonyPatch(typeof(uGUI_SceneLoading))]
+    public class uGUI_SceneLoading_Patch
+    {
+		public static void Postfix(uGUI_SceneLoading __instance)
+		{
+            Sprite loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen");
+			Image[] componentsInChildren = __instance.loadingBackground.GetComponentsInChildren<Image>();
+			foreach (Image image in componentsInChildren)
+			{
+				image.sprite = loadingScreen;
+			}
+		}
+	}
 }
