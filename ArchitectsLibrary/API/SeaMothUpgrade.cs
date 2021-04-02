@@ -46,11 +46,18 @@ namespace ArchitectsLibrary.API
         public virtual float? EnergyCost { get; }
         public virtual float? MaxCharge { get; }
 
+#if SN1
         public sealed override GameObject GetGameObject()
         {
-            return base.GetGameObject();
-        }
+            var prefab = CraftData.GetPrefabForTechType(ModelTemplate);
+            var obj = GameObject.Instantiate(prefab);
 
+            prefab.SetActive(false);
+            obj.SetActive(true);
+
+            return obj;
+        }
+#endif
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (ModelTemplate != TechType.None)
