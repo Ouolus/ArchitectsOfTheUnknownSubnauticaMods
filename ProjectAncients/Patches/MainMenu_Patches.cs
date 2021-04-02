@@ -32,6 +32,8 @@ namespace ProjectAncients.Patches
     [HarmonyPatch(typeof(uGUI_SceneLoading))]
     public class uGUI_SceneLoading_Patch
     {
+        [HarmonyPatch(nameof(uGUI_SceneLoading.Init))]
+        [HarmonyPrefix]
 		public static void Prefix(uGUI_SceneLoading __instance)
 		{
             Sprite loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen");
