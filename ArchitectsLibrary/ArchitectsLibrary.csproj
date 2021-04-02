@@ -119,6 +119,7 @@
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Interfaces\IAuHandler.cs" />
+    <Compile Include="Interfaces\IExosuitOnToggle.cs" />
     <Compile Include="Interfaces\IExosuitOnEquip.cs" />
     <Compile Include="Interfaces\ISeaMothOnEquip.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
