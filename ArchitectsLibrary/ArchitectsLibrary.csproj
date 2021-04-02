@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
-    <Compile Include="API\SeaMothUpgrade.cs" />
+    <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="Initializer.cs" />
