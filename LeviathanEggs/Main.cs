@@ -35,6 +35,7 @@ namespace LeviathanEggs
         internal static CaveCrawlerEgg caveCrawlerEgg = new();
         internal static WarperEgg warperEgg = new();
         internal static SpineEelEgg spineEelEgg = new();
+        internal static SkyRayEgg skyRayEgg = new();
 
         public static List<TechType> TechTypesToSkyApply = new() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
@@ -45,7 +46,7 @@ namespace LeviathanEggs
             seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType, reaperEgg.TechType,
             seaTreaderEgg.TechType, lavaLarvaEgg.TechType, crimsonRayEgg.TechType, ghostRayEgg.TechType,
             bloodCrawlerEgg.TechType, caveCrawlerEgg.TechType,
-            warperEgg.TechType, spineEelEgg.TechType
+            warperEgg.TechType, spineEelEgg.TechType, skyRayEgg.TechType
         };
         [QModPatch]
         public static void Load()
@@ -66,6 +67,7 @@ namespace LeviathanEggs
             caveCrawlerEgg.Patch();
             warperEgg.Patch();
             spineEelEgg.Patch();
+            skyRayEgg.Patch();
 
             foreach (TechType tt in techTypesToAddEntry)
             {
