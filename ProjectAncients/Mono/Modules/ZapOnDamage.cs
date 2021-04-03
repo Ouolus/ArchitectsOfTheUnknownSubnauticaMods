@@ -6,8 +6,8 @@ namespace ProjectAncients.Mono.Modules
     public class ZapOnDamage : MonoBehaviour, IOnTakeDamage
     {
         public GameObject zapPrefab;
-        public float cooldown = 7f;
-        public float energyCost = 5f;
+        public float cooldown = 10f;
+        public float energyCost = 20f;
         private Vehicle vehicle;
         private LiveMixin myLiveMixin;
         private float timeCanZapAgain;
@@ -68,7 +68,7 @@ namespace ProjectAncients.Mono.Modules
                 //Why are we even checking??
                 return false;
             }
-            if (damageInfo.damage < 5f)
+            if (damageInfo.damage < 15)
             {
                 //Not enough damage, a waste of charge.
                 return false;
