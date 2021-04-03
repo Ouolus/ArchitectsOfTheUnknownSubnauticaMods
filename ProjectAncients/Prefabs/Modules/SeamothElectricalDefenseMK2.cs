@@ -37,7 +37,8 @@ namespace ProjectAncients.Prefabs.Modules
 
         #region Interface Implementation
 
-        public float Cooldown => 5f;
+        public float UseCooldown => 5f;
+
         public void OnUpgradeUse(int slotID, SeaMoth seaMoth)
         {
             var obj = Object.Instantiate(seaMoth.seamothElectricalDefensePrefab);
