@@ -3,16 +3,20 @@ using ProjectAncients.Prefabs.Modules;
 
 namespace ProjectAncients.Mono.Modules
 {
-    public class ZapOnDamage : MonoBehaviour
+    public class ZapOnDamage : MonoBehaviour, IOnTakeDamage
     {
         public GameObject zapPrefab;
+        public float cooldown = 7f;
+        public float energyCost = 5f;
+        private Vehicle vehicle;
+        private LiveMixin myLiveMixin;
+        private float timeCanZapAgain;
 
-        void Update()
+        void Start()
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Zap();
-            }
+            vehicle = GetComponent<Vehicle>();
+            myLiveMixin = gameObject.GetComponent<LiveMixin>();
+            myLiveMixin.damageReceivers = myLiveMixin.gameObject.GetComponents<IOnTakeDamage>();
         }
 
         public void Zap()
@@ -43,6 +47,43 @@ namespace ProjectAncients.Mono.Modules
                 electricalDefense.charge = 1f;
                 electricalDefense.chargeScalar = 1f;
             }
+        }
+
+        public void OnTakeDamage(DamageInfo damageInfo)
+        {
+            if (GetCanZap(damageInfo))
+            {
+                if (vehicle.ConsumeEnergy(energyCost))
+                {
+                    Zap();
+                    timeCanZapAgain = Time.time + 5f;
+                }
+            }
+        }
+
+        public bool GetCanZap(DamageInfo damageInfo)
+        {
+            if(damageInfo == null)
+            {
+                //Why are we even checking??
+                return false;
+            }
+            if (damageInfo.damage < 5f)
+            {
+                //Not enough damage, a waste of charge.
+                return false;
+            }
+            if (Time.time < timeCanZapAgain)
+            {
+                //Still on cooldown.
+                return false;
+            }
+            if (!vehicle.HasEnoughEnergy(energyCost + 5f))
+            {
+                //Not worth using energy at this point
+                return false;
+            }
+            return true;
         }
     }
 }
