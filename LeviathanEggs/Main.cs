@@ -224,7 +224,7 @@ namespace LeviathanEggs
 
             WaterParkCreature.waterParkCreatureParameters[TechType.ReaperLeviathan] = new WaterParkCreatureParameters(0.04f, 0.05f, 0.07f, 1f, false);
 
-            WaterParkCreature.waterParkCreatureParameters[TechType.SeaTreader] = new WaterParkCreatureParameters(0.02f, 0.05f, 0.07f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.SeaTreader] = new WaterParkCreatureParameters(0.04f, 0.06f, 0.07f, 1f, false);
             
             WaterParkCreature.waterParkCreatureParameters[TechType.LavaLarva] = new WaterParkCreatureParameters(0.1f, 0.5f, 0.6f, 1f, false);
             
