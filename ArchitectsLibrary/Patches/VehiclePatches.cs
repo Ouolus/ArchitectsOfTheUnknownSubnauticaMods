@@ -53,9 +53,9 @@ namespace ArchitectsLibrary.Patches
         {
             var techType = __instance.modules.GetTechTypeInSlot(__instance.slotIDs[slotID]);
 
-            if (VehicleOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce seamothOnToggleOnce))
+            if (VehicleOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce vehicleOnToggleOnce))
             {
-                seamothOnToggleOnce.OnToggleOnce(slotID, active, __instance);
+                vehicleOnToggleOnce.OnToggleOnce(slotID, active, __instance);
 
                 __instance.quickSlotTimeUsed[slotID] = Time.time;
             }
@@ -64,7 +64,7 @@ namespace ArchitectsLibrary.Patches
                 var onToggles = __instance.gameObject.GetAllComponentsInChildren<VehicleOnToggleRepeating>();
                 foreach (var toggle in onToggles)
                 {
-                    // if the component already exists on the seamoth, then skip adding it again
+                    // if the component already exists on the Vehicle, then skip adding it again
                     if (toggle.techType == techType)
                     {
                         toggle.enabled = active;
