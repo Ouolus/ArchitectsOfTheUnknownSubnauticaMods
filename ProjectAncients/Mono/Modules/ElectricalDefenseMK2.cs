@@ -53,7 +53,8 @@ namespace ProjectAncients.Mono.Modules
 
                 if (creature is not null && liveMixin is not null)
                 {
-                    liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
+                    liveMixin.TakeDamage(originalDamage / 2f, transform.position, Mod.architectElect, gameObject);
+                    liveMixin.TakeDamage(originalDamage / 2f, transform.position, DamageType.Electrical, gameObject);
                 }
             }
             Destroy(gameObject, 5f);
