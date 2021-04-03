@@ -39,25 +39,22 @@ namespace ArchitectsLibrary.API
 
                 if (this is ISeaMothOnUse seaMothOnUse)
                 {
-                    SeaMothPatches.seaMothOnUses[this.TechType] = seaMothOnUse;
+                    VehiclePatches.seaMothOnUses[this.TechType] = seaMothOnUse;
                 }
 
-                if (this is IVehicleOnEquip seaMothOnEquip)
+                if (this is IVehicleOnEquip vehicleOnEquip)
                 {
-                    SeaMothPatches.SeaMothOnEquips[this.TechType] = seaMothOnEquip;
-                    ExosuitPatches.ExosuitOnEquips[this.TechType] = seaMothOnEquip;
+                    VehiclePatches.VehicleOnEquips[this.TechType] = vehicleOnEquip;
                 }
 
                 if (this is IVehicleOnToggleRepeating vehicleOnToggleRepeating)
                 {
-                    SeaMothPatches.SeaMothOnToggleRepeatings[this.TechType] = vehicleOnToggleRepeating;
-                    ExosuitPatches.ExosuitOnToggleRepeatings[this.TechType] = vehicleOnToggleRepeating;
+                    VehiclePatches.VehicleOnToggleRepeatings[this.TechType] = vehicleOnToggleRepeating;
                 }
 
                 if (this is IVehicleOnToggleOnce vehicleOnToggleOnce)
                 {
-                    SeaMothPatches.SeamothOnToggleOnces[this.TechType] = vehicleOnToggleOnce;
-                    ExosuitPatches.ExosuitOnToggleOnces[this.TechType] = vehicleOnToggleOnce;
+                    VehiclePatches.VehicleOnToggleOnces[this.TechType] = vehicleOnToggleOnce;
                 }
             };
         }
