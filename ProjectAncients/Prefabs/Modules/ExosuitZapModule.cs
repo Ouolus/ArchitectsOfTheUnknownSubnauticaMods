@@ -37,7 +37,7 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
-        static GameObject electricalDefensePrefab;
+        public static GameObject electricalDefensePrefab;
 
         #region Interface Implementation
 
