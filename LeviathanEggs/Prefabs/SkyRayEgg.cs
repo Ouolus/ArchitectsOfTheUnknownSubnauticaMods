@@ -18,6 +18,7 @@ namespace LeviathanEggs.Prefabs
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SkyRayEgg");
         public override Vector2int SizeInInventory { get; } = new(1, 1);
+        public override bool MakeCreatureLayEggs { get; } = true;
 
         public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
