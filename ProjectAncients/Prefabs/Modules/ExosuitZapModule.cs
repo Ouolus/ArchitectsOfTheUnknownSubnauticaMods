@@ -43,17 +43,20 @@ namespace ProjectAncients.Prefabs.Modules
 
         public void OnEquip(int slotID, bool equipped, Vehicle vehicle)
         {
-            if (equipped)
+            if (vehicle is Exosuit exosuit)
             {
-                ZapOnDamage zod = vehicle.gameObject.EnsureComponent<ZapOnDamage>();
-                zod.zapPrefab = electricalDefensePrefab;
-            }
-            else
-            {
-                ZapOnDamage zod = vehicle.gameObject.GetComponent<ZapOnDamage>();
-                if (zod)
+                if (equipped)
                 {
-                    Object.Destroy(zod);
+                    ZapOnDamage zod = exosuit.gameObject.EnsureComponent<ZapOnDamage>();
+                    zod.zapPrefab = electricalDefensePrefab;
+                }
+                else
+                {
+                    ZapOnDamage zod = exosuit.gameObject.GetComponent<ZapOnDamage>();
+                    if (zod)
+                    {
+                        Object.Destroy(zod);
+                    }
                 }
             }
         }
