@@ -228,8 +228,8 @@ namespace LeviathanEggs
             
             WaterParkCreature.waterParkCreatureParameters[TechType.LavaLarva] = new WaterParkCreatureParameters(0.2f, 0.7f, 1f, 1f, false);
             
-            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayRed] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
-            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayBlue] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayRed] = new WaterParkCreatureParameters(0.1f, 0.25f, 0.3f, 1f, false);
+            WaterParkCreature.waterParkCreatureParameters[TechType.GhostRayBlue] = new WaterParkCreatureParameters(0.1f, 0.25f, 0.3f, 1f, false);
             
             WaterParkCreature.waterParkCreatureParameters[TechType.Warper] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
             
