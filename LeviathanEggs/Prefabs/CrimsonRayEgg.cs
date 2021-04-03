@@ -8,7 +8,7 @@ namespace LeviathanEggs.Prefabs
     public class CrimsonRayEgg : EggPrefab
     {
         public CrimsonRayEgg()
-            : base("CrimsonRayEgg", "Crimson Ray Egg", "Crimson Rays hatch from these")
+            : base("CrimsonRayEgg", "Crimson Ray Egg", "Crimson Rays hatch from these.")
         {
             LateEnhancements += InitializeObject;
         }
