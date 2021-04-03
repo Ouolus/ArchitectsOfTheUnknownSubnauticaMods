@@ -226,7 +226,7 @@ namespace ProjectAncients.Mono
             if (heldVehicle != null)
             {
                 float dps = vehicleDamagePerSecond;
-                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
+                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal, dealer: gameObject);
                 if (!heldVehicle.liveMixin.IsAlive())
                 {
                     if (Player.main.currentMountedVehicle == heldVehicle)
