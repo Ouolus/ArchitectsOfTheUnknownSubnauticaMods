@@ -7,7 +7,8 @@ namespace ProjectAncients.Mono.Modules
     {
         public GameObject zapPrefab;
         public float cooldown = 10f;
-        public float energyCost = 20f;
+        public float energyCost = 30f;
+        public float energyCostWhenGrabbed = 320f;
         private Vehicle vehicle;
         private LiveMixin myLiveMixin;
         private float timeCanZapAgain;
@@ -19,7 +20,7 @@ namespace ProjectAncients.Mono.Modules
             myLiveMixin.damageReceivers = myLiveMixin.gameObject.GetComponents<IOnTakeDamage>();
         }
 
-        public void Zap()
+        public void Zap(bool superCharge)
         {
             var obj = Object.Instantiate(zapPrefab);
             obj.name = "PrawnSuitZap";
@@ -44,6 +45,14 @@ namespace ProjectAncients.Mono.Modules
 
             if (electricalDefense is not null)
             {
+                if (superCharge)
+                {
+                    electricalDefense.attackType = ElectricalDefenseMK2.AttackType.ArchitectElectricity;
+                }
+                else
+                {
+                    electricalDefense.attackType = ElectricalDefenseMK2.AttackType.SmallElectricity;
+                }
                 electricalDefense.charge = 1f;
                 electricalDefense.chargeScalar = 1f;
             }
@@ -55,7 +64,8 @@ namespace ProjectAncients.Mono.Modules
             {
                 if (vehicle.ConsumeEnergy(energyCost))
                 {
-                    Zap();
+                    bool superCharge = HitByGarg(damageInfo);
+                    Zap(superCharge);
                     timeCanZapAgain = Time.time + 5f;
                 }
             }
@@ -78,12 +88,38 @@ namespace ProjectAncients.Mono.Modules
                 //Still on cooldown.
                 return false;
             }
-            if (!vehicle.HasEnoughEnergy(energyCost + 5f))
+            if (!vehicle.HasEnoughEnergy(GetEnergyUsage(damageInfo) + 1f))
             {
                 //Not worth using energy at this point
                 return false;
             }
             return true;
+        }
+
+        public float GetEnergyUsage(DamageInfo info)
+        {
+            if(HitByGarg(info))
+            {
+                return energyCostWhenGrabbed;
+            }
+            return energyCost;
+        }
+
+        public bool HitByGarg(DamageInfo damageInfo)
+        {
+            if(damageInfo == null)
+            {
+                return false;
+            }
+            if(damageInfo.dealer == null)
+            {
+                return false;
+            }
+            if (damageInfo.dealer.GetComponent<GargantuanBehaviour>() is not null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
