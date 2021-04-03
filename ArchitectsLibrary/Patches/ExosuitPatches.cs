@@ -8,8 +8,8 @@ namespace ArchitectsLibrary.Patches
     [HarmonyPatch(typeof(Exosuit))]
     public class ExosuitPatches
     {
-        internal static Dictionary<TechType, IExosuitOnEquip> exosuitOnEquips = new();
-        internal static Dictionary<TechType, IExosuitOnToggle> exosuitOnToggles = new();
+        internal static Dictionary<TechType, IExosuitOnEquip> ExosuitOnEquips = new();
+        internal static Dictionary<TechType, IExosuitOnToggle> ExosuitOnToggle = new();
 
         [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleToggle))]
         [HarmonyPostfix]
@@ -20,7 +20,7 @@ namespace ArchitectsLibrary.Patches
             {
                 return;
             }
-            if (exosuitOnToggles.TryGetValue(item.item.GetTechType(), out IExosuitOnToggle exosuitOnToggle))
+            if (ExosuitOnToggle.TryGetValue(item.item.GetTechType(), out IExosuitOnToggle exosuitOnToggle))
             {
                 exosuitOnToggle.OnToggle(slotID, active, __instance);
 
@@ -32,7 +32,7 @@ namespace ArchitectsLibrary.Patches
         [HarmonyPostfix]
         static void OnUpgradeModuleChange(Exosuit __instance, TechType techType, int slotID)
         {
-            if (exosuitOnEquips.TryGetValue(techType, out IExosuitOnEquip exosuitOnEquip))
+            if (ExosuitOnEquips.TryGetValue(techType, out IExosuitOnEquip exosuitOnEquip))
             {
                 exosuitOnEquip.OnEquip(slotID, __instance);
             }

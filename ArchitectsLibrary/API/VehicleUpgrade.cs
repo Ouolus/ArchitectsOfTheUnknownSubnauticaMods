@@ -56,6 +56,11 @@ namespace ArchitectsLibrary.API
                 {
                     ExosuitPatches.ExosuitOnEquips[this.TechType] = exosuitOnEquip;
                 }
+
+                if (this is IExosuitOnToggle exosuitOnToggle)
+                {
+                    ExosuitPatches.ExosuitOnToggle[this.TechType] = exosuitOnEquip;
+                }
             };
         }
 
