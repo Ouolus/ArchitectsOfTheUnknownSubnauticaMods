@@ -8,7 +8,7 @@ namespace ProjectAncients.Mono.Modules
         public GameObject zapPrefab;
         public float cooldown = 10f;
         public float energyCost = 30f;
-        public float energyCostWhenGrabbed = 320f;
+        public float superchargeEnergyCost = 320f;
         private Vehicle vehicle;
         private LiveMixin myLiveMixin;
         private float timeCanZapAgain;
@@ -64,7 +64,7 @@ namespace ProjectAncients.Mono.Modules
             {
                 if (vehicle.ConsumeEnergy(GetEnergyUsage(damageInfo)))
                 {
-                    bool superCharge = HitByGarg(damageInfo);
+                    bool superCharge = ShouldSuperCharge(damageInfo);
                     Zap(superCharge);
                     timeCanZapAgain = Time.time + 5f;
                 }
@@ -98,20 +98,24 @@ namespace ProjectAncients.Mono.Modules
 
         public float GetEnergyUsage(DamageInfo info)
         {
-            if(HitByGarg(info))
+            if(ShouldSuperCharge(info))
             {
-                return energyCostWhenGrabbed;
+                return superchargeEnergyCost;
             }
             return energyCost;
         }
 
-        public bool HitByGarg(DamageInfo damageInfo)
+        public bool ShouldSuperCharge(DamageInfo damageInfo)
         {
             if(damageInfo == null)
             {
                 return false;
             }
             if(damageInfo.dealer == null)
+            {
+                return false;
+            }
+            if (!vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
             {
                 return false;
             }
