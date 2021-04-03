@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace ProjectAncients.Mono.Modules
 {
-    class ZapOnDamage
+    public class ZapOnDamage : MonoBehaviour
     {
+        public GameObject zapPrefab;
     }
 }
