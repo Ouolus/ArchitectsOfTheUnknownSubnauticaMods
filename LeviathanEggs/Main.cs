@@ -234,6 +234,8 @@ namespace LeviathanEggs
             WaterParkCreature.waterParkCreatureParameters[TechType.Warper] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
             
             WaterParkCreature.waterParkCreatureParameters[TechType.SpineEel] = new WaterParkCreatureParameters(0.3f, 0.4f, 0.5f, 1f, false);
+
+            WaterParkCreature.waterParkCreatureParameters[TechType.Skyray] = new WaterParkCreatureParameters(0.2f, 0.3f, 0.5f, 1, false);
             #endregion
             #region Creature Eggs
             WaterParkCreature.creatureEggs[TechType.GhostLeviathan] = ghostEgg.TechType;
