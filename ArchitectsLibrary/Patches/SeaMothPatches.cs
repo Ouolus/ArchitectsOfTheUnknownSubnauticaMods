@@ -29,11 +29,11 @@ namespace ArchitectsLibrary.Patches
 
         [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleChange))]
         [HarmonyPostfix]
-        static void OnUpgradeModuleChange(SeaMoth __instance, TechType techType, int slotID)
+        static void OnUpgradeModuleChange(SeaMoth __instance, TechType techType, int slotID, bool added)
         {
             if (SeaMothOnEquips.TryGetValue(techType, out IVehicleOnEquip seaMothOnEquip))
             {
-                seaMothOnEquip.OnEquip(slotID, __instance);
+                seaMothOnEquip.OnEquip(slotID, added, __instance);
             }
         }
 

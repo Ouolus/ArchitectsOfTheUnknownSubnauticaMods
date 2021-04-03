@@ -58,11 +58,11 @@ namespace ArchitectsLibrary.Patches
         [HarmonyPatch(typeof(Exosuit))]
         [HarmonyPatch(nameof(Exosuit.OnUpgradeModuleChange))]
         [HarmonyPostfix]
-        static void OnUpgradeModuleChange(Exosuit __instance, TechType techType, int slotID)
+        static void OnUpgradeModuleChange(Exosuit __instance, TechType techType, int slotID, bool added)
         {
             if (ExosuitOnEquips.TryGetValue(techType, out IVehicleOnEquip exosuitOnEquip))
             {
-                exosuitOnEquip.OnEquip(slotID, __instance);
+                exosuitOnEquip.OnEquip(slotID, added, __instance);
             }
         }
     }
