@@ -6,16 +6,25 @@ using UnityEngine;
 
 namespace ArchitectsLibrary.Patches
 {
-    [HarmonyPatch(typeof(SeaMoth))]
-    public class SeaMothPatches
+    public class VehiclePatches
     {
         internal static Dictionary<TechType, ISeaMothOnUse> seaMothOnUses = new();
-        internal static Dictionary<TechType, IVehicleOnEquip> SeaMothOnEquips = new();
-        internal static Dictionary<TechType, IVehicleOnToggleRepeating> SeaMothOnToggleRepeatings = new();
-        internal static Dictionary<TechType, IVehicleOnToggleOnce> SeamothOnToggleOnces = new();
+        internal static Dictionary<TechType, IVehicleOnEquip> VehicleOnEquips = new();
+        internal static Dictionary<TechType, IVehicleOnToggleRepeating> VehicleOnToggleRepeatings = new();
+        internal static Dictionary<TechType, IVehicleOnToggleOnce> VehicleOnToggleOnces = new();
+
+        internal static void Patch(Harmony harmony)
+        {
+            harmony.Patch(AccessTools.Method(typeof(SeaMoth), nameof(SeaMoth.OnUpgradeModuleUse)),
+                postfix: new HarmonyMethod(AccessTools.Method(typeof(VehiclePatches), nameof(OnUpgradeModuleUse_Postfix))));
+
+            harmony.Patch(AccessTools.Method(typeof(Vehicle), nameof(Vehicle.OnUpgradeModuleChange)),
+                postfix: new HarmonyMethod(AccessTools.Method(typeof(VehiclePatches), nameof(OnUpgradeModuleChange_Postfix))));
+
+            harmony.Patch(AccessTools.Method(typeof(Vehicle), nameof(Vehicle.OnUpgradeModuleToggle)),
+                prefix: new HarmonyMethod(AccessTools.Method(typeof(VehiclePatches), nameof(OnUpgradeModuleToggle_Prefix))));
+        }
         
-        [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleUse))]
-        [HarmonyPostfix]
         static void OnUpgradeModuleUse_Postfix(SeaMoth __instance, TechType techType, int slotID)
         {
             if (seaMothOnUses.TryGetValue(techType, out ISeaMothOnUse seaMothOnUse))
@@ -26,30 +35,26 @@ namespace ArchitectsLibrary.Patches
                 __instance.quickSlotCooldown[slotID] = seaMothOnUse.UseCooldown;
             }
         }
-
-        [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleChange))]
-        [HarmonyPostfix]
-        static void OnUpgradeModuleChange(SeaMoth __instance, TechType techType, int slotID, bool added)
+        
+        static void OnUpgradeModuleChange_Postfix(Vehicle __instance, TechType techType, int slotID, bool added)
         {
-            if (SeaMothOnEquips.TryGetValue(techType, out IVehicleOnEquip seaMothOnEquip))
+            if (VehicleOnEquips.TryGetValue(techType, out IVehicleOnEquip seaMothOnEquip))
             {
                 seaMothOnEquip.OnEquip(slotID, added, __instance);
             }
         }
-
-        [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleToggle))]
-        [HarmonyPrefix]
-        static bool OnUpgradeModuleToggle_Prefix(SeaMoth __instance, int slotID, bool active)
+        
+        static bool OnUpgradeModuleToggle_Prefix(Vehicle __instance, int slotID, bool active)
         {
             var techType = __instance.modules.GetTechTypeInSlot(__instance.slotIDs[slotID]);
 
-            if (SeamothOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce seamothOnToggleOnce)) //Do this one first because the patch for ISeaMothOnToggleRepeating has a chance to "return"
+            if (VehicleOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce seamothOnToggleOnce))
             {
                 seamothOnToggleOnce.OnToggleOnce(slotID, active, __instance);
 
                 __instance.quickSlotTimeUsed[slotID] = Time.time;
             }
-            if (SeaMothOnToggleRepeatings.TryGetValue(techType, out IVehicleOnToggleRepeating toggleRepeating))
+            if (VehicleOnToggleRepeatings.TryGetValue(techType, out IVehicleOnToggleRepeating toggleRepeating))
             {
                 var onToggles = __instance.gameObject.GetAllComponentsInChildren<VehicleOnToggleRepeating>();
                 foreach (var toggle in onToggles)

@@ -127,8 +127,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
-    <Compile Include="Patches\ExosuitPatches.cs" />
-    <Compile Include="Patches\SeaMothPatches.cs" />
+    <Compile Include="Patches\VehiclePatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GameObjectExtensions.cs" />
     <Compile Include="Utility\HashDictionary.cs" />
