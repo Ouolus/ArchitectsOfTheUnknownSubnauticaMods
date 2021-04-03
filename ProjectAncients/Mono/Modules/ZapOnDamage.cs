@@ -62,7 +62,7 @@ namespace ProjectAncients.Mono.Modules
         {
             if (GetCanZap(damageInfo))
             {
-                if (vehicle.ConsumeEnergy(energyCost))
+                if (vehicle.ConsumeEnergy(GetEnergyUsage(damageInfo)))
                 {
                     bool superCharge = HitByGarg(damageInfo);
                     Zap(superCharge);
