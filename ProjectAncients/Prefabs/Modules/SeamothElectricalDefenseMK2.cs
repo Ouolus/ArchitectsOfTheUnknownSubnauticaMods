@@ -68,6 +68,7 @@ namespace ProjectAncients.Prefabs.Modules
             {
                 electricalDefense.charge = charge;
                 electricalDefense.chargeScalar = slotCharge;
+                electricalDefense.attackType = ElectricalDefenseMK2.AttackType.Both;
             }
         }
 
