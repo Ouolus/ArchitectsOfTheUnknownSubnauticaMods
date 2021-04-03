@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using ArchitectsLibrary.Patches;
 using HarmonyLib;
 using QModManager.API.ModLoading;
 using QModManager.Utility;
@@ -17,7 +18,9 @@ namespace ArchitectsLibrary
             
             Initializer.PatchAllDictionaries();
             
-            Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
+            Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
+            
+            VehiclePatches.Patch(harmony);
             
             Logger.Log(Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
