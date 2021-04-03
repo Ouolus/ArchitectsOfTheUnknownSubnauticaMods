@@ -10,7 +10,7 @@ using UWE;
 
 namespace ProjectAncients.Prefabs.Modules
 {
-    public class ExosuitZapModule : VehicleUpgrade, IVehicleOnToggleRepeating
+    public class ExosuitZapModule : VehicleUpgrade, IVehicleOnEquip
     {
         public ExosuitZapModule()
     : base("ExosuitZapModule", "Prawn Suit Ion Perimeter Defense System",
@@ -41,40 +41,20 @@ namespace ProjectAncients.Prefabs.Modules
 
         #region Interface Implementation
 
-        public float RepeatingActionCooldown => 1f;
-
-        public void DoRepeatingAction(int slotID, Vehicle vehicle)
+        public void OnEquip(int slotID, bool equipped, Vehicle vehicle)
         {
-            var obj = Object.Instantiate(electricalDefensePrefab);
-            obj.name = "ExosuitZap";
-
-            var fxElectSpheres = electricalDefensePrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
-            var defenseSound = electricalDefensePrefab.GetComponent<ElectricalDefense>().defenseSound;
-
-            var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
-            if (ed is not null)
+            if (equipped)
             {
-                Object.Destroy(ed);
+                ZapOnDamage zod = vehicle.gameObject.EnsureComponent<ZapOnDamage>();
+                zod.zapPrefab = electricalDefensePrefab;
             }
-
-            var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
-            if (edMk2 is not null)
+            else
             {
-                edMk2.fxElectSpheres = fxElectSpheres;
-                edMk2.defenseSound = defenseSound;
-            }
-
-            float charge = vehicle.quickSlotCharge[slotID];
-            float slotCharge = vehicle.GetSlotCharge(slotID);
-
-            var electricalDefense = Utils
-                .SpawnZeroedAt(obj, vehicle.transform)
-                .GetComponent<ElectricalDefenseMK2>();
-
-            if (electricalDefense is not null)
-            {
-                electricalDefense.charge = charge;
-                electricalDefense.chargeScalar = slotCharge;
+                ZapOnDamage zod = vehicle.gameObject.GetComponent<ZapOnDamage>();
+                if (zod)
+                {
+                    Object.Destroy(zod);
+                }
             }
         }
 
