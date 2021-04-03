@@ -10,8 +10,9 @@ namespace ArchitectsLibrary.Patches
     public class SeaMothPatches
     {
         internal static Dictionary<TechType, ISeaMothOnUse> seaMothOnUses = new();
-        internal static Dictionary<TechType, ISeaMothOnEquip> SeaMothOnEquips = new();
-        internal static Dictionary<TechType, ISeaMothOnToggle> SeaMothOnToggles = new();
+        internal static Dictionary<TechType, IVehicleOnEquip> SeaMothOnEquips = new();
+        internal static Dictionary<TechType, IVehicleOnToggleRepeating> SeaMothOnToggleRepeatings = new();
+        internal static Dictionary<TechType, IVehicleOnToggleOnce> SeamothOnToggleOnces = new();
         
         [HarmonyPatch(nameof(SeaMoth.OnUpgradeModuleUse))]
         [HarmonyPostfix]
@@ -30,7 +31,7 @@ namespace ArchitectsLibrary.Patches
         [HarmonyPostfix]
         static void OnUpgradeModuleChange(SeaMoth __instance, TechType techType, int slotID)
         {
-            if (SeaMothOnEquips.TryGetValue(techType, out ISeaMothOnEquip seaMothOnEquip))
+            if (SeaMothOnEquips.TryGetValue(techType, out IVehicleOnEquip seaMothOnEquip))
             {
                 seaMothOnEquip.OnEquip(slotID, __instance);
             }
@@ -41,10 +42,16 @@ namespace ArchitectsLibrary.Patches
         static bool OnUpgradeModuleToggle_Prefix(SeaMoth __instance, int slotID, bool active)
         {
             var techType = __instance.modules.GetTechTypeInSlot(__instance.slotIDs[slotID]);
-            
-            if (SeaMothOnToggles.TryGetValue(techType, out ISeaMothOnToggle seaMothOnToggle))
+
+            if (SeamothOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce seamothOnToggleOnce)) //Do this one first because the patch for ISeaMothOnToggleRepeating has a chance to "return"
             {
-                var onToggles = __instance.gameObject.GetAllComponentsInChildren<SeaMothOnToggle>();
+                seamothOnToggleOnce.OnToggle(slotID, active, __instance);
+
+                __instance.quickSlotTimeUsed[slotID] = Time.time;
+            }
+            if (SeaMothOnToggleRepeatings.TryGetValue(techType, out IVehicleOnToggleRepeating toggleRepeating))
+            {
+                var onToggles = __instance.gameObject.GetAllComponentsInChildren<VehicleOnToggleRepeating>();
                 foreach (var toggle in onToggles)
                 {
                     // if the component already exists on the seamoth, then skip adding it again
@@ -54,9 +61,9 @@ namespace ArchitectsLibrary.Patches
                         return false;
                     }
                 }
-                var onToggle = __instance.gameObject.AddComponent<SeaMothOnToggle>();
-                onToggle.seaMothOnToggle = seaMothOnToggle;
-                onToggle.seaMoth = __instance;
+                var onToggle = __instance.gameObject.AddComponent<VehicleOnToggleRepeating>();
+                onToggle.vehicleOnToggle = toggleRepeating;
+                onToggle.vehicle = __instance;
                 onToggle.slotID = slotID;
                 onToggle.techType = techType;
                 onToggle.enabled = active;

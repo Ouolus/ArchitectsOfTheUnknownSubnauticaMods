@@ -42,24 +42,19 @@ namespace ArchitectsLibrary.API
                     SeaMothPatches.seaMothOnUses[this.TechType] = seaMothOnUse;
                 }
 
-                if (this is ISeaMothOnEquip seaMothOnEquip)
+                if (this is IVehicleOnEquip seaMothOnEquip)
                 {
                     SeaMothPatches.SeaMothOnEquips[this.TechType] = seaMothOnEquip;
                 }
 
-                if (this is ISeaMothOnToggle seaMothOnToggle)
+                if (this is IVehicleOnToggleRepeating seaMothOnToggleRepeating)
                 {
-                    SeaMothPatches.SeaMothOnToggles[this.TechType] = seaMothOnToggle;
+                    SeaMothPatches.SeaMothOnToggleRepeatings[this.TechType] = seaMothOnToggleRepeating;
                 }
 
-                if (this is IExosuitOnEquip exosuitOnEquip)
+                if (this is IVehicleOnToggleOnce exosuitOnToggle)
                 {
-                    ExosuitPatches.ExosuitOnEquips[this.TechType] = exosuitOnEquip;
-                }
-
-                if (this is IExosuitOnToggle exosuitOnToggle)
-                {
-                    ExosuitPatches.ExosuitOnToggle[this.TechType] = exosuitOnEquip;
+                    ExosuitPatches.ExosuitOnToggleOnces[this.TechType] = exosuitOnToggle;
                 }
             };
         }

@@ -1,7 +1,7 @@
 namespace ArchitectsLibrary.Interfaces
 {
     /// <summary>
-    /// collection of the needed stuff for a <see cref="SeaMoth"/> Module to become functional on use.
+    /// Used for when a module with a single, instant action is used. Seamoth specific.
     /// </summary>
     public interface ISeaMothOnUse
     {
