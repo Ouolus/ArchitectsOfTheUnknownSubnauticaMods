@@ -22,6 +22,7 @@ namespace ProjectAncients
         public static AssetBundle assetBundle;
 
         public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
+        public static ExosuitZapModule exosuitZapModule;
 
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
@@ -156,6 +157,9 @@ namespace ProjectAncients
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
+
+            exosuitZapModule = new();
+            exosuitZapModule.Patch();
             #endregion
 
             #region Creatures

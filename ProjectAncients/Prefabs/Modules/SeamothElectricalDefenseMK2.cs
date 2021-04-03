@@ -81,8 +81,8 @@ namespace ProjectAncients.Prefabs.Modules
                 Ingredients =
                 {
                     new Ingredient(TechType.SeamothElectricalDefense, 1),
-                    new Ingredient(TechType.AdvancedWiringKit, 2),
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
+                    new Ingredient(TechType.AdvancedWiringKit, 1),
+                    new Ingredient(TechType.PrecursorIonCrystal, 2),
                 }
             };
         }
