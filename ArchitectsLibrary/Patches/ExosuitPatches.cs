@@ -6,17 +6,22 @@ using UnityEngine;
 
 namespace ArchitectsLibrary.Patches
 {
-    [HarmonyPatch(typeof(Exosuit))]
+    [HarmonyPatch]
     public class ExosuitPatches
     {
         internal static Dictionary<TechType, IVehicleOnEquip> ExosuitOnEquips = new();
         internal static Dictionary<TechType, IVehicleOnToggleOnce> ExosuitOnToggleOnces = new();
         internal static Dictionary<TechType, IVehicleOnToggleRepeating> ExosuitOnToggleRepeatings = new();
 
-        [HarmonyPatch(nameof(Exosuit.OnUpgradeModuleToggle))]
-        [HarmonyPostfix]
-        static bool OnUpgradeModuleToggle_Postfix(Exosuit __instance, bool active, int slotID)
+        [HarmonyPatch(typeof(Vehicle))]
+        [HarmonyPatch(nameof(Vehicle.OnUpgradeModuleToggle))]
+        [HarmonyPrefix]
+        static bool OnUpgradeModuleToggle_Postfix(Vehicle __instance, bool active, int slotID)
         {
+            if(__instance is not Exosuit)
+            {
+                return true;
+            }
             var techType = __instance.modules.GetTechTypeInSlot(__instance.slotIDs[slotID]);
 
             if (ExosuitOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce exosuitOnToggle))
@@ -50,6 +55,7 @@ namespace ArchitectsLibrary.Patches
             return true;
         }
 
+        [HarmonyPatch(typeof(Exosuit))]
         [HarmonyPatch(nameof(Exosuit.OnUpgradeModuleChange))]
         [HarmonyPostfix]
         static void OnUpgradeModuleChange(Exosuit __instance, TechType techType, int slotID)
