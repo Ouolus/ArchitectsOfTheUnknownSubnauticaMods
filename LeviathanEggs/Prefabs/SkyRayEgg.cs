@@ -8,7 +8,7 @@ namespace LeviathanEggs.Prefabs
     public class SkyRayEgg : EggPrefab
     {
         public SkyRayEgg()
-            : base("SkyRayEgg", "Skyray Egg", "Skyray Egg that makes me go yes.")
+            : base("SkyRayEgg", "Skyray Egg", "Skyrays Hatch from these.")
         {
             LateEnhancements += InitializeObject;
         }
