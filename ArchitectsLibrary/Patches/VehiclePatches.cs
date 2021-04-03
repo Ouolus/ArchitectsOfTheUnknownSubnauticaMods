@@ -3,6 +3,7 @@ using ArchitectsLibrary.Interfaces;
 using ArchitectsLibrary.MonoBehaviours;
 using HarmonyLib;
 using UnityEngine;
+using Logger = QModManager.Utility.Logger;
 
 namespace ArchitectsLibrary.Patches
 {
@@ -15,6 +16,8 @@ namespace ArchitectsLibrary.Patches
 
         internal static void Patch(Harmony harmony)
         {
+            Logger.Log(Logger.Level.Debug, "Vehicle Patches started");
+            
             harmony.Patch(AccessTools.Method(typeof(SeaMoth), nameof(SeaMoth.OnUpgradeModuleUse)),
                 postfix: new HarmonyMethod(AccessTools.Method(typeof(VehiclePatches), nameof(OnUpgradeModuleUse_Postfix))));
 
@@ -23,6 +26,8 @@ namespace ArchitectsLibrary.Patches
 
             harmony.Patch(AccessTools.Method(typeof(Vehicle), nameof(Vehicle.OnUpgradeModuleToggle)),
                 prefix: new HarmonyMethod(AccessTools.Method(typeof(VehiclePatches), nameof(OnUpgradeModuleToggle_Prefix))));
+            
+            Logger.Log(Logger.Level.Debug, "Vehicle Patches done");
         }
         
         static void OnUpgradeModuleUse_Postfix(SeaMoth __instance, TechType techType, int slotID)
