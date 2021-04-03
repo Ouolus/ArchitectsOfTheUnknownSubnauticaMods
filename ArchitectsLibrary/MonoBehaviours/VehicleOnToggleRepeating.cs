@@ -12,13 +12,13 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         public int slotID;
 
-        void OnEnable() => InvokeRepeating(nameof(DoThing), 0f, vehicleOnToggle.Cooldown);
+        void OnEnable() => InvokeRepeating(nameof(DoThing), 0f, vehicleOnToggle.RepeatingActionCooldown);
 
         void OnDisable() => CancelInvoke(nameof(DoThing));
 
         void DoThing()
         {
-            vehicleOnToggle.OnToggle(slotID, vehicle);
+            vehicleOnToggle.DoRepeatingAction(slotID, vehicle);
         }
     }
 }

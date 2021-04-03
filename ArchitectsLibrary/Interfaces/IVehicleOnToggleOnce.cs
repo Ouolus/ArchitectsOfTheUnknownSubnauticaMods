@@ -12,6 +12,6 @@ namespace ArchitectsLibrary.Interfaces
         /// <param name="toggledOn">whether the module is toggled on or off</param>
         /// <param name="vehicle">an instance of the <see cref="Vehicle"/> so you can use the class' stuff to benefit from a more
         /// complex logic for your upgrade.</param>
-        void OnToggle(int slotID, bool toggledOn, Vehicle vehicle);
+        void OnToggleOnce(int slotID, bool toggledOn, Vehicle vehicle);
     }
 }

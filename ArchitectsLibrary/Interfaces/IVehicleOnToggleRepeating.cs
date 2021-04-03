@@ -5,14 +5,17 @@ namespace ArchitectsLibrary.Interfaces
     /// </summary>
     public interface IVehicleOnToggleRepeating
     {
-        float Cooldown { get; }
+        /// <summary>
+        /// The time between each call of OnToggleRepeating.
+        /// </summary>
+        float RepeatingActionCooldown { get; }
 
         /// <summary>
-        /// your logic for your module when its Toggled on by a Seamoth or Exosuit, called on an interval of <see cref="Cooldown"/>
+        /// your logic for your module when its Toggled on by a Seamoth or Exosuit, called on an interval of <see cref="RepeatingActionCooldown"/>
         /// </summary>
         /// <param name="slotID">which slot your upgrade is on</param>
         /// <param name="seaMoth">an instance of the <see cref="Vehicle"/> so you can use the class' stuff to benefit from a more
         /// complex logic for your upgrade.</param>
-        void OnToggle(int slotID, Vehicle seaMoth);
+        void DoRepeatingAction(int slotID, Vehicle seaMoth);
     }
 }

@@ -8,7 +8,7 @@ namespace ArchitectsLibrary.Interfaces
         /// <summary>
         /// the cooldown of the upgrade module by seconds
         /// </summary>
-        float Cooldown { get; }
+        float UseCooldown { get; }
         
         /// <summary>
         /// your core logic of the upgrade when its uses via a seamoth

@@ -23,7 +23,7 @@ namespace ArchitectsLibrary.Patches
                 seaMothOnUse.OnUpgradeUse(slotID, __instance);
                 
                 __instance.quickSlotTimeUsed[slotID] = Time.time;
-                __instance.quickSlotCooldown[slotID] = seaMothOnUse.Cooldown;
+                __instance.quickSlotCooldown[slotID] = seaMothOnUse.UseCooldown;
             }
         }
 
@@ -45,7 +45,7 @@ namespace ArchitectsLibrary.Patches
 
             if (SeamothOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce seamothOnToggleOnce)) //Do this one first because the patch for ISeaMothOnToggleRepeating has a chance to "return"
             {
-                seamothOnToggleOnce.OnToggle(slotID, active, __instance);
+                seamothOnToggleOnce.OnToggleOnce(slotID, active, __instance);
 
                 __instance.quickSlotTimeUsed[slotID] = Time.time;
             }

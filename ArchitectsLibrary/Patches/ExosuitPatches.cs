@@ -21,7 +21,7 @@ namespace ArchitectsLibrary.Patches
 
             if (ExosuitOnToggleOnces.TryGetValue(techType, out IVehicleOnToggleOnce exosuitOnToggle))
             {
-                exosuitOnToggle.OnToggle(slotID, active, __instance);
+                exosuitOnToggle.OnToggleOnce(slotID, active, __instance);
 
                 __instance.quickSlotTimeUsed[slotID] = Time.time;
             }
