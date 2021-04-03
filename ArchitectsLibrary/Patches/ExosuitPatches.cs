@@ -55,11 +55,15 @@ namespace ArchitectsLibrary.Patches
             return true;
         }
 
-        [HarmonyPatch(typeof(Exosuit))]
-        [HarmonyPatch(nameof(Exosuit.OnUpgradeModuleChange))]
+        [HarmonyPatch(typeof(Vehicle))]
+        [HarmonyPatch(nameof(Vehicle.OnUpgradeModuleChange))]
         [HarmonyPostfix]
-        static void OnUpgradeModuleChange(Exosuit __instance, TechType techType, int slotID, bool added)
+        static void OnUpgradeModuleChange(Vehicle __instance, TechType techType, int slotID, bool added)
         {
+            if(__instance is not Exosuit)
+            {
+                return;
+            }
             if (ExosuitOnEquips.TryGetValue(techType, out IVehicleOnEquip exosuitOnEquip))
             {
                 exosuitOnEquip.OnEquip(slotID, added, __instance);
