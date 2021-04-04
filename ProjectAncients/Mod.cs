@@ -23,6 +23,7 @@ namespace ProjectAncients
 
         public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
         public static ExosuitZapModule exosuitZapModule;
+        public static SuperDecoy superDecoy;
 
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
@@ -160,6 +161,9 @@ namespace ProjectAncients
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
+
+            superDecoy = new();
+            superDecoy.Patch();
             #endregion
 
             #region Creatures
