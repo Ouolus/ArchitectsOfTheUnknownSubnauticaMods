@@ -33,7 +33,7 @@ namespace ProjectAncients.Prefabs.Modules
                 craftAmount = 4,
                 Ingredients =
                 {
-                    new Ingredient(TechType.CyclopsDecoy, 4),
+                    new Ingredient(TechType.CyclopsDecoy, 6),
                     new Ingredient(TechType.PrecursorIonCrystal, 1),
                 }
             };
@@ -41,16 +41,29 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-                CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.CyclopsDecoy);
-                yield return task;
+            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.CyclopsDecoy);
+            yield return task;
 
-                var prefab = task.GetResult();
-                var obj = GameObject.Instantiate(prefab);
+            var prefab = task.GetResult();
+            var obj = GameObject.Instantiate(prefab);
+            obj.EnsureComponent<EcoTarget>().type = Mod.superDecoyTargetType;
 
-                prefab.SetActive(false);
-                obj.SetActive(true);
+            prefab.SetActive(false);
+            obj.SetActive(true);
 
-                gameObject.Set(obj);
+            gameObject.Set(obj);
+        }
+
+        public override GameObject GetGameObject()
+        {
+            var prefab = CraftData.GetPrefabForTechType(TechType.CyclopsDecoy);
+            var obj = GameObject.Instantiate(prefab);
+            obj.EnsureComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+
+            prefab.SetActive(false);
+            obj.SetActive(true);
+
+            return prefab;
         }
 
     }
