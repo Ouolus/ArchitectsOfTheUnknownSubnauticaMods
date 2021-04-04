@@ -6,22 +6,22 @@ namespace ProjectAncients.Mono
 {
     class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage
     {
-        private Vehicle heldVehicle;
-        private SubRoot heldSubroot;
-        private VehicleType heldVehicleType;
-        private float timeVehicleGrabbed;
-        private float timeVehicleReleased;
-        private Quaternion vehicleInitialRotation;
-        private Vector3 vehicleInitialPosition;
-        private AudioSource vehicleGrabSound;
-        private Transform vehicleHoldPoint;
-        private GargantuanMouthAttack mouthAttack;
-        private RoarAbility roar;
-        private ECCAudio.AudioClipPool seamothSounds;
-        private ECCAudio.AudioClipPool exosuitSounds;
-        private ECCAudio.AudioClipPool cyclopsSounds;
+        Vehicle heldVehicle;
+        SubRoot heldSubroot;
+        VehicleType heldVehicleType;
+        float timeVehicleGrabbed;
+        float timeVehicleReleased;
+        Quaternion vehicleInitialRotation;
+        Vector3 vehicleInitialPosition;
+        AudioSource vehicleGrabSound;
+        Transform vehicleHoldPoint;
+        GargantuanMouthAttack mouthAttack;
+        RoarAbility roar;
+        ECCAudio.AudioClipPool seamothSounds;
+        ECCAudio.AudioClipPool exosuitSounds;
+        ECCAudio.AudioClipPool cyclopsSounds;
 
-        private Collider[] subrootStoredColliders;
+        Collider[] subrootStoredColliders;
 
         public Creature creature;
         public float timeCanAttackAgain;
