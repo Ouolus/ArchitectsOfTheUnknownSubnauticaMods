@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
+using ProjectAncients.Mono;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
@@ -11,6 +12,17 @@ namespace ProjectAncients.Patches
     [HarmonyPatch(typeof(LiveMixin))]
     public class LiveMixin_Patches
     {
+        [HarmonyPatch(nameof(LiveMixin.Start))]
+        [HarmonyPostfix]
+        static void Start_Postfix(LiveMixin __instance)
+        {
+            var garg = __instance.GetComponent<GargantuanBehaviour>();
+
+            if (garg is not null)
+                __instance.invincible = true;
+        }
+        
+        
         [HarmonyPatch(nameof(LiveMixin.Kill))]
         [HarmonyPrefix]
         static bool Kill_Prefix(LiveMixin __instance)
