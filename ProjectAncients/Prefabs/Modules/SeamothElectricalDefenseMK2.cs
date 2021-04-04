@@ -11,7 +11,7 @@ namespace ProjectAncients.Prefabs.Modules
     public class SeamothElectricalDefenseMK2 : VehicleUpgrade, ISeaMothOnUse
     {
         public SeamothElectricalDefenseMK2()
-            : base("SeamothElectricalDefenseMK2", "Ion Perimeter Defense System",
+            : base("SeamothElectricalDefenseMK2", "Seamoth Ion Perimeter Defense System",
                 "Generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
         {}
 

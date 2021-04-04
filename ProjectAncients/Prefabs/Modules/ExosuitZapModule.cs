@@ -13,7 +13,7 @@ namespace ProjectAncients.Prefabs.Modules
     public class ExosuitZapModule : VehicleUpgrade, IVehicleOnEquip
     {
         public ExosuitZapModule()
-    : base("ExosuitZapModule", "Prawn Suit Ion Perimeter Defense System",
+    : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
         "When enabled, periodically generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
         {
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
