@@ -82,6 +82,11 @@ namespace ProjectAncients
         /// </summary>
         internal static DamageType architectElect = (DamageType)259745135;
 
+        /// <summary>
+        /// this value is only used by this mod, please dont use it or it'll cause conflicts.
+        /// </summary>
+        internal static EcoTargetType superDecoyTargetType = (EcoTargetType)49013491;
+
         public const float voidBaseZOffset = 20f;
 
         private const string assetBundleName = "projectancientsassets";
