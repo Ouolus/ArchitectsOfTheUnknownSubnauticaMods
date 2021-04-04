@@ -30,7 +30,7 @@ namespace ProjectAncients.Prefabs.Modules
         {
             return new()
             {
-                craftAmount = 4,
+                craftAmount = 6,
                 Ingredients =
                 {
                     new Ingredient(TechType.CyclopsDecoy, 6),
