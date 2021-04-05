@@ -75,8 +75,14 @@ namespace ArchitectsLibrary.Utility
         {
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
             {
-                foreach (Material material in renderer.materials)
+                for (int i = 0; i < renderer.materials.Length; i++)
                 {
+                    Material material = renderer.materials[i];
+                    if (material.name.Contains("IonShader"))
+                    {
+                        material = Main.ionCubeMaterial;
+                        continue;
+                    }
                     material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
                     material.SetFloat("_SpecInt", specint);
                     material.SetFloat("_Fresnel", 0.4f);
