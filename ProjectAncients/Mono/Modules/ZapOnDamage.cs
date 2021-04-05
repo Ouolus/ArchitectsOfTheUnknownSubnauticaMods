@@ -60,9 +60,9 @@ namespace ProjectAncients.Mono.Modules
 
         public void OnTakeDamage(DamageInfo damageInfo)
         {
-            if (GetCanZap(damageInfo))
+            bool shouldSuperCharge = ShouldSuperCharge(damageInfo);
+            if (GetCanZap(damageInfo, shouldSuperCharge))
             {
-                bool shouldSuperCharge = ShouldSuperCharge(damageInfo);
                 if (vehicle.ConsumeEnergy(GetEnergyUsage(shouldSuperCharge)))
                 {
                     Zap(shouldSuperCharge);
@@ -71,7 +71,7 @@ namespace ProjectAncients.Mono.Modules
             }
         }
 
-        public bool GetCanZap(DamageInfo damageInfo)
+        public bool GetCanZap(DamageInfo damageInfo, bool shouldSuperCharge)
         {
             if(damageInfo == null)
             {
@@ -88,7 +88,7 @@ namespace ProjectAncients.Mono.Modules
                 //Still on cooldown.
                 return false;
             }
-            if (!vehicle.HasEnoughEnergy(GetEnergyUsage(damageInfo) + 1f))
+            if (!vehicle.HasEnoughEnergy(GetEnergyUsage(shouldSuperCharge) + 1f))
             {
                 //Not worth using energy at this point
                 return false;
