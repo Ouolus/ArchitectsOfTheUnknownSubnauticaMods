@@ -69,7 +69,7 @@ namespace ProjectAncients.Prefabs.Modules
             prefab.SetActive(false);
             obj.SetActive(true);
 
-            return prefab;
+            return obj;
         }
 
     }
