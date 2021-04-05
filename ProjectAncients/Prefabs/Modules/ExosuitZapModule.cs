@@ -16,7 +16,7 @@ namespace ProjectAncients.Prefabs.Modules
     : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
         "When taking damage, it generates a small electrical pulse designed to ward off aggressive fauna. Generates an ionic energy pulse if necessary. Doesn't stack.")
         {
-            CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
+
         }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.ExosuitModule;
@@ -37,8 +37,6 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
-        public static GameObject electricalDefensePrefab;
-
         #region Interface Implementation
 
         public void OnEquip(int slotID, bool equipped, Vehicle vehicle)
@@ -48,7 +46,7 @@ namespace ProjectAncients.Prefabs.Modules
                 if (equipped)
                 {
                     ZapOnDamage zod = exosuit.gameObject.EnsureComponent<ZapOnDamage>();
-                    zod.zapPrefab = electricalDefensePrefab;
+                    zod.zapPrefab = Mod.electricalDefensePrefab;
                 }
                 else
                 {
@@ -80,14 +78,6 @@ namespace ProjectAncients.Prefabs.Modules
         protected override Atlas.Sprite GetItemSprite()
         {
             return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("PrawnSuitAutoZapper"));
-        }
-
-        IEnumerator LoadElectricalDefensePrefab()
-        {
-            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
-            yield return task;
-            GameObject seamoth = task.GetResult();
-            electricalDefensePrefab = seamoth.GetComponent<SeaMoth>().seamothElectricalDefensePrefab;
         }
     }
 }

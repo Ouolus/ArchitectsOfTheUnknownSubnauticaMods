@@ -13,6 +13,7 @@ using ProjectAncients.Mono.AlienBaseSpawners;
 using ProjectAncients.Prefabs.Modules;
 using System.Collections;
 using System.Collections.Generic;
+using UWE;
 
 namespace ProjectAncients
 {
@@ -22,6 +23,7 @@ namespace ProjectAncients
         public static AssetBundle assetBundle;
 
         public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
+        public static GameObject electricalDefensePrefab;
         public static ExosuitZapModule exosuitZapModule;
         public static SuperDecoy superDecoy;
 
@@ -161,6 +163,9 @@ namespace ProjectAncients
             #endregion
 
             #region Modules
+
+            CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
+
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
 
@@ -389,6 +394,14 @@ namespace ProjectAncients
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             FixMapModIfNeeded(harmony);
+        }
+
+        static IEnumerator LoadElectricalDefensePrefab()
+        {
+            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
+            yield return task;
+            GameObject seamoth = task.GetResult();
+            electricalDefensePrefab = seamoth.GetComponent<SeaMoth>().seamothElectricalDefensePrefab;
         }
 
         static void FixMapModIfNeeded(Harmony harmony)
