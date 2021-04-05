@@ -55,10 +55,13 @@ namespace ProjectAncients.Prefabs.Modules
             MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
             mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
+            mesh.material.SetFloat("_EmissionLM", 0.1f);
+            mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
             obj.GetComponent<WorldForces>().underwaterGravity = -2f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+            obj.transform.localScale = Vector3.one * 2f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -76,11 +79,14 @@ namespace ProjectAncients.Prefabs.Modules
             MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
             mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
+            mesh.material.SetFloat("_EmissionLM", 0.1f);
+            mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             obj.GetComponent<WorldForces>().underwaterGravity = -2f;
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
             obj.GetComponent<WorldForces>().underwaterGravity = -2f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+            obj.transform.localScale = Vector3.one * 2f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
