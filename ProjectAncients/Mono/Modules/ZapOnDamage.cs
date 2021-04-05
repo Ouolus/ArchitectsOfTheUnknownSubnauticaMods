@@ -23,7 +23,7 @@ namespace ProjectAncients.Mono.Modules
         public void Zap(bool superCharge)
         {
             var obj = Object.Instantiate(zapPrefab);
-            obj.name = "PrawnSuitZap";
+            obj.name = "AutoZap";
 
             var fxElectSpheres = zapPrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
             var defenseSound = zapPrefab.GetComponent<ElectricalDefense>().defenseSound;
@@ -67,11 +67,7 @@ namespace ProjectAncients.Mono.Modules
                 {
                     ErrorMessage.AddMessage("Prawn suit must be above 75% power to perform ionic pulse.");
                 }
-                if (shouldSuperCharge)
-                {
-
-                }
-                if (vehicle.ConsumeEnergy(GetEnergyUsage(shouldSuperCharge)))
+                if (vehicle is null || vehicle.ConsumeEnergy(GetEnergyUsage(shouldSuperCharge)))
                 {
                     Zap(shouldSuperCharge);
                     timeCanZapAgain = Time.time + 5f;
@@ -96,9 +92,9 @@ namespace ProjectAncients.Mono.Modules
                 //Still on cooldown.
                 return false;
             }
-            if (!vehicle.HasEnoughEnergy(GetEnergyUsage(shouldSuperCharge) + 1f))
+            if (vehicle is not null && !vehicle.HasEnoughEnergy(GetEnergyUsage(shouldSuperCharge) + 1f))
             {
-                //Not worth using energy at this point
+                //Not worth using the vehicle's energy at this point
                 return false;
             }
             return true;
@@ -128,7 +124,7 @@ namespace ProjectAncients.Mono.Modules
             {
                 return false;
             }
-            if (!vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
+            if (vehicle is not null && !vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
             {
                 superChargeFailed = true;
                 return false;
