@@ -26,7 +26,7 @@ namespace ProjectAncients.Patches
                     if (tt != TechType.None)
                     {
                         firstDecoyTechType = tt;
-                        return;
+                        break;
                     }
                 }
                 if (firstDecoyTechType == TechType.None)
