@@ -186,8 +186,9 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(80f, 2, EcoTargetType.Shark, 0.2f, 2f);
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
+            MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
         }
-        
+
         public virtual float SpineBoneSnapSpeed
         {
             get
