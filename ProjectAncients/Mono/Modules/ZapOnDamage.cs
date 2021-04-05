@@ -8,7 +8,7 @@ namespace ProjectAncients.Mono.Modules
         public GameObject zapPrefab;
         public float cooldown = 10f;
         public float energyCost = 30f;
-        public float superchargeEnergyCost = 320f;
+        public float superchargeEnergyCost = 300f;
         private Vehicle vehicle;
         private LiveMixin myLiveMixin;
         private float timeCanZapAgain;
@@ -115,15 +115,16 @@ namespace ProjectAncients.Mono.Modules
             {
                 return false;
             }
-            if (!vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
+            if (damageInfo.dealer.GetComponent<GargantuanBehaviour>() is null)
             {
                 return false;
             }
-            if (damageInfo.dealer.GetComponent<GargantuanBehaviour>() is not null)
+            if (!vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
             {
-                return true;
+                ErrorMessage.AddMessage("Prawn suit must be above 75% power to perform ionic pulse.");
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }
