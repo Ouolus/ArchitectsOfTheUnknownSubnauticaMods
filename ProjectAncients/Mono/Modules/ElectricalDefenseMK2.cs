@@ -37,6 +37,17 @@ namespace ProjectAncients.Mono.Modules
                     }
                 }
             }
+            else
+            {
+                foreach (var electSphere in fxElects)
+                {
+                    var renderers = electSphere.GetComponentsInChildren<Renderer>();
+                    foreach (var renderer in renderers)
+                    {
+                        renderer.material.SetColor("_Color", Color.blue);
+                    }
+                }
+            }
 
             float radius;
             if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
