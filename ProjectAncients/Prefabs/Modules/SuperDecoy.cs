@@ -10,7 +10,7 @@ namespace ProjectAncients.Prefabs.Modules
 {
     public class SuperDecoy : Equipable
     {
-        public SuperDecoy() : base("CyclopsDecoyMk2", "Cyclops Decoy MK2", "")
+        public SuperDecoy() : base("CyclopsDecoyMk2", "Creature Decoy MK2", "Attracts creatures to its location from afar using an ionic energy field. Can be deployed by hand or by a submarine. Cannot be reclaimed once deployed.")
         {
         }
 
@@ -60,7 +60,7 @@ namespace ProjectAncients.Prefabs.Modules
         {
             var prefab = CraftData.GetPrefabForTechType(TechType.CyclopsDecoy);
             var obj = GameObject.Instantiate(prefab);
-            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;s
 
             prefab.SetActive(false);
             obj.SetActive(true);
