@@ -49,6 +49,8 @@ namespace ProjectAncients.Prefabs.Modules
             var prefab = task.GetResult();
             var obj = GameObject.Instantiate(prefab);
             obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -60,7 +62,9 @@ namespace ProjectAncients.Prefabs.Modules
         {
             var prefab = CraftData.GetPrefabForTechType(TechType.CyclopsDecoy);
             var obj = GameObject.Instantiate(prefab);
-            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;s
+            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
 
             prefab.SetActive(false);
             obj.SetActive(true);
