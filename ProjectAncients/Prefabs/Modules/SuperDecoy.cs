@@ -5,6 +5,7 @@ using SMLHelper.V2.Utility;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using System.Collections;
+using ECCLibrary;
 
 namespace ProjectAncients.Prefabs.Modules
 {
@@ -51,6 +52,13 @@ namespace ProjectAncients.Prefabs.Modules
             obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
+            MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
+            mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
+            mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
+            ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
+            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
+            var main = flareParticleSystem.main;
+            main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -65,6 +73,14 @@ namespace ProjectAncients.Prefabs.Modules
             obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
+            MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
+            mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
+            mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
+            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
+            ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
+            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
+            var main = flareParticleSystem.main;
+            main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
 
             prefab.SetActive(false);
             obj.SetActive(true);
