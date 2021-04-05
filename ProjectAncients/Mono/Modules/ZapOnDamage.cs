@@ -60,9 +60,17 @@ namespace ProjectAncients.Mono.Modules
 
         public void OnTakeDamage(DamageInfo damageInfo)
         {
-            bool shouldSuperCharge = ShouldSuperCharge(damageInfo);
+            bool shouldSuperCharge = ShouldSuperCharge(damageInfo, out bool superchargeFailed);
             if (GetCanZap(damageInfo, shouldSuperCharge))
             {
+                if (superchargeFailed)
+                {
+                    ErrorMessage.AddMessage("Prawn suit must be above 75% power to perform ionic pulse.");
+                }
+                if (shouldSuperCharge)
+                {
+
+                }
                 if (vehicle.ConsumeEnergy(GetEnergyUsage(shouldSuperCharge)))
                 {
                     Zap(shouldSuperCharge);
@@ -105,9 +113,10 @@ namespace ProjectAncients.Mono.Modules
             return energyCost;
         }
 
-        public bool ShouldSuperCharge(DamageInfo damageInfo)
+        public bool ShouldSuperCharge(DamageInfo damageInfo, out bool superChargeFailed)
         {
-            if(damageInfo == null)
+            superChargeFailed = false;
+            if (damageInfo == null)
             {
                 return false;
             }
@@ -121,7 +130,7 @@ namespace ProjectAncients.Mono.Modules
             }
             if (!vehicle.HasEnoughEnergy(superchargeEnergyCost + 1f))
             {
-                ErrorMessage.AddMessage("Prawn suit must be above 75% power to perform ionic pulse.");
+                superChargeFailed = true;
                 return false;
             }
             return true;
