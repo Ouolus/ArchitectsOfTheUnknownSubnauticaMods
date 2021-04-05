@@ -67,6 +67,7 @@ namespace ProjectAncients.Prefabs.Modules
             LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
             lmd.maxHealth = 5000f;
             obj.AddComponent<LiveMixin>().data = lmd;
+            obj.GetComponent<CyclopsDecoy>().lifeTime = 900f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -95,6 +96,7 @@ namespace ProjectAncients.Prefabs.Modules
             zod.zapPrefab = Mod.electricalDefensePrefab; LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
             lmd.maxHealth = 5000f;
             obj.AddComponent<LiveMixin>().data = lmd;
+            obj.GetComponent<CyclopsDecoy>().lifeTime = 900f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
