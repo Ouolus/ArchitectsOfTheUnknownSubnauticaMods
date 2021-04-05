@@ -62,6 +62,10 @@ namespace ProjectAncients.Prefabs.Modules
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
+            obj.AddComponent<ZapOnDamage>();
+            LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
+            lmd.maxHealth = 5000f;
+            obj.AddComponent<LiveMixin>().data = lmd;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -86,6 +90,10 @@ namespace ProjectAncients.Prefabs.Modules
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
+            obj.AddComponent<ZapOnDamage>();
+            LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
+            lmd.maxHealth = 5000f;
+            obj.AddComponent<LiveMixin>().data = lmd;
 
             prefab.SetActive(false);
             obj.SetActive(true);
