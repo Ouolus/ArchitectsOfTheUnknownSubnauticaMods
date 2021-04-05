@@ -30,11 +30,13 @@ namespace ProjectAncients.Prefabs.Modules
         {
             return new()
             {
-                craftAmount = 6,
+                craftAmount = 3,
                 Ingredients =
                 {
-                    new Ingredient(TechType.CyclopsDecoy, 6),
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
+                    new Ingredient(TechType.CyclopsDecoy, 3),
+                    new Ingredient(TechType.PrecursorIonCrystal, 2),
+                    new Ingredient(TechType.UraniniteCrystal, 2),
+                    new Ingredient(TechType.Polyaniline, 1)
                 }
             };
         }
@@ -46,7 +48,7 @@ namespace ProjectAncients.Prefabs.Modules
 
             var prefab = task.GetResult();
             var obj = GameObject.Instantiate(prefab);
-            obj.EnsureComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -58,7 +60,7 @@ namespace ProjectAncients.Prefabs.Modules
         {
             var prefab = CraftData.GetPrefabForTechType(TechType.CyclopsDecoy);
             var obj = GameObject.Instantiate(prefab);
-            obj.EnsureComponent<EcoTarget>().type = Mod.superDecoyTargetType;
+            obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
 
             prefab.SetActive(false);
             obj.SetActive(true);
