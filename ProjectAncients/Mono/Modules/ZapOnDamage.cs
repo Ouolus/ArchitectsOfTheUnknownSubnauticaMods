@@ -62,10 +62,10 @@ namespace ProjectAncients.Mono.Modules
         {
             if (GetCanZap(damageInfo))
             {
-                if (vehicle.ConsumeEnergy(GetEnergyUsage(damageInfo)))
+                bool shouldSuperCharge = ShouldSuperCharge(damageInfo);
+                if (vehicle.ConsumeEnergy(GetEnergyUsage(shouldSuperCharge)))
                 {
-                    bool superCharge = ShouldSuperCharge(damageInfo);
-                    Zap(superCharge);
+                    Zap(shouldSuperCharge);
                     timeCanZapAgain = Time.time + 5f;
                 }
             }
@@ -96,9 +96,9 @@ namespace ProjectAncients.Mono.Modules
             return true;
         }
 
-        public float GetEnergyUsage(DamageInfo info)
+        public float GetEnergyUsage(bool superCharge)
         {
-            if(ShouldSuperCharge(info))
+            if(superCharge)
             {
                 return superchargeEnergyCost;
             }
