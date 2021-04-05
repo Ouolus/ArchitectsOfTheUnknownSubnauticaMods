@@ -106,5 +106,7 @@ namespace ProjectAncients.Prefabs.Modules
         {
             return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Icon"));
         }
+
+        public override Vector2int SizeInInventory => new Vector2int(1, 2);
     }
 }
