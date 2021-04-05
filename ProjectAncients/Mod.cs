@@ -148,6 +148,9 @@ namespace ProjectAncients
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
 
+            #region Static asset references
+            CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
+            #endregion
 
             #region Translations
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
@@ -163,9 +166,6 @@ namespace ProjectAncients
             #endregion
 
             #region Modules
-
-            CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
-
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
 
