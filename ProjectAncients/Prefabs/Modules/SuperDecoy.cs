@@ -81,7 +81,6 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
-            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
             obj.GetComponent<WorldForces>().underwaterGravity = -2f;
             var main = flareParticleSystem.main;
