@@ -14,7 +14,7 @@ namespace ProjectAncients.Prefabs.Modules
     {
         public ExosuitZapModule()
     : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
-        "When enabled, periodically generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
+        "When taking damage, it generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
         {
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
         }
