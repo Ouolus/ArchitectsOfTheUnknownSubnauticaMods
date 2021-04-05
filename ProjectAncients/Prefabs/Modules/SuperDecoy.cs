@@ -94,5 +94,9 @@ namespace ProjectAncients.Prefabs.Modules
             return obj;
         }
 
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Icon"));
+        }
     }
 }
