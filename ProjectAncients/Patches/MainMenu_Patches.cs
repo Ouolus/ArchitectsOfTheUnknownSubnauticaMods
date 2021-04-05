@@ -10,7 +10,7 @@ namespace ProjectAncients.Patches
     {
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
-        public static void Prefix(MainMenuMusic __instance)
+        public static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
             FMODAsset wreakMusic = ScriptableObject.CreateInstance<FMODAsset>();
             wreakMusic.path = "event:/env/music/wreak_ambience_big_music";
