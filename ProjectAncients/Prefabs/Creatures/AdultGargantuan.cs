@@ -84,5 +84,7 @@ namespace ProjectAncients.Prefabs
         }
 
         public override bool CanPerformCyclopsCinematic => true;
+
+        public override float EyeFov => 1f;
     }
 }
