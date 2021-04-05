@@ -58,7 +58,7 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
-            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
+            obj.GetComponent<WorldForces>().underwaterGravity = -1f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
@@ -82,7 +82,7 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
-            obj.GetComponent<WorldForces>().underwaterGravity = -2f;
+            obj.GetComponent<WorldForces>().underwaterGravity = -1f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
