@@ -74,6 +74,7 @@ namespace ProjectAncients
         public static AlienRelicPrefab ingotRelic;
         public static AlienRelicPrefab rifleRelic;
         public static AlienRelicPrefab bladeRelic;
+        public static AlienRelicPrefab builderRelic;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -113,6 +114,7 @@ namespace ProjectAncients
         private const string ency_cachePings = "CachePingsEncy";
         private const string ency_precrifle = "PrecursorRifleEncy";
         private const string ency_precblade = "PrecursorBladeEncy";
+        private const string ency_precbuilder = "PrecursorBuilderEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -232,7 +234,7 @@ namespace ProjectAncients
             signal_cache_lostRiver.Patch();
             #endregion
 
-            #region Ency
+            #region Ency entries
             PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_terminalInfo, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "Popup_Blue", "BlueGlyph_Ency");
 
             PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- A central pedestal containing an ion cube is likely a form of backup power for the facility.", "Popup_Green", "SupplyCache_Ency");
@@ -260,9 +262,11 @@ namespace ProjectAncients
             PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.", "PrecRifle_Popup", "PrecRifle_Ency");
 
             PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is rarely found in most alien technology, suggests it is no longer powered.");
+
+            PatchEncy(ency_precbuilder, modEncyPath_relics, "Alien Construction Tool", "An ancient construction tool that appears uncannily similar to the Alterran Habitat Builder. This device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis here suggests this was the last structure it has ever built.");
             #endregion
 
-            #region Generic precursor stuff
+            #region Precursor base prefabs
             orangeTabletTerminal = new TabletTerminalPrefab("OrangeTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Orange);
             orangeTabletTerminal.Patch();
 
@@ -333,6 +337,10 @@ namespace ProjectAncients
             bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f);
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
+
+            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", "Alien Construction Tool", "An alien construction tool.", assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
+            builderRelic.Patch();
+            MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
             #endregion
 
             #region Alien terminals
