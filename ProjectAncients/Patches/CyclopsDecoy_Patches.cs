@@ -42,8 +42,30 @@ namespace ProjectAncients.Patches
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(techType);
             yield return task;
 
-            launcherInstance.decoyPrefab = task.GetResult();
-            launcherInstance.decoyPrefab.SetActive(true);
+            GameObject prefab = GameObject.Instantiate(task.GetResult());
+            prefab.SetActive(false);
+            launcherInstance.decoyPrefab = prefab;
+        }
+    }
+
+    [HarmonyPatch(typeof(CyclopsDecoyLauncher))]
+    public static class CyclopsDecoyLauncher_Patches
+    {
+        [HarmonyPatch(nameof(CyclopsDecoyLauncher.LaunchDecoy))]
+        [HarmonyPrefix]
+        public static bool Prefix(CyclopsDecoyLauncher __instance)
+        {
+            if (__instance.decoyPrefab.activeSelf)
+            {
+                return true;
+            }
+            CyclopsDecoy decoy = Object.Instantiate<GameObject>(__instance.decoyPrefab, __instance.transform.position, Quaternion.identity).GetComponent<CyclopsDecoy>();
+            decoy.gameObject.SetActive(true);
+            if (decoy)
+            {
+                decoy.launch = true;
+            }
+            return false;
         }
     }
 }
