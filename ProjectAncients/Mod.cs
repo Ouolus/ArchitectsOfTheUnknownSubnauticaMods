@@ -263,7 +263,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is rarely found in most alien technology, suggests it is no longer powered.");
 
-            PatchEncy(ency_precbuilder, modEncyPath_relics, "Alien Construction Tool", "An ancient construction tool that appears uncannily similar to the Alterran Habitat Builder. This device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis here suggests this was the last structure it has ever built.");
+            PatchEncy(ency_precbuilder, modEncyPath_relics, "Alien Construction Tool", "An ancient construction tool that appears uncannily similar to the Alterran Habitat Builder.\n\nThis device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis on site suggests this was the last structure it has ever built.");
             #endregion
 
             #region Precursor base prefabs
