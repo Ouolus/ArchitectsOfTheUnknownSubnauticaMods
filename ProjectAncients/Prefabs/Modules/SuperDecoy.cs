@@ -17,15 +17,15 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override EquipmentType EquipmentType => EquipmentType.DecoySlot;
 
-        public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
+        public override TechCategory CategoryForPDA => TechCategory.Machines;
 
-        public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
+        public override TechGroup GroupForPDA => TechGroup.Machines;
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
-        public override CraftTree.Type FabricatorType => CraftTree.Type.Workbench;
+        public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
 
-        public override string[] StepsToFabricatorTab { get; } = { "CyclopsMenu" };
+        public override string[] StepsToFabricatorTab { get; } = { "Machines" };
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -59,7 +59,6 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
-            obj.GetComponent<WorldForces>().underwaterGravity = -1f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
@@ -92,7 +91,6 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
-            obj.GetComponent<WorldForces>().underwaterGravity = -1f;
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
