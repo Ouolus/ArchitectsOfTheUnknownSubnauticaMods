@@ -11,7 +11,7 @@ namespace ProjectAncients.Prefabs.Modules
 {
     public class SuperDecoy : Equipable
     {
-        public SuperDecoy() : base("CyclopsDecoyMk2", "Creature Decoy MK2", "Attracts creatures to its location from afar using an ionic energy field. Can be deployed by hand or by a submarine. Cannot be reclaimed once deployed.")
+        public SuperDecoy() : base("CyclopsDecoyMk2", "Creature Decoy MK2", "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.")
         {
         }
 
