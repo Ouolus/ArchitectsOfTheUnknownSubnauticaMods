@@ -59,7 +59,9 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior;
 
-        public static DataTerminalPrefab tertiaryOutpostTerminal;
+        public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
+        public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
+        public static DataTerminalPrefab tertiaryOutpostTerminalLostRiver;
         public static DataTerminalPrefab guardianTerminal;
         public static DataTerminalPrefab researchBaseTerminal;
         public static DataTerminalPrefab supplyCacheTerminal;
@@ -100,7 +102,9 @@ namespace ProjectAncients
         private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
         private const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
 
-        private const string ency_tertiaryOutpostTerminal = "TertiaryOutpostTerminalEncy";
+        private const string ency_tertiaryOutpostTerminalGrassy = "TertiaryOutpostTerminal1Ency";
+        private const string ency_tertiaryOutpostTerminalSparseReef = "TertiaryOutpostTerminal2Ency";
+        private const string ency_tertiaryOutpostTerminalLostRiver = "TertiaryOutpostTerminal3Ency";
         private const string ency_supplyCacheTerminal = "SupplyCacheTerminalEncy";
         private const string ency_researchBaseTerminal = "ResearchBaseTerminalEncy";
         private const string ency_archElectricityTerminal = "ArchitectElectricityEncy";
@@ -235,7 +239,11 @@ namespace ProjectAncients
             #endregion
 
             #region Ency entries
-            PatchEncy(ency_tertiaryOutpostTerminal, modEncyPath_terminalInfo, "Tertiary Outpost Analysis", "This data terminal contains co-ordinates pointing to two secondary outposts. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.", "Popup_Blue", "BlueGlyph_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminalGrassy, modEncyPath_terminalInfo, "Tertiary Outpost A Analysis", "An alien structure. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Claw device:\nA claw-shaped device with mechanical parts. Likely used a charging station for alien machines.", "Popup_Blue", "TO_G_Ency");
+
+            PatchEncy(ency_tertiaryOutpostTerminalSparseReef, modEncyPath_terminalInfo, "Tertiary Outpost B Analysis", "An alien structure. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Claw device:\nA claw-shaped device with mechanical parts. Likely used a charging station for alien machines.\n\n3. Alien robot:\nThese devices are a common occurence in all alien technology. However, they are likely present in this base only to repair alien machinery while it is charging in the claw device.", "Popup_Blue", "TO_S_Ency");
+
+            PatchEncy(ency_tertiaryOutpostTerminalLostRiver, modEncyPath_terminalInfo, "Tertiary Outpost C Analysis", "An alien structure. The reason for the existence of this outpost is unknown. There may have been more of these at one point, acting as a sort of interconnected navigational system.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Claw device:\nA claw-shaped device with mechanical parts. Likely used a charging station for alien machines.\n\n3. Orange Tablet:\nA rare alien artifact. It was likely put here for future use, but was never reclaimed.", "Popup_Blue", "TO_LR_Ency");
 
             PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- A central pedestal containing an ion cube is likely a form of backup power for the facility.", "Popup_Green", "SupplyCache_Ency");
 
@@ -245,7 +253,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has linked your PDA to a complex tracking device. Intense and frequent electromagnetic pulses suggest it is under distress. Come prepared.", "Popup_Blue", "BlueGlyph_Ency");
 
-            PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.", "Popup_Orange", "OrangeGlyph_Ency");
+            PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This data terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.\n\nSynthesized blueprints:\n- Seamoth Perimeter Defense MK2\n- Prawn Suit Ion Defense Module\nCreature Decoy MK2", "Popup_Orange", "OrangeGlyph_Ency");
 
             PatchEncy(ency_voidBaseTerminal, modEncyPath_terminalInfo, "Emperor Communications Apparatus", "This data terminal describes the original purpose of this facility.\n\nDue to the outbreak of the kharaa bacterium, the aliens were desperate to develop a vaccine. The only known cure at the time, found in the last known 'Emperor', is too diluted to provide any definite use.\n\nDue to belief that more of these Emperors may exist, far away from the crater, this apparatus was constructed. While initially appearing similar to any other alien structure on the planet, schematics show an odd ability to expand downwards, exposing a significant number of complex machines.\n\nThis machinery was designed to communicate with and attract any stray Emperors. Obviously, this plan has failed. However, it did attract another unusual juvenile specimen.\n\nThe base was eventually repurposed for the private studies of an individual.", "Popup_green", "GreenGlyph_Ency");
 
@@ -344,8 +352,14 @@ namespace ProjectAncients
             #endregion
 
             #region Alien terminals
-            tertiaryOutpostTerminal = new DataTerminalPrefab("TertiaryOutpostTerminal", ency_tertiaryOutpostTerminal, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
-            tertiaryOutpostTerminal.Patch();
+            tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", ency_tertiaryOutpostTerminalGrassy, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalGrassy.Patch();
+
+            tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", ency_tertiaryOutpostTerminalSparseReef, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalSparseReef.Patch();
+
+            tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", ency_tertiaryOutpostTerminalLostRiver, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalLostRiver.Patch();
 
             guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminalDistress", DataTerminalPrefab.blueTerminalCID, delay: 6f, subtitles: "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.");
             guardianTerminal.Patch();

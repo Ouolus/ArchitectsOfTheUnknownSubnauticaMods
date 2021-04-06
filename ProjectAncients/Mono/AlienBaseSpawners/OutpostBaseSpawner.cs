@@ -18,7 +18,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, -9f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(-9f, yOffset, 7f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(-9f, yOffset, -9f)));
-            yield return StartCoroutine(SpawnPrefab(Mod.tertiaryOutpostTerminal.ClassID, new Vector3(0f, yOffset, -5f), new Vector3(0f, 180f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(TerminalClassId, new Vector3(0f, yOffset, -5f), new Vector3(0f, 180f, 0f)));
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(0f, yOffset, -6f)));
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(-5f, yOffset, -4f)));
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(3f, yOffset, 3f)));
@@ -40,6 +40,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(7f, yOffset, -9f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-9f, yOffset, 7f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-9f, yOffset, -9f)));
+        }
+
+        public virtual string TerminalClassId
+        {
+            get
+            {
+                return Mod.tertiaryOutpostTerminalSparseReef.ClassID;
+            }
         }
     }
 }

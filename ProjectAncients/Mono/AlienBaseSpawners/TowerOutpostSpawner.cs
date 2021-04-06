@@ -14,5 +14,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(GenerateCable(new Vector3(-527, -49, 28), new Vector3(0.4f, 0f, 0.9f), new Vector3(-546.6f, -62, 50.6f), Vector3.down, Vector3.up, 15f));
             yield return StartCoroutine(GenerateCable(new Vector3(-526, -49, 16), new Vector3(-0.4f, 0f, -0.9f), new Vector3(-516, -79, -30), Vector3.down, Vector3.down, 15f));
         }
+
+        public override string TerminalClassId => Mod.tertiaryOutpostTerminalGrassy.ClassID;
     }
 }
