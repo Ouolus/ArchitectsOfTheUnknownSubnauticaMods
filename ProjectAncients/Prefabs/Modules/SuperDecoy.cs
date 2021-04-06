@@ -66,10 +66,11 @@ namespace ProjectAncients.Prefabs.Modules
             ZapOnDamage zod = obj.AddComponent<ZapOnDamage>();
             zod.zapPrefab = Mod.electricalDefensePrefab;
             LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
-            lmd.maxHealth = 800f;
+            lmd.maxHealth = 650f;
             lmd.weldable = true;
             obj.AddComponent<LiveMixin>().data = lmd;
-            obj.GetComponent<CyclopsDecoy>().lifeTime = 900f;
+            obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
+            obj.GetComponent<Pickupable>().isPickupable = true;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -96,10 +97,11 @@ namespace ProjectAncients.Prefabs.Modules
             obj.transform.localScale = Vector3.one * 2f;
             ZapOnDamage zod = obj.AddComponent<ZapOnDamage>();
             zod.zapPrefab = Mod.electricalDefensePrefab; LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
-            lmd.maxHealth = 800f;
+            lmd.maxHealth = 650f;
             lmd.weldable = true;
             obj.AddComponent<LiveMixin>().data = lmd;
-            obj.GetComponent<CyclopsDecoy>().lifeTime = 900f;
+            obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
+            obj.GetComponent<Pickupable>().isPickupable = true;
 
             prefab.SetActive(false);
             obj.SetActive(true);
