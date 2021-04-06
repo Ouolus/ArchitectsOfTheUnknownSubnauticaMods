@@ -80,7 +80,7 @@ namespace ArchitectsLibrary.Utility
                     Material material = renderer.materials[i];
                     if (material.name.Contains("IonShader"))
                     {
-                        material = Main.ionCubeMaterial;
+                        renderer.material = Main.ionCubeMaterial;
                         continue;
                     }
                     material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
