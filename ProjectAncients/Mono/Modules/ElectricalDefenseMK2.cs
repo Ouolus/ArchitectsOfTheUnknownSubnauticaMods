@@ -44,7 +44,7 @@ namespace ProjectAncients.Mono.Modules
                     var renderers = electSphere.GetComponentsInChildren<Renderer>();
                     foreach (var renderer in renderers)
                     {
-                        renderer.material.SetColor("_Color", Color.blue);
+                        renderer.material.SetColor("_Color", new Color(0.23f, 0.42f, 1f));
                     }
                 }
             }
