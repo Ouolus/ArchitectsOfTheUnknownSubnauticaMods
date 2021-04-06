@@ -51,6 +51,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(13.28f, 0f, -8.81f), new Vector3(0f, -123f, 0f)));
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(21f, 10f, 5f), Vector3.down, transform.position + new Vector3(21f, 0f, 5f), Vector3.down, Vector3.zero, 0f, 0.5f));
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(21f, 10f, -5f), Vector3.down, transform.position + new Vector3(21f, 0f, -5f), Vector3.down, Vector3.zero, 0f, 0.5f));
+            yield return SpawnRelicInCase(new Vector3(15f, 0f, 0f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f));
 
             //Right room
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(-21f, 0f, 0f), new Vector3(0f, -90f, 0f)));
