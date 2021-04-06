@@ -78,6 +78,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
         public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
         public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
+        public const string natural_plant_fan = "be8b0e66-0cde-428b-be78-9d6bf06eaef4";
+        public const string natural_grass_blue = "c87e584c-7e38-4589-b408-8eca51f474c1";
+        public const string natural_grass_green = "26940e53-d3eb-4770-ae99-6ce4335445d3";
+        public const string natural_grass_yellow = "7ecc9cdd-3afc-4005-bff7-01ba62e95a03";
+        public const string natural_coral_yellow1 = "598c95d8-7420-4907-8f70-ba18b4e6adcb";
+        public const string natural_coral_yellow2 = "450bf7b5-b6cf-4139-921f-3cb9ea505d5f";
+        public const string natural_coral_red = "22bf7b03-8154-410b-a6fb-8ba315f68987";
+        public const string natural_coral_purple = "c71f41ce-b586-4e85-896e-d25e8b5b9de0";
         public const string bone_reaperMandible = "501c0536-7993-4ed6-be77-6287cedd8d02";
         public const string bone_reaperSkull = "50031120-ab7a-4f10-b497-3a97f63b4de1";
         public const string bone_reaperSpine1Rib = "949d8657-1e5c-4418-8948-76b8b712fc57";
