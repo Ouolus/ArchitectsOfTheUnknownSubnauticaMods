@@ -20,6 +20,10 @@ namespace ProjectAncients.Mono
         public bool screenShake;
 
         float timeRoarAgain = 0f;
+        float timeUpdateShakeAgain = 0f;
+
+        private float[] clipSampleData = new float[1024];
+        private float clipLoudness = 0f;
 
         private void Start()
         {
@@ -40,6 +44,20 @@ namespace ProjectAncients.Mono
                 float timeToWait = roarLength + Random.Range(delayMin, delayMax);
                 timeRoarAgain = Time.time + timeToWait;
             }
+            if (screenShake)
+            {
+                if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
+                {
+                    audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
+                    clipLoudness = 0f;
+                    foreach (var sample in clipSampleData)
+                    {
+                        clipLoudness += Mathf.Abs(sample);
+                    }
+                    if (screenShake) MainCameraControl.main.ShakeCamera(clipLoudness, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                    timeUpdateShakeAgain = Time.time + 0.1f;
+                }
+            }
         }
 
         public void PlayOnce(out float roarLength)
@@ -51,7 +69,6 @@ namespace ProjectAncients.Mono
             audioSource.Play();
             creature.GetAnimator().SetFloat("random", Random.value);
             creature.GetAnimator().SetTrigger("roar");
-            if (screenShake) MainCameraControl.main.ShakeCamera(5f, roarLength, MainCameraControl.ShakeMode.Cos, 1f);
         }
 
         private AudioClip GetAudioClip(float distance)
