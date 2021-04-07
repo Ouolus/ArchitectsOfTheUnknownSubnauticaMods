@@ -54,7 +54,7 @@ namespace ProjectAncients.Mono
                     {
                         clipLoudness += Mathf.Abs(sample);
                     }
-                    if (clipLoudness > 0.4f)
+                    if (clipLoudness > 0.8f)
                     {
                         MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
                     }
