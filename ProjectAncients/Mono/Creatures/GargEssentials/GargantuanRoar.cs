@@ -54,7 +54,10 @@ namespace ProjectAncients.Mono
                     {
                         clipLoudness += Mathf.Abs(sample);
                     }
-                    if (screenShake) MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                    if (clipLoudness > 0.4f)
+                    {
+                        MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                    }
                     timeUpdateShakeAgain = Time.time + 0.5f;
                 }
             }
