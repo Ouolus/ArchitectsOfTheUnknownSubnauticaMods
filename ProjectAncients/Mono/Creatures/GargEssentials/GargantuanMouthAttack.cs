@@ -89,9 +89,8 @@ namespace ProjectAncients.Mono
                                 }
                                 else
                                 {
-                                    targetLm.TakeDamage(baseDmg, transform.position, DamageType.Normal, gameObject);
+                                    StartCoroutine(PerformBiteAttack(target, baseDmg));
                                     behaviour.timeCanAttackAgain = Time.time + 2f;
-                                    animator.SetTrigger("bite");
                                     return;
                                 }
                             }
@@ -140,19 +139,15 @@ namespace ProjectAncients.Mono
                             swallowing.target = throat.transform;
                             swallowing.animationLength = 1f;
                         }
-                        else if(canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
+                        else if (canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
                         {
-                            var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
-                            StartCoroutine(PerformBiteAttack(target));
+                            StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
                             behaviour.timeCanAttackAgain = Time.time + 2f;
                             if (canAttackPlayer)
                             {
                                 creature.Aggression.Value = 0f;
                             }
-                            attackSource.clip = biteClipPool.GetRandomClip();
-                            attackSource.Play();
                             thisCreature.Aggression.Value -= 0.15f;
-                            creature.GetAnimator().SetTrigger("bite");
                         }
                     }
                 }
@@ -186,10 +181,13 @@ namespace ProjectAncients.Mono
         {
             behaviour.timeCanAttackAgain = Time.time + 4f;
         }
-        private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
+        private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
+            animator.SetTrigger("bite");
+            attackSource.clip = biteClipPool.GetRandomClip();
+            attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if (target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target), transform.position, DamageType.Normal, this.gameObject);
+            if (target) target.GetComponent<LiveMixin>().TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {
