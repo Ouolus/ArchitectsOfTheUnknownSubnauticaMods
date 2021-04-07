@@ -183,6 +183,7 @@ namespace ProjectAncients.Mono
         }
         private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
+            animator.SetFloat("random", UnityEngine.Random.value);
             animator.SetTrigger("bite");
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
