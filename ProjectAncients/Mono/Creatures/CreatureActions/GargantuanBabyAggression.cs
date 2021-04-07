@@ -90,7 +90,7 @@ namespace ProjectAncients.Mono
 					creature.Aggression.Value = 1f;
 					if (roar != null)
 					{
-						roar.PlayOnce();
+                        roar.PlayOnce(out _);
 					}
 				}
 			}

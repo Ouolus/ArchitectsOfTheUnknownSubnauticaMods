@@ -17,6 +17,7 @@ namespace ProjectAncients.Mono
 
         public float minDistance = 50f;
         public float maxDistance = 600f;
+        public bool screenShake;
 
         float timeRoarAgain = 0f;
 
@@ -35,25 +36,22 @@ namespace ProjectAncients.Mono
             }
             if(Time.time > timeRoarAgain)
             {
-                float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-                AudioClip clipToPlay = GetAudioClip(distance);
-                audioSource.clip = clipToPlay;
-                audioSource.Play();
-                creature.GetAnimator().SetFloat("random", Random.value);
-                creature.GetAnimator().SetTrigger("roar");
-                float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
+                PlayOnce(out float roarLength);
+                float timeToWait = roarLength + Random.Range(delayMin, delayMax);
                 timeRoarAgain = Time.time + timeToWait;
             }
         }
 
-        public void PlayOnce()
+        public void PlayOnce(out float roarLength)
         {
             float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
             AudioClip clipToPlay = GetAudioClip(distance);
+            roarLength = clipToPlay.length;
             audioSource.clip = clipToPlay;
             audioSource.Play();
             creature.GetAnimator().SetFloat("random", Random.value);
             creature.GetAnimator().SetTrigger("roar");
+            if (screenShake) MainCameraControl.main.ShakeCamera(5f, roarLength, MainCameraControl.ShakeMode.Cos, 1f);
         }
 
         private AudioClip GetAudioClip(float distance)

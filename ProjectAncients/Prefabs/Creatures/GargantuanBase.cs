@@ -166,6 +166,7 @@ namespace ProjectAncients.Prefabs
             roar.maxDistance = RoarSoundMinMax.Item2;
             roar.delayMin = RoarDelayMinMax.Item1;
             roar.delayMax = RoarDelayMinMax.Item2;
+            roar.screenShake = DoesScreenShake;
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
@@ -187,6 +188,13 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
         }
 
+        public virtual bool DoesScreenShake
+        {
+            get
+            {
+                return false;
+            }
+        }
         public virtual float SpineBoneSnapSpeed
         {
             get

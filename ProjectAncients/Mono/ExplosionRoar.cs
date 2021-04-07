@@ -24,6 +24,7 @@ namespace ProjectAncients.Mono
             yield return new WaitUntil(() => _ship.IsExploded());
             yield return new WaitForSeconds(21f);
             _audioSource.Play();
+            MainCameraControl.main.ShakeCamera(1f, 5f, MainCameraControl.ShakeMode.Sqrt, 1f);
             yield return new WaitForSeconds(5f);
             ErrorMessage.AddMessage("Something has awoken...");
         }
