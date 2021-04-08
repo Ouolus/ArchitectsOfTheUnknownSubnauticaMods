@@ -149,6 +149,7 @@
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
+    <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\Commands\SecretCommand.cs" />
     <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
