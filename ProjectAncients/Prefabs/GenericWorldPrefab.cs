@@ -11,7 +11,7 @@ namespace ProjectAncients.Prefabs
     public class GenericWorldPrefab : Spawnable
     {
         private GameObject model;
-        private GameObject prefab;
+        protected GameObject prefab;
         private UBERMaterialProperties materialProperties;
         private LargeWorldEntity.CellLevel cellLevel;
 
