@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ProjectAncients.Mono.AlienTech;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
@@ -16,7 +17,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
         public override void CustomizePrefab()
         {
-            
+            prefab.EnsureComponent<VoidBaseReveal>();
         }
     }
 }
