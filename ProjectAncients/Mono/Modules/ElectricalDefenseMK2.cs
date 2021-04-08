@@ -23,6 +23,10 @@ namespace ProjectAncients.Mono.Modules
 
         private static FMODAsset architectElectricityDefenseSound;
 
+        void Awake()
+        {
+            EnsureArchElecDefenseSound();
+        }
         IEnumerator Start()
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
