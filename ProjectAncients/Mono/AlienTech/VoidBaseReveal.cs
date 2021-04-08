@@ -10,11 +10,13 @@ namespace ProjectAncients.Mono.AlienTech
         public override string TargetBiome => "Prison_Antechamber";
         private Transform lightsParent;
         private Material[] interiorMaterials;
+        private FMODAsset turnOnSound;
 
         protected override void OnTargetBiomeEntered()
         {
             StartCoroutine(SetLightsActive(true));
             ToggleEmission(true);
+            Utils.PlayFMODAsset(turnOnSound, lightsParent);
             SetExitCooldown(6f);
         }
 
@@ -56,6 +58,8 @@ namespace ProjectAncients.Mono.AlienTech
             interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().materials[0];
             interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().materials[3];
             ToggleEmission(true);
+            turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
+            turnOnSound.path = "event:/env/antechamber_lights_on";
         }
     }
 }
