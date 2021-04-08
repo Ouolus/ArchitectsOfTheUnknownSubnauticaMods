@@ -5,7 +5,6 @@ namespace ProjectAncients.Mono.Modules
 {
     public class ElectricalDefenseMK2 : MonoBehaviour
     {
-        public FMODAsset defenseSound;
         public GameObject[] fxElectSpheres;
         public float charge;
         public float chargeScalar;
@@ -21,12 +20,9 @@ namespace ProjectAncients.Mono.Modules
         float _chargeRadiusArchElec = 1.5f;
         float _chargeDamageArchElec = 3.5f;
 
+        private static FMODAsset normalDefenseSound;
         private static FMODAsset architectElectricityDefenseSound;
 
-        void Awake()
-        {
-            EnsureArchElecDefenseSound();
-        }
         IEnumerator Start()
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
@@ -74,13 +70,14 @@ namespace ProjectAncients.Mono.Modules
                 originalDamage = _damageElec + charge * _chargeDamageElec;
             }
 
-            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            EnsureDefenseSounds();
+            if (attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
             {
                 Utils.PlayFMODAsset(architectElectricityDefenseSound, transform);
             }
             else
             {
-                Utils.PlayFMODAsset(defenseSound, transform);
+                Utils.PlayFMODAsset(normalDefenseSound, transform);
             }
 
             int getObjIndex = Mathf.Clamp((int)(chargeScalar * fxElects.Length), 0,
@@ -120,8 +117,13 @@ namespace ProjectAncients.Mono.Modules
             Destroy(gameObject, 5f);
         }
 
-        private void EnsureArchElecDefenseSound()
+        private void EnsureDefenseSounds()
         {
+            if(normalDefenseSound == null)
+            {
+                normalDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                normalDefenseSound.path = "event:/sub/seamoth/pulse";
+            }
             if(architectElectricityDefenseSound == null)
             {
                 architectElectricityDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();

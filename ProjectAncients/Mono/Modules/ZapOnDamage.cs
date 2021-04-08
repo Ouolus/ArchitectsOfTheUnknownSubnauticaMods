@@ -38,7 +38,6 @@ namespace ProjectAncients.Mono.Modules
             if (edMk2 is not null)
             {
                 edMk2.fxElectSpheres = fxElectSpheres;
-                edMk2.defenseSound = defenseSound;
             }
 
             var electricalDefense = Utils.SpawnZeroedAt(obj, transform).GetComponent<ElectricalDefenseMK2>();

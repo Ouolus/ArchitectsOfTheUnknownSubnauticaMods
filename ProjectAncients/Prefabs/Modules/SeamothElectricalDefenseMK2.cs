@@ -54,7 +54,6 @@ namespace ProjectAncients.Prefabs.Modules
             if (edMk2 is not null)
             {
                 edMk2.fxElectSpheres = seaMoth.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
-                edMk2.defenseSound = seaMoth.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().defenseSound;
             }
 
             float charge = seaMoth.quickSlotCharge[slotID];
