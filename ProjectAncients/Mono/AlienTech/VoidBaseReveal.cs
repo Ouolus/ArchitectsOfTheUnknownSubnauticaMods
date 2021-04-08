@@ -15,7 +15,7 @@ namespace ProjectAncients.Mono.AlienTech
         protected override void OnTargetBiomeEntered()
         {
             StartCoroutine(SetLightsActive(true));
-            ToggleEmission(true);
+            StartCoroutine(ToggleEmission(true));
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
             SetExitCooldown(6f);
         }
@@ -23,7 +23,7 @@ namespace ProjectAncients.Mono.AlienTech
         protected override void OnTargetBiomeExited()
         {
             StartCoroutine(SetLightsActive(false));
-            ToggleEmission(false);
+            StartCoroutine(ToggleEmission(false));
             SetEnterCooldown(4f);
         }
 
@@ -36,23 +36,24 @@ namespace ProjectAncients.Mono.AlienTech
             }
         }
 
-        private void ToggleEmission(bool active)
+        private IEnumerator ToggleEmission(bool active)
         {
-            foreach(Material material in interiorMaterials)
+            float originalBrightness = active ? 0f : 1f;
+            float targetBrightness = active ? 1f : 0f;
+            for(int i = 1; i <= 10; i++)
             {
-                if (active)
-                {
-                    material.SetFloat("_GlowStrength", 1f);
-                    material.SetFloat("_GlowStrengthNight", 1f);
-                    material.SetFloat("_SpecInt", 10f);
-                }
-                else
-                {
-                    material.SetFloat("_GlowStrength", 0f);
-                    material.SetFloat("_GlowStrengthNight", 0f);
-                    material.SetFloat("_SpecInt", 0f);
+                yield return new WaitForSeconds(0.25f);
+                SetMaterialBrightness(Mathf.Lerp(originalBrightness, targetBrightness, i / 10f));
+            }
+        }
 
-                }
+        private void SetMaterialBrightness(float scalar)
+        {
+            foreach (Material material in interiorMaterials)
+            {
+                material.SetFloat("_GlowStrength", scalar);
+                material.SetFloat("_GlowStrengthNight", scalar);
+                material.SetFloat("_SpecInt", scalar * 10f);
             }
         }
 
@@ -62,7 +63,7 @@ namespace ProjectAncients.Mono.AlienTech
             interiorMaterials = new Material[2];
             interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().sharedMaterials[0];
             interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
-            ToggleEmission(false);
+            SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
         }
