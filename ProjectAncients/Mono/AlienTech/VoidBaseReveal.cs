@@ -47,13 +47,13 @@ namespace ProjectAncients.Mono.AlienTech
             }
         }
 
-        private void SetMaterialBrightness(float scalar)
+        private void SetMaterialBrightness(float brightnessNormalized)
         {
             foreach (Material material in interiorMaterials)
             {
-                material.SetFloat("_GlowStrength", scalar);
-                material.SetFloat("_GlowStrengthNight", scalar);
-                material.SetFloat("_SpecInt", scalar * 10f);
+                material.SetFloat("_GlowStrength", brightnessNormalized);
+                material.SetFloat("_GlowStrengthNight", brightnessNormalized);
+                material.SetFloat("_SpecInt", brightnessNormalized * 10f);
             }
         }
 
