@@ -26,6 +26,7 @@ namespace ProjectAncients.Mono.Modules
         IEnumerator Start()
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
+            yield return null;
 
             var fxElects = (GameObject[])fxElectSpheres.Clone();
             if (attackType != AttackType.SmallElectricity)
