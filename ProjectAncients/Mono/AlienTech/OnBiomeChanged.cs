@@ -8,9 +8,9 @@ namespace ProjectAncients.Mono.AlienTech
     public abstract class OnBiomeChanged : MonoBehaviour
     {
         /// <summary>
-        /// The biome that will trigger  <see cref="OnTargetBiomeEntered"/> and  <see cref="OnTargetBiomeExited"/>.
+        /// The biome that will trigger <see cref="OnTargetBiomeEntered"/> and  <see cref="OnTargetBiomeExited"/>.
         /// </summary>
-        public string targetBiome;
+        public string TargetBiome;
 
         /// <summary>
         /// The interval between the biome checks. A value of 0 (every frame) may have a slight impact on performance.
@@ -57,7 +57,7 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 return;
             }
-            bool nowInBiome = string.Equals(Player.main.GetBiomeString(), targetBiome, System.StringComparison.OrdinalIgnoreCase);
+            bool nowInBiome = string.Equals(Player.main.GetBiomeString(), TargetBiome, System.StringComparison.OrdinalIgnoreCase);
             if (!wasInBiome && nowInBiome)
             {
                 if (CanCallEnterMethod)
