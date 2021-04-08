@@ -22,6 +22,11 @@ namespace ProjectAncients.Prefabs
             this.cellLevel = cellLevel;
         }
 
+        public virtual void CustomizePrefab()
+        {
+
+        }
+
         public override GameObject GetGameObject()
         {
             if(prefab == null)
@@ -38,6 +43,7 @@ namespace ProjectAncients.Prefabs
                 {
                     col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
                 }
+                CustomizePrefab();
             }
             return prefab;
         }
