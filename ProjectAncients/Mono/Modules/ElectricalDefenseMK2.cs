@@ -21,6 +21,8 @@ namespace ProjectAncients.Mono.Modules
         float _chargeRadiusArchElec = 1.5f;
         float _chargeDamageArchElec = 3.5f;
 
+        private static FMODAsset architectElectricityDefenseSound;
+
         IEnumerator Start()
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
@@ -68,7 +70,14 @@ namespace ProjectAncients.Mono.Modules
                 originalDamage = _damageElec + charge * _chargeDamageElec;
             }
 
-            Utils.PlayFMODAsset(defenseSound, transform);
+            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            {
+                Utils.PlayFMODAsset(architectElectricityDefenseSound, transform);
+            }
+            else
+            {
+                Utils.PlayFMODAsset(defenseSound, transform);
+            }
 
             int getObjIndex = Mathf.Clamp((int)(chargeScalar * fxElects.Length), 0,
                 fxElects.Length - 1);
@@ -105,6 +114,15 @@ namespace ProjectAncients.Mono.Modules
                 }
             }
             Destroy(gameObject, 5f);
+        }
+
+        private void EnsureArchElecDefenseSound()
+        {
+            if(architectElectricityDefenseSound == null)
+            {
+                architectElectricityDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                architectElectricityDefenseSound.path = "event:/tools/stasis_gun/fire";
+            }
         }
 
         public enum AttackType
