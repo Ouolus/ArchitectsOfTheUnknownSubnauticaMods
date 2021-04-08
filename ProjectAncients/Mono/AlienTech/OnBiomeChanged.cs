@@ -10,7 +10,10 @@ namespace ProjectAncients.Mono.AlienTech
         /// <summary>
         /// The biome that will trigger <see cref="OnTargetBiomeEntered"/> and  <see cref="OnTargetBiomeExited"/>.
         /// </summary>
-        public string TargetBiome;
+        public abstract string TargetBiome
+        {
+            get;
+        }
 
         /// <summary>
         /// The interval between the biome checks. A value of 0 (every frame) may have a slight impact on performance.
@@ -29,6 +32,10 @@ namespace ProjectAncients.Mono.AlienTech
         /// Called when your targetBiome is exited.
         /// </summary>
         protected abstract void OnTargetBiomeExited();
+        /// <summary>
+        /// Called right before the CheckBiome loop begins.
+        /// </summary>
+        protected abstract void Setup();
 
         /// <summary>
         /// Call this method to disallow <see cref="OnTargetBiomeEntered"/> from being called for 'cooldown' seconds.
@@ -48,6 +55,7 @@ namespace ProjectAncients.Mono.AlienTech
 
         private void Start()
         {
+            Setup();
             InvokeRepeating("CheckBiome", Random.value, updateInterval);
         }
 
