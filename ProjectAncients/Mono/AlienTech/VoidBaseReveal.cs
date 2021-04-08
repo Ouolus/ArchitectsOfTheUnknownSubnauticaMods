@@ -42,11 +42,16 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 if (active)
                 {
-                    material.SetFloat("_EnableGlow", 1f);
+                    material.SetFloat("_GlowStrength", 1f);
+                    material.SetFloat("_GlowStrengthNight", 1f);
+                    material.SetFloat("_SpecInt", 10f);
                 }
                 else
                 {
-                    material.SetFloat("_EnableGlow", 0f);
+                    material.SetFloat("_GlowStrength", 0f);
+                    material.SetFloat("_GlowStrengthNight", 0f);
+                    material.SetFloat("_SpecInt", 0f);
+
                 }
             }
         }
@@ -55,9 +60,9 @@ namespace ProjectAncients.Mono.AlienTech
         {
             lightsParent = gameObject.SearchChild("Lights").transform;
             interiorMaterials = new Material[2];
-            interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().materials[0];
-            interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().materials[3];
-            ToggleEmission(true);
+            interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().sharedMaterials[0];
+            interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
+            ToggleEmission(false);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
         }
