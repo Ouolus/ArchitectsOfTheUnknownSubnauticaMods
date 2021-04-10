@@ -7,7 +7,7 @@ namespace ProjectAncients.Prefabs.AlienBase
     {
         public string classIdRoot;
         public TeleporterPrimaryPrefab primaryTeleporter;
-        public TeleporterAuxiliaryPrefab auxiliaryTeleporter;
+        public TeleporterFramePrefab auxiliaryTeleporter;
         public Vector3 masterCoords, masterEuler, auxiliaryCoords, auxiliaryEuler;
 
         public TeleporterNetwork(string classIdRoot, string teleporterId, Vector3 masterCoords, Vector3 masterEuler, Vector3 masterPlayerPos, float masterPlayerAngle, Vector3 auxiliaryCoords, Vector3 auxiliaryEuler, Vector3 auxiliaryPlayerPos, float auxiliaryPlayerAngle)
@@ -18,7 +18,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.auxiliaryCoords = auxiliaryCoords;
             this.auxiliaryEuler = auxiliaryEuler;
             primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), teleporterId, auxiliaryPlayerPos, masterPlayerAngle);
-            auxiliaryTeleporter = new TeleporterAuxiliaryPrefab(string.Format("{0}Auxiliary", classIdRoot), teleporterId, masterPlayerPos, auxiliaryPlayerAngle);
+            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), teleporterId, masterPlayerPos, auxiliaryPlayerAngle);
         }
         
         public void Patch()
