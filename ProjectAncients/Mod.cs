@@ -387,6 +387,9 @@ namespace ProjectAncients
             spamTerminal.Patch();
             #endregion
 
+            #region Teleporters
+            #endregion
+
             #region Alien bases
             var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
             outpostAInitializer.Patch();
