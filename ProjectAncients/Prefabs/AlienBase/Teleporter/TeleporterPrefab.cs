@@ -4,7 +4,7 @@ using UWE;
 using System.Collections;
 using ECCLibrary;
 
-namespace ProjectAncients.Prefabs.AlienBase.Teleporter
+namespace ProjectAncients.Prefabs.AlienBase
 {
     public class TeleporterPrefab : Spawnable
     {
