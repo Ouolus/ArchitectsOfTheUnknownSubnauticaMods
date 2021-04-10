@@ -128,7 +128,7 @@ namespace ProjectAncients.Mono.Modules
             if(architectElectricityDefenseSound == null)
             {
                 architectElectricityDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
-                architectElectricityDefenseSound.path = "event:/tools/stasis_gun/fire";
+                architectElectricityDefenseSound.path = "event:/sub/base/nuclear_reactor_death";
             }
         }
 
