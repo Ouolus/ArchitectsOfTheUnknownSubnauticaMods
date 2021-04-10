@@ -34,5 +34,14 @@ namespace ProjectAncients.Prefabs.AlienBase.Teleporter
 
             gameObject.Set(obj);
         }
+
+        public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
+        {
+            classId = ClassID,
+            cellLevel = LargeWorldEntity.CellLevel.Medium,
+            localScale = Vector3.one,
+            slotType = EntitySlot.Type.Large,
+            techType = this.TechType
+        };
     }
 }
