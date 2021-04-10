@@ -17,8 +17,8 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.masterEuler = masterEuler;
             this.auxiliaryCoords = auxiliaryCoords;
             this.auxiliaryEuler = auxiliaryEuler;
-            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), teleporterId, masterPlayerPos, masterPlayerAngle);
-            auxiliaryTeleporter = new TeleporterAuxiliaryPrefab(string.Format("{0}Auxiliary", classIdRoot), teleporterId, auxiliaryPlayerPos, auxiliaryPlayerAngle);
+            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), teleporterId, auxiliaryPlayerPos, masterPlayerAngle);
+            auxiliaryTeleporter = new TeleporterAuxiliaryPrefab(string.Format("{0}Auxiliary", classIdRoot), teleporterId, masterPlayerPos, auxiliaryPlayerAngle);
         }
         
         public void Patch()
