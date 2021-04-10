@@ -388,7 +388,7 @@ namespace ProjectAncients
             #endregion
 
             #region Teleporters
-            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", "voidbasepcf", new Vector3(0f, 0f, 50f), Vector3.zero, new Vector3(0f, 0f, 55f), 0f, new Vector3(0f, 0f, -50f), Vector3.up * 180f, new Vector3(0f, 0f, -55f), 180f);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", "voidbasepcf", new Vector3(0f, 0f, 50f), Vector3.up * 180f, new Vector3(0f, 0f, 45f), 0f, new Vector3(0f, 0f, -50f), Vector3.up * 0f, new Vector3(0f, 0f, -45f), 180f);
             voidPcfNetwork.Patch();
             #endregion
 
