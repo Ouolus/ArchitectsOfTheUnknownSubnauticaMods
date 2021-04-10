@@ -394,7 +394,7 @@ namespace ProjectAncients
             TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(12f, 0f, 0f), 0f, new Vector3(-857.80f, -189.89f, -641.00f), 0f);
             voidWeaponsNetwork.Patch();
 
-            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(-12f, 0f, 0f), 0f, new Vector3(-10.80f, -177f, -1183.00f), 0f);
+            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(-12f, 0f, 0f), 0f, new Vector3(-10.80f, -178.50f, -1183.00f), 0f);
             voidSupplyNetwork.Patch();
 
             #endregion
