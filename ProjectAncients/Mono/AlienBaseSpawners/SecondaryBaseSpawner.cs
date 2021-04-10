@@ -21,7 +21,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             Vector3 ceilingLightRotation = new Vector3(0f, 0f, 0f);
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, 16f), ceilingLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, 8f), ceilingLightRotation));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal, new Vector3(centerLocalX, floorLocalY, 0f), ceilingLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, -8), ceilingLightRotation));
             yield return StartCoroutine(SpawnPrefab(TerminalClassId, new Vector3(centerLocalX, floorLocalY, -16f), new Vector3(0f, 180f, 0f)));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.17f, 0f), ceilingLightRotation));
