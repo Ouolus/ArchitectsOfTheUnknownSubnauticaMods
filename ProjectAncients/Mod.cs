@@ -68,6 +68,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
+        public static DataTerminalPrefab spamTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -381,6 +382,9 @@ namespace ProjectAncients
 
             cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID});
             cachePingsTerminal.Patch();
+
+            spamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data...");
+            spamTerminal.Patch();
             #endregion
 
             #region Alien bases
