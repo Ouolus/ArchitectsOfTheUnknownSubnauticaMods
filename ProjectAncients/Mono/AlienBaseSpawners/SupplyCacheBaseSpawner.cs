@@ -15,10 +15,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 14f, floorLocalY, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 14f, floorLocalY, -6f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 14f, floorLocalY, 6f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 7f, floorLocalY, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 7f, floorLocalY, -6f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 7f, floorLocalY, 6f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 7f, floorLocalY, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 7f, floorLocalY, -6f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 7f, floorLocalY, 6f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 7f, foundationUnderLocalY - 8f, -21f)));
