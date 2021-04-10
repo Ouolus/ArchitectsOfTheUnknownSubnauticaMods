@@ -8,7 +8,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 {
     public class TeleporterAuxiliaryPrefab : Spawnable
     {
-        const string referenceClassId = "63e69987-7d34-41f0-aab9-1187ea06e740";
+        const string referenceClassId = "beb02a51-139f-4cb1-b7fd-831f8d00e55e";
         private TeleporterFramePrefab frame;
 
         public TeleporterAuxiliaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle) : base(classId, "Alien Arch", "An alien teleporter device.")
