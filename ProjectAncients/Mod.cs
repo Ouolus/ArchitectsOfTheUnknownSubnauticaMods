@@ -388,8 +388,15 @@ namespace ProjectAncients
             #endregion
 
             #region Teleporters
-            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", "voidbasepcf", new Vector3(0f, 0f, 50f), Vector3.up * 180f, new Vector3(0f, 0f, 45f), 0f, new Vector3(0f, 0f, -50f), Vector3.up * 0f, new Vector3(0f, 0f, -45f), 180f);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", Vector3.zero, 0f, new Vector3(267.30f, -1438.50f, -350.44f), 150f);
             voidPcfNetwork.Patch();
+
+            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(12f, 0f, 0f), 0f, new Vector3(-857.80f, -189.89f, -641.00f), 0f);
+            voidWeaponsNetwork.Patch();
+
+            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(-12f, 0f, 0f), 0f, new Vector3(-10.80f, -177f, -1183.00f), 0f);
+            voidSupplyNetwork.Patch();
+
             #endregion
 
             #region Alien bases
