@@ -388,8 +388,8 @@ namespace ProjectAncients
             #endregion
 
             #region Teleporters
-            TeleporterPrimaryPrefab voidBasePcfTele = new TeleporterPrimaryPrefab("TeleporterVoidBaseToPCF", "voidbasepcf", new Vector3(0f, -1400f, 0f), 0f);
-            voidBasePcfTele.Patch();
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", "voidbasepcf", new Vector3(0f, 0f, 50f), Vector3.zero, new Vector3(0f, 0f, 55f), 0f, new Vector3(0f, 0f, -50f), Vector3.up * 180f, new Vector3(0f, 0f, -55f), 180f);
+            voidPcfNetwork.Patch();
             #endregion
 
             #region Alien bases
