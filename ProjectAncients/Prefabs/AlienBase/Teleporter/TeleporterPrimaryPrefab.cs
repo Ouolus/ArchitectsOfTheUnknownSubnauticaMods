@@ -17,6 +17,18 @@ namespace ProjectAncients.Prefabs.AlienBase
             frame.Patch();
         }
 
+#if SN1
+        public override GameObject GetGameObject()
+        {
+            PrefabDatabase.TryGetPrefab(referenceClassId, out GameObject prefab);
+            GameObject obj = GameObject.Instantiate(prefab);
+
+            obj.SetActive(false);
+            var prefabPlaceholder = obj.GetComponent<PrefabPlaceholdersGroup>();
+            prefabPlaceholder.prefabPlaceholders[0].prefabClassId = frame.ClassID;
+            return obj;
+        }
+#elif SN1_exp
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(referenceClassId);
@@ -29,6 +41,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
             gameObject.Set(obj);
         }
+#endif
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {

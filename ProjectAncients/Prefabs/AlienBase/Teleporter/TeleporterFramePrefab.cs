@@ -20,6 +20,21 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.teleportAngle = teleportAngle;
         }
 
+#if SN1
+        public override GameObject GetGameObject()
+        {
+            PrefabDatabase.TryGetPrefab(referenceClassId, out GameObject prefab);
+            GameObject obj = GameObject.Instantiate(prefab);
+
+            obj.SetActive(false);
+            var teleporter = obj.GetComponent<PrecursorTeleporter>();
+            teleporter.teleporterIdentifier = teleporterId;
+            teleporter.warpToPos = teleportPosition;
+            teleporter.warpToAngle = teleportAngle;
+
+            return obj;
+        }
+#elif SN1_exp
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(referenceClassId);
@@ -34,6 +49,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
             gameObject.Set(obj);
         }
+#endif
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
