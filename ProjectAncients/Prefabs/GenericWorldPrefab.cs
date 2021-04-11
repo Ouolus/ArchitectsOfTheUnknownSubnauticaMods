@@ -39,10 +39,6 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
-                foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
-                {
-                    //col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.none;
-                }
                 CustomizePrefab();
             }
             return prefab;
