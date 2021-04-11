@@ -41,7 +41,7 @@ namespace ProjectAncients.Prefabs
                 MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
                 foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
                 {
-                    col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
+                    //col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.none;
                 }
                 CustomizePrefab();
             }
