@@ -13,7 +13,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         private Vector3 teleportPosition;
         private float teleportAngle;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle) : base(classId, "Alien Arch", "An alien teleporter device.")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
@@ -31,6 +31,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
+            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
 
             return obj;
         }
@@ -46,6 +47,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
+            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
 
             gameObject.Set(obj);
         }
@@ -57,7 +59,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             cellLevel = LargeWorldEntity.CellLevel.Medium,
             localScale = Vector3.one,
             slotType = EntitySlot.Type.Large,
-            techType = this.TechType
+            techType = TechType.PrecursorTeleporter
         };
     }
 }
