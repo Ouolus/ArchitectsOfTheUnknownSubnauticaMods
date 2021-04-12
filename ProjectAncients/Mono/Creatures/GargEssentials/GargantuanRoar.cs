@@ -76,8 +76,7 @@ namespace ProjectAncients.Mono
 
         private AudioClip GetAudioClip(float distance)
         {
-            string biome = Player.main.GetBiomeString();
-            if (distance < 150f && Player.main.GetCurrentSub() == null && !biome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) && !biome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+            if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
             {
                 return closeSounds.GetRandomClip();
             }

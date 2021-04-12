@@ -66,7 +66,7 @@ namespace ProjectAncients.Mono
                             {
                                 return;
                             }
-                            if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive)
+                            if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
                             {
                                 return;
                             }

@@ -221,6 +221,20 @@ namespace ProjectAncients.Mono
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             }
         }
+        public static bool PlayerIsKillable()
+        {
+            if (Player.main.GetCurrentSub() != null) 
+            {
+                return false;
+            }
+            string biome = Player.main.GetBiomeString();
+            if(biome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+            return true;
+            
+        }
         private void DamageVehicle()
         {
             if (heldVehicle != null)
