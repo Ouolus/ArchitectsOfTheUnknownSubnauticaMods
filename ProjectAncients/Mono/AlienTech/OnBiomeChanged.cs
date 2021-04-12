@@ -10,7 +10,7 @@ namespace ProjectAncients.Mono.AlienTech
         /// <summary>
         /// The biome that will trigger <see cref="OnTargetBiomeEntered"/> and  <see cref="OnTargetBiomeExited"/>.
         /// </summary>
-        public abstract string TargetBiome
+        public abstract string[] TargetBiomes
         {
             get;
         }
@@ -23,6 +23,7 @@ namespace ProjectAncients.Mono.AlienTech
         private float timeCallEnterAgain;
         private float timeCallExitAgain;
         private bool wasInBiome;
+        private string playerBiome;
 
         /// <summary>
         /// Called when your targetBiome is enterered.
@@ -65,7 +66,15 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 return;
             }
-            bool nowInBiome = string.Equals(Player.main.GetBiomeString(), TargetBiome, System.StringComparison.OrdinalIgnoreCase);
+            playerBiome = Player.main.GetBiomeString();
+            bool nowInBiome = false;
+            foreach (string targetBiome in TargetBiomes)
+            {
+                if(string.Equals(playerBiome, targetBiome, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    nowInBiome = true;
+                }
+            }
             if (!wasInBiome && nowInBiome)
             {
                 if (CanCallEnterMethod)

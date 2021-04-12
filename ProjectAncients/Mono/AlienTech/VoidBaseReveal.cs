@@ -7,7 +7,7 @@ namespace ProjectAncients.Mono.AlienTech
 {
     public class VoidBaseReveal : OnBiomeChanged
     {
-        public override string TargetBiome => "Prison_Antechamber";
+        public override string[] TargetBiomes => new string[] { "Prison_Antechamber", "PrecursorGun" };
         private Transform lightsParent;
         private Material[] interiorMaterials;
         private FMODAsset turnOnSound;
