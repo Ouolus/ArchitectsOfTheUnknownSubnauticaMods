@@ -192,6 +192,10 @@ namespace ProjectAncients.Mono
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {
+            if (oneShotPlayer)
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(ECCAudio.LoadAudioClip("DeathImminent"), "DeathImminent", "Warning: Death imminent.");
+            }
             playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);
             float length = 1.8f;
