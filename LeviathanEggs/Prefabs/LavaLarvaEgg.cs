@@ -9,38 +9,15 @@ namespace LeviathanEggs.Prefabs
     {
         public LavaLarvaEgg()
             : base("LavaLarvaEgg", "LavaLarva Egg", "LavaLarva hatch from these.")
-        {}
-        public override GameObject Model => LoadGameObject("RobotEgg");
+        {
+            LateEnhancements += InitializeObject;
+        }
+        public override GameObject Model => LoadGameObject("LavaLarvaEgg.prefab");
         public override TechType HatchingCreature => TechType.LavaLarva;
         public override float HatchingTime => 5f;
-        public override Sprite ItemSprite => LoadSprite("RobotEgg");
+        public override Sprite ItemSprite => LoadSprite("LavaLarvaEgg");
+        public override Vector2int SizeInInventory { get; } = new(1, 1);
 
-        public override GameObject GetGameObject()
-        {
-            var prefab = base.GetGameObject();
-            
-            Material material = new Material(Shader.Find("MarmosetUBER"))
-            {
-                mainTexture = LoadTexture2D("RobotEggDiffuse"),
-            };
-            material.EnableKeyword("MARMO_NORMALMAP");
-            material.EnableKeyword("MARMO_SPECMAP");
-            material.EnableKeyword("MARMO_EMISSION");
-
-            material.SetTexture(ShaderPropertyID._Illum, LoadTexture2D("RobotEggIllum"));
-            material.SetTexture(ShaderPropertyID._SpecTex, LoadTexture2D("RobotEggDiffuse"));
-            material.SetTexture(ShaderPropertyID._BumpMap, LoadTexture2D("RobotEggNormal"));
-
-            Renderer[] renderers = prefab.GetAllComponentsInChildren<Renderer>();
-            foreach (var rend in renderers)
-            {
-                rend.material = material;
-                rend.sharedMaterial = material;
-            }
-
-            prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
-        }
+        public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
 }
