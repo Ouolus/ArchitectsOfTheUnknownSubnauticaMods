@@ -69,5 +69,52 @@ namespace ArchitectsLibrary.Utility
                 }
             }
         }
+
+        //Do this AFTER calling ApplySNShaders. Works for opaque and transparent materials, the latter still somewhat WIP.
+        public static void ApplyPrecursorMaterials(GameObject prefab, float specint)
+        {
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                for (int i = 0; i < renderer.materials.Length; i++)
+                {
+                    Material material = renderer.materials[i];
+                    if (material.name.Contains("IonShader"))
+                    {
+                        Material[] sharedMats = renderer.sharedMaterials;
+                        sharedMats[i] = Main.ionCubeMaterial;
+                        renderer.sharedMaterials = sharedMats;
+                        continue;
+                    }
+                    material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
+                    material.SetFloat("_SpecInt", specint);
+                    material.SetFloat("_Fresnel", 0.4f);
+                    if (material.name.Contains("Transparent"))
+                    {
+                        material.SetFloat("_SrcBlend", 1f);
+                        material.SetFloat("_DstBlend", 1f);
+                        material.SetFloat("_SrcBlend2", 0f);
+                        material.SetFloat("_DstBlend2", 10f);
+                        material.SetFloat("_AddSrcBlend", 1f);
+                        material.SetFloat("_AddDstBlend", 1f);
+                        material.SetFloat("_AddSrcBlend2", 0f);
+                        material.SetFloat("_AddDstBlend2", 10f);
+                        material.SetColor("_SpecColor", new Color(0.54f, 0.87f, 0.74f));
+                        material.SetColor("_GlowColor", new Color(0.09f, 0.86f, 0.42f));
+                        material.SetFloat("_GlowStrength", 0.05f);
+                        material.SetFloat("_GlowStrengthNight", 0.05f);
+                        material.SetFloat("_SpecInt", 1f);
+                        material.SetFloat("_Shininess", 7f);
+                        material.SetFloat("_Mode", 3f);
+                        material.SetFloat("_Fresnel", 0.3f);
+                        material.SetInt("_ZWrite", 0);
+                        material.EnableKeyword("MARMO_EMISSION");
+                        material.EnableKeyword("MARMO_SIMPLE_GLASS");
+                        material.EnableKeyword("WBOIT");
+                        material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                        material.EnableKeyword("MARMO_SPECMAP");
+                    }
+                }
+            }
+        }
     }
 }
