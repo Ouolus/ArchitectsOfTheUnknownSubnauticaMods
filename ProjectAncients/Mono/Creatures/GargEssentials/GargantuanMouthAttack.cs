@@ -64,6 +64,7 @@ namespace ProjectAncients.Mono
                         {
                             if (!canAttackPlayer)
                             {
+                                StartCoroutine(PerformBiteAttack(target, 0.5f));
                                 return;
                             }
                             if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
