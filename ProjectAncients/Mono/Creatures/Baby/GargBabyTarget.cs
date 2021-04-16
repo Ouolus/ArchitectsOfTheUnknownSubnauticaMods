@@ -11,6 +11,7 @@ namespace ProjectAncients.Mono
 		LiveMixin lm;
 		SwimBehaviour swimBehaviour;
 		Pickupable pickupable;
+		Creature creature;
 
 		void Start()
 		{
@@ -19,6 +20,7 @@ namespace ProjectAncients.Mono
 			lm = GetComponentInParent<LiveMixin>();
 			gameObject.layer = 13;
 			pickupable = GetComponentInParent<Pickupable>();
+			creature = GetComponent<Creature>();
 		}
 		public void OnHandHover(GUIHand hand)
 		{
@@ -53,6 +55,7 @@ namespace ProjectAncients.Mono
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
 			cinematicPlaying = false;
+			creature.Aggression.Value = 0f;
 		}
 
 		bool CanInteract()
