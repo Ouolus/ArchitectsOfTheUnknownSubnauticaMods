@@ -13,7 +13,7 @@ namespace ProjectAncients.Mono
 
         void CheckDistance()
         {
-            if(Vector3.Distance(MainCameraControl.main.transform.position, transform.position) < maxDistance)
+            if(Vector3.Distance(MainCameraControl.main.transform.position, transform.position) > maxDistance)
             {
                 Destroy(gameObject);
             }
