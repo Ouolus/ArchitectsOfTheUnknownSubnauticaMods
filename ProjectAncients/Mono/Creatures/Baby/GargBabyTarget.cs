@@ -22,8 +22,8 @@ namespace ProjectAncients.Mono
 			lm = GetComponentInParent<LiveMixin>();
 			gameObject.layer = 13;
 			pickupable = GetComponentInParent<Pickupable>();
-			creature = GetComponent<Creature>();
-			roar = GetComponent<GargantuanRoar>();
+			creature = GetComponentInParent<Creature>();
+			roar = GetComponentInParent<GargantuanRoar>();
 		}
 		public void OnHandHover(GUIHand hand)
 		{
