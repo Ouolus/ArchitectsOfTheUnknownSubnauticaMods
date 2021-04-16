@@ -38,6 +38,7 @@ namespace ProjectAncients.Mono
                 renderer.transform.localScale = Vector3.one * 1.50f;
                 GameObject.Destroy(shoalPrefab.GetComponent<LargeWorldEntity>());
                 GameObject.Destroy(shoalPrefab.GetComponent<PrefabIdentifier>());
+                GameObject.Destroy(shoalPrefab.GetComponent<Collider>());
                 shoalPrefab.AddComponent<DestroyWhenFarAway>();
             }
             else
