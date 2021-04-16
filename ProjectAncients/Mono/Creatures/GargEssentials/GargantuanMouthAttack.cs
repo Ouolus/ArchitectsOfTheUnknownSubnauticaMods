@@ -68,7 +68,7 @@ namespace ProjectAncients.Mono
                             }
                             if (!canAttackPlayer)
                             {
-                                StartCoroutine(PerformBiteAttack(target, 0.5f));
+                                StartCoroutine(PerformBiteAttack(target, 1f));
                                 return;
                             }
                             else
