@@ -46,9 +46,12 @@ namespace ProjectAncients.Mono
 
         void UpdateSpawn()
         {
-            if(GetAllShoalsInWorld() < shoalCap)
+            if (VoidGargSpawner.IsVoidBiome(Player.main.GetBiomeString()))
             {
-                Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation).SetActive(true);
+                if (GetAllShoalsInWorld() < shoalCap)
+                {
+                    Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation).SetActive(true);
+                }
             }
         }
 
