@@ -10,6 +10,7 @@ namespace ProjectAncients.Mono
 		Animator animator;
 		LiveMixin lm;
 		SwimBehaviour swimBehaviour;
+		Pickupable pickupable;
 
 		void Start()
 		{
@@ -17,6 +18,7 @@ namespace ProjectAncients.Mono
 			swimBehaviour = GetComponentInParent<SwimBehaviour>();
 			lm = GetComponentInParent<LiveMixin>();
 			gameObject.layer = 13;
+			pickupable = GetComponentInParent<Pickupable>();
 		}
 		public void OnHandHover(GUIHand hand)
 		{
@@ -42,12 +44,14 @@ namespace ProjectAncients.Mono
 		private IEnumerator Cinematic()
 		{
 			cinematicPlaying = true;
+			pickupable.isPickupable = false;
 			swimBehaviour.Idle();
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", Random.value);
 			animator.SetTrigger("cin_play");
 			yield return new WaitForSeconds(6f);
 			swimBehaviour.LookAt(null);
+			pickupable.isPickupable = true;
 			cinematicPlaying = false;
 		}
 
