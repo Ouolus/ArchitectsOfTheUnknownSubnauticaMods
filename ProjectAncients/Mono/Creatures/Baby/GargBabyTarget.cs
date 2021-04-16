@@ -49,10 +49,11 @@ namespace ProjectAncients.Mono
 			cinematicPlaying = true;
 			pickupable.isPickupable = false;
 			swimBehaviour.Idle();
+			float random = Random.value;
 			swimBehaviour.LookAt(Player.main.transform);
-			animator.SetFloat("random", Random.value);
+			animator.SetFloat("random", random);
 			animator.SetTrigger("cin_play");
-			yield return new WaitForSeconds(8f);
+			yield return new WaitForSeconds(GetAnimationLength(random));
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
 			cinematicPlaying = false;
@@ -71,5 +72,21 @@ namespace ProjectAncients.Mono
 			}
 			return true;
 		}
+
+		float GetAnimationLength(float random)
+        {
+			if(random <= 0.33333f)
+            {
+				return 4.02f;
+            }
+			else if(random <= 0.677777f)
+            {
+				return 8f;
+            }
+            else
+            {
+				return 4f;
+			}
+        }
 	}
 }
