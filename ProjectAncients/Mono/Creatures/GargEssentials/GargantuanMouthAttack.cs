@@ -49,7 +49,7 @@ namespace ProjectAncients.Mono
             if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
                 Creature thisCreature = gameObject.GetComponent<Creature>();
-                if (thisCreature.Aggression.Value >= 0.1f) //This creature must have at least some level of aggression to bite
+                if (thisCreature.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
                 {
                     GameObject target = GetTarget(collider);
                     if (!behaviour.Edible(target))
