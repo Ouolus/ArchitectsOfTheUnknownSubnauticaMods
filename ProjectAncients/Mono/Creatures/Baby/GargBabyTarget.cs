@@ -54,9 +54,9 @@ namespace ProjectAncients.Mono
 			animator.SetFloat("random", random);
 			animator.SetTrigger("cin_play");
 			yield return new WaitForSeconds(GetAnimationLength(random));
+			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
-			cinematicPlaying = false;
 			creature.Aggression.Value = 0f;
 		}
 
@@ -88,5 +88,13 @@ namespace ProjectAncients.Mono
 				return 4f;
 			}
         }
+
+		void Update()
+        {
+            if (cinematicPlaying)
+            {
+				swimBehaviour.Idle();
+			}
+		}
 	}
 }
