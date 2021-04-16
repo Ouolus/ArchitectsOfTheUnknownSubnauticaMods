@@ -6,6 +6,7 @@ using UWE;
 
 namespace ProjectAncients.Prefabs
 {
+    //Initializer for the adult garg, but ALSO the spinefish spawning
     class AdultGargSpawnerInitializer : Spawnable
     {
         public AdultGargSpawnerInitializer()
@@ -31,6 +32,7 @@ namespace ProjectAncients.Prefabs
         {
             GameObject obj = new GameObject("AdultGargSpawner");
             obj.EnsureComponent<VoidGargSpawner>();
+            obj.EnsureComponent<VoidShoalSpawner>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
