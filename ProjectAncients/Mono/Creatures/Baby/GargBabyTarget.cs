@@ -13,6 +13,7 @@ namespace ProjectAncients.Mono
 		SwimBehaviour swimBehaviour;
 		Pickupable pickupable;
 		Creature creature;
+		GargantuanRoar roar;
 
 		void Start()
 		{
@@ -22,6 +23,7 @@ namespace ProjectAncients.Mono
 			gameObject.layer = 13;
 			pickupable = GetComponentInParent<Pickupable>();
 			creature = GetComponent<Creature>();
+			roar = GetComponent<GargantuanRoar>();
 		}
 		public void OnHandHover(GUIHand hand)
 		{
@@ -53,6 +55,7 @@ namespace ProjectAncients.Mono
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
 			animator.SetTrigger("cin_play");
+			roar.PlayOnce(out float _);
 			yield return new WaitForSeconds(GetAnimationLength(random));
 			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);
