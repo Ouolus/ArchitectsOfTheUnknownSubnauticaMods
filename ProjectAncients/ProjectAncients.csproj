@@ -168,6 +168,7 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
     <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
+    <Compile Include="Mono\VoidShoalSpawner.cs" />
     <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
     <Compile Include="Patches\LiveMixin_Patches.cs" />
