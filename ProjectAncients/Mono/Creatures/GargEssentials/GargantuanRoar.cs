@@ -52,7 +52,7 @@ namespace ProjectAncients.Mono
                     clipLoudness = 0f;
                     foreach (var sample in clipSampleData)
                     {
-                        clipLoudness += Mathf.Abs(sample);
+                        clipLoudness += (Mathf.Abs(sample) * Mod.config.RoarScreenShakeIntensity);
                     }
                     if (clipLoudness > 0.8f)
                     {
