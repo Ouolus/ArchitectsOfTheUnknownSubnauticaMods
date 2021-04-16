@@ -124,6 +124,8 @@ namespace ProjectAncients
 
         private const string alienSignalName = "Alien Signal";
 
+        public static Config config = OptionsPanelHandler.Main.RegisterModOptions<Config>();
+
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
         [QModPostPatch]
