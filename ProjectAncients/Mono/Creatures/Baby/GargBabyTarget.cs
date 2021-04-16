@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ProjectAncients.Mono
 {
+	//For
 	public class GargBabyTarget : HandTarget, IHandTarget
 	{
 		public bool cinematicPlaying = false;
@@ -51,7 +52,7 @@ namespace ProjectAncients.Mono
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", Random.value);
 			animator.SetTrigger("cin_play");
-			yield return new WaitForSeconds(6f);
+			yield return new WaitForSeconds(8f);
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
 			cinematicPlaying = false;
