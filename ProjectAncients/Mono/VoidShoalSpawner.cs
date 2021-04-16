@@ -10,12 +10,14 @@ namespace ProjectAncients.Mono
         VFXSchoolFishManager shoalManager;
         private const string shoalClassId = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
         private const int shoalCap = 70;
+        private bool canSpawn = false;
 
         private IEnumerator Start()
         {
             shoalManager = VFXSchoolFishManager.main;
             yield return SetShoalPrefabAsync();
-            InvokeRepeating("UpdateSpawn", 1f, 4f);
+            InvokeRepeating("UpdateCanSpawn", Random.value, 4f); //Biome checks are probably slow, so they are at a much lower rate than the actual spawning
+            InvokeRepeating("TrySpawn", Random.value, 0.3f);
         }
 
         private IEnumerator SetShoalPrefabAsync()
@@ -44,14 +46,23 @@ namespace ProjectAncients.Mono
             }
         }
 
-        void UpdateSpawn()
+        void UpdateCanSpawn()
         {
             if (VoidGargSpawner.IsVoidBiome(Player.main.GetBiomeString()))
             {
                 if (GetAllShoalsInWorld() < shoalCap)
                 {
-                    Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation).SetActive(true);
+                    canSpawn = true;
+                    return;
                 }
+            }
+            canSpawn = false;
+        }
+        void TrySpawn()
+        {
+            if (canSpawn)
+            {
+                Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation).SetActive(true);
             }
         }
 
