@@ -178,6 +178,8 @@ namespace ProjectAncients.Prefabs
             prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+
+            prefab.AddComponent<VFXSchoolFishRepulsor>();
         }
 
         public virtual void ApplyAggression()
