@@ -202,7 +202,7 @@ namespace ProjectAncients.Mono
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
             behaviour.timeCanAttackAgain = Time.time + length;
-            MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp);
+            MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
             Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
             yield return new WaitForSeconds(length / 3f);

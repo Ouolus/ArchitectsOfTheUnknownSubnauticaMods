@@ -11,11 +11,17 @@ namespace ProjectAncients.Mono
 			creature.friend = Player.main.gameObject;
 			InvokeRepeating("WarpToPlayer", UnityEngine.Random.value * warpInterval, warpInterval);
 			cuteFishGoal.Trigger();
+			UpdateCinematicTargetActive();
 		}
 
 		public void OnDrop()
 		{
 			creature.leashPosition = transform.position;
+			UpdateCinematicTargetActive();
+		}
+
+		void UpdateCinematicTargetActive()
+        {
 			WaterParkCreature component = GetComponent<WaterParkCreature>();
 			bool flag = component != null && component.IsInsideWaterPark();
 			cinematicTarget.SetActive(!flag);

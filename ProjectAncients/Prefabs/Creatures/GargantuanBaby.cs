@@ -38,12 +38,15 @@ namespace ProjectAncients.Prefabs
             followPlayer.distanceToPlayer = 7f;
             followPlayer.creature = components.creature;
             followPlayer.maxYPos = -8f;
-            prefab.AddComponent<GargantuanBabyTeleport>();
+            var babyComponent = prefab.AddComponent<GargantuanBabyTeleport>();
             components.locomotion.driftFactor = 1f;
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
             prefab.GetComponent<AttackLastTarget>().swimInterval = 0.05f;
+            GameObject target = prefab.SearchChild("CinematicTarget");
+            target.AddComponent<GargBabyTarget>();
+            babyComponent.cinematicTarget = target;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
         }

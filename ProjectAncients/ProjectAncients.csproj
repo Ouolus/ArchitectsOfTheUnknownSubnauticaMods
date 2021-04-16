@@ -157,6 +157,7 @@
     <Compile Include="Mono\Commands\TrollVoice.cs" />
     <Compile Include="Mono\Creatures\Baby\GargantuanBabyGrowthManager.cs" />
     <Compile Include="Mono\Creatures\Baby\GargantuanBabyTeleport.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargBabyTarget.cs" />
     <Compile Include="Mono\Creatures\CreatureActions\GargantuanBabyAggression.cs" />
     <Compile Include="Mono\Creatures\CreatureActions\RunAwayWhenScared.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanBehaviour.cs" />
