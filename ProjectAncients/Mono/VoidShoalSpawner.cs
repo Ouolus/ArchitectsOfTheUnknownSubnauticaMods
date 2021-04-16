@@ -26,6 +26,7 @@ namespace ProjectAncients.Mono
             {
                 shoalPrefab = GameObject.Instantiate(prefab);
                 shoalPrefab.SetActive(false);
+                shoalPrefab.name = "Spinefish_Void_School";
                 Renderer renderer = shoalPrefab.GetComponentInChildren<Renderer>();
                 Material material = renderer.material;
                 material.SetColor("_GlowColor", new Color(0.99f, 0.97f, 0.81f));
@@ -47,7 +48,7 @@ namespace ProjectAncients.Mono
         {
             if(GetAllShoalsInWorld() < shoalCap)
             {
-                Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation);
+                Instantiate(shoalPrefab, GetRandomSpawnPosition(), Random.rotation).SetActive(true);
             }
         }
 
