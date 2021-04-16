@@ -32,16 +32,46 @@ namespace ProjectAncients.Patches
     [HarmonyPatch(typeof(uGUI_SceneLoading))]
     public class uGUI_SceneLoading_Patch
     {
-        [HarmonyPatch(nameof(uGUI_SceneLoading.Init))]
-        [HarmonyPrefix]
-		public static void Prefix(uGUI_SceneLoading __instance)
+        [HarmonyPatch(nameof(uGUI_SceneLoading.Begin))]
+        [HarmonyPostfix]
+		public static void Postfix1(uGUI_SceneLoading __instance)
 		{
+            TryOverrideLoadingScreen(__instance);
+        }
+
+        [HarmonyPatch(nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
+        [HarmonyPostfix]
+        public static void Postfix2(uGUI_SceneLoading __instance)
+        {
+            TryOverrideLoadingScreen(__instance);
+        }
+
+        [HarmonyPatch(nameof(uGUI_SceneLoading.DelayedBegin))]
+        [HarmonyPostfix]
+        public static void Postfix3(uGUI_SceneLoading __instance)
+        {
+            TryOverrideLoadingScreen(__instance);
+        }
+
+        [HarmonyPatch(nameof(uGUI_SceneLoading.ShowLoadingScreen))]
+        [HarmonyPostfix]
+        public static void Postfix4(uGUI_SceneLoading __instance)
+        {
+            TryOverrideLoadingScreen(__instance);
+        }
+
+        static void TryOverrideLoadingScreen(uGUI_SceneLoading sceneLoading)
+        {
+            if (Mod.config.OverrideLoadingScreen == false)
+            {
+                return;
+            }
             Sprite loadingScreen = Mod.assetBundle.LoadAsset<Sprite>("GargLoadingScreen");
-            Image[] componentsInChildren = __instance.loadingBackground.GetComponentsInChildren<Image>();
-			foreach (Image image in componentsInChildren)
-			{
-				image.sprite = loadingScreen;
-			}
-		}
+            Image[] componentsInChildren = sceneLoading.loadingBackground.GetComponentsInChildren<Image>();
+            foreach (Image image in componentsInChildren)
+            {
+                image.sprite = loadingScreen;
+            }
+        }
 	}
 }
