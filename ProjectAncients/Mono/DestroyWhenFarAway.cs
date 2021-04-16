@@ -15,7 +15,7 @@ namespace ProjectAncients.Mono
         {
             if(Vector3.Distance(MainCameraControl.main.transform.position, transform.position) < maxDistance)
             {
-
+                Destroy(gameObject);
             }
         }
     }
