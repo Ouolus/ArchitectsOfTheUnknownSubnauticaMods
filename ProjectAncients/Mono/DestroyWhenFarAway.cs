@@ -4,7 +4,7 @@ namespace ProjectAncients.Mono
 {
     public class DestroyWhenFarAway : MonoBehaviour
     {
-        public float maxDistance = 80f;
+        public float maxDistance = 65f;
 
         void Start()
         {

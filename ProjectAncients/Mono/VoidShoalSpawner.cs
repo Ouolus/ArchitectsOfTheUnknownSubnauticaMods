@@ -64,7 +64,7 @@ namespace ProjectAncients.Mono
 
         Vector3 GetRandomSpawnPosition()
         {
-            return Player.main.transform.position + (Random.onUnitSphere * 50f);
+            return Player.main.transform.position + (Random.onUnitSphere * 30f);
         }
     }
 }
