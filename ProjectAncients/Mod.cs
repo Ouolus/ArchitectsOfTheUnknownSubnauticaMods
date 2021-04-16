@@ -191,7 +191,7 @@ namespace ProjectAncients
             gargVoidPrefab = new GargantuanVoid("GargantuanVoid", "Gargantuan Leviathan", "A titan-class lifeform. Indigineous to the void.", assetBundle.LoadAsset<GameObject>("GargAdult_Prefab"), null);
             gargVoidPrefab.Patch();
 
-            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan Baby", "A very young specimen, raised in containment.", assetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), assetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
+            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan Baby", "A very young specimen, raised in containment. Likes to play.", assetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), assetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
             gargBabyPrefab.Patch();
 
             skeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan Skeleton", "Spooky.", assetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);

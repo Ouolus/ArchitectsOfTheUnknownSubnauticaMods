@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono
 
 		public void OnDrop()
 		{
-			creature.leashPosition = transform.position;
+			creature.leashPosition = Player.main.transform.position;
 			UpdateCinematicTargetActive();
 		}
 
