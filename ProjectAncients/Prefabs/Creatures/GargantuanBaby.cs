@@ -47,6 +47,7 @@ namespace ProjectAncients.Prefabs
             GameObject target = prefab.SearchChild("CinematicTarget");
             target.AddComponent<GargBabyTarget>();
             babyComponent.cinematicTarget = target;
+            prefab.GetComponent<AvoidObstacles>().scanRadius = 5f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
         }
@@ -62,7 +63,7 @@ namespace ProjectAncients.Prefabs
 
         public override (float, float) RoarSoundMinMax => (1f, 10f);
 
-        public override float TentacleSnapSpeed => 1f;
+        public override float TentacleSnapSpeed => 1.5f;
 
         public override bool AttackPlayer => false;
 
