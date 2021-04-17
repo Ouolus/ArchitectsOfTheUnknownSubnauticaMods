@@ -62,7 +62,7 @@ namespace ProjectAncients.Prefabs
 
         public override (float, float) RoarSoundMinMax => (1f, 10f);
 
-        public override float TentacleSnapSpeed => 3.5f;
+        public override float TentacleSnapSpeed => 1f;
 
         public override bool AttackPlayer => false;
 
