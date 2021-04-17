@@ -93,6 +93,7 @@ namespace ProjectAncients.Mono
             audioSource.spatialBlend = 1f;
             audioSource.minDistance = minDistance;
             audioSource.maxDistance = maxDistance;
+            audioSource.playOnAwake = false;
 
             closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
             farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);
