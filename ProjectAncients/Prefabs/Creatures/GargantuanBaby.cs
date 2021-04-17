@@ -80,7 +80,7 @@ namespace ProjectAncients.Prefabs
 
         public override RespawnData RespawnSettings => new RespawnData(true, 15f);
 
-        public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(20f, 50f, 100f);
+        public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(50f, 150f, 500f);
 
         public override ItemSoundsType ItemSounds => ItemSoundsType.Fish;
 
