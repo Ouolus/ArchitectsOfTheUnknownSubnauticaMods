@@ -83,6 +83,9 @@
       <HintPath>$(DepDir)\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>false</Private>
@@ -90,6 +93,9 @@
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -115,6 +121,13 @@
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="CreatorKit\Packs\PackData.cs" />
+    <Compile Include="CreatorKit\Packs\PackHelper.cs" />
+    <Compile Include="CreatorKit\Packs\PackJson.cs" />
+    <Compile Include="CreatorKit\Packs\PackGenerator.cs" />
+    <Compile Include="CreatorKit\Utility\PackFolderUtils.cs" />
+    <Compile Include="CreatorKit\Utility\Utils.cs" />
+    <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="Initializer.cs" />
@@ -136,6 +149,7 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>

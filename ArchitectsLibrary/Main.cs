@@ -28,6 +28,8 @@ namespace ArchitectsLibrary
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
 
             UWE.CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
+
+            CreatorKit.SNCreatorKit.Entry();
         }
         
         private static IEnumerator LoadIonCubeMaterial()
