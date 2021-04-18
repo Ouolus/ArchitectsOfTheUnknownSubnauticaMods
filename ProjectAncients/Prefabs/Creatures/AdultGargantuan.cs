@@ -43,8 +43,9 @@ namespace ProjectAncients.Prefabs
             UpdateGargTransparentMaterial(renderer.materials[0]);
             UpdateGargTransparentMaterial(renderer.materials[1]);
             UpdateGargTransparentMaterial(renderer.materials[2]);
-            UpdateGargSkeletonMaterial(renderer.materials[3]);
-            UpdateGargGutsMaterial(renderer.materials[4]);
+            UpdateGargSolidMaterial(renderer.materials[3]);
+            UpdateGargSkeletonMaterial(renderer.materials[4]);
+            UpdateGargGutsMaterial(renderer.materials[5]);
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
@@ -55,6 +56,12 @@ namespace ProjectAncients.Prefabs
         {
             material.SetInt("_ZWrite", 1);
             material.SetFloat("_Fresnel", 1);
+        }
+
+        public static void UpdateGargSolidMaterial(Material material)
+        {
+            material.SetFloat("_Fresnel", 1);
+            material.SetFloat("_SpecInt", 25);
         }
 
         public static void UpdateGargSkeletonMaterial(Material material)
