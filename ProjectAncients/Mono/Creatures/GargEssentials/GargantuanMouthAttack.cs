@@ -49,7 +49,7 @@ namespace ProjectAncients.Mono
             if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
                 Creature thisCreature = gameObject.GetComponent<Creature>();
-                if (thisCreature.Aggression.Value >= 0.1f) //This creature must have at least some level of aggression to bite
+                if (thisCreature.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
                 {
                     GameObject target = GetTarget(collider);
                     if (!behaviour.Edible(target))
@@ -62,12 +62,13 @@ namespace ProjectAncients.Mono
                         Player player = target.GetComponent<Player>();
                         if (player != null)
                         {
-                            if (!canAttackPlayer)
+                            if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
                             {
                                 return;
                             }
-                            if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive)
+                            if (!canAttackPlayer)
                             {
+                                StartCoroutine(PerformBiteAttack(target, 1f));
                                 return;
                             }
                             else
@@ -79,7 +80,7 @@ namespace ProjectAncients.Mono
                                 }
                                 else
                                 {
-                                    baseDmg = 80f;
+                                    baseDmg = 70;
                                 }
                                 var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
                                 if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
@@ -89,9 +90,8 @@ namespace ProjectAncients.Mono
                                 }
                                 else
                                 {
-                                    targetLm.TakeDamage(baseDmg, transform.position, DamageType.Normal, gameObject);
+                                    StartCoroutine(PerformBiteAttack(target, baseDmg));
                                     behaviour.timeCanAttackAgain = Time.time + 2f;
-                                    animator.SetTrigger("bite");
                                     return;
                                 }
                             }
@@ -140,15 +140,15 @@ namespace ProjectAncients.Mono
                             swallowing.target = throat.transform;
                             swallowing.animationLength = 1f;
                         }
-                        else
+                        else if (canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
                         {
-                            var num = DamageSystem.CalculateDamage(GetBiteDamage(target), DamageType.Normal, target);
-                            StartCoroutine(PerformBiteAttack(target));
+                            StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
                             behaviour.timeCanAttackAgain = Time.time + 2f;
-                            attackSource.clip = biteClipPool.GetRandomClip();
-                            attackSource.Play();
+                            if (canAttackPlayer)
+                            {
+                                creature.Aggression.Value = 0f;
+                            }
                             thisCreature.Aggression.Value -= 0.15f;
-                            creature.GetAnimator().SetTrigger("bite");
                         }
                     }
                 }
@@ -182,19 +182,28 @@ namespace ProjectAncients.Mono
         {
             behaviour.timeCanAttackAgain = Time.time + 4f;
         }
-        private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
+        private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
+            animator.SetFloat("random", UnityEngine.Random.value);
+            animator.SetTrigger("bite");
+            attackSource.clip = biteClipPool.GetRandomClip();
+            attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if (target) target.GetComponent<LiveMixin>().TakeDamage(GetBiteDamage(target));
+            if (target) target.GetComponent<LiveMixin>().TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {
+            if (oneShotPlayer)
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(ECCAudio.LoadAudioClip("DeathImminent"), "DeathImminent", "Warning: Death imminent.");
+            }
             playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
             behaviour.timeCanAttackAgain = Time.time + length;
+            MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
             Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
             yield return new WaitForSeconds(length / 3f);

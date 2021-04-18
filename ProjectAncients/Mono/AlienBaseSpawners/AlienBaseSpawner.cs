@@ -1,10 +1,6 @@
 ﻿using ECCLibrary;
-using ECCLibrary.Internal;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using UWE;
 
@@ -31,6 +27,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
+        public const string structure_skeletonScanner1 = "4f5905f8-ea50-49e8-b24f-44139c6bddcf";
+        public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
+        public const string structure_skeletonScanner3 = "ac2b0798-e311-4cb1-9074-fae59cd7347a";
         public const string cables_attachToBase = "18aa16f9-d1d8-4ccd-8a10-7ad32a5fd283";
         public const string cables_mid01 = "69cd7462-7cd2-456c-bfff-50903c391737";
         public const string cables_mid02 = "94933bb3-0587-4e8d-a38d-b7ec4c859b1a";
@@ -59,8 +58,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_firstAidKit = "bc70e8c8-f750-4c8e-81c1-4884fe1af34e";
         public const string supplies_whiteTablet = "066e533d-f854-435d-82c6-b28ba59858e0";
         public const string supplies_redTablet = "7d19f47b-6ec6-4a25-9b28-b3fd7f5661b7";
+        public const string supplies_purpleTablet = "53ffa3e8-f2f7-43b8-a5c7-946e766aff64";
+        public const string supplies_orangeTablet = "58247109-68b9-411f-b90f-63461df9753a";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
+        public const string atmosphereVolume_antechamber = "d645d7c7-76a2-4818-86b0-5c3e37a51e31";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
@@ -76,6 +78,28 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_lr_hangingplant2_1 = "59f9f106-e2d4-45cc-9211-2d843d456282";
         public const string natural_lr_hangingplant2_2 = "c5664c82-d9f4-445e-86b1-b943e97e3913";
         public const string natural_lr_hangingplant2_3 = "c40f058c-e73b-4cf5-a4e5-6ce78a73899a";
+        public const string natural_plant_fan = "be8b0e66-0cde-428b-be78-9d6bf06eaef4";
+        public const string natural_grass_blue = "c87e584c-7e38-4589-b408-8eca51f474c1";
+        public const string natural_grass_green = "26940e53-d3eb-4770-ae99-6ce4335445d3";
+        public const string natural_grass_yellow = "7ecc9cdd-3afc-4005-bff7-01ba62e95a03";
+        public const string natural_coral_yellow1 = "598c95d8-7420-4907-8f70-ba18b4e6adcb";
+        public const string natural_coral_yellow2 = "450bf7b5-b6cf-4139-921f-3cb9ea505d5f";
+        public const string natural_coral_red = "22bf7b03-8154-410b-a6fb-8ba315f68987";
+        public const string natural_coral_purple = "c71f41ce-b586-4e85-896e-d25e8b5b9de0";
+        public const string bone_reaperMandible = "501c0536-7993-4ed6-be77-6287cedd8d02";
+        public const string bone_reaperSkull = "50031120-ab7a-4f10-b497-3a97f63b4de1";
+        public const string bone_reaperSpine1Rib = "949d8657-1e5c-4418-8948-76b8b712fc57";
+        public const string bone_reaperFullRibcage_normal = "358012ab-6be8-412d-85ee-263a733c88ba";
+        public const string bone_reaperFullRibcage_chipped = "0b6ea118-1c0b-4039-afdb-2d9b26401ad2";
+        public const string bone_reaperHalfRibcage = "e10ff9a1-5f1e-4c4d-bf5f-170dba9e321b";
+        public const string bone_curly = "70c0c560-1a47-46ea-9659-30c8072eb792";
+        public const string bone_generic1 = "db44e245-1bf5-42b7-9da2-ab7c33e91241";
+        public const string bone_generic2 = "33c42808-c360-42b6-954d-5f10d0bffdeb";
+        public const string bone_lessCurly = "6be26bed-91eb-42b9-be92-314d3bd028d6";
+        public const string bone_lessCurly2 = "7c5425d4-2339-436c-822a-d6b3922b489a";
+        public const string bone_lessCurly3 = "e64676d7-0648-4f1e-9ab0-8e37ec877ef9";
+        public const string bone_lessCurly4 = "08b4a416-2cdf-4c6b-8772-f58255e525d7";
+        public const string bone_lessCurly_chipped = "6bf7e935-6e27-4b93-bc9c-25b7ec95c45e";
         /// <summary>
         /// Faces up by default.
         /// </summary>
@@ -83,26 +107,39 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
         private List<GameObject> spawnedChildren;
 
-        private void Start()
+        private IEnumerator Start()
         {
             spawnedChildren = new List<GameObject>();
-            ConstructBase();
+            yield return StartCoroutine(ConstructBase());
             foreach (GameObject obj in spawnedChildren)
             {
+                if(obj is null)
+                {
+                    ECCLibrary.Internal.ECCLog.AddMessage("Spawned child is null");
+                    continue;
+                }
                 obj.transform.parent = null;
-                LargeWorld.main.streamer.cellManager.RegisterEntity(obj.GetComponent<LargeWorldEntity>());
+                LargeWorldEntity lwe = obj.GetComponent<LargeWorldEntity>();
+                if(lwe is null)
+                {
+                    ECCLibrary.Internal.ECCLog.AddMessage("Spawned child {0} has no LWE", obj.gameObject.name);
+                    continue;
+                }
+                LargeWorld.main.streamer.cellManager.RegisterEntity(lwe);
             }
+            Destroy(gameObject);
         }
 
         /// <summary>
         /// Override this method to spawn the prefabs;
         /// </summary>
-        public abstract void ConstructBase();
+        public abstract IEnumerator ConstructBase();
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -110,31 +147,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if(spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-                
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localRotation = Quaternion.identity;
-                spawnedObject.transform.localScale = Vector3.one;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -142,31 +163,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localEulerAngles = localRotation;
-                spawnedObject.transform.localScale = Vector3.one;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale)
+        public IEnumerator SpawnPrefab(string classId, Vector3 localPosition, Vector3 localRotation, Vector3 scale, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
                 spawnedObject.transform.localPosition = localPosition;
@@ -174,59 +179,29 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab, this.transform);
-                spawnedObject.transform.localPosition = localPosition;
-                spawnedObject.transform.localEulerAngles = localRotation;
-                spawnedObject.transform.localScale = scale;
-                spawnedObject.SetActive(true);
-                spawnedChildren.Add(spawnedObject);
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 worldRotation, Vector3 scale, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
@@ -234,31 +209,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                spawnedObject.transform.eulerAngles = worldRotation;
-                spawnedObject.transform.localScale = scale;
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public GameObject SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight)
+        public IEnumerator SpawnPrefabGlobally(string classId, Vector3 worldPosition, Vector3 direction, bool directionIsRight, float scaleFactor = 1f, IOut<GameObject> spawned = null)
         {
-#if SN1
-            if (PrefabDatabase.TryGetPrefab(classId, out GameObject prefab))
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync(classId);
+            yield return request;
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 GameObject spawnedObject = GameObject.Instantiate(prefab);
                 spawnedObject.transform.position = worldPosition;
@@ -270,37 +229,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 {
                     spawnedObject.transform.forward = direction;
                 }
+                spawnedObject.transform.localScale = Vector3.one * scaleFactor;
                 spawnedObject.SetActive(true);
                 LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                return spawnedObject;
+                if (spawned != null) spawned.Set(spawnedObject);
             }
-            return null;
-#elif SN1_exp
-            GameObject result = null;
-            AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>
-            {
-                GameObject prefab = _.Result;
-
-                GameObject spawnedObject = GameObject.Instantiate(prefab);
-                spawnedObject.transform.position = worldPosition;
-                if (directionIsRight)
-                {
-                    spawnedObject.transform.right = direction;
-                }
-                else
-                {
-                    spawnedObject.transform.forward = direction;
-                }
-
-                spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
-                result = spawnedObject;
-            };
-            return result;
-#endif
         }
 
-        public void SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default, Vector3 individualEulers = default)
+        public IEnumerator SpawnPrefabsArray(string classId, float spacing, Vector3 size, Vector3 individualScale, Vector3 offset = default, Vector3 individualEulers = default)
         {
             for (int x = 0; x < size.x; x++)
             {
@@ -311,10 +247,16 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                         Vector3 rawPosition = new Vector3(x, y, z);
                         Vector3 spacedPosition = Vector3.Scale(rawPosition, spacing * individualScale);
                         Vector3 positionWithOffset = spacedPosition - (Vector3.Scale(size, (spacing * individualScale) / 2f)) + offset;
-                        SpawnPrefab(classId, positionWithOffset, individualEulers, individualScale);
+                        yield return StartCoroutine(SpawnPrefab(classId, positionWithOffset, individualEulers, individualScale));
                     }
                 }
             }
+        }
+
+        public IEnumerator SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset)
+        {
+            yield return StartCoroutine(SpawnPrefab(artifactHolder, localPosition));
+            yield return StartCoroutine(SpawnPrefab(relicClassId, localPosition + relicOffset));
         }
 
         /// <summary>
@@ -326,22 +268,22 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// <param name="terrainAttachForward"></param>
         /// <param name="offsetDirection"></param>
         /// <param name="quadraticMagnitude"></param>
-        public void GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
+        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
         {
-            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude);
+            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale);
             foreach (CableSegment segment in segments)
             {
-                SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true);
+                yield return SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
             }
         }
 
         const float midCableSpacing = 1.05f;
-        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude)
+        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale)
         {
             List<CableSegment> segments = new List<CableSegment>();
             segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
             segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
-            int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / midCableSpacing);
+            int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / (midCableSpacing * scale));
             for (int i = 0; i < maxSegments; i++)
             {
                 float percent = (float)i / (float)maxSegments;
@@ -410,12 +352,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public void GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
+        public IEnumerator GenerateAtmospheres(GameObject placeholderHolder, string parentName, string atmosVolClassId)
         {
             GameObject parent = placeholderHolder.SearchChild(parentName);
             foreach (Transform child in parent.transform)
             {
-                SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale);
+                yield return StartCoroutine(SpawnPrefabGlobally(atmosVolClassId, child.transform.position, child.transform.eulerAngles, child.transform.lossyScale));
             }
         }
     }

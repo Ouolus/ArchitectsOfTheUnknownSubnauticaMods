@@ -18,6 +18,15 @@ namespace ProjectAncients.Prefabs
         string pingTypeName;
         string labelKey;
 
+        /// <summary>
+        /// Constructor for a generic signal.
+        /// </summary>
+        /// <param name="classId">Must be unique.</param>
+        /// <param name="textureName"></param>
+        /// <param name="displayName">Shows up in the beacon manager only.</param>
+        /// <param name="label">Shows up in the HUD.</param>
+        /// <param name="position"></param>
+        /// <param name="defaultColorIndex"></param>
         public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0)
             : base(classId, displayName, ".")
         {
@@ -51,6 +60,9 @@ namespace ProjectAncients.Prefabs
             GameObject obj = new GameObject(ClassID);
             obj.SetActive(false);
 
+            obj.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+            obj.EnsureComponent<TechTag>().type = TechType;
+
             PingInstance ping = obj.EnsureComponent<PingInstance>();
             ping.pingType = pingType;
             ping.origin = obj.transform;
@@ -67,6 +79,7 @@ namespace ProjectAncients.Prefabs
             delayedInit.position = position;
             delayedInit.label = labelKey;
             delayedInit.pingTypeName = pingTypeName;
+            delayedInit.colorIndex = defaultColorIndex;
 
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.SetActive(true);

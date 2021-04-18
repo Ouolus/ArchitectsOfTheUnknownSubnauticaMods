@@ -5,34 +5,81 @@ namespace ProjectAncients.Mono.Modules
 {
     public class ElectricalDefenseMK2 : MonoBehaviour
     {
-        public FMODAsset defenseSound;
         public GameObject[] fxElectSpheres;
         public float charge;
         public float chargeScalar;
+        public AttackType attackType;
 
-        float _damage = 7f;
-        float _radius = 18f;
-        float _chargeRadius = 1.5f;
-        float _chargeDamage = 3.5f;
+        float _damageElec = 1f;
+        float _radiusElec = 10f;
+        float _chargeRadiusElec = 1f;
+        float _chargeDamageElec = 2f;
+
+        float _damageArchElec = 7f;
+        float _radiusArchElec = 18f;
+        float _chargeRadiusArchElec = 1.5f;
+        float _chargeDamageArchElec = 3.5f;
+
+        private static FMODAsset normalDefenseSound;
+        private static FMODAsset architectElectricityDefenseSound;
 
         IEnumerator Start()
         {
             yield return new WaitUntil(() => fxElectSpheres is not null);
+            yield return null;
 
-            var fxElects = (GameObject[]) fxElectSpheres.Clone();
-            foreach (var electSphere in fxElects)
+            var fxElects = (GameObject[])fxElectSpheres.Clone();
+            if (attackType != AttackType.SmallElectricity)
             {
-                var renderers = electSphere.GetComponentsInChildren<Renderer>();
-                foreach (var renderer in renderers)
+                foreach (var electSphere in fxElects)
                 {
-                    renderer.material.SetColor("_Color", Color.green);
+                    var renderers = electSphere.GetComponentsInChildren<Renderer>();
+                    foreach (var renderer in renderers)
+                    {
+                        renderer.material.SetColor("_Color", Color.green);
+                    }
                 }
             }
-            
-            float radius = _radius + charge * _chargeRadius;
-            float originalDamage = _damage + charge * _chargeDamage;
-            
-            Utils.PlayFMODAsset(defenseSound, transform);
+            else
+            {
+                foreach (var electSphere in fxElects)
+                {
+                    var renderers = electSphere.GetComponentsInChildren<Renderer>();
+                    foreach (var renderer in renderers)
+                    {
+                        renderer.material.SetColor("_Color", new Color(0.23f, 0.42f, 1f));
+                    }
+                }
+            }
+
+            float radius;
+            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            {
+                radius = _radiusArchElec + charge * _chargeRadiusArchElec;
+            }
+            else
+            {
+                radius = _radiusElec + charge * _chargeRadiusElec;
+            }
+            float originalDamage;
+            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            {
+                originalDamage = _damageArchElec + charge * _chargeDamageArchElec;
+            }
+            else
+            {
+                originalDamage = _damageElec + charge * _chargeDamageElec;
+            }
+
+            EnsureDefenseSounds();
+            if (attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            {
+                Utils.PlayFMODAsset(architectElectricityDefenseSound, transform);
+            }
+            else
+            {
+                Utils.PlayFMODAsset(normalDefenseSound, transform);
+            }
 
             int getObjIndex = Mathf.Clamp((int)(chargeScalar * fxElects.Length), 0,
                 fxElects.Length - 1);
@@ -53,10 +100,43 @@ namespace ProjectAncients.Mono.Modules
 
                 if (creature is not null && liveMixin is not null)
                 {
-                    liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
+                    if(attackType == AttackType.ArchitectElectricity)
+                    {
+                        liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
+                    }
+                    else if(attackType == AttackType.SmallElectricity)
+                    {
+                        liveMixin.TakeDamage(originalDamage, transform.position, DamageType.Electrical, gameObject);
+                    }
+                    else if(attackType == AttackType.Both)
+                    {
+                        liveMixin.TakeDamage(originalDamage / 2f, transform.position, Mod.architectElect, gameObject);
+                        liveMixin.TakeDamage(originalDamage / 2f, transform.position, DamageType.Electrical, gameObject);
+                    }
                 }
             }
             Destroy(gameObject, 5f);
+        }
+
+        private void EnsureDefenseSounds()
+        {
+            if(normalDefenseSound == null)
+            {
+                normalDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                normalDefenseSound.path = "event:/sub/seamoth/pulse";
+            }
+            if(architectElectricityDefenseSound == null)
+            {
+                architectElectricityDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                architectElectricityDefenseSound.path = "event:/sub/base/nuclear_reactor_death";
+            }
+        }
+
+        public enum AttackType
+        {
+            SmallElectricity,
+            ArchitectElectricity,
+            Both
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ProjectAncients.Prefabs
 
         public override string GetEncyTitle => "[REDACTED]";
 
-        public override string GetEncyDesc => "[REDACTED]\n\n(Coming soon)";
+        public override string GetEncyDesc => "[REDACTED]";
 
         public override bool EnableAggression => true;
 
@@ -78,7 +78,7 @@ namespace ProjectAncients.Prefabs
             spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, 0.075f, 40f), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
@@ -116,7 +116,7 @@ namespace ProjectAncients.Prefabs
             gargBehaviour.creature = components.creature;
             gargBehaviour.attachBoneName = AttachBoneName;
             gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
-
+            
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
             mouthAttack.mouth = mouth;
@@ -164,6 +164,9 @@ namespace ProjectAncients.Prefabs
             roar.distantSoundsPrefix = DistantRoarPrefix;
             roar.minDistance = RoarSoundMinMax.Item1;
             roar.maxDistance = RoarSoundMinMax.Item2;
+            roar.delayMin = RoarDelayMinMax.Item1;
+            roar.delayMax = RoarDelayMinMax.Item2;
+            roar.screenShake = DoesScreenShake;
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
@@ -175,15 +178,39 @@ namespace ProjectAncients.Prefabs
             prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
             prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+
+            prefab.AddComponent<VFXSchoolFishRepulsor>();
         }
 
         public virtual void ApplyAggression()
         {
-            MakeAggressiveTo(60f, 2, EcoTargetType.Shark, 0.2f, 2f);
+            MakeAggressiveTo(80f, 2, EcoTargetType.Shark, 0.2f, 2f);
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
+            MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
         }
 
+        public virtual bool DoesScreenShake
+        {
+            get
+            {
+                return false;
+            }
+        }
+        public virtual float SpineBoneSnapSpeed
+        {
+            get
+            {
+                return 0.075f;
+            }
+        }
+        public virtual (float, float) RoarDelayMinMax
+        {
+            get
+            {
+                return (11f, 18f);
+            }
+        }
         public virtual bool UseSwimSounds
         {
             get

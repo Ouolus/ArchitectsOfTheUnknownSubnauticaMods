@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectAncients.Mono
 {
@@ -33,6 +28,10 @@ namespace ProjectAncients.Mono
             if(obj == null)
             {
                 return false;
+            }
+            if (obj.GetComponent<GargantuanRoar>() is not null) //Lazy way of checking if it's another Garg
+            {
+				return false;
             }
             if (obj == Player.main.gameObject)
             {
@@ -71,8 +70,16 @@ namespace ProjectAncients.Mono
 			}
 			if(lastTarget.target != null)
 			{
-				creature.Aggression.Value = 1f;
-				return;
+				LiveMixin lm = lastTarget.target.GetComponent<LiveMixin>();
+				if(lm == null || !lm.IsAlive())
+                {
+					lastTarget.SetTarget(null);
+                }
+                else
+                {
+					creature.Aggression.Value = 1f;
+					return;
+				}
 			}
 			if (EcoRegionManager.main != null)
 			{
@@ -83,7 +90,7 @@ namespace ProjectAncients.Mono
 					creature.Aggression.Value = 1f;
 					if (roar != null)
 					{
-						roar.PlayOnce();
+                        roar.PlayOnce(out _);
 					}
 				}
 			}

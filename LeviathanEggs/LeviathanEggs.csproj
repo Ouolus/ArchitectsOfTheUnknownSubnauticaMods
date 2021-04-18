@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="ArchitectsLibrary">
       <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
+        <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
@@ -93,6 +94,7 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+        <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
@@ -126,21 +128,23 @@
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
     <Compile Include="Patches\Creature_Patches.cs" />
+    <Compile Include="Patches\Drowning_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
     <Compile Include="Patches\SeaEmperorBaby_Patches.cs" />
     <Compile Include="Patches\Survival_Patches.cs" />
     <Compile Include="Patches\WaterParkCreature_Patch.cs" />
     <Compile Include="Prefabs\CaveCrawlerEgg.cs" />
     <Compile Include="Prefabs\GhostEgg.cs" />
-    <Compile Include="Prefabs\GhostRayBlueEgg.cs" />
-    <Compile Include="Prefabs\GhostRayRedEgg.cs" />
+    <Compile Include="Prefabs\GhostRayEgg.cs" />
+    <Compile Include="Prefabs\CrimsonRayEgg.cs" />
     <Compile Include="Prefabs\LavaLarvaEgg.cs" />
     <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
     <Compile Include="Prefabs\SeaEmperorEgg.cs" />
     <Compile Include="Prefabs\SeaTreaderEgg.cs" />
-    <Compile Include="Prefabs\ShuttleBugEgg.cs" />
+    <Compile Include="Prefabs\BloodCrawlerEgg.cs" />
+    <Compile Include="Prefabs\SkyRayEgg.cs" />
     <Compile Include="Prefabs\SpineEelEgg.cs" />
     <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

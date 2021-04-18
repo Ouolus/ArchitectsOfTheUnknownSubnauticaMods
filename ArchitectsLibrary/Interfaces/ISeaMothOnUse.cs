@@ -1,14 +1,14 @@
 namespace ArchitectsLibrary.Interfaces
 {
     /// <summary>
-    /// collection of the needed stuff for a <see cref="SeaMoth"/> Module to become functional on use.
+    /// Used for when a module with a single, instant action is used. Seamoth specific.
     /// </summary>
     public interface ISeaMothOnUse
     {
         /// <summary>
         /// the cooldown of the upgrade module by seconds
         /// </summary>
-        float Cooldown { get; }
+        float UseCooldown { get; }
         
         /// <summary>
         /// your core logic of the upgrade when its uses via a seamoth

@@ -19,15 +19,22 @@ namespace ProjectAncients.Prefabs
 
         public override string AttachBoneName => "AttachBone";
 
-        public override float VehicleDamagePerSecond => 200f;
+        public override float VehicleDamagePerSecond => 60f;
 
         public override bool OneShotsPlayer => true;
 
-        public override float TentacleSnapSpeed => 12f;
+        public override float TentacleSnapSpeed => 8f;
 
         public override bool CanBeScaredByElectricity => true;
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
+
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 18f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
+
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
+
+        public override string GetEncyDesc => "Adult gargantuan text";
+        public override string GetEncyTitle => "Gargantuan Leviathan";
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
@@ -36,20 +43,28 @@ namespace ProjectAncients.Prefabs
             UpdateGargTransparentMaterial(renderer.materials[0]);
             UpdateGargTransparentMaterial(renderer.materials[1]);
             UpdateGargTransparentMaterial(renderer.materials[2]);
-            UpdateGargSkeletonMaterial(renderer.materials[3]);
-            UpdateGargGutsMaterial(renderer.materials[4]);
+            UpdateGargSolidMaterial(renderer.materials[3]);
+            UpdateGargSkeletonMaterial(renderer.materials[4]);
+            UpdateGargGutsMaterial(renderer.materials[5]);
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
+            components.locomotion.maxAcceleration = 45f;
         }
 
-        void UpdateGargTransparentMaterial(Material material)
+        public static void UpdateGargTransparentMaterial(Material material)
         {
             material.SetInt("_ZWrite", 1);
             material.SetFloat("_Fresnel", 1);
         }
 
-        void UpdateGargSkeletonMaterial(Material material)
+        public static void UpdateGargSolidMaterial(Material material)
+        {
+            material.SetFloat("_Fresnel", 1);
+            material.SetFloat("_SpecInt", 25);
+        }
+
+        public static void UpdateGargSkeletonMaterial(Material material)
         {
             material.SetFloat("_Fresnel", 1);
             material.SetFloat("_SpecInt", 50);
@@ -57,7 +72,7 @@ namespace ProjectAncients.Prefabs
             material.SetFloat("_GlowStrengthNight", 6f);
         }
 
-        void UpdateGargGutsMaterial(Material material)
+        public static void UpdateGargGutsMaterial(Material material)
         {
             material.EnableKeyword("MARMO_ALPHA_CLIP");
             material.SetFloat("_Fresnel", 1f);
@@ -67,6 +82,18 @@ namespace ProjectAncients.Prefabs
 
         }
 
+        public override void ApplyAggression()
+        {
+            MakeAggressiveTo(120f, 6, EcoTargetType.Shark, 0.2f, 3f);
+            MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
+            MakeAggressiveTo(200f, 7, EcoTargetType.Leviathan, 0.3f, 3f);
+            MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
         public override bool CanPerformCyclopsCinematic => true;
+
+        public override float EyeFov => 1f;
+
+        public override bool DoesScreenShake => true;
     }
 }

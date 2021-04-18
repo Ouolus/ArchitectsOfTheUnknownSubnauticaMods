@@ -5,20 +5,21 @@ using UnityEngine;
 
 namespace LeviathanEggs.Prefabs
 {
-    public class GhostRayBlueEgg : EggPrefab
+    public class GhostRayEgg : EggPrefab
     {
-        public GhostRayBlueEgg()
-            : base("GhostRayBlueEgg", "Ghost Ray Egg", "Ghost Rays hatch from these.")
-        {}
-        public override GameObject Model => LoadGameObject("RobotEgg");
+        public GhostRayEgg()
+            : base("GhostRayEgg", "Ghost Ray Egg", "Ghost Rays hatch from these.")
+        {
+            LateEnhancements += InitializeObject;
+        }
+        public override GameObject Model => LoadGameObject("RobotEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostRayBlue;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");
+        public override Vector2int SizeInInventory { get; } = new(2, 2);
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -39,8 +40,6 @@ namespace LeviathanEggs.Prefabs
             }
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
     }
 }

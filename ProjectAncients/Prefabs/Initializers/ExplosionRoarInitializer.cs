@@ -29,6 +29,7 @@ namespace ProjectAncients.Prefabs
             GameObject obj = new GameObject();
             obj.EnsureComponent<ExplosionRoar>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
             return obj;
         }
