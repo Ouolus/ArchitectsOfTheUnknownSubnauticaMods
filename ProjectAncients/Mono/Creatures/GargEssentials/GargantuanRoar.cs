@@ -6,46 +6,68 @@ namespace ProjectAncients.Mono
 {
     public class GargantuanRoar : MonoBehaviour
     {
-        AudioSource audioSource;
+        public AudioSource audioSource;
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
         Creature creature;
-        const float delayMin = 11f;
-        const float delayMax = 18f;
+        public float delayMin = 11f;
+        public float delayMax = 18f;
         public string closeSoundsPrefix;
         public string distantSoundsPrefix;
 
         public float minDistance = 50f;
         public float maxDistance = 600f;
+        public bool screenShake;
 
-        private IEnumerator Start()
+        float timeRoarAgain = 0f;
+        float timeUpdateShakeAgain = 0f;
+
+        private float[] clipSampleData = new float[1024];
+        private float clipLoudness = 0f;
+
+        private void Start()
         {
             InitializeAudioSource();
             creature = GetComponent<Creature>();
-            float distance;
-            AudioClip clipToPlay;
-            for (; ; )
+        }
+
+        void Update()
+        {
+            if (!creature.liveMixin.IsAlive())
             {
-                if (!gameObject.GetComponent<LiveMixin>().IsAlive())
+                Destroy(this);
+                return;
+            }
+            if(Time.time > timeRoarAgain)
+            {
+                PlayOnce(out float roarLength);
+                float timeToWait = roarLength + Random.Range(delayMin, delayMax);
+                timeRoarAgain = Time.time + timeToWait;
+            }
+            if (screenShake)
+            {
+                if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
                 {
-                    Destroy(this);
-                    yield break;
+                    audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
+                    clipLoudness = 0f;
+                    foreach (var sample in clipSampleData)
+                    {
+                        clipLoudness += (Mathf.Abs(sample) * Mod.config.RoarScreenShakeIntensity);
+                    }
+                    if (clipLoudness > 0.8f)
+                    {
+                        MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                    }
+                    timeUpdateShakeAgain = Time.time + 0.5f;
                 }
-                distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-                clipToPlay = GetAudioClip(distance);
-                audioSource.clip = clipToPlay;
-                audioSource.Play();
-                creature.GetAnimator().SetFloat("random", Random.value);
-                creature.GetAnimator().SetTrigger("roar");
-                float timeToWait = clipToPlay.length + Random.Range(delayMin, delayMax);
-                yield return new WaitForSeconds(timeToWait);
             }
         }
 
-        public void PlayOnce()
+        public void PlayOnce(out float roarLength)
         {
             float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
             AudioClip clipToPlay = GetAudioClip(distance);
+            roarLength = clipToPlay.length;
             audioSource.clip = clipToPlay;
             audioSource.Play();
             creature.GetAnimator().SetFloat("random", Random.value);
@@ -54,7 +76,7 @@ namespace ProjectAncients.Mono
 
         private AudioClip GetAudioClip(float distance)
         {
-            if (distance < 150f)
+            if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
             {
                 return closeSounds.GetRandomClip();
             }
@@ -71,6 +93,7 @@ namespace ProjectAncients.Mono
             audioSource.spatialBlend = 1f;
             audioSource.minDistance = minDistance;
             audioSource.maxDistance = maxDistance;
+            audioSource.playOnAwake = false;
 
             closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
             farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);

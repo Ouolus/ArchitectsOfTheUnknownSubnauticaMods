@@ -6,22 +6,22 @@ namespace ProjectAncients.Mono
 {
     class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage
     {
-        private Vehicle heldVehicle;
-        private SubRoot heldSubroot;
-        private VehicleType heldVehicleType;
-        private float timeVehicleGrabbed;
-        private float timeVehicleReleased;
-        private Quaternion vehicleInitialRotation;
-        private Vector3 vehicleInitialPosition;
-        private AudioSource vehicleGrabSound;
-        private Transform vehicleHoldPoint;
-        private GargantuanMouthAttack mouthAttack;
-        private RoarAbility roar;
-        private ECCAudio.AudioClipPool seamothSounds;
-        private ECCAudio.AudioClipPool exosuitSounds;
-        private ECCAudio.AudioClipPool cyclopsSounds;
+        Vehicle heldVehicle;
+        SubRoot heldSubroot;
+        VehicleType heldVehicleType;
+        float timeVehicleGrabbed;
+        float timeVehicleReleased;
+        Quaternion vehicleInitialRotation;
+        Vector3 vehicleInitialPosition;
+        AudioSource vehicleGrabSound;
+        Transform vehicleHoldPoint;
+        GargantuanMouthAttack mouthAttack;
+        RoarAbility roar;
+        ECCAudio.AudioClipPool seamothSounds;
+        ECCAudio.AudioClipPool exosuitSounds;
+        ECCAudio.AudioClipPool cyclopsSounds;
 
-        private Collider[] subrootStoredColliders;
+        Collider[] subrootStoredColliders;
 
         public Creature creature;
         public float timeCanAttackAgain;
@@ -56,7 +56,7 @@ namespace ProjectAncients.Mono
 
         public bool Edible(GameObject target)
         {
-            return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>() || target.GetComponent<SubRoot>();
+            return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>() || target.GetComponent<SubRoot>() || target.GetComponent<CyclopsDecoy>();
         }
 
         public bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
@@ -90,6 +90,23 @@ namespace ProjectAncients.Mono
                 return false;
             }
             return true;
+        }
+
+        public bool IsVehicle(GameObject gameObject)
+        {
+            if(gameObject is null)
+            {
+                return false;
+            }
+            if (gameObject.GetComponentInParent<Vehicle>())
+            {
+                return true;
+            }
+            if (gameObject.GetComponentInParent<SubRoot>())
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool IsHoldingVehicle()
@@ -204,12 +221,26 @@ namespace ProjectAncients.Mono
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             }
         }
+        public static bool PlayerIsKillable()
+        {
+            if (Player.main.GetCurrentSub() != null) 
+            {
+                return false;
+            }
+            string biome = Player.main.GetBiomeString();
+            if(biome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+            return true;
+            
+        }
         private void DamageVehicle()
         {
             if (heldVehicle != null)
             {
                 float dps = vehicleDamagePerSecond;
-                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal);
+                heldVehicle.liveMixin.TakeDamage(dps, type: DamageType.Normal, dealer: gameObject);
                 if (!heldVehicle.liveMixin.IsAlive())
                 {
                     if (Player.main.currentMountedVehicle == heldVehicle)

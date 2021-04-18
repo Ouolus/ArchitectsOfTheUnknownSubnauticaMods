@@ -10,11 +10,13 @@ namespace ProjectAncients.Prefabs.AlienBase
     public class TabletTerminalPrefab : Spawnable
     {
         private PrecursorKeyTerminal.PrecursorKeyType keyType;
+        private float triggerRadius;
 
-        public TabletTerminalPrefab(string classId, PrecursorKeyTerminal.PrecursorKeyType keyType)
+        public TabletTerminalPrefab(string classId, PrecursorKeyTerminal.PrecursorKeyType keyType, float triggerRadius = 12f)
             : base(classId, "Forcefield Control", ".")
         {
             this.keyType = keyType;
+            this.triggerRadius = triggerRadius;
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -33,10 +35,10 @@ namespace ProjectAncients.Prefabs.AlienBase
             GameObject obj = GameObject.Instantiate(prefab);
             obj.GetComponent<PrecursorKeyTerminal>().acceptKeyType = keyType;
             obj.SetActive(false);
-            SphereCollider trigger = prefab.GetComponentInChildren<SphereCollider>();
+            SphereCollider trigger = obj.GetComponentInChildren<SphereCollider>();
             if (trigger)
             {
-                trigger.radius = 12f;
+                trigger.radius = triggerRadius;
             }
             return obj;
         }
@@ -50,10 +52,10 @@ namespace ProjectAncients.Prefabs.AlienBase
             GameObject obj = GameObject.Instantiate(prefab);
             obj.GetComponent<PrecursorKeyTerminal>().acceptKeyType = keyType;
             obj.SetActive(false);
-            SphereCollider trigger = prefab.GetComponentInChildren<SphereCollider>();
+            SphereCollider trigger = obj.GetComponentInChildren<SphereCollider>();
             if (trigger)
             {
-                trigger.radius = 12f;
+                trigger.radius = triggerRadius;
             }
             gameObject.Set(obj);
         }

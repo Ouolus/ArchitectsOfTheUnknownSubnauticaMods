@@ -35,7 +35,7 @@ namespace ProjectAncients.Mono
                 GameObject pingObj = Instantiate(prefab);
                 pingObj.transform.position = pos;
                 pingObj.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterCellEntity(pingObj.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(pingObj.GetComponent<LargeWorldEntity>());
             }
 #elif SN1_exp
             AddressablesUtility.LoadAsync<GameObject>(classId).Completed += (_) =>

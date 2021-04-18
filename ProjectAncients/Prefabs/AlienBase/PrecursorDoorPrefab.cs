@@ -50,19 +50,19 @@ namespace ProjectAncients.Prefabs.AlienBase
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = prefab.GetComponent<PrecursorGlobalKeyActivator>();
+            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
             if (globalKeyActivator)
             {
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(prefab.transform.childCount >= 1)
+            if(obj.transform.childCount >= 1)
             {
-                Transform firstChild = prefab.transform.GetChild(0);
+                Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
                     if(firstChild.name == "pedestal")
                     {
-                        GameObject.Destroy(firstChild.gameObject);
+                        GameObject.DestroyImmediate(firstChild.gameObject);
                     }
                 }
             }
@@ -88,19 +88,19 @@ namespace ProjectAncients.Prefabs.AlienBase
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = prefab.GetComponent<PrecursorGlobalKeyActivator>();
+            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
             if (globalKeyActivator)
             {
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(prefab.transform.childCount >= 1)
+            if(obj.transform.childCount >= 1)
             {
-                Transform firstChild = prefab.transform.GetChild(0);
+                Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
                     if(firstChild.name == "pedestal")
                     {
-                        GameObject.Destroy(firstChild.gameObject);
+                        GameObject.DestroyImmediate(firstChild.gameObject);
                     }
                 }
             }
