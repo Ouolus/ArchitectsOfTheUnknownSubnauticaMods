@@ -49,5 +49,10 @@ namespace ArchitectsLibrary.CreatorKit.Packs
         {
             return Utility.Utils.LoadSprite(GetPackIconPath(packName));
         }
+
+        public static bool IsPackValid(string packName)
+        {
+            return File.Exists(GetPackJsonPath(packName));
+        }
     }
 }

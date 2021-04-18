@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Collections.Generic;
 
 namespace ArchitectsLibrary.CreatorKit.Utility
 {
@@ -30,6 +31,27 @@ namespace ArchitectsLibrary.CreatorKit.Utility
         public static void RefreshPackFolderPath()
         {
             packFolderPath = Path.Combine(Utils.GetSNFolderPath, packFolderName);
+        }
+
+        public static List<string> GetAllPacks(bool mustBeValid = true)
+        {
+            FileInfo[] files = new DirectoryInfo(GetPackFolderPath()).GetFiles();
+            List<string> packs = new List<string>();
+            foreach (FileInfo file in files)
+            {
+                if (mustBeValid)
+                {
+                    if (File.Exists(Packs.PackHelper.GetPackJsonPath(file.FullName)))
+                    {
+                        packs.Add(file.FullName);
+                    }
+                }
+                else
+                {
+                    packs.Add(file.FullName);
+                }
+            }
+            return packs;
         }
     }
 }
