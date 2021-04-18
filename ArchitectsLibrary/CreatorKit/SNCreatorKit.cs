@@ -2,7 +2,7 @@
 
 namespace ArchitectsLibrary.CreatorKit
 {
-    public static class SNCreatorKit 
+    public static class SNCreatorKit
     {
         public static void Entry()
         {
