@@ -125,6 +125,7 @@
     <Compile Include="CreatorKit\Packs\PackHelper.cs" />
     <Compile Include="CreatorKit\Packs\PackJson.cs" />
     <Compile Include="CreatorKit\Packs\PackGenerator.cs" />
+    <Compile Include="CreatorKit\UI\UIAssets.cs" />
     <Compile Include="CreatorKit\Utility\PackFolderUtils.cs" />
     <Compile Include="CreatorKit\Utility\Utils.cs" />
     <Compile Include="CreatorKit\SNCreatorKit.cs" />

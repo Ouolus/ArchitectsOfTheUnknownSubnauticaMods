@@ -47,7 +47,7 @@ namespace ArchitectsLibrary.CreatorKit.Packs
 
         public static Sprite LoadPackSprite(string packName)
         {
-            return Utility.Utils.LoadSprite(GetPackIconPath(packName));
+            return Utility.Utils.LoadSprite(GetPackIconPath(packName), UI.UIAssets.GetDefaultPackImage());
         }
 
         public static bool IsPackValid(string packName)

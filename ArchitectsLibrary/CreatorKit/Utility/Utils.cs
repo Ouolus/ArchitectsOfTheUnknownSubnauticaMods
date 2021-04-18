@@ -61,12 +61,12 @@ namespace ArchitectsLibrary.CreatorKit.Utility
             }
         }
 
-        public static Sprite LoadSprite(string iconPath)
+        public static Sprite LoadSprite(string iconPath, Sprite defaultSprite = null)
         {
             Texture2D tex = LoadPNG(iconPath);
             if (tex == null)
             {
-                return null;
+                return defaultSprite;
             }
             else
             {
