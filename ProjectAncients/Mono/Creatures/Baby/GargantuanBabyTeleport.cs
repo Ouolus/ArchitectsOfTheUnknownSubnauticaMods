@@ -11,11 +11,17 @@ namespace ProjectAncients.Mono
 			creature.friend = Player.main.gameObject;
 			InvokeRepeating("WarpToPlayer", UnityEngine.Random.value * warpInterval, warpInterval);
 			cuteFishGoal.Trigger();
+			UpdateCinematicTargetActive();
 		}
 
 		public void OnDrop()
 		{
-			creature.leashPosition = transform.position;
+			creature.leashPosition = Player.main.transform.position;
+			UpdateCinematicTargetActive();
+		}
+
+		void UpdateCinematicTargetActive()
+        {
 			WaterParkCreature component = GetComponent<WaterParkCreature>();
 			bool flag = component != null && component.IsInsideWaterPark();
 			cinematicTarget.SetActive(!flag);
@@ -45,7 +51,7 @@ namespace ProjectAncients.Mono
 		}
 
 		public float warpInterval = 5f;
-		public float warpDistance = 40f;
+		public float warpDistance = 30f;
 		public Creature creature;
 		public GameObject cinematicTarget;
 

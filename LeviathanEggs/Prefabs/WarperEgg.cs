@@ -9,16 +9,16 @@ namespace LeviathanEggs.Prefabs
     {
         public WarperEgg()
             : base("WarperEgg", "Warper Egg", "Warpers are made with these.")
-        {}
-        public override GameObject Model => LoadGameObject("RobotEgg");
+        {
+            LateEnhancements += InitializeObject;
+        }
+        public override GameObject Model => LoadGameObject("RobotEgg.prefab");
         public override TechType HatchingCreature => TechType.Warper;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("RobotEgg");
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             Material material = new Material(Shader.Find("MarmosetUBER"))
             {
                 mainTexture = LoadTexture2D("RobotEggDiffuse"),
@@ -39,8 +39,6 @@ namespace LeviathanEggs.Prefabs
             }
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
     }
 }

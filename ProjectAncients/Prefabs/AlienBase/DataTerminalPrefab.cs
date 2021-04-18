@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using SMLHelper.V2.Assets;
-using ECCLibrary;
+﻿using SMLHelper.V2.Assets;
 using ProjectAncients.Mono;
 using UnityEngine;
+using SMLHelper.V2.Handlers;
 using UWE;
 
 namespace ProjectAncients.Prefabs.AlienBase
@@ -16,11 +15,13 @@ namespace ProjectAncients.Prefabs.AlienBase
         private Vector3 pingPosition;
         private float delay = 5f;
         private TechType techToUnlock;
+        private string subtitlesKey;
+        private string subtitles;
         public const string greenTerminalCID = "625d01c2-40b7-4c87-a1cc-493ad6101c34";
         public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
         public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
 
-        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToUnlock = TechType.None, float delay = 5f)
+        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToUnlock = TechType.None, float delay = 5f, string subtitles = null)
             : base(classId, "Data terminal", ".")
         {
             this.encyKey = encyKey;
@@ -29,6 +30,16 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.audioClipPrefix = audioClipPrefix;
             this.techToUnlock = techToUnlock;
             this.delay = delay;
+            this.subtitles = subtitles;
+            if (!string.IsNullOrEmpty(subtitles))
+            {
+                subtitlesKey = classId + "Subtitles";
+                LanguageHandler.SetLanguageLine(subtitlesKey, subtitles);
+            }
+            else
+            {
+                subtitlesKey = string.Empty;
+            }
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -70,7 +81,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (!string.IsNullOrEmpty(audioClipPrefix))
             {
-                obj.AddComponent<StoryHandTargetPlayAudioClip>().clipPrefix = audioClipPrefix;
+                var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
+                playAudio.clipPrefix = audioClipPrefix;
+                playAudio.subtitlesKey = subtitlesKey;
             }
             if(techToUnlock != TechType.None)
             {

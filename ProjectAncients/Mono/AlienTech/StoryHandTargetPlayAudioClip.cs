@@ -13,6 +13,7 @@ namespace ProjectAncients.Mono
     public class StoryHandTargetPlayAudioClip : MonoBehaviour
     {
         public string clipPrefix;
+        public string subtitlesKey;
 
         public void OnStoryHandTarget()
         {
@@ -22,8 +23,12 @@ namespace ProjectAncients.Mono
             }
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.clip = ECCAudio.CreateClipPool(clipPrefix).GetRandomClip();
-            audioSource.volume = ECCHelpers.GetECCVolume();
+            audioSource.volume = ECCHelpers.GetECCVolume() * 0.75f; //arbitrary volume scale
             audioSource.Play();
+            if (!string.IsNullOrEmpty(subtitlesKey))
+            {
+                Subtitles.main.Add(subtitlesKey);
+            }
             Destroy(this);
         }
     }

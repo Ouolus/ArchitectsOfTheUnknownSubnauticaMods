@@ -1,6 +1,7 @@
 ﻿using ECCLibrary;
 using SMLHelper.V2.Assets;
 using UnityEngine;
+using ArchitectsLibrary.Utility;
 
 namespace ProjectAncients.Prefabs
 {
@@ -10,7 +11,7 @@ namespace ProjectAncients.Prefabs
     public class GenericWorldPrefab : Spawnable
     {
         private GameObject model;
-        private GameObject prefab;
+        protected GameObject prefab;
         private UBERMaterialProperties materialProperties;
         private LargeWorldEntity.CellLevel cellLevel;
 
@@ -19,6 +20,11 @@ namespace ProjectAncients.Prefabs
             this.model = model;
             this.materialProperties = materialProperties;
             this.cellLevel = cellLevel;
+        }
+
+        public virtual void CustomizePrefab()
+        {
+
         }
 
         public override GameObject GetGameObject()
@@ -32,30 +38,8 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
-                foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
-                {
-                    Material material = renderer.material;
-                    material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
-                    material.SetFloat("_SpecInt", 8f);
-                    material.SetFloat("_Fresnel", 0.4f);
-                    if(ECCHelpers.CompareStrings(material.name, "Transparent", ECCStringComparison.Contains))
-                    {
-                        material.SetFloat("_SrcBlend", 5f);
-                        material.SetFloat("_DstBlend", 10f);
-                        material.SetFloat("_SrcBlend2", 5f);
-                        material.SetFloat("_DstBlend2", 10f);
-                        material.SetFloat("_AddSrcBlend", 5f);
-                        material.SetFloat("_AddDstBlend", 1f);
-                        material.SetFloat("_AddSrcBlend2", 5f);
-                        material.SetFloat("_AddDstBlend2", 1f);
-                        material.SetInt("_ZWrite", 0);
-                        material.EnableKeyword("MARMO_SIMPLE_GLASS");
-                    }
-                }
-                foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
-                {
-                    col.gameObject.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
-                }
+                MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
+                CustomizePrefab();
             }
             return prefab;
         }

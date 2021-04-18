@@ -1,10 +1,5 @@
-﻿using ECCLibrary.Internal;
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace ProjectAncients.Mono
@@ -16,6 +11,8 @@ namespace ProjectAncients.Mono
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
         private const float spawnYLevel = -90f;
+
+        bool coroutinePlaying = false;
 
         private void Start()
         {
@@ -44,7 +41,7 @@ namespace ProjectAncients.Mono
         {
             if (playerWasInVoid && Time.time > timeToSpawnGarg)
             {
-                if (!VoidGargSingleton.AdultGargExists)
+                if (!VoidGargSingleton.AdultGargExists && !coroutinePlaying)
                 {
                     StartCoroutine(AdultSpawner());
                 }
@@ -53,17 +50,19 @@ namespace ProjectAncients.Mono
 
         IEnumerator AdultSpawner()
         {
+            coroutinePlaying = true;
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(adultPrefab);
             yield return task;
             
             var obj = task.GetResult();
             GameObject newGargantuan = Instantiate(obj, GetGargSpawnPoint(Player.main.transform.position), Quaternion.LookRotation(Vector3.up));
             newGargantuan.SetActive(true);
+            coroutinePlaying = false;
         }
 
         public static bool IsVoidBiome(string biomeName)
         {
-            return string.Equals(biomeName, "void", StringComparison.OrdinalIgnoreCase);
+            return string.Equals(biomeName, "void", StringComparison.OrdinalIgnoreCase) || biomeName == string.Empty;
         }
 
         private static Vector3 GetGargSpawnPoint(Vector3 playerWorldPosition)

@@ -2,6 +2,7 @@
 using ECCLibrary.Internal;
 using HarmonyLib;
 using UnityEngine;
+using System.Collections;
 
 namespace ProjectAncients.Patches
 {
@@ -18,7 +19,7 @@ namespace ProjectAncients.Patches
             voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = "void";
 
             GameObject musicParent = __instance.gameObject.SearchChild("music");
-            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("precursorCave"), musicParent.transform);
+            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("dunes"), musicParent.transform);
             referenceMusic.name = "voidAmbience";
             referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
         }
@@ -27,34 +28,40 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.Start))]
         public static void WaterBiomeManager_Start_Postfix(WaterBiomeManager __instance)
         {
-            if (!__instance.biomeLookup.ContainsKey("void"))
+            WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
+            {
+                absorption = new Vector3(7f, 6f, 6f),
+                ambientScale = 0f,
+                emissiveScale = 0f,
+                sunlightScale = 1f,
+                murkiness = 1f,
+                startDistance = 50f,
+                scatteringColor = new Color(0f, 0.2f, 0.02f),
+                temperature = 0f,
+                scattering = 0.25f
+            };
+            PatchBiomeFog(__instance, "void", voidWaterscapeSettings, __instance.biomeSkies[0]);
+        }
+
+        static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings, mset.Sky sky)
+        {
+            if (!waterBiomeManager.biomeLookup.ContainsKey(biomeName))
             {
                 GameObject skyPrefab = null;
-                if (__instance.biomeLookup.TryGetValue("LostRiver_BonesField", out int index))
+                if (sky)
                 {
-                    skyPrefab = __instance.biomeSettings[index].skyPrefab;
+                    skyPrefab = sky.gameObject;
                 }
-                WaterscapeVolume.Settings waterscapeSettings = new WaterscapeVolume.Settings()
-                {
-                    absorption = new Vector3(6f, 6f, 6f),
-                    ambientScale = 0f,
-                    emissiveScale = 0f,
-                    sunlightScale = 1f,
-                    murkiness = 0.5f,
-                    startDistance = 50f,
-                    scatteringColor = Color.green,
-                    temperature = 0f,
-                    scattering = 0.15f
-                };
                 WaterBiomeManager.BiomeSettings biomeSettings = new WaterBiomeManager.BiomeSettings()
                 {
-                    name = "void",
+                    name = biomeName,
                     skyPrefab = skyPrefab,
-                    settings = waterscapeSettings
+                    settings = waterScapeSettings
                 };
-                __instance.biomeSettings.Add(biomeSettings);
-                int indexForNew = __instance.biomeSettings.Count - 1;
-                __instance.biomeLookup.Add("void", indexForNew);
+                waterBiomeManager.biomeSkies.Add(sky);
+                waterBiomeManager.biomeSettings.Add(biomeSettings);
+                int indexForNew = waterBiomeManager.biomeSettings.Count - 1;
+                waterBiomeManager.biomeLookup.Add(biomeName, indexForNew);
             }
         }
     }

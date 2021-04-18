@@ -9,7 +9,9 @@ namespace LeviathanEggs.Prefabs
     {
         public SeaDragonEgg()
             :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons hatch from these.")
-        {}
+        {
+            EarlyEnhancements += InitializeObject;
+        }
 
         public override GameObject Model => LoadGameObject("SeaDragonEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaDragon;
@@ -39,10 +41,8 @@ namespace LeviathanEggs.Prefabs
             }
         };
 
-        public override GameObject GetGameObject()
+        public void InitializeObject(GameObject prefab)
         {
-            var prefab = base.GetGameObject();
-            
             GameObject seaDragonEgg = Resources.Load<GameObject>("WorldEntities/Environment/Precursor/LostRiverBase/Precursor_LostRiverBase_SeaDragonEggShell");
             Renderer[] aRenderers = seaDragonEgg.GetComponentsInChildren<Renderer>();
             Material shell = null;
@@ -67,8 +67,6 @@ namespace LeviathanEggs.Prefabs
             seaDragonEgg.SetActive(false);
 
             prefab.AddComponent<SpawnLocations>();
-
-            return prefab;
         }
         public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }

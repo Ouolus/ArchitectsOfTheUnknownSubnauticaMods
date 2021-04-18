@@ -134,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
@@ -143,59 +144,83 @@
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
+    <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
-    <Compile Include="Mono\GargantuanBabyAggression.cs" />
-    <Compile Include="Mono\GargantuanBabyGrowthManager.cs" />
-    <Compile Include="Mono\GargantuanBabyTeleport.cs" />
-    <Compile Include="Mono\GargEyeTracker.cs" />
+    <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
+    <Compile Include="Mono\Commands\SecretCommand.cs" />
+    <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
+    <Compile Include="Mono\Commands\TrollVoice.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargantuanBabyGrowthManager.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargantuanBabyTeleport.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargBabyTarget.cs" />
+    <Compile Include="Mono\Creatures\CreatureActions\GargantuanBabyAggression.cs" />
+    <Compile Include="Mono\Creatures\CreatureActions\RunAwayWhenScared.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanBehaviour.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanMouthAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
-    <Compile Include="Mono\RunAwayWhenScared.cs" />
+    <Compile Include="Mono\Modules\ZapOnDamage.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
-    <Compile Include="Mono\GargantuanSwimAmbience.cs" />
-    <Compile Include="Mono\GargantuanTentacleAttack.cs" />
-    <Compile Include="Mono\GargantuanRoar.cs" />
-    <Compile Include="Mono\GargantuanBehaviour.cs" />
-    <Compile Include="Mono\GargantuanMouthAttack.cs" />
+    <Compile Include="Mono\VoidShoalSpawner.cs" />
+    <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
     <Compile Include="Patches\LiveMixin_Patches.cs" />
+    <Compile Include="Patches\MainMenu_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\PrecursorTabletFixer.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
-    <Compile Include="Prefabs\AdultGargantuan.cs" />
+    <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterFramePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterNetwork.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterPrimaryPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
-    <Compile Include="Prefabs\GargantuanBaby.cs" />
+    <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
+    <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
+    <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
+    <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
+    <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
+    <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
-    <Compile Include="Prefabs\GargantuanBase.cs" />
-    <Compile Include="Prefabs\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Initializers\AlienBaseInitializer.cs" />
-    <Compile Include="Prefabs\SkeletonGarg.cs" />
-    <Compile Include="Prefabs\VoidGargantuanPrefab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomPDALinesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
