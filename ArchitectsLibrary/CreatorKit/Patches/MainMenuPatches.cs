@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 using HarmonyLib;
+using CreatorKit.Mono;
 
 namespace CreatorKit.Patches
 {
@@ -14,7 +11,7 @@ namespace CreatorKit.Patches
         [HarmonyPostfix]
         public static void MainMenuMusic_Start_Postfix()
         {
-
+            GameObject.Instantiate(UI.UIAssets.GetPackLauncherPrefab()).AddComponent<MainMenuPackLauncher>();
         }
     }
 }

@@ -26,5 +26,15 @@ namespace CreatorKit.UI
         {
             return assetBundle.LoadAsset<Sprite>("PackDefault");
         }
+
+        public static GameObject GetPackLauncherPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("PackLauncher");
+        }
+
+        public static GameObject GetPackListButtonPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("PackListButton");
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace ArchitectsLibrary
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
             VehiclePatches.Patch(harmony);
+
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         private static IEnumerator LoadIonCubeMaterial()

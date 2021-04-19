@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="CreatorKit\Mono\MainMenuPackLauncher.cs" />
     <Compile Include="CreatorKit\Packs\PackData.cs" />
     <Compile Include="CreatorKit\Packs\PackHelper.cs" />
     <Compile Include="CreatorKit\Packs\PackJson.cs" />
@@ -154,9 +155,7 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CreatorKit\Mono\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
