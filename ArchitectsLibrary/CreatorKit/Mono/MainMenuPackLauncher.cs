@@ -15,6 +15,7 @@ namespace CreatorKit.Mono
         private Button launchButton;
         private Button refreshButton;
         bool refreshing;
+        MainMenuEditorLauncher editorLauncher;
 
         private void Start()
         {
@@ -25,6 +26,10 @@ namespace CreatorKit.Mono
             refreshButton = gameObject.SearchChild("RefreshButton").GetComponent<Button>();
             refreshButton.onClick.AddListener(RefreshList);
             listButtonPrefab = UI.UIAssets.GetPackListButtonPrefab();
+            GameObject editorLauncherObj = Instantiate(UI.UIAssets.GetEditorLauncherPrefab(), this.transform.parent);
+            editorLauncherObj.SetActive(false);
+            editorLauncher = editorLauncherObj.AddComponent<MainMenuEditorLauncher>();
+            editorLauncher.packLauncher = this;
             RefreshList();
         }
 
@@ -33,7 +38,7 @@ namespace CreatorKit.Mono
             foreach (Transform child in listParent.transform)
             {
                 Destroy(child.gameObject);
-                //yield return new WaitForSeconds(0.1f); Can't edit the list of children while we're during foreach, oops
+                //yield return new WaitForSeconds(0.1f); Can't edit the list of children while we're during foreach, oops. This really doesn't need to be async anymore.
             }
             yield return null;
         }
@@ -91,6 +96,7 @@ namespace CreatorKit.Mono
         {
             selectedPack = packButton;
             launchButton.interactable = packButton is not null;
+            editorLauncher.CloseLauncher();
             foreach (Transform child in listParent)
             {
                 PackListButton button = child.gameObject.GetComponent<PackListButton>();
@@ -109,7 +115,7 @@ namespace CreatorKit.Mono
         }
         public void LaunchWithCurrentPack()
         {
-
+            editorLauncher.OpenLauncher(selectedPack.packName);
         }
     }
 }

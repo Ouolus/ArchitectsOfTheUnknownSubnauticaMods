@@ -83,14 +83,13 @@ namespace CreatorKit.Utility
 
         public static void GenerateEventSystemIfNeeded()
         {
-            var existing = Object.FindObjectOfType<EventSystem>();
-            if(existing is not null)
+            var currentEventSystem = Object.FindObjectOfType<EventSystem>();
+            if(currentEventSystem is null)
             {
-                GameObject.Destroy(existing.gameObject);
+                GameObject go = new GameObject("EventSystem");
+                go.AddComponent<EventSystem>();
+                go.AddComponent<StandaloneInputModule>();
             }
-            GameObject go = new GameObject("EventSystem");
-            go.AddComponent<EventSystem>();
-            go.AddComponent<StandaloneInputModule>();
         }
     }
 }
