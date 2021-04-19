@@ -19,19 +19,19 @@ namespace ArchitectsLibrary
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
-            Initializer.PatchAllDictionaries();
-            
-            Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
-            
-            VehiclePatches.Patch(harmony);
+            Initializer.PatchAllDictionaries();      
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
 
             UWE.CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
 
             CreatorKit.SNCreatorKit.Entry();
+
+            Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
+
+            VehiclePatches.Patch(harmony);
         }
-        
+
         private static IEnumerator LoadIonCubeMaterial()
         {
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
