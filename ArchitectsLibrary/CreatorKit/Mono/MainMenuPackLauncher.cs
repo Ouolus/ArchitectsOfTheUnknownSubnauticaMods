@@ -26,7 +26,7 @@ namespace CreatorKit.Mono
             refreshButton = gameObject.SearchChild("RefreshButton").GetComponent<Button>();
             refreshButton.onClick.AddListener(RefreshList);
             listButtonPrefab = UI.UIAssets.GetPackListButtonPrefab();
-            GameObject editorLauncherObj = Instantiate(UI.UIAssets.GetEditorLauncherPrefab(), this.transform.parent);
+            GameObject editorLauncherObj = Instantiate(UI.UIAssets.GetEditorLauncherPrefab(), this.transform.parent, false);
             editorLauncherObj.SetActive(false);
             editorLauncher = editorLauncherObj.AddComponent<MainMenuEditorLauncher>();
             editorLauncher.packLauncher = this;

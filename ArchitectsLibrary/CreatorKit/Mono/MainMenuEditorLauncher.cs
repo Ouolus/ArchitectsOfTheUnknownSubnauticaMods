@@ -11,6 +11,7 @@ namespace CreatorKit.Mono
         void Start()
         {
             gameObject.SearchChild("ExitButton").GetComponent<Button>().onClick.AddListener(OnButtonExit);
+            gameObject.SearchChild("LanguageEditorButton").GetComponent<Button>().onClick.AddListener(OnButtonLanguageEditor);
         }
 
         public void OpenLauncher(string packName)
