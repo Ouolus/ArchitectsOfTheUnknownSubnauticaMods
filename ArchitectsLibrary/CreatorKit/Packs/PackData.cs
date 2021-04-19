@@ -18,5 +18,13 @@ namespace CreatorKit.Packs
             this.id = id;
             invalid = false;
         }
+
+        public bool Valid
+        {
+            get
+            {
+                return !invalid;
+            }
+        }
     }
 }

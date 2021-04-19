@@ -8,7 +8,7 @@ namespace CreatorKit.Packs
         public const string packJsonFile = "pack.json";
         public const string packIconFile = "icon.png";
 
-        public static PackData ReadPackData(string packName)
+        public static PackData GetPackData(string packName)
         {
             string jsonPath = GetPackJsonPath(packName);
             if (!File.Exists(jsonPath))
@@ -32,7 +32,7 @@ namespace CreatorKit.Packs
 
         public static string GetPackPath(string packName)
         {
-            return Path.Combine(Utility.PackFolderUtils.GetPackFolderPath(), packName);
+            return Path.Combine(PackFolderUtils.GetPackFolderPath(), packName);
         }
 
         public static string GetPackJsonPath(string packName)

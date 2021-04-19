@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace CreatorKit.Utility
 {
@@ -78,6 +79,18 @@ namespace CreatorKit.Utility
         public static Texture2D LoadPNG(string imagePath)
         {
             return SMLHelper.V2.Utility.ImageUtils.LoadTextureFromFile(imagePath);
+        }
+
+        public static void GenerateEventSystemIfNeeded()
+        {
+            var existing = Object.FindObjectOfType<EventSystem>();
+            if(existing is not null)
+            {
+                GameObject.Destroy(existing.gameObject);
+            }
+            GameObject go = new GameObject("EventSystem");
+            go.AddComponent<EventSystem>();
+            go.AddComponent<StandaloneInputModule>();
         }
     }
 }

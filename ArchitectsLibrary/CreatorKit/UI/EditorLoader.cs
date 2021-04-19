@@ -19,6 +19,7 @@ namespace CreatorKit.UI
             Scene newScene = SceneManager.CreateScene(editorInstance.SceneName);
             SceneManager.SetActiveScene(newScene);
             yield return SceneManager.UnloadSceneAsync(mainScene);
+            Utility.Utils.GenerateEventSystemIfNeeded();
             editorInstance.OnSceneLoaded();
         }
 

@@ -12,6 +12,7 @@ namespace CreatorKit.Patches
         public static void MainMenuMusic_Start_Postfix()
         {
             GameObject.Instantiate(UI.UIAssets.GetPackLauncherPrefab()).AddComponent<MainMenuPackLauncher>();
+            Utility.Utils.GenerateEventSystemIfNeeded();
         }
     }
 }

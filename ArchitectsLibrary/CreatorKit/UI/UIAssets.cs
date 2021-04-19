@@ -36,5 +36,10 @@ namespace CreatorKit.UI
         {
             return assetBundle.LoadAsset<GameObject>("PackListButton");
         }
+
+        public static GameObject GetEditorLauncherPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("EditorLauncher");
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-namespace CreatorKit.Utility
+namespace CreatorKit.Packs
 {
     internal static class PackFolderUtils
     {
@@ -30,25 +30,30 @@ namespace CreatorKit.Utility
         /// </summary>
         public static void RefreshPackFolderPath()
         {
-            packFolderPath = Path.Combine(Utils.GetSNFolderPath, packFolderName);
+            packFolderPath = Path.Combine(Utility.Utils.GetSNFolderPath, packFolderName);
         }
 
+        /// <summary>
+        /// Returns the names of all Packs in the Packs folder.
+        /// </summary>
+        /// <param name="mustBeValid"></param>
+        /// <returns></returns>
         public static List<string> GetAllPacks(bool mustBeValid = true)
         {
-            FileInfo[] files = new DirectoryInfo(GetPackFolderPath()).GetFiles();
+            DirectoryInfo[] directories = new DirectoryInfo(GetPackFolderPath()).GetDirectories();
             List<string> packs = new List<string>();
-            foreach (FileInfo file in files)
+            foreach (DirectoryInfo directory in directories)
             {
                 if (mustBeValid)
                 {
-                    if (File.Exists(Packs.PackHelper.GetPackJsonPath(file.FullName)))
+                    if (File.Exists(Packs.PackHelper.GetPackJsonPath(directory.FullName)))
                     {
-                        packs.Add(file.FullName);
+                        packs.Add(directory.Name);
                     }
                 }
                 else
                 {
-                    packs.Add(file.FullName);
+                    packs.Add(directory.Name);
                 }
             }
             return packs;
