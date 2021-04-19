@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ArchitectsLibrary.CreatorKit.UI
+namespace CreatorKit.UI
 {
     internal abstract class EditorBase : MonoBehaviour
     {

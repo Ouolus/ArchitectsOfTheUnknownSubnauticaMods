@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace ArchitectsLibrary.CreatorKit.Utility
+namespace CreatorKit.Utility
 {
     internal static class Utils
     {

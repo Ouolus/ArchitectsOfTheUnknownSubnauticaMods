@@ -1,6 +1,6 @@
-﻿using ArchitectsLibrary.CreatorKit.Packs;
+﻿using CreatorKit.Packs;
 
-namespace ArchitectsLibrary.CreatorKit
+namespace CreatorKit
 {
     /// <summary>
     /// The main class that sets up all behaviour for the Subnautica Creation Kit.

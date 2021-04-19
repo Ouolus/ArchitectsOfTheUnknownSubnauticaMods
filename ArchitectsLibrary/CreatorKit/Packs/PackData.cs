@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArchitectsLibrary.CreatorKit.Packs
+namespace CreatorKit.Packs
 {
     internal struct PackData
     {

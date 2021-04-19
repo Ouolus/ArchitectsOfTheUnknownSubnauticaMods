@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-namespace ArchitectsLibrary.CreatorKit.Utility
+namespace CreatorKit.Utility
 {
     internal static class PackFolderUtils
     {

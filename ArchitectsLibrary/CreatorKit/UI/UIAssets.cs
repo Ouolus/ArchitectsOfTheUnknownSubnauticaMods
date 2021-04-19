@@ -7,7 +7,7 @@ using UnityEngine;
 using System.Reflection;
 using System.IO;
 
-namespace ArchitectsLibrary.CreatorKit.UI
+namespace CreatorKit.UI
 {
     /// <summary>
     /// This static class contains a static reference to the AssetBundle and has some methods for obtaining commonly used UI Sprites.

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace ArchitectsLibrary.CreatorKit.Packs
+namespace CreatorKit.Packs
 {
     internal static class PackHelper
     {

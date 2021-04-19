@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
 
-namespace ArchitectsLibrary.CreatorKit.Patches
+namespace CreatorKit.Patches
 {
     [HarmonyPatch(typeof(MainMenuMusic))]
     public class MainMenuMusicPatches

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ArchitectsLibrary.CreatorKit.Packs
+namespace CreatorKit.Packs
 {
     [Serializable]
     internal struct PackJson

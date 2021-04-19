@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UWE;
 
-namespace ArchitectsLibrary.CreatorKit.UI
+namespace CreatorKit.UI
 {
     internal static class EditorLoader
     {
