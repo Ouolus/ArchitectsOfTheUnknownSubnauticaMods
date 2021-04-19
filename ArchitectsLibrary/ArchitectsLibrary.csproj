@@ -125,6 +125,10 @@
     <Compile Include="CreatorKit\Packs\PackHelper.cs" />
     <Compile Include="CreatorKit\Packs\PackJson.cs" />
     <Compile Include="CreatorKit\Packs\PackGenerator.cs" />
+    <Compile Include="CreatorKit\Patches\MainMenuPatches.cs" />
+    <Compile Include="CreatorKit\UI\EditorBase.cs" />
+    <Compile Include="CreatorKit\UI\EditorLoader.cs" />
+    <Compile Include="CreatorKit\UI\LanguageEditor.cs" />
     <Compile Include="CreatorKit\UI\UIAssets.cs" />
     <Compile Include="CreatorKit\Utility\PackFolderUtils.cs" />
     <Compile Include="CreatorKit\Utility\Utils.cs" />
@@ -150,7 +154,9 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CreatorKit\Mono\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
