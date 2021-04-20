@@ -124,6 +124,7 @@
     <Compile Include="CreatorKit\Mono\MainMenuEditorLauncher.cs" />
     <Compile Include="CreatorKit\Mono\MainMenuPackLauncher.cs" />
     <Compile Include="CreatorKit\Mono\PackListButton.cs" />
+    <Compile Include="CreatorKit\Mono\UIPopupMultiChoice.cs" />
     <Compile Include="CreatorKit\Packs\PackData.cs" />
     <Compile Include="CreatorKit\Packs\PackHelper.cs" />
     <Compile Include="CreatorKit\Packs\PackJson.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="CreatorKit\UI\LanguageEditor.cs" />
     <Compile Include="CreatorKit\UI\UIAssets.cs" />
     <Compile Include="CreatorKit\Packs\PackFolderUtils.cs" />
+    <Compile Include="CreatorKit\UI\UIPopups.cs" />
     <Compile Include="CreatorKit\Utility\Utils.cs" />
     <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />

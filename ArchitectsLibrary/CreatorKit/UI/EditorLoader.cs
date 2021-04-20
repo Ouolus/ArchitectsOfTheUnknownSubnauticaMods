@@ -24,26 +24,27 @@ namespace CreatorKit.UI
                 editorLoader = sceneLoaderObj.AddComponent<EditorLoader>();
             }
         }
-        private static IEnumerator LoadEditorScene<EditorType>() where EditorType : EditorBase
+        private static IEnumerator LoadEditorScene<EditorType>(string packName) where EditorType : EditorBase
         {
-            EditorType editorInstance = Activator.CreateInstance<EditorType>();
-            Scene[] loadedScenes = GetLoadedScenes();
-            foreach(Scene sceneToUnload in loadedScenes)
+            Scene[] scenesToUnload = GetLoadedScenes();
+            Scene newScene = SceneManager.CreateScene("New scene");
+            SceneManager.SetActiveScene(newScene);
+            foreach (Scene sceneToUnload in scenesToUnload)
             {
                 yield return SceneManager.UnloadSceneAsync(sceneToUnload);
             }
-            Scene newScene = SceneManager.CreateScene(editorInstance.SceneName);
-            SceneManager.SetActiveScene(newScene);
             Utility.Utils.GenerateEventSystemIfNeeded();
-            editorInstance.OnSceneLoaded();
             GameObject cameraObj = new GameObject("MainCamera");
             cameraObj.AddComponent<Camera>();
+            cameraObj.AddComponent<MainCamera>();
+            EditorType editorInstance = new GameObject("Editor Parent").AddComponent<EditorType>();
+            editorInstance.OnSceneLoaded(packName);
         }
 
-        public static void LoadLanguageEditor()
+        public static void LoadLanguageEditor(string packName)
         {
             ValidateSceneLoaderObj();
-            editorLoader.StartCoroutine(LoadEditorScene<LanguageEditor>());
+            editorLoader.StartCoroutine(LoadEditorScene<LanguageEditor>(packName));
         }
 
         static Scene[] GetLoadedScenes()

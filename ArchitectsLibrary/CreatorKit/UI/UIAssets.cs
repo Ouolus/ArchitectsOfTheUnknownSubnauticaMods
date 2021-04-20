@@ -41,5 +41,30 @@ namespace CreatorKit.UI
         {
             return assetBundle.LoadAsset<GameObject>("EditorLauncher");
         }
+
+        public static GameObject GetLanguageEditorPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("LanguageEditor");
+        }
+
+        public static GameObject GetMultipleChoicePopupPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("MultipleChoicePopup");
+        }
+
+        public static GameObject GetMultipleChoiceButtonPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("MultipleChoiceButton");
+        }
+
+        public static GameObject GetEditorBackgroundPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("EditorBackground");
+        }
+
+        public static GameObject GetEditorHeaderPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("EditorHeader");
+        }
     }
 }

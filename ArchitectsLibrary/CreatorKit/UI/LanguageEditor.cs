@@ -8,9 +8,14 @@ namespace CreatorKit.UI
 {
     internal class LanguageEditor : EditorBase
     {
-        public override string SceneName => "LanguageEditor";
+        public override string SceneName => "Language Editor";
 
-        public override void OnSceneLoaded()
+        public override void OnSave()
+        {
+
+        }
+
+        protected override void OnLoaded()
         {
             
         }

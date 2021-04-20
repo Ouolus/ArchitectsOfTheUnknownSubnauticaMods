@@ -7,6 +7,7 @@ namespace CreatorKit.Mono
     internal class MainMenuEditorLauncher : MonoBehaviour
     {
         public MainMenuPackLauncher packLauncher;
+        private string packName;
 
         void Start()
         {
@@ -17,6 +18,7 @@ namespace CreatorKit.Mono
         public void OpenLauncher(string packName)
         {
             gameObject.SetActive(true);
+            this.packName = packName;
         }
 
         public void CloseLauncher()
@@ -31,7 +33,7 @@ namespace CreatorKit.Mono
 
         public void OnButtonLanguageEditor()
         {
-            UI.EditorLoader.LoadLanguageEditor();
+            UI.EditorLoader.LoadLanguageEditor(packName);
         }
     }
 }
