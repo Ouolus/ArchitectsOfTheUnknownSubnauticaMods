@@ -49,7 +49,7 @@ namespace ProjectAncients.Mono
             }
             IPrefabRequest request2 = PrefabDatabase.GetPrefabAsync(hoopfishShoalClassId);
             yield return request2;
-            if (request.TryGetPrefab(out GameObject prefab2))
+            if (request2.TryGetPrefab(out GameObject prefab2))
             {
                 shoalPrefab_Hoopfish = GameObject.Instantiate(prefab2);
                 shoalPrefab_Hoopfish.SetActive(false);
