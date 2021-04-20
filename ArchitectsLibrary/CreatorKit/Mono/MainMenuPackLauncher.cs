@@ -47,7 +47,7 @@ namespace CreatorKit.Mono
         {
             List<string> allPacks = PackFolderUtils.GetAllPacks(false);
             Debug.Log(allPacks.Count);
-            foreach(string packName in allPacks)
+            foreach (string packName in allPacks)
             {
                 PackData data = PackHelper.GetPackData(packName);
                 GameObject buttonObj = Instantiate(listButtonPrefab);
