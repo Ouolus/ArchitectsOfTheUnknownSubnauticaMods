@@ -390,7 +390,7 @@ namespace ProjectAncients
             #endregion
 
             #region Teleporters
-            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", Vector3.zero, 0f, new Vector3(267.30f, -1438.50f, -350.44f), 150f, true);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", Vector3.zero, 0f, new Vector3(267.30f, -1439f, -350.44f), 150f, true, true);
             voidPcfNetwork.Patch();
 
             TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(12f, 0f, 0f), 0f, new Vector3(-857.80f, -189.89f, -641.00f), 0f);
