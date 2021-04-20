@@ -9,7 +9,7 @@ namespace ProjectAncients.Mono
         GameObject shoalPrefab;
         VFXSchoolFishManager shoalManager;
         private const string shoalClassId = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
-        private const int shoalCap = 70;
+        private const int shoalCap = 40;
         private bool canSpawn = false;
 
         private IEnumerator Start()
@@ -76,7 +76,7 @@ namespace ProjectAncients.Mono
 
         Vector3 GetRandomSpawnPosition()
         {
-            return Player.main.transform.position + (Random.onUnitSphere * 30f);
+            return Player.main.transform.position + (Random.onUnitSphere * 50f);
         }
     }
 }
