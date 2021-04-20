@@ -29,6 +29,7 @@ namespace ProjectAncients.Prefabs
             inspect.rigidBody = prefab.GetComponent<Rigidbody>();
             inspect.animParam = "holding_precursorioncrystal";
             inspect.inspectDuration = 4.1f;*/
+            prefab.GetComponent<CreatureEgg>().explodeOnHatch = false;
         }
     }
 }
