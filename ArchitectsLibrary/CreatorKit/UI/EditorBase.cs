@@ -40,7 +40,7 @@ namespace CreatorKit.UI
         {
             TaskResult<int> result = new TaskResult<int>();
             yield return UIPopups.MultiChoicePopup("Would you like to exit? All unsaved changes will be lost.", new string[] { "Yes", "No" }, result);
-            ErrorMessage.AddMessage(result.Get().ToString());
+            Debug.Log("Result: " + result.Get().ToString());
             if(result.Get() == 0)
             {
                 Application.Quit();

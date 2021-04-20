@@ -19,14 +19,13 @@ namespace CreatorKit.Mono
                 GameObject spawnedButton = Instantiate(buttonPrefab);
                 spawnedButton.GetComponentInChildren<Text>().text = choices[i];
                 spawnedButton.GetComponent<RectTransform>().SetParent(transform, false);
-                Button buttonComponent = spawnedButton.GetComponent<Button>();
-                buttonComponent.onClick.AddListener(delegate { ClickButton(i); });
+                spawnedButton.AddComponent<MultiChoiceButton>().Initialize(i, this);
             }
             yield return new WaitUntil(() => chosen != -1);
             chosenIndex.Set(chosen);
         }
 
-        private void ClickButton(int index)
+        public void ClickButton(int index)
         {
             chosen = index;
         }
