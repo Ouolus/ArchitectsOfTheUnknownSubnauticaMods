@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using HarmonyLib;
 using CreatorKit.Mono;
 
 namespace CreatorKit.Patches
 {
-    [HarmonyPatch(typeof(uGUI_MainMenu))]
-    public class MainMenuMusicPatches
+    internal class MainMenuMusicPatches
     {
-        [HarmonyPatch(nameof(uGUI_MainMenu.Start))]
-        [HarmonyPostfix]
+        internal static void Patch(Harmony harmony)
+        {
+            var target = AccessTools.Method(typeof(uGUI_MainMenu), "Start");
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(MainMenuMusic), nameof(MainMenu_Start_Postfix)));
+            harmony.Patch(target, postfix: postfix);
+        }
+        
         public static void MainMenu_Start_Postfix(uGUI_MainMenu __instance)
         {
             GameObject packLauncher = GameObject.Instantiate(UI.UIAssets.GetPackLauncherPrefab());

@@ -5,6 +5,7 @@ using QModManager.API.ModLoading;
 using QModManager.Utility;
 using UnityEngine;
 using System.Collections;
+using CreatorKit.Patches;
 
 namespace ArchitectsLibrary
 {
@@ -29,9 +30,8 @@ namespace ArchitectsLibrary
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
-            VehiclePatches.Patch(harmony);
-
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            VehiclePatches.Patch(harmony); 
+            MainMenuMusicPatches.Patch(harmony);
         }
 
         private static IEnumerator LoadIonCubeMaterial()
