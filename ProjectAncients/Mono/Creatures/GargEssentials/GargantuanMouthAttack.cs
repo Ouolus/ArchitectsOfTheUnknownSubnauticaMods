@@ -68,7 +68,23 @@ namespace ProjectAncients.Mono
                             }
                             if (!canAttackPlayer)
                             {
-                                StartCoroutine(PerformBiteAttack(target, 1f));
+                                Pickupable held = Inventory.main.GetHeld();
+                                if(held is not null && held.GetComponent<Creature>() != null)
+                                {
+                                    LiveMixin heldLm = held.GetComponent<LiveMixin>();
+                                    if(heldLm.maxHealth < 100f)
+                                    {
+                                        animator.SetFloat("random", UnityEngine.Random.value);
+                                        animator.SetTrigger("bite");
+                                        attackSource.clip = biteClipPool.GetRandomClip();
+                                        attackSource.Play();
+                                        Destroy(held.gameObject);
+                                    }
+                                }
+                                else
+                                {
+                                    StartCoroutine(PerformBiteAttack(target, 1f));
+                                }
                                 return;
                             }
                             else
