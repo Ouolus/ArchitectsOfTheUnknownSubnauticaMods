@@ -34,7 +34,7 @@ namespace LeviathanEggs
         internal static BloodCrawlerEgg bloodCrawlerEgg = new();
         internal static CaveCrawlerEgg caveCrawlerEgg = new();
         internal static WarperEgg warperEgg = new();
-        internal static SpineEelEgg spineEelEgg = new();
+        internal static RiverProwlerEgg riverProwlerEgg = new();
         internal static SkyRayEgg skyRayEgg = new();
 
         public static List<TechType> TechTypesToSkyApply = new() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
@@ -46,7 +46,7 @@ namespace LeviathanEggs
             seaDragonEgg.TechType, seaEmperorEgg.TechType, ghostEgg.TechType, robotEgg.TechType, reaperEgg.TechType,
             seaTreaderEgg.TechType, lavaLarvaEgg.TechType, crimsonRayEgg.TechType, ghostRayEgg.TechType,
             bloodCrawlerEgg.TechType, caveCrawlerEgg.TechType,
-            warperEgg.TechType, spineEelEgg.TechType, skyRayEgg.TechType
+            warperEgg.TechType, riverProwlerEgg.TechType, skyRayEgg.TechType
         };
         [QModPatch]
         public static void Load()
@@ -66,7 +66,7 @@ namespace LeviathanEggs
             bloodCrawlerEgg.Patch();
             caveCrawlerEgg.Patch();
             warperEgg.Patch();
-            spineEelEgg.Patch();
+            riverProwlerEgg.Patch();
             skyRayEgg.Patch();
 
             foreach (TechType tt in techTypesToAddEntry)
@@ -252,7 +252,7 @@ namespace LeviathanEggs
             WaterParkCreature.creatureEggs[TechType.Shuttlebug] = bloodCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.CaveCrawler] = caveCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.Warper] = warperEgg.TechType;
-            WaterParkCreature.creatureEggs[TechType.SpineEel] = spineEelEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.SpineEel] = riverProwlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.ReefbackBaby] = TechType.ReefbackEgg;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);
