@@ -69,17 +69,15 @@ namespace LeviathanEggs
             riverProwlerEgg.Patch();
             skyRayEgg.Patch();
 
-            foreach (TechType tt in techTypesToAddEntry)
-            {
-                PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
-                {
-                    key = tt,
-                    encyclopedia = "UnknownEgg",
-                    scanTime = 2f,
-                    isFragment = false
-                });
-            }
             
+            techTypesToAddEntry.ForEach(x => PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            {
+                key = x,
+                encyclopedia = "UnknownEgg",
+                scanTime = 2f,
+                isFragment = false
+            }));
+
             WaterParkCreatureParametersSettings();
 
             Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
