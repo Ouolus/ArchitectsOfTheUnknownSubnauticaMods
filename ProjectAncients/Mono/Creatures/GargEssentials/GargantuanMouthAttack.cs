@@ -31,6 +31,7 @@ namespace ProjectAncients.Mono
             attackSource.maxDistance = 40f;
             attackSource.spatialBlend = 1f;
             attackSource.volume = ECCHelpers.GetECCVolume();
+            attackSource.playOnAwake = false;
             biteClipPool = ECCAudio.CreateClipPool("GargBiteAttack");
             cinematicClipPool = ECCAudio.CreateClipPool("GargBiteAttack5");
             throat = gameObject.SearchChild("Head");
