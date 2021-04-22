@@ -5,7 +5,7 @@ namespace ProjectAncients.Mono
     public class DestroyWhenFarAway : MonoBehaviour
     {
         public float maxDistance = 80f;
-        public bool destroyWhileInAlienBase;
+        public bool destroyWhileInAlienBase = true;
 
         void Start()
         {
