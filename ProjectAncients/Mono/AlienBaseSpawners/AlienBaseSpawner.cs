@@ -13,9 +13,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string box2x1x2_variant1 = "5ecd846d-1629-4d3c-9119-f4f16179a408";
         public const string box2x1x2_variant2 = "fa5e644a-777b-4b54-a92a-0241752b8e06";
         public const string box2x1x2_variant3 = "3c9344a2-4715-4773-9c58-dc0437002278";
-        public const string light_small = "742b410c-14d4-42c6-ac84-0e2bcaff09c1";
+        public const string light_small_spotlight = "742b410c-14d4-42c6-ac84-0e2bcaff09c1";
+        public const string light_small_pointlight = "473a8c4d-162f-4575-bbef-16c1c97d1e9d";
+        public const string light_small_spotlight_2 = "e3742c20-ab0b-4714-929a-cc4eea95cc18";
         public const string light_big_animated = "6a02aa5c-8d4d-4801-aad4-ea61dccddae5";
-        public const string light_volumetric_fake = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
+        public const string light_volumetric_1 = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
+        public const string light_volumetric_2 = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
+        public const string light_verybig_novolumetrics = "5631b64f-d0f0-47f5-b7ac-f23215432070";
         public const string starfish = "d571d3dc-6229-430e-a513-0dcafc2c41f3";
         public const string structure_outpost_1 = "c5512e00-9959-4f57-98ae-9a9962976eaa";
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
@@ -27,6 +31,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// </summary>
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
         public const string structure_doorway_divider = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
+        /// <summary>
+        /// 4x1x4
+        /// </summary>
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
         public const string structure_skeletonScanner1 = "4f5905f8-ea50-49e8-b24f-44139c6bddcf";
         public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
@@ -42,7 +49,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_specimensCase = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
         public const string prop_tableRectangle = "68c58fba-bc8d-40fc-a137-544af418f953";
-        public const string prop_disectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
+        public const string prop_dissectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
         public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
@@ -64,6 +71,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_redTablet = "7d19f47b-6ec6-4a25-9b28-b3fd7f5661b7";
         public const string supplies_purpleTablet = "53ffa3e8-f2f7-43b8-a5c7-946e766aff64";
         public const string supplies_orangeTablet = "58247109-68b9-411f-b90f-63461df9753a";
+        public const string supplies_cutefishegg = "b78912bc-0191-4455-a9de-3b708e165393";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
         public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";

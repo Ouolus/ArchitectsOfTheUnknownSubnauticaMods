@@ -7,6 +7,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
     {
         private float firstFloorY = 0;
         private float secondFloorY = 18;
+        private float secondCeilingY = 33;
 
         public override IEnumerator ConstructBase()
         {
@@ -35,17 +36,47 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));
 
-            //Egg room
-            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, new Vector3(0f, secondFloorY, 32f)));
-            yield return StartCoroutine(SpawnPrefab(Mod.gargEgg.ClassID, new Vector3(0f, secondFloorY + 1f, 32f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(2.5f, secondFloorY, 32f - 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(2.5f, secondFloorY, 32f + 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-2.5f, secondFloorY, 32f - 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-2.5f, secondFloorY, 32f + 2.5f)));
+            //Egg pedestal
+            Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(0f, 0.5f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(4f, 0f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(-4f, 0f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(0f, 0f, 4f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(0f, 0f, -4f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(4f, 0f, 4f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(4f, 0f, -4f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(-4f, 0f, 4f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(-4f, 0f, -4f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(-4f, 1f, -4f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(-4f, 1f, 4f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(4f, 1f, -4f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(4f, 1f, 4f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.gargEgg.ClassID, new Vector3(0f, secondFloorY + 1.5f, 32f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(2.5f, secondFloorY, 32f - 2.5f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(2.5f, secondFloorY, 32f + 2.5f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f - 2.5f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f + 2.5f)));
+            yield return StartCoroutine(SpawnPrefab(light_volumetric_2, new Vector3(-2.5f, secondFloorY, 32f + 2.5f), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(-3f, secondFloorY + 1f, 32f)));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(3f, secondFloorY + 1f, 32f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0f, secondFloorY + 6f, 32f), Vector3.zero, new Vector3(1f, 0.87f, 1f)));
-            yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(0f, secondFloorY + 6f, 32f), (Vector3.left * 180f), new Vector3(1.5f, 0.5f, 1.5f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0f, secondFloorY + 8f, 32f), Vector3.zero, new Vector3(1.4f, 1f, 1.4f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(0f, secondFloorY + 8f, 32f), (Vector3.left * 180f), new Vector3(2f, 1f, 2f)));
+
+            //Egg room
+            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(20.64f, secondCeilingY, 31.32f), Vector3.up * 45f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f, secondFloorY, 31.32f), Vector3.up * 45f));
+            yield return StartCoroutine(SpawnPrefab(supplies_cutefishegg, new Vector3(20.64f, secondFloorY + 1f, 31.32f), Vector3.up * -60f));
+
+            yield return StartCoroutine(SpawnPrefab(prop_specimensCase, new Vector3(-18.17f, secondFloorY, 26.08f), Vector3.up * 0f));
+
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f, secondFloorY, 22.65f), Vector3.up * 135f));
+            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-30.3f, secondFloorY + 1f, 22.65f), Vector3.up * 5f));
+
+            yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 45f));
+
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-45f, secondCeilingY, 5f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(45f, secondCeilingY, 5f)));
 
             //Left lower room
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));

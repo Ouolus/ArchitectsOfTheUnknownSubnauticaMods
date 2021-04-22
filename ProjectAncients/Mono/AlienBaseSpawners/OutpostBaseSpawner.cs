@@ -27,10 +27,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0, 0, 0)));
             yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(0, -2, 0)));
             const float smallLightYOffset = -4.3f;
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(7f, smallLightYOffset, 7f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(7f, smallLightYOffset, -9f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, 7f)));
-            yield return StartCoroutine(SpawnPrefab(light_small, new Vector3(-9f, smallLightYOffset, -9f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight, new Vector3(7f, smallLightYOffset, 7f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight, new Vector3(7f, smallLightYOffset, -9f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight, new Vector3(-9f, smallLightYOffset, 7f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight, new Vector3(-9f, smallLightYOffset, -9f)));
             yield return StartCoroutine(SpawnColumns(-16f));
         }
 
