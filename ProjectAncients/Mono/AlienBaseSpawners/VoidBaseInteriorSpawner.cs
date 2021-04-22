@@ -6,6 +6,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
     public class VoidBaseInteriorSpawner : AlienBaseSpawner
     {
         private float firstFloorY = 0;
+        private float firstCeilingY = 15;
         private float secondFloorY = 18;
         private float secondCeilingY = 33;
 
@@ -57,7 +58,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(2.5f, secondFloorY, 32f + 2.5f)));
             yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f - 2.5f)));
             yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f + 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_volumetric_2, new Vector3(-2.5f, secondCeilingY, 32f + 2.5f), Vector3.right * 90f));
+            yield return StartCoroutine(SpawnPrefab(light_volumetric_2, new Vector3(0f, secondCeilingY, 32f), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(-3f, secondFloorY + 1f, 32f)));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(3f, secondFloorY + 1f, 32f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0f, secondFloorY + 8f, 32f), Vector3.zero, new Vector3(1.4f, 1f, 1.4f)));
@@ -66,21 +67,29 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Egg room
             yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(20.64f, secondCeilingY, 31.32f), Vector3.up * 45f));
             yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(-27.05f, secondCeilingY, 15.4f), Vector3.up * 135f));
-            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f, secondFloorY, 31.32f), Vector3.up * 45f));
-            yield return StartCoroutine(SpawnPrefab(supplies_cutefishegg, new Vector3(20.64f, secondFloorY + 1.5f, 31.32f), Vector3.up * -60f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f, secondFloorY, 31.32f), Vector3.up * 45f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f + 1.4f, secondFloorY, 31.32f), Vector3.up * 45f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f + 2.8f, secondFloorY, 31.32f), Vector3.up * 45f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(supplies_cutefishegg, new Vector3(20.64f, secondFloorY + 1f, 31.32f), Vector3.up * -60f));
 
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, new Vector3(-18.17f, secondFloorY, 26.08f), Vector3.up * 0f));
 
-            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f, secondFloorY, 22.65f), Vector3.up * 135f));
-            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-30.3f, secondFloorY + 1.5f, 22.65f), Vector3.up * 5f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f, secondFloorY, 22.65f), Vector3.up * 135f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f + 1.4f, secondFloorY, 22.65f), Vector3.up * 135f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f - 1.4f, secondFloorY, 22.65f), Vector3.up * 135f, Vector3.one * 0.67f));
+            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-30.3f, secondFloorY + 1f, 22.65f), Vector3.up * 5f));
 
-            yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 45f));
+            yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 135f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-45f, secondCeilingY, 5f), Vector3.right * 90f));
-            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-45f, secondCeilingY, 5f), Vector3.right * 90f));
+            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-45f, secondCeilingY, 5f), new Vector3(0f, 45f, 180f)));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(45f, secondCeilingY, 5f), Vector3.right * 90f));
-            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(45f, secondCeilingY, 5f), Vector3.right * 90f));
+            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(45f, secondCeilingY, 5f), new Vector3(0f, 45f, 180f)));
+
+            yield return StartCoroutine(GenerateCable(new Vector3(401, -382f, -1875f), Vector3.up, new Vector3(401, -382f + 15f, -1875f), Vector3.up, Vector3.zero, 0f));
+
+            yield return StartCoroutine(GenerateCable(new Vector3(345f, -382f, -1875f), Vector3.up, new Vector3(345f, -382f + 15f, -1875f), Vector3.up, Vector3.zero, 0f));
 
             //Left lower room
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));
@@ -89,11 +98,17 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(33.3f, 0f, 14f), new Vector3(0f, 27f, 0f)));
             yield return SpawnRelicInCase(new Vector3(33.78f, 0f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
 
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(45f, firstCeilingY, 5f), Vector3.right * 90f));
+            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(45f, firstCeilingY, 5f), new Vector3(0f, 45f, 180f)));
+
             //Right lower room
             yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-22, 0f, 28), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-18, 0f, 24), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-26, 0f, 32), new Vector3(0f, 45f, 0f)));
             yield return SpawnRelicInCase(new Vector3(-33.78f, 0f, 11.34f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, 135f, 0f));
+
+            yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-45f, firstCeilingY, 5f), Vector3.right * 90f));
+            yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-45f, firstCeilingY, 5f), new Vector3(0f, 45f, 180f)));
         }
     }
 }
