@@ -323,7 +323,7 @@ namespace ProjectAncients
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior1", rootPrefabClassId: smallDoor, voidInteriorDoor: true);
+            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, voidInteriorDoor: true);
             voidDoor_interior.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
@@ -392,7 +392,7 @@ namespace ProjectAncients
             #endregion
 
             #region Teleporters
-            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", Vector3.zero, 0f, new Vector3(267.30f, -1439f, -350.44f), 150f, true, true);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 + voidBaseZOffset - 55f), 0f, new Vector3(267.30f, -1439f, -350.44f), 150f, true, true);
             voidPcfNetwork.Patch();
 
             TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(12f, 0f, 0f), 0f, new Vector3(-857.80f, -189.89f, -641.00f), 0f);
