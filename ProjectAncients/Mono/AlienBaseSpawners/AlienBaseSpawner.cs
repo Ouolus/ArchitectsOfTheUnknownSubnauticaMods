@@ -63,6 +63,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_orangeTablet = "58247109-68b9-411f-b90f-63461df9753a";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
+        public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string atmosphereVolume_antechamber = "d645d7c7-76a2-4818-86b0-5c3e37a51e31";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
@@ -88,6 +89,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_coral_yellow2 = "450bf7b5-b6cf-4139-921f-3cb9ea505d5f";
         public const string natural_coral_red = "22bf7b03-8154-410b-a6fb-8ba315f68987";
         public const string natural_coral_purple = "c71f41ce-b586-4e85-896e-d25e8b5b9de0";
+        public const string natural_ameboid = "375a4ade-a7d9-401d-9ecf-08e1dce38d6b";
         public const string bone_reaperMandible = "501c0536-7993-4ed6-be77-6287cedd8d02";
         public const string bone_reaperSkull = "50031120-ab7a-4f10-b497-3a97f63b4de1";
         public const string bone_reaperSpine1Rib = "949d8657-1e5c-4418-8948-76b8b712fc57";
