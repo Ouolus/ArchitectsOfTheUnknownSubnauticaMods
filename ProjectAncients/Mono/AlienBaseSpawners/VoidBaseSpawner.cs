@@ -27,8 +27,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(0f, 28, 62.5f), new Vector3(0f, 90f, 90f), Vector3.one * 2f);
             yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(17f, 11, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
             yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(-17f, 11, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 16, 62.5f), Vector3.zero, Vector3.one * 2f);
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 28, 62.5f), Vector3.zero, Vector3.one * 2f);
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 16, 62.5f), Vector3.zero, new Vector3(1f, 1f, 1.5f));
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 28, 62.5f), Vector3.zero, new Vector3(1f, 1f, 1.5f));
             yield return SpawnPrefab(light_volumetric_1, new Vector3(17f, 11, 62.5f), Vector3.zero, new Vector3(0.5f, 1f, 1f));
             yield return SpawnPrefab(light_volumetric_1, new Vector3(-17f, 11, 62.5f), Vector3.zero, new Vector3(0.5f, 1f, 1f));
 
