@@ -60,9 +60,9 @@ namespace ProjectAncients.Mono.AlienTech
         protected override void Setup()
         {
             lightsParent = gameObject.SearchChild("Lights").transform;
-            interiorMaterials = new Material[2];
-            interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().sharedMaterials[0];
-            interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
+            interiorMaterials = new Material[0];
+            //interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().sharedMaterials[0];
+            //interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
