@@ -15,8 +15,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(3f + 1.5f + 1.5f, 2f, 40f)));
 
             //Aquarium
-            yield return StartCoroutine(SpawnPrefab(creature_spinefishSchool, new Vector3(0f, 7f, -21f), new Vector3(0f, 0f, 0f), Vector3.one));
-            yield return StartCoroutine(SpawnPrefab(creature_spinefishSchool, new Vector3(0f, 6f, -21f), new Vector3(0f, 0f, 0f), Vector3.one));
 
             //Aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));
