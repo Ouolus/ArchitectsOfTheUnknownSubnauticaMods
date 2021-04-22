@@ -43,7 +43,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab(rootClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
+            GameObject terminalPrefabPlaceholder = obj.SearchChild("KeyTerminal(Placeholder)", ECCStringComparison.Contains);
             terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
             if (overrideTerminalPosition)
             {
@@ -68,7 +68,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("LockedForceField(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             return obj;
