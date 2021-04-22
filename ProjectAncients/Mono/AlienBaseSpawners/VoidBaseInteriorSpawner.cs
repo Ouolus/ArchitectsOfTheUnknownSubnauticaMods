@@ -82,7 +82,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f - 1.4f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-30.3f, secondFloorY + 1f, 22.65f), Vector3.up * 5f));
 
-            yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 135f));
+            yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 135f, Vector3.one * 3f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-45f, secondCeilingY, 5f), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-45f, secondCeilingY, 5f), new Vector3(0f, 45f, 180f)));
