@@ -23,6 +23,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(-8.7f + 0.5f, 0.5f + platformY, 73));
             yield return SpawnPrefabsArray(light_big_animated, 2f, new Vector3(1, 1, 7), Vector3.one, new Vector3(8.7f + 1.5f, 0.5f + platformY, 73));
 
+            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(0f, 14, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
+            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(0f, 24, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
+            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(17f, 7, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
+            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(-17f, 7, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 14, 62.5f), Vector3.one * 2f);
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 24, 62.5f), Vector3.one * 2f);
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(17f, 7, 62.5f), Vector3.one * 2f);
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(-17f, 7, 62.5f), Vector3.one * 2f);
+
             //Exterior cables
             const float cableDrop = 24f;
             //Left side
