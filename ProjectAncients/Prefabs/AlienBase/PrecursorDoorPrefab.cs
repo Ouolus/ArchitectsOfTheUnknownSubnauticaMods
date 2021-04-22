@@ -17,7 +17,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         string doorKey;
         private bool voidInteriorDoor;
 
-        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool voidInteriorDoor = false)
+        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool replaceForcefield = false)
             : base(classId, displayName, ".")
         {
             this.terminalClassId = terminalClassId;
@@ -26,7 +26,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.terminalRotation = terminalLocalRotation;
             this.rootClassId = rootPrefabClassId;
             this.doorKey = doorKey;
-            this.voidInteriorDoor = voidInteriorDoor;
+            this.voidInteriorDoor = replaceForcefield;
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()

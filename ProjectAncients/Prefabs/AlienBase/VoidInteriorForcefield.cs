@@ -19,8 +19,8 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab("18f2fbaa-78df-46a9-805a-79ac4d942125", out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
-            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
+            //GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
+            //GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
             obj.SetActive(false);
             return obj;
         }
@@ -32,8 +32,8 @@ namespace ProjectAncients.Prefabs.AlienBase
             request.TryGetPrefab(out GameObject prefab);
             
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
-            GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
+            //GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
+            //GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
             obj.SetActive(false);
             
             gameObject.Set(obj);

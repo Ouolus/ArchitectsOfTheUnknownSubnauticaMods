@@ -28,14 +28,19 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(creature_rockgrub, 0.1f, Vector3.one * 3f, Vector3.one * 0.1f, new Vector3(0f, firstFloorY + 4f, -25)));
 
             //Aquarium room
-            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));
-            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));
-            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(9.54f, 0f, 1.89f), Vector3.up * -68f));
+            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f)); //Left doorway on bottom floor
+            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
+            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(9.54f, 0f, 1.89f), Vector3.up * -68f)); //Purple tablet sitting on ground
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
 
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 12.3f), Vector3.back, transform.position + new Vector3(0f, 11f, -10.5f), Vector3.back, Vector3.zero, 0f));
+
             //Upper aquarium room
-            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));
-            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));
+            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Second floor doorway on left
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Forcefield
+
+            yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));//Second floor doorway on right
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));//Forcefield
 
             //Egg pedestal
             Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);

@@ -323,7 +323,7 @@ namespace ProjectAncients
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, voidInteriorDoor: true);
+            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor);
             voidDoor_interior.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
