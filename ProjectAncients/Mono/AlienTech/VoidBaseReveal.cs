@@ -14,17 +14,19 @@ namespace ProjectAncients.Mono.AlienTech
 
         protected override void OnTargetBiomeEntered()
         {
+            StopAllCoroutines();
             StartCoroutine(SetLightsActive(true));
             StartCoroutine(ToggleEmission(true));
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
-            SetExitCooldown(6f);
+            SetExitCooldown(2f);
         }
 
         protected override void OnTargetBiomeExited()
         {
+            StopAllCoroutines();
             StartCoroutine(SetLightsActive(false));
             StartCoroutine(ToggleEmission(false));
-            SetEnterCooldown(4f);
+            SetEnterCooldown(2f);
         }
 
         private IEnumerator SetLightsActive(bool active)
@@ -32,7 +34,7 @@ namespace ProjectAncients.Mono.AlienTech
             foreach(Transform child in lightsParent)
             {
                 child.gameObject.SetActive(active);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -42,7 +44,7 @@ namespace ProjectAncients.Mono.AlienTech
             float targetBrightness = active ? 1f : 0f;
             for(int i = 1; i <= 10; i++)
             {
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.2f);
                 SetMaterialBrightness(Mathf.Lerp(originalBrightness, targetBrightness, i / 10f));
             }
         }
