@@ -41,11 +41,15 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             //Left lower room
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(18, 0f, 24), new Vector3(0f, -45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(26, 0f, 32), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(33.3f, 0f, 14f), new Vector3(0f, 27f, 0f)));
             yield return SpawnRelicInCase(new Vector3(33.78f, 0f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
 
             //Right lower room
             yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-22, 0f, 28), new Vector3(0f, 45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-18, 0f, 24), new Vector3(0f, 45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-26, 0f, 32), new Vector3(0f, 45f, 0f)));
             yield return SpawnRelicInCase(new Vector3(-33.78f, 0f, 11.34f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, 135f, 0f));
         }
     }
