@@ -58,6 +58,7 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_purple;
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior;
+        public static PrecursorDoorPrefab voidDoor_interior2;
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
@@ -322,8 +323,10 @@ namespace ProjectAncients
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorEgg", rootPrefabClassId: bigDoor, voidInteriorDoor: true);
+            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior1", rootPrefabClassId: bigDoor, voidInteriorDoor: true);
             voidDoor_interior.Patch();
+            voidDoor_interior2 = new PrecursorDoorPrefab("VoidDoorInterior2", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior2", rootPrefabClassId: bigDoor, voidInteriorDoor: true);
+            voidDoor_interior2.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
