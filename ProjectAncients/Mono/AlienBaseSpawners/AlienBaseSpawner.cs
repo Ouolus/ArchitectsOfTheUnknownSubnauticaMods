@@ -15,6 +15,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string box2x1x2_variant3 = "3c9344a2-4715-4773-9c58-dc0437002278";
         public const string light_small = "742b410c-14d4-42c6-ac84-0e2bcaff09c1";
         public const string light_big_animated = "6a02aa5c-8d4d-4801-aad4-ea61dccddae5";
+        public const string light_volumetric_fake = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
         public const string starfish = "d571d3dc-6229-430e-a513-0dcafc2c41f3";
         public const string structure_outpost_1 = "c5512e00-9959-4f57-98ae-9a9962976eaa";
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
@@ -38,8 +39,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string cables_attachToWall = "a0a9237e-dee3-4efa-81ff-fea3893a6eb7";
         public const string tabletDoor_orange = "83a70a58-f7da-4f18-b9b2-815dc8a7ffb4";
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
-        public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
+        public const string prop_specimensCase = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
+        public const string prop_tableRectangle = "68c58fba-bc8d-40fc-a137-544af418f953";
+        public const string prop_disectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
         public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
@@ -130,6 +133,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                     continue;
                 }
                 LargeWorld.main.streamer.cellManager.RegisterEntity(lwe);
+                SkyApplier skyApplier = obj.GetComponent<SkyApplier>();
+                if (skyApplier)
+                {
+                    skyApplier.ApplySkybox();
+                }
             }
             Destroy(gameObject);
         }
