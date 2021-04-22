@@ -58,7 +58,6 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_purple;
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior;
-        public static PrecursorDoorPrefab voidDoor_interior2;
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
@@ -94,7 +93,7 @@ namespace ProjectAncients
         /// </summary>
         internal static EcoTargetType superDecoyTargetType = (EcoTargetType)49013491;
 
-        public const float voidBaseZOffset = 20f;
+        public const float voidBaseZOffset = -20;
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -305,6 +304,7 @@ namespace ProjectAncients
             door_researchBase.Patch();
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
+            const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
             voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 16f), Vector3.up * 0f, bigDoor, false);
             voidDoor_red.Patch();
 
@@ -323,10 +323,8 @@ namespace ProjectAncients
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior1", rootPrefabClassId: bigDoor, voidInteriorDoor: true);
+            voidDoor_interior = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior1", rootPrefabClassId: smallDoor, voidInteriorDoor: true);
             voidDoor_interior.Patch();
-            voidDoor_interior2 = new PrecursorDoorPrefab("VoidDoorInterior2", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior2", rootPrefabClassId: bigDoor, voidInteriorDoor: true);
-            voidDoor_interior2.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
@@ -427,7 +425,7 @@ namespace ProjectAncients
             var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset), 300f, LargeWorldEntity.CellLevel.Far); //Void
             eggBase.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 40f, LargeWorldEntity.CellLevel.Near); //Void
+            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 90, LargeWorldEntity.CellLevel.Medium); //Void
             eggBaseInterior.Patch();
             #endregion
 
