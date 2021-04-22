@@ -23,12 +23,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(0.16f, firstFloorY, -15.88f), new Vector3(0f, 0f, 0f)));
             yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-1.37f, firstFloorY, -25.05f), new Vector3(0f, -220f, 0f)));
             yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-1.37f, firstFloorY, -25.05f), new Vector3(0f, -220f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(-2f, firstFloorY + 3f, -25)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(-1f, firstFloorY + 3f, -25)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(0f, firstFloorY + 3f, -25)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(1f, firstFloorY + 3f, -25)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(2f, firstFloorY + 3f, -25)));
-            yield return StartCoroutine(SpawnPrefab(creature_rockgrub, new Vector3(3f, firstFloorY + 3f, -25)));
+            yield return StartCoroutine(SpawnPrefabsArray(creature_rockgrub, 0.1f, Vector3.one * 3f, Vector3.one * 0.1f, new Vector3(0f, firstFloorY + 4f, -25)));
 
             //Aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));
