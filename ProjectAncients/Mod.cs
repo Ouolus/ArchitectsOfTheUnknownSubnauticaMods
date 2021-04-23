@@ -283,7 +283,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_alienSpam, modEncyPath_terminalInfo, "Alien Document", alienSpamEncyText, "Popup_green", "GreenGlyph_Ency");
 
-            PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Egg Room", "Text related to the Egg Room will go here.", "Popup_green", "GreenGlyph_Ency");
+            PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Research Laboratory Document", "This document is interestingly in video form, and uses imagery that is likely universally understoof.", "Popup_green", "GreenGlyph_Ency");
             #endregion
 
             #region Precursor base prefabs
@@ -342,7 +342,7 @@ namespace ProjectAncients
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
 
-            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.Far);
+            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
             MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
 
