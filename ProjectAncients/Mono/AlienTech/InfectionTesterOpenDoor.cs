@@ -15,7 +15,7 @@ namespace ProjectAncients.Mono
             base.transform.parent.BroadcastMessage("ToggleDoor", true, SendMessageOptions.RequireReceiver);
         }
 
-		private bool DoorsIsOpen()
+		private bool DoorIsOpen()
         {
 			var door = transform.parent.GetComponentInChildren<PrecursorDoorway>();
             if (door)
@@ -27,7 +27,7 @@ namespace ProjectAncients.Mono
 
 		private bool DoorIsClosed()
         {
-			return !DoorsIsOpen();
+			return !DoorIsOpen();
         }
 
 		private void Start()
@@ -67,7 +67,7 @@ namespace ProjectAncients.Mono
 
 		public void OnHandHover(GUIHand hand)
 		{
-			if (DoorsIsOpen() || usingPlayer != null || !opened)
+			if (DoorIsClosed() || usingPlayer != null || !opened)
 			{
 				return;
 			}
