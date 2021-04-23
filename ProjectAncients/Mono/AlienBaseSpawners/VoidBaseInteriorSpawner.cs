@@ -37,10 +37,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             //Upper aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Second floor doorway on left
-            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Forcefield
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, 45f, 0f), Vector3.one * 1.2f));//Forcefield
 
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));//Second floor doorway on right
-            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f));//Forcefield
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior.ClassID, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 315f, 0f), Vector3.one * 1.2f));//Forcefield
 
             //Egg pedestal
             Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);
