@@ -28,6 +28,11 @@ namespace ProjectAncients.Prefabs.AlienBase
             PrefabDatabase.TryGetPrefab(baseClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>();
+            DisableEmissiveOnStoryGoal disableEmissive = obj.GetComponent<DisableEmissiveOnStoryGoal>();
+            if (disableEmissive)
+            {
+                Object.DestroyImmediate(disableEmissive);
+            }
             obj.SetActive(false);
             return obj;
         }

@@ -53,6 +53,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_tableRectangle = "68c58fba-bc8d-40fc-a137-544af418f953";
         public const string prop_dissectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
         public const string prop_genericMap = "172d9440-2670-45a3-93c7-104fee6da6bc";
+        public const string prop_waterTank = "0b1cf8d8-65da-4b9d-bf86-bfb96ac35ae0";
         public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
