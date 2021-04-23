@@ -38,9 +38,6 @@ namespace ProjectAncients
             }
             FMODAsset soundAsset = ScriptableObject.CreateInstance<FMODAsset>();
             soundAsset.path = eventPath;
-            source.volume = ECCHelpers.GetECCVolume();
-            source.Play();
-            GameObject.Destroy(obj, audioClip.length);
             Subtitles.main.Add(subtitleKey);
         }
     }
