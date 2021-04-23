@@ -21,7 +21,7 @@ namespace ProjectAncients.Mono.AlienTech
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
             if (Time.time > timeVoiceNotifyAgain)
             {
-                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog", "Translation: 'Infected individuals are not permitted to enter this facility. Specimen may be at risk of infection.'");
+                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog", "Translation: 'Infected individuals are not permitted to enter this facility. Housed specimen may be at risk of infection.'");
                 timeVoiceNotifyAgain = Time.time + 60f;
             }
             SetExitCooldown(2f);
