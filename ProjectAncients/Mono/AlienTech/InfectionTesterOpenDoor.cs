@@ -17,7 +17,7 @@ namespace ProjectAncients.Mono
 
 		private bool DoorIsOpen()
         {
-			var door = transform.parent.GetComponentInChildren<PrecursorDoorway>();
+			var door = transform.parent.parent.GetComponentInChildren<PrecursorDoorway>();
             if (door)
             {
 				return door.isOpen;
