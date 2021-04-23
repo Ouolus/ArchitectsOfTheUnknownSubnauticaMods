@@ -60,7 +60,7 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior_left;
         public static PrecursorDoorPrefab voidDoor_interior_right;
-        public static PrecursorDoorPrefab voidDoor_infectionTest;
+        public static PrecursorDoorPrefab voidDoor_interior_infectionTest;
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
@@ -330,8 +330,8 @@ namespace ProjectAncients
             voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 45f, bigDoor, false);
             voidDoor_white.Patch();
 
-            voidDoor_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 0f, bigDoor, true);
-            voidDoor_infectionTest.Patch();
+            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 0f, bigDoor, true);
+            voidDoor_interior_infectionTest.Patch();
 
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();

@@ -15,6 +15,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Entrance hallway
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(-3f + 0.5f, 2f, 40f)));
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(3f + 1.5f + 1.5f, 2f, 40f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior_infectionTest.ClassID, new Vector3(0f, 0f, 13f), Vector3.zero));
 
             //Aquarium
             yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(5.16f, firstFloorY, -20.88f), new Vector3(0f, 74f, 0f)));
