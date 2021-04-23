@@ -12,7 +12,7 @@ namespace ProjectAncients.Mono
 	{
         private void BroadcastDoorsOpen()
         {
-            base.transform.parent.BroadcastMessage("ToggleDoor", true, SendMessageOptions.RequireReceiver);
+            base.transform.parent.parent.BroadcastMessage("ToggleDoor", true, SendMessageOptions.RequireReceiver);
         }
 
 		private bool DoorIsOpen()
