@@ -34,7 +34,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             {
                 Object.DestroyImmediate(disableEmissive);
             }
-            var openDoor = obj.AddComponent<InfectionTesterOpenDoor>();
+            var openDoor = disableGun.gameObject.AddComponent<InfectionTesterOpenDoor>();
             openDoor.glowMaterial = disableGun.glowMaterial;
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
@@ -66,7 +66,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             {
                 Object.DestroyImmediate(disableEmissive);
             }
-            var openDoor = obj.AddComponent<InfectionTesterOpenDoor>();
+            var openDoor = disableGun.gameObject.AddComponent<InfectionTesterOpenDoor>();
             openDoor.glowMaterial = disableGun.glowMaterial;
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
