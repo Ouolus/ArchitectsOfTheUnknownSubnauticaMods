@@ -30,7 +30,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             //Aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f)); //Left doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
-            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(9.54f, 0f, 1.89f), Vector3.up * -68f)); //Purple tablet sitting on ground
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-5.3f, 0f, -43.04f), new Vector3(0f, -191f, 0f))); //Ion cube behind aquarium
 
@@ -132,6 +131,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
+            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
         }
     }
 }
