@@ -97,7 +97,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(SpawnPrefab(prop_microscope, new Vector3(-37f, secondFloorY, 32f), Vector3.up * -225f));
             yield return StartCoroutine(SpawnPrefab(prop_microscope, new Vector3(-39f, secondFloorY, 30f), Vector3.up * -225f));
-            yield return StartCoroutine(SpawnPrefab(prop_genericMap, new Vector3(0f, 26f, 14.4f), Vector3.zero));
+            yield return StartCoroutine(SpawnPrefab(prop_genericMap, new Vector3(0f, 20f, 14.4f), Vector3.zero, Vector3.one * 3f));
 
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_big, new Vector3(-37.39f, secondFloorY, -1.61f), Vector3.up * -313f));//Ion cube next to dissection tank
 
