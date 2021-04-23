@@ -33,7 +33,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
             yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-5.3f, 0f, -43.04f), new Vector3(0f, -191f, 0f))); //Ion cube behind aquarium
 
-            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 12.3f), Vector3.back, transform.position + new Vector3(0f, 11f, -10.5f), Vector3.back, Vector3.zero, 0f));
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 11.9f), Vector3.back, transform.position + new Vector3(0f, 11f, -10.5f), Vector3.back, Vector3.down, 5f, scale: 1.5f));
+            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, -57.6f), Vector3.forward, transform.position + new Vector3(0f, 11f, -34.75f), Vector3.forward, Vector3.down, 5f, scale: 1.5f));
 
             //Upper aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Second floor doorway on left
@@ -59,10 +60,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(4f, 1f, -4f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty1, centerRelicPlatformPosition + new Vector3(4f, 1f, 4f)));
             yield return StartCoroutine(SpawnPrefab(Mod.gargEgg.ClassID, new Vector3(0f, secondFloorY + 1.5f, 32f)));
-            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(2.5f, secondFloorY, 32f - 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(2.5f, secondFloorY, 32f + 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f - 2.5f)));
-            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-2.5f, secondFloorY, 32f + 2.5f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(4f, secondFloorY + 2.5f, 32f - 4f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(4f, secondFloorY + 2.5f, 32f + 4f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-4f, secondFloorY + 2.5f, 32f - 4f)));
+            yield return StartCoroutine(SpawnPrefab(light_small_pointlight, new Vector3(-4f, secondFloorY + 2.5f, 32f + 4f)));
             yield return StartCoroutine(SpawnPrefab(light_volumetric_2, new Vector3(0f, secondCeilingY, 32f), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(-3f, secondFloorY + 1f, 32f)));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(3f, secondFloorY + 1f, 32f)));
@@ -113,6 +114,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(45f, secondCeilingY, 5f), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(45f, secondCeilingY, 5f), new Vector3(0f, 45f, 180f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.eggRoomTerminal.ClassID, new Vector3(45, 18, 5), Vector3.up * 135));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(49, 18, 9), Vector3.up * -45f));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(41, 18, 1), Vector3.up * -45f));
 
             yield return StartCoroutine(GenerateCable(new Vector3(401, -382f, -1875f), Vector3.up, new Vector3(401, -382f + 15f, -1875f), Vector3.up, Vector3.zero, 0f));
 
