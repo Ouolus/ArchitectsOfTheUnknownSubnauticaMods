@@ -70,6 +70,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
         public static DataTerminalPrefab spamTerminal;
+        public static DataTerminalPrefab eggRoomTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -122,6 +123,7 @@ namespace ProjectAncients
         private const string ency_precblade = "PrecursorBladeEncy";
         private const string ency_precbuilder = "PrecursorBuilderEncy";
         private const string ency_alienSpam = "PrecursorSpamEncy";
+        private const string ency_eggRoom = "PrecursorEggRoomEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -280,6 +282,8 @@ namespace ProjectAncients
             PatchEncy(ency_precbuilder, modEncyPath_relics, "Alien Construction Tool", "An ancient construction tool that appears uncannily similar to the Alterra Habitat Builder.\n\nThis device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis on site suggests this was the last structure it has ever built.", "PrecursorBuilder_Popup", "PrecursorBuilder_Ency");
 
             PatchEncy(ency_alienSpam, modEncyPath_terminalInfo, "Alien Document", alienSpamEncyText, "Popup_green", "GreenGlyph_Ency");
+
+            PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Egg Room", "Text related to the Egg Room will go here.", "Popup_green", "GreenGlyph_Ency");
             #endregion
 
             #region Precursor base prefabs
@@ -393,6 +397,9 @@ namespace ProjectAncients
 
             spamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             spamTerminal.Patch();
+
+            eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", ency_eggRoom, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            eggRoomTerminal.Patch();
             #endregion
 
             #region Teleporters
