@@ -11,6 +11,7 @@ namespace ProjectAncients.Mono.AlienTech
         private Transform lightsParent;
         private Material[] interiorMaterials;
         private FMODAsset turnOnSound;
+        private float timeVoiceNotifyAgain = 0;
 
         protected override void OnTargetBiomeEntered()
         {
@@ -19,6 +20,11 @@ namespace ProjectAncients.Mono.AlienTech
             StartCoroutine(ToggleEmission(true));
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
             SetExitCooldown(2f);
+            if(Time.time > timeVoiceNotifyAgain)
+            {
+                timeVoiceNotifyAgain = Time.time + 60f;
+                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog", "Translation: 'Infected individuals are not permitted to enter this facility. Specimen may be at risk of infection.'");
+            }
         }
 
         protected override void OnTargetBiomeExited()
