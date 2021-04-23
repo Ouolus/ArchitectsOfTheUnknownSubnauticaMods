@@ -46,6 +46,7 @@ namespace ProjectAncients
         public static TabletTerminalPrefab whiteTabletTerminal;
         public static TabletTerminalPrefab orangeTabletTerminal;
         public static TabletTerminalPrefab blueTabletTerminal;
+        public static InfectionTesterTerminal infectionTesterTerminal;
 
         public static PrecursorDoorPrefab door_supplyCache;
         public static PrecursorDoorPrefab door_researchBase;
@@ -59,6 +60,7 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior_left;
         public static PrecursorDoorPrefab voidDoor_interior_right;
+        public static PrecursorDoorPrefab voidDoor_infectionTest;
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
@@ -302,6 +304,9 @@ namespace ProjectAncients
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
             whiteTabletTerminal.Patch();
 
+            infectionTesterTerminal = new InfectionTesterTerminal("InfectionTesterTerminal");
+            infectionTesterTerminal.Patch();
+
             door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
 
@@ -324,6 +329,9 @@ namespace ProjectAncients
 
             voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 45f, bigDoor, false);
             voidDoor_white.Patch();
+
+            voidDoor_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 45f, bigDoor, false);
+            voidDoor_infectionTest.Patch();
 
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
