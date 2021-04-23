@@ -44,11 +44,11 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
-            Object.Destroy(disableGun);
+            Object.DestroyImmediate(disableGun);
 
             var triggerArea_old = obj.GetComponentInChildren<PrecursorDisableGunTerminalArea>();
             var triggerArea = triggerArea_old.gameObject.AddComponent<InfectionTesterTriggerArea>();
-            Object.Destroy(triggerArea_old);
+            Object.DestroyImmediate(triggerArea_old);
             triggerArea.terminal = openDoor;
             obj.SetActive(false);
             return obj;
@@ -76,11 +76,11 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
-            Object.Destroy(disableGun);
+            Object.DestroyImmediate(disableGun);
 
             var triggerArea_old = obj.GetComponentInChildren<PrecursorDisableGunTerminalArea>();
             var triggerArea = triggerArea_old.gameObject.AddComponent<InfectionTesterTriggerArea>();
-            Object.Destroy(triggerArea_old);
+            Object.DestroyImmediate(triggerArea_old);
             triggerArea.terminal = openDoor;
             obj.SetActive(false);
             
