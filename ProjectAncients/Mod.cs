@@ -58,6 +58,7 @@ namespace ProjectAncients
         public static PrecursorDoorPrefab voidDoor_purple;
         public static PrecursorDoorPrefab voidDoor_orange;
         public static PrecursorDoorPrefab voidDoor_interior_left;
+        public static PrecursorDoorPrefab voidDoor_interior_right;
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
@@ -323,8 +324,11 @@ namespace ProjectAncients
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInterior", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
+            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInteriorL", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
             voidDoor_interior_left.Patch();
+
+            voidDoor_interior_right = new PrecursorDoorPrefab("VoidDoorInteriorL", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(4f, 0f, -3f), terminalLocalRotation: Vector3.up * 270f);
+            voidDoor_interior_right.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
