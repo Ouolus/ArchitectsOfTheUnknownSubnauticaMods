@@ -28,7 +28,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab(baseClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>();
+            PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>(true);
             DisableEmissiveOnStoryGoal disableEmissive = obj.GetComponent<DisableEmissiveOnStoryGoal>();
             if (disableEmissive)
             {
@@ -60,7 +60,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             yield return request;
             request.TryGetPrefab(out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>();
+            PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>(true);
             DisableEmissiveOnStoryGoal disableEmissive = obj.GetComponent<DisableEmissiveOnStoryGoal>();
             if (disableEmissive)
             {
