@@ -50,6 +50,7 @@ namespace ProjectAncients.Prefabs
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
             components.locomotion.maxAcceleration = 45f;
+            components.swimRandom.swimForward = 1f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
