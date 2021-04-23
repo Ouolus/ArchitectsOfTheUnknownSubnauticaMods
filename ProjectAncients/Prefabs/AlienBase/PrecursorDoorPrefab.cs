@@ -76,7 +76,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("LockedForceField(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             return obj;
@@ -89,19 +89,27 @@ namespace ProjectAncients.Prefabs.AlienBase
             request.TryGetPrefab(out GameObject prefab);
             
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
+            GameObject terminalPrefabPlaceholder = obj.SearchChild("KeyTerminal(Placeholder)", ECCStringComparison.Contains);
             terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
             if (overrideTerminalPosition)
             {
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
-            if (globalKeyActivator)
+            if (string.IsNullOrEmpty(doorKey))
             {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
+                if (globalKeyActivator)
+                {
+                    Object.Destroy(globalKeyActivator);
+                }
+            }
+            else
+            {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.EnsureComponent<PrecursorGlobalKeyActivator>();
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(obj.transform.childCount >= 1)
+            if (obj.transform.childCount >= 1)
             {
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
@@ -114,7 +122,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             
