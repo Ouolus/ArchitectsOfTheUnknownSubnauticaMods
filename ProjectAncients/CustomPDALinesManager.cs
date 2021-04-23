@@ -38,6 +38,7 @@ namespace ProjectAncients
             }
             FMODAsset soundAsset = ScriptableObject.CreateInstance<FMODAsset>();
             soundAsset.path = eventPath;
+            FMODUWE.PlayOneShot(soundAsset, Player.main.transform.position);
             Subtitles.main.Add(subtitleKey);
         }
     }
