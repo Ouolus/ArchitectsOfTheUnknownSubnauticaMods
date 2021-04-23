@@ -41,6 +41,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.openLoopSound = disableGun.openLoopSound;
             openDoor.curedUseSound = disableGun.curedUseSound;
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
+            openDoor.accessGrantedSound.path = "event:/env/power_teleporter";
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
@@ -73,6 +74,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.openLoopSound = disableGun.openLoopSound;
             openDoor.curedUseSound = disableGun.curedUseSound;
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
+            openDoor.accessGrantedSound.path = "event:/env/power_teleporter";
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
