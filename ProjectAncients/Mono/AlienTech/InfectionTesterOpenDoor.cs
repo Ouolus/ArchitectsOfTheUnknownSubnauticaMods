@@ -67,7 +67,7 @@ namespace ProjectAncients.Mono
 
 		public void OnHandHover(GUIHand hand)
 		{
-			if (DoorIsClosed() || usingPlayer != null || !opened)
+			if (DoorIsOpen() || usingPlayer != null || !opened)
 			{
 				return;
 			}
