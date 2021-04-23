@@ -70,14 +70,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(0f, secondFloorY + 8f, 32f), (Vector3.left * 180f), new Vector3(2f, 1f, 2f)));
 
             //Egg room
-            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(20.64f, secondCeilingY, 31.32f), Vector3.up * 45f));
-            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(-27.05f, secondCeilingY, 15.4f), Vector3.up * 135f));
+            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(20.64f, secondCeilingY - 2.5f, 31.32f), Vector3.up * 45f));
+            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(-27.05f, secondCeilingY - 2.5f, 15.4f), Vector3.up * 135f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f, secondFloorY, 31.32f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f + 1.4f, secondFloorY, 31.32f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f + 2.8f, secondFloorY, 31.32f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(supplies_cutefishegg, new Vector3(20.64f, secondFloorY + 1f, 31.32f), Vector3.up * -60f));
 
-            Vector3 specimenCasePos = new Vector3(-18.17f, secondFloorY, 26.08f);
+            Vector3 specimenCasePos = new Vector3(-18.17f, secondFloorY, 31f);
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, specimenCasePos + new Vector3(0f, 0f, -12f), Vector3.up * 0f));
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, specimenCasePos + new Vector3(-3f, 0f, -12f), Vector3.up * 0f));
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, specimenCasePos + new Vector3(3f, 0f, -12f), Vector3.up * 0f));
@@ -94,7 +94,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, specimenCasePos + new Vector3(-3f, 0f, 12f), Vector3.up * 0f));
             yield return StartCoroutine(SpawnPrefab(prop_specimensCase, specimenCasePos + new Vector3(3f, 0f, 12f), Vector3.up * 0f));
 
-            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-37.39f, secondFloorY, -1.61f), Vector3.up * -313f));//Ion cube next to dissection tank
+
+            yield return StartCoroutine(SpawnPrefab(prop_microscope, new Vector3(-37f, secondFloorY, 32f), Vector3.up * -225f));
+            yield return StartCoroutine(SpawnPrefab(prop_microscope, new Vector3(-39f, secondFloorY, 30f), Vector3.up * -225f));
+            yield return StartCoroutine(SpawnPrefab(prop_genericMap, new Vector3(0f, 26f, 14.4f), Vector3.zero));
+
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_big, new Vector3(-37.39f, secondFloorY, -1.61f), Vector3.up * -313f));//Ion cube next to dissection tank
 
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f + 1.4f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
