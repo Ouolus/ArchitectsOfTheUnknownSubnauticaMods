@@ -44,8 +44,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 
             //Egg pedestal
             Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);
-            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform2, centerRelicPlatformPosition, Vector3.zero, new Vector3(2.7f, 2.2f, 2.7f)));
-            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(0f, 0.5f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform2, centerRelicPlatformPosition + new Vector3(0f, 0.5f, 0f), Vector3.zero, new Vector3(2.7f, 2.2f, 2.7f)));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(4f, 0f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(-4f, 0f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(0f, 0f, 4f)));
