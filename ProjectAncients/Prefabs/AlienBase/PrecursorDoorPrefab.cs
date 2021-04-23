@@ -50,12 +50,20 @@ namespace ProjectAncients.Prefabs.AlienBase
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
-            if (globalKeyActivator)
+            if (string.IsNullOrEmpty(doorKey))
             {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
+                if (globalKeyActivator)
+                {
+                    Object.Destroy(globalKeyActivator);
+                }
+            }
+            else
+            {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.EnsureComponent<PrecursorGlobalKeyActivator>();
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(obj.transform.childCount >= 1)
+            if (obj.transform.childCount >= 1)
             {
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
