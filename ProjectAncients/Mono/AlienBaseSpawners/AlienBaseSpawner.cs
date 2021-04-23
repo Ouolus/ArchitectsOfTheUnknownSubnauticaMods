@@ -26,6 +26,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string pedestal_empty1 = "78009225-a9fa-4d21-9580-8719a3368373";
         public const string pedestal_empty2 = "3bbf8830-e34f-43a1-bbb3-743c7e6860ac";
         public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        public const string pedestal_ionCrystal_big = "2213b907-3231-4c7a-aeaf-03e7c7d349d8";
         /// <summary>
         /// 2x8x2
         /// </summary>
@@ -35,6 +36,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         /// 4x1x4
         /// </summary>
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
+        public const string structure_specialPlatform2 = "2a836e22-26fc-4853-98c8-fcb1f639f9ad";
         public const string structure_skeletonScanner1 = "4f5905f8-ea50-49e8-b24f-44139c6bddcf";
         public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
         public const string structure_skeletonScanner3 = "ac2b0798-e311-4cb1-9074-fae59cd7347a";
@@ -50,6 +52,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
         public const string prop_tableRectangle = "68c58fba-bc8d-40fc-a137-544af418f953";
         public const string prop_dissectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
+        public const string prop_genericMap = "172d9440-2670-45a3-93c7-104fee6da6bc";
         public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
