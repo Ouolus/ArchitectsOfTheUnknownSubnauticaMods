@@ -61,6 +61,27 @@ namespace ProjectAncients.Prefabs.AlienBase
             request.TryGetPrefab(out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>();
+            DisableEmissiveOnStoryGoal disableEmissive = obj.GetComponent<DisableEmissiveOnStoryGoal>();
+            if (disableEmissive)
+            {
+                Object.DestroyImmediate(disableEmissive);
+            }
+            var openDoor = obj.AddComponent<InfectionTesterOpenDoor>();
+            openDoor.glowMaterial = disableGun.glowMaterial;
+            openDoor.glowRing = disableGun.glowRing;
+            openDoor.useSound = disableGun.useSound;
+            openDoor.openLoopSound = disableGun.openLoopSound;
+            openDoor.curedUseSound = disableGun.curedUseSound;
+            openDoor.accessGrantedSound = disableGun.accessGrantedSound;
+            openDoor.accessDeniedSound = disableGun.accessDeniedSound;
+            openDoor.cinematic = disableGun.cinematic;
+            openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
+            Object.Destroy(disableGun);
+
+            var triggerArea_old = obj.GetComponentInChildren<PrecursorDisableGunTerminalArea>();
+            var triggerArea = triggerArea_old.gameObject.AddComponent<InfectionTesterTriggerArea>();
+            Object.Destroy(triggerArea_old);
+            triggerArea.terminal = openDoor;
             obj.SetActive(false);
             
             gameObject.Set(obj);
