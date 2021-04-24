@@ -39,8 +39,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = ScriptableObject.CreateInstance<FMODAsset>();
-            openDoor.curedUseSound.path = "event:/env/power_teleporter";
+            openDoor.curedUseSound = disableGun.curedUseSound;
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
@@ -72,8 +71,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = ScriptableObject.CreateInstance<FMODAsset>();
-            openDoor.curedUseSound.path = "event:/env/power_teleporter";
+            openDoor.curedUseSound = disableGun.curedUseSound;
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
