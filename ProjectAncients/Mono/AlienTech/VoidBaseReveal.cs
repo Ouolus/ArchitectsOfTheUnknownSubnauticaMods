@@ -2,6 +2,7 @@
 using ECCLibrary;
 using System.Collections.Generic;
 using System.Collections;
+using Story;
 
 namespace ProjectAncients.Mono.AlienTech
 {
@@ -12,6 +13,8 @@ namespace ProjectAncients.Mono.AlienTech
         private Material[] interiorMaterials;
         private FMODAsset turnOnSound;
         private float timeVoiceNotifyAgain = 0;
+
+        private StoryGoal approachBaseGoal = new StoryGoal("ApproachVoidBase", Story.GoalType.Story, 0f);
 
         protected override void OnTargetBiomeEntered()
         {
@@ -74,6 +77,18 @@ namespace ProjectAncients.Mono.AlienTech
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
+
+            var voTrigger1 = gameObject.AddComponent<AlienBasePlayerTrigger>();
+            voTrigger1.onTrigger = new AlienBasePlayerTrigger.OnTriggered(OnTrigger1);
+            voTrigger1.triggerObject = gameObject.SearchChild("VOTrigger1");
+        }
+
+        public void OnTrigger1(GameObject obj)
+        {
+            if (!StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting leviathan-class lifeforms beyond this doorway. Approach with caution.");
+            }
         }
     }
 }
