@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectAncients.Mono.AlienTech
 {
@@ -9,7 +10,10 @@ namespace ProjectAncients.Mono.AlienTech
     {
         public GameObject triggerObject;
 
-        public delegate void OnTriggered(GameObject root);
+        public class OnTriggered : UnityEvent<GameObject>
+        {
+        }
+
         public OnTriggered onTrigger;
 
         void Start()

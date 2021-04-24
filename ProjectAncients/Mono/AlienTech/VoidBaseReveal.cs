@@ -79,13 +79,14 @@ namespace ProjectAncients.Mono.AlienTech
             turnOnSound.path = "event:/env/antechamber_lights_on";
 
             var voTrigger1 = gameObject.AddComponent<AlienBasePlayerTrigger>();
-            voTrigger1.onTrigger = new AlienBasePlayerTrigger.OnTriggered(OnTrigger1);
+            voTrigger1.onTrigger = new AlienBasePlayerTrigger.OnTriggered();
+            voTrigger1.onTrigger.AddListener(OnTrigger1);
             voTrigger1.triggerObject = gameObject.SearchChild("VOTrigger1");
         }
 
         public void OnTrigger1(GameObject obj)
         {
-            if (!StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
+            if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting leviathan-class lifeforms beyond this doorway. Approach with caution.");
             }
