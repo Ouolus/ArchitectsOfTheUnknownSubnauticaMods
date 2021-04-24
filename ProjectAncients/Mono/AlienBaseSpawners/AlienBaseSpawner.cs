@@ -17,6 +17,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string light_small_pointlight = "473a8c4d-162f-4575-bbef-16c1c97d1e9d";
         public const string light_small_spotlight_2 = "e3742c20-ab0b-4714-929a-cc4eea95cc18";
         public const string light_big_animated = "6a02aa5c-8d4d-4801-aad4-ea61dccddae5";
+        public const string light_big_ceiling_animated = "ce3c3053-5022-404e-a165-e31abe495f1b";
         public const string light_volumetric_1 = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
         public const string light_volumetric_2 = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
         public const string light_verybig_novolumetrics = "5631b64f-d0f0-47f5-b7ac-f23215432070";
@@ -42,6 +43,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
         public const string structure_skeletonScanner3 = "ac2b0798-e311-4cb1-9074-fae59cd7347a";
         public const string structure_doorwaySmall = "19d017a5-2e59-4c1f-bc44-e642f7d7fbd3";
+        public const string structure_cacheTeleporterDeco = "fecb50b0-eb8a-4ca1-b95b-356fc0f4ac32";
         public const string cables_attachToBase = "18aa16f9-d1d8-4ccd-8a10-7ad32a5fd283";
         public const string cables_mid01 = "69cd7462-7cd2-456c-bfff-50903c391737";
         public const string cables_mid02 = "94933bb3-0587-4e8d-a38d-b7ec4c859b1a";
