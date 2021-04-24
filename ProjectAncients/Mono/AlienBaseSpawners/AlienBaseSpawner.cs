@@ -25,8 +25,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
         public const string pedestal_empty1 = "78009225-a9fa-4d21-9580-8719a3368373";
         public const string pedestal_empty2 = "3bbf8830-e34f-43a1-bbb3-743c7e6860ac";
-        public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
-        public const string pedestal_ionCrystal_big = "2213b907-3231-4c7a-aeaf-03e7c7d349d8";
+        public const string pedestal_ionCrystal_rectangle = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        public const string pedestal_ionCrystal_square = "ea65ef91-e875-4157-99f9-a8f4f6dc92f8";
+        public const string pedestal_ionCrystalPyramid = "2db600ca-25f7-4000-93a5-f8c2a4ec0387";
         /// <summary>
         /// 2x8x2
         /// </summary>
@@ -64,7 +65,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_smallWater = "22b0ce08-61c9-4442-a83d-ba7fb99f26b0";
         public const string supplies_mediumWater = "f7fb4077-b4d7-443c-b367-349cc1d39cc8";
         public const string supplies_bigWater = "$545c54a8-b23e-41bc-9d7c-af0b729e502f";
-        public const string supplies_ionCube = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
+        public const string supplies_ionCrystal = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
         public const string supplies_drillableIonCube = "41406e76-4b4c-4072-86f8-f5b8e6523b73";
         public const string supplies_drillableLithium = "846c3df6-ffbf-4206-b591-72f5ba11ed40";
         public const string supplies_drillableTitanium = "9f855246-76c4-438b-8e4d-9cd6d7ce4224";
