@@ -33,7 +33,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         Vector3 GetPlayerSpawnPosition(Vector3 coords, float angle)
         {
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward;
-            return coords + (direction * 1.5f);
+            return coords + (direction * 1.5f) + new Vector3(0f, 2.15f, 0f);
         }
     }
 }
