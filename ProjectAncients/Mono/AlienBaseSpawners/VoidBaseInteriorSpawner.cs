@@ -16,8 +16,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(-3f + 0.5f, 2f, 40f)));
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(3f + 1.5f + 1.5f, 2f, 40f)));
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior_infectionTest.ClassID, new Vector3(0f, 0f, 13f), Vector3.zero));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_big, new Vector3(-4f, 0f, 22f), Vector3.zero));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_big, new Vector3(4f, 0f, 22f), Vector3.zero));
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(-4f, 0f, 22f), Vector3.zero));
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(4f, 0f, 22f), Vector3.zero));
 
             //Aquarium
             yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(5.16f, firstFloorY, -20.88f), new Vector3(0f, 74f, 0f)));
@@ -34,7 +34,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f)); //Left doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-5.3f, 0f, -43.04f), new Vector3(0f, -191f, 0f))); //Ion cube behind aquarium
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 0f, -56f))); //Ion cube behind aquarium
 
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 11.9f), Vector3.back, transform.position + new Vector3(0f, 11f, -10.5f), Vector3.back, Vector3.down, 5f, scale: 1.5f));
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, -57.6f), Vector3.forward, transform.position + new Vector3(0f, 11f, -34.75f), Vector3.forward, Vector3.down, 5f, scale: 1.5f));
@@ -103,12 +103,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(prop_microscope, new Vector3(-39f, secondFloorY, 30f), Vector3.up * -225f));
             yield return StartCoroutine(SpawnPrefab(prop_genericMap, new Vector3(0f, 20f, 14.4f), Vector3.zero, Vector3.one * 3f));
 
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_big, new Vector3(-37.39f, secondFloorY, -1.61f), Vector3.up * -313f));//Ion cube next to dissection tank
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(-37.39f, secondFloorY, -1.61f), Vector3.up * -313f));//Ion cube next to dissection tank
 
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f + 1.4f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(-30.3f - 1.4f, secondFloorY, 22.65f), Vector3.zero, Vector3.one * 0.67f));
-            yield return StartCoroutine(SpawnPrefab(supplies_ionCube, new Vector3(-30.3f, secondFloorY + 1f, 22.65f), Vector3.up * 5f));
+            yield return StartCoroutine(SpawnPrefab(supplies_ionCrystal, new Vector3(-30.3f, secondFloorY + 1f, 22.65f), Vector3.up * 5f));
 
             yield return StartCoroutine(SpawnPrefab(prop_dissectionTank, new Vector3(-45f, secondFloorY, 5f), Vector3.up * 135f, Vector3.one * 3f));
 
@@ -129,7 +129,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(18, 0f, 24), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(26, 0f, 32), new Vector3(0f, -45f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(33.3f, 0f, 14f), new Vector3(0f, 27f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystalPyramid, new Vector3(40, 0f, 27), new Vector3(0f, -135f, 0f)));
             yield return SpawnRelicInCase(new Vector3(33.78f, 0f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(22, firstCeilingY, 28), Vector3.right * 90f));
