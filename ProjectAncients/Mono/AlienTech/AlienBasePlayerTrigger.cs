@@ -14,7 +14,7 @@ namespace ProjectAncients.Mono.AlienTech
 
         void Start()
         {
-            if(triggerObject == null)
+            if (triggerObject == null)
             {
                 ECCLibrary.Internal.ECCLog.AddMessage("AlienBasePlayerTrigger.triggerObject is null");
             }
@@ -25,9 +25,9 @@ namespace ProjectAncients.Mono.AlienTech
 
         public void OnTouch(Collider collider)
         {
-            if(collider.GetComponentInParent<Player>() is not null)
+            if (collider.GetComponentInParent<Player>() is not null)
             {
-                if(onTrigger == null)
+                if (onTrigger == null)
                 {
                     ECCLibrary.Internal.ECCLog.AddMessage("AlienBasePlayerTrigger.onTrigger is null");
                 }
