@@ -39,9 +39,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = disableGun.curedUseSound;
+            openDoor.curedUseSound = ScriptableObject.CreateInstance<FMODAsset>();
+            openDoor.curedUseSound.path = "event:/env/power_teleporter";
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
-            openDoor.accessGrantedSound.path = "event:/env/power_teleporter";
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
@@ -72,9 +72,9 @@ namespace ProjectAncients.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = disableGun.curedUseSound;
+            openDoor.curedUseSound = ScriptableObject.CreateInstance<FMODAsset>();
+            openDoor.curedUseSound.path = "event:/env/power_teleporter";
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
-            openDoor.accessGrantedSound.path = "event:/env/power_teleporter";
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
             openDoor.onPlayerCuredGoal = disableGun.onPlayerCuredGoal;
