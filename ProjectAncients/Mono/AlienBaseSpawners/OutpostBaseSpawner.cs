@@ -13,7 +13,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(-4f, yOffset, 1f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(4f, yOffset, -6f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(1f, yOffset, 3f)));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal, new Vector3(0f, yOffset, 0f)));
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_rectangle, new Vector3(0f, yOffset, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, 7f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, -9f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(-9f, yOffset, 7f)));
