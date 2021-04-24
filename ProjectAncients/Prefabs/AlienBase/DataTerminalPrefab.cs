@@ -85,7 +85,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 playAudio.clipPrefix = audioClipPrefix;
                 playAudio.subtitlesKey = subtitlesKey;
             }
-            if(techToUnlock != TechType.None)
+            if (techToUnlock != TechType.None)
             {
                 obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = techToUnlock;
             }

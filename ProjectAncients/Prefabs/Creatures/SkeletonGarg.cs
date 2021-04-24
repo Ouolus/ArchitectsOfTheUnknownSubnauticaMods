@@ -32,7 +32,7 @@ namespace ProjectAncients.Prefabs
 
         public override void ApplyAggression()
         {
-            
+
         }
 
         public override bool AttackPlayer => false;

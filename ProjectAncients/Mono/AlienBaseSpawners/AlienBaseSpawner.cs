@@ -135,14 +135,14 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(ConstructBase());
             foreach (GameObject obj in spawnedChildren)
             {
-                if(obj is null)
+                if (obj is null)
                 {
                     ECCLibrary.Internal.ECCLog.AddMessage("Spawned child is null");
                     continue;
                 }
                 obj.transform.parent = null;
                 LargeWorldEntity lwe = obj.GetComponent<LargeWorldEntity>();
-                if(lwe is null)
+                if (lwe is null)
                 {
                     ECCLibrary.Internal.ECCLog.AddMessage("Spawned child {0} has no LWE", obj.gameObject.name);
                     continue;
@@ -174,7 +174,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                if(spawned != null) spawned.Set(spawnedObject);
+                if (spawned != null) spawned.Set(spawnedObject);
             }
         }
 
