@@ -144,6 +144,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
+
+            //Top
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 35f, 0f)));
         }
     }
 }

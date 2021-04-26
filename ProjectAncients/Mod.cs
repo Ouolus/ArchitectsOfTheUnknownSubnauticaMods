@@ -420,6 +420,8 @@ namespace ProjectAncients
             TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-10.80f, -178.50f, -1183.00f), 0f);
             voidSupplyNetwork.Patch();
 
+            TeleporterNetwork voidSecretNetwork = new TeleporterNetwork("VoidBaseGrassy", new Vector3(373, -400 + 35f, -1880 + voidBaseZOffset - 52f), 0f, new Vector3(269.39f, -245.00f, 314.00f), 206f, false, true);
+            voidSecretNetwork.Patch();
             #endregion
 
             #region Alien bases
