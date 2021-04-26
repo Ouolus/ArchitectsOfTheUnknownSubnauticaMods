@@ -414,10 +414,10 @@ namespace ProjectAncients
             TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 + voidBaseZOffset - 55f), 0f, new Vector3(267.30f, -1439f, -350.44f), 150f, true, true);
             voidPcfNetwork.Patch();
 
-            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.2f, -641.00f), 0f);
+            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
             voidWeaponsNetwork.Patch();
 
-            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.2f, -1183.00f), 0f);
+            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.4f, -1183.00f - 14f), 0f, false, true);
             voidSupplyNetwork.Patch();
 
             TeleporterNetwork voidSecretNetwork = new TeleporterNetwork("VoidBaseGrassy", new Vector3(373, -400 + 35f, -1880 + voidBaseZOffset - 52f), 0f, new Vector3(269.39f, -245.00f, 314.00f), 206f, false, true);
