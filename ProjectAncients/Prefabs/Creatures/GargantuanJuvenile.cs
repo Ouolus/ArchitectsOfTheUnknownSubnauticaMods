@@ -17,6 +17,8 @@ namespace ProjectAncients.Prefabs
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 15f, 20f, 17f, 30f);
 
+        public override float EyeFov => 0.8f;
+
         public override string GetEncyTitle => "Gargantuan Leviathan Juvenile";
 
         public GargantuanJuvenile(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
