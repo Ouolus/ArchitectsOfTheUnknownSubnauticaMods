@@ -76,6 +76,12 @@ namespace CreatorKit.Utility
             }
         }
 
+        /// <summary>
+        /// Loads an uncompressed sprite from a file.
+        /// </summary>
+        /// <param name="iconPath"></param>
+        /// <param name="defaultSprite"></param>
+        /// <returns></returns>
         public static Sprite LoadSprite(string iconPath, Sprite defaultSprite = null)
         {
             Texture2D tex = LoadPNG(iconPath);
@@ -90,11 +96,19 @@ namespace CreatorKit.Utility
             }
         }
 
+        /// <summary>
+        /// Loads an uncompressed PNG from a file (other file types may work too).
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
         public static Texture2D LoadPNG(string imagePath)
         {
             return SMLHelper.V2.Utility.ImageUtils.LoadTextureFromFile(imagePath);
         }
 
+        /// <summary>
+        /// EventSystems are NECESSARY for UI elements to work correctly.
+        /// </summary>
         public static void GenerateEventSystemIfNeeded()
         {
             var currentEventSystem = Object.FindObjectOfType<EventSystem>();
