@@ -32,17 +32,26 @@ namespace CreatorKit.Utility
             snFolderPath = Path.Combine(Assembly.GetExecutingAssembly().Location, @"..\..\..\");
         }
 
+        /// <summary>
+        /// Adds a message to the ErrorMessage and the log.
+        /// </summary>
+        /// <param name="message"></param>
         public static void PrintErrorMessage(string message)
         {
             UnityEngine.Debug.Log(message);
-            QModManager.API.QModServices.Main.AddCriticalMessage(message);
             ErrorMessage.AddMessage(message);
         }
 
+        /// <summary>
+        /// Reads all the text from a file and then closes the stream.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static string ReadText(string path)
         {
             if (!File.Exists(path))
             {
+                ErrorMessage.AddMessage("File does not exist at path " + path);
                 return "";
             }
             using (StreamReader reader = new StreamReader(path))
@@ -51,6 +60,11 @@ namespace CreatorKit.Utility
             }
         }
 
+        /// <summary>
+        /// Write all text to a file and then closes the stream.
+        /// </summary>
+        /// <param name="path">The path of the file.</param>
+        /// <param name="text">The text to write in the file.</param>
         public static void WriteText(string path, string text)
         {
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
