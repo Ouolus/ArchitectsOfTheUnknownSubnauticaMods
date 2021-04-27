@@ -26,7 +26,7 @@ namespace ProjectAncients.Mono
             _audioSource.Play();
             MainCameraControl.main.ShakeCamera(1f, 5f, MainCameraControl.ShakeMode.Sqrt, 1f);
             yield return new WaitForSeconds(5f);
-            ErrorMessage.AddMessage("Something has awoken...");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAExplosionRoar"), "PDAExplosionRoar", "Minor tectonic activity detected. Pattern inconsistent with the quantum detonation of the Aurora's drive core. Point of origin somewhere within 3 kilometers. Extreme caution is advised.");
         }
     }
 }
