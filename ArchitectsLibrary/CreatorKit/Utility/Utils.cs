@@ -127,8 +127,8 @@ namespace CreatorKit.Utility
         public static GameObject InstantiateUIChild(GameObject prefab, Transform parent)
         {
             GameObject instantiated = GameObject.Instantiate(prefab);
-            prefab.GetComponent<RectTransform>().SetParent(parent, false);
-            return prefab;
+            instantiated.GetComponent<RectTransform>().SetParent(parent, false);
+            return instantiated;
         }
     }
 }
