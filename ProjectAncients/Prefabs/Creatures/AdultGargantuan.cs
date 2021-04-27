@@ -51,6 +51,8 @@ namespace ProjectAncients.Prefabs
             gargPresence.delay = 54f;
             components.locomotion.maxAcceleration = 45f;
             components.swimRandom.swimForward = 1f;
+
+            prefab.AddComponent<GargantuanEncounterPDA>();
         }
 
         public static void UpdateGargTransparentMaterial(Material material)

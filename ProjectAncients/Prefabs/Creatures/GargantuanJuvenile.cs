@@ -1,5 +1,6 @@
 ﻿using ECCLibrary;
 using UnityEngine;
+using ProjectAncients.Mono;
 
 namespace ProjectAncients.Prefabs
 {
@@ -26,5 +27,11 @@ namespace ProjectAncients.Prefabs
         }
 
         public override float VehicleDamagePerSecond => 30f;
+
+        public override void AddCustomBehaviour(CreatureComponents components)
+        {
+            base.AddCustomBehaviour(components);
+            prefab.AddComponent<GargantuanEncounterPDA>();
+        }
     }
 }
