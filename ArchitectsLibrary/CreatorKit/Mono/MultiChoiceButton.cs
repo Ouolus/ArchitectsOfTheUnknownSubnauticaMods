@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace CreatorKit.Mono
 {
-    internal class MultiChoiceButton : MonoBehaviour
+    public class MultiChoiceButton : MonoBehaviour
     {
         private int index;
         private UIPopupMultiChoice popup;

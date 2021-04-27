@@ -12,7 +12,7 @@ namespace CreatorKit.UI
     /// <summary>
     /// This static class contains a static reference to the AssetBundle and has some methods for obtaining commonly used UI Sprites.
     /// </summary>
-    internal static class UIAssets
+    public static class UIAssets
     {
         public static AssetBundle assetBundle;
         public const string assetBundleName = "creationkitassets";
@@ -42,10 +42,16 @@ namespace CreatorKit.UI
             return assetBundle.LoadAsset<GameObject>("EditorLauncher");
         }
 
+        #region Language Editor
         public static GameObject GetLanguageEditorPrefab()
         {
             return assetBundle.LoadAsset<GameObject>("LanguageEditor");
         }
+        public static GameObject GetFilteredListButtonPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("FilteredListButton");
+        }
+        #endregion
 
         public static GameObject GetMultipleChoicePopupPrefab()
         {

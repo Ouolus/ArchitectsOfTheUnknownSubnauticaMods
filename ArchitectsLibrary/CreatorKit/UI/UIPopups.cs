@@ -12,7 +12,7 @@ namespace CreatorKit.UI
     /// <summary>
     /// Warning: these do NOT work in the main menu
     /// </summary>
-    internal static class UIPopups
+    public static class UIPopups
     {
         public static IEnumerator MultiChoicePopup(string question, string[] options, TaskResult<int> result)
         {

@@ -5,7 +5,7 @@ using ArchitectsLibrary.Utility;
 
 namespace CreatorKit.Mono
 {
-    internal class UIPopupMultiChoice : MonoBehaviour
+    public class UIPopupMultiChoice : MonoBehaviour
     {
         private int chosen = -1;
 

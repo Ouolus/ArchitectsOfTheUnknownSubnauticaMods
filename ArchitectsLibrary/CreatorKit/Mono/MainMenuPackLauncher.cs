@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace CreatorKit.Mono
 {
-    internal class MainMenuPackLauncher : MonoBehaviour
+    public class MainMenuPackLauncher : MonoBehaviour
     {
         private Transform listParent;
         private GameObject listButtonPrefab;

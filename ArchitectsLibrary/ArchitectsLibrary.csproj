@@ -121,10 +121,14 @@
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="CreatorKit\Mono\FilterableList.cs" />
+    <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
+    <Compile Include="CreatorKit\Mono\GenericButton.cs" />
     <Compile Include="CreatorKit\Mono\MultiChoiceButton.cs" />
     <Compile Include="CreatorKit\Mono\MainMenuEditorLauncher.cs" />
     <Compile Include="CreatorKit\Mono\MainMenuPackLauncher.cs" />
     <Compile Include="CreatorKit\Mono\PackListButton.cs" />
+    <Compile Include="CreatorKit\Mono\TemplateTranslationsList.cs" />
     <Compile Include="CreatorKit\Mono\UIPopupMultiChoice.cs" />
     <Compile Include="CreatorKit\Packs\PackData.cs" />
     <Compile Include="CreatorKit\Packs\PackHelper.cs" />

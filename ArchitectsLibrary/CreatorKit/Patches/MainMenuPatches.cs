@@ -4,7 +4,7 @@ using CreatorKit.Mono;
 
 namespace CreatorKit.Patches
 {
-    internal class MainMenuMusicPatches
+    public class MainMenuMusicPatches
     {
         internal static void Patch(Harmony harmony)
         {

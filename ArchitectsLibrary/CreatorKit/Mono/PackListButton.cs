@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace CreatorKit.Mono
 {
-    internal class PackListButton : MonoBehaviour
+    public class PackListButton : MonoBehaviour
     {
         private MainMenuPackLauncher packLauncher;
         public Button button;

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace CreatorKit.Utility
 {
-    internal static class Utils
+    public static class Utils
     {
         private static string snFolderPath;
 
@@ -118,6 +118,17 @@ namespace CreatorKit.Utility
                 go.AddComponent<EventSystem>();
                 go.AddComponent<StandaloneInputModule>();
             }
+        }
+
+        /// <summary>
+        /// Instantiates a UI element, sets its parent, and returns the spawned object.
+        /// </summary>
+        /// <returns></returns>
+        public static GameObject InstantiateUIChild(GameObject prefab, Transform parent)
+        {
+            GameObject instantiated = GameObject.Instantiate(prefab);
+            prefab.GetComponent<RectTransform>().SetParent(parent, false);
+            return prefab;
         }
     }
 }

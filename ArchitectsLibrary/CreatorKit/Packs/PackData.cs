@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreatorKit.Packs
 {
-    internal struct PackData
+    public struct PackData
     {
         public PackJson json;
         public string id;

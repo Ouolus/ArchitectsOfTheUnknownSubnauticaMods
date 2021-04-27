@@ -6,11 +6,12 @@ using System.Collections;
 
 namespace CreatorKit.UI
 {
-    internal abstract class EditorBase : MonoBehaviour
+    public abstract class EditorBase : MonoBehaviour
     {
         public static EditorBase currentEditor;
         protected PackData packData;
         public GameObject header;
+        protected GameObject body;
 
         public void OnSceneLoaded(string packName)
         {
@@ -21,6 +22,7 @@ namespace CreatorKit.UI
             header.gameObject.SearchChild("PackName").GetComponent<Text>().text = packData.json.DisplayName;
             header.gameObject.SearchChild("Exit").GetComponent<Button>().onClick.AddListener(OnExitButton);
             header.gameObject.SearchChild("Save").GetComponent<Button>().onClick.AddListener(OnSaveButton);
+            body = header.gameObject.SearchChild("Body");
             currentEditor = this;
             
             OnLoaded();

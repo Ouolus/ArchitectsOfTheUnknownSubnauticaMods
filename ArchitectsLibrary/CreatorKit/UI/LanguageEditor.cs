@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
+using ArchitectsLibrary.Utility;
+using CreatorKit.Mono;
 
 namespace CreatorKit.UI
 {
-    internal class LanguageEditor : EditorBase
+    public class LanguageEditor : EditorBase
     {
         public override string SceneName => "Language Editor";
+        GameObject languageEditorBody;
 
         public override void OnSave()
         {
@@ -17,7 +16,8 @@ namespace CreatorKit.UI
 
         protected override void OnLoaded()
         {
-            
+            languageEditorBody = Utility.Utils.InstantiateUIChild(UIAssets.GetLanguageEditorPrefab(), body.transform);
+            languageEditorBody.gameObject.SearchChild("TemplateTranslationsList").AddComponent<TemplateTranslationsList>();
         }
     }
 }

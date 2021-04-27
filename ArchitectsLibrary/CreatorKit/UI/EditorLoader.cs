@@ -10,7 +10,7 @@ using UWE;
 
 namespace CreatorKit.UI
 {
-    internal class EditorLoader : MonoBehaviour
+    public class EditorLoader : MonoBehaviour
     {
         static GameObject sceneLoaderObj;
         static EditorLoader editorLoader;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CreatorKit.Packs
 {
-    internal class PackGenerator
+    public class PackGenerator
     {
         private PackData data;
 

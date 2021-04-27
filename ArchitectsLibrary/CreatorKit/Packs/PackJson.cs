@@ -3,7 +3,7 @@
 namespace CreatorKit.Packs
 {
     [Serializable]
-    internal struct PackJson
+    public struct PackJson
     {
         public string DisplayName;
         public string Description;

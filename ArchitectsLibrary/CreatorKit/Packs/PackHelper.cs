@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CreatorKit.Packs
 {
-    internal static class PackHelper
+    public static class PackHelper
     {
         public const string packJsonFile = "pack.json";
         public const string packIconFile = "icon.png";

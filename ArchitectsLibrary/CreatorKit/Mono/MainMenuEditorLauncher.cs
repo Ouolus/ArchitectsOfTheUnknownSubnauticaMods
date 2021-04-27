@@ -4,7 +4,7 @@ using ArchitectsLibrary.Utility;
 
 namespace CreatorKit.Mono
 {
-    internal class MainMenuEditorLauncher : MonoBehaviour
+    public class MainMenuEditorLauncher : MonoBehaviour
     {
         public MainMenuPackLauncher packLauncher;
         private string packName;

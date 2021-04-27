@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CreatorKit.Packs
 {
-    internal static class PackFolderUtils
+    public static class PackFolderUtils
     {
         private static string packFolderPath;
 
