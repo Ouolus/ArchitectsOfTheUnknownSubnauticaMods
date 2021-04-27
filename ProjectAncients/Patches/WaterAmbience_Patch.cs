@@ -30,14 +30,14 @@ namespace ProjectAncients.Patches
         {
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                absorption = new Vector3(7f, 6f, 6f),
+                absorption = new Vector3(7f, 6f, 6f) / 2f,
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
                 murkiness = 1f,
                 startDistance = 50f,
                 scatteringColor = new Color(0f, 0.2f, 0.02f),
-                temperature = 0f,
+                temperature = 5f,
                 scattering = 0.25f
             };
             PatchBiomeFog(__instance, "void", voidWaterscapeSettings, __instance.biomeSkies[0]);
