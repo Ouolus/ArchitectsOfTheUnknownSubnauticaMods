@@ -63,6 +63,16 @@ namespace CreatorKit.UI
             return assetBundle.LoadAsset<GameObject>("MultipleChoiceButton");
         }
 
+        public static GameObject GetTextPopupPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("WriteTextPopup");
+        }
+
+        public static GameObject GetTextPopupInputPrefab()
+        {
+            return assetBundle.LoadAsset<GameObject>("WriteTextInput");
+        }
+
         public static GameObject GetEditorBackgroundPrefab()
         {
             return assetBundle.LoadAsset<GameObject>("EditorBackground");
