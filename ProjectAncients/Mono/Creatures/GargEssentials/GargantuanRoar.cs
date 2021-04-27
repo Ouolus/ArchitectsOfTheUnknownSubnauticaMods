@@ -40,7 +40,7 @@ namespace ProjectAncients.Mono
             }
             if(Time.time > timeRoarAgain)
             {
-                PlayOnce(out float roarLength);
+                PlayOnce(out float roarLength, RoarMode.Automatic);
                 float timeToWait = roarLength + Random.Range(delayMin, delayMax);
                 timeRoarAgain = Time.time + timeToWait;
             }
@@ -63,10 +63,10 @@ namespace ProjectAncients.Mono
             }
         }
 
-        public void PlayOnce(out float roarLength)
+        public void PlayOnce(out float roarLength, RoarMode roarMode)
         {
             float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-            AudioClip clipToPlay = GetAudioClip(distance);
+            AudioClip clipToPlay = GetAudioClip(distance, roarMode);
             roarLength = clipToPlay.length;
             audioSource.clip = clipToPlay;
             audioSource.Play();
@@ -74,15 +74,26 @@ namespace ProjectAncients.Mono
             creature.GetAnimator().SetTrigger("roar");
         }
 
-        private AudioClip GetAudioClip(float distance)
+        private AudioClip GetAudioClip(float distance, RoarMode roarMode)
         {
-            if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
+            if (roarMode == RoarMode.CloseOnly)
             {
                 return closeSounds.GetRandomClip();
             }
-            else
+            else if (roarMode == RoarMode.FarOnly)
             {
                 return farSounds.GetRandomClip();
+            }
+            else
+            {
+                if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
+                {
+                    return closeSounds.GetRandomClip();
+                }
+                else
+                {
+                    return farSounds.GetRandomClip();
+                }
             }
         }
 
@@ -97,6 +108,22 @@ namespace ProjectAncients.Mono
 
             closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
             farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);
+        }
+
+        public enum RoarMode
+        {
+            /// <summary>
+            /// Determine roar sound based on distance
+            /// </summary>
+            Automatic,
+            /// <summary>
+            /// Always choose a "normal" or "close" roar
+            /// </summary>
+            CloseOnly,
+            /// <summary>
+            /// Always choose a "distant" roar
+            /// </summary>
+            FarOnly
         }
     }
 }
