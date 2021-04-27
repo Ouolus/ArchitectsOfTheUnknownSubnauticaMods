@@ -16,6 +16,7 @@ namespace ProjectAncients.Mono
         AudioSource vehicleGrabSound;
         Transform vehicleHoldPoint;
         GargantuanMouthAttack mouthAttack;
+        public GargantuanRoar roar;
         ECCAudio.AudioClipPool seamothSounds;
         ECCAudio.AudioClipPool exosuitSounds;
         ECCAudio.AudioClipPool cyclopsSounds;
@@ -36,6 +37,7 @@ namespace ProjectAncients.Mono
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
+            roar = GetComponent<GargantuanRoar>();
         }
 
         Transform GetHoldPoint()
