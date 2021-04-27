@@ -10,7 +10,7 @@ namespace ProjectAncients.Mono
         private float timeToSpawnGarg;
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
-        private const float spawnYLevel = -160;
+        private const float spawnYLevel = -100;
 
         bool coroutinePlaying = false;
 
