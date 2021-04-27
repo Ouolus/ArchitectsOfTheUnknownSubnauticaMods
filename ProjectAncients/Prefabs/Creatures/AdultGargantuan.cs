@@ -15,7 +15,7 @@ namespace ProjectAncients.Prefabs
         {
         }
 
-        public override float BiteDamage => 2500f;
+        public override float BiteDamage => 5000f;
 
         public override string AttachBoneName => "AttachBone";
 
