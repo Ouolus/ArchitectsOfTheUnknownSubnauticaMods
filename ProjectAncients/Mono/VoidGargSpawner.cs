@@ -32,8 +32,8 @@ namespace ProjectAncients.Mono
                     {
                         timeToSpawnGarg = Time.time + 10f;
                     }
-                    playerWasInVoid = playerInVoidNow;
                 }
+                playerWasInVoid = playerInVoidNow;
             }
         }
 
