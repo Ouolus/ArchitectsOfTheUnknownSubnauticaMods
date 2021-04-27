@@ -71,7 +71,7 @@ namespace ProjectAncients.Mono
             Vector3 directionToAbyss = playerPositionAtY0.normalized;
             Vector3 spawnOffset = directionToAbyss * spawnOutDistance;
             Vector3 spawnPosition = playerWorldPosition + spawnOffset;
-            Vector3 spawnPositionWithCorrectYLevel = new Vector3(spawnPosition.x, Mathf.Clamp(playerWorldPosition.y + spawnYLevel, -1000f, spawnYLevel), spawnPosition.z);
+            Vector3 spawnPositionWithCorrectYLevel = new Vector3(spawnPosition.x, Mathf.Clamp(playerWorldPosition.y + spawnYLevel, -10000f, spawnYLevel), spawnPosition.z);
             return spawnPositionWithCorrectYLevel;
         }
     }
