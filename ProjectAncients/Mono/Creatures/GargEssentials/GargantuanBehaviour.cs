@@ -324,11 +324,25 @@ namespace ProjectAncients.Mono
                 if (num >= 1f)
                 {
                     held.transform.position = holdPoint.position;
-                    held.transform.rotation = holdPoint.transform.rotation;
+                    if (IsHoldingLargeSub())
+                    {
+                        held.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation); //cyclops faces South for whatever reason so we need to invert the rotation
+                    }
+                    else
+                    {
+                        held.transform.rotation = holdPoint.transform.rotation;
+                    }
                     return;
                 }
                 held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
-                held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
+                if (IsHoldingLargeSub())
+                {
+                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num); //cyclops faces South for whatever reason so we need to invert the rotation
+                }
+                else
+                {
+                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
+                }
             }
         }
         public void OnTakeDamage(DamageInfo damageInfo)
