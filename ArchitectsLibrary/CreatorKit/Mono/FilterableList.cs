@@ -17,6 +17,8 @@ namespace CreatorKit.Mono
         Dictionary<string, string> filteredData;
         bool updatingDisplay = false;
         InputField filterInput;
+        Text emptyListText;
+        public int maxResultsInList = 250;
 
         public void Start()
         {
@@ -24,8 +26,11 @@ namespace CreatorKit.Mono
             gameObject.SearchChild("Header").GetComponent<Text>().text = GetHeaderText;
             filterInput = gameObject.SearchChild("Filter").GetComponent<InputField>();
             filterInput.onEndEdit.AddListener(new UnityAction<string>(OnFilter));
+            emptyListText = gameObject.SearchChild("ListEmptyText").GetComponent<Text>();
 
             ConstructInitialData();
+
+            OnFilter("");
         }
 
         /// <summary>
@@ -52,6 +57,7 @@ namespace CreatorKit.Mono
                     filteredData.Add(pair.Key, pair.Value);
                 }
             }
+            StopAllCoroutines();
             StartCoroutine(UpdateDisplay());
         }
 
@@ -61,15 +67,19 @@ namespace CreatorKit.Mono
         /// <returns></returns>
         public IEnumerator UpdateDisplay()
         {
-            if (updatingDisplay)
-            {
-                yield return new WaitUntil(() => updatingDisplay == false);
-            }
-            updatingDisplay = true;
-            filterInput.interactable = false;
             foreach (Transform child in listParent.transform)
             {
                 Destroy(child.gameObject);
+            }
+            if (filteredData.Count > maxResultsInList)
+            {
+                emptyListText.text = string.Format("Amount of results ({0}) exceeds maximum recommended amount ({1}). Use a more specific filter.", filteredData.Count, maxResultsInList);
+                emptyListText.enabled = true;
+                yield break;
+            }
+            else
+            {
+                emptyListText.enabled = false;
             }
             yield return null;
             GameObject buttonPrefab = UI.UIAssets.GetFilteredListButtonPrefab();
@@ -85,8 +95,6 @@ namespace CreatorKit.Mono
                 listItem.value = val;
                 yield return null;
             }
-            filterInput.interactable = true;
-            updatingDisplay = false;
         }
 
         public void OnButtonClicked(GameObject gameObject)
