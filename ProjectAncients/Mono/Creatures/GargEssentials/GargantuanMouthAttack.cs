@@ -16,6 +16,7 @@ namespace ProjectAncients.Mono
         private ECCAudio.AudioClipPool cinematicClipPool;
         private GargantuanBehaviour behaviour;
         private GameObject throat;
+        private GargantuanRoar roar;
 
         private PlayerCinematicController playerDeathCinematic;
 
@@ -38,6 +39,7 @@ namespace ProjectAncients.Mono
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
             behaviour = GetComponent<GargantuanBehaviour>();
+            roar = GetComponent<GargantuanRoar>();
 
             playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
             playerDeathCinematic.animatedTransform = gameObject.SearchChild(attachBoneName).transform;
@@ -86,6 +88,7 @@ namespace ProjectAncients.Mono
                                 {
                                     StartCoroutine(PerformBiteAttack(target, 1f));
                                 }
+                                behaviour.timeCanAttackAgain = Time.time + 1f;
                                 return;
                             }
                             else
@@ -135,6 +138,7 @@ namespace ProjectAncients.Mono
                                 if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
                                 {
                                     behaviour.GrabLargeSub(subRoot);
+                                    behaviour.roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
                                     thisCreature.Aggression.Value -= 1f;
                                     return;
                                 }
