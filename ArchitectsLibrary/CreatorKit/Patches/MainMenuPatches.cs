@@ -9,7 +9,7 @@ namespace CreatorKit.Patches
         internal static void Patch(Harmony harmony)
         {
             var target = AccessTools.Method(typeof(uGUI_MainMenu), "Start");
-            var postfix = new HarmonyMethod(AccessTools.Method(typeof(MainMenuMusic), nameof(MainMenu_Start_Postfix)));
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(MainMenuMusicPatches), nameof(MainMenu_Start_Postfix)));
             harmony.Patch(target, postfix: postfix);
         }
         
