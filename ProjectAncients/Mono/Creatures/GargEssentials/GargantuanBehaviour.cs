@@ -235,6 +235,9 @@ namespace ProjectAncients.Mono
             return true;
             
         }
+        /// <summary>
+        /// Try to deal damage to the held vehicle or subroot
+        /// </summary>
         private void DamageVehicle()
         {
             if (heldVehicle != null)
@@ -255,6 +258,9 @@ namespace ProjectAncients.Mono
                 heldSubroot.live.TakeDamage(cyclopsDps, type: DamageType.Normal);
             }
         }
+        /// <summary>
+        /// Try to release the held vehicle or subroot
+        /// </summary>
         public void ReleaseVehicle()
         {
             if (heldVehicle != null)
@@ -290,6 +296,10 @@ namespace ProjectAncients.Mono
             MainCameraControl.main.ShakeCamera(0f, 0f);
         }
 
+        /// <summary>
+        /// Disable cyclops colliders during garg cyclops attack animation
+        /// </summary>
+        /// <param name="active"></param>
         private void ToggleSubrootColliders(bool active)
         {
             if (subrootStoredColliders != null)
@@ -326,7 +336,7 @@ namespace ProjectAncients.Mono
                     held.transform.position = holdPoint.position;
                     if (IsHoldingLargeSub())
                     {
-                        held.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation); //cyclops faces South for whatever reason so we need to invert the rotation
+                        held.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
                     }
                     else
                     {
@@ -337,7 +347,7 @@ namespace ProjectAncients.Mono
                 held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
                 if (IsHoldingLargeSub())
                 {
-                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num); //cyclops faces South for whatever reason so we need to invert the rotation
+                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
                 }
                 else
                 {
