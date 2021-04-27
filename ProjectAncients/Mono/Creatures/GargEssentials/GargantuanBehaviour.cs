@@ -16,7 +16,6 @@ namespace ProjectAncients.Mono
         AudioSource vehicleGrabSound;
         Transform vehicleHoldPoint;
         GargantuanMouthAttack mouthAttack;
-        RoarAbility roar;
         ECCAudio.AudioClipPool seamothSounds;
         ECCAudio.AudioClipPool exosuitSounds;
         ECCAudio.AudioClipPool cyclopsSounds;
@@ -37,7 +36,6 @@ namespace ProjectAncients.Mono
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
-            roar = GetComponent<RoarAbility>();
         }
 
         Transform GetHoldPoint()
@@ -177,6 +175,7 @@ namespace ProjectAncients.Mono
             float attackLength = 4f;
             Invoke("ReleaseVehicle", attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
+            timeCanAttackAgain = Time.time + attackLength;
         }
         private void GrabVehicle(Vehicle vehicle, VehicleType vehicleType)
         {
