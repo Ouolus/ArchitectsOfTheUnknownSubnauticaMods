@@ -33,6 +33,8 @@ namespace ProjectAncients.Prefabs
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 6f, 10f, 0.1f);
+
         public override string GetEncyDesc => "Adult gargantuan text";
         public override string GetEncyTitle => "Gargantuan Leviathan";
 

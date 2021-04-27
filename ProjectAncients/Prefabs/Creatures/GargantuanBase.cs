@@ -18,7 +18,7 @@ namespace ProjectAncients.Prefabs
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 10f, 3f, 0.1f);
 
-        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 150f);
+        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 120f);
 
         public override float TurnSpeed => 0.3f;
 
