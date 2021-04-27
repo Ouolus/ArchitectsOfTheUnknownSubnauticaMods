@@ -29,7 +29,7 @@ namespace ArchitectsLibrary.API
             _modName = GetType().Assembly.GetName().Name;
             OnStartedPatching += () =>
             {
-                _overridenTechType = TechTypeHandler.AddTechType(MakeATechTypeToOverride.classId,
+                _overridenTechType = TechTypeHandler.Main.AddTechType(_modName, MakeATechTypeToOverride.classId,
                     MakeATechTypeToOverride.friendlyName,
                     MakeATechTypeToOverride.description);
             };
