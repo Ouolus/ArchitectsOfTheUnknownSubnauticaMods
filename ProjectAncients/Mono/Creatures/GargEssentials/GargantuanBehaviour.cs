@@ -336,7 +336,7 @@ namespace ProjectAncients.Mono
                     held.transform.position = holdPoint.position;
                     if (IsHoldingLargeSub())
                     {
-                        held.transform.rotation = Quaternion.Inverse(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
+                        held.transform.rotation = InverseRotation(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
                     }
                     else
                     {
@@ -347,13 +347,17 @@ namespace ProjectAncients.Mono
                 held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
                 if (IsHoldingLargeSub())
                 {
-                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, Quaternion.Inverse(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
+                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, InverseRotation(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
                 }
                 else
                 {
                     held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
                 }
             }
+        }
+        private Quaternion InverseRotation(Quaternion input)
+        {
+            return Quaternion.Euler(input.eulerAngles + new Vector3(0f, 180f, 0f));
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
