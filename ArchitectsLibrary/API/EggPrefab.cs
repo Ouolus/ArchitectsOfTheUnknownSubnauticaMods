@@ -25,9 +25,11 @@ namespace ArchitectsLibrary.API
         public EggPrefab(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
+            var mod = GetType().Assembly;
+       
             OnStartedPatching += () =>
             {
-                _overridenTechType = TechTypeHandler.AddTechType(MakeATechTypeToOverride.classId,
+                _overridenTechType = TechTypeHandler.AddTechType(mod, MakeATechTypeToOverride.classId,
                     MakeATechTypeToOverride.friendlyName,
                     MakeATechTypeToOverride.description);
             };
