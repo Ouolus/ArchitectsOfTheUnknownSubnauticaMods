@@ -41,8 +41,6 @@ namespace ProjectAncients.Mono
             if(Time.time > timeRoarAgain)
             {
                 PlayOnce(out float roarLength, RoarMode.Automatic);
-                float timeToWait = roarLength + Random.Range(delayMin, delayMax);
-                timeRoarAgain = Time.time + timeToWait;
             }
             if (screenShake)
             {
@@ -72,6 +70,8 @@ namespace ProjectAncients.Mono
             audioSource.Play();
             creature.GetAnimator().SetFloat("random", Random.value);
             creature.GetAnimator().SetTrigger("roar");
+            float timeToWait = roarLength + Random.Range(delayMin, delayMax);
+            timeRoarAgain = Time.time + timeToWait;
         }
 
         private AudioClip GetAudioClip(float distance, RoarMode roarMode)
