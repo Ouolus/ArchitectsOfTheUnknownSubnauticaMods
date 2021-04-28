@@ -39,7 +39,7 @@ namespace ProjectAncients.Patches
             }
             if (techTag.type == Mod.gargEgg.TechType)
             {
-                __instance.gameObject.transform.localScale = Vector3.one * 0.15f;
+                __instance.gameObject.transform.localScale = Vector3.one * 0.17f;
             }
         }
 
