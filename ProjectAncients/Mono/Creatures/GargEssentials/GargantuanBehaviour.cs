@@ -296,6 +296,8 @@ namespace ProjectAncients.Mono
             CancelInvoke("DamageVehicle");
             mouthAttack.OnVehicleReleased();
             MainCameraControl.main.ShakeCamera(0f, 0f);
+            var lastTarget = gameObject.GetComponent<LastTarget>();
+            if(lastTarget) lastTarget.target = null;
         }
 
         /// <summary>
@@ -388,6 +390,8 @@ namespace ProjectAncients.Mono
                 creature.Aggression.Value = 0f;
                 timeCanAttackAgain = Time.time + 5f;
             }
+            var lastTarget = gameObject.GetComponent<LastTarget>();
+            if (lastTarget) lastTarget.target = null;
             roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
         }
     }
