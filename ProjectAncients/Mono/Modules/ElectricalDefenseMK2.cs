@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono.Modules
         float _chargeDamageElec = 2f;
 
         float _damageArchElec = 7f;
-        float _radiusArchElec = 18f;
+        float _radiusArchElec = 50f;
         float _chargeRadiusArchElec = 1.5f;
         float _chargeDamageArchElec = 3.5f;
 
