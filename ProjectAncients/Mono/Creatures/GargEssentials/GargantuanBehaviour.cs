@@ -374,6 +374,7 @@ namespace ProjectAncients.Mono
                     creature.Aggression.Value = 0f;
                     timeCanAttackAgain = Time.time + 5f;
                 }
+                roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
             }
         }
         void OnDisable()
