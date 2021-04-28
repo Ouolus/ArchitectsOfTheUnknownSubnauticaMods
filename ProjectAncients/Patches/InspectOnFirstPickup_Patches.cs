@@ -27,5 +27,35 @@ namespace ProjectAncients.Patches
                 }
             }
         }
+
+        [HarmonyPatch(typeof(InspectOnFirstPickup), nameof(InspectOnFirstPickup.OnInspectObjectBegin))]
+        [HarmonyPostfix]
+        public static void InspectOnFirstPickup_InspectBegin_Patch(InspectOnFirstPickup __instance)
+        {
+            TechTag techTag = __instance.GetComponent<TechTag>();
+            if (techTag == null)
+            {
+                return;
+            }
+            if (techTag.type == Mod.gargEgg.TechType)
+            {
+                __instance.gameObject.transform.localScale = Vector3.one * 0.25f;
+            }
+        }
+
+        [HarmonyPatch(typeof(InspectOnFirstPickup), nameof(InspectOnFirstPickup.OnInspectObjectDone))]
+        [HarmonyPostfix]
+        public static void InspectOnFirstPickup_InspectEnd_Patch(InspectOnFirstPickup __instance)
+        {
+            TechTag techTag = __instance.GetComponent<TechTag>();
+            if (techTag == null)
+            {
+                return;
+            }
+            if (techTag.type == Mod.gargEgg.TechType)
+            {
+                __instance.gameObject.transform.localScale = Vector3.one;
+            }
+        }
     }
 }
