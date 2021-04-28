@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ProjectAncients.Patches
 {
     [HarmonyPatch]
-    public static class PrecursorTabletFixer
+    public static class InspectOnFirstPickup_Patches
     {
         [HarmonyPatch(typeof(InspectOnFirstPickup), nameof(InspectOnFirstPickup.Start))]
         [HarmonyPostfix]
