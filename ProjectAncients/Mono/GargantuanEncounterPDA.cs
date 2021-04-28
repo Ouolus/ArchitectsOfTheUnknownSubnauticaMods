@@ -9,7 +9,7 @@ namespace ProjectAncients.Mono
     public class GargantuanEncounterPDA : MonoBehaviour
     {
         private StoryGoal goal = new StoryGoal("GargantuanEncounter", Story.GoalType.Story, 0f);
-        public float maxDistance = 120f;
+        public float maxDistance = 125f;
 
         private void Start()
         {
