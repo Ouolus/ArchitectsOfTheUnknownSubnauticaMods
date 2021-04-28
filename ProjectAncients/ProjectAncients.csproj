@@ -172,6 +172,7 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
     <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
@@ -186,7 +187,7 @@
     <Compile Include="Patches\MainMenu_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
-    <Compile Include="Patches\PrecursorTabletFixer.cs" />
+    <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
