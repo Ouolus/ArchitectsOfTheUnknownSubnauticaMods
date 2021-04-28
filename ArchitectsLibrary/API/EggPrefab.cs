@@ -66,7 +66,7 @@ namespace ArchitectsLibrary.API
         public GameObjectEnhancements LateEnhancements;
 
         /// <summary>
-        /// override this Property to define you egg's prefab.
+        /// override this Property to define your egg's prefab.
         /// </summary>
         public abstract GameObject Model { get; }
 
