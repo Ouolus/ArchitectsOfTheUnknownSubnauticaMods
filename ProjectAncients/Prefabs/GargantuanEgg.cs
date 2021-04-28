@@ -23,12 +23,12 @@ namespace ProjectAncients.Prefabs
 
         public void InitializeObject(GameObject prefab)
         {
-            /*var inspect = prefab.AddComponent<InspectOnFirstPickup>();
+            var inspect = prefab.AddComponent<InspectOnFirstPickup>();
             inspect.pickupAble = prefab.GetComponent<Pickupable>();
             inspect.collision = prefab.GetComponent<Collider>();
             inspect.rigidBody = prefab.GetComponent<Rigidbody>();
             inspect.animParam = "holding_precursorioncrystal";
-            inspect.inspectDuration = 4.1f;*/
+            inspect.inspectDuration = 4.1f;
             prefab.GetComponent<CreatureEgg>().explodeOnHatch = false;
         }
     }
