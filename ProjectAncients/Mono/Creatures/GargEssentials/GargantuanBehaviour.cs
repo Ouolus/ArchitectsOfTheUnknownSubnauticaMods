@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using ECCLibrary;
 using ECCLibrary.Internal;
+using ProjectAncients.Mono.Modules;
 
 namespace ProjectAncients.Mono
 {
-    class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage
+    class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage, IOnArchitectElectricityZap
     {
         Vehicle heldVehicle;
         SubRoot heldSubroot;
@@ -364,17 +365,7 @@ namespace ProjectAncients.Mono
         {
             if (damageInfo.type == Mod.architectElect)
             {
-                if(heldVehicle is not null)
-                {
-                    ReleaseVehicle();
-                }
-                else
-                {
-                    creature.Scared.Value = 1f;
-                    creature.Aggression.Value = 0f;
-                    timeCanAttackAgain = Time.time + 5f;
-                }
-                roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
+                ArchitectElectricityZap();
             }
         }
         void OnDisable()
@@ -383,6 +374,21 @@ namespace ProjectAncients.Mono
             {
                 ReleaseVehicle();
             }
+        }
+
+        public void ArchitectElectricityZap()
+        {
+            if (heldVehicle is not null)
+            {
+                ReleaseVehicle();
+            }
+            else
+            {
+                creature.Scared.Value = 1f;
+                creature.Aggression.Value = 0f;
+                timeCanAttackAgain = Time.time + 5f;
+            }
+            roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
         }
     }
 }
