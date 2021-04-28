@@ -365,7 +365,7 @@ namespace ProjectAncients.Mono
         {
             if (damageInfo.type == Mod.architectElect)
             {
-                ArchitectElectricityZap();
+                OnDamagedByArchElectricity();
             }
         }
         void OnDisable()
@@ -376,7 +376,7 @@ namespace ProjectAncients.Mono
             }
         }
 
-        public void ArchitectElectricityZap()
+        public void OnDamagedByArchElectricity()
         {
             if (heldVehicle is not null)
             {
