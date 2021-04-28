@@ -78,9 +78,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(20.64f, secondCeilingY - 4.72f - 4.72f, 31.32f), Vector3.up * 45f, Vector3.one * 0.59f));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(20.64f, secondCeilingY - 4.72f, 31.32f), Vector3.up * 45f, Vector3.one * 0.59f));
 
-            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(-27.05f, secondCeilingY - 2.5f - 4.72f - 4.72f, 15.4f), Vector3.up * 135f));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-27.05f, secondCeilingY - 4.72f - 4.72f, 15.4f), Vector3.up * 135f, Vector3.one * 0.59f));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-27.05f, secondCeilingY - 4.72f, 15.4f), Vector3.up * 135f, Vector3.one * 0.59f));
+            yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(-30, secondCeilingY - 2.5f - 4.72f - 4.72f, 22f), Vector3.up * 135f));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-30, secondCeilingY - 4.72f - 4.72f, 22f), Vector3.up * 135f, Vector3.one * 0.59f));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-30, secondCeilingY - 4.72f, 22f), Vector3.up * 135f, Vector3.one * 0.59f));
 
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f, secondFloorY, 31.32f), Vector3.zero, Vector3.one * 0.67f));
             yield return StartCoroutine(SpawnPrefab(prop_tableRectangle, new Vector3(20.64f + 1.4f, secondFloorY, 31.32f), Vector3.zero, Vector3.one * 0.67f));
