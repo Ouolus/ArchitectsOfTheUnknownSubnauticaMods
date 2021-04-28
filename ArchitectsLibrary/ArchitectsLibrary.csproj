@@ -85,6 +85,7 @@
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>$(DepDir)\UnityEngine.ImageConversionModule.dll</HintPath>
+	  <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -96,6 +97,7 @@
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>$(DepDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
+	  <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
