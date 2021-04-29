@@ -188,6 +188,7 @@
     <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MainMenu_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
+    <Compile Include="Patches\PDAScanner_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
