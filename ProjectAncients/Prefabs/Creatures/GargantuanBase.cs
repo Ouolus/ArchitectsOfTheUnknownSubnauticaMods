@@ -167,6 +167,7 @@ namespace ProjectAncients.Prefabs
             roar.delayMin = RoarDelayMinMax.Item1;
             roar.delayMax = RoarDelayMinMax.Item2;
             roar.screenShake = DoesScreenShake;
+            roar.closeRoarThreshold = CloseRoarThreshold;
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
@@ -307,6 +308,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return "Head.001";
+            }
+        }
+
+        public virtual float CloseRoarThreshold
+        {
+            get
+            {
+                return 150f;
             }
         }
 

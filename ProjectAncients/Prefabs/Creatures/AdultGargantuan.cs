@@ -100,8 +100,10 @@ namespace ProjectAncients.Prefabs
 
         public override bool CanPerformCyclopsCinematic => true;
 
-        public override float EyeFov => 1f;
+        public override float EyeFov => 0.9f;
 
         public override bool DoesScreenShake => true;
+
+        public override float CloseRoarThreshold => 200f;
     }
 }

@@ -14,6 +14,7 @@ namespace ProjectAncients.Mono
         public float delayMax = 18f;
         public string closeSoundsPrefix;
         public string distantSoundsPrefix;
+        public float closeRoarThreshold = 150f;
 
         public float minDistance = 50f;
         public float maxDistance = 600f;
@@ -86,7 +87,7 @@ namespace ProjectAncients.Mono
             }
             else
             {
-                if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
+                if (distance < closeRoarThreshold && GargantuanBehaviour.PlayerIsKillable())
                 {
                     return closeSounds.GetRandomClip();
                 }
