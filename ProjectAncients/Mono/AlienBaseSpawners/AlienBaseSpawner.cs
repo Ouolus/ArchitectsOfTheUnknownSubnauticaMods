@@ -21,6 +21,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string light_volumetric_1 = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
         public const string light_volumetric_2 = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
         public const string light_verybig_novolumetrics = "5631b64f-d0f0-47f5-b7ac-f23215432070";
+        public const string light_strip_animated = "88cad316-cebe-4ead-aae2-1ab31cae0de6";
         public const string starfish = "d571d3dc-6229-430e-a513-0dcafc2c41f3";
         public const string structure_outpost_1 = "c5512e00-9959-4f57-98ae-9a9962976eaa";
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
