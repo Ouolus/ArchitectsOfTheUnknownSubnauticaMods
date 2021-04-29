@@ -59,7 +59,7 @@ namespace ProjectAncients.Mono
             Vector3 gargSpawnPoint = GetGargSpawnPoint(Player.main.transform.position);
             GameObject newGargantuan = Instantiate(obj, gargSpawnPoint, Quaternion.LookRotation(Vector3.up));
             newGargantuan.SetActive(true);
-            newGargantuan.AddComponent<SetLeashPositionDelayed>().leashPosition = gargSpawnPoint + leashYOffset;
+            newGargantuan.AddComponent<SetLeashPositionDelayed>().leashPosition = gargSpawnPoint + new Vector3(0f, leashYOffset, 0f);
             coroutinePlaying = false;
         }
 
