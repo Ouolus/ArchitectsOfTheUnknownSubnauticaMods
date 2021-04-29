@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectAncients.Patches
 {
-    [HarmonyPatch(typeof(PDAScanner_Patches))]
+    [HarmonyPatch(typeof(PDAScanner))]
     public class PDAScanner_Patches
     {
         static StoryGoal scanAdultGargGoal = new StoryGoal("ScanAdultGargantuan", Story.GoalType.Story, 0f);
