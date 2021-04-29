@@ -210,7 +210,19 @@ namespace ProjectAncients.Mono
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if (target) target.GetComponent<LiveMixin>().TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
+            if(target is not null)
+            {
+                var targetLm = target.GetComponent<LiveMixin>();
+                if (targetLm)
+                {
+                    targetLm.TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
+                    if (!targetLm.IsAlive())
+                    {
+                        creature.Aggression.Value = 0f;
+                        creature.Hunger.Value = 0f;
+                    }
+                }
+            }
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {
