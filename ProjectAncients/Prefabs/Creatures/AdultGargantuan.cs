@@ -29,14 +29,14 @@ namespace ProjectAncients.Prefabs
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 18f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 12f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 8f, 10f, 0.1f);
 
-        public override string GetEncyDesc => "Adult gargantuan text";
         public override string GetEncyTitle => "Gargantuan Leviathan";
+        public override string GetEncyDesc => "Adult gargantuan text";
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
