@@ -10,7 +10,8 @@ namespace ProjectAncients.Mono
         private float timeToSpawnGarg;
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
-        private const float spawnYLevel = -100;
+        private const float spawnYLevel = -400;
+        private const float leashYOffset = 300f;
 
         bool coroutinePlaying = false;
 
@@ -55,8 +56,10 @@ namespace ProjectAncients.Mono
             yield return task;
             
             var obj = task.GetResult();
-            GameObject newGargantuan = Instantiate(obj, GetGargSpawnPoint(Player.main.transform.position), Quaternion.LookRotation(Vector3.up));
+            Vector3 gargSpawnPoint = GetGargSpawnPoint(Player.main.transform.position);
+            GameObject newGargantuan = Instantiate(obj, gargSpawnPoint, Quaternion.LookRotation(Vector3.up));
             newGargantuan.SetActive(true);
+            newGargantuan.AddComponent<SetLeashPositionDelayed>().leashPosition = gargSpawnPoint + leashYOffset;
             coroutinePlaying = false;
         }
 
