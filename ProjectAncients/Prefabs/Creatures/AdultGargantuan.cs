@@ -33,7 +33,7 @@ namespace ProjectAncients.Prefabs
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
-        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 6f, 10f, 0.1f);
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 8f, 10f, 0.1f);
 
         public override string GetEncyDesc => "Adult gargantuan text";
         public override string GetEncyTitle => "Gargantuan Leviathan";
@@ -53,6 +53,7 @@ namespace ProjectAncients.Prefabs
             gargPresence.delay = 54f;
             components.locomotion.maxAcceleration = 45f;
             components.swimRandom.swimForward = 1f;
+            prefab.GetComponent<StayAtLeashPosition>().swimVelocity = 20f;
 
             prefab.AddComponent<GargantuanEncounterPDA>();
         }
