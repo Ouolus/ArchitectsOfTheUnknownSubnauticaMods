@@ -175,7 +175,7 @@ namespace ProjectAncients.Mono
             ToggleSubrootColliders(false);
             subRoot.rigidbody.isKinematic = true;
             InvokeRepeating("DamageVehicle", 1f, 1f);
-            float attackLength = 4f;
+            float attackLength = 9f;
             Invoke("ReleaseVehicle", attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             timeCanAttackAgain = Time.time + attackLength;
