@@ -18,7 +18,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.auxiliaryCoords = auxiliaryCoords;
             this.masterAngle = masterAngle;
             this.auxiliaryAngle = auxiliaryAngle;
-            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary, useAlternateColorScheme);
+            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary);
             auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, useAlternateColorScheme);
         }
         
