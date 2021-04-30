@@ -78,6 +78,7 @@ namespace ProjectAncients.Prefabs.Modules
             gameObject.Set(obj);
         }
 
+#if SN1
         public override GameObject GetGameObject()
         {
             var prefab = CraftData.GetPrefabForTechType(TechType.CyclopsDecoy);
@@ -108,6 +109,7 @@ namespace ProjectAncients.Prefabs.Modules
 
             return obj;
         }
+#endif
 
         protected override Atlas.Sprite GetItemSprite()
         {
