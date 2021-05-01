@@ -159,18 +159,21 @@ namespace ProjectAncients.Prefabs
                 prefab.AddComponent<RunAwayWhenScared>();
             }
 
-            GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
-            roar.closeSoundsPrefix = CloseRoarPrefix;
-            roar.distantSoundsPrefix = DistantRoarPrefix;
-            roar.minDistance = RoarSoundMinMax.Item1;
-            roar.maxDistance = RoarSoundMinMax.Item2;
-            roar.delayMin = RoarDelayMinMax.Item1;
-            roar.delayMax = RoarDelayMinMax.Item2;
-            roar.screenShake = DoesScreenShake;
-            roar.closeRoarThreshold = CloseRoarThreshold;
-            if (UseSwimSounds)
+            if (CanRoar)
             {
-                prefab.AddComponent<GargantuanSwimAmbience>();
+                GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
+                roar.closeSoundsPrefix = CloseRoarPrefix;
+                roar.distantSoundsPrefix = DistantRoarPrefix;
+                roar.minDistance = RoarSoundMinMax.Item1;
+                roar.maxDistance = RoarSoundMinMax.Item2;
+                roar.delayMin = RoarDelayMinMax.Item1;
+                roar.delayMax = RoarDelayMinMax.Item2;
+                roar.screenShake = DoesScreenShake;
+                roar.closeRoarThreshold = CloseRoarThreshold;
+                if (UseSwimSounds)
+                {
+                    prefab.AddComponent<GargantuanSwimAmbience>();
+                }
             }
 
             prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
@@ -189,6 +192,14 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool CanRoar
+        {
+            get
+            {
+                return true;
+            }
         }
 
         public virtual bool DoesScreenShake
