@@ -30,7 +30,7 @@ namespace ProjectAncients
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
         public static GargantuanBaby gargBabyPrefab;
-        public static SkeletonGarg skeletonGargPrefab;
+        public static SkeletonGarg spookySkeletonGargPrefab;
         public static GargantuanEgg gargEgg;
 
         public static GenericSignalPrefab signal_outpostC;
@@ -203,8 +203,8 @@ namespace ProjectAncients
             gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan Baby", "A very young specimen, raised in containment. Playful.", assetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), assetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
             gargBabyPrefab.Patch();
 
-            skeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan Skeleton", "Spooky.", assetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
-            skeletonGargPrefab.Patch();
+            spookySkeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan Skeleton", "Spooky.", assetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
+            spookySkeletonGargPrefab.Patch();
 
             gargEgg = new GargantuanEgg();
             gargEgg.Patch();
@@ -426,6 +426,9 @@ namespace ProjectAncients
 
             TeleporterNetwork voidSecretNetwork = new TeleporterNetwork("VoidBaseGrassy", new Vector3(373, -400 + 35f, -1880 + voidBaseZOffset - 52f), 0f, new Vector3(269.39f, -245.00f, 314.00f), 206f, false, true);
             voidSecretNetwork.Patch();
+
+            TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false, true);
+            secretTeleporter.Patch();
             #endregion
 
             #region Alien bases
@@ -452,6 +455,9 @@ namespace ProjectAncients
 
             var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 90, LargeWorldEntity.CellLevel.Medium); //Void
             eggBaseInterior.Patch();
+
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1000, -1440, 128), 200, LargeWorldEntity.CellLevel.Medium); //Dunes (Out of bounds)
+            secondaryContainmentFacility.Patch();
             #endregion
 
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
