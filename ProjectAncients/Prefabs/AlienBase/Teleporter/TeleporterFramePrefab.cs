@@ -63,6 +63,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             yield return request;
             request.TryGetPrefab(out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
+
             obj.SetActive(false);
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
             teleporter.teleporterIdentifier = teleporterId;
@@ -76,6 +77,16 @@ namespace ProjectAncients.Prefabs.AlienBase
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
+            }
+            if (useAlternateColorScheme)
+            {
+                foreach (Renderer renderer in obj.GetComponentsInChildren<Renderer>())
+                {
+                    foreach (Material mat in renderer.materials)
+                    {
+                        mat.SetColor("_GlowColor", new Color(0.1f, 0.1f, 1f));
+                    }
+                }
             }
             gameObject.Set(obj);
         }
