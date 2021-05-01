@@ -36,7 +36,7 @@ namespace ProjectAncients.Prefabs
         }
 
         public override bool AttackPlayer => false;
-        public override bool UseSwimSounds => false;
+        public override bool UseSwimSounds => true;
 
         public override string CloseRoarPrefix => "GargBaby";
         public override string DistantRoarPrefix => "GargBaby";
