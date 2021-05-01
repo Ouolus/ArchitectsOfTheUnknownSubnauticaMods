@@ -34,7 +34,7 @@ namespace ProjectAncients.Patches
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
-                murkiness = 1f,
+                murkiness = 0.5f,
                 startDistance = 50f,
                 scatteringColor = new Color(0f, 0.2f, 0.02f),
                 temperature = 5f,
