@@ -114,7 +114,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
-                    if(firstChild.name == "pedestal")
+                    if (firstChild.name == "pedestal")
                     {
                         GameObject.DestroyImmediate(firstChild.gameObject);
                     }
@@ -122,7 +122,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             
