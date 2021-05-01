@@ -37,6 +37,7 @@
     <DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
     <Optimize>true</Optimize>
     <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
