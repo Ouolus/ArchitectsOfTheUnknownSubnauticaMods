@@ -123,6 +123,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string bone_lessCurly3 = "e64676d7-0648-4f1e-9ab0-8e37ec877ef9";
         public const string bone_lessCurly4 = "08b4a416-2cdf-4c6b-8772-f58255e525d7";
         public const string bone_lessCurly_chipped = "6bf7e935-6e27-4b93-bc9c-25b7ec95c45e";
+        public const string damageprop_smallPanel = "7ec6dc08-6324-4269-93a2-5f3974abd7ec";
+        public const string damageprop_destroyedTile = "a523a6be-7358-479f-b07a-71a492e62247";
+        public const string damageprop_largeChunk = "a55ec9a0-8962-4388-8afa-6f18fb5ea789";
+        public const string damageprop_box = "583f8885-20fd-4c69-aa5a-5fcd7c58804b";
+        public const string damageprop_box_double = "199894b7-cfd5-4d38-89e8-2117ce43824c";
+        public const string damageprop_box_quadruple = "e42243eb-4f38-42cd-acec-1d38d9b1b120";
+        public const string damageprop_box_quadruple2 = "ae06567b-4afd-4aff-9904-e518c1e8e30a";
         /// <summary>
         /// Faces up by default.
         /// </summary>
