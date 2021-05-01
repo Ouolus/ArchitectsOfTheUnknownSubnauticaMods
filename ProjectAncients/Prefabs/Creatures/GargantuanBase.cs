@@ -170,10 +170,10 @@ namespace ProjectAncients.Prefabs
                 roar.delayMax = RoarDelayMinMax.Item2;
                 roar.screenShake = DoesScreenShake;
                 roar.closeRoarThreshold = CloseRoarThreshold;
-                if (UseSwimSounds)
-                {
-                    prefab.AddComponent<GargantuanSwimAmbience>();
-                }
+            }
+            if (UseSwimSounds)
+            {
+                prefab.AddComponent<GargantuanSwimAmbience>();
             }
 
             prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();

@@ -10,20 +10,20 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             // negative X & positive z = bad
             yield return SpawnWreckage(damageprop_box, 0.3f, 0.6f, 0.2f);
-            yield return SpawnWreckage(damageprop_destroyedTile, 0.5f, -0.5f, -0.2f);
+            yield return SpawnWreckage(damageprop_box_quadruple, 0.5f, -0.5f, -0.2f);
             yield return SpawnWreckage(damageprop_box_quadruple2, 0.9f, 0.9f, 0.1f);
             yield return SpawnWreckage(damageprop_box_quadruple2, 0f, 0f, 0.5f, 6f);
             yield return SpawnWreckage(damageprop_box_double, 0.4f, 0.6f, 0.45f);
-            yield return SpawnWreckage(damageprop_destroyedTile, 0.3f, -0.1f, 0.3f);
+            yield return SpawnWreckage(damageprop_box_quadruple, 0.3f, -0.1f, 0.3f);
             yield return SpawnWreckage(damageprop_box, -0.2f, -0.05f, 0.8f);
             yield return SpawnWreckage(damageprop_box_double, 0.9f, -0.9f, 0.94f);
             yield return SpawnWreckage(damageprop_box_quadruple2, 0.4f, -0.1f, 0.7f);
-            yield return SpawnWreckage(damageprop_largeChunk, 0.7f, -0.6f, 0.7f);
+            yield return SpawnWreckage(damageprop_box, 0.7f, -0.6f, 0.7f);
             yield return SpawnWreckage(damageprop_box, -0.8f, -0.6f, -0.3f);
             yield return SpawnWreckage(damageprop_box_quadruple, 0.2f, 0.05f, -0.2f);
-            yield return SpawnWreckage(damageprop_box, -0.1f, 1f, 0.1f);
-            yield return SpawnWreckage(damageprop_box_quadruple2, -0.5f, 0.7f, 0.53f);
-            yield return SpawnWreckage(damageprop_largeChunk, 0.03f, -0.06f, 0.37f);
+            yield return SpawnWreckage(damageprop_box, 0.2f, -1f, 0.1f);
+            yield return SpawnWreckage(damageprop_box_quadruple2, -0.2f, -0.6f, 0.53f);
+            yield return SpawnWreckage(damageprop_box_quadruple2, 0.03f, -0.06f, 0.37f);
             yield return SpawnWreckage(damageprop_box, 0.2f, 0.7f, 0.18f);
             yield return SpawnWreckage(damageprop_box_quadruple, -0.2f, -0.2f, -0.9f);
             yield return SpawnWreckage(damageprop_box, -0.3f, -0.6f, 0.43f);

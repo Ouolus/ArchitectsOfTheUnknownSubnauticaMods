@@ -456,7 +456,7 @@ namespace ProjectAncients
             var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 90, LargeWorldEntity.CellLevel.Medium); //Void
             eggBaseInterior.Patch();
 
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 200, LargeWorldEntity.CellLevel.Medium); //Dunes (Out of bounds)
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Medium); //Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
             #endregion
 
