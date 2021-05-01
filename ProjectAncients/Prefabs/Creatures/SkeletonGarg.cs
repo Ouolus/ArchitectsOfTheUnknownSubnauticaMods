@@ -15,11 +15,11 @@ namespace ProjectAncients.Prefabs
         {
         }
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 5f, "Lifeforms/Fauna/Leviathans", null, null);
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 5f, Mod.modEncyPath_analysis, null, null);
 
-        public override string GetEncyTitle => "Gargantuan Skeleton";
+        public override string GetEncyTitle => "Reanimated Skeleton";
 
-        public override string GetEncyDesc => "This thing shouldn't exist.";
+        public override string GetEncyDesc => "Analysis failed. This object is biologically impossible. It is likely controlled by some outside force.";
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
@@ -36,28 +36,27 @@ namespace ProjectAncients.Prefabs
         }
 
         public override bool AttackPlayer => false;
-
         public override bool UseSwimSounds => false;
 
         public override string CloseRoarPrefix => "GargBaby";
         public override string DistantRoarPrefix => "GargBaby";
 
-        public override (float, float) RoarSoundMinMax => (5f, 15f);
-
         public override float TentacleSnapSpeed => 3.5f;
 
-        public override float Mass => 50f;
+        public override float Mass => 500f;
 
-        public override float BiteDamage => 1f;
+        public override float BiteDamage => 0f;
 
-        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 10f, 10f), 3f, 1f, 0.1f);
-        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.39f, 6f);
-        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.38f, true, 5f);
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(30f, 15f, 30f), 5f, 3f, 0.1f);
+        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.39f, 100f);
+        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.38f, true, 10f);
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.rock;
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0f, 0f, 0f, 0f, 0f, 0f);
-        public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Near;
+        public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Far;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
         public override string AttachBoneName => "AttachBone";
+
+        public override bool CanRoar => false;
     }
 }

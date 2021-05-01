@@ -102,11 +102,11 @@ namespace ProjectAncients
 
         private const string assetBundleName = "projectancientsassets";
 
-        private const string modEncyPath_root = "GargMod";
-        private const string modEncyPath_terminalInfo = "GargMod/GargModInformation";
-        private const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
-        private const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
-        private const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
+        public const string modEncyPath_root = "GargMod";
+        public const string modEncyPath_terminalInfo = "GargMod/GargModInformation";
+        public const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
+        public const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
+        public const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
 
         private const string ency_tertiaryOutpostTerminalGrassy = "TertiaryOutpostTerminal1Ency";
         private const string ency_tertiaryOutpostTerminalSparseReef = "TertiaryOutpostTerminal2Ency";
@@ -456,7 +456,7 @@ namespace ProjectAncients
             var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 90, LargeWorldEntity.CellLevel.Medium); //Void
             eggBaseInterior.Patch();
 
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1000, -1440, 128), 200, LargeWorldEntity.CellLevel.Medium); //Dunes (Out of bounds)
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 200, LargeWorldEntity.CellLevel.Medium); //Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
             #endregion
 
