@@ -104,6 +104,6 @@ namespace ProjectAncients.Prefabs
 
         public override bool DoesScreenShake => true;
 
-        public override float CloseRoarThreshold => 200f;
+        public override float CloseRoarThreshold => 350f;
     }
 }
