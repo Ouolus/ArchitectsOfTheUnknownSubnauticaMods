@@ -53,6 +53,7 @@ namespace ProjectAncients.Prefabs.Modules
             obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.Whale;
             MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
             mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
@@ -86,6 +87,7 @@ namespace ProjectAncients.Prefabs.Modules
             obj.AddComponent<EcoTarget>().type = Mod.superDecoyTargetType;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.Shark;
             obj.AddComponent<EcoTarget>().type = EcoTargetType.MediumFish;
+            obj.AddComponent<EcoTarget>().type = EcoTargetType.Whale;
             MeshRenderer mesh = obj.GetComponentInChildren<MeshRenderer>();
             mesh.material.SetTexture(ShaderPropertyID._MainTex, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Diffuse"));
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
