@@ -20,6 +20,8 @@ namespace ProjectAncients.Prefabs
 
         public override float EyeFov => 0.8f;
 
+        public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
+
         public override string GetEncyTitle => "Gargantuan Leviathan Juvenile";
 
         public GargantuanJuvenile(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
