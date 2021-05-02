@@ -229,13 +229,21 @@ namespace ProjectAncients.Mono
             {
                 return false;
             }
-            string biome = Player.main.GetBiomeString();
-            if(biome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+            if (PlayerInPrecursorBase())
             {
                 return false;
             }
             return true;
             
+        }
+        public static bool PlayerInPrecursorBase()
+        {
+            string biome = Player.main.GetBiomeString();
+            if (biome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            return false;
         }
         /// <summary>
         /// Try to deal damage to the held vehicle or subroot
