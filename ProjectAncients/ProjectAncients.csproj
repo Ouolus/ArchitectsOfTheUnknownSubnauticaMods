@@ -208,6 +208,7 @@
     <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
     <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
+    <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
