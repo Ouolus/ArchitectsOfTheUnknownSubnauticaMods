@@ -32,6 +32,7 @@ namespace ProjectAncients
         public static GargantuanBaby gargBabyPrefab;
         public static SkeletonGarg spookySkeletonGargPrefab;
         public static GargantuanEgg gargEgg;
+        public static AquariumGuppy aquariumGuppy;
 
         public static GenericSignalPrefab signal_outpostC;
         public static GenericSignalPrefab signal_outpostD;
@@ -208,6 +209,9 @@ namespace ProjectAncients
 
             gargEgg = new GargantuanEgg();
             gargEgg.Patch();
+
+            aquariumGuppy = new AquariumGuppy("AquariumGuppy", "Unknown Fish", "An interesting fish.", assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
+            aquariumGuppy.Patch();
             #endregion
 
             #region CreatureSpawns
