@@ -128,7 +128,7 @@ namespace ProjectAncients
         private const string ency_precbuilder = "PrecursorBuilderEncy";
         private const string ency_alienSpam = "PrecursorSpamEncy";
         private const string ency_eggRoom = "PrecursorEggRoomEncy";
-        private const string ency_babyGargSkeleton = "BabyGargSkeletonEncy";
+        private const string ency_aquariumSkeleton = "BabyGargSkeletonEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -293,7 +293,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Research Laboratory Logs", "This document is interestingly portrayed in a way that is universally understood. File too large to upload to PDA.\n\nTranscript:\n- Unknown creature is approaching facility from below.\n- Creature appears to act extremely aggressive.\n- Creature is attacking Communications Apparatus.\n- Creature has been captured for vaccine research.\n- Specimen analysis: Juvenile leviathan-class creature. Has very few similarities in DNA with any other species observed on the planet.\n- 1 DNA match found: Egg Specimen 18.\n- Specimen interestingly has no signs of infection. Preparing specimen for Kharaa testing procedures.\n- [PERFORMING PLANET-WIDE QUARANTINE. VACCINE DEVELOPMENT TERMINATED. SPECIMEN PLACED IN LONG-TERM STORAGE TANK]", "Popup_green", "GreenGlyph_Ency");
 
-            PatchEncy(ency_babyGargSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
+            PatchEncy(ency_aquariumSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
             #endregion
 
             #region Precursor base prefabs
@@ -384,6 +384,7 @@ namespace ProjectAncients
 
             aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", "The remains of a juvenile leviathan specimen.", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
+            MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
             #endregion
 
             #region Alien terminals
