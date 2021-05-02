@@ -27,10 +27,13 @@ namespace ProjectAncients.Mono
         {
             if(Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
             {
-                if (StoryGoalManager.main.OnGoalComplete(goal.key))
+                if (!GargantuanBehaviour.PlayerInPrecursorBase())
                 {
-                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAGargEncounter"), "PDAGargEncounter", "Warning: passive bio scan is limited to 500 meters in any direction. Please manually scan the object for a more comprehensive measurement");
-                    Destroy(this);
+                    if (StoryGoalManager.main.OnGoalComplete(goal.key))
+                    {
+                        CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAGargEncounter"), "PDAGargEncounter", "Warning: passive bio scan is limited to 500 meters in any direction. Please manually scan the object for a more comprehensive measurement");
+                        Destroy(this);
+                    }
                 }
             }
         }
