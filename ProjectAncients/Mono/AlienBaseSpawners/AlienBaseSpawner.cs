@@ -84,7 +84,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
         public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
-        public const string atmosphereVolume_antechamber = "d645d7c7-76a2-4818-86b0-5c3e37a51e31";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
@@ -243,7 +242,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.eulerAngles = worldRotation;
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject);
                 if (spawned != null) spawned.Set(spawnedObject);
             }
         }
