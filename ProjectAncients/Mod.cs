@@ -80,6 +80,8 @@ namespace ProjectAncients
         public static GenericWorldPrefab guardianTailfinModel;
         public static AquariumSkeleton aquariumSkeleton;
 
+        public static AtmosphereVolumePrefab precursorAtmosphereVolume;
+
         public static AlienRelicPrefab ingotRelic;
         public static AlienRelicPrefab rifleRelic;
         public static AlienRelicPrefab bladeRelic;
@@ -385,6 +387,9 @@ namespace ProjectAncients
             aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", "The remains of a juvenile leviathan specimen.", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
             MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
+
+            precursorAtmosphereVolume = new AtmosphereVolumePrefab("PrecursorAntechamberVolume");
+            precursorAtmosphereVolume.Patch();
             #endregion
 
             #region Alien terminals

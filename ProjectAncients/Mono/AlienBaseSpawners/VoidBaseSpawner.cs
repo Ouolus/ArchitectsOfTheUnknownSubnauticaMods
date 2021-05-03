@@ -11,7 +11,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             TaskResult<GameObject> baseModel = new TaskResult<GameObject>();
             yield return SpawnPrefab(Mod.voidBaseModel.ClassID, Vector3.zero, baseModel);
-            yield return GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", atmosphereVolume_antechamber);
+            yield return GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", Mod.precursorAtmosphereVolume.ClassID);
 
             //Exterior platform
             yield return SpawnPrefab(Mod.voidDoor_red.ClassID, new Vector3(0f, platformY, 62f));
