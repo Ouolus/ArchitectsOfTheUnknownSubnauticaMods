@@ -21,6 +21,8 @@ namespace ProjectAncients.Prefabs
 
         public override EcoTargetType EcoTargetType => EcoTargetType.None;
 
+        public override float TurnSpeed => 0.5f;
+
         public override float MaxVelocityForSpeedParameter => 3f;
 
         public override void AddCustomBehaviour(CreatureComponents components)
