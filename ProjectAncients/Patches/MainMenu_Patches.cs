@@ -12,6 +12,10 @@ namespace ProjectAncients.Patches
         [HarmonyPrefix]
         public static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
+            if (!Mod.config.OverrideMainMenu)
+            {
+                return;
+            }
             FMODAsset wreakMusic = ScriptableObject.CreateInstance<FMODAsset>();
             wreakMusic.path = "event:/env/music/wreak_ambience_big_music";
             wreakMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
@@ -26,6 +30,27 @@ namespace ProjectAncients.Patches
             Light sun = lights[1];
             sun.intensity = 0f;
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
+        }
+    }
+
+    [HarmonyPatch(typeof(uGUI_MainMenu))]
+    public class uGUI_MainMenu_Patch
+    {
+        [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
+        [HarmonyPostfix]
+        public static void uGUI_MainMenu_Postfix(uGUI_MainMenu __instance)
+        {
+            if (!Mod.config.OverrideMainMenu)
+            {
+                return;
+            }
+            GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
+            if(subtitlePrefab is not null)
+            {
+                GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
+                subtitle.transform.position = new Vector3(-8, 0f, 20f);
+                subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            }
         }
     }
 
