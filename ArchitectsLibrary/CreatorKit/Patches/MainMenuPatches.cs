@@ -15,10 +15,14 @@ namespace CreatorKit.Patches
         
         public static void MainMenu_Start_Postfix(uGUI_MainMenu __instance)
         {
-            GameObject packLauncher = GameObject.Instantiate(UI.UIAssets.GetPackLauncherPrefab());
-            packLauncher.AddComponent<MainMenuPackLauncher>();
-            packLauncher.transform.parent = __instance.transform;
-            Utility.Utils.GenerateEventSystemIfNeeded();
+            GameObject packLauncherPrefab = UI.UIAssets.GetPackLauncherPrefab();
+            if (packLauncherPrefab)
+            {
+                GameObject packLauncher = GameObject.Instantiate(packLauncherPrefab);
+                packLauncher.AddComponent<MainMenuPackLauncher>();
+                packLauncher.transform.parent = __instance.transform;
+                Utility.Utils.GenerateEventSystemIfNeeded();
+            }
         }
     }
 }

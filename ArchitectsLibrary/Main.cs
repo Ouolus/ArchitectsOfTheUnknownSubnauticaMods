@@ -26,12 +26,12 @@ namespace ArchitectsLibrary
 
             UWE.CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
 
-            CreatorKit.SNCreatorKit.Entry();
+            //CreatorKit.SNCreatorKit.Entry();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
             VehiclePatches.Patch(harmony); 
-            MainMenuMusicPatches.Patch(harmony);
+            //MainMenuMusicPatches.Patch(harmony);
         }
 
         private static IEnumerator LoadIonCubeMaterial()
