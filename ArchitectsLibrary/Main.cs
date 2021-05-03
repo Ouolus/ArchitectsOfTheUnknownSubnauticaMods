@@ -6,6 +6,7 @@ using QModManager.Utility;
 using UnityEngine;
 using System.Collections;
 using CreatorKit.Patches;
+using UWE;
 
 namespace ArchitectsLibrary
 {
@@ -14,6 +15,7 @@ namespace ArchitectsLibrary
     {
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
         public static Material ionCubeMaterial;
+        public static Material precursorGlassMaterial;
 
         [QModPatch]
         public static void Load()
@@ -41,6 +43,15 @@ namespace ArchitectsLibrary
 
             GameObject ionCube = task.GetResult();
             ionCubeMaterial = ionCube.GetComponentInChildren<MeshRenderer>().material;
+        }
+
+        private static IEnumerator LoadPrecursorGlassMaterial()
+        {
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2b43dcb7-93b6-4b21-bd76-c362800bedd1");
+            yield return request;
+
+            request.TryGetPrefab(out GameObject glassPanel);
+            precursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
         }
     }
 }

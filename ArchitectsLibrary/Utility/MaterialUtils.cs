@@ -85,10 +85,17 @@ namespace ArchitectsLibrary.Utility
                         renderer.sharedMaterials = sharedMats;
                         continue;
                     }
+                    if (material.name.Contains("Transparent"))
+                    {
+                        Material[] sharedMats = renderer.sharedMaterials;
+                        sharedMats[i] = Main.precursorGlassMaterial;
+                        renderer.sharedMaterials = sharedMats;
+                        continue;
+                    }
                     material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
                     material.SetFloat("_SpecInt", specint);
                     material.SetFloat("_Fresnel", 0.4f);
-                    if (material.name.Contains("Transparent"))
+                    /*if (material.name.Contains("Transparent"))
                     {
                         material.SetFloat("_SrcBlend", 1f);
                         material.SetFloat("_DstBlend", 1f);
@@ -112,7 +119,7 @@ namespace ArchitectsLibrary.Utility
                         material.EnableKeyword("WBOIT");
                         material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
                         material.EnableKeyword("MARMO_SPECMAP");
-                    }
+                    }*/
                 }
             }
         }
