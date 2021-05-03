@@ -35,7 +35,7 @@ namespace ProjectAncients.Prefabs
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 8f, 10f, 0.1f);
 
-        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(1f, false, 35f);
+        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(1f, false, 30f);
 
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
 
