@@ -10,7 +10,14 @@ namespace ProjectAncients
         public bool OverrideMainMenu = true;
         [Toggle("Override loading screen", Tooltip = "Whether to use the custom Return of the Ancients loading screen. You may want to disable this to use any custom loading screen mods, or if you prefer the default loading screen.")]
         public bool OverrideLoadingScreen = true;
-        [Slider(Label = "Roar screen shake intensity", Tooltip = "The intensity of the shaking effect created by the Gargantuan Adult's roar.", DefaultValue = 1f, Min = 0f, Max = 1.5f, Step = 0.01f)]
-        public float RoarScreenShakeIntensity = 1f;
+        [Slider(Label = "Roar screen shake intensity", Tooltip = "The intensity of the shaking effect created by the Gargantuan Adult's roar.", DefaultValue = 50f, Min = 0f, Max = 100f, Step = 1f)]
+        public float RoarScreenShakeIntensity = 50f;
+        public float GetRoarScreenShakeNormalized
+        {
+            get
+            {
+                return RoarScreenShakeIntensity / 100f;
+            }
+        }
     }
 }
