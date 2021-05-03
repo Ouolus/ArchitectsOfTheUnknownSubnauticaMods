@@ -17,7 +17,7 @@ namespace ProjectAncients.Prefabs.AlienBase
 
         void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.VeryFar;
         }
 #if SN1
         public override GameObject GetGameObject()
