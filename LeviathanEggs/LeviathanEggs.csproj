@@ -145,7 +145,7 @@
     <Compile Include="Prefabs\SeaTreaderEgg.cs" />
     <Compile Include="Prefabs\BloodCrawlerEgg.cs" />
     <Compile Include="Prefabs\SkyRayEgg.cs" />
-    <Compile Include="Prefabs\SpineEelEgg.cs" />
+    <Compile Include="Prefabs\RiverProwlerEgg.cs" />
     <Compile Include="Prefabs\WarperEgg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
