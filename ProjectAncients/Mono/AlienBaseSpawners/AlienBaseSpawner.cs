@@ -13,23 +13,38 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string box2x1x2_variant1 = "5ecd846d-1629-4d3c-9119-f4f16179a408";
         public const string box2x1x2_variant2 = "fa5e644a-777b-4b54-a92a-0241752b8e06";
         public const string box2x1x2_variant3 = "3c9344a2-4715-4773-9c58-dc0437002278";
-        public const string light_small = "742b410c-14d4-42c6-ac84-0e2bcaff09c1";
+        public const string light_small_spotlight = "742b410c-14d4-42c6-ac84-0e2bcaff09c1";
+        public const string light_small_pointlight = "473a8c4d-162f-4575-bbef-16c1c97d1e9d";
+        public const string light_small_spotlight_2 = "e3742c20-ab0b-4714-929a-cc4eea95cc18";
         public const string light_big_animated = "6a02aa5c-8d4d-4801-aad4-ea61dccddae5";
+        public const string light_big_ceiling_animated = "ce3c3053-5022-404e-a165-e31abe495f1b";
+        public const string light_volumetric_1 = "8e96c4a2-6130-4f78-aad9-160cb4d42538";
+        public const string light_volumetric_2 = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
+        public const string light_verybig_novolumetrics = "5631b64f-d0f0-47f5-b7ac-f23215432070";
+        public const string light_strip_animated = "88cad316-cebe-4ead-aae2-1ab31cae0de6";
         public const string starfish = "d571d3dc-6229-430e-a513-0dcafc2c41f3";
         public const string structure_outpost_1 = "c5512e00-9959-4f57-98ae-9a9962976eaa";
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
         public const string pedestal_empty1 = "78009225-a9fa-4d21-9580-8719a3368373";
         public const string pedestal_empty2 = "3bbf8830-e34f-43a1-bbb3-743c7e6860ac";
-        public const string pedestal_ionCrystal = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        public const string pedestal_ionCrystal_rectangle = "7e1e5d12-7169-4ff9-abcd-520f11196764";
+        public const string pedestal_ionCrystal_square = "ea65ef91-e875-4157-99f9-a8f4f6dc92f8";
+        public const string pedestal_ionCrystalPyramid = "2db600ca-25f7-4000-93a5-f8c2a4ec0387";
         /// <summary>
         /// 2x8x2
         /// </summary>
         public const string structure_column = "640f57a6-6436-4132-a9bb-d914f3e19ef5";
-        public const string structure_doorway = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
+        public const string structure_doorway_divider = "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
+        /// <summary>
+        /// 4x1x4
+        /// </summary>
         public const string structure_specialPlatform = "738892ae-64b0-4240-953c-cea1d19ca111";
+        public const string structure_specialPlatform2 = "2a836e22-26fc-4853-98c8-fcb1f639f9ad";
         public const string structure_skeletonScanner1 = "4f5905f8-ea50-49e8-b24f-44139c6bddcf";
         public const string structure_skeletonScanner2 = "ebc943e4-200c-4789-92f3-e675cd982dbe";
         public const string structure_skeletonScanner3 = "ac2b0798-e311-4cb1-9074-fae59cd7347a";
+        public const string structure_doorwaySmall = "19d017a5-2e59-4c1f-bc44-e642f7d7fbd3";
+        public const string structure_cacheTeleporterDeco = "fecb50b0-eb8a-4ca1-b95b-356fc0f4ac32";
         public const string cables_attachToBase = "18aa16f9-d1d8-4ccd-8a10-7ad32a5fd283";
         public const string cables_mid01 = "69cd7462-7cd2-456c-bfff-50903c391737";
         public const string cables_mid02 = "94933bb3-0587-4e8d-a38d-b7ec4c859b1a";
@@ -37,8 +52,12 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string cables_attachToWall = "a0a9237e-dee3-4efa-81ff-fea3893a6eb7";
         public const string tabletDoor_orange = "83a70a58-f7da-4f18-b9b2-815dc8a7ffb4";
         public const string prop_microscope = "a30d0115-c37e-40ec-a5d9-318819e94f81";
-        public const string prop_specimens = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
+        public const string prop_specimensCase = "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
         public const string prop_claw = "6a01a336-fb46-469a-9f7d-1659e07d11d7";
+        public const string prop_tableRectangle = "68c58fba-bc8d-40fc-a137-544af418f953";
+        public const string prop_dissectionTank = "44974fcd-c47a-41aa-a279-43eaf234bfa6";
+        public const string prop_genericMap = "172d9440-2670-45a3-93c7-104fee6da6bc";
+        public const string prop_waterTank = "0b1cf8d8-65da-4b9d-bf86-bfb96ac35ae0";
         public const string artifactHolder = "d0fea4da-39f2-47b4-aece-bb12fe7f9410";
         /// <summary>
         /// Slightly higher than 2m tall, has a 22.5ish degree angle.
@@ -49,7 +68,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_smallWater = "22b0ce08-61c9-4442-a83d-ba7fb99f26b0";
         public const string supplies_mediumWater = "f7fb4077-b4d7-443c-b367-349cc1d39cc8";
         public const string supplies_bigWater = "$545c54a8-b23e-41bc-9d7c-af0b729e502f";
-        public const string supplies_ionCube = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
+        public const string supplies_ionCrystal = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
         public const string supplies_drillableIonCube = "41406e76-4b4c-4072-86f8-f5b8e6523b73";
         public const string supplies_drillableLithium = "846c3df6-ffbf-4206-b591-72f5ba11ed40";
         public const string supplies_drillableTitanium = "9f855246-76c4-438b-8e4d-9cd6d7ce4224";
@@ -60,9 +79,11 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string supplies_redTablet = "7d19f47b-6ec6-4a25-9b28-b3fd7f5661b7";
         public const string supplies_purpleTablet = "53ffa3e8-f2f7-43b8-a5c7-946e766aff64";
         public const string supplies_orangeTablet = "58247109-68b9-411f-b90f-63461df9753a";
+        public const string supplies_cutefishegg = "b78912bc-0191-4455-a9de-3b708e165393";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
+        public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
+        public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
-        public const string atmosphereVolume_antechamber = "d645d7c7-76a2-4818-86b0-5c3e37a51e31";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
@@ -86,6 +107,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string natural_coral_yellow2 = "450bf7b5-b6cf-4139-921f-3cb9ea505d5f";
         public const string natural_coral_red = "22bf7b03-8154-410b-a6fb-8ba315f68987";
         public const string natural_coral_purple = "c71f41ce-b586-4e85-896e-d25e8b5b9de0";
+        public const string natural_ameboid = "375a4ade-a7d9-401d-9ecf-08e1dce38d6b";
         public const string bone_reaperMandible = "501c0536-7993-4ed6-be77-6287cedd8d02";
         public const string bone_reaperSkull = "50031120-ab7a-4f10-b497-3a97f63b4de1";
         public const string bone_reaperSpine1Rib = "949d8657-1e5c-4418-8948-76b8b712fc57";
@@ -100,6 +122,13 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         public const string bone_lessCurly3 = "e64676d7-0648-4f1e-9ab0-8e37ec877ef9";
         public const string bone_lessCurly4 = "08b4a416-2cdf-4c6b-8772-f58255e525d7";
         public const string bone_lessCurly_chipped = "6bf7e935-6e27-4b93-bc9c-25b7ec95c45e";
+        public const string damageprop_smallPanel = "7ec6dc08-6324-4269-93a2-5f3974abd7ec";
+        public const string damageprop_destroyedTile = "a523a6be-7358-479f-b07a-71a492e62247";
+        public const string damageprop_largeChunk = "a55ec9a0-8962-4388-8afa-6f18fb5ea789";
+        public const string damageprop_box = "583f8885-20fd-4c69-aa5a-5fcd7c58804b";
+        public const string damageprop_box_double = "199894b7-cfd5-4d38-89e8-2117ce43824c";
+        public const string damageprop_box_quadruple = "e42243eb-4f38-42cd-acec-1d38d9b1b120";
+        public const string damageprop_box_quadruple2 = "ae06567b-4afd-4aff-9904-e518c1e8e30a";
         /// <summary>
         /// Faces up by default.
         /// </summary>
@@ -113,19 +142,24 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(ConstructBase());
             foreach (GameObject obj in spawnedChildren)
             {
-                if(obj is null)
+                if (obj is null)
                 {
                     ECCLibrary.Internal.ECCLog.AddMessage("Spawned child is null");
                     continue;
                 }
                 obj.transform.parent = null;
                 LargeWorldEntity lwe = obj.GetComponent<LargeWorldEntity>();
-                if(lwe is null)
+                if (lwe is null)
                 {
                     ECCLibrary.Internal.ECCLog.AddMessage("Spawned child {0} has no LWE", obj.gameObject.name);
                     continue;
                 }
                 LargeWorld.main.streamer.cellManager.RegisterEntity(lwe);
+                SkyApplier skyApplier = obj.GetComponent<SkyApplier>();
+                if (skyApplier)
+                {
+                    skyApplier.ApplySkybox();
+                }
             }
             Destroy(gameObject);
         }
@@ -147,7 +181,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.localScale = Vector3.one;
                 spawnedObject.SetActive(true);
                 spawnedChildren.Add(spawnedObject);
-                if(spawned != null) spawned.Set(spawnedObject);
+                if (spawned != null) spawned.Set(spawnedObject);
             }
         }
 
@@ -208,7 +242,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
                 spawnedObject.transform.eulerAngles = worldRotation;
                 spawnedObject.transform.localScale = scale;
                 spawnedObject.SetActive(true);
-                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject.GetComponent<LargeWorldEntity>());
+                LargeWorld.main.streamer.cellManager.RegisterEntity(spawnedObject);
                 if (spawned != null) spawned.Set(spawnedObject);
             }
         }
@@ -253,10 +287,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        public IEnumerator SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset)
+        public IEnumerator SpawnRelicInCase(Vector3 localPosition, string relicClassId, Vector3 relicOffset, Vector3 localRotation = default)
         {
-            yield return StartCoroutine(SpawnPrefab(artifactHolder, localPosition));
-            yield return StartCoroutine(SpawnPrefab(relicClassId, localPosition + relicOffset));
+            yield return StartCoroutine(SpawnPrefab(artifactHolder, localPosition, localRotation));
+            yield return StartCoroutine(SpawnPrefab(relicClassId, localPosition + relicOffset, localRotation));
         }
 
         /// <summary>

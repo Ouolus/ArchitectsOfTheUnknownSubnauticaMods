@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ProjectAncients.Mono.AlienTech;
+using Story;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
@@ -14,6 +15,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         public VoidBaseModel(string classId, string friendlyName, string description, GameObject model, UBERMaterialProperties materialProperties, LargeWorldEntity.CellLevel cellLevel) : base(classId, friendlyName, description, model, materialProperties, cellLevel)
         {
         }
+
 
         public override void CustomizePrefab()
         {

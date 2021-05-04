@@ -11,9 +11,9 @@ namespace ProjectAncients.Prefabs.AlienBase
         const string referenceClassId = "63e69987-7d34-41f0-aab9-1187ea06e740";
         private TeleporterFramePrefab frame;
 
-        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle) : base(classId, "", "")
+        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform) : base(classId, "", "")
         {
-            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle);
+            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, false);
             frame.Patch();
         }
 

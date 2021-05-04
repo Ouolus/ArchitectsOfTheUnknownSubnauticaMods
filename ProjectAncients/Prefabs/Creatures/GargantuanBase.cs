@@ -18,7 +18,7 @@ namespace ProjectAncients.Prefabs
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 10f, 3f, 0.1f);
 
-        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 150f);
+        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 120f);
 
         public override float TurnSpeed => 0.3f;
 
@@ -159,14 +159,18 @@ namespace ProjectAncients.Prefabs
                 prefab.AddComponent<RunAwayWhenScared>();
             }
 
-            GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
-            roar.closeSoundsPrefix = CloseRoarPrefix;
-            roar.distantSoundsPrefix = DistantRoarPrefix;
-            roar.minDistance = RoarSoundMinMax.Item1;
-            roar.maxDistance = RoarSoundMinMax.Item2;
-            roar.delayMin = RoarDelayMinMax.Item1;
-            roar.delayMax = RoarDelayMinMax.Item2;
-            roar.screenShake = DoesScreenShake;
+            if (CanRoar)
+            {
+                GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
+                roar.closeSoundsPrefix = CloseRoarPrefix;
+                roar.distantSoundsPrefix = DistantRoarPrefix;
+                roar.minDistance = RoarSoundMinMax.Item1;
+                roar.maxDistance = RoarSoundMinMax.Item2;
+                roar.delayMin = RoarDelayMinMax.Item1;
+                roar.delayMax = RoarDelayMinMax.Item2;
+                roar.screenShake = DoesScreenShake;
+                roar.closeRoarThreshold = CloseRoarThreshold;
+            }
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
@@ -188,6 +192,14 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool CanRoar
+        {
+            get
+            {
+                return true;
+            }
         }
 
         public virtual bool DoesScreenShake
@@ -307,6 +319,14 @@ namespace ProjectAncients.Prefabs
             get
             {
                 return "Head.001";
+            }
+        }
+
+        public virtual float CloseRoarThreshold
+        {
+            get
+            {
+                return 150f;
             }
         }
 

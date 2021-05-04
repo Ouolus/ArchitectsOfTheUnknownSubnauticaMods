@@ -33,10 +33,10 @@ namespace ProjectAncients.Mono
 		void CheckDistance()
 		{
 			string playerBiome = Player.main.GetBiomeString();
-			if (!VoidGargSpawner.IsVoidBiome(playerBiome) && !playerBiome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) && !playerBiome.StartsWith("observatory", System.StringComparison.OrdinalIgnoreCase))
+			if (!VoidGargSpawner.IsVoidBiome(playerBiome) && !playerBiome.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) && !playerBiome.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase) && !playerBiome.StartsWith("observatory", System.StringComparison.OrdinalIgnoreCase))
 			{
 				float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-				if (distance > 250f)
+				if (distance > 500f)
 				{
 					Destroy(gameObject);
 				}

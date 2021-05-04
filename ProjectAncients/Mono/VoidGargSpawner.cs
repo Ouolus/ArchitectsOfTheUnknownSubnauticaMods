@@ -10,7 +10,8 @@ namespace ProjectAncients.Mono
         private float timeToSpawnGarg;
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
-        private const float spawnYLevel = -90f;
+        private const float spawnYLevel = -400;
+        private const float leashYOffset = 300f;
 
         bool coroutinePlaying = false;
 
@@ -32,8 +33,8 @@ namespace ProjectAncients.Mono
                     {
                         timeToSpawnGarg = Time.time + 10f;
                     }
-                    playerWasInVoid = playerInVoidNow;
                 }
+                playerWasInVoid = playerInVoidNow;
             }
         }
 
@@ -55,8 +56,10 @@ namespace ProjectAncients.Mono
             yield return task;
             
             var obj = task.GetResult();
-            GameObject newGargantuan = Instantiate(obj, GetGargSpawnPoint(Player.main.transform.position), Quaternion.LookRotation(Vector3.up));
+            Vector3 gargSpawnPoint = GetGargSpawnPoint(Player.main.transform.position);
+            GameObject newGargantuan = Instantiate(obj, gargSpawnPoint, Quaternion.LookRotation(Vector3.up));
             newGargantuan.SetActive(true);
+            newGargantuan.AddComponent<SetLeashPositionDelayed>().leashPosition = gargSpawnPoint + new Vector3(0f, leashYOffset, 0f);
             coroutinePlaying = false;
         }
 
@@ -71,7 +74,7 @@ namespace ProjectAncients.Mono
             Vector3 directionToAbyss = playerPositionAtY0.normalized;
             Vector3 spawnOffset = directionToAbyss * spawnOutDistance;
             Vector3 spawnPosition = playerWorldPosition + spawnOffset;
-            Vector3 spawnPositionWithCorrectYLevel = new Vector3(spawnPosition.x, Mathf.Clamp(playerWorldPosition.y + spawnYLevel, -1000f, spawnYLevel), spawnPosition.z);
+            Vector3 spawnPositionWithCorrectYLevel = new Vector3(spawnPosition.x, Mathf.Clamp(playerWorldPosition.y + spawnYLevel, -10000f, spawnYLevel), spawnPosition.z);
             return spawnPositionWithCorrectYLevel;
         }
     }

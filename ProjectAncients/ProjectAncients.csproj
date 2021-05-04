@@ -37,6 +37,7 @@
     <DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
     <Optimize>true</Optimize>
     <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -138,6 +139,7 @@
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecondaryContainmentFacility.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SupplyCacheBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\BonesFieldsOutpostSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
@@ -147,9 +149,12 @@
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
+    <Compile Include="Mono\AlienTech\AlienBasePlayerTrigger.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
+    <Compile Include="Mono\AlienTech\InfectionTesterOpenDoor.cs" />
+    <Compile Include="Mono\AlienTech\InfectionTesterTriggerArea.cs" />
     <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
@@ -168,10 +173,13 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
     <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
+    <Compile Include="Mono\Modules\IOnArchitectElectricityZap.cs" />
     <Compile Include="Mono\Modules\ZapOnDamage.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
@@ -182,11 +190,13 @@
     <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MainMenu_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
+    <Compile Include="Patches\PDAScanner_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
-    <Compile Include="Patches\PrecursorTabletFixer.cs" />
+    <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
@@ -199,6 +209,7 @@
     <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
     <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
+    <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />

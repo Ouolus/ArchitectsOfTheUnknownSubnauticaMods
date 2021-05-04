@@ -17,7 +17,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         string doorKey;
         private bool voidInteriorDoor;
 
-        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool voidInteriorDoor = false)
+        public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool replaceForcefield = false)
             : base(classId, displayName, ".")
         {
             this.terminalClassId = terminalClassId;
@@ -26,7 +26,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             this.terminalRotation = terminalLocalRotation;
             this.rootClassId = rootPrefabClassId;
             this.doorKey = doorKey;
-            this.voidInteriorDoor = voidInteriorDoor;
+            this.voidInteriorDoor = replaceForcefield;
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -43,19 +43,27 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab(rootClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
+            GameObject terminalPrefabPlaceholder = obj.SearchChild("KeyTerminal(Placeholder)", ECCStringComparison.Contains);
             terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
             if (overrideTerminalPosition)
             {
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
-            if (globalKeyActivator)
+            if (string.IsNullOrEmpty(doorKey))
             {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
+                if (globalKeyActivator)
+                {
+                    Object.Destroy(globalKeyActivator);
+                }
+            }
+            else
+            {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.EnsureComponent<PrecursorGlobalKeyActivator>();
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(obj.transform.childCount >= 1)
+            if (obj.transform.childCount >= 1)
             {
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
@@ -68,7 +76,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             return obj;
@@ -81,24 +89,32 @@ namespace ProjectAncients.Prefabs.AlienBase
             request.TryGetPrefab(out GameObject prefab);
             
             GameObject obj = GameObject.Instantiate(prefab);
-            GameObject terminalPrefabPlaceholder = obj.SearchChild("PurpleKeyTerminal", ECCStringComparison.Contains);
+            GameObject terminalPrefabPlaceholder = obj.SearchChild("KeyTerminal(Placeholder)", ECCStringComparison.Contains);
             terminalPrefabPlaceholder.GetComponent<PrefabPlaceholder>().prefabClassId = terminalClassId;
             if (overrideTerminalPosition)
             {
                 terminalPrefabPlaceholder.transform.localPosition = terminalPosition;
                 terminalPrefabPlaceholder.transform.localEulerAngles = terminalRotation;
             }
-            PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
-            if (globalKeyActivator)
+            if (string.IsNullOrEmpty(doorKey))
             {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.GetComponent<PrecursorGlobalKeyActivator>();
+                if (globalKeyActivator)
+                {
+                    Object.Destroy(globalKeyActivator);
+                }
+            }
+            else
+            {
+                PrecursorGlobalKeyActivator globalKeyActivator = obj.EnsureComponent<PrecursorGlobalKeyActivator>();
                 globalKeyActivator.doorActivationKey = doorKey;
             }
-            if(obj.transform.childCount >= 1)
+            if (obj.transform.childCount >= 1)
             {
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
-                    if(firstChild.name == "pedestal")
+                    if (firstChild.name == "pedestal")
                     {
                         GameObject.DestroyImmediate(firstChild.gameObject);
                     }
@@ -106,7 +122,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (voidInteriorDoor)
             {
-                obj.SearchChild("Precursor_Gun_BeachEntry(Placeholder)", ECCStringComparison.Equals).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
+                obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
             

@@ -28,5 +28,18 @@ namespace ProjectAncients
             GameObject.Destroy(obj, audioClip.length);
             Subtitles.main.Add(subtitleKey);
         }
+
+        public static void PlayPDAVoiceLineFMOD(string eventPath, string subtitleKey, string subtitleDisplayText)
+        {
+            if (!registeredSubtitleKeys.Contains(subtitleKey))
+            {
+                LanguageHandler.SetLanguageLine(subtitleKey, subtitleDisplayText);
+                registeredSubtitleKeys.Add(subtitleKey);
+            }
+            FMODAsset soundAsset = ScriptableObject.CreateInstance<FMODAsset>();
+            soundAsset.path = eventPath;
+            FMODUWE.PlayOneShot(soundAsset, Player.main.transform.position);
+            Subtitles.main.Add(subtitleKey);
+        }
     }
 }
