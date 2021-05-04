@@ -7,7 +7,7 @@ namespace ProjectAncients.Prefabs
     {
         public GargantuanEgg()
             : base("GargantuanEgg", "Gargantuan Egg", "Gargantuan Leviathans hatch from these.")
-        { LateEnhancements = InitializeObject; }
+        { LateEnhancements += InitializeObject; }
 
         public override TechType HatchingCreature => Mod.gargBabyPrefab.TechType;
         public override float HatchingTime => 1f;
