@@ -31,7 +31,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.SetActive(false);
             return obj;
         }
-#elif SN1_exp
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(baseClassId);
