@@ -83,6 +83,10 @@
       <HintPath>$(DepDir)\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(DepDir)\UnityEngine.ImageConversionModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>false</Private>
@@ -90,6 +94,10 @@
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>$(DepDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
+	  <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -115,6 +123,28 @@
   <ItemGroup>
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="CreatorKit\Mono\FilterableList.cs" />
+    <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
+    <Compile Include="CreatorKit\Mono\GenericButton.cs" />
+    <Compile Include="CreatorKit\Mono\MultiChoiceButton.cs" />
+    <Compile Include="CreatorKit\Mono\MainMenuEditorLauncher.cs" />
+    <Compile Include="CreatorKit\Mono\MainMenuPackLauncher.cs" />
+    <Compile Include="CreatorKit\Mono\PackListButton.cs" />
+    <Compile Include="CreatorKit\Mono\TemplateTranslationsList.cs" />
+    <Compile Include="CreatorKit\Mono\UIPopupMultiChoice.cs" />
+    <Compile Include="CreatorKit\Packs\PackData.cs" />
+    <Compile Include="CreatorKit\Packs\PackHelper.cs" />
+    <Compile Include="CreatorKit\Packs\PackJson.cs" />
+    <Compile Include="CreatorKit\Packs\PackGenerator.cs" />
+    <Compile Include="CreatorKit\Patches\MainMenuPatches.cs" />
+    <Compile Include="CreatorKit\UI\EditorBase.cs" />
+    <Compile Include="CreatorKit\UI\EditorLoader.cs" />
+    <Compile Include="CreatorKit\UI\LanguageEditor.cs" />
+    <Compile Include="CreatorKit\UI\UIAssets.cs" />
+    <Compile Include="CreatorKit\Packs\PackFolderUtils.cs" />
+    <Compile Include="CreatorKit\UI\UIPopups.cs" />
+    <Compile Include="CreatorKit\Utility\Utils.cs" />
+    <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="Initializer.cs" />
@@ -124,6 +154,7 @@
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Interfaces\IVehicleHandler.cs" />
+    <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
