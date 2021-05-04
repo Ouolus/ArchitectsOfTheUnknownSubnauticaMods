@@ -43,7 +43,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             soundEmitter.playOnAwake = true;
             return obj;
         }
-#elif SN1_exp
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             ValidateSoundAsset();
