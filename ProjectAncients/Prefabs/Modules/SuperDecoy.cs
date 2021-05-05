@@ -59,6 +59,7 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
+            mesh.material.SetFloat("_SpecInt", 3f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
@@ -93,12 +94,14 @@ namespace ProjectAncients.Prefabs.Modules
             mesh.material.SetTexture(ShaderPropertyID._Illum, Mod.assetBundle.LoadAsset<Texture2D>("DecoyMk2_Illum"));
             mesh.material.SetFloat("_EmissionLM", 0.1f);
             mesh.material.SetFloat("_EmissionLMNight", 0.1f);
+            mesh.material.SetFloat("_SpecInt", 3f);
             ParticleSystem flareParticleSystem = obj.SearchChild("xFlare").GetComponent<ParticleSystem>();
             var main = flareParticleSystem.main;
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
             ZapOnDamage zod = obj.AddComponent<ZapOnDamage>();
-            zod.zapPrefab = Mod.electricalDefensePrefab; LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
+            zod.zapPrefab = Mod.electricalDefensePrefab;
+            LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
             lmd.maxHealth = 650f;
             lmd.weldable = true;
             obj.AddComponent<LiveMixin>().data = lmd;
