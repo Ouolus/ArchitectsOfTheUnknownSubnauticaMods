@@ -36,7 +36,7 @@ namespace ArchitectsLibrary.Items
                 prefab.AddComponent<Rigidbody>().mass = 15f;
                 prefab.AddComponent<WorldForces>();
                 MaterialUtils.ApplySNShaders(prefab);
-                MaterialUtils.ApplyPrecursorMaterials(prefab, 5);
+                MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
             }
             return prefab;
         }
