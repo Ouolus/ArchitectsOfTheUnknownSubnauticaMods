@@ -100,7 +100,8 @@ namespace ProjectAncients.Prefabs.Modules
             main.startColor = new ParticleSystem.MinMaxGradient(Color.green);
             obj.transform.localScale = Vector3.one * 2f;
             ZapOnDamage zod = obj.AddComponent<ZapOnDamage>();
-            zod.zapPrefab = Mod.electricalDefensePrefab; LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
+            zod.zapPrefab = Mod.electricalDefensePrefab;
+            LiveMixinData lmd = ECCHelpers.CreateNewLiveMixinData();
             lmd.maxHealth = 650f;
             lmd.weldable = true;
             obj.AddComponent<LiveMixin>().data = lmd;
