@@ -33,6 +33,8 @@ namespace ArchitectsLibrary.Items
                 prefab.AddComponent<PrefabIdentifier>().ClassId = ClassID;
                 prefab.AddComponent<Pickupable>();
                 prefab.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
+                prefab.AddComponent<Rigidbody>().mass = 15f;
+                prefab.AddComponent<WorldForces>();
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 5);
             }
