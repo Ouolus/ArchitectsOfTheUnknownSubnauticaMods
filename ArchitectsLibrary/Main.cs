@@ -23,7 +23,7 @@ namespace ArchitectsLibrary
         public const string assetBundleName = "architectslibrary";
         public static CraftTree.Type precursorFabricatorTree;
 
-        public static PrecursorAlloyIngot precursorAlloy = new PrecursorAlloyIngot();
+        public static PrecursorAlloyIngot precursorAlloy;
 
         [QModPatch]
         public static void Load()
@@ -64,12 +64,15 @@ namespace ArchitectsLibrary
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2b43dcb7-93b6-4b21-bd76-c362800bedd1");
             yield return request;
 
-            request.TryGetPrefab(out GameObject glassPanel);
-            precursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
+            if(request.TryGetPrefab(out GameObject glassPanel))
+            {
+                precursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
+            }
         }
 
         private static void PatchItems()
         {
+            precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
         }
     }
