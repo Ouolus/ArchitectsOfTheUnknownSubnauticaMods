@@ -1,5 +1,6 @@
 ﻿using ECCLibrary;
 using UnityEngine;
+using ProjectAncients.Mono;
 
 namespace ProjectAncients.Prefabs
 {
@@ -13,9 +14,13 @@ namespace ProjectAncients.Prefabs
 
         public override bool CanBeScaredByElectricity => true;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 9f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 15f, 20f, 17f, 30f);
+
+        public override float EyeFov => 0.8f;
+
+        public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
         public override string GetEncyTitle => "Gargantuan Leviathan Juvenile";
 
@@ -24,5 +29,11 @@ namespace ProjectAncients.Prefabs
         }
 
         public override float VehicleDamagePerSecond => 30f;
+
+        public override void AddCustomBehaviour(CreatureComponents components)
+        {
+            base.AddCustomBehaviour(components);
+            prefab.AddComponent<GargantuanEncounterPDA>();
+        }
     }
 }

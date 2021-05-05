@@ -15,7 +15,7 @@ namespace ArchitectsLibrary.API
     public abstract class EggPrefab : Spawnable
     {
         private TechType _overridenTechType;
-
+        
         /// <summary>
         /// Initializes a new <see cref="EggPrefab"/>
         /// </summary>
@@ -25,9 +25,11 @@ namespace ArchitectsLibrary.API
         public EggPrefab(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
+            var mod = GetType().Assembly;
+       
             OnStartedPatching += () =>
             {
-                _overridenTechType = TechTypeHandler.AddTechType(MakeATechTypeToOverride.classId,
+                _overridenTechType = TechTypeHandler.AddTechType(mod, MakeATechTypeToOverride.classId,
                     MakeATechTypeToOverride.friendlyName,
                     MakeATechTypeToOverride.description);
             };
@@ -66,7 +68,7 @@ namespace ArchitectsLibrary.API
         public GameObjectEnhancements LateEnhancements;
 
         /// <summary>
-        /// override this Property to define you egg's prefab.
+        /// override this Property to define your egg's prefab.
         /// </summary>
         public abstract GameObject Model { get; }
 

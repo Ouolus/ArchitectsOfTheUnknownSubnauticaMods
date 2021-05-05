@@ -15,16 +15,16 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
         {
             TaskResult<GameObject> baseModel = new TaskResult<GameObject>();
             yield return SpawnPrefab(Mod.secondaryBaseModel.ClassID, Vector3.zero, baseModel);
-            yield return StartCoroutine(GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", atmosphereVolume_antechamber));
+            yield return StartCoroutine(GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", Mod.precursorAtmosphereVolume.ClassID));
             yield return StartCoroutine(SpawnPrefab(airlock_1, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), Vector3.zero, new Vector3(0.76f, 1f, 1f)));
             yield return StartCoroutine(SpawnPrefab(vfx_entrance, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), new Vector3(90f, 0f, 0f), new Vector3(0.76f, 1f, 1f)));
             Vector3 floorLightRotation = new Vector3(0f, 0f, 0f);
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, 16f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 3f, -3.17f + 0.48f, -5f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 3f, -3.17f + 0.48f, -5f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(TerminalClassId, new Vector3(centerLocalX, floorLocalY, -22f), new Vector3(0f, 180f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, -22f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, -22f)));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 3f, -3.17f, 3f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 3f, -3.17f, 3f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(TerminalClassId, new Vector3(centerLocalX, floorLocalY, 0f), new Vector3(0f, 180f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, 0f), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, 0f), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.17f, 0f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 18f, -3.17f, 0f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 10f, -3.17f, 0f), floorLightRotation));

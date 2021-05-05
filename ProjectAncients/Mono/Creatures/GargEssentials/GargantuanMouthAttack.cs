@@ -16,6 +16,7 @@ namespace ProjectAncients.Mono
         private ECCAudio.AudioClipPool cinematicClipPool;
         private GargantuanBehaviour behaviour;
         private GameObject throat;
+        private GargantuanRoar roar;
 
         private PlayerCinematicController playerDeathCinematic;
 
@@ -31,12 +32,14 @@ namespace ProjectAncients.Mono
             attackSource.maxDistance = 40f;
             attackSource.spatialBlend = 1f;
             attackSource.volume = ECCHelpers.GetECCVolume();
+            attackSource.playOnAwake = false;
             biteClipPool = ECCAudio.CreateClipPool("GargBiteAttack");
             cinematicClipPool = ECCAudio.CreateClipPool("GargBiteAttack5");
             throat = gameObject.SearchChild("Head");
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
             behaviour = GetComponent<GargantuanBehaviour>();
+            roar = GetComponent<GargantuanRoar>();
 
             playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
             playerDeathCinematic.animatedTransform = gameObject.SearchChild(attachBoneName).transform;
@@ -68,7 +71,24 @@ namespace ProjectAncients.Mono
                             }
                             if (!canAttackPlayer)
                             {
-                                StartCoroutine(PerformBiteAttack(target, 1f));
+                                Pickupable held = Inventory.main.GetHeld();
+                                if(held is not null && held.GetComponent<Creature>() != null)
+                                {
+                                    LiveMixin heldLm = held.GetComponent<LiveMixin>();
+                                    if(heldLm.maxHealth < 100f)
+                                    {
+                                        animator.SetFloat("random", UnityEngine.Random.value);
+                                        animator.SetTrigger("bite");
+                                        attackSource.clip = biteClipPool.GetRandomClip();
+                                        attackSource.Play();
+                                        Destroy(held.gameObject);
+                                    }
+                                }
+                                else
+                                {
+                                    StartCoroutine(PerformBiteAttack(target, 1f));
+                                }
+                                behaviour.timeCanAttackAgain = Time.time + 1f;
                                 return;
                             }
                             else
@@ -80,7 +100,7 @@ namespace ProjectAncients.Mono
                                 }
                                 else
                                 {
-                                    baseDmg = 70;
+                                    baseDmg = 80;
                                 }
                                 var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
                                 if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
@@ -118,6 +138,7 @@ namespace ProjectAncients.Mono
                                 if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
                                 {
                                     behaviour.GrabLargeSub(subRoot);
+                                    behaviour.roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
                                     thisCreature.Aggression.Value -= 1f;
                                     return;
                                 }
@@ -189,7 +210,19 @@ namespace ProjectAncients.Mono
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if (target) target.GetComponent<LiveMixin>().TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
+            if(target is not null)
+            {
+                var targetLm = target.GetComponent<LiveMixin>();
+                if (targetLm)
+                {
+                    targetLm.TakeDamage(damage, transform.position, DamageType.Normal, this.gameObject);
+                    if (!targetLm.IsAlive())
+                    {
+                        creature.Aggression.Value = 0f;
+                        creature.Hunger.Value = 0f;
+                    }
+                }
+            }
         }
         private IEnumerator PerformPlayerCinematic(Player player)
         {

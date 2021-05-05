@@ -14,6 +14,7 @@ namespace ProjectAncients.Mono
         public float delayMax = 18f;
         public string closeSoundsPrefix;
         public string distantSoundsPrefix;
+        public float closeRoarThreshold = 150f;
 
         public float minDistance = 50f;
         public float maxDistance = 600f;
@@ -40,9 +41,7 @@ namespace ProjectAncients.Mono
             }
             if(Time.time > timeRoarAgain)
             {
-                PlayOnce(out float roarLength);
-                float timeToWait = roarLength + Random.Range(delayMin, delayMax);
-                timeRoarAgain = Time.time + timeToWait;
+                PlayOnce(out float roarLength, RoarMode.Automatic);
             }
             if (screenShake)
             {
@@ -52,7 +51,7 @@ namespace ProjectAncients.Mono
                     clipLoudness = 0f;
                     foreach (var sample in clipSampleData)
                     {
-                        clipLoudness += (Mathf.Abs(sample) * Mod.config.RoarScreenShakeIntensity);
+                        clipLoudness += (Mathf.Abs(sample) * Mod.config.GetRoarScreenShakeNormalized);
                     }
                     if (clipLoudness > 0.8f)
                     {
@@ -63,26 +62,39 @@ namespace ProjectAncients.Mono
             }
         }
 
-        public void PlayOnce(out float roarLength)
+        public void PlayOnce(out float roarLength, RoarMode roarMode)
         {
             float distance = Vector3.Distance(MainCameraControl.main.transform.position, transform.position);
-            AudioClip clipToPlay = GetAudioClip(distance);
+            AudioClip clipToPlay = GetAudioClip(distance, roarMode);
             roarLength = clipToPlay.length;
             audioSource.clip = clipToPlay;
             audioSource.Play();
             creature.GetAnimator().SetFloat("random", Random.value);
             creature.GetAnimator().SetTrigger("roar");
+            float timeToWait = roarLength + Random.Range(delayMin, delayMax);
+            timeRoarAgain = Time.time + timeToWait;
         }
 
-        private AudioClip GetAudioClip(float distance)
+        private AudioClip GetAudioClip(float distance, RoarMode roarMode)
         {
-            if (distance < 150f && GargantuanBehaviour.PlayerIsKillable())
+            if (roarMode == RoarMode.CloseOnly)
             {
                 return closeSounds.GetRandomClip();
             }
-            else
+            else if (roarMode == RoarMode.FarOnly)
             {
                 return farSounds.GetRandomClip();
+            }
+            else
+            {
+                if (distance < closeRoarThreshold && GargantuanBehaviour.PlayerIsKillable())
+                {
+                    return closeSounds.GetRandomClip();
+                }
+                else
+                {
+                    return farSounds.GetRandomClip();
+                }
             }
         }
 
@@ -97,6 +109,22 @@ namespace ProjectAncients.Mono
 
             closeSounds = ECCAudio.CreateClipPool(closeSoundsPrefix);
             farSounds = ECCAudio.CreateClipPool(distantSoundsPrefix);
+        }
+
+        public enum RoarMode
+        {
+            /// <summary>
+            /// Determine roar sound based on distance
+            /// </summary>
+            Automatic,
+            /// <summary>
+            /// Always choose a "normal" or "close" roar
+            /// </summary>
+            CloseOnly,
+            /// <summary>
+            /// Always choose a "distant" roar
+            /// </summary>
+            FarOnly
         }
     }
 }

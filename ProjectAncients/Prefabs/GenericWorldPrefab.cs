@@ -2,6 +2,7 @@
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using ArchitectsLibrary.Utility;
+using System.Collections;
 
 namespace ProjectAncients.Prefabs
 {
@@ -14,12 +15,14 @@ namespace ProjectAncients.Prefabs
         protected GameObject prefab;
         private UBERMaterialProperties materialProperties;
         private LargeWorldEntity.CellLevel cellLevel;
+        private bool applyPrecursorMaterial;
 
-        public GenericWorldPrefab(string classId, string friendlyName, string description, GameObject model, UBERMaterialProperties materialProperties, LargeWorldEntity.CellLevel cellLevel) : base(classId, friendlyName, description)
+        public GenericWorldPrefab(string classId, string friendlyName, string description, GameObject model, UBERMaterialProperties materialProperties, LargeWorldEntity.CellLevel cellLevel, bool applyPrecursorMaterial = true) : base(classId, friendlyName, description)
         {
             this.model = model;
             this.materialProperties = materialProperties;
             this.cellLevel = cellLevel;
+            this.applyPrecursorMaterial = applyPrecursorMaterial;
         }
 
         public virtual void CustomizePrefab()
@@ -38,10 +41,19 @@ namespace ProjectAncients.Prefabs
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
-                MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
+                if (applyPrecursorMaterial)
+                {
+                    MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
+                }
                 CustomizePrefab();
             }
             return prefab;
+        }
+
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            gameObject.Set(GetGameObject());
+            yield break; 
         }
     }
 }

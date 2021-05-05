@@ -43,7 +43,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             soundEmitter.playOnAwake = true;
             return obj;
         }
-#elif SN1_exp
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             ValidateSoundAsset();
@@ -51,17 +51,17 @@ namespace ProjectAncients.Prefabs.AlienBase
             obj.SetActive(false);
             GameObject instantiatedModel = GameObject.Instantiate(model, obj.transform, false);
             instantiatedModel.transform.localPosition = Vector3.zero;
-            instantiatedModel.transform.localScale = Vector3.one * 0.5f;
+            instantiatedModel.transform.localScale = Vector3.one * scale;
             CapsuleCollider capsule = obj.AddComponent<CapsuleCollider>();
             capsule.height = 6.296409f;
-            capsule.radius = 1.4889f;
-            capsule.direction = 2;
+            capsule.radius = 1.1f;
+            capsule.direction = 1;
             obj.EnsureComponent<SkyApplier>().renderers = obj.GetComponentsInChildren<Renderer>();
             obj.EnsureComponent<TechTag>().type = TechType;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
-            Mod.ApplyPrecursorMaterials(obj);
+            MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;

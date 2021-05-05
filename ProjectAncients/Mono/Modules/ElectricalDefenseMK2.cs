@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono.Modules
         float _chargeDamageElec = 2f;
 
         float _damageArchElec = 7f;
-        float _radiusArchElec = 18f;
+        float _radiusArchElec = 50f;
         float _chargeRadiusArchElec = 1.5f;
         float _chargeDamageArchElec = 3.5f;
 
@@ -97,12 +97,17 @@ namespace ProjectAncients.Mono.Modules
 
                 var creature = obj.GetComponent<Creature>();
                 var liveMixin = obj.GetComponent<LiveMixin>();
+                var architectElectricityZaps = obj.GetComponents<IOnArchitectElectricityZap>();
 
                 if (creature is not null && liveMixin is not null)
                 {
                     if(attackType == AttackType.ArchitectElectricity)
                     {
                         liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
+                        foreach (var archZap in architectElectricityZaps)
+                        {
+                            archZap.OnDamagedByArchElectricity();
+                        }                        
                     }
                     else if(attackType == AttackType.SmallElectricity)
                     {
@@ -112,6 +117,10 @@ namespace ProjectAncients.Mono.Modules
                     {
                         liveMixin.TakeDamage(originalDamage / 2f, transform.position, Mod.architectElect, gameObject);
                         liveMixin.TakeDamage(originalDamage / 2f, transform.position, DamageType.Electrical, gameObject);
+                        foreach (var archZap in architectElectricityZaps)
+                        {
+                            archZap.OnDamagedByArchElectricity();
+                        }
                     }
                 }
             }

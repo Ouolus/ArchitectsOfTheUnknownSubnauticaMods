@@ -55,7 +55,7 @@ namespace ProjectAncients.Mono
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
 			animator.SetTrigger("cin_play");
-			roar.PlayOnce(out float _);
+			roar.PlayOnce(out float _, GargantuanRoar.RoarMode.CloseOnly);
 			yield return new WaitForSeconds(GetAnimationLength(random));
 			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);

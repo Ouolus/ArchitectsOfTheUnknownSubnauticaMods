@@ -3,6 +3,7 @@ using ProjectAncients.Mono;
 using UnityEngine;
 using SMLHelper.V2.Handlers;
 using UWE;
+using System.Collections;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
@@ -85,7 +86,7 @@ namespace ProjectAncients.Prefabs.AlienBase
                 playAudio.clipPrefix = audioClipPrefix;
                 playAudio.subtitlesKey = subtitlesKey;
             }
-            if(techToUnlock != TechType.None)
+            if (techToUnlock != TechType.None)
             {
                 obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = techToUnlock;
             }
@@ -124,9 +125,11 @@ namespace ProjectAncients.Prefabs.AlienBase
             }
             if (!string.IsNullOrEmpty(audioClipPrefix))
             {
-                obj.AddComponent<StoryHandTargetPlayAudioClip>().clipPrefix = audioClipPrefix;
+                var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
+                playAudio.clipPrefix = audioClipPrefix;
+                playAudio.subtitlesKey = subtitlesKey;
             }
-            if(techToUnlock != TechType.None)
+            if (techToUnlock != TechType.None)
             {
                 obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = techToUnlock;
             }

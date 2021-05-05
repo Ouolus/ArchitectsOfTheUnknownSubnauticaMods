@@ -7,6 +7,7 @@ using System.Collections;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
+    //For the large doors inside the void base
     public class VoidInteriorForcefield : Spawnable
     {
         public VoidInteriorForcefield() : base("VoidInteriorForcefield", "Forcefield", ".")
@@ -18,12 +19,13 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             PrefabDatabase.TryGetPrefab("2d72ad6c-d30d-41be-baa7-0c1dba757b7c", out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
+            obj.name = "VoidInteriorForcefield";
             GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
             GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
             obj.SetActive(false);
             return obj;
         }
-#elif SN1_exp
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2d72ad6c-d30d-41be-baa7-0c1dba757b7c");
@@ -31,6 +33,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             request.TryGetPrefab(out GameObject prefab);
             
             GameObject obj = GameObject.Instantiate(prefab);
+            obj.name = "VoidInteriorForcefield";
             GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Walk", ECCStringComparison.Equals));
             GameObject.DestroyImmediate(obj.SearchChild("DoorSetMotorModeCollider_Swim", ECCStringComparison.Equals));
             obj.SetActive(false);
