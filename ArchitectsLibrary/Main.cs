@@ -27,6 +27,7 @@ namespace ArchitectsLibrary
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
 
             UWE.CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
+            UWE.CoroutineHost.StartCoroutine(LoadPrecursorGlassMaterial());
 
             //CreatorKit.SNCreatorKit.Entry();
 
