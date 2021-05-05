@@ -11,7 +11,7 @@ namespace ArchitectsLibrary.Items
     {
         private GameObject prefab;
 
-        public PrecursorAlloyIngot(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
+        public PrecursorAlloyIngot() : base("PrecursorIngot", "Precursor Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
         {
         }
 
