@@ -85,7 +85,7 @@
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>$(DepDir)\UnityEngine.ImageConversionModule.dll</HintPath>
-	  <Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -97,7 +97,7 @@
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>$(DepDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
-	  <Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -154,6 +154,7 @@
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Interfaces\IVehicleHandler.cs" />
+    <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
