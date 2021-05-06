@@ -1,12 +1,14 @@
 using System.Linq;
 using System.Collections.Generic;
-using ArchitectsLibrary.Interfaces;
 using ArchitectsLibrary.Utility;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
 namespace ArchitectsLibrary.Handlers
 {
+    /// <summary>
+    /// a General Handler that mostly used by this Library's APIs and the Mod Team.
+    /// </summary>
     public static class AUHandler
     {
         internal static IDictionary<TechType, TechType> customCreatureEggDictionary = 
