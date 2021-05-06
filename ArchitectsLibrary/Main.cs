@@ -13,7 +13,7 @@ using ArchitectsLibrary.Utility;
 namespace ArchitectsLibrary
 {
     /// <summary>
-    /// Please DO NOT use this class, its meant for only SMLHelper's Initializations of this Mod.
+    /// Please DO NOT use this class, its meant for only QModManager's Initializations of this Mod.
     /// </summary>
     [QModCore]
     public static class Main
@@ -28,7 +28,7 @@ namespace ArchitectsLibrary
         static PrecursorAlloyIngot precursorAlloy;
 
         /// <summary>
-        /// Please DO NOT use this Method, its meant for only SMLHelper's Initializations of this Mod.
+        /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
         /// </summary>
         [QModPatch]
         public static void Load()
