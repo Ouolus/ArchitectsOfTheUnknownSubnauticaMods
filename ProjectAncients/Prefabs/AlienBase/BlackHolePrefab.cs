@@ -4,9 +4,9 @@ using UWE;
 
 namespace ProjectAncients.Prefabs.AlienBase
 {
-    public class BlackHole : Spawnable
+    public class BlackHolePrefab : Spawnable
     {
-        public BlackHole() : base("ResearchBaseBlackHole", "Contained singularity", "...")
+        public BlackHolePrefab() : base("ResearchBaseBlackHole", "Contained singularity", "...")
         {
         }
 
