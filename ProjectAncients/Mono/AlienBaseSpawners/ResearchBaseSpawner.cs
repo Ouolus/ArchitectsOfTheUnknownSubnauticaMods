@@ -25,6 +25,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX, floorLocalY, -5f), Mod.rifleRelic.ClassID, new Vector3(0f, 1.25f, 0f))); //11.77, -13.88, 10.00
             yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 2f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 5f, 0f)));
 
+            yield return StartCoroutine(SpawnPrefab(Mod.blackHole.ClassID, new Vector3(centerLocalX, floorLocalY, 0f)));
 
             //Outside
             yield return StartCoroutine(SpawnPrefabGlobally(bone_curly, new Vector3(-891.40f, -197.51f, -597.30f), Vector3.up, false));
@@ -37,5 +38,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabGlobally(bone_reaperFullRibcage_normal, new Vector3(-874.98f, -193.72f, -591.03f), new Vector3(4.39f, 0.69f, 17.87f), Vector3.one));
             yield return StartCoroutine(SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one));
         }
+
+        protected override float MainTerminalZOffset => 14f;
     }
 }
