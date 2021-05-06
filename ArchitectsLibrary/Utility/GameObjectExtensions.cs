@@ -13,10 +13,10 @@ namespace ArchitectsLibrary.Utility
         /// <param name="gameObject"></param>
         public static void SemiInActive(this GameObject gameObject)
         {
-            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+            foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                 collider.enabled = false;
 
-            foreach (Renderer renderer in gameObject.GetAllComponentsInChildren<Renderer>())
+            foreach (var renderer in gameObject.GetAllComponentsInChildren<Renderer>())
                 renderer.enabled = false;
         }
 
@@ -29,9 +29,9 @@ namespace ArchitectsLibrary.Utility
         public static GameObject SearchChild(this GameObject gameObject, string byName)
         {
             GameObject obj = SearchChildRecursive(gameObject, byName);
-            if (obj == null)
+            if (obj is null)
             {
-                ErrorMessage.AddMessage(string.Format("No child found in hierarchy by name {0}.", byName));
+                ErrorMessage.AddMessage($"No child found in hierarchy by name {byName}.");
             }
             return obj;
         }
