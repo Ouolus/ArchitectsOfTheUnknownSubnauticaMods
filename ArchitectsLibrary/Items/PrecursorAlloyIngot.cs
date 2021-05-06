@@ -33,7 +33,9 @@ namespace ArchitectsLibrary.Items
                 prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
                 prefab.EnsureComponent<Pickupable>();
                 prefab.EnsureComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
-                prefab.EnsureComponent<Rigidbody>().mass = 15f;
+                var rb = prefab.EnsureComponent<Rigidbody>();
+                rb.mass = 15f;
+                rb.isKinematic = true;
                 prefab.EnsureComponent<WorldForces>();
                 prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
 
@@ -41,7 +43,7 @@ namespace ArchitectsLibrary.Items
                 inspect.pickupAble = prefab.GetComponent<Pickupable>();
                 inspect.collision = prefab.GetComponent<Collider>();
                 inspect.rigidBody = prefab.GetComponent<Rigidbody>();
-                inspect.animParam = "holding_precursorkey";
+                inspect.animParam = "holding_precursorioncrystal";
                 inspect.inspectDuration = 4.1f;
 
                 MaterialUtils.ApplySNShaders(prefab);
