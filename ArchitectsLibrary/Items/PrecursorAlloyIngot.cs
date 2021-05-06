@@ -35,6 +35,7 @@ namespace ArchitectsLibrary.Items
                 prefab.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
                 prefab.AddComponent<Rigidbody>().mass = 15f;
                 prefab.AddComponent<WorldForces>();
+                prefab.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
             }
