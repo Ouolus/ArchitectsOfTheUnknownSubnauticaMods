@@ -32,6 +32,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
         }
 
-        protected override string TerminalClassId => Mod.supplyCacheTerminal.ClassID;
+        protected override string MainTerminalClassId => Mod.supplyCacheTerminal.ClassID;
     }
 }

@@ -5,7 +5,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
 {
     public class ResearchBaseSpawner : SecondaryBaseSpawner
     {
-        protected override string TerminalClassId => Mod.guardianTerminal.ClassID;
+        protected override string MainTerminalClassId => Mod.guardianTerminal.ClassID;
 
         protected override string TabletClassId => supplies_redTablet;
 

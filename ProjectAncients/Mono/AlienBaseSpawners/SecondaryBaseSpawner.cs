@@ -22,9 +22,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX, -3.17f, 16f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 3f, -3.17f, 3f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 3f, -3.17f, 3f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(TerminalClassId, new Vector3(centerLocalX, floorLocalY, 0f), new Vector3(0f, 180f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, 0f), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
-            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, 0f), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
+            yield return StartCoroutine(SpawnPrefab(MainTerminalClassId, new Vector3(centerLocalX, floorLocalY, MainTerminalZOffset), new Vector3(0f, 180f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
+            yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.17f, 0f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 18f, -3.17f, 0f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 10f, -3.17f, 0f), floorLightRotation));
@@ -52,9 +52,17 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             }
         }
 
-        protected abstract string TerminalClassId
+        protected abstract string MainTerminalClassId
         {
             get;
+        }
+
+        protected virtual float MainTerminalZOffset
+        {
+            get
+            {
+                return 0f;
+            }
         }
     }
 }
