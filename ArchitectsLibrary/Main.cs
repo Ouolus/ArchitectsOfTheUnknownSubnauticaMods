@@ -10,6 +10,7 @@ using UWE;
 using System.IO;
 using ArchitectsLibrary.Items;
 using SMLHelper.V2.Handlers;
+using System.Collections.Generic;
 
 namespace ArchitectsLibrary
 {
@@ -74,6 +75,7 @@ namespace ArchitectsLibrary
         {
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
         }
     }
 }
