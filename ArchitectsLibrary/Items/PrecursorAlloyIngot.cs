@@ -7,7 +7,7 @@ using ArchitectsLibrary.Utility;
 
 namespace ArchitectsLibrary.Items
 {
-    public class PrecursorAlloyIngot : Craftable
+    class PrecursorAlloyIngot : Craftable
     {
         private GameObject prefab;
 
