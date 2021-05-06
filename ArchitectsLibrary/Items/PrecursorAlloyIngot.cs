@@ -43,7 +43,7 @@ namespace ArchitectsLibrary.Items
                 inspect.pickupAble = prefab.GetComponent<Pickupable>();
                 inspect.collision = prefab.GetComponent<Collider>();
                 inspect.rigidBody = prefab.GetComponent<Rigidbody>();
-                inspect.animParam = "holding_precursorioncrystal";
+                inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
 
                 MaterialUtils.ApplySNShaders(prefab);
