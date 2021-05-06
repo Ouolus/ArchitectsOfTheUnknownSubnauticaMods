@@ -14,6 +14,9 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
             GameObject seamothPrefab = CraftData.GetPrefabForTechType(TechType.Seamoth);
             GameObject prefab = FixVFX(seamothPrefab.GetComponent<SeaMoth>().torpedoTypes[0].prefab.GetComponent<SeamothTorpedo>().explosionPrefab.GetComponent<PrefabSpawn>().prefab);
+            prefab.EnsureComponent<TechTag>().type = TechType;
+            prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
+            prefab.EnsureComponent<SphereCollider>().radius = 2f;
             return prefab;
         }
 
