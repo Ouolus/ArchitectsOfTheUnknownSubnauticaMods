@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArchitectsLibrary.Handlers;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
@@ -30,7 +31,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 17f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX - 6f, floorLocalY, 19f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(ArchitectsLibrary.Main.precursorAlloy.ClassID, new Vector3(centerLocalX, floorLocalY + 0.1f, 14f), new Vector3(0f, 37f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(AUHandler.PrecursorAlloyIngotClassID, new Vector3(centerLocalX, floorLocalY + 0.1f, 14f), new Vector3(0f, 37f, 0f)));
 
         }
 
