@@ -38,15 +38,12 @@ namespace ArchitectsLibrary
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
-            Initializer.PatchAllDictionaries();      
-
-            QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
+            Initializer.PatchAllDictionaries();
 
             MaterialUtils.LoadMaterials();
 
             assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", assetBundleName));
 
-            CraftTreeHandler.CreateCustomCraftTreeAndType("PrecursorFabricator", out precursorFabricatorTree);
             PatchItems();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
@@ -55,6 +52,8 @@ namespace ArchitectsLibrary
 
             //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
+            
+            QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
 
         
