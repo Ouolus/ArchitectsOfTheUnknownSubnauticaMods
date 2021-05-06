@@ -37,6 +37,10 @@ namespace ArchitectsLibrary.Handlers
                 Logger.Log(Logger.Level.Warn, "TechType to get from SetObjectScannable() is null");
         }
 
+        /// <summary>
+        /// Makes a <see cref="TechType"/> immune to the AcidicBrine of the LostRiver.
+        /// </summary>
+        /// <param name="techType">the <see cref="TechType"/> to make immune</param>
         public static void MakeItemAcidImmune(TechType techType)
         {
             var acidToList = DamageSystem.acidImmune.ToList();
@@ -47,12 +51,22 @@ namespace ArchitectsLibrary.Handlers
             DamageSystem.acidImmune = acidToList.ToArray();
         }
 
+        /// <summary>
+        /// Set an Egg <see cref="TechType"/> to a Creature's <see cref="TechType"/> so the creature breeds the passed Egg
+        ///  instead of breeding Creatures to the ACU.
+        /// </summary>
+        /// <param name="creatureType">the Creature's <see cref="TechType"/> to specify an egg for</param>
+        /// <param name="eggType">the Egg's <see cref="TechType"/></param>
         public static void SetCreatureEgg(TechType creatureType, TechType eggType)
         {
             customCreatureEggDictionary[creatureType] = eggType;
         }
         
-
+        /// <summary>
+        /// Sets a <see cref="WaterParkCreatureParameters"/> for the passed <see cref="TechType"/> Creature.
+        /// </summary>
+        /// <param name="creatureType">The Creature's <see cref="TechType"/>.</param>
+        /// <param name="waterParkCreatureParameters">the <see cref="WaterParkCreatureParameters"/> to set.</param>
         public static void SetCreatureParameters(TechType creatureType, WaterParkCreatureParameters waterParkCreatureParameters)
         {
             customWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
