@@ -11,21 +11,28 @@ using System.IO;
 using ArchitectsLibrary.Items;
 using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
+using ArchitectsLibrary.Utility;
 
 namespace ArchitectsLibrary
 {
+    /// <summary>
+    /// Please DO NOT use this class, its meant for only SMLHelper's Initializations of this Mod.
+    /// </summary>
     [QModCore]
     public static class Main
     {
-        private static Assembly myAssembly = Assembly.GetExecutingAssembly();
-        public static Material ionCubeMaterial;
-        public static Material precursorGlassMaterial;
-        public static AssetBundle assetBundle;
-        public const string assetBundleName = "architectslibrary";
-        public static CraftTree.Type precursorFabricatorTree;
+        internal static AssetBundle assetBundle;
+        
+        static Assembly myAssembly = Assembly.GetExecutingAssembly();
+        
+        const string assetBundleName = "architectslibrary";
+        static CraftTree.Type precursorFabricatorTree;
+        
+        static PrecursorAlloyIngot precursorAlloy;
 
-        public static PrecursorAlloyIngot precursorAlloy;
-
+        /// <summary>
+        /// Please DO NOT use this Method, its meant for only SMLHelper's Initializations of this Mod.
+        /// </summary>
         [QModPatch]
         public static void Load()
         {
@@ -35,8 +42,7 @@ namespace ArchitectsLibrary
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
 
-            CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
-            CoroutineHost.StartCoroutine(LoadPrecursorGlassMaterial());
+            MaterialUtils.LoadMaterials();
 
             assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", assetBundleName));
 
@@ -51,27 +57,9 @@ namespace ArchitectsLibrary
             //MainMenuMusicPatches.Patch(harmony);
         }
 
-        private static IEnumerator LoadIonCubeMaterial()
-        {
-            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
+        
 
-            GameObject ionCube = task.GetResult();
-            ionCubeMaterial = ionCube.GetComponentInChildren<MeshRenderer>().material;
-        }
-
-        private static IEnumerator LoadPrecursorGlassMaterial()
-        {
-            IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2b43dcb7-93b6-4b21-bd76-c362800bedd1");
-            yield return request;
-
-            if(request.TryGetPrefab(out GameObject glassPanel))
-            {
-                precursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
-            }
-        }
-
-        private static void PatchItems()
+        static void PatchItems()
         {
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
