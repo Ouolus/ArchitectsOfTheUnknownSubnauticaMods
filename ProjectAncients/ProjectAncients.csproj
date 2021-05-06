@@ -198,6 +198,7 @@
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\BlackHolePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
