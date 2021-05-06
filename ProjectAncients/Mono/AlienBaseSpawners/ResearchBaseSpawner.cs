@@ -39,6 +39,6 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one));
         }
 
-        protected override float MainTerminalZOffset => 14f;
+        protected override float MainTerminalZOffset => 12f;
     }
 }
