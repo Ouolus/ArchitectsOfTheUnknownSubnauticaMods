@@ -17,6 +17,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             prefab.EnsureComponent<TechTag>().type = TechType;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<SphereCollider>().radius = 2f;
+            prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             return prefab;
         }
 
