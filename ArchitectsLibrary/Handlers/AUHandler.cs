@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.Items;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
@@ -16,6 +17,11 @@ namespace ArchitectsLibrary.Handlers
 
         internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
+        
+        /// <summary>
+        /// Gets the <see cref="PrecursorAlloyIngot"/>'s Class ID so you can spawn it up in your Mod.
+        /// </summary>
+        public static string PrecursorAlloyIngotClassID { get; internal set; }
         
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
