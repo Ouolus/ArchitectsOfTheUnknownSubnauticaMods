@@ -23,7 +23,6 @@ namespace ArchitectsLibrary
         static Assembly myAssembly = Assembly.GetExecutingAssembly();
         
         const string assetBundleName = "architectslibrary";
-        static CraftTree.Type precursorFabricatorTree;
         
         static PrecursorAlloyIngot precursorAlloy;
 
