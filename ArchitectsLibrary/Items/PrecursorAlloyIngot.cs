@@ -29,13 +29,21 @@ namespace ArchitectsLibrary.Items
                 prefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"));
                 prefab.SetActive(false);
 
-                prefab.AddComponent<TechTag>().type = TechType;
-                prefab.AddComponent<PrefabIdentifier>().ClassId = ClassID;
-                prefab.AddComponent<Pickupable>();
-                prefab.AddComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
-                prefab.AddComponent<Rigidbody>().mass = 15f;
-                prefab.AddComponent<WorldForces>();
-                prefab.AddComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+                prefab.EnsureComponent<TechTag>().type = TechType;
+                prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
+                prefab.EnsureComponent<Pickupable>();
+                prefab.EnsureComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
+                prefab.EnsureComponent<Rigidbody>().mass = 15f;
+                prefab.EnsureComponent<WorldForces>();
+                prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
+
+                var inspect = prefab.EnsureComponent<InspectOnFirstPickup>();
+                inspect.pickupAble = prefab.GetComponent<Pickupable>();
+                inspect.collision = prefab.GetComponent<Collider>();
+                inspect.rigidBody = prefab.GetComponent<Rigidbody>();
+                inspect.animParam = "holding_precursorkey";
+                inspect.inspectDuration = 4.1f;
+
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
             }
