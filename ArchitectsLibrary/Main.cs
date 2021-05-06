@@ -2,11 +2,8 @@
 using ArchitectsLibrary.Patches;
 using HarmonyLib;
 using QModManager.API.ModLoading;
-using QModManager.Utility;
 using UnityEngine;
-using System.Collections;
 using CreatorKit.Patches;
-using UWE;
 using System.IO;
 using ArchitectsLibrary.Items;
 using SMLHelper.V2.Handlers;
@@ -38,7 +35,7 @@ namespace ArchitectsLibrary
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
-            Initializer.PatchAllDictionaries();
+            DictionaryInit.PatchAllDictionaries();
 
             MaterialUtils.LoadMaterials();
 

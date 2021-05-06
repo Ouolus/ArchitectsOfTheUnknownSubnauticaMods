@@ -147,7 +147,7 @@
     <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
-    <Compile Include="Initializer.cs" />
+    <Compile Include="DictionaryInit.cs" />
     <Compile Include="Interfaces\IAuHandler.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleOnce.cs" />
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
