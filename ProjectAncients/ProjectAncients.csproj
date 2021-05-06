@@ -186,6 +186,7 @@
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\VoidShoalSpawner.cs" />
     <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
+    <Compile Include="Patches\GotoCommand_Patches.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
     <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MainMenu_Patches.cs" />
