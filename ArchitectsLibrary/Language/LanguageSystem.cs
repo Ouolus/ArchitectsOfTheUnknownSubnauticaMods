@@ -3,9 +3,7 @@ using System.IO;
 using System.Reflection;
 #if SN1
 using Oculus.Newtonsoft.Json;
-#elif SN1_exp
-using Newtonsoft.Json;
-#elif BZ
+#else
 using Newtonsoft.Json;
 #endif
 using QModManager.Utility;
