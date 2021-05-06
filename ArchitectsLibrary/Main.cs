@@ -39,7 +39,7 @@ namespace ArchitectsLibrary
 
             MaterialUtils.LoadMaterials();
 
-            assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", assetBundleName));
+            assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(myAssembly.Location), "Assets", assetBundleName));
 
             PatchItems();
 
