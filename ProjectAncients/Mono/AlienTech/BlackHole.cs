@@ -51,6 +51,10 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("BlackHole2"), "BlackHoleInteract2", "Do not attempt. You will be destroyed.");
             }
+            if(attemptsNow == 0)
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("DeathImminent"), "DeathImminent", "Warning: Death imminent.");
+            }
         }
     }
 }
