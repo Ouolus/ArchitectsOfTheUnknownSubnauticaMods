@@ -46,6 +46,7 @@ namespace ProjectAncients.Mono
             playerDeathCinematic.animator = creature.GetAnimator();
             playerDeathCinematic.animParamReceivers = new GameObject[0];
             playerDeathCinematic.animParam = "cin_player";
+            playerDeathCinematic.playerViewAnimationName = "seadragon_attack";
         }
         public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
         {
@@ -232,7 +233,6 @@ namespace ProjectAncients.Mono
             }
             playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);
-            //animation parameter idea (bool): seadragon_attack
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
