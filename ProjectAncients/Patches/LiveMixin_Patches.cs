@@ -62,7 +62,7 @@ namespace ProjectAncients.Patches
             if (found is false)
                 Logger.Log(Logger.Level.Error, "Cannot find LiveMixin.TakeDamage target location.", showOnScreen: true);
             else
-                Logger.Log(Logger.Level.Info, "LiveMixin.TakeDamage Transpiler Succeeded.");
+                Logger.Log(Logger.Level.Debug, "LiveMixin.TakeDamage Transpiler Succeeded.");
 
             return codes.AsEnumerable();
         }

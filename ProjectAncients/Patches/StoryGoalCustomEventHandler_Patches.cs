@@ -40,7 +40,7 @@ namespace ProjectAncients.Patches
             if (found is false)
                 Logger.Log(Logger.Level.Error, "Cannot find StoryGoalCustomEventHandler.NotifyGoalComplete target location.", showOnScreen: true);
             else
-                Logger.Log(Logger.Level.Info, "StoryGoalCustomEventHandler.NotifyGoalComplete Transpiler Succeeded.");
+                Logger.Log(Logger.Level.Debug, "StoryGoalCustomEventHandler.NotifyGoalComplete Transpiler Succeeded.");
 
             return codes.AsEnumerable();
         }
