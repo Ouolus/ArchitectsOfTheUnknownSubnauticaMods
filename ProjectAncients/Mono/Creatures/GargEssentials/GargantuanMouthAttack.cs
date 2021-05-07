@@ -232,6 +232,7 @@ namespace ProjectAncients.Mono
             }
             playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);
+            //animation parameter idea (bool): seadragon_attack
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
