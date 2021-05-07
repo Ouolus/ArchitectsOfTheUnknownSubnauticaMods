@@ -147,11 +147,11 @@ namespace ProjectAncients.Mono.AlienTech
         {
             if (storyGoalManager.IsGoalComplete("VoidDoorPurple"))
             {
-                SetGlowActive(tabletGlowPurple, true, new Color(0.64f, 0f, 1f));
+                SetGlowActive(tabletGlowPurple, true, new Color(0.81f, 0.38f, 1f));
             }
             if (storyGoalManager.IsGoalComplete("VoidDoorOrange"))
             {
-                SetGlowActive(tabletGlowOrange, true, new Color(1f, 0.55f, 1f));
+                SetGlowActive(tabletGlowOrange, true, new Color(1f, 0.79f, 0.10f));
             }
             if (storyGoalManager.IsGoalComplete("VoidDoorBlue"))
             {
@@ -163,19 +163,22 @@ namespace ProjectAncients.Mono.AlienTech
             }
             if (storyGoalManager.IsGoalComplete("VoidDoorRed"))
             {
-                SetGlowActive(tabletGlowRed, true, new Color(1f, 0f, 0f));
+                SetGlowActive(tabletGlowRed, true, new Color(1f, 0.20f, 0.20f));
             }
         }
 
         private void SetGlowActive(GameObject glowObj, bool active, Color color = default)
         {
+            var renderer = glowObj.GetComponentInChildren<Renderer>();
+            renderer.material.SetFloat("_GlowStrength", 2f);
+            renderer.material.SetFloat("_GlowStrengthNight", 2f);
             if (active)
             {
-                glowObj.GetComponentInChildren<Renderer>().material.SetColor("_GlowColor", color);
+                renderer.material.SetColor("_GlowColor", color);
             }
             else
             {
-                glowObj.GetComponentInChildren<Renderer>().material.SetColor("_GlowColor", Color.black);
+                renderer.material.SetColor("_GlowColor", Color.black);
             }
         }
     }
