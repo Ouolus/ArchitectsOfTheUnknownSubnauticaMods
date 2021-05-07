@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ProjectAncients.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -20,6 +21,8 @@ namespace ProjectAncients.Prefabs.AlienBase
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<SphereCollider>().radius = 2f;
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            prefab.EnsureComponent<BlackHole>();
+
             return prefab;
         }
 #else
@@ -33,6 +36,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<SphereCollider>().radius = 2f;
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            prefab.EnsureComponent<BlackHole>();
             
             gameObject.Set(prefab);
         }
