@@ -16,7 +16,7 @@ namespace ProjectAncients.Mono.AlienTech
 
         public void OnHandClick(GUIHand hand)
         {
-            if (Time.time > _clickCooldown)
+            if (Time.time < _clickCooldown)
                 return;
             
             if (_attempts is not 0)
