@@ -24,7 +24,7 @@ namespace ProjectAncients.Mono.AlienTech
                 ErrorMessage.AddMessage("Do not touch mate");
                 _attempts--;
                 Player.main.PlayGrab();
-                _clickCooldown = Time.time + 2;
+                _clickCooldown = Time.time + 3f;
                 TryPlayVoiceLine(_attempts);
                 return;
             }
