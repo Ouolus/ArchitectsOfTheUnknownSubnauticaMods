@@ -21,7 +21,6 @@ namespace ProjectAncients.Mono.AlienTech
             
             if (_attempts is not 0)
             {
-                ErrorMessage.AddMessage("Do not touch mate");
                 _attempts--;
                 Player.main.PlayGrab();
                 _clickCooldown = Time.time + 3f;
@@ -29,7 +28,6 @@ namespace ProjectAncients.Mono.AlienTech
                 return;
             }
             
-            ErrorMessage.AddMessage("Time to crash lol");
             StartCoroutine(Crash());
         }
 
