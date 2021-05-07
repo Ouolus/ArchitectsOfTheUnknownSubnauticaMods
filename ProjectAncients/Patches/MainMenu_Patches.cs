@@ -51,11 +51,10 @@ namespace ProjectAncients.Patches
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
         
-        [HarmonyPatch(typeof(uGUI_SceneLoading))]
-        [HarmonyPatch(nameof(uGUI_SceneLoading.Begin))]
-        [HarmonyPatch(nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
-        [HarmonyPatch(nameof(uGUI_SceneLoading.DelayedBegin))]
-        [HarmonyPatch(nameof(uGUI_SceneLoading.ShowLoadingScreen))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.Begin))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.DelayedBegin))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.ShowLoadingScreen))]
         [HarmonyPostfix]
         static void uGUI_SceneLoading_Postfix(uGUI_SceneLoading __instance)
         {
