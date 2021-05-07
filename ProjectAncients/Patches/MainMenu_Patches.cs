@@ -48,7 +48,7 @@ namespace ProjectAncients.Patches
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-8, 0f, 20f);
+                subtitle.transform.position = new Vector3(-11.635f, 0f, 20f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
         }
