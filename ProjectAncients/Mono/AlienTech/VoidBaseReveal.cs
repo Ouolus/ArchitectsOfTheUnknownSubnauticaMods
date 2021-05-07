@@ -2,17 +2,24 @@
 using ECCLibrary;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 using Story;
 
 namespace ProjectAncients.Mono.AlienTech
 {
-    public class VoidBaseReveal : OnBiomeChanged
+    public class VoidBaseReveal : OnBiomeChanged, IStoryGoalListener
     {
         public override string[] TargetBiomes => new string[] { "Prison_Antechamber", "PrecursorGun" };
         private Transform lightsParent;
         private Material[] interiorMaterials;
         private FMODAsset turnOnSound;
         private float timeVoiceNotifyAgain = 0;
+
+        private GameObject tabletGlowPurple;
+        private GameObject tabletGlowOrange;
+        private GameObject tabletGlowBlue;
+        private GameObject tabletGlowWhite;
+        private GameObject tabletGlowRed;
 
         private StoryGoal approachBaseGoal = new StoryGoal("ApproachVoidBase", Story.GoalType.Story, 0f);
 
@@ -84,11 +91,87 @@ namespace ProjectAncients.Mono.AlienTech
             voTrigger1.triggerObject = gameObject.SearchChild("VOTrigger1");
         }
 
+        public void OnEnable()
+        {
+            if(tabletGlowPurple is null)
+            {
+                tabletGlowPurple = gameObject.SearchChild("TabletGlowPurple");
+                tabletGlowOrange = gameObject.SearchChild("TabletGlowOrange");
+                tabletGlowBlue = gameObject.SearchChild("TabletGlowBlue");
+                tabletGlowWhite = gameObject.SearchChild("TabletGlowWhite");
+                tabletGlowRed = gameObject.SearchChild("TabletGlowRed");
+                SetGlowActive(tabletGlowPurple, false);
+                SetGlowActive(tabletGlowOrange, false);
+                SetGlowActive(tabletGlowBlue, false);
+                SetGlowActive(tabletGlowWhite, false);
+                SetGlowActive(tabletGlowRed, false);
+            }
+            StoryGoalManager main = StoryGoalManager.main;
+            if (main)
+            {
+                UpdateGlowsActive(main);
+                main.AddListener(this);
+            }
+        }
+
+        public void OnDisable()
+        {
+            StoryGoalManager main = StoryGoalManager.main;
+            if (main)
+            {
+                main.RemoveListener(this);
+            }
+        }
+
         public void OnTrigger1(GameObject obj)
         {
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting leviathan-class lifeforms beyond this doorway. Approach with caution.");
+            }
+        }
+
+        public void NotifyGoalComplete(string key)
+        {
+            if (key.StartsWith("VoidDoor"))
+            {
+                var main = StoryGoalManager.main;
+                if (main)
+                {
+                    UpdateGlowsActive(main);
+                }
+            }
+        }
+
+        private void UpdateGlowsActive(StoryGoalManager storyGoalManager)
+        {
+            if (storyGoalManager.IsGoalComplete("VoidDoorPurple"))
+            {
+                SetGlowActive(tabletGlowPurple, true, new Color(0.64f, 0f, 1f));
+            }
+            if (storyGoalManager.IsGoalComplete("VoidDoorOrange"))
+            {
+                SetGlowActive(tabletGlowOrange, true, new Color(1f, 0.55f, 1f));
+            }
+            if (storyGoalManager.IsGoalComplete("VoidDoorBlue"))
+            {
+                SetGlowActive(tabletGlowBlue, true, new Color(0f, 0.89f, 1f));
+            }
+            if (storyGoalManager.IsGoalComplete("VoidDoorWhite"))
+            {
+                SetGlowActive(tabletGlowWhite, true, new Color(1f, 1f, 1f));
+            }
+            if (storyGoalManager.IsGoalComplete("VoidDoorRed"))
+            {
+                SetGlowActive(tabletGlowRed, true, new Color(1f, 0f, 0f));
+            }
+        }
+
+        private void SetGlowActive(GameObject glowObj, bool active, Color color = default)
+        {
+            if (active)
+            {
+                glowObj.GetComponentInChildren<Renderer>().material.SetColor("_GlowColor", color);
             }
         }
     }
