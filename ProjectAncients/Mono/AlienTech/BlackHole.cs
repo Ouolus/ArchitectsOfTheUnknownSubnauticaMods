@@ -25,6 +25,7 @@ namespace ProjectAncients.Mono.AlienTech
                 _attempts--;
                 Player.main.PlayGrab();
                 _clickCooldown = Time.time + 2;
+                TryPlayVoiceLine(_attempts);
                 return;
             }
             
@@ -38,6 +39,18 @@ namespace ProjectAncients.Mono.AlienTech
             yield return IngameMenu.main.SaveGameAsync();
             
             yield return IngameMenu.main.QuitGameAsync(true);
+        }
+
+        void TryPlayVoiceLine(int attemptsNow)
+        {
+            if(attemptsNow == 2)
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("BlackHole1"), "BlackHoleInteract1", "No.");
+            }
+            if(attemptsNow == 1)
+            {
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("BlackHole2"), "BlackHoleInteract2", "Do not attempt. You will be destroyed.");
+            }
         }
     }
 }
