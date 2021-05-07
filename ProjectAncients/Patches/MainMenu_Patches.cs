@@ -21,15 +21,6 @@ namespace ProjectAncients.Patches
             wreakMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
 
             __instance.music = wreakMusic;
-
-            Light[] lights = Object.FindObjectsOfType<Light>();
-            Light highlight = lights[0];
-            highlight.enabled = true;
-            highlight.intensity = 0.5f;
-            highlight.color = Color.magenta;
-            Light sun = lights[1];
-            sun.intensity = 0f;
-            sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
     }
 
@@ -38,7 +29,7 @@ namespace ProjectAncients.Patches
     {
         [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
         [HarmonyPostfix]
-        public static void uGUI_MainMenu_Postfix(uGUI_MainMenu __instance)
+        public static void uGUI_MainMenu_Postfix()
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -51,6 +42,15 @@ namespace ProjectAncients.Patches
                 subtitle.transform.position = new Vector3(-11.635f, 0f, 20f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
+
+            var lights = Object.FindObjectsOfType<Light>();
+            var highlight = lights[0];
+            highlight.enabled = true;
+            highlight.intensity = 0.5f;
+            highlight.color = Color.magenta;
+            var sun = lights[1];
+            sun.intensity = 0f;
+            sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
     }
 
