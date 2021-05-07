@@ -194,6 +194,7 @@
     <Compile Include="Patches\PDAScanner_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
+    <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
