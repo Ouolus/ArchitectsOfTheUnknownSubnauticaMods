@@ -10,6 +10,7 @@ namespace ProjectAncients.Mono.AlienTech
         
         public void OnHandHover(GUIHand hand)
         {
+            HandReticle.main.SetIcon(HandReticle.IconType.HandDeny);
             HandReticle.main.SetInteractText("Do not touch");
         }
 
