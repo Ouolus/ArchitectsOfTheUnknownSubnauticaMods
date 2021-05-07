@@ -173,6 +173,10 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 glowObj.GetComponentInChildren<Renderer>().material.SetColor("_GlowColor", color);
             }
+            else
+            {
+                glowObj.GetComponentInChildren<Renderer>().material.SetColor("_GlowColor", Color.black);
+            }
         }
     }
 }
