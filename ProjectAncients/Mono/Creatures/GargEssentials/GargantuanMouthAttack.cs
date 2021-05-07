@@ -244,7 +244,6 @@ namespace ProjectAncients.Mono
             yield return new WaitForSeconds(length / 3f);
             playerDeathCinematic.enabled = false;
             Player.main.liveMixin.TakeDamage(250f, transform.position, DamageType.Normal, gameObject);
-            //animation parameter idea (bool): seadragon_attack
         }
     }
 }
