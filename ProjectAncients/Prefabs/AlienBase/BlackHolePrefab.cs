@@ -49,9 +49,10 @@ namespace ProjectAncients.Prefabs.AlienBase
             {
                 DisablePS(newVfx);
                 newVfx.transform.GetChild(0).gameObject.SetActive(false);
-                newVfx.transform.GetChild(1).gameObject.SetActive(false);
+                //newVfx.transform.GetChild(1).gameObject.SetActive(false);
                 newVfx.transform.GetChild(2).gameObject.SetActive(false);
-                newVfx.transform.GetChild(4).gameObject.SetActive(false);
+                //newVfx.transform.GetChild(4).gameObject.SetActive(false);
+                newVfx.transform.GetChild(6).gameObject.SetActive(false);
                 newVfx.transform.GetChild(7).gameObject.SetActive(false);
                 MakeParticleSystemsLooping(newVfx);
                 Object.DestroyImmediate(newVfx.GetComponent<VFXDestroyAfterSeconds>());
