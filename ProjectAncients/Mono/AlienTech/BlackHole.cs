@@ -23,7 +23,8 @@ namespace ProjectAncients.Mono.AlienTech
             {
                 ErrorMessage.AddMessage("Do not touch mate");
                 _attempts--;
-                _clickCooldown = Time.time + 5;
+                Player.main.PlayGrab();
+                _clickCooldown = Time.time + 2;
                 return;
             }
             
