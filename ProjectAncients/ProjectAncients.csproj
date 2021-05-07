@@ -194,6 +194,7 @@
     <Compile Include="Patches\PDAScanner_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
+    <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
@@ -236,6 +237,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

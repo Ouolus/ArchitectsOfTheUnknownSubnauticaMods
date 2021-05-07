@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using System.Collections;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
@@ -10,6 +11,7 @@ namespace ProjectAncients.Prefabs.AlienBase
         {
         }
 
+#if SN1
         public override GameObject GetGameObject()
         {
             GameObject seamothPrefab = CraftData.GetPrefabForTechType(TechType.Seamoth);
@@ -20,8 +22,23 @@ namespace ProjectAncients.Prefabs.AlienBase
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             return prefab;
         }
+#else
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
+            yield return task;
+            
+            GameObject prefab = FixVFX(task.GetResult().GetComponent<SeaMoth>().torpedoTypes[0].prefab.GetComponent<SeamothTorpedo>().explosionPrefab.GetComponent<PrefabSpawn>().prefab);
+            prefab.EnsureComponent<TechTag>().type = TechType;
+            prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
+            prefab.EnsureComponent<SphereCollider>().radius = 2f;
+            prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            
+            gameObject.Set(prefab);
+        }
+#endif
 
-        private GameObject FixVFX(GameObject original)
+        GameObject FixVFX(GameObject original)
         {
             GameObject newVfx = GameObject.Instantiate(original);
             if(newVfx != null)
