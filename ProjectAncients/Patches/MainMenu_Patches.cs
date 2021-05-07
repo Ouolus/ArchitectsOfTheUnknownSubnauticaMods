@@ -11,7 +11,7 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
-        public static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
+        static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -27,7 +27,7 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(uGUI_MainMenu))]
         [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
         [HarmonyPostfix]
-        public static void uGUI_MainMenu_Postfix()
+        static void uGUI_MainMenu_Postfix()
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -76,16 +76,4 @@ namespace ProjectAncients.Patches
             }
         }
     }
-
-    [HarmonyPatch(typeof(uGUI_MainMenu))]
-    public class uGUI_MainMenu_Patch
-    {
-        
-    }
-
-    [HarmonyPatch(typeof(uGUI_SceneLoading))]
-    public class uGUI_SceneLoading_Patch
-    {
-        
-	}
 }
