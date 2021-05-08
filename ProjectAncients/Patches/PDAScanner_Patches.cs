@@ -15,7 +15,7 @@ namespace ProjectAncients.Patches
         {
             if (entryData is not null && entryData.key == Mod.gargVoidPrefab.TechType)
             {
-                if (StoryGoalManager.main.OnGoalComplete(scanAdultGargGoal.key))
+                if (StoryGoalManager.main.OnGoalComplete(scanAdultGargGoal.key) && !uGUI.isLoading)
                 {
                     CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAGargScan"), "PDAScanAdultGargantuan", "Are you certain whatever you're doing is worth it?");
                 }

@@ -122,6 +122,9 @@ namespace ArchitectsLibrary.API
             }
         }
 
+        /// <summary>
+        /// Specifies the <see cref="Vehicle"/> that can Equip this Module. 
+        /// </summary>
         public enum ModuleEquipmentType
         {
             SeamothModule,

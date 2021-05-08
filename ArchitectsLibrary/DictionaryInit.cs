@@ -3,9 +3,9 @@ using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary
 {
-    internal class Initializer
+    class DictionaryInit
     {
-        public static void PatchAllDictionaries()
+        internal static void PatchAllDictionaries()
         {
             PatchDictionary(WaterParkCreature.creatureEggs, AUHandler.customCreatureEggDictionary);
             PatchDictionary(WaterParkCreature.waterParkCreatureParameters, AUHandler.customWaterParkCreatureParameters);
@@ -13,7 +13,7 @@ namespace ArchitectsLibrary
             PatchDictionary(CraftData.energyCost, VehicleHandler.CustomEnergyCosts);
         }
         
-        private static void PatchDictionary<V>(IDictionary<TechType, V> origDictionary, IDictionary<TechType, V> cusDictionary)
+        static void PatchDictionary<V>(IDictionary<TechType, V> origDictionary, IDictionary<TechType, V> cusDictionary)
         {
             foreach (KeyValuePair<TechType,V> kvp in cusDictionary)
             {

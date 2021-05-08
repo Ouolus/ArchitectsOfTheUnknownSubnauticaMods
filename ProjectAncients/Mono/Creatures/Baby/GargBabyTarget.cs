@@ -52,6 +52,7 @@ namespace ProjectAncients.Mono
 			pickupable.isPickupable = false;
 			swimBehaviour.Idle();
 			float random = Random.value;
+			//animation parameter idea (bool): cutefish_tickled
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
 			animator.SetTrigger("cin_play");

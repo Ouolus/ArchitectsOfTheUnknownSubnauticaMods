@@ -150,6 +150,7 @@
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
     <Compile Include="Mono\AlienTech\AlienBasePlayerTrigger.cs" />
+    <Compile Include="Mono\AlienTech\BlackHole.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\VoidShoalSpawner.cs" />
     <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
+    <Compile Include="Patches\GotoCommand_Patches.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
     <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MainMenu_Patches.cs" />
@@ -193,11 +195,13 @@
     <Compile Include="Patches\PDAScanner_Patches.cs" />
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
+    <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\BlackHolePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
@@ -234,6 +238,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

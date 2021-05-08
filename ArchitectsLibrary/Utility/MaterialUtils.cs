@@ -1,10 +1,34 @@
+using System.Collections;
 using UnityEngine;
+using UWE;
 
 namespace ArchitectsLibrary.Utility
 {
+    /// <summary>
+    /// a Utility Class for Enhancing Materials and Shaders.
+    /// </summary>
     public static class MaterialUtils
     {
-        // this method is totally not yoinked from ECCLibrary :)
+        internal static void LoadMaterials()
+        {
+            CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
+            CoroutineHost.StartCoroutine(LoadPrecursorGlassMaterial());
+        }
+
+        /// <summary>
+        /// Gets the Ion Cube's Material.
+        /// </summary>
+        public static Material IonCubeMaterial { get; private set; }
+
+        /// <summary>
+        /// Gets the Precursor Glass' Material.
+        /// </summary>
+        public static Material PrecursorGlassMaterial { get; private set; }
+
+        /// <summary>
+        /// Applies the Necessary Subnautica's shader(MarmosetUBER) to the passed <see cref="GameObject"/>.
+        /// </summary>
+        /// <param name="prefab">the <see cref="GameObject"/> to apply the shaders to.</param>
         public static void ApplySNShaders(GameObject prefab)
         {
             var renderers = prefab.GetComponentsInChildren<Renderer>(true);
@@ -69,8 +93,12 @@ namespace ArchitectsLibrary.Utility
                 }
             }
         }
-
-        //Do this AFTER calling ApplySNShaders. Works for opaque and transparent materials, the latter still somewhat WIP.
+        
+        /// <summary>
+        /// Applies the Necessary Precursor Materials to the passed <see cref="GameObject"/>.
+        /// </summary>
+        /// <param name="prefab">the <see cref="GameObject"/> to apply the Materials to.</param>
+        /// <param name="specint">Specular Strength.</param>
         public static void ApplyPrecursorMaterials(GameObject prefab, float specint)
         {
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
@@ -81,14 +109,14 @@ namespace ArchitectsLibrary.Utility
                     if (material.name.Contains("IonShader"))
                     {
                         Material[] sharedMats = renderer.sharedMaterials;
-                        sharedMats[i] = Main.ionCubeMaterial;
+                        sharedMats[i] = IonCubeMaterial;
                         renderer.sharedMaterials = sharedMats;
                         continue;
                     }
                     if (material.name.Contains("Transparent"))
                     {
                         Material[] sharedMats = renderer.sharedMaterials;
-                        sharedMats[i] = Main.precursorGlassMaterial;
+                        sharedMats[i] = PrecursorGlassMaterial;
                         renderer.sharedMaterials = sharedMats;
                         continue;
                     }
@@ -121,6 +149,26 @@ namespace ArchitectsLibrary.Utility
                         material.EnableKeyword("MARMO_SPECMAP");
                     }*/
                 }
+            }
+        }
+        
+        static IEnumerator LoadIonCubeMaterial()
+        {
+            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
+            yield return task;
+
+            GameObject ionCube = task.GetResult();
+            IonCubeMaterial = ionCube.GetComponentInChildren<MeshRenderer>().material;
+        }
+
+        static IEnumerator LoadPrecursorGlassMaterial()
+        {
+            IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2b43dcb7-93b6-4b21-bd76-c362800bedd1");
+            yield return request;
+
+            if(request.TryGetPrefab(out GameObject glassPanel))
+            {
+                PrecursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
             }
         }
     }

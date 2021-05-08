@@ -2,56 +2,65 @@
 using ArchitectsLibrary.Patches;
 using HarmonyLib;
 using QModManager.API.ModLoading;
-using QModManager.Utility;
 using UnityEngine;
-using System.Collections;
 using CreatorKit.Patches;
-using UWE;
+using System.IO;
+using ArchitectsLibrary.Items;
+using SMLHelper.V2.Handlers;
+using System.Collections.Generic;
+using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
 
 namespace ArchitectsLibrary
 {
+    /// <summary>
+    /// Please DO NOT use this class, its meant for only QModManager's Initializations of this Mod.
+    /// </summary>
     [QModCore]
     public static class Main
     {
-        private static Assembly myAssembly = Assembly.GetExecutingAssembly();
-        public static Material ionCubeMaterial;
-        public static Material precursorGlassMaterial;
+        internal static AssetBundle assetBundle;
+        
+        static Assembly myAssembly = Assembly.GetExecutingAssembly();
+        
+        const string assetBundleName = "architectslibrary";
+        
+        static PrecursorAlloyIngot precursorAlloy;
 
+        /// <summary>
+        /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
+        /// </summary>
         [QModPatch]
         public static void Load()
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
-            Initializer.PatchAllDictionaries();      
+            DictionaryInit.PatchAllDictionaries();
 
-            QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
+            MaterialUtils.LoadMaterials();
 
-            UWE.CoroutineHost.StartCoroutine(LoadIonCubeMaterial());
+            assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(myAssembly.Location), "Assets", assetBundleName));
 
-            //CreatorKit.SNCreatorKit.Entry();
+            PatchItems();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
-            VehiclePatches.Patch(harmony); 
+            VehiclePatches.Patch(harmony);
+
+            //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
+            
+            QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
 
-        private static IEnumerator LoadIonCubeMaterial()
+        
+
+        static void PatchItems()
         {
-            CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
-
-            GameObject ionCube = task.GetResult();
-            ionCubeMaterial = ionCube.GetComponentInChildren<MeshRenderer>().material;
-        }
-
-        private static IEnumerator LoadPrecursorGlassMaterial()
-        {
-            IPrefabRequest request = PrefabDatabase.GetPrefabAsync("2b43dcb7-93b6-4b21-bd76-c362800bedd1");
-            yield return request;
-
-            request.TryGetPrefab(out GameObject glassPanel);
-            precursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
+            precursorAlloy =  new PrecursorAlloyIngot();
+            precursorAlloy.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
+            AUHandler.PrecursorAlloyIngotClassID = precursorAlloy.ClassID;
         }
     }
 }
