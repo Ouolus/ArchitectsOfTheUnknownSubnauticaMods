@@ -785,9 +785,9 @@
             
             <para>If the method has a return type, it will be printed to both the screen and the log.</para>
             </remarks>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand``1(System.String,``0)"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommands(System.Type)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand``1(System.String,``0)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommands(System.Type)"/>
             <seealso cref="T:SMLHelper.V2.Handlers.ConsoleCommandsHandler"/>
         </member>
         <member name="P:SMLHelper.V2.Commands.ConsoleCommandAttribute.Command">
@@ -811,9 +811,9 @@
             </remarks>
             <param name="command">The unique, case-insensitive command that when entered into the dev console will call the
             decorated method.</param>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand``1(System.String,``0)"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommands(System.Type)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand``1(System.String,``0)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommands(System.Type)"/>
             <seealso cref="T:SMLHelper.V2.Handlers.ConsoleCommandsHandler"/>
         </member>
         <member name="T:SMLHelper.V2.Crafting.ModCraftTreeCraft">
@@ -1272,6 +1272,93 @@
             <para>defaults to <see langword="false" /></para>
             </param>
         </member>
+        <member name="T:SMLHelper.V2.Handlers.TechCategoryHandler">
+            <summary>
+            A handler class for everything related to creating new TechCategories.
+            </summary>
+            <seealso cref="T:SMLHelper.V2.Interfaces.ITechCategoryHandler" />
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.TechCategoryHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.AddTechCategory(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechCategory" /> into the game.
+            </summary>
+            <param name="techCatagoryName">The name of the TechCategory. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechCategory. Can be anything.</param>
+            <returns>
+            The new <see cref="T:TechCategory" /> that is created.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.ModdedTechCategoryExists(System.String)">
+            <summary>
+            Safely looks for a modded category from another mod in the SMLHelper TechCategoryCache.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.TryGetModdedTechCategory(System.String,TechCategory@)">
+            <summary>
+            Safely looks for a modded category from another mod in the SMLHelper TechCategoryCache and outputs its <see cref="T:TechCategory" /> value when found.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <param name="modTechCategory">The TechCategory enum value of the modded. Defaults to <see cref="F:TechCategory.Misc" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.TryRegisterTechCategoryToTechGroup(TechGroup,TechCategory)">
+            <summary>
+            Registers the TechCategory to a TechGroup in CraftData.groups.
+            </summary>
+            <param name="techGroup">The tech group.</param>
+            <param name="techCategory">The tech category.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.TechGroupHandler">
+            <summary>
+            A handler class for everything related to creating new TechGroups.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.TechGroupHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.AddTechGroup(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechGroup" /> into the game.
+            </summary>
+            <param name="techGroupName">The name of the TechGroup. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechGroup. Can be anything.</param>
+            <returns>
+            The new <see cref="T:TechGroup" /> that is created.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.ModdedTechGroupExists(System.String)">
+            <summary>
+            Safely looks for a modded group from another mod in the SMLHelper TechGroupCache.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.TryGetModdedTechGroup(System.String,TechGroup@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache and outputs its <see cref="T:TechGroup" /> value when found.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <param name="modTechGroup">The TechGroup enum value of the modded. Defaults to <see cref="F:TechGroup.Uncategorized" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
         <member name="T:SMLHelper.V2.Handlers.BioReactorHandler">
             <summary>
             A handler with common methods for updating BioReactor values.
@@ -1428,7 +1515,7 @@
         <member name="M:SMLHelper.V2.Handlers.CraftDataHandler.SMLHelper#V2#Interfaces#ICraftDataHandler#AddToGroup(TechGroup,TechCategory,TechType)">
             <summary>
             Allows you to add items to the game's internal grouping system.
-            Required if you want to make buildable items show up in the Habitat Builder.
+            Required if you want to make buildable items show up in the Habitat Builder or show in the Blueprints Tab of the PDA.
             </summary>
             <param name="group">The TechGroup you want to add your TechType to.</param>
             <param name="category">The TechCategory (in the TechGroup) you want to add your TechType to.</param>
@@ -1437,7 +1524,7 @@
         <member name="M:SMLHelper.V2.Handlers.CraftDataHandler.SMLHelper#V2#Interfaces#ICraftDataHandler#AddToGroup(TechGroup,TechCategory,TechType,TechType)">
             <summary>
             Allows you to add items to the game's internal grouping system.
-            Required if you want to make buildable items show up in the Habitat Builder.
+            Required if you want to make buildable items show up in the Habitat Builder or show in the Blueprints Tab of the PDA.
             </summary>
             <param name="group">The TechGroup you want to add your TechType to.</param>
             <param name="category">The TechCategory (in the TechGroup) you want to add your TechType to.</param>
@@ -2915,12 +3002,12 @@
             The name of the method to invoke.
             </summary>
         </member>
-        <member name="T:SMLHelper.V2.Interfaces.IConsoleCommandHandler">
+        <member name="T:SMLHelper.V2.Interfaces.IConsoleCommandsHandler">
             <summary>
             A handler class for registering your custom console commands.
             </summary>
         </member>
-        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])">
+        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])">
             <summary>
             Registers your custom console command by targeting a <see langword="public"/> <see langword="static"/> method.
             </summary>
@@ -2938,11 +3025,11 @@
             <param name="methodName">The name of the method to call within the declaring type when the command is entered. 
             Method must be <see langword="static"/>.</param>
             <param name="parameters">The parameter types the method receives, for targeting overloads.</param>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand``1(System.String,``0)"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommands(System.Type)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand``1(System.String,``0)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommands(System.Type)"/>
             <seealso cref="T:SMLHelper.V2.Commands.ConsoleCommandAttribute"/>
         </member>
-        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand``1(System.String,``0)">
+        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand``1(System.String,``0)">
             <summary>
             Registers your custom console command by passing a <see langword="delegate"/>.
             </summary>
@@ -2955,11 +3042,11 @@
             <typeparam name="T">The delegate type.</typeparam>
             <param name="command">The case-insensitive command to register.</param>
             <param name="callback">The callback to handle the command.</param>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommands(System.Type)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommands(System.Type)"/>
             <seealso cref="T:SMLHelper.V2.Commands.ConsoleCommandAttribute"/>
         </member>
-        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommands(System.Type)">
+        <member name="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommands(System.Type)">
             <summary>
             Registers <see langword="public"/> <see langword="static"/> methods decorated with the
             <see cref="T:SMLHelper.V2.Commands.ConsoleCommandAttribute"/> within the <paramref name="type"/> as console commands.
@@ -2973,8 +3060,8 @@
             
             <para>If a decorated method has a return type, it will be printed to both the screen and the log.</para>
             </remarks>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
-            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandHandler.RegisterConsoleCommand``1(System.String,``0)"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand(System.String,System.Type,System.String,System.Type[])"/>
+            <seealso cref="M:SMLHelper.V2.Interfaces.IConsoleCommandsHandler.RegisterConsoleCommand``1(System.String,``0)"/>
             <seealso cref="T:SMLHelper.V2.Commands.ConsoleCommandAttribute"/>
         </member>
         <member name="T:SMLHelper.V2.Interfaces.IPingHandler">
@@ -3022,6 +3109,78 @@
             <param name="isEdible">set it to <see langword="true" /> if the item is edible and has the <see cref="T:Eatable"/> component attached to it. 
             <para>defaults to <see langword="false" /></para>
             </param>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ITechCategoryHandler">
+            <summary>
+            A handler class for everything related to creating new TechCategorys.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.AddTechCategory(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechCategory"/> into the game. 
+            </summary>
+            <param name="techCatagoryName">The name of the TechCategory. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechCategory. Can be anything.</param>
+            <returns>The new <see cref="T:TechCategory"/> that is created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.TryGetModdedTechCategory(System.String,TechCategory@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechCategoryCache and outputs its <see cref="T:TechCategory" /> value when found.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <param name="modTechCategory">The TechCategory enum value of the modded. Defaults to <see cref="F:TechCategory.Misc" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.ModdedTechCategoryExists(System.String)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechCategoryCache.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.TryRegisterTechCategoryToTechGroup(TechGroup,TechCategory)">
+            <summary>
+            Registers the TechCategory to a TechGroup.
+            </summary>
+            <param name="techGroup">The tech group.</param>
+            <param name="techCategory">The tech category.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ITechGroupHandler">
+            <summary>
+            A handler class for everything related to creating new TechGroups.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.AddTechGroup(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechGroup"/> into the game. 
+            </summary>
+            <param name="techGroupName">The name of the TechGroup. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechGroup. Can be anything.</param>
+            <returns>The new <see cref="T:TechGroup"/> that is created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.TryGetModdedTechGroup(System.String,TechGroup@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache and outputs its <see cref="T:TechGroup" /> value when found.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <param name="modTechGroup">The TechGroup enum value of the modded. Defaults to <see cref="F:TechGroup.Uncategorized" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.ModdedTechGroupExists(System.String)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
         </member>
         <member name="T:SMLHelper.V2.Interfaces.IBioReactorHandler">
             <summary>
@@ -4349,6 +4508,31 @@
         <member name="P:SMLHelper.V2.Handler.SurvivalHandler">
             <summary>
             a handler for common uses to the Survival component
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.CoordinatedSpawnHandler">
+            <summary>
+            A handler to making coordinated Vector3 spawns ingame.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.TechGroupHandler">
+            <summary>
+            A handler class for adding custom TechGroups into the game.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.TechCategoryHandler">
+            <summary>
+            A handler class for adding custom TechCategories into the game.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.ConsoleCommandsHandler">
+            <summary>
+            A handler class for registering your custom console commands.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.PingHandler">
+            <summary>
+            A handler related to PingTypes
             </summary>
         </member>
         <member name="T:SMLHelper.V2.Initializer">
