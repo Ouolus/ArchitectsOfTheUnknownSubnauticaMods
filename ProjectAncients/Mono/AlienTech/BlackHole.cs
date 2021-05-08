@@ -19,7 +19,7 @@ namespace ProjectAncients.Mono.AlienTech
             if (Time.time < _clickCooldown)
                 return;
             
-            if (_attempts is not 0)
+            if (_attempts >= 0)
             {
                 _attempts--;
                 Player.main.PlayGrab();
@@ -41,15 +41,15 @@ namespace ProjectAncients.Mono.AlienTech
 
         void TryPlayVoiceLine(int attemptsNow)
         {
-            if(attemptsNow == 2)
+            if (attemptsNow == 2)
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("BlackHole1"), "BlackHoleInteract1", "No.");
             }
-            if(attemptsNow == 1)
+            else if (attemptsNow == 1)
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("BlackHole2"), "BlackHoleInteract2", "Do not attempt. You will be destroyed.");
             }
-            if(attemptsNow == 0)
+            else if (attemptsNow == 0)
             {
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("DeathImminent"), "DeathImminent", "Warning: Death imminent.");
             }
