@@ -85,7 +85,7 @@
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>$(DepDir)\UnityEngine.ImageConversionModule.dll</HintPath>
-	  <Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -97,7 +97,7 @@
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>$(DepDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
-	  <Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -147,13 +147,13 @@
     <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
-    <Compile Include="Initializer.cs" />
-    <Compile Include="Interfaces\IAuHandler.cs" />
+    <Compile Include="DictionaryInit.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleOnce.cs" />
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Interfaces\IVehicleHandler.cs" />
+    <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
@@ -169,6 +169,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

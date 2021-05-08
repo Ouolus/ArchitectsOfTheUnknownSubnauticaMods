@@ -1,13 +1,16 @@
 using System.Linq;
 using System.Collections.Generic;
-using ArchitectsLibrary.Interfaces;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.Items;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
 namespace ArchitectsLibrary.Handlers
 {
-    public class AUHandler : IAuHandler
+    /// <summary>
+    /// a General Handler that mostly used by this Library's APIs and the Mod Team.
+    /// </summary>
+    public static class AUHandler
     {
         internal static IDictionary<TechType, TechType> customCreatureEggDictionary = 
             new HashDictionary<TechType, TechType>();
@@ -15,19 +18,17 @@ namespace ArchitectsLibrary.Handlers
         internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
         
-        public static IAuHandler Main { get; } = new AUHandler();
-
-        private AUHandler()
-        {
-            // hide constructor
-        }
+        /// <summary>
+        /// Gets the <see cref="PrecursorAlloyIngot"/>'s Class ID so you can spawn it up in your Mod.
+        /// </summary>
+        public static string PrecursorAlloyIngotClassID { get; internal set; }
         
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
-        /// <param name="gameObject">Game Object to make Scannable</param>
+        /// <param name="gameObject">the <see cref="GameObject"/> to make Scannable</param>
         /// <param name="categoryTechType">Category in the Scanner Room</param>
-        void IAuHandler.SetObjectScannable(GameObject gameObject, TechType categoryTechType)
+        public static void SetObjectScannable(GameObject gameObject, TechType categoryTechType = TechType.GenericEgg)
         {
             var tt = CraftData.GetTechType(gameObject);
 
@@ -44,7 +45,11 @@ namespace ArchitectsLibrary.Handlers
                 Logger.Log(Logger.Level.Warn, "TechType to get from SetObjectScannable() is null");
         }
 
-        void IAuHandler.MakeItemAcidImmune(TechType techType)
+        /// <summary>
+        /// Makes a <see cref="TechType"/> immune to the AcidicBrine of the LostRiver.
+        /// </summary>
+        /// <param name="techType">the <see cref="TechType"/> to make immune</param>
+        public static void MakeItemAcidImmune(TechType techType)
         {
             var acidToList = DamageSystem.acidImmune.ToList();
             
@@ -54,32 +59,25 @@ namespace ArchitectsLibrary.Handlers
             DamageSystem.acidImmune = acidToList.ToArray();
         }
 
-        void IAuHandler.SetCreatureEgg(TechType creatureType, TechType eggType)
+        /// <summary>
+        /// Set an Egg <see cref="TechType"/> to a Creature's <see cref="TechType"/> so the creature breeds the passed Egg
+        ///  instead of breeding Creatures to the ACU.
+        /// </summary>
+        /// <param name="creatureType">the Creature's <see cref="TechType"/> to specify an egg for</param>
+        /// <param name="eggType">the Egg's <see cref="TechType"/></param>
+        public static void SetCreatureEgg(TechType creatureType, TechType eggType)
         {
             customCreatureEggDictionary[creatureType] = eggType;
         }
-
-        void IAuHandler.SetCreatureParameters(TechType creatureType,
-            WaterParkCreatureParameters waterParkCreatureParameters)
+        
+        /// <summary>
+        /// Sets a <see cref="WaterParkCreatureParameters"/> for the passed <see cref="TechType"/> Creature.
+        /// </summary>
+        /// <param name="creatureType">The Creature's <see cref="TechType"/>.</param>
+        /// <param name="waterParkCreatureParameters">the <see cref="WaterParkCreatureParameters"/> to set.</param>
+        public static void SetCreatureParameters(TechType creatureType, WaterParkCreatureParameters waterParkCreatureParameters)
         {
             customWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
         }
-
-        /// <summary>
-        /// makes the object given Scannable from the Scanner Room.
-        /// </summary>
-        /// <param name="gameObject">Game Object to make Scannable</param>
-        /// <param name="categoryTechType">Category in the Scanner Room</param>
-        public static void SetObjectScannable(GameObject gameObject, TechType categoryTechType = TechType.GenericEgg) =>
-            Main.SetObjectScannable(gameObject, categoryTechType);
-
-        public static void MakeItemAcidImmune(TechType techType) => Main.MakeItemAcidImmune(techType);
-
-        public static void SetCreatureEgg(TechType creatureType, TechType eggType) =>
-            Main.SetCreatureEgg(creatureType, eggType);
-
-        public static void SetCreatureParameters(TechType creatureType,
-            WaterParkCreatureParameters waterParkCreatureParameters) =>
-            Main.SetCreatureParameters(creatureType, waterParkCreatureParameters);
     }
 }
