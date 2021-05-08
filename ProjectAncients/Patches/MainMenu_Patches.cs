@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 namespace ProjectAncients.Patches
 {
-    [HarmonyPatch(typeof(MainMenuMusic))]
-    public class MainMenuMusic_Patch
+    [HarmonyPatch]
+    public class MainMenu_Patches
     {
+        [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
-        public static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
+        static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -21,24 +22,12 @@ namespace ProjectAncients.Patches
             wreakMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
 
             __instance.music = wreakMusic;
-
-            Light[] lights = Object.FindObjectsOfType<Light>();
-            Light highlight = lights[0];
-            highlight.enabled = true;
-            highlight.intensity = 0.5f;
-            highlight.color = Color.magenta;
-            Light sun = lights[1];
-            sun.intensity = 0f;
-            sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
-    }
-
-    [HarmonyPatch(typeof(uGUI_MainMenu))]
-    public class uGUI_MainMenu_Patch
-    {
+        
+        [HarmonyPatch(typeof(uGUI_MainMenu))]
         [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
         [HarmonyPostfix]
-        public static void uGUI_MainMenu_Postfix(uGUI_MainMenu __instance)
+        static void uGUI_MainMenu_Postfix()
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -48,43 +37,30 @@ namespace ProjectAncients.Patches
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-8, 0f, 20f);
+                subtitle.transform.position = new Vector3(-11.635f, 0f, 20f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
-        }
-    }
 
-    [HarmonyPatch(typeof(uGUI_SceneLoading))]
-    public class uGUI_SceneLoading_Patch
-    {
-        [HarmonyPatch(nameof(uGUI_SceneLoading.Begin))]
-        [HarmonyPostfix]
-		public static void Postfix1(uGUI_SceneLoading __instance)
-		{
-            TryOverrideLoadingScreen(__instance);
+            var lights = Object.FindObjectsOfType<Light>();
+            var highlight = lights[0];
+            highlight.enabled = true;
+            highlight.intensity = 0.5f;
+            highlight.color = Color.magenta;
+            var sun = lights[1];
+            sun.intensity = 0f;
+            sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
         }
-
-        [HarmonyPatch(nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
+        
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.Begin))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.DelayedBegin))]
+        [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.ShowLoadingScreen))]
         [HarmonyPostfix]
-        public static void Postfix2(uGUI_SceneLoading __instance)
+        static void uGUI_SceneLoading_Postfix(uGUI_SceneLoading __instance)
         {
             TryOverrideLoadingScreen(__instance);
         }
-
-        [HarmonyPatch(nameof(uGUI_SceneLoading.DelayedBegin))]
-        [HarmonyPostfix]
-        public static void Postfix3(uGUI_SceneLoading __instance)
-        {
-            TryOverrideLoadingScreen(__instance);
-        }
-
-        [HarmonyPatch(nameof(uGUI_SceneLoading.ShowLoadingScreen))]
-        [HarmonyPostfix]
-        public static void Postfix4(uGUI_SceneLoading __instance)
-        {
-            TryOverrideLoadingScreen(__instance);
-        }
-
+        
         static void TryOverrideLoadingScreen(uGUI_SceneLoading sceneLoading)
         {
             if (Mod.config.OverrideLoadingScreen == false)
@@ -98,5 +74,5 @@ namespace ProjectAncients.Patches
                 image.sprite = loadingScreen;
             }
         }
-	}
+    }
 }
