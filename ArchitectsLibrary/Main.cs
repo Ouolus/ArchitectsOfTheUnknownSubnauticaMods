@@ -27,6 +27,7 @@ namespace ArchitectsLibrary
         
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
+        const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
@@ -61,11 +62,13 @@ namespace ArchitectsLibrary
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
-            AUHandler.PrecursorAlloyIngotClassID = precursorAlloy.ClassID;
+            AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
 
             emerald = new Emerald();
             emerald.Patch();
-            AUHandler.EmeraldClassId = emerald.ClassID;
+            AUHandler.EmeraldTechType = emerald.TechType;
+            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A rare, green mineral and a variation of beryl. Can be found in small amounts in deeper biomes. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology.");
+            ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
         }
     }
 }
