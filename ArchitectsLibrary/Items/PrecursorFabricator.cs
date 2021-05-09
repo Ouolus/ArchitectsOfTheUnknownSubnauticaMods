@@ -92,14 +92,14 @@ namespace ArchitectsLibrary.Items
 
             // beams setup
             fab.leftBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_left/fabricatorBeam").gameObject;
-            fab.leftBeam.transform.localPosition = new(0.1479f, 0f, 0.01f); // move the beam down a bit cause it looks a bit weird otherwise
-            fab.leftBeam.transform.localScale = new(1f, 1f, 0.6f);
+            fab.leftBeam.transform.localPosition = new(0f, 0f, 0.01f);
+            fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new(0.1479f, 0f, -0.01f); // move the beam down a bit cause it looks a bit weird otherwise
-            fab.rightBeam.transform.localScale = new(1f, 1f, 0.6f);
+            fab.rightBeam.transform.localPosition = new(0.5f, 0.5f, -0.01f);
+            fab.rightBeam.transform.localScale = new(1f, 1f, 0.7f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
-            
+
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
             fab.crafterLogic = logic;
             fab.ghost = obj.EnsureComponent<CrafterGhostModel>();
