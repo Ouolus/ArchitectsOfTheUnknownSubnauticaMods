@@ -10,6 +10,7 @@ namespace ArchitectsLibrary.Items
     class PrecursorAlloyIngot : Craftable
     {
         GameObject prefab;
+        Atlas.Sprite sprite;
 
         public PrecursorAlloyIngot() : base("PrecursorIngot", "Precursor Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
         {
@@ -22,6 +23,14 @@ namespace ArchitectsLibrary.Items
 
         public override bool UnlockedAtStart => false;
 
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            if(sprite == null)
+            {
+                sprite = SMLHelper.V2.Utility.ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("PrecursorIngot_Icon"));
+            }
+            return sprite;
+        }
 #if SN1
         public override GameObject GetGameObject()
         {
