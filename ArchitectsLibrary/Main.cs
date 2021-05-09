@@ -36,6 +36,7 @@ namespace ArchitectsLibrary
         static PrecursorFabricator PrecursorFabricator;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
+        static DrillableEmerald drillableEmerald;
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -83,6 +84,8 @@ namespace ArchitectsLibrary
                 
                 PrecursorFabricator.Root.AddCraftingNode(techType);
             }
+
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
         }
 
         static void PatchItems()
@@ -93,10 +96,12 @@ namespace ArchitectsLibrary
             ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small numbers in deeper areas. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
             ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
 
+            drillableEmerald = new DrillableEmerald();
+            drillableEmerald.Patch();
+
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
         }
     }
