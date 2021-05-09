@@ -153,7 +153,6 @@
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
-    <Compile Include="Interfaces\IVehicleHandler.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
