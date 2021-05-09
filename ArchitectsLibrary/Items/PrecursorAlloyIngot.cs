@@ -13,7 +13,7 @@ namespace ArchitectsLibrary.Items
         GameObject prefab;
         Atlas.Sprite sprite;
 
-        public PrecursorAlloyIngot() : base("PrecursorIngot", "Precursor Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
+        public PrecursorAlloyIngot() : base("PrecursorIngot", "Architect Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
         {
         }
 
