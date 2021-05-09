@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using ArchitectsLibrary.Patches;
 using HarmonyLib;
 using QModManager.API.ModLoading;
@@ -20,11 +21,16 @@ namespace ArchitectsLibrary
     public static class Main
     {
         internal static AssetBundle assetBundle;
+        internal static AssetBundle fabBundle;
         
         static Assembly myAssembly = Assembly.GetExecutingAssembly();
+
+        internal static string AssetsFolder = Path.Combine(Path.GetDirectoryName(myAssembly.Location), "Assets"); 
         
         const string assetBundleName = "architectslibrary";
-        
+        const string fabBundleName = "fabricatorassets";
+
+        static PrecursorFabricator PrecursorFabricator;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
         const string encyKey_emerald = "EmeraldEncy";
@@ -32,6 +38,7 @@ namespace ArchitectsLibrary
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
         /// </summary>
+        [Obsolete("Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.", true)]
         [QModPatch]
         public static void Load()
         {
@@ -41,7 +48,8 @@ namespace ArchitectsLibrary
 
             MaterialUtils.LoadMaterials();
 
-            assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(myAssembly.Location), "Assets", assetBundleName));
+            fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
+            assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
 
             PatchItems();
 
@@ -59,6 +67,9 @@ namespace ArchitectsLibrary
 
         static void PatchItems()
         {
+            PrecursorFabricator = new();
+            PrecursorFabricator.Patch();
+            
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
@@ -67,6 +78,7 @@ namespace ArchitectsLibrary
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
+            PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
         }
