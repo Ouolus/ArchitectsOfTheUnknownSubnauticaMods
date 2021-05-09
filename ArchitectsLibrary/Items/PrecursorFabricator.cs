@@ -97,8 +97,8 @@ namespace ArchitectsLibrary.Items
             fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new(0.5f, 0.5f, -0.01f);
-            fab.rightBeam.transform.localScale = new(1f, 1f, 0.7f);
+            fab.rightBeam.transform.localPosition = new(0f, 0f, -0.01f);
+            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
 
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
@@ -205,8 +205,8 @@ namespace ArchitectsLibrary.Items
             fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new(0.5f, 0.5f, -0.01f);
-            fab.rightBeam.transform.localScale = new(1f, 1f, 0.7f);
+            fab.rightBeam.transform.localPosition = new(0f, 0f, -0.01f);
+            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
             
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
