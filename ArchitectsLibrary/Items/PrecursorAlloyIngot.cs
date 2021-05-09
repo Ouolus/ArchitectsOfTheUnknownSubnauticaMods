@@ -14,7 +14,7 @@ namespace ArchitectsLibrary.Items
         GameObject prefab;
         Atlas.Sprite sprite;
 
-        public PrecursorAlloyIngot() : base("PrecursorIngot", "Architect Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
+        public PrecursorAlloyIngot() : base("PrecursorIngot", "Alien Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
         {
         }
 
@@ -63,6 +63,8 @@ namespace ArchitectsLibrary.Items
                 inspect.rigidBody = prefab.GetComponent<Rigidbody>();
                 inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
+
+                prefab.transform.GetChild(0).gameObject.AddComponent<>
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
