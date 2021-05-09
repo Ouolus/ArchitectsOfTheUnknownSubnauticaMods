@@ -67,7 +67,7 @@ namespace ArchitectsLibrary
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
-            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A rare, green mineral and a variation of beryl. Can be found in small amounts in deeper biomes. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology.");
+            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A rare, green mineral and a variation of beryl. Can be found in small numbers in deeper biomes. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology.");
             ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
         }
     }
