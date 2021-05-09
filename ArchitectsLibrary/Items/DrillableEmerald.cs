@@ -72,7 +72,7 @@ namespace ArchitectsLibrary.Items
             cellLevel = LargeWorldEntity.CellLevel.Medium,
             classId = ClassID,
             localScale = Vector3.one,
-            slotType = EntitySlot.Type.Large,
+            slotType = EntitySlot.Type.Medium,
             techType = TechType
         };
 
