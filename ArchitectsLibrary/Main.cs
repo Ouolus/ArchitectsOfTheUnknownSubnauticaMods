@@ -75,8 +75,14 @@ namespace ArchitectsLibrary
         {
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
-            
-            TechTypesToAdd.ForEach(x => PrecursorFabricator.Root.AddCraftingNode(x));
+
+            foreach (var techType in TechTypesToAdd)
+            {
+                if (techType == TechType.None)
+                    continue;
+                
+                PrecursorFabricator.Root.AddCraftingNode(techType);
+            }
         }
 
         static void PatchItems()
