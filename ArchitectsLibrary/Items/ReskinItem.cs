@@ -31,6 +31,7 @@ namespace ArchitectsLibrary.Items
                 cachedPrefab = GameObject.Instantiate(prefab);
                 cachedPrefab.SetActive(false);
                 cachedPrefab.EnsureComponent<TechTag>().type = TechType;
+                prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
                 ApplyChangesToPrefab(cachedPrefab);
             }
             return cachedPrefab;

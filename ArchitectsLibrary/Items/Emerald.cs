@@ -16,7 +16,6 @@ namespace ArchitectsLibrary.Items
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
             var renderer = prefab.GetComponentInChildren<Renderer>();
             renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Diffuse"));
