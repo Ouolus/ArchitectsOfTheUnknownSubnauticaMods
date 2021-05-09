@@ -74,43 +74,43 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.GrandReef_Ground,
                 count = 1,
-                probability = 0.2f
+                probability = 0.1f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.GrandReef_Wall,
                 count = 1,
-                probability = 0.1f
+                probability = 0.05f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.GrandReef_WhiteCoral,
                 count = 1,
-                probability = 0.2f
+                probability = 0.15f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.SeaTreaderPath_Rock,
                 count = 1,
-                probability = 0.3f
+                probability = 0.2f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.SeaTreaderPath_Sand,
                 count = 1,
-                probability = 0.1f
+                probability = 0.07f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.BloodKelp_TrenchFloor,
                 count = 1,
-                probability = 0.15f
+                probability = 0.1f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.BloodKelp_Grass,
                 count = 1,
-                probability = 0.2f
+                probability = 0.15f
             },
             new LootDistributionData.BiomeData
             {
@@ -122,43 +122,43 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
-                probability = 0.18f
+                probability = 0.13f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.KooshZone_RockWall,
                 count = 1,
-                probability = 0.35f
+                probability = 0.3f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_SandDune,
                 count = 1,
-                probability = 0.5f
+                probability = 0.4f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_SandPlateau,
                 count = 1,
-                probability = 0.5f
+                probability = 0.4f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveCeiling,
                 count = 1,
-                probability = 1.3f
+                probability = 1.2f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveWall,
                 count = 1,
-                probability = 1.3f
+                probability = 1.2f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveFloor,
                 count = 1,
-                probability = 1.3f
+                probability = 1.2f
             },
         };
     }
