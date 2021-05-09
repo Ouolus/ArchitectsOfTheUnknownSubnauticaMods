@@ -20,6 +20,8 @@ namespace ArchitectsLibrary
     [QModCore]
     public static class Main
     {
+        internal static List<TechType> TechTypesToAdd = new();
+        
         internal static AssetBundle assetBundle;
         internal static AssetBundle fabBundle;
         
@@ -81,6 +83,8 @@ namespace ArchitectsLibrary
             PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
+            
+            TechTypesToAdd.ForEach(x => PrecursorFabricator.Root.AddCraftingNode(x));
         }
     }
 }
