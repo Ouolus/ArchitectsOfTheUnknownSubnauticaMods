@@ -65,13 +65,21 @@ namespace ArchitectsLibrary
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
 
-        
-
-        static void PatchItems()
+        /// <summary>
+        /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
+        /// </summary>
+        [Obsolete("Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.", true)]
+        [QModPostPatch]
+        public static void PostLoad()
         {
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
             
+            TechTypesToAdd.ForEach(x => PrecursorFabricator.Root.AddCraftingNode(x));
+        }
+
+        static void PatchItems()
+        {
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
@@ -83,8 +91,6 @@ namespace ArchitectsLibrary
             PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
-            
-            TechTypesToAdd.ForEach(x => PrecursorFabricator.Root.AddCraftingNode(x));
         }
     }
 }
