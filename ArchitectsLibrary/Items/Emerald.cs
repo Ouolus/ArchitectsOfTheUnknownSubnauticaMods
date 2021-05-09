@@ -1,9 +1,6 @@
-﻿using SMLHelper.V2.Assets;
-﻿using System.Collections;
-using SMLHelper.V2.Crafting;
+﻿using System.Collections.Generic;
 using SMLHelper.V2.Utility;
 using UnityEngine;
-using System.Collections.Generic;
 using UWE;
 
 namespace ArchitectsLibrary.Items
@@ -63,7 +60,7 @@ namespace ArchitectsLibrary.Items
             return sprite;
         }
 
-        public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
+        public override WorldEntityInfo EntityInfo => new()
         {
             cellLevel = LargeWorldEntity.CellLevel.Near,
             classId = ClassID,
@@ -72,93 +69,93 @@ namespace ArchitectsLibrary.Items
             techType = TechType
         };
 
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.GrandReef_Ground,
                 count = 1,
                 probability = 0.2f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.GrandReef_Wall,
                 count = 1,
                 probability = 0.1f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.GrandReef_WhiteCoral,
                 count = 1,
                 probability = 0.2f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.SeaTreaderPath_Rock,
                 count = 1,
                 probability = 0.3f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.SeaTreaderPath_Sand,
                 count = 1,
                 probability = 0.1f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.BloodKelp_TrenchFloor,
                 count = 1,
                 probability = 0.15f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.BloodKelp_Grass,
                 count = 1,
                 probability = 0.2f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.BloodKelp_Wall,
                 count = 1,
                 probability = 0.1f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
                 probability = 0.18f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.KooshZone_RockWall,
                 count = 1,
                 probability = 0.35f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_SandDune,
                 count = 1,
                 probability = 0.5f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_SandPlateau,
                 count = 1,
                 probability = 0.5f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveCeiling,
                 count = 1,
                 probability = 1.3f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveWall,
                 count = 1,
                 probability = 1.3f
             },
-            new LootDistributionData.BiomeData()
+            new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Dunes_CaveFloor,
                 count = 1,
