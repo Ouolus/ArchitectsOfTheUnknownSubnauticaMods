@@ -153,8 +153,10 @@
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Interfaces\IVehicleHandler.cs" />
+    <Compile Include="Items\DrillableEmerald.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
+    <Compile Include="Items\ReskinItem.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />

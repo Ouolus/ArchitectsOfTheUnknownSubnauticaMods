@@ -1,54 +1,22 @@
 ﻿using SMLHelper.V2.Assets;
-using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Utility;
 using UnityEngine;
 using System.Collections.Generic;
-using ArchitectsLibrary.Utility;
 using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    class Emerald : Spawnable
+    class Emerald : ReskinItem
     {
-        GameObject cachedPrefab;
         Atlas.Sprite sprite;
-        const string kyaniteClassId = "6e7f3d62-7e76-4415-af64-5dcd88fc3fe4";
+        protected override string ReferenceClassId => "6e7f3d62-7e76-4415-af64-5dcd88fc3fe4";
 
         public Emerald() : base("Emerald", "Emerald", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
         {
         }
 
-#if SN1
-        public override GameObject GetGameObject()
+        protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            if (cachedPrefab == null)
-            {
-                PrefabDatabase.TryGetPrefab(kyaniteClassId, out GameObject prefab);
-                cachedPrefab = GameObject.Instantiate(prefab);
-                cachedPrefab.SetActive(false);
-                ApplyChangesToPrefab(cachedPrefab);
-            }
-            return cachedPrefab;
-        }
-#else
-        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
-        {
-            if (cachedPrefab == null)
-            {
-                IPrefabRequest request = PrefabDatabase.GetPrefabAsync(kyaniteClassId);
-                yield return request;
-                request.TryGetPrefab(out GameObject prefab);
-                GameObject cachedPrefab = GameObject.Instantiate(prefab);
-                cachedPrefab.SetActive(false);
-                ApplyChangesToPrefab(cachedPrefab);
-            }
-            gameObject.Set(cachedPrefab);
-        }
-#endif
-
-        void ApplyChangesToPrefab(GameObject prefab)
-        {
-            prefab.EnsureComponent<TechTag>().type = TechType;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
             var renderer = prefab.GetComponentInChildren<Renderer>();
@@ -92,6 +60,15 @@ namespace ArchitectsLibrary.Items
             }
             return sprite;
         }
+
+        public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
+        {
+            cellLevel = LargeWorldEntity.CellLevel.Near,
+            classId = ClassID,
+            localScale = Vector3.one,
+            slotType = EntitySlot.Type.Small,
+            techType = TechType
+        };
 
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
         {
@@ -185,15 +162,6 @@ namespace ArchitectsLibrary.Items
                 count = 1,
                 probability = 1.3f
             },
-        };
-
-        public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
-        {
-            cellLevel = LargeWorldEntity.CellLevel.Near,
-            classId = ClassID,
-            localScale = Vector3.one,
-            slotType = EntitySlot.Type.Small,
-            techType = TechType
         };
     }
 }
