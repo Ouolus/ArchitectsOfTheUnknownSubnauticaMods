@@ -23,10 +23,20 @@ namespace ArchitectsLibrary.Items
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.EmeraldTechType };
             drillable.kChanceToSpawnResources = 0.6f;
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
-            foreach(var renderer in renderers)
+            renderers[0].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_01"));
+            renderers[0].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_01_emissive"));
+            renderers[1].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_02"));
+            renderers[1].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_02_emissive"));
+            renderers[2].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_01"));
+            renderers[2].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_01_emissive"));
+            renderers[3].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_05"));
+            renderers[3].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_05_emissive"));
+            renderers[4].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_04"));
+            renderers[4].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_04_emissive"));
+            renderers[5].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_02"));
+            renderers[5].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_small_02_emissive"));
+            foreach (var renderer in renderers)
             {
-                //renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Diffuse"));
-                //renderer.material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Illum"));
                 renderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.3f));
                 renderer.material.SetColor("_SpecColor", new Color(1f, 2f, 1.2f));
                 renderer.material.SetFloat("_Fresnel", 0.6f);
