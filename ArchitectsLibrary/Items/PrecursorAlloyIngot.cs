@@ -115,5 +115,7 @@ namespace ArchitectsLibrary.Items
             yield return null;
             gameObject.Set(prefab);
         }
+
+        public override float CraftingTime => 8f;
     }
 }
