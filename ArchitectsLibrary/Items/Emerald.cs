@@ -62,6 +62,7 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetFloat("_GlowStrengthNight", 1f);
             renderer.transform.localScale = Vector3.one * 0.66f;
             ApplyTranslucency(renderer);
+            prefab.EnsureComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.glass;
         }
 
         private void ApplyTranslucency(Renderer renderer)
@@ -96,82 +97,94 @@ namespace ArchitectsLibrary.Items
         {
             new LootDistributionData.BiomeData()
             {
-                biome = BiomeType.GhostTree_Ground,
+                biome = BiomeType.GrandReef_Ground,
+                count = 1,
+                probability = 0.2f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.GrandReef_Wall,
                 count = 1,
                 probability = 0.1f
             },
             new LootDistributionData.BiomeData()
             {
-                biome = BiomeType.GhostTree_Wall,
+                biome = BiomeType.GrandReef_WhiteCoral,
+                count = 1,
+                probability = 0.2f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.SeaTreaderPath_Rock,
+                count = 1,
+                probability = 0.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.SeaTreaderPath_Sand,
                 count = 1,
                 probability = 0.1f
             },
             new LootDistributionData.BiomeData()
             {
-                biome = BiomeType.LostRiverCorridor_Ground,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.BonesField_Corridor_Ground,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.BonesField_Corridor_Wall,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.BonesField_Wall,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.BonesField_Ground,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.LostRiverJunction_Ground,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.LostRiverJunction_Wall,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.LostRiverCorridor_Ground,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.LostRiverCorridor_Wall,
-                count = 1,
-                probability = 0.075f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.UnderwaterIslands_IslandTop,
+                biome = BiomeType.BloodKelp_TrenchFloor,
                 count = 1,
                 probability = 0.15f
             },
             new LootDistributionData.BiomeData()
             {
-                biome = BiomeType.UnderwaterIslands_IslandSides,
+                biome = BiomeType.BloodKelp_Grass,
                 count = 1,
-                probability = 0.15f
-            }
+                probability = 0.2f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.BloodKelp_Wall,
+                count = 1,
+                probability = 0.1f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.KooshZone_Sand,
+                count = 1,
+                probability = 0.4f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.KooshZone_RockWall,
+                count = 1,
+                probability = 0.35f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_SandDune,
+                count = 1,
+                probability = 0.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_SandPlateau,
+                count = 1,
+                probability = 0.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_CaveCeiling,
+                count = 1,
+                probability = 1.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_CaveWall,
+                count = 1,
+                probability = 1.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_CaveFloor,
+                count = 1,
+                probability = 1.3f
+            },
         };
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
