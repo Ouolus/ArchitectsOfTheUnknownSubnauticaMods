@@ -54,8 +54,8 @@ namespace ArchitectsLibrary.Items
             var renderer = prefab.GetComponentInChildren<Renderer>();
             renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Diffuse"));
             renderer.material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Illum"));
-            renderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.2f));
-            renderer.material.SetColor("_SpecColor", new Color(1f, 2f, 0.5f));
+            renderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.3f));
+            renderer.material.SetColor("_SpecColor", new Color(1f, 2f, 1.2f));
             renderer.material.SetFloat("_Fresnel", 0.6f);
             renderer.material.SetFloat("_SpecInt", 30f);
             renderer.transform.localScale = Vector3.one * 0.66f;
