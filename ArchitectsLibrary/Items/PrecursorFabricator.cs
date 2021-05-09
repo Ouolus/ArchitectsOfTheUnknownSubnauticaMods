@@ -112,6 +112,13 @@ namespace ArchitectsLibrary.Items
             fab.fabricateSound = model.AddComponent<StudioEventEmitter>();
             fab.fabricateSound.Event = originalFab.fabricateSound.Event;
 
+            //particles recolors
+            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
+            foreach(ParticleSystemRenderer ps in particleSystems)
+            {
+                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+            }
+
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
 
             fab.handOverText = $"Use {FriendlyName}";
@@ -211,6 +218,13 @@ namespace ArchitectsLibrary.Items
             fab.soundOrigin = fab.transform;
             fab.fabricateSound = model.AddComponent<StudioEventEmitter>();
             fab.fabricateSound.Event = originalFab.fabricateSound.Event;
+
+            //particles recolors
+            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
+            foreach (ParticleSystemRenderer ps in particleSystems)
+            {
+                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+            }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
 
