@@ -64,7 +64,9 @@ namespace ArchitectsLibrary.Items
                 inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
 
-                prefab.transform.GetChild(0).gameObject.AddComponent<>
+                var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
+                vfxFabricating.localMinY = 0f;
+                vfxFabricating.localMaxY = 0.5f;
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
@@ -95,6 +97,10 @@ namespace ArchitectsLibrary.Items
                 inspect.rigidBody = prefab.GetComponent<Rigidbody>();
                 inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
+
+                var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
+                vfxFabricating.localMinY = 0f;
+                vfxFabricating.localMaxY = 0.5f;
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
