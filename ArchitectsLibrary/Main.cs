@@ -9,6 +9,7 @@ using System.IO;
 using ArchitectsLibrary.Items;
 using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 
@@ -74,8 +75,14 @@ namespace ArchitectsLibrary
         {
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
-            
-            TechTypesToAdd.ForEach(x => PrecursorFabricator.Root.AddCraftingNode(x));
+
+            foreach (var techType in TechTypesToAdd)
+            {
+                if (techType == TechType.None)
+                    continue;
+                
+                PrecursorFabricator.Root.AddCraftingNode(techType);
+            }
         }
 
         static void PatchItems()
@@ -88,7 +95,7 @@ namespace ArchitectsLibrary
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
-            PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
         }
