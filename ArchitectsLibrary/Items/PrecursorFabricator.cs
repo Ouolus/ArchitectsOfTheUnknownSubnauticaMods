@@ -52,7 +52,8 @@ namespace ArchitectsLibrary.Items
             sa.anchorSky = Skies.Auto;
             
             MaterialUtils.ApplySNShaders(model);
-            
+            MaterialUtils.ApplyPrecursorMaterials(model, 6f);
+
             obj.EnsureComponent<TechTag>().type = TechType;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
 
@@ -155,7 +156,8 @@ namespace ArchitectsLibrary.Items
             sa.anchorSky = Skies.Auto;
             
             MaterialUtils.ApplySNShaders(model);
-            
+            MaterialUtils.ApplyPrecursorMaterials(model, 6f);
+
             obj.EnsureComponent<TechTag>().type = TechType;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
 
