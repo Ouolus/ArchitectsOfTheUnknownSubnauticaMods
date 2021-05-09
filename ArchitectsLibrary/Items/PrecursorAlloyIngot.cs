@@ -69,7 +69,7 @@ namespace ArchitectsLibrary.Items
             }
             return prefab;
         }
-#else
+#endif
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (prefab is null)
@@ -101,6 +101,5 @@ namespace ArchitectsLibrary.Items
             yield return null;
             gameObject.Set(prefab);
         }
-#endif
     }
 }
