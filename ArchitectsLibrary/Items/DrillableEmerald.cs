@@ -66,5 +66,42 @@ namespace ArchitectsLibrary.Items
             renderer.material.renderQueue = 3101;
             renderer.material.enableInstancing = true;
         }
+
+        public override WorldEntityInfo EntityInfo => new()
+        {
+            cellLevel = LargeWorldEntity.CellLevel.Medium,
+            classId = ClassID,
+            localScale = Vector3.one,
+            slotType = EntitySlot.Type.Large,
+            techType = TechType
+        };
+
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        {
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.CragField_Ground,
+                count = 1,
+                probability = 0.03f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.CragField_Ground,
+                count = 1,
+                probability = 0.03f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_SandDune,
+                count = 1,
+                probability = 0.075f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.Dunes_SandPlateau,
+                count = 1,
+                probability = 0.075f
+            }
+        };
     }
 }
