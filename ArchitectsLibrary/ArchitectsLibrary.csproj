@@ -155,6 +155,7 @@
     <Compile Include="Interfaces\IVehicleHandler.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
+    <Compile Include="Items\PrecursorFabricator.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
