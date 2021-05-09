@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using System.Collections;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Utility;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace ArchitectsLibrary.Items
             }
             return cachedPrefab;
         }
-#else
+#endif
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (cachedPrefab == null)
@@ -44,7 +45,6 @@ namespace ArchitectsLibrary.Items
             }
             gameObject.Set(cachedPrefab);
         }
-#endif
 
         void ApplyChangesToPrefab(GameObject prefab)
         {
