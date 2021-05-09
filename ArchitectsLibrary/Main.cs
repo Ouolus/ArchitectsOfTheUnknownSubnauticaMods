@@ -79,7 +79,7 @@ namespace ArchitectsLibrary
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
             PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
         }
     }
