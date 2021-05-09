@@ -51,6 +51,34 @@ namespace ArchitectsLibrary.Items
             prefab.EnsureComponent<TechTag>().type = TechType;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
+            var renderer = prefab.GetComponentInChildren<Renderer>();
+            renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Diffuse"));
+            renderer.material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("Emerald_Illum"));
+            renderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.2f));
+            renderer.material.SetColor("_SpecColor", new Color(1f, 2f, 0.5f));
+            renderer.material.SetFloat("_Fresnel", 0.6f);
+            renderer.material.SetFloat("_SpecInt", 30f);
+            renderer.transform.localScale = Vector3.one * 0.66f;
+            ApplyTranslucency(renderer);
+        }
+
+        private void ApplyTranslucency(Renderer renderer)
+        {
+            renderer.material.EnableKeyword("_ZWRITE_ON");
+            renderer.material.EnableKeyword("WBOIT");
+            renderer.material.SetInt("_ZWrite", 0);
+            renderer.material.SetInt("_Cutoff", 0);
+            renderer.material.SetFloat("_SrcBlend", 1f);
+            renderer.material.SetFloat("_DstBlend", 1f);
+            renderer.material.SetFloat("_SrcBlend2", 0f);
+            renderer.material.SetFloat("_DstBlend2", 10f);
+            renderer.material.SetFloat("_AddSrcBlend", 1f);
+            renderer.material.SetFloat("_AddDstBlend", 1f);
+            renderer.material.SetFloat("_AddSrcBlend2", 0f);
+            renderer.material.SetFloat("_AddDstBlend2", 10f);
+            renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack | MaterialGlobalIlluminationFlags.RealtimeEmissive;
+            renderer.material.renderQueue = 3101;
+            renderer.material.enableInstancing = true;
         }
 
         protected override Atlas.Sprite GetItemSprite()
