@@ -57,7 +57,9 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.3f));
             renderer.material.SetColor("_SpecColor", new Color(1f, 2f, 1.2f));
             renderer.material.SetFloat("_Fresnel", 0.6f);
-            renderer.material.SetFloat("_SpecInt", 30f);
+            renderer.material.SetFloat("_SpecInt", 20f);
+            renderer.material.SetFloat("_GlowStrength", 1f);
+            renderer.material.SetFloat("_GlowStrengthNight", 1f);
             renderer.transform.localScale = Vector3.one * 0.66f;
             ApplyTranslucency(renderer);
         }
