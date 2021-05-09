@@ -67,6 +67,8 @@ namespace ArchitectsLibrary.Items
                 var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = 0f;
                 vfxFabricating.localMaxY = 0.5f;
+                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
+                vfxFabricating.posOffset = new Vector3(-0.2f, 0.02f, 0f);
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
@@ -101,6 +103,8 @@ namespace ArchitectsLibrary.Items
                 var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = 0f;
                 vfxFabricating.localMaxY = 0.5f;
+                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
+                vfxFabricating.posOffset = new Vector3(-0.2f, 0.02f, 0f);
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 12);
