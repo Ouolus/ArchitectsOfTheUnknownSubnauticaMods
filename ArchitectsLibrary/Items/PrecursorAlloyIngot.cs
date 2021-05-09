@@ -45,6 +45,7 @@ namespace ArchitectsLibrary.Items
                 prefab.EnsureComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
                 var rb = prefab.EnsureComponent<Rigidbody>();
                 rb.mass = 15f;
+                rb.useGravity = false;
                 rb.isKinematic = true;
                 prefab.EnsureComponent<WorldForces>();
                 prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
