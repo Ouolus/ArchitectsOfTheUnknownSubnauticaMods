@@ -147,7 +147,7 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
-                probability = 0.4f
+                probability = 0.18f
             },
             new LootDistributionData.BiomeData()
             {
@@ -159,13 +159,13 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.Dunes_SandDune,
                 count = 1,
-                probability = 0.3f
+                probability = 0.5f
             },
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.Dunes_SandPlateau,
                 count = 1,
-                probability = 0.3f
+                probability = 0.5f
             },
             new LootDistributionData.BiomeData()
             {
