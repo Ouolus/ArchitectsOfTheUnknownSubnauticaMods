@@ -4,6 +4,7 @@ using SMLHelper.V2.Utility;
 using UnityEngine;
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Items
 {
@@ -18,7 +19,9 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(TechType.TitaniumIngot, 1), new Ingredient(TechType.PrecursorIonCrystal, 2) });
+            TechData techData = new TechData(new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2), new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Kyanite, 1), new Ingredient(TechType.Diamond, 1) });
+            techData.craftAmount = 3;
+            return techData;
         }
 
         public override bool UnlockedAtStart => false;
