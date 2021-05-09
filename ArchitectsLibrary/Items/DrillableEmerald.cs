@@ -21,7 +21,8 @@ namespace ArchitectsLibrary.Items
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.EmeraldTechType;
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.EmeraldTechType };
-            drillable.kChanceToSpawnResources = 0.6f;
+            drillable.kChanceToSpawnResources = 1f;
+            drillable.maxResourcesToSpawn = 2;
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             renderers[0].material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_01"));
             renderers[0].material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("kyanite_med_01_emissive"));
