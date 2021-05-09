@@ -1,7 +1,7 @@
 ﻿using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Utility;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
 
@@ -27,7 +27,7 @@ namespace ArchitectsLibrary.Items
         {
             if(sprite == null)
             {
-                sprite = SMLHelper.V2.Utility.ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("PrecursorIngot_Icon"));
+                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("PrecursorIngot_Icon"));
             }
             return sprite;
         }

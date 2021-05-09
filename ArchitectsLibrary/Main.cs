@@ -26,6 +26,7 @@ namespace ArchitectsLibrary
         const string assetBundleName = "architectslibrary";
         
         static PrecursorAlloyIngot precursorAlloy;
+        static Emerald emerald;
 
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
@@ -61,6 +62,10 @@ namespace ArchitectsLibrary
             precursorAlloy.Patch();
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
             AUHandler.PrecursorAlloyIngotClassID = precursorAlloy.ClassID;
+
+            emerald = new Emerald();
+            emerald.Patch();
+            AUHandler.EmeraldClassId = emerald.ClassID;
         }
     }
 }

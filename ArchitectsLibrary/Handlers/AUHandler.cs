@@ -22,7 +22,12 @@ namespace ArchitectsLibrary.Handlers
         /// Gets the <see cref="PrecursorAlloyIngot"/>'s Class ID so you can spawn it up in your Mod.
         /// </summary>
         public static string PrecursorAlloyIngotClassID { get; internal set; }
-        
+
+        /// <summary>
+        /// Gets the <see cref="Emerald"/>'s Class ID so you can spawn it up in your Mod.
+        /// </summary>
+        public static string EmeraldClassId { get; internal set; }
+
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
