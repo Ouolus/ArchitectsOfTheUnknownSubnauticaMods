@@ -17,16 +17,16 @@ namespace ArchitectsLibrary.Handlers
 
         internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
-        
-        /// <summary>
-        /// Gets the <see cref="PrecursorAlloyIngot"/>'s Class ID so you can spawn it up in your Mod.
-        /// </summary>
-        public static string PrecursorAlloyIngotClassID { get; internal set; }
 
         /// <summary>
-        /// Gets the <see cref="Emerald"/>'s Class ID so you can spawn it up in your Mod.
+        /// Gets the <see cref="PrecursorAlloyIngot"/>'s TechType so you can spawn it up in your Mod.
         /// </summary>
-        public static string EmeraldClassId { get; internal set; }
+        public static TechType PrecursorAlloyIngotTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Emerald"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType EmeraldTechType { get; internal set; }
 
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
