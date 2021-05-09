@@ -24,6 +24,9 @@ namespace ArchitectsLibrary.Items
             return techData;
         }
 
+        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+        public override TechGroup GroupForPDA => TechGroup.Resources;
+
         public override bool UnlockedAtStart => false;
 
         protected override Atlas.Sprite GetItemSprite()
