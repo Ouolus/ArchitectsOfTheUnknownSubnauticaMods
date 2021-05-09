@@ -78,7 +78,7 @@ namespace ArchitectsLibrary.Items
             Fabricator originalFab = fabObj.GetComponent<Fabricator>();
 
             CrafterLogic logic = obj.EnsureComponent<CrafterLogic>();
-            Fabricator fab = obj.EnsureComponent<Fabricator>();
+            var fab = obj.EnsureComponent<MonoBehaviours.PrecursorFabricator>();
             fab.animator = obj.GetComponentInChildren<Animator>();
             fab.animator.runtimeAnimatorController = originalFab.animator.runtimeAnimatorController;
             fab.animator.avatar = originalFab.animator.avatar;
@@ -184,7 +184,7 @@ namespace ArchitectsLibrary.Items
             Fabricator originalFab = fabObj.GetComponent<Fabricator>();
 
             CrafterLogic logic = obj.EnsureComponent<CrafterLogic>();
-            Fabricator fab = obj.EnsureComponent<Fabricator>();
+            var fab = obj.EnsureComponent<MonoBehaviours.PrecursorFabricator>();
             fab.animator = obj.GetComponentInChildren<Animator>();
             fab.animator.runtimeAnimatorController = originalFab.animator.runtimeAnimatorController;
             fab.animator.avatar = originalFab.animator.avatar;

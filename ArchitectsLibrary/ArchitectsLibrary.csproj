@@ -160,6 +160,7 @@
     <Compile Include="Items\PrecursorFabricator.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
