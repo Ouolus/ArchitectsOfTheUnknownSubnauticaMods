@@ -1,5 +1,5 @@
 ﻿using SMLHelper.V2.Assets;
-﻿using System.Collections;
+using System.Collections;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Utility;
 using UnityEngine;
