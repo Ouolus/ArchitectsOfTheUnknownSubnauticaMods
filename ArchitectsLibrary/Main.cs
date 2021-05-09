@@ -9,6 +9,7 @@ using System.IO;
 using ArchitectsLibrary.Items;
 using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 
@@ -88,7 +89,7 @@ namespace ArchitectsLibrary
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
-            PrecursorFabricator.Root.AddCraftingNode(precursorAlloy.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
         }
