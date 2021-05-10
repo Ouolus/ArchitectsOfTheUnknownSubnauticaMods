@@ -12,24 +12,38 @@ namespace ProjectAncients.Mono.Equipment
         public float minDistanceInBase = 1f;
         public float maxDistanceInBase = 15f;
         public float surveyRadius = 0.2f;
+        public float maxChargeSeconds = 3f;
+        bool handDown = false;
+        float timeStartedCharging = 0f;
 
         public override bool OnRightHandDown()
         {
             if (Time.time > timeCanUseAgain)
             {
-                if (TryUse())
-                {
-                    timeCanUseAgain = Time.time + 2f;
-                    Utils.PlayFMODAsset(fireSound, transform.position, 20f);
-                    animator.SetTrigger("use");
-                    return true;
-                }
+                timeStartedCharging = Time.time;
+                handDown = true;
+                return true;
             }
             return false;
 
         }
 
-        bool TryUse()
+        public override bool OnRightHandUp()
+        {
+            float timeCharged = Time.time - timeStartedCharging;
+            float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, timeCharged);
+            if (TryUse(chargeScale))
+            {
+                timeCanUseAgain = Time.time + 2f;
+                Utils.PlayFMODAsset(fireSound, transform.position, 20f);
+                animator.SetTrigger("use");
+                handDown = false;
+                return true;
+            }
+            return false;
+        }
+
+        bool TryUse(float chargeScale)
         {
             Transform mainCam = MainCamera.camera.transform;
             SubRoot currentSubRoot = Player.main.currentSub;
@@ -42,40 +56,50 @@ namespace ProjectAncients.Mono.Equipment
                         return false;
                     }
                 }
+                bool shouldTeleport = false;
                 float teleportDistance = float.MinValue;
                 Vector3 currentWarpPos = Player.main.transform.position;
                 for (int i = (int)minDistanceInBase; i <= (int)maxDistanceInBase; i++)
                 {
+                    float testDistance = i * chargeScale;
                     Vector3 warpDir = new Vector3(mainCam.forward.x, 0f, mainCam.forward.z);
-                    if (Physics.Raycast(mainCam.position, warpDir, out RaycastHit hit, i + 1f, -1, QueryTriggerInteraction.Ignore))
+                    if (Physics.Raycast(mainCam.position, warpDir, out RaycastHit hit, testDistance + 1f, -1, QueryTriggerInteraction.Ignore))
                     {
                         continue;
                     }
-                    if (SurveyBaseWarpPosition(i, out Vector3 warpPos))
+                    if (SurveyBaseWarpPosition(testDistance, out Vector3 warpPos))
                     {
-                        if (i > teleportDistance)
+                        if (testDistance > teleportDistance)
                         {
-                            teleportDistance = i;
+                            teleportDistance = testDistance;
                             currentWarpPos = warpPos;
+                            shouldTeleport = true;
                         }
                     }
                 }
-                CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
-                bool controllerWasEnabled = controller.enabled;
-                controller.enabled = false;
-                Player.main.transform.position = currentWarpPos;
-                controller.enabled = controllerWasEnabled;
-                return true;
+                if (shouldTeleport)
+                {
+                    CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
+                    bool controllerWasEnabled = controller.enabled;
+                    controller.enabled = false;
+                    Player.main.transform.position = currentWarpPos;
+                    controller.enabled = controllerWasEnabled;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance, -1, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance * chargeScale, -1, QueryTriggerInteraction.Ignore))
                 {
                     Player.main.transform.position = hit.point + (hit.normal);
                 }
                 else
                 {
-                    Player.main.transform.position = mainCam.position + (mainCam.forward * maxDistance);
+                    Player.main.transform.position = mainCam.position + (mainCam.forward * maxDistance * chargeScale);
                 }
                 return true;
             }
