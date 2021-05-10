@@ -30,15 +30,19 @@ namespace ProjectAncients.Mono.Equipment
 
         public override bool OnRightHandUp()
         {
-            float timeCharged = Time.time - timeStartedCharging;
-            float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, 1f);
-            if (TryUse(chargeScale))
+            if(Time.time > timeCanUseAgain && handDown)
             {
-                timeCanUseAgain = Time.time + 2f;
-                Utils.PlayFMODAsset(fireSound, transform.position, 20f);
-                animator.SetTrigger("use");
-                handDown = false;
-                return true;
+                float timeCharged = Time.time - timeStartedCharging;
+                float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, 1f);
+                if (TryUse(chargeScale))
+                {
+                    timeCanUseAgain = Time.time + 2f;
+                    Utils.PlayFMODAsset(fireSound, transform.position, 20f);
+                    animator.SetTrigger("use");
+                    handDown = false;
+                    return true;
+                }
+                return false;
             }
             return false;
         }
@@ -79,11 +83,7 @@ namespace ProjectAncients.Mono.Equipment
                 }
                 if (shouldTeleport)
                 {
-                    CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
-                    bool controllerWasEnabled = controller.enabled;
-                    controller.enabled = false;
-                    Player.main.transform.position = currentWarpPos;
-                    controller.enabled = controllerWasEnabled;
+                    MovePlayerWhileInBase(currentWarpPos);
                     return true;
                 }
                 else
@@ -103,6 +103,15 @@ namespace ProjectAncients.Mono.Equipment
                 }
                 return true;
             }
+        }
+
+        void MovePlayerWhileInBase(Vector3 position)
+        {
+            CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
+            bool controllerWasEnabled = controller.enabled;
+            controller.enabled = false;
+            Player.main.transform.position = position;
+            controller.enabled = controllerWasEnabled;
         }
 
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
