@@ -29,6 +29,12 @@ namespace ArchitectsLibrary.Handlers
         public static TechType EmeraldTechType { get; internal set; }
 
         /// <summary>
+        /// Gets the <see cref="Sapphire"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType SapphireTechType { get; internal set; }
+
+
+        /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
         /// <param name="gameObject">the <see cref="GameObject"/> to make Scannable</param>
