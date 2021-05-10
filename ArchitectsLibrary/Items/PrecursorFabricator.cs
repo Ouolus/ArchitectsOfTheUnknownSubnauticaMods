@@ -4,6 +4,7 @@ using FMODUnity;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Utility;
 using UnityEngine;
 
 namespace ArchitectsLibrary.Items
@@ -13,6 +14,8 @@ namespace ArchitectsLibrary.Items
         GameObject _processedPrefab;
         internal CraftTree.Type TreeType { get; private set; }
         internal ModCraftTreeRoot Root { get; private set; }
+        Atlas.Sprite sprite;
+
         public PrecursorFabricator()
             : base("PrecursorFabricator", "Alien Fabricator", "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.")
         {
@@ -27,7 +30,16 @@ namespace ArchitectsLibrary.Items
         public override TechGroup GroupForPDA { get; } = TechGroup.InteriorModules;
 
         public override bool UnlockedAtStart { get; } = false;
-        
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            if (sprite == null)
+            {
+                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("PrecFabricator_Icon"));
+            }
+            return sprite;
+        }
+
 #if SN1
         public override GameObject GetGameObject()
         {
