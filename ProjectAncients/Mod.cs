@@ -190,12 +190,15 @@ namespace ProjectAncients
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
+            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
+            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType);
 
             superDecoy = new();
             superDecoy.Patch();
+            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType);
             #endregion
 
             #region Creatures
