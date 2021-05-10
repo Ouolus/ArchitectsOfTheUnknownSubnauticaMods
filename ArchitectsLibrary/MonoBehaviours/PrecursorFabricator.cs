@@ -7,26 +7,22 @@ namespace ArchitectsLibrary.MonoBehaviours
         public override void Craft(TechType techType, float duration)
         {
 			float powerToConsume = 50f;
-			if(techType == TechType.PrecursorIonCrystal)
+			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal;
+			if (useMassiveEnergy)
             {
 				powerToConsume = 1000f;
             }
-			if (!CrafterLogic.ConsumeEnergy(powerRelay, powerToConsume))
+			if (!CrafterLogic.ConsumeEnergy(powerRelay, powerToConsume - 5f)) //it will consume 5 more power later
 			{
-				ErrorMessage.AddMessage("Not enough power.");
+                if (useMassiveEnergy)
+                {
+					ErrorMessage.AddMessage(string.Format("Crafting of this item requires {0} energy.", powerToConsume));
+				}
+                else
+                {
+					ErrorMessage.AddMessage("Not enough energy.");
+                }
 				return;
-			}
-			if (!CrafterLogic.ConsumeResources(techType))
-			{
-				return;
-			}
-			if (CraftData.GetCraftTime(techType, out duration))
-			{
-				duration = Mathf.Max(spawnAnimationDelay + spawnAnimationDuration, duration);
-			}
-			else
-			{
-				duration = spawnAnimationDelay + spawnAnimationDuration;
 			}
 			base.Craft(techType, duration);
 		}
