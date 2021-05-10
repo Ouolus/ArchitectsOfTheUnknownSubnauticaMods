@@ -23,10 +23,6 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
-        public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
-
-        public override string[] StepsToFabricatorTab { get; } = { "Machines" };
-
         protected override TechData GetBlueprintRecipe()
         {
             return new()
