@@ -103,6 +103,8 @@ namespace ArchitectsLibrary
             precursorAlloy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
+
+            PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
         }
     }
 }
