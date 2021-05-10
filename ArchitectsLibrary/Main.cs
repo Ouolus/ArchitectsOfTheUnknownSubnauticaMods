@@ -104,6 +104,7 @@ namespace ArchitectsLibrary
             precursorAlloy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
+            CraftData.pickupSoundList.Add(precursorAlloy.TechType, "event:/loot/pickup_precursorioncrystal");
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
