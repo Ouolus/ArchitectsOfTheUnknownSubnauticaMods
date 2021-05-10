@@ -207,6 +207,7 @@ namespace ProjectAncients
             #region Equipment
             warpCannon = new WarpCannonPrefab();
             warpCannon.Patch();
+            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
             #endregion
 
             #region Creatures

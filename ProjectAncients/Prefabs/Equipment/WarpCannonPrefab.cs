@@ -17,6 +17,9 @@ namespace ProjectAncients.Prefabs.Equipment
 
         public override bool UnlockedAtStart => false;
 
+        public override TechCategory CategoryForPDA => TechCategory.Tools;
+        public override TechGroup GroupForPDA => TechGroup.Personal;
+
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData()
@@ -57,7 +60,14 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.altFireSound.path = "event:/creature/warper/portal_close";
             warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
             warpCannon.drawSound.path = "event:/tools/teraformer/draw";
-            warpCannon.animator = prefab.GetComponentInChildren<Animator>();
+            warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
+            warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
+            warpCannon.ikAimRightArm = true;
+            warpCannon.ikAimLeftArm = true;
+            warpCannon.mainCollider = prefab.GetComponent<Collider>();
+
+            var skyApplier = prefab.AddComponent<SkyApplier>();
+            skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
             return prefab;
         }
