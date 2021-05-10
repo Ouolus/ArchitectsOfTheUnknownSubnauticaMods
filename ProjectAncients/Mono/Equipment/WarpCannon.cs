@@ -28,15 +28,24 @@ namespace ProjectAncients.Mono.Equipment
 
         }
 
+        void Update()
+        {
+            animator.SetFloat("charging", GetChargePercent());
+        }
+
         public override bool OnRightHandUp()
         {
+            float chargeScale = GetChargePercent();
             if(Time.time > timeCanUseAgain && handDown)
             {
-                float timeCharged = Time.time - timeStartedCharging;
-                float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, 1f);
                 if (TryUse(chargeScale))
                 {
-                    timeCanUseAgain = Time.time + 2f;
+                    float delay = 0.5f;
+                    if (chargeScale > 0.5f)
+                    {
+                        delay = 1f;
+                    }
+                    timeCanUseAgain = Time.time + delay;
                     Utils.PlayFMODAsset(fireSound, transform.position, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
@@ -45,6 +54,17 @@ namespace ProjectAncients.Mono.Equipment
                 return false;
             }
             return false;
+        }
+
+        float GetChargePercent()
+        {
+            if (!handDown)
+            {
+                return 0f;
+            }
+            float timeCharged = Time.time - timeStartedCharging;
+            float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.2f, 1f);
+            return chargeScale;
         }
 
         bool TryUse(float chargeScale)
