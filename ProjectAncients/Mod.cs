@@ -14,6 +14,7 @@ using ProjectAncients.Prefabs.Modules;
 using System.Collections;
 using System.Collections.Generic;
 using UWE;
+using ProjectAncients.Prefabs.Equipment;
 
 namespace ProjectAncients
 {
@@ -87,6 +88,8 @@ namespace ProjectAncients
         public static AlienRelicPrefab rifleRelic;
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
+
+        public static WarpCannonPrefab warpCannon;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
@@ -199,6 +202,11 @@ namespace ProjectAncients
             superDecoy = new();
             superDecoy.Patch();
             ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType);
+            #endregion
+
+            #region Equipment
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
             #endregion
 
             #region Creatures

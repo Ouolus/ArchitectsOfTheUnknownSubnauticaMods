@@ -2,6 +2,7 @@
 using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
 using UnityEngine;
 
 namespace ProjectAncients.Prefabs.Equipment
@@ -26,6 +27,39 @@ namespace ProjectAncients.Prefabs.Equipment
                     new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.EnameledGlass, 1) //enameled glass is substitute for reinforced glass
                 }
             };
+        }
+
+        public override GameObject GetGameObject()
+        {
+            GameObject model = Mod.assetBundle.LoadAsset<GameObject>("WarpCannon_Prefab");
+            GameObject prefab = GameObject.Instantiate(model);
+            prefab.SetActive(false);
+            prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+            prefab.EnsureComponent<TechTag>().type = TechType;
+            prefab.EnsureComponent<Pickupable>();
+            var rb = prefab.EnsureComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.mass = 10f;
+            prefab.EnsureComponent<WorldForces>();
+            var fpModel = prefab.EnsureComponent<FPModel>();
+            fpModel.propModel = prefab.SearchChild("WorldModel");
+            fpModel.viewModel = prefab.SearchChild("ViewModel");
+
+            var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
+            vfxFabricating.localMinY = 0f;
+            vfxFabricating.localMaxY = 0.2f;
+            vfxFabricating.eulerOffset = new Vector3(0f, 0f, 90f);
+
+            var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
+            warpCannon.fireSound = ScriptableObject.CreateInstance<FMODAsset>();
+            warpCannon.fireSound.path = "event:/creature/warper/portal_open";
+            warpCannon.altFireSound = ScriptableObject.CreateInstance<FMODAsset>();
+            warpCannon.altFireSound.path = "event:/creature/warper/portal_close";
+            warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
+            warpCannon.drawSound.path = "event:/tools/teraformer/draw";
+            warpCannon.animator = prefab.GetComponentInChildren<Animator>();
+
+            return prefab;
         }
     }
 }

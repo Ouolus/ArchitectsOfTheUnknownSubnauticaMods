@@ -176,6 +176,7 @@
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
     <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
