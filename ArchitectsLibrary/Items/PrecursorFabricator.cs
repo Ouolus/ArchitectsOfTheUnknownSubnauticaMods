@@ -266,7 +266,7 @@ namespace ArchitectsLibrary.Items
                 craftAmount = 1,
                 Ingredients =
                 {
-                    new Ingredient(TechType.Titanium, 2)
+                    new Ingredient(Handlers.AUHandler.PrecursorAlloyIngotTechType, 1), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1), new Ingredient(Handlers.AUHandler.SapphireTechType, 1)
                 }
             };
         }
