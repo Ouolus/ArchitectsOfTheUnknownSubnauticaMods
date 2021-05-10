@@ -14,7 +14,7 @@ namespace ArchitectsLibrary.Items
         internal CraftTree.Type TreeType { get; private set; }
         internal ModCraftTreeRoot Root { get; private set; }
         public PrecursorFabricator()
-            : base("PrecursorFabricator", "Precursor Fabricator", "Precursor Fabricator that makes me go yes")
+            : base("PrecursorFabricator", "Alien Fabricator", "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.")
         {
             OnFinishedPatching += () =>
             {
