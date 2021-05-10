@@ -62,7 +62,7 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.altFireSound = ScriptableObject.CreateInstance<FMODAsset>();
             warpCannon.altFireSound.path = "event:/creature/warper/portal_close";
             warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.drawSound.path = "event:/tools/teraformer/draw";
+            warpCannon.drawSound.path = "event:/player/key terminal_close";
             warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
             warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
             warpCannon.ikAimRightArm = true;
