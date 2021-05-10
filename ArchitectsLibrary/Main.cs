@@ -86,7 +86,7 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.AddCraftingNode(techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal });
         }
 
         static void PatchItems()
