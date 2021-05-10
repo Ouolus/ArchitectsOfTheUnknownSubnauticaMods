@@ -107,6 +107,8 @@ namespace ArchitectsLibrary
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
+            CraftDataHandler.SetCraftingTime(TechType.PrecursorIonCrystal, 30f);
+            CraftData.groups[TechGroup.Resources][TechCategory.AdvancedMaterials].Add(TechType.PrecursorIonCrystal);
         }
     }
 }
