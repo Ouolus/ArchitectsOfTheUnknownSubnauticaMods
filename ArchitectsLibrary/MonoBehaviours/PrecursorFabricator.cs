@@ -10,9 +10,9 @@ namespace ArchitectsLibrary.MonoBehaviours
 			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal;
 			if (useMassiveEnergy)
             {
-				powerToConsume = 1000f;
+				powerToConsume = 2750f;
             }
-			if (!CrafterLogic.ConsumeEnergy(powerRelay, powerToConsume - 5f)) //it will consume 5 more power later
+			if (powerRelay.GetPower() < powerToConsume)
 			{
                 if (useMassiveEnergy)
                 {
@@ -24,7 +24,24 @@ namespace ArchitectsLibrary.MonoBehaviours
                 }
 				return;
 			}
-			base.Craft(techType, duration);
+			if (!CrafterLogic.ConsumeResources(techType))
+			{
+				return;
+			}
+			powerRelay.ConsumeEnergy(powerToConsume, out _);
+			if (CraftData.GetCraftTime(techType, out duration))
+			{
+				duration = Mathf.Max(this.spawnAnimationDelay + this.spawnAnimationDuration, duration);
+			}
+			else
+			{
+				duration = spawnAnimationDelay + spawnAnimationDuration;
+			}
+			if (_logic != null && _logic.Craft(techType, duration))
+			{
+				state = true;
+				OnCraftingBegin(techType, duration);
+			}
 		}
 
         public override void LateUpdate()
