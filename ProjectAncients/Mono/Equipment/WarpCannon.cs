@@ -17,53 +17,68 @@ namespace ProjectAncients.Mono.Equipment
         {
             if (Time.time > timeCanUseAgain)
             {
-                timeCanUseAgain = Time.time + 2f;
-                Utils.PlayFMODAsset(fireSound, transform.position, 20f);
-                animator.SetTrigger("use");
-
-                Transform mainCam = MainCamera.camera.transform;
-                SubRoot currentSubRoot = Player.main.currentSub;
-                if (currentSubRoot)
+                if (TryUse())
                 {
-                    float teleportDistance = float.MinValue;
-                    Vector3 currentWarpPos = Player.main.transform.position;
-                    for (int i = (int)minDistanceInBase; i <= (int)maxDistanceInBase; i++)
-                    {
-                        Vector3 warpDir = new Vector3(mainCam.forward.x, 0f, mainCam.forward.z);
-                        if (Physics.Raycast(mainCam.position, warpDir, out RaycastHit hit, i + 1f, -1, QueryTriggerInteraction.Ignore))
-                        {
-                            continue;
-                        }
-                        if (SurveyBaseWarpPosition(i, out Vector3 warpPos))
-                        {
-                            if(i > teleportDistance)
-                            {
-                                teleportDistance = i;
-                                currentWarpPos = warpPos;
-                            }
-                        }
-                    }
-                    CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
-                    bool controllerWasEnabled = controller.enabled;
-                    controller.enabled = false;
-                    Player.main.transform.position = currentWarpPos;
-                    controller.enabled = controllerWasEnabled;
-                    return true;
-                }
-                else
-                {
-                    if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance, -1, QueryTriggerInteraction.Ignore))
-                    {
-                        Player.main.transform.position = hit.point + (hit.normal);
-                    }
-                    else
-                    {
-                        Player.main.transform.position = mainCam.position + (mainCam.forward * maxDistance);
-                    }
+                    timeCanUseAgain = Time.time + 2f;
+                    Utils.PlayFMODAsset(fireSound, transform.position, 20f);
+                    animator.SetTrigger("use");
                     return true;
                 }
             }
             return false;
+
+        }
+
+        bool TryUse()
+        {
+            Transform mainCam = MainCamera.camera.transform;
+            SubRoot currentSubRoot = Player.main.currentSub;
+            if (currentSubRoot)
+            {
+                if (currentSubRoot.rb is not null)
+                {
+                    if (!currentSubRoot.rb.isKinematic)
+                    {
+                        return false;
+                    }
+                }
+                float teleportDistance = float.MinValue;
+                Vector3 currentWarpPos = Player.main.transform.position;
+                for (int i = (int)minDistanceInBase; i <= (int)maxDistanceInBase; i++)
+                {
+                    Vector3 warpDir = new Vector3(mainCam.forward.x, 0f, mainCam.forward.z);
+                    if (Physics.Raycast(mainCam.position, warpDir, out RaycastHit hit, i + 1f, -1, QueryTriggerInteraction.Ignore))
+                    {
+                        continue;
+                    }
+                    if (SurveyBaseWarpPosition(i, out Vector3 warpPos))
+                    {
+                        if (i > teleportDistance)
+                        {
+                            teleportDistance = i;
+                            currentWarpPos = warpPos;
+                        }
+                    }
+                }
+                CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
+                bool controllerWasEnabled = controller.enabled;
+                controller.enabled = false;
+                Player.main.transform.position = currentWarpPos;
+                controller.enabled = controllerWasEnabled;
+                return true;
+            }
+            else
+            {
+                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance, -1, QueryTriggerInteraction.Ignore))
+                {
+                    Player.main.transform.position = hit.point + (hit.normal);
+                }
+                else
+                {
+                    Player.main.transform.position = mainCam.position + (mainCam.forward * maxDistance);
+                }
+                return true;
+            }
         }
 
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
@@ -76,7 +91,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return true;
             }
-            if(hitColliders.Length == 0)
+            if (hitColliders.Length == 0)
             {
                 return true;
             }
