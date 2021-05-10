@@ -71,6 +71,7 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.ikAimRightArm = true;
             warpCannon.ikAimLeftArm = true;
             warpCannon.mainCollider = prefab.GetComponent<Collider>();
+            warpCannon.chargeLoop = chargeSound;
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
