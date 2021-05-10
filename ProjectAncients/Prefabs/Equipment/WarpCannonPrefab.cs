@@ -48,6 +48,9 @@ namespace ProjectAncients.Prefabs.Equipment
             fpModel.propModel = prefab.SearchChild("WorldModel");
             fpModel.viewModel = prefab.SearchChild("ViewModel");
 
+            MaterialUtils.ApplySNShaders(prefab);
+            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
+
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
             vfxFabricating.localMinY = 0f;
             vfxFabricating.localMaxY = 0.2f;
