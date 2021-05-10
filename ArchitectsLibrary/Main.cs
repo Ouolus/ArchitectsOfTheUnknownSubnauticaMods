@@ -101,6 +101,7 @@ namespace ArchitectsLibrary
 
             drillableEmerald = new DrillableEmerald();
             drillableEmerald.Patch();
+            AUHandler.DrillableEmeraldTechType = drillableEmerald.TechType;
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
