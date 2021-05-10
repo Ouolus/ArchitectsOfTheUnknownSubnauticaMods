@@ -219,6 +219,7 @@
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
+    <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
     <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
