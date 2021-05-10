@@ -72,24 +72,6 @@ namespace ArchitectsLibrary.Items
         {
             new LootDistributionData.BiomeData
             {
-                biome = BiomeType.GrandReef_Ground,
-                count = 1,
-                probability = 0.1f
-            },
-            new LootDistributionData.BiomeData
-            {
-                biome = BiomeType.GrandReef_Wall,
-                count = 1,
-                probability = 0.05f
-            },
-            new LootDistributionData.BiomeData
-            {
-                biome = BiomeType.GrandReef_WhiteCoral,
-                count = 1,
-                probability = 0.15f
-            },
-            new LootDistributionData.BiomeData
-            {
                 biome = BiomeType.SeaTreaderPath_Rock,
                 count = 1,
                 probability = 0.2f

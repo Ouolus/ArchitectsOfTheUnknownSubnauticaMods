@@ -43,7 +43,36 @@ namespace ArchitectsLibrary.Items
 
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.GrandReef_Ground,
+                count = 1,
+                probability = 0.65f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.GrandReef_Wall,
+                count = 1,
+                probability = 0.075f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.GrandReef_WhiteCoral,
+                count = 1,
+                probability = 0.3f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.DeepGrandReef_Ceiling,
+                count = 1,
+                probability = 0.25f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.DeepGrandReef_Ground,
+                count = 1,
+                probability = 0.6f
+            },
         };
     }
 }
