@@ -107,11 +107,13 @@ namespace ArchitectsLibrary.Items
             fab.ghost.itemSpawnPoint = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/printBed/spawnPoint");
 
             // sounds setup
-            fab.openSound = originalFab.openSound;
-            fab.closeSound = originalFab.closeSound;
+            fab.openSound = ScriptableObject.CreateInstance<FMODAsset>();
+            fab.openSound.path = "event:/player/key terminal_open";
+            fab.closeSound = ScriptableObject.CreateInstance<FMODAsset>();
+            fab.closeSound.path = "event:/player/key terminal_close";
             fab.soundOrigin = fab.transform;
             fab.fabricateSound = model.AddComponent<StudioEventEmitter>();
-            fab.fabricateSound.Event = originalFab.fabricateSound.Event;
+            fab.fabricateSound.Event = "event:/env/antechamber_scan_loop";
 
             //particles recolors
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
@@ -215,11 +217,13 @@ namespace ArchitectsLibrary.Items
             fab.ghost.itemSpawnPoint = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/printBed/spawnPoint");
 
             // sounds setup
-            fab.openSound = originalFab.openSound;
-            fab.closeSound = originalFab.closeSound;
+            fab.openSound = ScriptableObject.CreateInstance<FMODAsset>();
+            fab.openSound.path = "event:/player/key terminal_open";
+            fab.closeSound = ScriptableObject.CreateInstance<FMODAsset>();
+            fab.closeSound.path = "event:/player/key terminal_close";
             fab.soundOrigin = fab.transform;
             fab.fabricateSound = model.AddComponent<StudioEventEmitter>();
-            fab.fabricateSound.Event = originalFab.fabricateSound.Event;
+            fab.fabricateSound.Event = "event:/env/antechamber_scan_loop";
 
             //particles recolors
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
