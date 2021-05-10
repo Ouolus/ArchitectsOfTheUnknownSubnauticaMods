@@ -30,5 +30,23 @@ namespace ArchitectsLibrary.MonoBehaviours
 			}
 			base.Craft(techType, duration);
 		}
+
+        public override void LateUpdate()
+		{
+			if(ghost != null)
+            {
+				var materials = ghost.ghostMaterials;
+				if(materials != null)
+                {
+					foreach (Material mat in materials)
+                    {
+						mat.SetColor("_BorderColor", new Color(0.2f, 1f, 0f));
+						mat.SetFloat("_NoiseThickness", 0.41f);
+						mat.SetFloat("_NoiseStr", 0.91f);
+                    }
+                }
+            }
+			base.LateUpdate();
+        }
     }
 }
