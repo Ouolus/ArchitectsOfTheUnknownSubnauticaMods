@@ -84,7 +84,7 @@ namespace ArchitectsLibrary.Items
             fab.animator.avatar = originalFab.animator.avatar;
             fab.sparksPS = originalFab.sparksPS;
             fab.craftTree = TreeType;
-            fab.spawnAnimationDelay = 3f;
+            fab.spawnAnimationDelay = 4f;
             
             var workbenchObj = CraftData.GetPrefabForTechType(TechType.Workbench);
             var originalWorkbench = workbenchObj.GetComponent<Workbench>();
@@ -193,7 +193,7 @@ namespace ArchitectsLibrary.Items
             fab.animator.avatar = originalFab.animator.avatar;
             fab.sparksPS = originalFab.sparksPS;
             fab.craftTree = TreeType;
-            fab.spawnAnimationDelay = 3f;
+            fab.spawnAnimationDelay = 4f;
 
             var task2 = CraftData.GetPrefabForTechTypeAsync(TechType.Workbench);
             yield return task2;
