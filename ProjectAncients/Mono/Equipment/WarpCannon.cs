@@ -31,7 +31,7 @@ namespace ProjectAncients.Mono.Equipment
         public override bool OnRightHandUp()
         {
             float timeCharged = Time.time - timeStartedCharging;
-            float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, timeCharged);
+            float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.1f, 1f);
             if (TryUse(chargeScale))
             {
                 timeCanUseAgain = Time.time + 2f;
