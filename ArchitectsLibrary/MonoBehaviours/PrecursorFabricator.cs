@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             {
 				powerToConsume = 2750f;
             }
-			if (powerRelay.GetPower() < powerToConsume)
+			if (GameModeUtils.RequiresPower() && powerRelay.GetPower() < powerToConsume)
 			{
                 if (useMassiveEnergy)
                 {
@@ -31,7 +31,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 			powerRelay.ConsumeEnergy(powerToConsume, out _);
 			if (CraftData.GetCraftTime(techType, out duration))
 			{
-				duration = Mathf.Max(this.spawnAnimationDelay + this.spawnAnimationDuration, duration);
+				duration = Mathf.Max(spawnAnimationDelay + spawnAnimationDuration, duration);
 			}
 			else
 			{
