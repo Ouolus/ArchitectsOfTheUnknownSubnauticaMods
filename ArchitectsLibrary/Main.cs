@@ -38,6 +38,7 @@ namespace ArchitectsLibrary
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
         static DrillableEmerald drillableEmerald;
+        static Sapphire sapphire;
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -105,6 +106,10 @@ namespace ArchitectsLibrary
             PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
             CraftData.pickupSoundList.Add(precursorAlloy.TechType, "event:/loot/pickup_precursorioncrystal");
+
+            sapphire = new Sapphire();
+            sapphire.Patch();
+            AUHandler.SapphireTechType = sapphire.TechType;
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
