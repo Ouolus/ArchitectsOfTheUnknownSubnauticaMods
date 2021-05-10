@@ -154,6 +154,7 @@
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />
+    <Compile Include="Items\Sapphire.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Items\ReskinItem.cs" />
