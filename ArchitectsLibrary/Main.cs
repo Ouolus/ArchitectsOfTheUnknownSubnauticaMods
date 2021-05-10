@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
+using SMLHelper.V2.Crafting;
 
 namespace ArchitectsLibrary
 {
@@ -105,6 +106,7 @@ namespace ArchitectsLibrary
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
+            CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
         }
     }
 }
