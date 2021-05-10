@@ -84,6 +84,7 @@ namespace ArchitectsLibrary.Items
             fab.animator.avatar = originalFab.animator.avatar;
             fab.sparksPS = originalFab.sparksPS;
             fab.craftTree = TreeType;
+            fab.spawnAnimationDelay = 3f;
             
             var workbenchObj = CraftData.GetPrefabForTechType(TechType.Workbench);
             var originalWorkbench = workbenchObj.GetComponent<Workbench>();
@@ -116,7 +117,7 @@ namespace ArchitectsLibrary.Items
             fab.fabricateSound.Event = "event:/env/antechamber_scan_loop";
 
             //particles recolors
-            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
+            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach(ParticleSystemRenderer ps in particleSystems)
             {
                 ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
@@ -192,6 +193,7 @@ namespace ArchitectsLibrary.Items
             fab.animator.avatar = originalFab.animator.avatar;
             fab.sparksPS = originalFab.sparksPS;
             fab.craftTree = TreeType;
+            fab.spawnAnimationDelay = 3f;
 
             var task2 = CraftData.GetPrefabForTechTypeAsync(TechType.Workbench);
             yield return task2;
@@ -226,7 +228,7 @@ namespace ArchitectsLibrary.Items
             fab.fabricateSound.Event = "event:/env/antechamber_scan_loop";
 
             //particles recolors
-            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>();
+            var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach (ParticleSystemRenderer ps in particleSystems)
             {
                 ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
