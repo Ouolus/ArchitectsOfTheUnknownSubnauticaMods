@@ -64,11 +64,11 @@ namespace ArchitectsLibrary.Items
                 inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
 
-                var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
+                var vfxFabricating = prefab.transform.GetChild(1).gameObject.AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = 0f;
-                vfxFabricating.localMaxY = 0.1f;
+                vfxFabricating.localMaxY = 0.2f;
                 vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
-                vfxFabricating.posOffset = new Vector3(-0.25f, 0.02f, 0f);
+                vfxFabricating.posOffset = new Vector3(0f, 0.06f, 0f);
                 vfxFabricating.scaleFactor = 0.75f;
 
                 MaterialUtils.ApplySNShaders(prefab);
@@ -101,11 +101,11 @@ namespace ArchitectsLibrary.Items
                 inspect.animParam = "holding_precursorkey";
                 inspect.inspectDuration = 4.1f;
 
-                var vfxFabricating = prefab.transform.GetChild(0).gameObject.AddComponent<VFXFabricating>();
+                var vfxFabricating = prefab.transform.GetChild(1).gameObject.AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = 0f;
-                vfxFabricating.localMaxY = 0.1f;
+                vfxFabricating.localMaxY = 0.2f;
                 vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
-                vfxFabricating.posOffset = new Vector3(-0.25f, 0.02f, 0f);
+                vfxFabricating.posOffset = new Vector3(0f, 0.06f, 0f);
                 vfxFabricating.scaleFactor = 0.75f;
 
                 MaterialUtils.ApplySNShaders(prefab);
