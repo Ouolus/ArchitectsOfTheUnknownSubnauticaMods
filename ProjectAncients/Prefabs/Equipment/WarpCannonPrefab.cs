@@ -56,6 +56,9 @@ namespace ProjectAncients.Prefabs.Equipment
             vfxFabricating.localMaxY = 0.2f;
             vfxFabricating.eulerOffset = new Vector3(0f, 0f, 90f);
 
+            var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
+            chargeSound.path = "event:/tools/stasis_gun/charge";
+
             var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
             warpCannon.fireSound = ScriptableObject.CreateInstance<FMODAsset>();
             warpCannon.fireSound.path = "event:/creature/warper/portal_open";

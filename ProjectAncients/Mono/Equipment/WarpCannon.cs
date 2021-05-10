@@ -7,6 +7,7 @@ namespace ProjectAncients.Mono.Equipment
         public Animator animator;
         public FMODAsset fireSound;
         public FMODAsset altFireSound;
+        public FMOD_StudioEventEmitter chargeLoop;
         float timeCanUseAgain = 0f;
         public float maxDistance = 20f;
         public float minDistanceInBase = 1f;
@@ -22,6 +23,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 timeStartedCharging = Time.time;
                 handDown = true;
+                chargeLoop.StartEvent();
                 return true;
             }
             return false;
@@ -40,6 +42,10 @@ namespace ProjectAncients.Mono.Equipment
             {
                 if (TryUse(chargeScale))
                 {
+                    if (chargeLoop.GetIsStartingOrPlaying())
+                    {
+                        chargeLoop.Stop(false);
+                    }
                     float delay = 0.5f;
                     if (chargeScale > 0.5f)
                     {
