@@ -23,6 +23,8 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
+        public override float CraftingTime => 7f;
+
         protected override TechData GetBlueprintRecipe()
         {
             return new()

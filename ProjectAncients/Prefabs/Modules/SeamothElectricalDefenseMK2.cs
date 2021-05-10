@@ -24,7 +24,9 @@ namespace ProjectAncients.Prefabs.Modules
         public override float? MaxCharge => 30f;
         
         public override float? EnergyCost => 5f;
-                
+
+        public override float CraftingTime => 7f;
+
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
         
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
