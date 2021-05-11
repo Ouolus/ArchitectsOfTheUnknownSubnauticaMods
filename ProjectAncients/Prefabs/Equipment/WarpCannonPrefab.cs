@@ -51,6 +51,9 @@ namespace ProjectAncients.Prefabs.Equipment
             MaterialUtils.ApplySNShaders(prefab);
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
+            GameObject warperPrefab = CraftData.GetPrefabForTechType(TechType.Warper);
+            warperPrefab.GetComponent<Warper>();
+
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
             vfxFabricating.localMinY = 0f;
             vfxFabricating.localMaxY = 0.2f;

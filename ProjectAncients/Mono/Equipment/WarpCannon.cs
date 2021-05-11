@@ -9,9 +9,9 @@ namespace ProjectAncients.Mono.Equipment
         public FMODAsset altFireSound;
         public FMOD_StudioEventEmitter chargeLoop;
         float timeCanUseAgain = 0f;
-        public float maxDistance = 20f;
+        public float maxDistance = 40f;
         public float minDistanceInBase = 1f;
-        public float maxDistanceInBase = 20f;
+        public float maxDistanceInBase = 40f;
         public float surveyRadius = 0.2f;
         public float maxChargeSeconds = 1.5f;
         bool handDown = false;
@@ -22,7 +22,7 @@ namespace ProjectAncients.Mono.Equipment
         {
             if (handDown)
             {
-                return false;
+                return true;
             }
             if (Time.time > timeCanUseAgain)
             {
