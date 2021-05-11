@@ -64,7 +64,12 @@ namespace ProjectAncients.Mono.Equipment
                     handDown = false;
                     return true;
                 }
-                return false;
+                else
+                {
+                    timeCanUseAgain = Time.time + 0.5f;
+                    handDown = false;
+                    return true;
+                }
             }
             return false;
         }
