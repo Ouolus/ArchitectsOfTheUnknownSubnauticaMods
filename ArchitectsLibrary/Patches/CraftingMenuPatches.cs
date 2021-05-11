@@ -70,7 +70,11 @@ namespace ArchitectsLibrary.Patches
         static void CorrectCraftTreeBackgrounds(uGUI_CraftingMenu craftingMenu, uGUI_ItemIcon icon)
 #endif
         {
+#if SN1
+if (craftingMenu.view.id != kPrecursorFabricatorName)
+#else
             if (craftingMenu.id != kPrecursorFabricatorName)
+#endif
             {
                 return;
             }
@@ -88,7 +92,11 @@ namespace ArchitectsLibrary.Patches
         static bool OnPointerEnterPatch(uGUI_CraftingMenu __instance, uGUI_ItemIcon icon)
 #endif
         {
+#if SN1
+            if (__instance.view.id != kPrecursorFabricatorName)
+#else
             if (__instance.id != kPrecursorFabricatorName)
+#endif
                 return true;
             
             icon.SetBackgroundSprite(Main.backgroundHovered);
@@ -101,7 +109,11 @@ namespace ArchitectsLibrary.Patches
         static bool OnPointerExitPatch(uGUI_CraftingMenu __instance, uGUI_ItemIcon icon)
 #endif
         {
+#if SN1
+            if (__instance.view.id != kPrecursorFabricatorName)
+#else
             if (__instance.id != kPrecursorFabricatorName)
+#endif
                 return true;
             
             icon.SetBackgroundSprite(Main.background);
