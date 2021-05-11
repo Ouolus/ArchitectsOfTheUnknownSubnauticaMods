@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Reflection;
 using ArchitectsLibrary.Patches;
 using HarmonyLib;
@@ -57,6 +58,8 @@ namespace ArchitectsLibrary
             fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
             assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
 
+            UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
+
             PatchItems();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
@@ -67,6 +70,18 @@ namespace ArchitectsLibrary
             //MainMenuMusicPatches.Patch(harmony);
             
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
+        }
+
+        static IEnumerator FixIonCubeCraftingCoroutine()
+        {
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
+            yield return task;
+            var prefab = task.GetResult();
+            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
+            vfxFabricating.localMaxY = 0.3f;
+            vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
+            vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
+            vfxFabricating.scaleFactor = 1.5f;
         }
 
         /// <summary>
