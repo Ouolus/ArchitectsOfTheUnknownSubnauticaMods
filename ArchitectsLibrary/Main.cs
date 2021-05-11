@@ -24,7 +24,6 @@ namespace ArchitectsLibrary
     public static class Main
     {
         internal static List<TechType> TechTypesToAdd = new();
-        internal static bool precursorFabricatorPatched;
         
         internal static AssetBundle assetBundle;
         internal static AssetBundle fabBundle;
@@ -106,11 +105,9 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            precursorFabricatorPatched = true;
-
             foreach (var techType in TechTypesToAdd)
             {
-                if (techType == TechType.None)
+                if (techType == TechType.None) // Safety check
                     continue;
                 
                 PrecursorFabricator.Root.AddCraftingNode(techType);
