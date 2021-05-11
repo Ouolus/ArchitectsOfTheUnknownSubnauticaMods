@@ -49,9 +49,9 @@ namespace ArchitectsLibrary.Patches
             }
 
             if (found)
-                Logger.Log(Logger.Level.Info, "Test transpiler succeeded");
+                Logger.Log(Logger.Level.Debug, "CraftingMenu transpiler succeeded");
             else
-                Logger.Log(Logger.Level.Error, "Test transpiler failed.");
+                Logger.Log(Logger.Level.Error, "CraftingMenu transpiler failed.");
             
             return codes.AsEnumerable();
         }
