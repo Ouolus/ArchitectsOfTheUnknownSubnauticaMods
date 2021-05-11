@@ -73,6 +73,7 @@ namespace ProjectAncients.Prefabs.Modules
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
             obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
             obj.GetComponentInChildren<VFXFabricating>(true).localMinY = -0.36f;
+            obj.GetComponent<WorldForces>().underwaterGravity = 0f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -110,6 +111,7 @@ namespace ProjectAncients.Prefabs.Modules
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
             obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
             obj.GetComponentInChildren<VFXFabricating>(true).localMinY = -0.36f;
+            obj.GetComponent<WorldForces>().underwaterGravity = 0f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
