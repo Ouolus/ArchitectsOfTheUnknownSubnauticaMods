@@ -65,7 +65,7 @@ namespace ArchitectsLibrary.Items
                 inspect.inspectDuration = 4.1f;
 
                 var vfxFabricating = prefab.transform.GetChild(1).gameObject.AddComponent<VFXFabricating>();
-                vfxFabricating.localMinY = 0f;
+                vfxFabricating.localMinY = -0.2f;
                 vfxFabricating.localMaxY = 0.15f;
                 vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
                 vfxFabricating.posOffset = new Vector3(0f, 0.06f, 0.1f);
@@ -102,7 +102,7 @@ namespace ArchitectsLibrary.Items
                 inspect.inspectDuration = 4.1f;
 
                 var vfxFabricating = prefab.transform.GetChild(1).gameObject.AddComponent<VFXFabricating>();
-                vfxFabricating.localMinY = 0f;
+                vfxFabricating.localMinY = -0.2f;
                 vfxFabricating.localMaxY = 0.15f;
                 vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
                 vfxFabricating.posOffset = new Vector3(0f, 0.06f, 0.1f);
