@@ -16,7 +16,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal;
 			if (useMassiveEnergy)
             {
-				powerToConsume = 2000f;
+				powerToConsume = 1000f;
             }
 			if (GameModeUtils.RequiresPower() && powerRelay.GetPower() < powerToConsume)
 			{
