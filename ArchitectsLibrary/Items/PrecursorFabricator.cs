@@ -217,12 +217,12 @@ namespace ArchitectsLibrary.Items
 
             // beams setup
             fab.leftBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_left/fabricatorBeam").gameObject;
-            fab.leftBeam.transform.localPosition = new(0f, 0f, 0.01f);
-            fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
+            fab.leftBeam.transform.localPosition = new Vector3(0f, 0f, 0.01f);
+            fab.leftBeam.transform.localScale = new Vector3(0.5f, 0.5f, 0.7f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new(0f, 0f, -0.01f);
-            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
+            fab.rightBeam.transform.localPosition = new Vector3(0f, 0f, -0.01f);
+            fab.rightBeam.transform.localScale = new Vector3(0.5f, 0.5f, 0.7f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
             
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
@@ -262,7 +262,7 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData
+            return new()
             {
                 craftAmount = 1,
                 Ingredients =
