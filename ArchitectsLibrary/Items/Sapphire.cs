@@ -97,6 +97,18 @@ namespace ArchitectsLibrary.Items
                 count = 1,
                 probability = 0.5f
             },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.KooshZone_Sand,
+                count = 1,
+                probability = 0.13f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.KooshZone_RockWall,
+                count = 1,
+                probability = 0.3f
+            },
         };
     }
 }
