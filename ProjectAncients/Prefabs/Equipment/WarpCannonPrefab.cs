@@ -29,7 +29,7 @@ namespace ProjectAncients.Prefabs.Equipment
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(TechType.PrecursorIonCrystal, 1), new Ingredient(TechType.EnameledGlass, 1) //enameled glass is substitute for reinforced glass
+                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.ReinforcedGlassTechType, 1)
                 }
             };
         }
