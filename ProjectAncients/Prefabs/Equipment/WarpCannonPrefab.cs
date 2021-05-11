@@ -57,7 +57,7 @@ namespace ProjectAncients.Prefabs.Equipment
             vfxFabricating.eulerOffset = new Vector3(0f, 0f, 90f);
 
             var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-            chargeSound.path = "event:/tools/stasis_gun/charge";
+            chargeSound.path = "event:/sub/cyclops/shield_on_loop";
 
             var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
             warpCannon.fireSound = ScriptableObject.CreateInstance<FMODAsset>();
