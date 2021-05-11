@@ -166,6 +166,10 @@ namespace ProjectAncients
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
+
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
         }
         [QModPatch]
         public static void Patch()
@@ -202,12 +206,6 @@ namespace ProjectAncients
             superDecoy = new();
             superDecoy.Patch();
             ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType);
-            #endregion
-
-            #region Equipment
-            warpCannon = new WarpCannonPrefab();
-            warpCannon.Patch();
-            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
             #endregion
 
             #region Creatures
