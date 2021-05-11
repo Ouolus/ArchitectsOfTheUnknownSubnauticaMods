@@ -95,6 +95,7 @@ namespace ProjectAncients
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
         public static TechType architectElectricityMasterTech;
+        public static TechType warpMasterTech;
 
         /// <summary>
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
@@ -173,7 +174,7 @@ namespace ProjectAncients
             warpCannon.Patch();
             ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
 
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpCannon.TechType, audioClipPrefix: "DataTerminalWarpCannon", delay: 2f, subtitles: "Blueprints stored to databank.");
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpMasterTech);
             warpCannonTerminal.Patch();
         }
         [QModPatch]
@@ -197,6 +198,7 @@ namespace ProjectAncients
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
+            warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
             #endregion
 
             #region Modules

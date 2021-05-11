@@ -88,5 +88,7 @@ namespace ProjectAncients.Prefabs.Equipment
 
             return prefab;
         }
+
+        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
     }
 }
