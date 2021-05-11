@@ -52,7 +52,7 @@ namespace ProjectAncients.Prefabs.Equipment
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);            
 
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = 0f;
+            vfxFabricating.localMinY = -0.3f;
             vfxFabricating.localMaxY = 0.2f;
             vfxFabricating.scaleFactor = 0.1f;
             vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
