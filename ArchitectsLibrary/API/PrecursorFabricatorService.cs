@@ -11,7 +11,9 @@ namespace ArchitectsLibrary.API
         /// <param name="techType"><see cref="TechType"/> to add</param>
         public static void SubscribeToFabricator(TechType techType)
         {
-            if (Main.PrecursorFabricator.IsPatched)
+            bool isPatched = Main.PrecursorFabricator?.IsPatched ?? false;
+            
+            if (isPatched)
             {
                 Main.PrecursorFabricator.Root.AddCraftingNode(techType);
                 return;
