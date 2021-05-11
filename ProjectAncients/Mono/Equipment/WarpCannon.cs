@@ -116,7 +116,7 @@ namespace ProjectAncients.Mono.Equipment
                         {
                             teleportDistance = testDistance;
                             currentWarpPos = warpPos;
-                            targetPosition = warpPos;
+                            shouldTeleport = true;
                         }
                     }
                 }
