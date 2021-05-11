@@ -82,7 +82,7 @@ namespace ProjectAncients.Mono.Equipment
 
         int GetOutsideLayerMask()
         {
-            return LayerID.Default | LayerID.TerrainCollider | LayerID.Useable | LayerID.NotUseable;
+            return LayerMask.GetMask("Default", "Useable", "NotUseable", "TerrainCollider");
         }
 
         bool TryUse(float chargeScale, out Vector3 targetPosition)
@@ -164,7 +164,7 @@ namespace ProjectAncients.Mono.Equipment
             Transform playerTransform = Player.main.transform;
             var mainCameraForward = MainCameraControl.main.transform.forward;
             landingPosition = playerTransform.position + (new Vector3(mainCameraForward.x, 0f, mainCameraForward.z) * distance);
-            var hitColliders = Physics.OverlapSphere(landingPosition + new Vector3(0f, 1f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
+            var hitColliders = Physics.OverlapSphere(landingPosition + new Vector3(0f, 0f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
             if (hitColliders == null)
             {
                 return true;
