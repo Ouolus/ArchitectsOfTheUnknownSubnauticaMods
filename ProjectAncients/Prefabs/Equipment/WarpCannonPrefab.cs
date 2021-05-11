@@ -55,7 +55,7 @@ namespace ProjectAncients.Prefabs.Equipment
 
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
             vfxFabricating.localMinY = -0.31f;
-            vfxFabricating.localMaxY = 0.2f;
+            vfxFabricating.localMaxY = 0.1f;
             vfxFabricating.scaleFactor = 0.1f;
             vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
             vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
