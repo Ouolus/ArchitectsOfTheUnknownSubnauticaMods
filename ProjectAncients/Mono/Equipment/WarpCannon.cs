@@ -16,6 +16,7 @@ namespace ProjectAncients.Mono.Equipment
         public float maxChargeSeconds = 3f;
         bool handDown = false;
         float timeStartedCharging = 0f;
+        public float warpSpeed = 4;
 
         public override bool OnRightHandDown()
         {
@@ -138,11 +139,7 @@ namespace ProjectAncients.Mono.Equipment
 
         void MovePlayerWhileInBase(Vector3 position)
         {
-            CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
-            bool controllerWasEnabled = controller.enabled;
-            controller.enabled = false;
-            Player.main.transform.position = position;
-            controller.enabled = controllerWasEnabled;
+            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
         }
 
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
