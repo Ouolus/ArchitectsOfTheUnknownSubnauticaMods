@@ -4,6 +4,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 {
     class PrecursorFabricator : Fabricator
     {
+        public override void Start()
+        {
+            base.Start();
+			spawnAnimationDelay = 4f;
+        }
+
         public override void Craft(TechType techType, float duration)
         {
 			float powerToConsume = 50f;
