@@ -41,6 +41,7 @@ namespace ArchitectsLibrary
         static Emerald emerald;
         static DrillableEmerald drillableEmerald;
         static Sapphire sapphire;
+        static DrillableSapphire drillableSapphire;
         static ReinforcedGlass reinforcedGlass;
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -133,6 +134,10 @@ namespace ArchitectsLibrary
             sapphire.Patch();
             AUHandler.SapphireTechType = sapphire.TechType;
             CraftData.pickupSoundList.Add(sapphire.TechType, "event:/loot/pickup_precursorioncrystal");
+
+            drillableSapphire = new DrillableSapphire();
+            drillableSapphire.Patch();
+            AUHandler.DrillableSapphireTechType = drillableSapphire.TechType;
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
