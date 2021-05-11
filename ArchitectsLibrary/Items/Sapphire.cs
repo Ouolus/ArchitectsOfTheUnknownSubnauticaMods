@@ -73,6 +73,30 @@ namespace ArchitectsLibrary.Items
                 count = 1,
                 probability = 0.6f
             },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.MushroomForest_Sand,
+                count = 1,
+                probability = 0.4f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.MushroomForest_RockWall,
+                count = 1,
+                probability = 0.3f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.UnderwaterIslands_IslandSides,
+                count = 1,
+                probability = 0.5f
+            },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.UnderwaterIslands_IslandTop,
+                count = 1,
+                probability = 0.5f
+            },
         };
     }
 }
