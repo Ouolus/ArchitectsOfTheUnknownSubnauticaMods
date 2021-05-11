@@ -11,7 +11,7 @@ namespace ProjectAncients.Mono.Equipment
         float timeCanUseAgain = 0f;
         public float maxDistance = 40f;
         public float minDistanceInBase = 1f;
-        public float maxDistanceInBase = 40f;
+        public float maxDistanceInBase = 20f;
         public float surveyRadius = 0.2f;
         public float maxChargeSeconds = 1.5f;
         bool handDown = false;
@@ -47,7 +47,7 @@ namespace ProjectAncients.Mono.Equipment
             float chargeScale = GetChargePercent();
             if(Time.time > timeCanUseAgain && handDown)
             {
-                if (TryUse(chargeScale))
+                if (TryUse(chargeScale, out Vector3 warpPos))
                 {
                     if (chargeLoop.GetIsStartingOrPlaying())
                     {
@@ -59,7 +59,7 @@ namespace ProjectAncients.Mono.Equipment
                         delay = 1f;
                     }
                     timeCanUseAgain = Time.time + delay;
-                    Utils.PlayFMODAsset(fireSound, transform.position, 20f);
+                    Utils.PlayFMODAsset(fireSound, warpPos, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
                     return true;
@@ -85,8 +85,9 @@ namespace ProjectAncients.Mono.Equipment
             return LayerID.Default | LayerID.TerrainCollider | LayerID.Useable | LayerID.NotUseable;
         }
 
-        bool TryUse(float chargeScale)
+        bool TryUse(float chargeScale, out Vector3 targetPosition)
         {
+            targetPosition = default;
             Transform mainCam = MainCamera.camera.transform;
             SubRoot currentSubRoot = Player.main.currentSub;
             if (currentSubRoot)
@@ -115,12 +116,13 @@ namespace ProjectAncients.Mono.Equipment
                         {
                             teleportDistance = testDistance;
                             currentWarpPos = warpPos;
-                            shouldTeleport = true;
+                            targetPosition = warpPos;
                         }
                     }
                 }
                 if (shouldTeleport)
                 {
+                    targetPosition = currentWarpPos;
                     MovePlayerWhileInBase(currentWarpPos);
                     return true;
                 }
@@ -133,12 +135,13 @@ namespace ProjectAncients.Mono.Equipment
             {
                 if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance * chargeScale, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
                 {
-                    MovePlayerWhileInWater(hit.point + (hit.normal));
+                    targetPosition = hit.point + (hit.normal);
                 }
                 else
                 {
-                    MovePlayerWhileInWater(mainCam.position + (mainCam.forward * maxDistance * chargeScale));
+                    targetPosition = mainCam.position + (mainCam.forward * maxDistance * chargeScale);
                 }
+                MovePlayerWhileInWater(targetPosition);
                 return true;
             }
         }
