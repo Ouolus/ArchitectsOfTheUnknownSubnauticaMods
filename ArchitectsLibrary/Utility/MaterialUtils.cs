@@ -37,7 +37,7 @@ namespace ArchitectsLibrary.Utility
             {
                 if(renderers[i] is ParticleSystemRenderer)
                 {
-                    return;
+                    continue;
                 }
                 for (int j = 0; j < renderers[i].materials.Length; j++)
                 {
