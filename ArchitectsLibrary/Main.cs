@@ -104,7 +104,7 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.AddCraftingNode(techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal });
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, reinforcedGlass.TechType });
         }
 
         static void PatchItems()
@@ -133,6 +133,7 @@ namespace ArchitectsLibrary
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(reinforcedGlass.TechType);
             AUHandler.ReinforcedGlassTechType = reinforcedGlass.TechType;
             CraftData.pickupSoundList.Add(reinforcedGlass.TechType, "event:/loot/pickup_glass");
 

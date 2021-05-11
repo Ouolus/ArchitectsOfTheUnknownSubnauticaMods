@@ -7,15 +7,17 @@ using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    abstract class ReskinItem : Spawnable
+    abstract class ReskinCraftable : Craftable
     {
         private GameObject cachedPrefab;
 
-        protected ReskinItem(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
+        protected ReskinCraftable(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {
         }
 
         protected abstract string ReferenceClassId { get; }
+
+        public override bool UnlockedAtStart => false;
 
         protected virtual void ApplyChangesToPrefab(GameObject prefab)
         {

@@ -7,7 +7,7 @@ using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    class DrillableEmerald : ReskinItem
+    class DrillableEmerald : ReskinSpawnable
     {
         protected override string ReferenceClassId => "4f441e53-7a9a-44dc-83a4-b1791dc88ffd";
 

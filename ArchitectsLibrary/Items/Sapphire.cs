@@ -5,7 +5,7 @@ using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    class Sapphire : ReskinItem
+    class Sapphire : ReskinSpawnable
     {
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "87293f19-cca3-46e6-bb3d-6e8dc579e27b";
