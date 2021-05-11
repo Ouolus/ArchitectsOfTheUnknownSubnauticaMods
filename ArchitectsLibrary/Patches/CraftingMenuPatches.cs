@@ -62,8 +62,11 @@ namespace ArchitectsLibrary.Patches
             
             return codes.AsEnumerable();
         }
-
+#if SN1
+        static void CorrectCraftTreeBackgrounds(uGUI_CraftNode craftingMenu, uGUI_ItemIcon icon)
+#else
         static void CorrectCraftTreeBackgrounds(uGUI_CraftingMenu craftingMenu, uGUI_ItemIcon icon)
+#endif
         {
             if (craftingMenu.id != kPrecursorFabricatorName)
             {
@@ -73,7 +76,11 @@ namespace ArchitectsLibrary.Patches
             icon.SetBackgroundSprite(Main.background);
         }
 
+#if SN1
+        static bool OnPointerEnterPatch(uGUI_CraftNode __instance, uGUI_ItemIcon icon)
+#else
         static bool OnPointerEnterPatch(uGUI_CraftingMenu __instance, uGUI_ItemIcon icon)
+#endif
         {
             if (__instance.id != kPrecursorFabricatorName)
                 return true;
@@ -82,7 +89,11 @@ namespace ArchitectsLibrary.Patches
             return false;
         }
         
+#if SN1
+        static bool OnPointerExitPatch(uGUI_CraftNode __instance, uGUI_ItemIcon icon)
+#else
         static bool OnPointerExitPatch(uGUI_CraftingMenu __instance, uGUI_ItemIcon icon)
+#endif
         {
             if (__instance.id != kPrecursorFabricatorName)
                 return true;
