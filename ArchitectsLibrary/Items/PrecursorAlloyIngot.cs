@@ -41,7 +41,7 @@ namespace ArchitectsLibrary.Items
 #if SN1
         public override GameObject GetGameObject()
         {
-            if (prefab is null)
+            if (prefab == null)
             {
                 prefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"));
                 prefab.SetActive(false);
@@ -76,10 +76,10 @@ namespace ArchitectsLibrary.Items
             }
             return prefab;
         }
-#endif
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-            if (prefab is null)
+            if (prefab == null)
             {
                 prefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"));
                 prefab.SetActive(false);
@@ -115,6 +115,7 @@ namespace ArchitectsLibrary.Items
             yield return null;
             gameObject.Set(prefab);
         }
+#endif
 
         public override float CraftingTime => 8f;
     }

@@ -43,7 +43,7 @@ namespace ArchitectsLibrary.Items
 #if SN1
         public override GameObject GetGameObject()
         {
-            if (_processedPrefab is not null)
+            if (_processedPrefab != null)
             {
                 var go = GameObject.Instantiate(_processedPrefab);
                 go.SetActive(true);
@@ -147,10 +147,10 @@ namespace ArchitectsLibrary.Items
             obj.SetActive(true);
             return obj;
         }
-#endif
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-            if (_processedPrefab is not null)
+            if (_processedPrefab != null)
             {
                 var go = GameObject.Instantiate(_processedPrefab);
                 go.SetActive(true);
@@ -258,6 +258,7 @@ namespace ArchitectsLibrary.Items
             obj.SetActive(true);
             gameObject.Set(obj);
         }
+#endif
 
         protected override TechData GetBlueprintRecipe()
         {
