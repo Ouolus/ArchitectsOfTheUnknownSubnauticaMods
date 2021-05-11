@@ -22,12 +22,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 			{
                 if (useMassiveEnergy)
                 {
-					ErrorMessage.AddMessage(string.Format("Crafting of this item requires {0} energy.", powerToConsume));
+					ErrorMessage.AddMessage(string.Format("Ion cubes require {0} energy to craft.", powerToConsume));
 				}
                 else
                 {
-					ErrorMessage.AddMessage("Not enough energy.");
-                }
+					ErrorMessage.AddMessage(string.Format("Crafting of this item requires {0} energy.", powerToConsume));
+				}
 				return;
 			}
 			if (!CrafterLogic.ConsumeResources(techType))
