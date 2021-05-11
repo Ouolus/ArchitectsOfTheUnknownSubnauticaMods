@@ -34,13 +34,12 @@ namespace ProjectAncients.Patches
                 return;
             }
             GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
-            const float subtitleScale = 0.7f;
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-11.635f, 0f, 16f);
+                subtitle.transform.position = new Vector3(-8.148f, 0f, 16f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-                subtitle.transform.localScale = Vector3.one * subtitleScale;
+                subtitle.transform.localScale = Vector3.one * 0.7f;
             }
 
             var lights = Object.FindObjectsOfType<Light>();
