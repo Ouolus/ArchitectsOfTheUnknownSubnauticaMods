@@ -49,10 +49,7 @@ namespace ProjectAncients.Prefabs.Equipment
             fpModel.viewModel = prefab.SearchChild("ViewModel");
 
             MaterialUtils.ApplySNShaders(prefab);
-            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
-
-            GameObject warperPrefab = CraftData.GetPrefabForTechType(TechType.Warper);
-            warperPrefab.GetComponent<Warper>();
+            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);            
 
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
             vfxFabricating.localMinY = 0f;
@@ -75,6 +72,12 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.ikAimLeftArm = true;
             warpCannon.mainCollider = prefab.GetComponent<Collider>();
             warpCannon.chargeLoop = chargeSound;
+
+            GameObject warperPrefab = CraftData.GetPrefabForTechType(TechType.Warper);
+            var warper = warperPrefab.GetComponent<Warper>();
+
+            warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
+            warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);

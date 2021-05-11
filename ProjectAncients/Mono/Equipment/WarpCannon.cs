@@ -17,6 +17,8 @@ namespace ProjectAncients.Mono.Equipment
         bool handDown = false;
         float timeStartedCharging = 0f;
         public float warpSpeed = 4;
+        public GameObject warpInPrefab;
+        public GameObject warpOutPrefab;
 
         public override bool OnRightHandDown()
         {
@@ -131,11 +133,11 @@ namespace ProjectAncients.Mono.Equipment
             {
                 if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance * chargeScale, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
                 {
-                    Player.main.transform.position = hit.point + (hit.normal);
+                    MovePlayerWhileInWater(hit.point + (hit.normal));
                 }
                 else
                 {
-                    Player.main.transform.position = mainCam.position + (mainCam.forward * maxDistance * chargeScale);
+                    MovePlayerWhileInWater(mainCam.position + (mainCam.forward * maxDistance * chargeScale));
                 }
                 return true;
             }
@@ -144,6 +146,13 @@ namespace ProjectAncients.Mono.Equipment
         void MovePlayerWhileInBase(Vector3 position)
         {
             PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
+        }
+
+        void MovePlayerWhileInWater(Vector3 position)
+        {
+            Instantiate(warpInPrefab, Player.main.transform.position, MainCamera.camera.transform.rotation);
+            Instantiate(warpOutPrefab, position, MainCamera.camera.transform.rotation);
+            Player.main.transform.position = position;
         }
 
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
