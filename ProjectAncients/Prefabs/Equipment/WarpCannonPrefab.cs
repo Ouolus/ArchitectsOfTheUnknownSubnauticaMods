@@ -20,6 +20,8 @@ namespace ProjectAncients.Prefabs.Equipment
         public override TechCategory CategoryForPDA => TechCategory.Tools;
         public override TechGroup GroupForPDA => TechGroup.Personal;
 
+        public override float CraftingTime => 12f;
+
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData()
@@ -52,7 +54,7 @@ namespace ProjectAncients.Prefabs.Equipment
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);            
 
             var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = -0.3f;
+            vfxFabricating.localMinY = -0.31f;
             vfxFabricating.localMaxY = 0.2f;
             vfxFabricating.scaleFactor = 0.1f;
             vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
