@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         public override void Craft(TechType techType, float duration)
         {
-			float powerToConsume = 50f;
+			float powerToConsume = 100f;
 			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal;
 			if (useMassiveEnergy)
             {
