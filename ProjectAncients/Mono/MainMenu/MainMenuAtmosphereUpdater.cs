@@ -18,7 +18,7 @@ namespace ProjectAncients.Mono
             skyManager.planetRadius = 500f;
             clipPool = ECCAudio.CreateClipPool("garg_for_anth_distant");
             source = gameObject.AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume();
+            source.volume = ECCHelpers.GetECCVolume() / 2f;
             StartCoroutine(RoarLoop());
         }
 
@@ -36,7 +36,7 @@ namespace ProjectAncients.Mono
         void PlayRoar()
         {
             AudioClip nextClip = clipPool.GetRandomClip();
-            source.volume = ECCHelpers.GetECCVolume();
+            source.volume = ECCHelpers.GetECCVolume() / 2f;
             source.clip = nextClip;
             source.Play();
         }
