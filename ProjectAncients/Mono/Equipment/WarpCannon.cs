@@ -11,15 +11,19 @@ namespace ProjectAncients.Mono.Equipment
         float timeCanUseAgain = 0f;
         public float maxDistance = 20f;
         public float minDistanceInBase = 1f;
-        public float maxDistanceInBase = 15f;
+        public float maxDistanceInBase = 20f;
         public float surveyRadius = 0.2f;
-        public float maxChargeSeconds = 3f;
+        public float maxChargeSeconds = 1.5f;
         bool handDown = false;
         float timeStartedCharging = 0f;
         public float warpSpeed = 4;
 
         public override bool OnRightHandDown()
         {
+            if (handDown)
+            {
+                return false;
+            }
             if (Time.time > timeCanUseAgain)
             {
                 timeStartedCharging = Time.time;
