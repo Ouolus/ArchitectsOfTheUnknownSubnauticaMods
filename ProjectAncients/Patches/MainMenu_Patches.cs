@@ -27,7 +27,7 @@ namespace ProjectAncients.Patches
         [HarmonyPatch(typeof(uGUI_MainMenu))]
         [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
         [HarmonyPostfix]
-        static void uGUI_MainMenu_Postfix()
+        static void uGUI_MainMenu_Postfix(uGUI_MainMenu __instance)
         {
             if (!Mod.config.OverrideMainMenu)
             {
@@ -37,7 +37,7 @@ namespace ProjectAncients.Patches
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-11.635f, 0f, 20f);
+                subtitle.transform.position = new Vector3(-11.635f, 0f, 16f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
 
@@ -49,6 +49,8 @@ namespace ProjectAncients.Patches
             var sun = lights[1];
             sun.intensity = 0f;
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
+
+            //GameObject.Destroy(__instance.gameObject);
         }
         
         [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.Begin))]
