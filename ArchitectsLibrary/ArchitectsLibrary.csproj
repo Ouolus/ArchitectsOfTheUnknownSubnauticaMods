@@ -153,6 +153,7 @@
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
+    <Compile Include="Items\DrillableSapphire.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
     <Compile Include="Items\ReskinCraftable.cs" />
