@@ -24,6 +24,7 @@ namespace ArchitectsLibrary
     public static class Main
     {
         internal static List<TechType> TechTypesToAdd = new();
+        internal static bool precursorFabricatorPatched;
         
         internal static AssetBundle assetBundle;
         internal static AssetBundle fabBundle;
@@ -35,7 +36,7 @@ namespace ArchitectsLibrary
         const string assetBundleName = "architectslibrary";
         const string fabBundleName = "fabricatorassets";
 
-        static PrecursorFabricator PrecursorFabricator;
+        internal static PrecursorFabricator PrecursorFabricator;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
         static DrillableEmerald drillableEmerald;
@@ -95,6 +96,8 @@ namespace ArchitectsLibrary
         {
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
+
+            precursorFabricatorPatched = true;
 
             foreach (var techType in TechTypesToAdd)
             {
