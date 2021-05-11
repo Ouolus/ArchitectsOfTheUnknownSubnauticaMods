@@ -152,7 +152,8 @@ namespace ProjectAncients.Mono.Equipment
         {
             Instantiate(warpInPrefab, Player.main.transform.position, MainCamera.camera.transform.rotation);
             Instantiate(warpOutPrefab, position, MainCamera.camera.transform.rotation);
-            Player.main.transform.position = position;
+            //Player.main.transform.position = position;
+            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed * 2f);
         }
 
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
