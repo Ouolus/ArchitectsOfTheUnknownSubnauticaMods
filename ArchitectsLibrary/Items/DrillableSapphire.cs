@@ -17,7 +17,7 @@ namespace ArchitectsLibrary.Items
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.GetComponentInChildren<Light>().color = Color.blue; 
+            prefab.EnsureComponent<Light>().color = Color.blue; 
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.SapphireTechType;
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.SapphireTechType };
