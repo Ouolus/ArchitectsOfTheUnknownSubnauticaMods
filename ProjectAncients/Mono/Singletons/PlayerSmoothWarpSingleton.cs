@@ -68,7 +68,14 @@ namespace ProjectAncients.Mono
             else
             {
                 Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
-                controller.enabled = saveControllerEnabled;
+                if(Player.main.transform.position.y > Ocean.main.GetOceanLevel() || Player.main.precursorOutOfWater)
+                {
+                    controller.enabled = true;
+                }
+                else
+                {
+                    controller.enabled = saveControllerEnabled;
+                }
             }
         }
         public static void EndSmoothWarp()
