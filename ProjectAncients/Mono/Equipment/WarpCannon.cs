@@ -66,6 +66,10 @@ namespace ProjectAncients.Mono.Equipment
                 }
                 else
                 {
+                    if (chargeLoop.GetIsStartingOrPlaying())
+                    {
+                        chargeLoop.Stop(false);
+                    }
                     timeCanUseAgain = Time.time + 0.5f;
                     handDown = false;
                     return true;
