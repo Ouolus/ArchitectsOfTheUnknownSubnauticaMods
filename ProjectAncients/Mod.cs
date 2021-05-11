@@ -173,7 +173,7 @@ namespace ProjectAncients
             warpCannon.Patch();
             ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
 
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpCannon.TechType, audioClipPrefix: "PDAWarpCannon", delay: 4.6f, subtitles: "Blueprints stored to databank.");
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpCannon.TechType, audioClipPrefix: "DataTerminalWarpCannon", delay: 2f, subtitles: "Blueprints stored to databank.");
             warpCannonTerminal.Patch();
         }
         [QModPatch]
