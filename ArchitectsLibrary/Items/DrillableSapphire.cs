@@ -24,6 +24,12 @@ namespace ArchitectsLibrary.Items
             drillable.kChanceToSpawnResources = 1f;
             drillable.maxResourcesToSpawn = 3;
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
+            foreach(Renderer renderer in renderers)
+            {
+                renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Sapphire_diffuse"));
+                renderer.material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("Sapphire_illum"));
+                renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Sapphire_spec"));
+            }
         }
 
         public override WorldEntityInfo EntityInfo => new()
