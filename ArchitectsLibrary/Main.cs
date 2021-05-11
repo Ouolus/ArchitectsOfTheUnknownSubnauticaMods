@@ -78,7 +78,7 @@ namespace ArchitectsLibrary
             yield return task;
             var prefab = task.GetResult();
             var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
-            vfxFabricating.localMaxY = 0.3f;
+            vfxFabricating.localMaxY = 0.34f;
             vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
             vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
             vfxFabricating.scaleFactor = 1.5f;

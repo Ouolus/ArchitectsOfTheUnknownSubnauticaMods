@@ -50,6 +50,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 			}
 		}
 
+        public override void OnCraftingBegin(TechType techType, float duration)
+        {
+            base.OnCraftingBegin(techType, duration);
+			_progressDelayScalar = 4f / duration;
+        }
+
         public override void LateUpdate()
 		{
 			if(ghost != null)
