@@ -32,7 +32,7 @@ namespace ProjectAncients.Mono.Equipment
 
         void Update()
         {
-            animator.SetFloat("charging", GetChargePercent());
+            animator.SetFloat("charge", GetChargePercent());
         }
 
         public override bool OnRightHandUp()
@@ -71,6 +71,11 @@ namespace ProjectAncients.Mono.Equipment
             float timeCharged = Time.time - timeStartedCharging;
             float chargeScale = Mathf.Clamp(timeCharged / maxChargeSeconds, 0.2f, 1f);
             return chargeScale;
+        }
+
+        int GetOutsideLayerMask()
+        {
+            return LayerID.Default | LayerID.TerrainCollider | LayerID.Useable | LayerID.NotUseable;
         }
 
         bool TryUse(float chargeScale)
@@ -119,7 +124,7 @@ namespace ProjectAncients.Mono.Equipment
             }
             else
             {
-                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance * chargeScale, -1, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, maxDistance * chargeScale, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
                 {
                     Player.main.transform.position = hit.point + (hit.normal);
                 }
