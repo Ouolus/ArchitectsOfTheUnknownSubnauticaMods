@@ -49,7 +49,9 @@ namespace ArchitectsLibrary.Patches
                 {
                     found = true;
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, correctCraftTreeBackgrounds));
+#if SN1_exp
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldloc_S, 7));
+#endif
                     codes.Insert(i + 1, new CodeInstruction(OpCodes.Ldarg_0));
                     break;
                 }
@@ -63,7 +65,7 @@ namespace ArchitectsLibrary.Patches
             return codes.AsEnumerable();
         }
 #if SN1
-        static void CorrectCraftTreeBackgrounds(uGUI_CraftNode craftingMenu, uGUI_ItemIcon icon)
+        static void CorrectCraftTreeBackgrounds(uGUI_CraftNode craftingMenu)
 #else
         static void CorrectCraftTreeBackgrounds(uGUI_CraftingMenu craftingMenu, uGUI_ItemIcon icon)
 #endif
@@ -73,7 +75,11 @@ namespace ArchitectsLibrary.Patches
                 return;
             }
             
+#if SN1
+            craftingMenu.icon.SetBackgroundSprite(Main.background);
+#else
             icon.SetBackgroundSprite(Main.background);
+#endif
         }
 
 #if SN1
