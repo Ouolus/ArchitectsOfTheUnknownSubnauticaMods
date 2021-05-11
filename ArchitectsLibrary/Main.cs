@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Reflection;
-using ArchitectsLibrary.Patches;
+﻿using QModManager.API.ModLoading;
 using HarmonyLib;
-using QModManager.API.ModLoading;
-using UnityEngine;
-using CreatorKit.Patches;
+using System;
 using System.IO;
-using ArchitectsLibrary.Items;
-using SMLHelper.V2.Handlers;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using ArchitectsLibrary.API;
+using ArchitectsLibrary.Items;
+using ArchitectsLibrary.Patches;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
+using CreatorKit.Patches;
+using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
+using UnityEngine;
 
 namespace ArchitectsLibrary
 {
@@ -28,6 +28,9 @@ namespace ArchitectsLibrary
         
         internal static AssetBundle assetBundle;
         internal static AssetBundle fabBundle;
+        
+        internal static Atlas.Sprite background;
+        internal static Atlas.Sprite backgroundHovered;
         
         static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
@@ -60,6 +63,9 @@ namespace ArchitectsLibrary
 
             fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
             assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
+            
+            background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
+            backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
             UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
 
@@ -71,6 +77,8 @@ namespace ArchitectsLibrary
 
             //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
+            
+            CraftingMenuPatches.Patch(harmony);
             
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
