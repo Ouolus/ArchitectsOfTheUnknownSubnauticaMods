@@ -68,6 +68,7 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.drawSound.path = "event:/player/key terminal_close";
             warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
             warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
+            warpCannon.rightHandIKTarget = prefab.SearchChild("Attach_Right").transform;
             warpCannon.ikAimRightArm = true;
             warpCannon.ikAimLeftArm = true;
             warpCannon.mainCollider = prefab.GetComponent<Collider>();
