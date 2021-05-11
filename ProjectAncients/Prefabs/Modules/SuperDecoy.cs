@@ -71,6 +71,7 @@ namespace ProjectAncients.Prefabs.Modules
             obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
             obj.GetComponent<Pickupable>().isPickupable = true;
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
+            obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -106,6 +107,7 @@ namespace ProjectAncients.Prefabs.Modules
             obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
             obj.GetComponent<Pickupable>().isPickupable = true;
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
+            obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
 
             prefab.SetActive(false);
             obj.SetActive(true);
