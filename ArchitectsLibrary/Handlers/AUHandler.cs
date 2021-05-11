@@ -38,6 +38,11 @@ namespace ArchitectsLibrary.Handlers
         /// </summary>
         public static TechType SapphireTechType { get; internal set; }
 
+        /// <summary>
+        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType ReinforcedGlassTechType { get; internal set; }
+
 
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
