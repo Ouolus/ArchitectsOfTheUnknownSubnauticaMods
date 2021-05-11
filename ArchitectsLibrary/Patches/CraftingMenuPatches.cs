@@ -12,15 +12,22 @@ namespace ArchitectsLibrary.Patches
         const string kPrecursorFabricatorName = "PrecursorFabricator";
         internal static void Patch(Harmony harmony)
         {
-            var createIconOrig = AccessTools.Method(typeof(uGUI_CraftingMenu), nameof(uGUI_CraftingMenu.CreateIcon));
+#if SN1
+            var uGUIType = typeof(uGUI_CraftNode);
+            var createIconOrig = AccessTools.Method(typeof(uGUI_CraftNode), nameof(uGUI_CraftNode.CreateIcon));
+#else
+            var uGUIType = typeof(uGUI_CraftingMenu);
+            var createIconOrig = AccessTools.Method(uGUIType, nameof(uGUI_CraftingMenu.CreateIcon));
+#endif
+
             var transpiler = new HarmonyMethod(AccessTools.Method(typeof(CraftingMenuPatches), nameof(Transpiler)));
             harmony.Patch(createIconOrig, transpiler: transpiler);
 
-            var pointerenterOrig = AccessTools.Method(typeof(uGUI_CraftingMenu), "uGUI_IIconManager.OnPointerEnter");
+            var pointerenterOrig = AccessTools.Method(uGUIType, "uGUI_IIconManager.OnPointerEnter");
             var pointerEnterPatch = new HarmonyMethod(AccessTools.Method(typeof(CraftingMenuPatches), nameof(OnPointerEnterPatch)));
             harmony.Patch(pointerenterOrig, pointerEnterPatch);
             
-            var pointerExitOrig = AccessTools.Method(typeof(uGUI_CraftingMenu), "uGUI_IIconManager.OnPointerExit");
+            var pointerExitOrig = AccessTools.Method(uGUIType, "uGUI_IIconManager.OnPointerExit");
             var pointerExitPatch = new HarmonyMethod(AccessTools.Method(typeof(CraftingMenuPatches), nameof(OnPointerExitPatch)));
             harmony.Patch(pointerExitOrig, pointerExitPatch);
         }
