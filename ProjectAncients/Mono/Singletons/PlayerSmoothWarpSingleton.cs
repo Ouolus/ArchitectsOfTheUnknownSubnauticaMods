@@ -24,20 +24,6 @@ namespace ProjectAncients.Mono
             }
         }
 
-        PlayerCinematicController warpCinematic;
-        static PlayerCinematicController WarpCinematic
-        {
-            get
-            {
-                if(Main.warpCinematic == null)
-                {
-                    Main.warpCinematic = Main.gameObject.EnsureComponent<PlayerCinematicController>();
-                    Main.warpCinematic.playerViewAnimationName = "precursor_elevator_decend";
-                }
-                return Main.warpCinematic;
-            }
-        }
-
         public static bool PlayerInTransit { get; private set; }
         Vector3 startPos;
         Vector3 endPos;
@@ -72,17 +58,17 @@ namespace ProjectAncients.Mono
         {
             PlayerInTransit = beingWarped;
             var player = Player.main;
-            //CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
+            CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
             if (beingWarped)
             {
-                WarpCinematic.StartCinematicMode(player);
-                //saveControllerEnabled = controller.enabled;
-                //controller.enabled = false;
+                Player.main.playerAnimator.SetBool("precursor_elevator_decend", true);
+                saveControllerEnabled = controller.enabled;
+                controller.enabled = false;
             }
             else
             {
-                WarpCinematic.EndCinematicMode();
-                //controller.enabled = saveControllerEnabled;
+                Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
+                controller.enabled = saveControllerEnabled;
             }
         }
         public static void EndSmoothWarp()
