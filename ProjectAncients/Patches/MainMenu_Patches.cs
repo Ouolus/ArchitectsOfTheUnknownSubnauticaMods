@@ -34,7 +34,7 @@ namespace ProjectAncients.Patches
                 return;
             }
             GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
-            const float subtitleScale = 1f;
+            const float subtitleScale = 0.7f;
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
