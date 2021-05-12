@@ -33,7 +33,7 @@ namespace ArchitectsLibrary.Items
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return sprite ??= sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecFabricator_Icon"));
+            return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecFabricator_Icon"));
         }
 
 #if SN1
