@@ -37,6 +37,9 @@ namespace ArchitectsLibrary.Items
         {
             var renderer = prefab.GetComponentInChildren<Renderer>(true);
             renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Precursor_Glass_specular"));
+            var vfxFabricating = prefab.GetComponentInChildren<VFXFabricating>(true);
+            vfxFabricating.scaleFactor = 1.5f;
+            vfxFabricating.localMinY = -0.15f;
         }
 
         protected override string SpriteTextureName()
