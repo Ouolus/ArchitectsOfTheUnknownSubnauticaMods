@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Items
 {
     class AlienCompositeGlass : ReskinCraftable
     {
-        public AlienCompositeGlass() : base("ReinforcedGlass", "Reinforced Glass", "Glass reinforced with sapphire.")
+        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien Composite Glass", "Strong, highly scratch resistant glass synthesized from sapphire and emerald crystals.")
         {
         }
 
@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Items
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(Handlers.AUHandler.SapphireTechType, 2)
+                    new Ingredient(TechType.Glass, 1), new Ingredient(Handlers.AUHandler.SapphireTechType, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
                 }
             };
         }
