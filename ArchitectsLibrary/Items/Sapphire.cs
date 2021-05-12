@@ -27,7 +27,7 @@ namespace ArchitectsLibrary.Items
         {
             if (sprite == null)
             {
-                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("Sapphire_icon"));
+                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Sapphire_icon"));
             }
             return sprite;
         }

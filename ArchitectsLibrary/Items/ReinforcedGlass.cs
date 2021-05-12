@@ -46,7 +46,7 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Reinforced_Glass_specular"));
         }
 
-        protected override string SpriteTextureName()
+        protected override string SpriteName()
         {
             return "Reinforced_glass";
         }

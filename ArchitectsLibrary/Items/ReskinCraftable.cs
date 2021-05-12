@@ -29,17 +29,17 @@ namespace ArchitectsLibrary.Items
         {
             if (sprite == null)
             {
-                string textureName = SpriteTextureName();
+                string textureName = SpriteName();
                 if (string.IsNullOrEmpty(textureName))
                 {
                     return null;
                 }
-                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>(textureName));
+                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>(textureName));
             }
             return sprite;
         }
 
-        protected abstract string SpriteTextureName();
+        protected abstract string SpriteName();
 
 #if SN1
         public override GameObject GetGameObject()

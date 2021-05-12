@@ -36,7 +36,7 @@ namespace ArchitectsLibrary.Items
         {
             if(sprite == null)
             {
-                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("PrecursorIngot_Icon"));
+                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecursorIngot_Icon"));
             }
             return sprite;
         }

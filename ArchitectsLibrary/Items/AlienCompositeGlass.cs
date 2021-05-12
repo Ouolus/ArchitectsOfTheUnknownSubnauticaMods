@@ -42,7 +42,7 @@ namespace ArchitectsLibrary.Items
             vfxFabricating.localMinY = -0.15f;
         }
 
-        protected override string SpriteTextureName()
+        protected override string SpriteName()
         {
             return "Precursor_glass";
         }

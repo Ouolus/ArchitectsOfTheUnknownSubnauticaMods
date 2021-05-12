@@ -54,7 +54,7 @@ namespace ArchitectsLibrary.Items
         {
             if (sprite == null)
             {
-                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>("Emerald_Icon"));
+                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Emerald_Icon"));
             }
             return sprite;
         }
