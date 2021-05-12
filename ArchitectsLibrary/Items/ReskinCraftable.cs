@@ -29,7 +29,7 @@ namespace ArchitectsLibrary.Items
         {
             if (sprite == null)
             {
-                string textureName = "SpriteTextureName";
+                string textureName = SpriteTextureName();
                 if (string.IsNullOrEmpty(textureName))
                 {
                     return null;
