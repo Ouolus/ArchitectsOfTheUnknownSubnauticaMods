@@ -7,18 +7,44 @@ using UWE;
 using ArchitectsLibrary.Utility;
 namespace ArchitectsLibrary.MonoBehaviours
 {
+    /// <summary>
+    /// a <see cref="MonoBehaviour"/> that makes the creature grow up over time outside of the ACU.
+    /// </summary>
     public class StagedGrowing : MonoBehaviour
     {
+        /// <summary>
+        /// the next Creature's <see cref="TechType"/> that the current Creature gonna turn to when it reaches the max grow size.
+        /// <br/>
+        /// if assigned to <see cref="TechType.None"/>, it wont turn to anything.
+        /// <br/>
+        /// defaulted to <see cref="TechType.None"/>.
+        /// </summary>
         public TechType nextStageTechType = TechType.None;
+        
+        /// <summary>
+        /// the amount of days its gonna take for this creature to reach the max grow size.
+        /// <br/>
+        /// defaulted to 5.
+        /// </summary>
         public float daysToNextStage = 5;
+        
+        /// <summary>
+        /// the initial start size for the next creature.
+        /// <br/>
+        /// defaulted to 1 (original size).
+        /// </summary>
         public float nextStageStartSize = 1f; // the next creature start size
+        
+        /// <summary>
+        /// the size this creature is gonna grow up to over time.
+        /// </summary>
         public float maxGrowSize = 1f;
 
         Vector3 startSize;
         float startTime;
         float growTime;
         float t = 0;
-        Dictionary<CreatureAction, float> originalSpeeds = new Dictionary<CreatureAction, float>();
+        Dictionary<CreatureAction, float> originalSpeeds = new();
 
         void Start()
         {

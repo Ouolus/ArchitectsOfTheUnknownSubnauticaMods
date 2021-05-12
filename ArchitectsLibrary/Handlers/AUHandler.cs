@@ -17,12 +17,43 @@ namespace ArchitectsLibrary.Handlers
 
         internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
-        
+
         /// <summary>
-        /// Gets the <see cref="PrecursorAlloyIngot"/>'s Class ID so you can spawn it up in your Mod.
+        /// Gets the <see cref="PrecursorAlloyIngot"/>'s TechType so you can spawn it up in your Mod.
         /// </summary>
-        public static string PrecursorAlloyIngotClassID { get; internal set; }
-        
+        public static TechType PrecursorAlloyIngotTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Emerald"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType EmeraldTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="DrillableEmerald"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType DrillableEmeraldTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Sapphire"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType SapphireTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="DrillableSapphire"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType DrillableSapphireTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType ReinforcedGlassTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType AlienCompositeGlassTechType { get; internal set; }
+
+
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
