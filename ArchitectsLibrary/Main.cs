@@ -141,7 +141,7 @@ namespace ArchitectsLibrary
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
             CraftData.pickupSoundList.Add(precursorAlloy.TechType, "event:/loot/pickup_precursorioncrystal");
 
@@ -161,11 +161,11 @@ namespace ArchitectsLibrary
 
             alienCompositeGlass = new AlienCompositeGlass();
             alienCompositeGlass.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
             CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
 
-            PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
+            PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
             CraftDataHandler.SetCraftingTime(TechType.PrecursorIonCrystal, 30f);
             CraftData.groups[TechGroup.Resources][TechCategory.AdvancedMaterials].Add(TechType.PrecursorIonCrystal);
