@@ -15,6 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UWE;
 using ProjectAncients.Prefabs.Equipment;
+using ArchitectsLibrary.API;
 
 namespace ProjectAncients
 {
@@ -172,7 +173,7 @@ namespace ProjectAncients
 
             warpCannon = new WarpCannonPrefab();
             warpCannon.Patch();
-            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
 
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpMasterTech);
             warpCannonTerminal.Patch();
@@ -204,15 +205,15 @@ namespace ProjectAncients
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
-            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
-            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             superDecoy = new();
             superDecoy.Patch();
-            ArchitectsLibrary.API.PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType);
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
 
             #region Creatures
