@@ -44,6 +44,7 @@ namespace ArchitectsLibrary
         static DrillableEmerald drillableEmerald;
         static Sapphire sapphire;
         static DrillableSapphire drillableSapphire;
+        static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -143,6 +144,11 @@ namespace ArchitectsLibrary
             drillableSapphire = new DrillableSapphire();
             drillableSapphire.Patch();
             AUHandler.DrillableSapphireTechType = drillableSapphire.TechType;
+
+            reinforcedGlass = new ReinforcedGlass();
+            reinforcedGlass.Patch();
+            AUHandler.ReinforcedGlassTechType = reinforcedGlass.TechType;
+            CraftData.pickupSoundList.Add(reinforcedGlass.TechType, "event:/loot/pickup_glass");
 
             alienCompositeGlass = new AlienCompositeGlass();
             alienCompositeGlass.Patch();

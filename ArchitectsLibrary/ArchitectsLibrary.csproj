@@ -156,6 +156,7 @@
     <Compile Include="Items\AlienCompositeGlass.cs" />
     <Compile Include="Items\DrillableSapphire.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />
+    <Compile Include="Items\ReinforcedGlass.cs" />
     <Compile Include="Items\ReskinCraftable.cs" />
     <Compile Include="Items\Sapphire.cs" />
     <Compile Include="Items\Emerald.cs" />
