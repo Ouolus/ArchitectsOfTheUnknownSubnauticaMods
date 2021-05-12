@@ -136,6 +136,18 @@ namespace ArchitectsLibrary.Items
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
+            fab.fabLight.color = Color.green;
+            fab.fabLight.shadows = LightShadows.Hard;
+            fab.fabLight.range = 1.25f;
+            fab.fabLight.intensity = 1.37f;
+            var lightAnimator = fab.fabLight.gameObject.EnsureComponent<LightAnimator>();
+            lightAnimator.flicker = new LightAnimator.FlickerParameters()
+            {
+                maxIntensity = 2.5f,
+                minIntensity = 0f,
+                minTime = 0f,
+                maxTime = 0.03f
+            };
 
             fab.handOverText = $"Use {FriendlyName}";
 
@@ -247,6 +259,18 @@ namespace ArchitectsLibrary.Items
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
+            fab.fabLight.color = Color.green;
+            fab.fabLight.shadows = LightShadows.Hard;
+            fab.fabLight.range = 1.25f;
+            fab.fabLight.intensity = 1.37f;
+            var lightAnimator = fab.fabLight.gameObject.EnsureComponent<LightAnimator>();
+            lightAnimator.flicker = new LightAnimator.FlickerParameters()
+            {
+                maxIntensity = 2.5f,
+                minIntensity = 0f,
+                minTime = 0f,
+                maxTime = 0.03f
+            };
 
             fab.handOverText = $"Use {FriendlyName}";
 
