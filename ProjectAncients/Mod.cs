@@ -14,6 +14,8 @@ using ProjectAncients.Prefabs.Modules;
 using System.Collections;
 using System.Collections.Generic;
 using UWE;
+using ProjectAncients.Prefabs.Equipment;
+using ArchitectsLibrary.API;
 
 namespace ProjectAncients
 {
@@ -74,6 +76,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab cachePingsTerminal;
         public static DataTerminalPrefab spamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
+        public static DataTerminalPrefab warpCannonTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -88,9 +91,12 @@ namespace ProjectAncients
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
 
+        public static WarpCannonPrefab warpCannon;
+
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
         public static TechType architectElectricityMasterTech;
+        public static TechType warpMasterTech;
 
         /// <summary>
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
@@ -133,6 +139,7 @@ namespace ProjectAncients
         private const string ency_eggRoom = "PrecursorEggRoomEncy";
         private const string ency_aquariumSkeleton = "BabyGargSkeletonEncy";
         private const string ency_blackHole = "ResearchBaseSingularityEncy";
+        private const string ency_warpCannonTerminal = "WarpCannonTerminalEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -163,6 +170,13 @@ namespace ProjectAncients
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
+
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpMasterTech);
+            warpCannonTerminal.Patch();
         }
         [QModPatch]
         public static void Patch()
@@ -185,17 +199,21 @@ namespace ProjectAncients
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
+            warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
             #endregion
 
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             superDecoy = new();
             superDecoy.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
 
             #region Creatures
@@ -300,6 +318,8 @@ namespace ProjectAncients
             PatchEncy(ency_aquariumSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
 
             PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
+
+            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
 
             #endregion
 

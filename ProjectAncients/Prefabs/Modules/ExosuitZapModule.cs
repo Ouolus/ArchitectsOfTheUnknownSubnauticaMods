@@ -27,9 +27,7 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override float? EnergyCost => 4f;
 
-        public override CraftTree.Type FabricatorType => CraftTree.Type.Workbench;
-
-        public override string[] StepsToFabricatorTab { get; } = { "ExosuitMenu" };
+        public override float CraftingTime => 7f;
 
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
 
