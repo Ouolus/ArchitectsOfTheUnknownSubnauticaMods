@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArchitectsLibrary.Handlers;
 
 namespace ProjectAncients.Mono.AlienBaseSpawners
 {
@@ -17,7 +18,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(pedestal_empty2, 4f, new Vector3(1, 1, 10), Vector3.one, new Vector3(3f + 1.5f + 1.5f, 2f, 40f)));
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior_infectionTest.ClassID, new Vector3(0f, 0f, 13f), Vector3.zero));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(-4f, 0f, 22f), Vector3.zero));
+
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(4f, 0f, 22f), Vector3.zero));
+
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(0.2f, 0.1f, 22.75f), Vector3.up * -24f));
 
             //Aquarium
             yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(5.16f, firstFloorY, -20.88f), new Vector3(0f, 74f, 0f)));
