@@ -37,6 +37,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, firstFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f)); //Left doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.warpCannonTerminal.ClassID, new Vector3(0f, 0f, -36), new Vector3(0f, 0, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 0f, -56f))); //Ion cube behind aquarium
 
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 11.9f), Vector3.back, transform.position + new Vector3(0f, 11f, -9.5f), Vector3.back, Vector3.down, 5f, scale: 1.5f));
