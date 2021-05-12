@@ -73,7 +73,7 @@ namespace ArchitectsLibrary.API
     public enum PrecursorFabricatorTab
     {
         /// <summary>
-        /// same as <see langword="null" />, This item will not appear in the fabricator.
+        /// Same as <see langword="null" />, This item will not appear in the fabricator.
         /// </summary>
         None,
         
