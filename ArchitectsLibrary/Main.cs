@@ -44,7 +44,7 @@ namespace ArchitectsLibrary
         static DrillableEmerald drillableEmerald;
         static Sapphire sapphire;
         static DrillableSapphire drillableSapphire;
-        static ReinforcedGlass reinforcedGlass;
+        static AlienCompositeGlass alienCompositeGlass;
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -144,11 +144,11 @@ namespace ArchitectsLibrary
             drillableSapphire.Patch();
             AUHandler.DrillableSapphireTechType = drillableSapphire.TechType;
 
-            reinforcedGlass = new ReinforcedGlass();
-            reinforcedGlass.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(reinforcedGlass.TechType);
-            AUHandler.ReinforcedGlassTechType = reinforcedGlass.TechType;
-            CraftData.pickupSoundList.Add(reinforcedGlass.TechType, "event:/loot/pickup_glass");
+            alienCompositeGlass = new AlienCompositeGlass();
+            alienCompositeGlass.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType);
+            AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
+            CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });

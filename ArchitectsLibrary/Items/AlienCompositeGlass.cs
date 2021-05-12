@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ArchitectsLibrary.Items
 {
-    class ReinforcedGlass : ReskinCraftable
+    class AlienCompositeGlass : ReskinCraftable
     {
-        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced Glass", "Glass reinforced with sapphire.")
+        public AlienCompositeGlass() : base("ReinforcedGlass", "Reinforced Glass", "Glass reinforced with sapphire.")
         {
         }
 
