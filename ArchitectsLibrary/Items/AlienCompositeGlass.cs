@@ -19,6 +19,8 @@ namespace ArchitectsLibrary.Items
         public override TechGroup GroupForPDA => TechGroup.Resources;
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
+        public override float CraftingTime => 6f;
+
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData()

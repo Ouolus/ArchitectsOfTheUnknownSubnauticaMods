@@ -30,6 +30,8 @@ namespace ArchitectsLibrary.Items
 
         public override bool UnlockedAtStart => false;
 
+        public override float CraftingTime => 8f;
+
         protected override Atlas.Sprite GetItemSprite()
         {
             if(sprite == null)
@@ -116,7 +118,5 @@ namespace ArchitectsLibrary.Items
             gameObject.Set(prefab);
         }
 #endif
-
-        public override float CraftingTime => 8f;
     }
 }
