@@ -9,6 +9,7 @@ namespace ArchitectsLibrary.Items
 {
     abstract class ReskinCraftable : Craftable
     {
+        Atlas.Sprite sprite;
         private GameObject cachedPrefab;
 
         protected ReskinCraftable(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
@@ -23,6 +24,22 @@ namespace ArchitectsLibrary.Items
         {
 
         }
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            if (sprite == null)
+            {
+                string textureName = "SpriteTextureName";
+                if (string.IsNullOrEmpty(textureName))
+                {
+                    return null;
+                }
+                sprite = ImageUtils.LoadSpriteFromTexture(Main.assetBundle.LoadAsset<Texture2D>(textureName));
+            }
+            return sprite;
+        }
+
+        protected abstract string SpriteTextureName();
 
 #if SN1
         public override GameObject GetGameObject()

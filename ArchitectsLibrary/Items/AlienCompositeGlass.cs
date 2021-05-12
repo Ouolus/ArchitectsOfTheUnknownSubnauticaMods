@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ArchitectsLibrary.Items
 {
@@ -28,6 +29,17 @@ namespace ArchitectsLibrary.Items
                     new Ingredient(Handlers.AUHandler.ReinforcedGlassTechType, 1), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
                 }
             };
+        }
+
+        protected override void ApplyChangesToPrefab(GameObject prefab)
+        {
+            var renderer = prefab.GetComponentInChildren<Renderer>(true);
+            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Precursor_Glass_specular"));
+        }
+
+        protected override string SpriteTextureName()
+        {
+            return "Precursor_glass";
         }
     }
 }

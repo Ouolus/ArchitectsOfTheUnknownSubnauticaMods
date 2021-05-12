@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ArchitectsLibrary.Handlers;
+using UnityEngine;
 
 namespace ArchitectsLibrary.Items
 {
@@ -35,6 +36,17 @@ namespace ArchitectsLibrary.Items
                     new Ingredient(AUHandler.SapphireTechType, 2)
                 }
             };
+        }
+
+        protected override void ApplyChangesToPrefab(GameObject prefab)
+        {
+            var renderer = prefab.GetComponentInChildren<Renderer>(true);
+            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Precursor_Glass_specular"));
+        }
+
+        protected override string SpriteTextureName()
+        {
+            return "Reinforced_glass";
         }
     }
 }
