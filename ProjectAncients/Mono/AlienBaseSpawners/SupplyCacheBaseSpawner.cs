@@ -22,8 +22,8 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 7f, floorLocalY, -6f), Vector3.zero, columnScale));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 7f, floorLocalY, 6f), Vector3.zero, columnScale));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableLithium, new Vector3(centerLocalX + 6f, floorLocalY, -8f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableLithium, new Vector3(centerLocalX - 5f, floorLocalY, 13f)));
-            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableEmeraldTechType), new Vector3(centerLocalX + 5f, floorLocalY, 14f)));
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableSapphireTechType), new Vector3(centerLocalX - 5f, floorLocalY, 13f)));
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableEmeraldTechType), new Vector3(centerLocalX + 5f, floorLocalY, 13f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableLithium, new Vector3(centerLocalX - 2.5f, floorLocalY, -7f)));
             yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(centerLocalX - 9f, floorLocalY, 11f)));
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX + 6f, floorLocalY, 15f), Mod.ingotRelic.ClassID, new Vector3(0f, 1.25f, 0f)));
