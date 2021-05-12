@@ -23,6 +23,8 @@ namespace ArchitectsLibrary.Items
 
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";
 
+        public override float CraftingTime => 2f;
+
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => AUHandler.SapphireTechType;
 
@@ -41,7 +43,7 @@ namespace ArchitectsLibrary.Items
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
             var renderer = prefab.GetComponentInChildren<Renderer>(true);
-            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Precursor_Glass_specular"));
+            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Reinforced_Glass_specular"));
         }
 
         protected override string SpriteTextureName()
