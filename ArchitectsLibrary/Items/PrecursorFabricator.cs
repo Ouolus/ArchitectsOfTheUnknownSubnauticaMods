@@ -143,7 +143,7 @@ namespace ArchitectsLibrary.Items
             var lightAnimator = fab.fabLight.gameObject.EnsureComponent<LightAnimator>();
             lightAnimator.flicker = new LightAnimator.FlickerParameters()
             {
-                maxIntensity = 2.5f,
+                maxIntensity = 1f,
                 minIntensity = 0f,
                 minTime = 0f,
                 maxTime = 0.03f
@@ -267,7 +267,7 @@ namespace ArchitectsLibrary.Items
             var lightAnimator = fab.fabLight.gameObject.EnsureComponent<LightAnimator>();
             lightAnimator.flicker = new LightAnimator.FlickerParameters()
             {
-                maxIntensity = 2.5f,
+                maxIntensity = 1f,
                 minIntensity = 0f,
                 minTime = 0f,
                 maxTime = 0.03f
