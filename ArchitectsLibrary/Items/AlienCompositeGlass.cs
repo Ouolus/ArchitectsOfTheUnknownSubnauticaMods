@@ -13,7 +13,7 @@ namespace ArchitectsLibrary.Items
         {
         }
 
-        protected override string ReferenceClassId => "86589e2f-bd06-447f-b23a-1f35e6368010";
+        protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Items
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(TechType.Glass, 1), new Ingredient(Handlers.AUHandler.SapphireTechType, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
+                    new Ingredient(Handlers.AUHandler.SapphireTechType, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
                 }
             };
         }
