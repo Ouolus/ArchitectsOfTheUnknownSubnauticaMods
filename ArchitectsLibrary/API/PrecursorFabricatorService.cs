@@ -34,37 +34,26 @@ namespace ArchitectsLibrary.API
 
         internal static string TabToNameID(PrecursorFabricatorTab tab)
         {
-            switch (tab)
+            return tab switch
             {
-                default:
-                    return null;
-                case PrecursorFabricatorTab.Materials:
-                    return "AlienMaterials";
-                case PrecursorFabricatorTab.Equipment:
-                    return "AlienEquipment";
-                case PrecursorFabricatorTab.Devices:
-                    return "AlienDevices";
-                case PrecursorFabricatorTab.UpgradeModules:
-                    return "AlienUpgrades";
-                case PrecursorFabricatorTab.Decorations:
-                    return "AlienDecorations";
-            }
+                PrecursorFabricatorTab.Materials => "AlienMaterials",
+                PrecursorFabricatorTab.Equipment => "AlienEquipment",
+                PrecursorFabricatorTab.Devices => "AlienDevices",
+                PrecursorFabricatorTab.UpgradeModules => "AlienUpgrades",
+                PrecursorFabricatorTab.Decorations => "AlienDecorations",
+                _ => null // Fallback should never happen
+            };
         }
     }
 
     /// <summary>
-    /// Data related to adding items to the precursor fabricator.
+    /// Data related to adding items to the Precursor Fabricator.
     /// </summary>
     public struct PrecursorFabricatorEntry
     {
-        /// <summary>
-        /// The TechType of the item to add to the fabricator.
-        /// </summary>
-        public TechType techType;
-        /// <summary>
-        /// The tab that the item will go to.
-        /// </summary>
-        public PrecursorFabricatorTab tab;
+        internal readonly TechType techType;
+        
+        internal readonly PrecursorFabricatorTab tab;
 
         /// <summary>
         /// Constructor for this struct.
@@ -84,25 +73,30 @@ namespace ArchitectsLibrary.API
     public enum PrecursorFabricatorTab
     {
         /// <summary>
-        /// This item will not appear in the fabricator.
+        /// same as <see langword="null" />, This item will not appear in the fabricator.
         /// </summary>
         None,
+        
         /// <summary>
         /// "Alien Materials" tab
         /// </summary>
         Materials,
+        
         /// <summary>
         /// "Equipment" tab
         /// </summary>
         Equipment,
+        
         /// <summary>
         /// "Devices" tab
         /// </summary>
         Devices,
+        
         /// <summary>
         /// "Advanced Upgrade Modules" tab
         /// </summary>
         UpgradeModules,
+        
         /// <summary>
         /// "Decorations" tab
         /// </summary>
