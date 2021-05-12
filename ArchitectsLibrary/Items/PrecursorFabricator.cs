@@ -148,6 +148,7 @@ namespace ArchitectsLibrary.Items
                 minTime = 0f,
                 maxTime = 0.03f
             };
+            fab.fabLight.transform.localPosition = new Vector3(0f, -0.22f, 0.8f);
 
             fab.handOverText = $"Use {FriendlyName}";
 
@@ -271,6 +272,7 @@ namespace ArchitectsLibrary.Items
                 minTime = 0f,
                 maxTime = 0.03f
             };
+            fab.fabLight.transform.localPosition = new Vector3(0f, -0.22f, 0.8f);
 
             fab.handOverText = $"Use {FriendlyName}";
 
