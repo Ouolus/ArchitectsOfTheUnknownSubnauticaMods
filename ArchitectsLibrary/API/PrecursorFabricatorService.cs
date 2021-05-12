@@ -6,7 +6,7 @@ namespace ArchitectsLibrary.API
     public static class PrecursorFabricatorService
     {
         /// <summary>
-        /// Adds a Crafting Node to the Precursor Fabricator
+        /// Adds a Crafting Node to the Precursor Fabricator.
         /// </summary>
         /// <param name="entry">Defines the <see cref="TechType"/> to add and the <see cref="PrecursorFabricatorTab"/></param>
         public static void SubscribeToFabricator(PrecursorFabricatorEntry entry)
@@ -20,6 +20,16 @@ namespace ArchitectsLibrary.API
             }
             
             Main.PrecursorFabricatorEntriesToAdd.Add(entry);
+        }
+
+        /// <summary>
+        /// Adds a Crafting Node to the Precursor Fabricator. This overload requires slightly less writing than the other, but does the same thing.
+        /// </summary>
+        /// <param name="techType">The TechType of the item to add to the fabricator.</param>
+        /// <param name="tab">The tab that the item will go to.</param>
+        public static void SubscribeToFabricator(TechType techType, PrecursorFabricatorTab tab)
+        {
+            SubscribeToFabricator(new PrecursorFabricatorEntry(techType, tab));
         }
 
         internal static string TabToNameID(PrecursorFabricatorTab tab)
