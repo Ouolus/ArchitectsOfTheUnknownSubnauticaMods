@@ -52,11 +52,7 @@ namespace ArchitectsLibrary.Items
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            if (sprite == null)
-            {
-                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Emerald_Icon"));
-            }
-            return sprite;
+            return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Emerald_Icon"));
         }
 
         public override WorldEntityInfo EntityInfo => new()

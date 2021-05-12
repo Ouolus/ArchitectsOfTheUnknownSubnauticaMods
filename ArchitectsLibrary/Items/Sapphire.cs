@@ -25,11 +25,7 @@ namespace ArchitectsLibrary.Items
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            if (sprite == null)
-            {
-                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Sapphire_icon"));
-            }
-            return sprite;
+            return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Sapphire_icon"));
         }
 
         public override WorldEntityInfo EntityInfo => new()

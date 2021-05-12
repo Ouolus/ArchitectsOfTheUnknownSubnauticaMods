@@ -34,11 +34,7 @@ namespace ArchitectsLibrary.Items
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            if(sprite == null)
-            {
-                sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecursorIngot_Icon"));
-            }
-            return sprite;
+            return sprite ??= sprite = new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecursorIngot_Icon"));
         }
 #if SN1
         public override GameObject GetGameObject()
