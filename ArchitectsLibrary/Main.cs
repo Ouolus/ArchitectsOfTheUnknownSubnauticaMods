@@ -106,7 +106,7 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            Sprite tabSprite = null;
+            Sprite tabSprite = assetBundle.LoadAsset<Sprite>("Background");
             PrecursorFabricator.Root.AddTabNode("AlienMaterials", "Alien Materials", tabSprite);
             PrecursorFabricator.Root.AddTabNode("AlienEquipment", "Equipment", tabSprite);
             PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", tabSprite);
