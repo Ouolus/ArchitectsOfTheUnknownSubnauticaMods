@@ -113,7 +113,7 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.AddCraftingNode(techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, reinforcedGlass.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType });
         }
 
         static void PatchItems()
