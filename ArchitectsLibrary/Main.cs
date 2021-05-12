@@ -23,7 +23,7 @@ namespace ArchitectsLibrary
     [QModCore]
     public static class Main
     {
-        internal static List<TechType> TechTypesToAdd = new();
+        internal static List<PrecursorFabricatorEntry> PrecursorFabricatorEntriesToAdd = new();
         
         internal static AssetBundle assetBundle;
         internal static AssetBundle fabBundle;
@@ -106,12 +106,21 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            foreach (var techType in TechTypesToAdd)
+            Sprite tabSprite = null;
+            PrecursorFabricator.Root.AddTabNode("AlienMaterials", "Alien Materials", tabSprite);
+            PrecursorFabricator.Root.AddTabNode("AlienEquipment", "Equipment", tabSprite);
+            PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", tabSprite);
+            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", "Advanced Upgrade Modules", tabSprite);
+            PrecursorFabricator.Root.AddTabNode("AlienDecorations", "Decoration Items", tabSprite);
+
+            foreach (var entry in PrecursorFabricatorEntriesToAdd)
             {
-                if (techType == TechType.None) // Safety check
+                if (entry.tab == PrecursorFabricatorTab.None)
+                    continue;
+                if (entry.techType == TechType.None) // Safety check
                     continue;
                 
-                PrecursorFabricator.Root.AddCraftingNode(techType);
+                PrecursorFabricator.Root.GetTabNode(PrecursorFabricatorService.TabToNameID(entry.tab)).AddCraftingNode(entry.techType);
             }
 
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType });
