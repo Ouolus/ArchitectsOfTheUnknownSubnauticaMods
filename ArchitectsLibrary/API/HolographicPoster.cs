@@ -124,6 +124,7 @@ namespace ArchitectsLibrary.API
                 if (posterTexture != null) //If no texture is given, show the template texture, rather than just the plain white texture which results from setting a texture to null
                 { 
                     posterRenderer.material.SetTexture("_MainTex", posterTexture);
+                    posterRenderer.material.SetTexture("_SpecTex", posterTexture);
                 }
                 posterRenderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, 0.5f));
                 posterRenderer.gameObject.AddComponent<MonoBehaviours.PosterFlicker>().renderer = posterRenderer;
