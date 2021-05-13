@@ -125,6 +125,9 @@ namespace ArchitectsLibrary.API
                 { 
                     posterRenderer.material.SetTexture("_MainTex", posterTexture);
                     posterRenderer.material.SetTexture("_SpecTex", posterTexture);
+                    posterRenderer.material.EnableKeyword("MARMO_EMISSION");
+                    posterRenderer.material.SetFloat("_EnableGlow", 1f);
+                    posterRenderer.material.SetTexture("_Illum", posterTexture);
                 }
                 posterRenderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, 0.5f));
                 posterRenderer.gameObject.AddComponent<MonoBehaviours.PosterFlicker>().renderer = posterRenderer;
