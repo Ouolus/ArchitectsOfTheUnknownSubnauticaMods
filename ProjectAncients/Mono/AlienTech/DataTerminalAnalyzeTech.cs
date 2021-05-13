@@ -9,7 +9,7 @@ using UWE;
 
 namespace ProjectAncients.Mono
 {
-    public class DataTerminalUnlockTech : MonoBehaviour
+    public class DataTerminalAnalyzeTech : MonoBehaviour
     {
         public TechType techToUnlock;
 
