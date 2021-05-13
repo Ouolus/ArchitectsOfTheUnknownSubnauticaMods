@@ -11,7 +11,7 @@ namespace ArchitectsLibrary.Items
 
         public override Texture2D GetPosterTexture()
         {
-            return Main.assetBundle.LoadAsset<Texture2D>("Emerald_Diffuse");
+            return Main.assetBundle.LoadAsset<Texture2D>("AotuPoster");
         }
     }
 }
