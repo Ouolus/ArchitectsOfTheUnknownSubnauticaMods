@@ -46,6 +46,7 @@ namespace ArchitectsLibrary
         static DrillableSapphire drillableSapphire;
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
+        static AotuPoster aotuPoster;
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -165,6 +166,9 @@ namespace ArchitectsLibrary
             PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
             CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
+
+            aotuPoster = new AotuPoster();
+            aotuPoster.Patch();
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
