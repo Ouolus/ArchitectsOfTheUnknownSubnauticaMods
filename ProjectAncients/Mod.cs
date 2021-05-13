@@ -91,6 +91,8 @@ namespace ProjectAncients
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
 
+        public static GargPoster gargPoster;
+
         public static WarpCannonPrefab warpCannon;
 
         public static RuinedGuardianPrefab prop_ruinedGuardian;
@@ -171,12 +173,16 @@ namespace ProjectAncients
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
 
+            //This stuff uses Architects Library resources so it must be patched AFTER that library
             warpCannon = new WarpCannonPrefab();
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
 
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: warpMasterTech);
             warpCannonTerminal.Patch();
+
+            gargPoster = new GargPoster();
+            gargPoster.Patch();
         }
         [QModPatch]
         public static void Patch()
