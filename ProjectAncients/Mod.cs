@@ -183,6 +183,7 @@ namespace ProjectAncients
 
             gargPoster = new GargPoster();
             gargPoster.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
         }
         [QModPatch]
         public static void Patch()
