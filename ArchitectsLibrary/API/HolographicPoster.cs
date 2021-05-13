@@ -80,10 +80,17 @@ namespace ArchitectsLibrary.API
                 placeTool.allowedOnWalls = true;
                 placeTool.hasAnimations = false;
                 placeTool.placementSound = ScriptableObject.CreateInstance<FMODAsset>();
-                placeTool.placementSound.path = "event:/sub/cyclops/interface_select";
+                placeTool.placementSound.path = "event:/env/prec_light_on_2";
                 var vfxFabricating = cachedPrefab.SearchChild("CraftModel").EnsureComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.04f;
-                vfxFabricating.localMaxY = 0.03f;
+                vfxFabricating.localMinY = -0.07f;
+                vfxFabricating.localMaxY = 0.06f;
+                vfxFabricating.scaleFactor = 2f;
+
+                var soundEmitter = cachedPrefab.EnsureComponent<FMOD_CustomLoopingEmitter>();
+                soundEmitter.asset = ScriptableObject.CreateInstance<FMODAsset>();
+                soundEmitter.asset.path = "event:/env/prec_artifact_loop";
+                soundEmitter.playOnAwake = true;
+
 
                 MaterialUtils.ApplySNShaders(cachedPrefab);
 
@@ -93,7 +100,8 @@ namespace ArchitectsLibrary.API
 
                 Renderer posterRenderer = cachedPrefab.SearchChild("PosterCanvas").GetComponent<Renderer>();
                 posterRenderer.material.SetTexture("_MainTex", GetPosterTexture());
-                posterRenderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0.5f));
+                posterRenderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, 0.5f));
+                posterRenderer.gameObject.AddComponent<MonoBehaviours.PosterFlicker>().renderer = posterRenderer;
             }
             return cachedPrefab;
         }
