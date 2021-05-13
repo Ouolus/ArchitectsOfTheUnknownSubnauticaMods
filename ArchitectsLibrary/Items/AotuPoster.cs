@@ -9,6 +9,11 @@ namespace ArchitectsLibrary.Items
         {
         }
 
+        public override PosterDimensions GetPosterDimensions()
+        {
+            return PosterDimensions.Portait;
+        }
+
         public override Texture2D GetPosterTexture()
         {
             return Main.assetBundle.LoadAsset<Texture2D>("AotuPoster");

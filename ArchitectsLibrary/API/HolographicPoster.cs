@@ -48,19 +48,40 @@ namespace ArchitectsLibrary.API
             };
         }
 
+        /// <summary>
+        /// How long it takes to craft the poster
+        /// </summary>
         public override float CraftingTime => 7f;
 
         /// <summary>
-        /// The texture that appears on the poster. Should have an aspect ratio of 4:5.
+        /// The texture that appears on the poster.
         /// </summary>
         /// <returns></returns>
         public abstract Texture2D GetPosterTexture();
 
+        /// <summary>
+        /// What shape the poster should be.
+        /// </summary>
+        /// <returns></returns>
+        public abstract PosterDimensions GetPosterDimensions();
+
+        private static string GetPrefabNameForDimensions(PosterDimensions dimensions)
+        {
+            switch (dimensions)
+            {
+                default:
+                    return "PrecursorPoster_Prefab";
+                case PosterDimensions.Square:
+                    return "PrecursorPosterSquare_Prefab";
+                case PosterDimensions.Landscape:
+                    return "PrecursorPosterLandscape_Prefab";
+            }
+        }
         public sealed override GameObject GetGameObject()
         {
             if (cachedPrefab == null)
             {
-                cachedPrefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>("PrecursorPoster_Prefab"));
+                cachedPrefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>(GetPrefabNameForDimensions(GetPosterDimensions())));
                 cachedPrefab.SetActive(false);
 
                 cachedPrefab.EnsureComponent<TechTag>().type = TechType;
@@ -99,7 +120,11 @@ namespace ArchitectsLibrary.API
                 MaterialUtils.ApplyPrecursorMaterials(cachedPrefab.SearchChild("Projector_Bottom"), 8f);
 
                 Renderer posterRenderer = cachedPrefab.SearchChild("PosterCanvas").GetComponent<Renderer>();
-                posterRenderer.material.SetTexture("_MainTex", GetPosterTexture());
+                var posterTexture = GetPosterTexture();
+                if (posterTexture != null) //If no texture is given, show the template texture, rather than just the plain white texture which results from setting a texture to null
+                { 
+                    posterRenderer.material.SetTexture("_MainTex", posterTexture);
+                }
                 posterRenderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, 0.5f));
                 posterRenderer.gameObject.AddComponent<MonoBehaviours.PosterFlicker>().renderer = posterRenderer;
 
@@ -110,6 +135,27 @@ namespace ArchitectsLibrary.API
                 }
             }
             return cachedPrefab;
+        }
+
+        /// <summary>
+        /// Determines the shape of the poster you are using. The XML documentation of each value tells you the exact dimensions needed.
+        /// </summary>
+        public enum PosterDimensions
+        {
+            /// <summary>
+            /// 1:1 aspect ratio. Perfectly square.
+            /// </summary>
+            Square,
+
+            /// <summary>
+            /// 4:5 aspect ratio. Tall.
+            /// </summary>
+            Portait,
+
+            /// <summary>
+            /// 3:2 aspect ratio. Wide.
+            /// </summary>
+            Landscape
         }
     }
 }
