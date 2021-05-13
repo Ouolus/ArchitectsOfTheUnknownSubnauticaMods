@@ -5,7 +5,7 @@ namespace ProjectAncients.Prefabs
 {
     public class GargPoster : HolographicPoster
     {
-        public GargPoster() : base("GargantuanPoster", "Leviathan Holographic Projector", "")
+        public GargPoster() : base("GargantuanPoster", "Leviathan Holographic Projector", "An approximation of the appearance of an ancient leviathan, projected with holographic technology.")
         {
         }
 
