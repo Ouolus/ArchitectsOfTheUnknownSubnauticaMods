@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             if(Time.time > timeFlickerAgain)
             {
                 timeFlickerAgain = Time.time + Random.Range(0.05f, 0.1f);
-                renderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, Random.Range(0.4f, 0.55f)));
+                renderer.material.SetColor("_Color", new Color(1f, Random.Range(1f, 1.5f), 1f, Random.Range(0.9f, 0.99f)));
             }
         }
     }
