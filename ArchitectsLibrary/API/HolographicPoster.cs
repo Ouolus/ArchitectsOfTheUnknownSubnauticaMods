@@ -82,7 +82,7 @@ namespace ArchitectsLibrary.API
                 placeTool.placementSound = ScriptableObject.CreateInstance<FMODAsset>();
                 placeTool.placementSound.path = "event:/env/prec_light_on_2";
                 var vfxFabricating = cachedPrefab.SearchChild("CraftModel").EnsureComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.07f;
+                vfxFabricating.localMinY = -0.08f;
                 vfxFabricating.localMaxY = 0.06f;
                 vfxFabricating.scaleFactor = 2f;
 
@@ -102,6 +102,12 @@ namespace ArchitectsLibrary.API
                 posterRenderer.material.SetTexture("_MainTex", GetPosterTexture());
                 posterRenderer.material.SetColor("_Color", new Color(1f, 1.5f, 1f, 0.5f));
                 posterRenderer.gameObject.AddComponent<MonoBehaviours.PosterFlicker>().renderer = posterRenderer;
+
+                Renderer[] scanLineRenderers = cachedPrefab.SearchChild("ScanLines").GetComponentsInChildren<Renderer>(true);
+                foreach(var rend in scanLineRenderers)
+                {
+                    rend.material.SetColor("_Color", new Color(0f, 0f, 0f, 0.25f));
+                }
             }
             return cachedPrefab;
         }
