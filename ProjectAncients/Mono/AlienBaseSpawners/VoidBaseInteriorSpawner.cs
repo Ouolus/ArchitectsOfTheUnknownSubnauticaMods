@@ -42,7 +42,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
             yield return StartCoroutine(SpawnPrefab(Mod.warpCannonTerminal.ClassID, new Vector3(0f, 0f, -36), new Vector3(0f, 0, 0f)));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 0f, 0f))); //Ion cube behind aquarium
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystalPyramid, new Vector3(0f, 0f, 0f))); //Ion cube behind aquarium
 
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 11.9f), Vector3.back, transform.position + new Vector3(0f, 11f, -9.5f), Vector3.back, Vector3.down, 5f, scale: 1.5f));
             yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, -57.6f), Vector3.forward, transform.position + new Vector3(0f, 11f, -35.75f), Vector3.forward, Vector3.down, 5f, scale: 1.5f));
@@ -149,7 +149,7 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
 
-            yield return StartCoroutine(SpawnPrefab(Mod.gargPoster.ClassID, new Vector3(48.05f, 2.5f, 24.1f), new Vector3(0f, 225f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.gargPoster.ClassID, new Vector3(42.58f, 4f, 29.57f), new Vector3(0f, 225f, 0f), Vector3.one * 5f));
 
             //Right lower room
             yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-22, 0f, 28), new Vector3(0f, 45f, 0f)));
