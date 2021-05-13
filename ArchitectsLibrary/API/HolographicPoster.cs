@@ -82,7 +82,7 @@ namespace ArchitectsLibrary.API
                 placeTool.placementSound = ScriptableObject.CreateInstance<FMODAsset>();
                 placeTool.placementSound.path = "event:/env/prec_light_on_2";
                 var vfxFabricating = cachedPrefab.SearchChild("CraftModel").EnsureComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.08f;
+                vfxFabricating.localMinY = -0.09f;
                 vfxFabricating.localMaxY = 0.06f;
                 vfxFabricating.scaleFactor = 2f;
 
