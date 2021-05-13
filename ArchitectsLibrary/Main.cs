@@ -112,6 +112,7 @@ namespace ArchitectsLibrary
             PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", tabSprite);
             PrecursorFabricator.Root.AddTabNode("AlienUpgrades", "Advanced Upgrade Modules", tabSprite);
             PrecursorFabricator.Root.AddTabNode("AlienDecorations", "Decoration Items", tabSprite);
+            PrecursorFabricator.Root.AddTabNode("AlienEggs", "Eggs", tabSprite);
 
             foreach (var entry in PrecursorFabricatorEntriesToAdd)
             {

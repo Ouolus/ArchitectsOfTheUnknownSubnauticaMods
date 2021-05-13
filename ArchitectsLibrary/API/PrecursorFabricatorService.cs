@@ -41,6 +41,7 @@ namespace ArchitectsLibrary.API
                 PrecursorFabricatorTab.Devices => "AlienDevices",
                 PrecursorFabricatorTab.UpgradeModules => "AlienUpgrades",
                 PrecursorFabricatorTab.Decorations => "AlienDecorations",
+                PrecursorFabricatorTab.Eggs => "AlienEggs",
                 _ => null // Fallback should never happen
             };
         }
@@ -100,6 +101,11 @@ namespace ArchitectsLibrary.API
         /// <summary>
         /// "Decorations" tab
         /// </summary>
-        Decorations
+        Decorations,
+
+        /// <summary>
+        /// "Eggs" tab
+        /// </summary>
+        Eggs
     }
 }
