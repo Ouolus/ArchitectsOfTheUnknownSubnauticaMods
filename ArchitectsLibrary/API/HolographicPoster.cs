@@ -57,13 +57,13 @@ namespace ArchitectsLibrary.API
         /// The texture that appears on the poster.
         /// </summary>
         /// <returns></returns>
-        public abstract Texture2D GetPosterTexture();
+        public abstract Texture2D GetPosterTexture { get; }
 
         /// <summary>
         /// What shape the poster should be.
         /// </summary>
         /// <returns></returns>
-        public abstract PosterDimensions GetPosterDimensions();
+        public abstract PosterDimensions GetPosterDimensions { get; }
 
         private static string GetPrefabNameForDimensions(PosterDimensions dimensions)
         {
@@ -81,7 +81,7 @@ namespace ArchitectsLibrary.API
         {
             if (cachedPrefab == null)
             {
-                cachedPrefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>(GetPrefabNameForDimensions(GetPosterDimensions())));
+                cachedPrefab = GameObject.Instantiate(Main.assetBundle.LoadAsset<GameObject>(GetPrefabNameForDimensions(GetPosterDimensions)));
                 cachedPrefab.SetActive(false);
 
                 cachedPrefab.EnsureComponent<TechTag>().type = TechType;
@@ -120,7 +120,7 @@ namespace ArchitectsLibrary.API
                 MaterialUtils.ApplyPrecursorMaterials(cachedPrefab.SearchChild("Projector_Bottom"), 8f);
 
                 Renderer posterRenderer = cachedPrefab.SearchChild("PosterCanvas").GetComponent<Renderer>();
-                var posterTexture = GetPosterTexture();
+                var posterTexture = GetPosterTexture;
                 if (posterTexture != null) //If no texture is given, show the template texture, rather than just the plain white texture which results from setting a texture to null
                 { 
                     posterRenderer.material.SetTexture("_MainTex", posterTexture);

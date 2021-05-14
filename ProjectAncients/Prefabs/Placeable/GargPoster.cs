@@ -12,14 +12,8 @@ namespace ProjectAncients.Prefabs
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => TechType.None;
 
-        public override PosterDimensions GetPosterDimensions()
-        {
-            return PosterDimensions.Landscape;
-        }
+        public override Texture2D GetPosterTexture => Mod.assetBundle.LoadAsset<Texture2D>("GargPoster");
 
-        public override Texture2D GetPosterTexture()
-        {
-            return Mod.assetBundle.LoadAsset<Texture2D>("GargPoster");
-        }
+        public override PosterDimensions GetPosterDimensions => PosterDimensions.Landscape;
     }
 }
