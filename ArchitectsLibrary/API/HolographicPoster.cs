@@ -30,7 +30,7 @@ namespace ArchitectsLibrary.API
             };
         }
 
-        public override EquipmentType EquipmentType => EquipmentType.Hand;
+        public override sealed EquipmentType EquipmentType => EquipmentType.Hand;
 
         /// <summary>
         /// The recipe for this poster. Is by default 2 titanium and 1 emerald.
