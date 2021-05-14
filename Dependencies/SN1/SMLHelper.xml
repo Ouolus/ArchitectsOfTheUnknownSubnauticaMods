@@ -575,7 +575,11 @@
             Override with the category within the group in the PDA blueprints where this item appears.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SMLHelper.V2.Assets.PdaItem.UnlockedAtStart" -->
+        <member name="P:SMLHelper.V2.Assets.PdaItem.UnlockedAtStart">
+            <summary>
+            Override this property to assign whether or not the <see cref="T:TechType"/> should be unlocked at the start, defaulted to <c><see cref="P:SMLHelper.V2.Assets.PdaItem.RequiredForUnlock"/> == <see cref="F:TechType.None"/></c>
+            </summary>
+        </member>
         <member name="P:SMLHelper.V2.Assets.PdaItem.DiscoverMessage">
             <summary>
             Message which should be shown when the item is unlocked. <para/>
@@ -642,6 +646,12 @@
             By default this will be 1x1. Override to change the size.
             </summary>
         </member>
+        <member name="P:SMLHelper.V2.Assets.Spawnable.CoordinatedSpawns">
+            <summary>
+            Returns the list of <see cref="T:UnityEngine.Vector3"/>s that specify the prefab's Coordinated Spawns.<br/>
+            By default this will be null.
+            </summary>
+        </member>
         <member name="P:SMLHelper.V2.Assets.Spawnable.BiomesToSpawnIn">
             <summary>
             Returns the List of BiomeData that handles what Biomes this prefab will spawn, how probable it is to spawn there and how many per spawn.
@@ -652,6 +662,11 @@
             <summary>
             Returns the <see cref="T:UWE.WorldEntityInfo"/> of this object if it has one.
             By default this will be null. Override to change this.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Assets.Spawnable.HasSprite">
+            <summary>
+            Gets a value indicating whether if we should be looking for a Sprite when NOT overriding <see cref="M:SMLHelper.V2.Assets.Spawnable.GetItemSprite"/>.
             </summary>
         </member>
         <member name="M:SMLHelper.V2.Assets.Spawnable.#ctor(System.String,System.String,System.String)">
@@ -1087,6 +1102,146 @@
             <param name="techType">The item ID.</param>
             <param name="amount">The number of instances of this item required for the recipe.</param>
         </member>
+        <member name="T:SMLHelper.V2.Handlers.BackgroundTypeHandler">
+            <summary>
+            A handler for everything related to creating new BackgroundTypes.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.BackgroundTypeHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.SMLHelper#V2#Interfaces#IBackgroundTypeHandler#AddBackgroundType(System.String,Atlas.Sprite)">
+            <summary>
+            adds a new <see cref="T:CraftData.BackgroundType"/> into the game.
+            </summary>
+            <param name="backgroundTypeName">the name of the BackgroundType, should not contain special characters.</param>
+            <param name="backgroundSprite">The sprite for this BackgroundType.</param>
+            <returns>The new <see cref="T:CraftData.BackgroundType"/> that's created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.SMLHelper#V2#Interfaces#IBackgroundTypeHandler#TryGetModdedBackgroundType(System.String,CraftData.BackgroundType@)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache and outputs its <see cref="T:CraftData.BackgroundType" /> value when found.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType</param>
+            <param name="modBackgroundType">The BackgroundType enum value of the modded. Defaults to <see cref="F:CraftData.BackgroundType.Normal" /> when the item was not found.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.SMLHelper#V2#Interfaces#IBackgroundTypeHandler#ModdedBackgroundTypeExists(System.String)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.AddBackgroundType(System.String,Atlas.Sprite)">
+            <summary>
+            adds a new <see cref="T:CraftData.BackgroundType"/> into the game.
+            </summary>
+            <param name="backgroundTypeName">the name of the BackgroundType, should not contain special characters.</param>
+            <param name="backgroundSprite">The sprite for this BackgroundType.</param>
+            <returns>The new <see cref="T:CraftData.BackgroundType"/> that's created.</returns>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.TryGetModdedBackgroundType(System.String,CraftData.BackgroundType@)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache and outputs its <see cref="T:CraftData.BackgroundType" /> value when found.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType</param>
+            <param name="modBackgroundType">The BackgroundType enum value of the modded. Defaults to <see cref="F:CraftData.BackgroundType.Normal" /> when the item was not found.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.BackgroundTypeHandler.ModdedBackgroundTypeExists(System.String)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler">
+            <summary>
+            a Handler that handles and registers Coordinated (<see cref="T:UnityEngine.Vector3"/> spawns).
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.SMLHelper#V2#Interfaces#ICoordinatedSpawnHandler#RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.List{UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesToSpawnTo">the coordinates the <see cref="T:TechType"/> should spawn to</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.SMLHelper#V2#Interfaces#ICoordinatedSpawnHandler#RegisterCoordinatedSpawn(SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Registers a Coordinated Spawn
+            </summary>
+            <param name="spawnInfo">the SpawnInfo to spawn</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.SMLHelper#V2#Interfaces#ICoordinatedSpawnHandler#RegisterCoordinatedSpawns(System.Collections.Generic.List{SMLHelper.V2.Handlers.SpawnInfo})">
+            <summary>
+            registers Many Coordinated Spawns.
+            </summary>
+            <param name="spawnInfos">The SpawnInfos to spawn.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Registers a Coordinated Spawn
+            </summary>
+            <param name="spawnInfo">the SpawnInfo to spawn</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.RegisterCoordinatedSpawns(System.Collections.Generic.List{SMLHelper.V2.Handlers.SpawnInfo})">
+            <summary>
+            registers Many Coordinated Spawns.
+            </summary>
+            <param name="spawnInfos">The SpawnInfo to spawn.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.List{UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesToSpawnTo">the coordinates the <see cref="T:TechType"/> should spawn to</param>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.SpawnInfo">
+            <summary>
+            a basic class that provides enough info for the <see cref="T:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler"/> System to function.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(TechType,UnityEngine.Vector3)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="techType">TechType to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(System.String,UnityEngine.Vector3)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="classId">ClassID to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(TechType,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="techType">TechType to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+            <param name="rotation">Rotation to spawn at.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(System.String,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="classId">ClassID to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+            <param name="rotation">Rotation to spawn at.</param>
+        </member>
         <member name="T:SMLHelper.V2.Handlers.PingHandler">
             <summary>
             A handler related to PingTypes
@@ -1178,6 +1333,93 @@
             <param name="isEdible">set it to <see langword="true" /> if the item is edible and has the <see cref="T:Eatable"/> component attached to it. 
             <para>defaults to <see langword="false" /></para>
             </param>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.TechCategoryHandler">
+            <summary>
+            A handler class for everything related to creating new TechCategories.
+            </summary>
+            <seealso cref="T:SMLHelper.V2.Interfaces.ITechCategoryHandler" />
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.TechCategoryHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.AddTechCategory(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechCategory" /> into the game.
+            </summary>
+            <param name="techCatagoryName">The name of the TechCategory. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechCategory. Can be anything.</param>
+            <returns>
+            The new <see cref="T:TechCategory" /> that is created.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.ModdedTechCategoryExists(System.String)">
+            <summary>
+            Safely looks for a modded category from another mod in the SMLHelper TechCategoryCache.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.TryGetModdedTechCategory(System.String,TechCategory@)">
+            <summary>
+            Safely looks for a modded category from another mod in the SMLHelper TechCategoryCache and outputs its <see cref="T:TechCategory" /> value when found.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <param name="modTechCategory">The TechCategory enum value of the modded. Defaults to <see cref="F:TechCategory.Misc" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechCategoryHandler.TryRegisterTechCategoryToTechGroup(TechGroup,TechCategory)">
+            <summary>
+            Registers the TechCategory to a TechGroup in CraftData.groups.
+            </summary>
+            <param name="techGroup">The tech group.</param>
+            <param name="techCategory">The tech category.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.TechGroupHandler">
+            <summary>
+            A handler class for everything related to creating new TechGroups.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.TechGroupHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.AddTechGroup(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechGroup" /> into the game.
+            </summary>
+            <param name="techGroupName">The name of the TechGroup. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechGroup. Can be anything.</param>
+            <returns>
+            The new <see cref="T:TechGroup" /> that is created.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.ModdedTechGroupExists(System.String)">
+            <summary>
+            Safely looks for a modded group from another mod in the SMLHelper TechGroupCache.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.TechGroupHandler.TryGetModdedTechGroup(System.String,TechGroup@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache and outputs its <see cref="T:TechGroup" /> value when found.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <param name="modTechGroup">The TechGroup enum value of the modded. Defaults to <see cref="F:TechGroup.Uncategorized" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
         </member>
         <member name="T:SMLHelper.V2.Handlers.BioReactorHandler">
             <summary>
@@ -1335,7 +1577,7 @@
         <member name="M:SMLHelper.V2.Handlers.CraftDataHandler.SMLHelper#V2#Interfaces#ICraftDataHandler#AddToGroup(TechGroup,TechCategory,TechType)">
             <summary>
             Allows you to add items to the game's internal grouping system.
-            Required if you want to make buildable items show up in the Habitat Builder.
+            Required if you want to make buildable items show up in the Habitat Builder or show in the Blueprints Tab of the PDA.
             </summary>
             <param name="group">The TechGroup you want to add your TechType to.</param>
             <param name="category">The TechCategory (in the TechGroup) you want to add your TechType to.</param>
@@ -1344,7 +1586,7 @@
         <member name="M:SMLHelper.V2.Handlers.CraftDataHandler.SMLHelper#V2#Interfaces#ICraftDataHandler#AddToGroup(TechGroup,TechCategory,TechType,TechType)">
             <summary>
             Allows you to add items to the game's internal grouping system.
-            Required if you want to make buildable items show up in the Habitat Builder.
+            Required if you want to make buildable items show up in the Habitat Builder or show in the Blueprints Tab of the PDA.
             </summary>
             <param name="group">The TechGroup you want to add your TechType to.</param>
             <param name="category">The TechCategory (in the TechGroup) you want to add your TechType to.</param>
@@ -2749,6 +2991,58 @@
             Main entry point for all calls to this handler.
             </summary>
         </member>
+        <member name="T:SMLHelper.V2.Interfaces.IBackgroundTypeHandler">
+            <summary>
+            A handler interface for everything related to creating new BackgroundTypes.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.IBackgroundTypeHandler.AddBackgroundType(System.String,Atlas.Sprite)">
+            <summary>
+            adds a new <see cref="T:CraftData.BackgroundType"/> into the game.
+            </summary>
+            <param name="backgroundTypeName">the name of the BackgroundType, should not contain special characters.</param>
+            <param name="backgroundSprite">The sprite for this BackgroundType.</param>
+            <returns>The new <see cref="T:CraftData.BackgroundType"/> that's created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.IBackgroundTypeHandler.TryGetModdedBackgroundType(System.String,CraftData.BackgroundType@)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache and outputs its <see cref="T:CraftData.BackgroundType" /> value when found.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType</param>
+            <param name="modBackgroundType">The BackgroundType enum value of the modded. Defaults to <see cref="F:CraftData.BackgroundType.Normal" /> when the item was not found.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.IBackgroundTypeHandler.ModdedBackgroundTypeExists(System.String)">
+            <summary>
+            Safely looks for a modded Background Type from another mod in the SMLHelper BackgroundTypeCache.
+            </summary>
+            <param name="backgroundTypeString">The string used to define the BackgroundType.</param>
+            <returns><see langword="true"/> if the item was found; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ICoordinatedSpawnHandler">
+            <summary>
+            a Handler interface that handles and registers Coordinated (<see cref="T:UnityEngine.Vector3"/> spawns).
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICoordinatedSpawnHandler.RegisterCoordinatedSpawn(SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Registers a Coordinated Spawn
+            </summary>
+            <param name="spawnInfo">the SpawnInfo to spawn</param>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICoordinatedSpawnHandler.RegisterCoordinatedSpawns(System.Collections.Generic.List{SMLHelper.V2.Handlers.SpawnInfo})">
+            <summary>
+            registers Many Coordinated Spawns.
+            </summary>
+            <param name="spawnInfos">The SpawnInfos to spawn.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICoordinatedSpawnHandler.RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.List{UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesToSpawnTo">the coordinates the <see cref="T:TechType"/> should spawn to</param>
+        </member>
         <member name="T:SMLHelper.V2.Interfaces.IModOptionAttribute">
             <summary>
             Defines properties for <see cref="T:SMLHelper.V2.Options.Attributes.ModOptionAttribute"/> derivatives to implement for the purpose of holding
@@ -2905,6 +3199,78 @@
             <param name="isEdible">set it to <see langword="true" /> if the item is edible and has the <see cref="T:Eatable"/> component attached to it. 
             <para>defaults to <see langword="false" /></para>
             </param>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ITechCategoryHandler">
+            <summary>
+            A handler class for everything related to creating new TechCategorys.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.AddTechCategory(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechCategory"/> into the game. 
+            </summary>
+            <param name="techCatagoryName">The name of the TechCategory. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechCategory. Can be anything.</param>
+            <returns>The new <see cref="T:TechCategory"/> that is created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.TryGetModdedTechCategory(System.String,TechCategory@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechCategoryCache and outputs its <see cref="T:TechCategory" /> value when found.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <param name="modTechCategory">The TechCategory enum value of the modded. Defaults to <see cref="F:TechCategory.Misc" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.ModdedTechCategoryExists(System.String)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechCategoryCache.
+            </summary>
+            <param name="techCategoryString">The string used to define the techcategory.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechCategoryHandler.TryRegisterTechCategoryToTechGroup(TechGroup,TechCategory)">
+            <summary>
+            Registers the TechCategory to a TechGroup.
+            </summary>
+            <param name="techGroup">The tech group.</param>
+            <param name="techCategory">The tech category.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ITechGroupHandler">
+            <summary>
+            A handler class for everything related to creating new TechGroups.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.AddTechGroup(System.String,System.String)">
+            <summary>
+            Adds a new <see cref="T:TechGroup"/> into the game. 
+            </summary>
+            <param name="techGroupName">The name of the TechGroup. Should not contain special characters.</param>
+            <param name="displayName">The display name of the TechGroup. Can be anything.</param>
+            <returns>The new <see cref="T:TechGroup"/> that is created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.TryGetModdedTechGroup(System.String,TechGroup@)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache and outputs its <see cref="T:TechGroup" /> value when found.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <param name="modTechGroup">The TechGroup enum value of the modded. Defaults to <see cref="F:TechGroup.Uncategorized" /> when the item was not found.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ITechGroupHandler.ModdedTechGroupExists(System.String)">
+            <summary>
+            Safely looks for a modded item from another mod in the SMLHelper TechGroupCache.
+            </summary>
+            <param name="techGroupString">The string used to define the techgroup.</param>
+            <returns>
+              <c>True</c> if the item was found; Otherwise <c>false</c>.
+            </returns>
         </member>
         <member name="T:SMLHelper.V2.Interfaces.IBioReactorHandler">
             <summary>
@@ -4234,6 +4600,36 @@
             a handler for common uses to the Survival component
             </summary>
         </member>
+        <member name="P:SMLHelper.V2.Handler.CoordinatedSpawnHandler">
+            <summary>
+            A handler to making coordinated Vector3 spawns ingame.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.TechGroupHandler">
+            <summary>
+            A handler class for adding custom TechGroups into the game.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.TechCategoryHandler">
+            <summary>
+            A handler class for adding custom TechCategories into the game.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.ConsoleCommandsHandler">
+            <summary>
+            A handler class for registering your custom console commands.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.PingHandler">
+            <summary>
+            A handler related to PingTypes
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.BackgroundTypeHandler">
+            <summary>
+            A handler for everything related to creating new BackgroundTypes.
+            </summary>
+        </member>
         <member name="T:SMLHelper.V2.Initializer">
             <summary>
             WARNING: This class is for use only by QModManager.
@@ -4611,9 +5007,9 @@
             </summary>
             <param name="filePathToImage">The path to the image file.</param>
             <param name="format">
-            <para>The texture format. By default, this uses <see cref="F:UnityEngine.TextureFormat.BC7" />.</para>
-            <para>https://docs.unity3d.com/ScriptReference/TextureFormat.BC7.html</para>
-            <para>Don't change this unless you really know what you're doing.</para>
+            The texture format. By default, this uses <see cref="F:UnityEngine.TextureFormat.BC7" />.<br/>
+            https://docs.unity3d.com/ScriptReference/TextureFormat.BC7.html <br/>
+            Don't change this unless you really know what you're doing.
             </param>
             <returns>Will return a new <see cref="T:Atlas.Sprite"/> instance if the file exists; Otherwise returns null.</returns>
         </member>
