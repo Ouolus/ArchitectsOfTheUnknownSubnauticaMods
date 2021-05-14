@@ -52,7 +52,7 @@ namespace ProjectAncients.Patches
 
         static IEnumerator Roar()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5f+35f);
         
             var gameObject = new GameObject("SunbeamRoarEvent");
             gameObject.transform.position = new(170, 0, 1696);
