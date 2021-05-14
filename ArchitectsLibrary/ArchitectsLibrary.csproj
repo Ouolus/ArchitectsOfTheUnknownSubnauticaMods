@@ -178,7 +178,6 @@
     <Compile Include="Utility\HashDictionary.cs" />
     <Compile Include="Utility\ItemUtils.cs" />
     <Compile Include="Utility\MaterialUtils.cs" />
-    <Compile Include="Utility\ReflectionUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mod_SN1.json" />
