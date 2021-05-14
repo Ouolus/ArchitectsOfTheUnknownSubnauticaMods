@@ -20,6 +20,13 @@ namespace ProjectAncients.Prefabs.AlienBase
         public override void CustomizePrefab()
         {
             prefab.EnsureComponent<VoidBaseReveal>();
+            foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+            {
+                foreach(Material mat in renderer.materials)
+                {
+                    mat.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
+                }
+            }
         }
     }
 }
