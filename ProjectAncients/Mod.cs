@@ -14,6 +14,8 @@ using ProjectAncients.Prefabs.Modules;
 using System.Collections;
 using System.Collections.Generic;
 using UWE;
+using ProjectAncients.Prefabs.Equipment;
+using ArchitectsLibrary.API;
 
 namespace ProjectAncients
 {
@@ -74,6 +76,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab cachePingsTerminal;
         public static DataTerminalPrefab spamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
+        public static DataTerminalPrefab warpCannonTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -88,9 +91,14 @@ namespace ProjectAncients
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
 
+        public static GargPoster gargPoster;
+
+        public static WarpCannonPrefab warpCannon;
+
         public static RuinedGuardianPrefab prop_ruinedGuardian;
 
         public static TechType architectElectricityMasterTech;
+        public static TechType warpMasterTech;
 
         /// <summary>
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
@@ -133,6 +141,7 @@ namespace ProjectAncients
         private const string ency_eggRoom = "PrecursorEggRoomEncy";
         private const string ency_aquariumSkeleton = "BabyGargSkeletonEncy";
         private const string ency_blackHole = "ResearchBaseSingularityEncy";
+        private const string ency_warpCannonTerminal = "WarpCannonTerminalEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -163,6 +172,18 @@ namespace ProjectAncients
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
+
+            //This stuff uses Architects Library resources so it must be patched AFTER that library
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
+            warpCannonTerminal.Patch();
+
+            gargPoster = new GargPoster();
+            gargPoster.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
         }
         [QModPatch]
         public static void Patch()
@@ -185,17 +206,21 @@ namespace ProjectAncients
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
+            warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
             #endregion
 
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
 
             superDecoy = new();
             superDecoy.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
 
             #region Creatures
@@ -285,7 +310,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_precingot, modEncyPath_relics, "Alien Structural Alloy", "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.", "PrecIngot_Popup", "PrecIngot_Ency");
 
-            PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This Data Terminal contains a map with the co-ordinates of many locations, with data related to each. These co-ordinates have been uploaded to your PDA.\n\nLocational data:\n- Sanctuary Alpha: Found in the depths of a barren biome. Requires a purple tablet.\n- Sanctuary Beta: Found deep underwater in a dark cave system. Requires a purple tablet.\n- Sanctuary Gamma: Found near a mysterious crater. Requires a purple tablet.\n- Laboratory: Found in a frigid cave system. Requires an orange tablet.\n\nCo-ordinates that are unusually pointing to the equator have not been uploaded. Traveling that far of a distance would be close to impossible.", "Popup_Blue", "BlueGlyph_Ency");
+            PatchEncy(ency_cachePings, modEncyPath_terminalInfo, "Caches Location Data", "This Data Terminal contains a map with the co-ordinates of many locations, with data related to each. These co-ordinates have been uploaded to your PDA.\n\nLocational data:\n- Sanctuary Alpha: Found in the depths of a barren biome. Requires a purple tablet.\n- Sanctuary Beta: Found deep underwater in a dark cave system. Requires a purple tablet.\n- Sanctuary Cappa: Found near a mysterious crater. Requires a purple tablet.\n- Laboratory: Found in a frigid cave system. Requires an orange tablet.\n\nCo-ordinates that are unusually pointing to the equator have not been uploaded. Traveling that far of a distance would be close to impossible.", "Popup_Blue", "BlueGlyph_Ency");
 
             PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.", "PrecRifle_Popup", "PrecRifle_Ency");
 
@@ -300,6 +325,8 @@ namespace ProjectAncients
             PatchEncy(ency_aquariumSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
 
             PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
+
+            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
 
             #endregion
 
@@ -420,7 +447,7 @@ namespace ProjectAncients
             researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", ency_researchBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             researchBaseTerminal.Patch();
 
-            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
+            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
 
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
@@ -548,6 +575,6 @@ namespace ProjectAncients
             });
         }
 
-        private const string alienSpamEncyText = "This data terminal consists primarily of text in several unknown languages. Partially translated text is displayed below:\n\nTransfer of \u2580\u2596\u2517\u259b\u2584\u2596 failed. Sector Zero study of \u259c\u259a\u2523 \u259c\u259a\u2517\u2523\u2517\u252b\u2513\u250f\u2513 terminated for \u259b\u2584\u2596\u2505\u2517\u2596.\n\n\u2523\u2517\u250f\u259b\u2584\u2596\u259c\u250f\u2523 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523.\n\nVaccine progress: Awaiting termination.\n\nEmperor Apparatus status: Functioning.\n\n\u2523\u2517\u2596\u2503\u2580\u259a\u2597\u250f\u250f\u2513. \u2596\u251b\u2580\u2517\u259e\u2503\u250f\u2584 distress \u2580\u2596\u2517\u259b\u2596\u259c\u259a\u2523 data \u2505\u2596\u2517\u2501\u2596 \u2596\u2513\u252b\u259e\u2523 \u259a \u259b\u2584\u2505\u2517\u2596 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523 \u259a\u251b\u2598\u259e\u2501\u2596\u2505 \u259e\u2523\u2517\u2596\u2517\u2523.\n\n'Architects of the \u259a\u251b\u2598\u259e' status: missing. \u2501\u2596\u2505.\n\n\u2580\u2596\u2517\u259b\u259a\u2523 \u259c\u259a\u2517 \u259c\u259a.\n\nSpecimen of the Ancients terminated.";
+        private const string alienSpamEncyText = "This data terminal consists primarily of text in several unknown languages. Partially translated text is displayed below:\n\nTransfer of \u2580\u2596\u2517\u259b\u2584\u2596 failed. Sector Zero study of \u259c\u259a\u2523 \u259c\u259a\u2517\u2523\u2517\u252b\u2513\u250f\u2513 terminated for \u259b\u2584\u2596\u2505\u2517\u2596.\n\n\u2523\u2517\u250f\u259b\u2584\u2596\u259c\u250f\u2523 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523.\n\nVaccine progress: Awaiting termination.\n\nEmperor Apparatus status: Functioning.\n\n\u2523\u2517\u2596\u2503\u2580\u259a\u2597\u250f\u250f\u2513. \u2596\u251b\u2580\u2517\u259e\u2503\u250f\u2584 distress \u2580\u2596\u2517\u259b\u2596\u259c\u259a\u2523 data \u2505\u2596\u2517\u2501\u2596 \u2596\u2513\u252b\u259e\u2523 \u259a \u259b\u2584\u2505\u2517\u2596 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523 \u259a\u251b\u2598\u259e\u2501\u2596\u2505 \u259e\u2523\u2517\u2596\u2517\u2523.\n\n'Architects of the \u259a\u251b\u2598\u259e' status: missing. \u2501\u2596\u2505.\n\n\u2580\u2596\u2517\u259b\u259a\u2523 \u259c\u259a\u2517 \u259c\u259a.\n\nSpecimen of the Ancients terminated. Error: termination failed.";
     }
 }

@@ -35,6 +35,10 @@ namespace ArchitectsLibrary.Utility
             var newShader = Shader.Find("MarmosetUBER");
             for (int i = 0; i < renderers.Length; i++)
             {
+                if(renderers[i] is ParticleSystemRenderer)
+                {
+                    continue;
+                }
                 for (int j = 0; j < renderers[i].materials.Length; j++)
                 {
                     Material material = renderers[i].materials[j];
@@ -103,6 +107,10 @@ namespace ArchitectsLibrary.Utility
         {
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
             {
+                if(renderer is ParticleSystemRenderer)
+                {
+                    continue;
+                }
                 for (int i = 0; i < renderer.materials.Length; i++)
                 {
                     Material material = renderer.materials[i];

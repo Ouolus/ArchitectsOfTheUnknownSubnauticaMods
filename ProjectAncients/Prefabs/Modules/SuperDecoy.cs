@@ -23,9 +23,7 @@ namespace ProjectAncients.Prefabs.Modules
 
         public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
 
-        public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
-
-        public override string[] StepsToFabricatorTab { get; } = { "Machines" };
+        public override float CraftingTime => 7f;
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -73,6 +71,9 @@ namespace ProjectAncients.Prefabs.Modules
             obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
             obj.GetComponent<Pickupable>().isPickupable = true;
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
+            obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
+            obj.GetComponentInChildren<VFXFabricating>(true).localMinY = -0.36f;
+            obj.GetComponent<WorldForces>().underwaterGravity = 0f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
@@ -108,6 +109,9 @@ namespace ProjectAncients.Prefabs.Modules
             obj.GetComponent<CyclopsDecoy>().lifeTime = float.MaxValue;
             obj.GetComponent<Pickupable>().isPickupable = true;
             Object.DestroyImmediate(obj.GetComponentInChildren<GenericHandTarget>());
+            obj.GetComponentInChildren<VFXFabricating>(true).eulerOffset = new Vector3(0f, 90f, 270f);
+            obj.GetComponentInChildren<VFXFabricating>(true).localMinY = -0.36f;
+            obj.GetComponent<WorldForces>().underwaterGravity = 0f;
 
             prefab.SetActive(false);
             obj.SetActive(true);
