@@ -3,6 +3,7 @@ using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using ArchitectsLibrary.Utility;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ArchitectsLibrary.API
 {
@@ -139,6 +140,12 @@ namespace ArchitectsLibrary.API
                 }
             }
             return cachedPrefab;
+        }
+
+        public override sealed IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            gameObject.Set(GetGameObject());
+            yield return null;
         }
 
         /// <summary>
