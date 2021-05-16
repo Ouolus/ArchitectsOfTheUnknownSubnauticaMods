@@ -185,7 +185,7 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
-        public override bool OnAltDown()
+        /*public override bool OnAltDown()
         {
             if (Time.time > timeCanUseAgain)
             {
@@ -196,7 +196,7 @@ namespace ProjectAncients.Mono.Equipment
                 return true;
             }
             return false;
-        }
+        }*/
 
         public override string animToolName => "stasisrifle";
     }
