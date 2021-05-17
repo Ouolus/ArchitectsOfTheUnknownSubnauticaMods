@@ -48,7 +48,13 @@ namespace ArchitectsLibrary
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
+
         static BuildableColumn buildableColumn;
+        static BuildableArchway buildableArchway;
+        static BuildablePlatform buildablePlatform;
+        static BuildableLight1 buildableLight1;
+        static BuildableLight2 buildableLight2;
+
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -187,6 +193,19 @@ namespace ArchitectsLibrary
         {
             buildableColumn = new BuildableColumn();
             buildableColumn.Patch();
+
+            buildableArchway = new BuildableArchway();
+            buildableArchway.Patch();
+
+            buildablePlatform = new BuildablePlatform();
+            buildablePlatform.Patch();
+
+            buildableLight1 = new BuildableLight1();
+            buildableLight1.Patch();
+
+            buildableLight2 = new BuildableLight2();
+            buildableLight2.Patch();
+
         }
     }
 }

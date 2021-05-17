@@ -21,14 +21,42 @@ namespace ArchitectsLibrary.Buildables
             return new TechData(new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
         }
 
-        public override TechCategory CategoryForPDA => TechCategory.ExteriorModule;
-        public override TechGroup GroupForPDA => TechGroup.ExteriorModules;
+        public override TechCategory CategoryForPDA
+        {
+            get
+            {
+                if (ExteriorProp)
+                {
+                    return TechCategory.ExteriorOther;
+                }
+                else
+                {
+                    return TechCategory.Misc;
+                }
+            }
+        }
+        public override TechGroup GroupForPDA
+        {
+            get
+            {
+                if (ExteriorProp)
+                {
+                    return TechGroup.ExteriorModules;
+                }
+                else
+                {
+                    return TechGroup.InteriorModules;
+                }
+            }
+        }
 
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => AUHandler.PrecursorAlloyIngotTechType;
 
         protected abstract OrientedBounds[] GetBounds { get; }
         protected abstract string GetOriginalClassId { get; }
+
+        protected abstract bool ExteriorProp { get; }
 
         public override GameObject GetGameObject()
         {
@@ -55,12 +83,19 @@ namespace ArchitectsLibrary.Buildables
             con.allowedOnWall = conSettings.AllowedOnWall;
             con.allowedOnGround = conSettings.AllowedOnGround;
             con.allowedOnCeiling = conSettings.AllowedOnCeiling;
+            con.allowedOnConstructables = conSettings.AllowedOnConstructables;
             con.rotationEnabled = conSettings.RotationEnabled;
+            con.forceUpright = conSettings.ForceUpright;
+            con.placeMinDistance = conSettings.PlaceMinDistance;
+            con.placeDefaultDistance = conSettings.PlaceDefaultDistance;
+            con.placeMaxDistance = conSettings.PlaceMaxDistance;
             ApplyExtraConstructableSettings(con);
             foreach(var bounds in GetBounds)
             {
                 buildablePrefab.AddComponent<ConstructableBounds>().bounds = bounds;
             }
+            EditPrefab(buildablePrefab);
+            buildablePrefab.SetActive(true);
 
             return buildablePrefab;
         }
@@ -68,6 +103,11 @@ namespace ArchitectsLibrary.Buildables
         protected abstract ConstructableSettings GetConstructableSettings { get; }
 
         protected virtual void ApplyExtraConstructableSettings(Constructable constructable)
+        {
+
+        }
+
+        protected virtual void EditPrefab(GameObject prefab)
         {
 
         }
@@ -89,9 +129,14 @@ namespace ArchitectsLibrary.Buildables
             internal bool AllowedOnWall;
             internal bool AllowedOnGround;
             internal bool AllowedOnCeiling;
+            internal bool AllowedOnConstructables;
             internal bool RotationEnabled;
+            internal bool ForceUpright;
+            internal float PlaceDefaultDistance;
+            internal float PlaceMinDistance;
+            internal float PlaceMaxDistance;
 
-            public ConstructableSettings(bool allowedInBase, bool allowedInSub, bool allowedOutside, bool allowedOnWall, bool allowedOnGround, bool allowedOnCeiling, bool rotationEnabled)
+            public ConstructableSettings(bool allowedInBase, bool allowedInSub, bool allowedOutside, bool allowedOnWall, bool allowedOnGround, bool allowedOnCeiling, bool allowedOnConstructables, bool rotationEnabled = true, bool forceUpright = false, float placeDefaultDistance = 2f, float placeMinDistance = 1.2f, float placeMaxDistance = 5f)
             {
                 AllowedInBase = allowedInBase;
                 AllowedInSub = allowedInSub;
@@ -99,7 +144,12 @@ namespace ArchitectsLibrary.Buildables
                 AllowedOnWall = allowedOnWall;
                 AllowedOnGround = allowedOnGround;
                 AllowedOnCeiling = allowedOnCeiling;
+                AllowedOnConstructables = allowedOnConstructables;
                 RotationEnabled = rotationEnabled;
+                ForceUpright = forceUpright;
+                PlaceDefaultDistance = placeDefaultDistance;
+                PlaceMinDistance = placeMinDistance;
+                PlaceMaxDistance = placeMaxDistance;
             }
         }
     }
