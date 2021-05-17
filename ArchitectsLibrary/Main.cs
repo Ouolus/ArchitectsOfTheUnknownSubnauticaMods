@@ -128,6 +128,8 @@ namespace ArchitectsLibrary
             }
 
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType });
+
+            PatchBuildables();
         }
 
         static void PatchItems()

@@ -41,6 +41,7 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<PrefabIdentifier>(buildablePrefab);
             DeleteChildComponentIfExists<TechTag>(buildablePrefab);
             DeleteChildComponentIfExists<SkyApplier>(buildablePrefab);
+            DeleteChildComponentIfExists<ConstructionObstacle>(buildablePrefab);
             buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
             buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
