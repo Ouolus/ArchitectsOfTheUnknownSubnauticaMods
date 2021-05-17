@@ -55,6 +55,7 @@ namespace ArchitectsLibrary
         static BuildableLight1 buildableLight1;
         static BuildableLight2 buildableLight2;
         static BuildableLight3 buildableLight3;
+
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
 
