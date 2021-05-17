@@ -44,12 +44,12 @@ namespace ArchitectsLibrary.Handlers
         public static TechType DrillableSapphireTechType { get; internal set; }
 
         /// <summary>
-        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 2 sapphire.
         /// </summary>
         public static TechType ReinforcedGlassTechType { get; internal set; }
 
         /// <summary>
-        /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 1 reinforced glass and 1 emerald.
         /// </summary>
         public static TechType AlienCompositeGlassTechType { get; internal set; }
 
