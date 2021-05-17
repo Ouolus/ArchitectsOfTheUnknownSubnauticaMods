@@ -65,6 +65,7 @@ namespace ArchitectsLibrary
         static BuildableMicroscope buildableMicroscope;
         static BuildableSonicDeterrent buildableSonicDeterrent;
         static BuildableIonCubePedestal buildableIonCubePedestal;
+        static BuildableColumnSmall buildableColumnSmall;
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
 
@@ -254,6 +255,9 @@ namespace ArchitectsLibrary
 
             buildableIonCubePedestal = new BuildableIonCubePedestal();
             buildableIonCubePedestal.Patch();
+
+            buildableColumnSmall = new BuildableColumnSmall();
+            buildableColumnSmall.Patch();
         }
     }
 }
