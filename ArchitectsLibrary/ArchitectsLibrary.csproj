@@ -170,7 +170,7 @@
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Items\ReskinSpawnable.cs" />
-    <Compile Include="Items\PrecursorFabricator.cs" />
+    <Compile Include="Buildables\PrecursorFabricator.cs" />
     <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
