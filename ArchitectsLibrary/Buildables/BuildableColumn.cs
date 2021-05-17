@@ -14,6 +14,6 @@ namespace ArchitectsLibrary.Buildables
 
         protected override string GetOriginalClassId => "640f57a6-6436-4132-a9bb-d914f3e19ef5";
 
-        protected override bool ExteriorProp => true;
+        protected override bool ExteriorOnly => true;
     }
 }

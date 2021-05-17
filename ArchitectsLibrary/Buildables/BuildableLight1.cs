@@ -20,6 +20,6 @@ namespace ArchitectsLibrary.Buildables
             prefab.transform.GetChild(0).transform.eulerAngles = new Vector3(180f, 0f, 0f);
         }
 
-        protected override bool ExteriorProp => true;
+        protected override bool ExteriorOnly => true;
     }
 }

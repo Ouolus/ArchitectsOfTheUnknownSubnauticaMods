@@ -25,7 +25,7 @@ namespace ArchitectsLibrary.Buildables
         {
             get
             {
-                if (ExteriorProp)
+                if (ExteriorOnly)
                 {
                     return TechCategory.ExteriorOther;
                 }
@@ -39,7 +39,7 @@ namespace ArchitectsLibrary.Buildables
         {
             get
             {
-                if (ExteriorProp)
+                if (ExteriorOnly)
                 {
                     return TechGroup.ExteriorModules;
                 }
@@ -56,7 +56,7 @@ namespace ArchitectsLibrary.Buildables
         protected abstract OrientedBounds[] GetBounds { get; }
         protected abstract string GetOriginalClassId { get; }
 
-        protected abstract bool ExteriorProp { get; }
+        protected abstract bool ExteriorOnly { get; }
 
         public override GameObject GetGameObject()
         {

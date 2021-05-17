@@ -20,6 +20,6 @@ namespace ArchitectsLibrary.Buildables
             prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, -0.43f, 0f);
         }
 
-        protected override bool ExteriorProp => true;
+        protected override bool ExteriorOnly => true;
     }
 }

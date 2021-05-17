@@ -55,6 +55,8 @@ namespace ArchitectsLibrary
         static BuildableLight1 buildableLight1;
         static BuildableLight2 buildableLight2;
         static BuildableLight3 buildableLight3;
+        static BuildableLight4 buildableLight4;
+        static BuildableLight5 buildableLight5;
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -209,6 +211,12 @@ namespace ArchitectsLibrary
 
             buildableLight3 = new BuildableLight3();
             buildableLight3.Patch();
+
+            buildableLight4 = new BuildableLight4();
+            buildableLight4.Patch();
+
+            buildableLight5 = new BuildableLight5();
+            buildableLight5.Patch();
 
         }
     }

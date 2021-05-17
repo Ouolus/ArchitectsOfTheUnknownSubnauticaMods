@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableLight3 : GenericPrecursorDecoration
     {
-        public BuildableLight3() : base("BuildablePrecursorLight2", "Alien Light", "A decorational light.")
+        public BuildableLight3() : base("BuildablePrecursorLight3", "Alien Light", "A decorational light.")
         {
         }
 
@@ -23,6 +23,6 @@ namespace ArchitectsLibrary.Buildables
             light.range = 10f;
         }
 
-        protected override bool ExteriorProp => true;
+        protected override bool ExteriorOnly => true;
     }
 }

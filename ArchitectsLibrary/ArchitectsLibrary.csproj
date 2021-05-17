@@ -126,6 +126,9 @@
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableArchway.cs" />
+    <Compile Include="Buildables\BuildableLight5.cs" />
+    <Compile Include="Buildables\BuildableLight4.cs" />
+    <Compile Include="Buildables\BuildableLight3.cs" />
     <Compile Include="Buildables\BuildableLight2.cs" />
     <Compile Include="Buildables\BuildableLight1.cs" />
     <Compile Include="Buildables\BuildablePlatform.cs" />
