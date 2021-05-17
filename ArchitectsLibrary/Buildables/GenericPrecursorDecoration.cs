@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected abstract bool ExteriorOnly { get; }
 
+#if SN1
         public override GameObject GetGameObject()
         {
             GameObject buildablePrefab = new GameObject(ClassID);
@@ -103,6 +105,56 @@ namespace ArchitectsLibrary.Buildables
 
             return buildablePrefab;
         }
+#else
+        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            GameObject buildablePrefab = new GameObject(ClassID);
+            buildablePrefab.SetActive(false);
+            var request = PrefabDatabase.GetPrefabAsync(GetOriginalClassId);
+            yield return request;
+            request.TryGetPrefab(out GameObject originalPrefab);
+            GameObject model = GameObject.Instantiate(originalPrefab);
+            model.transform.SetParent(buildablePrefab.transform, false);
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localEulerAngles = Vector3.zero;
+            model.SetActive(true);
+            DeleteChildComponentIfExists<LargeWorldEntity>(buildablePrefab);
+            DeleteChildComponentIfExists<PrefabIdentifier>(buildablePrefab);
+            DeleteChildComponentIfExists<TechTag>(buildablePrefab);
+            DeleteChildComponentIfExists<SkyApplier>(buildablePrefab);
+            DeleteChildComponentIfExists<ConstructionObstacle>(buildablePrefab);
+            buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
+            buildablePrefab.EnsureComponent<TechTag>().type = TechType;
+            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
+            SkyApplier sky = buildablePrefab.EnsureComponent<SkyApplier>();
+            Constructable con = buildablePrefab.AddComponent<Constructable>();
+            con.model = model;
+            ConstructableSettings conSettings = GetConstructableSettings;
+            con.allowedInBase = conSettings.AllowedInBase;
+            con.allowedOutside = conSettings.AllowedOutside;
+            con.allowedInSub = conSettings.AllowedInSub;
+            con.allowedOnWall = conSettings.AllowedOnWall;
+            con.allowedOnGround = conSettings.AllowedOnGround;
+            con.allowedOnCeiling = conSettings.AllowedOnCeiling;
+            con.allowedOnConstructables = conSettings.AllowedOnConstructables;
+            con.rotationEnabled = conSettings.RotationEnabled;
+            con.forceUpright = conSettings.ForceUpright;
+            con.placeMinDistance = conSettings.PlaceMinDistance;
+            con.placeDefaultDistance = conSettings.PlaceDefaultDistance;
+            con.placeMaxDistance = conSettings.PlaceMaxDistance;
+            ApplyExtraConstructableSettings(con);
+            foreach (var bounds in GetBounds)
+            {
+                buildablePrefab.AddComponent<ConstructableBounds>().bounds = bounds;
+            }
+            EditPrefab(buildablePrefab);
+            yield return EditPrefabAsyncOnly(buildablePrefab);
+            buildablePrefab.SetActive(true);
+            sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
+
+            gameObject.Set(buildablePrefab);
+    }
+#endif
 
         protected abstract ConstructableSettings GetConstructableSettings { get; }
 
@@ -116,7 +168,12 @@ namespace ArchitectsLibrary.Buildables
 
         }
 
-        private void DeleteChildComponentIfExists<T>(GameObject prefab) where T : Component
+        protected virtual IEnumerator EditPrefabAsyncOnly(GameObject prefab)
+        {
+            yield break;
+        }
+
+        protected static void DeleteChildComponentIfExists<T>(GameObject prefab) where T : Component
         {
             T component = prefab.GetComponentInChildren<T>();
             if (component)
