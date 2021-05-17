@@ -14,6 +14,7 @@ using CreatorKit.Patches;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
+using ArchitectsLibrary.Buildables;
 
 namespace ArchitectsLibrary
 {
@@ -47,6 +48,7 @@ namespace ArchitectsLibrary
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
+        static BuildableColumn buildableColumn;
         const string encyKey_emerald = "EmeraldEncy";
 
         /// <summary>
@@ -177,6 +179,12 @@ namespace ArchitectsLibrary
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonBattery, PrecursorFabricatorTab.Devices);
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonPowerCell, PrecursorFabricatorTab.Devices);
+        }
+
+        static void PatchBuildables()
+        {
+            buildableColumn = new BuildableColumn();
+            buildableColumn.Patch();
         }
     }
 }

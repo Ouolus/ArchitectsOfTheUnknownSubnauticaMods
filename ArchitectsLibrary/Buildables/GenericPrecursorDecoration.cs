@@ -27,8 +27,8 @@ namespace ArchitectsLibrary.Buildables
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => AUHandler.PrecursorAlloyIngotTechType;
 
-        protected virtual OrientedBounds GetBounds { get; }
-        protected virtual string GetOriginalClassId { get; }
+        protected abstract OrientedBounds[] GetBounds { get; }
+        protected abstract string GetOriginalClassId { get; }
 
         public override GameObject GetGameObject()
         {
@@ -56,6 +56,10 @@ namespace ArchitectsLibrary.Buildables
             con.allowedOnCeiling = conSettings.AllowedOnCeiling;
             con.rotationEnabled = conSettings.RotationEnabled;
             ApplyExtraConstructableSettings(con);
+            foreach(var bounds in GetBounds)
+            {
+                buildablePrefab.AddComponent<ConstructableBounds>().bounds = bounds;
+            }
 
             return buildablePrefab;
         }
