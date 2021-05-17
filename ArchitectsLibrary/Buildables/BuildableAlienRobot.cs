@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using SMLHelper.V2.Crafting;
+using System.Collections;
+using System.Collections.Generic;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Buildables
 {
     class BuildableAlienRobot : GenericPrecursorDecoration
     {
-        public BuildableAlienRobot() : base("BuildableAlienRobot", "Alien Robot", "An alien robot. Placeable inside and outside.")
+        public BuildableAlienRobot() : base("BuildableAlienRobot", "Alien Robot", "An alien robot that wanders around. Placeable inside and outside.")
         {
         }
 
@@ -15,5 +19,10 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
 
         protected override bool ExteriorOnly => false;
+
+        protected override TechData GetBlueprintRecipe()
+        {
+            return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) });
+        }
     }
 }
