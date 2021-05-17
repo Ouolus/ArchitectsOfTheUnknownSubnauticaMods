@@ -125,6 +125,7 @@
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="Buildables\GenericPrecursorDecoration.cs" />
     <Compile Include="CreatorKit\Mono\FilterableList.cs" />
     <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
     <Compile Include="CreatorKit\Mono\GenericButton.cs" />
