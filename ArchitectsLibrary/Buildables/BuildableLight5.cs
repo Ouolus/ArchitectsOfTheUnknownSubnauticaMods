@@ -5,11 +5,11 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableLight5 : GenericPrecursorDecoration
     {
-        public BuildableLight5() : base("BuildablePrecursorLight5", "Small Alien Light", "A decorational light.")
+        public BuildableLight5() : base("BuildablePrecursorLight5", "Small Alien Spotlight", "A decorational light. Placeable inside and outside.")
         {
         }
 
-        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 4f, placeMinDistance: 2f, placeMaxDistance: 10f);
+        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
         protected override OrientedBounds[] GetBounds => new OrientedBounds[] { };
 

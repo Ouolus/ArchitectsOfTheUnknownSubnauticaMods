@@ -45,7 +45,7 @@ namespace ArchitectsLibrary.Buildables
                 }
                 else
                 {
-                    return TechGroup.InteriorModules;
+                    return TechGroup.Miscellaneous;
                 }
             }
         }

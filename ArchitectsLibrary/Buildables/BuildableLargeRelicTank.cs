@@ -2,9 +2,9 @@
 
 namespace ArchitectsLibrary.Buildables
 {
-    class BuildableDissectionTank : GenericPrecursorDecoration
+    class BuildableLargeRelicTank : GenericPrecursorDecoration
     {
-        public BuildableDissectionTank() : base("BuildableDissectionTank", "Dissection Tank", "A decorational tank. Placeable inside and outside.")
+        public BuildableLargeRelicTank() : base("BuildableLargeRelicTank", "Large Relic Case", "A large, empty relic case. Placeable inside and outside.")
         {
         }
 
@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override OrientedBounds[] GetBounds => new OrientedBounds[0];
 
-        protected override string GetOriginalClassId => "44974fcd-c47a-41aa-a279-43eaf234bfa6";
+        protected override string GetOriginalClassId => "1b85a183-2084-42a6-8d85-7e58dd6864bd";
 
         protected override bool ExteriorOnly => false;
     }
