@@ -8,7 +8,7 @@ namespace ArchitectsLibrary.Buildables
         {
         }
 
-        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(false, false, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
+        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
         protected override OrientedBounds[] GetBounds => new OrientedBounds[0];
 
