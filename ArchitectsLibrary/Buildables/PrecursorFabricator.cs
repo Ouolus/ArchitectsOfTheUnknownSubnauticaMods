@@ -78,6 +78,7 @@ namespace ArchitectsLibrary.Items
             con.allowedOutside = false;
             con.allowedOnCeiling = false;
             con.allowedOnGround = false;
+            con.allowedOnConstructables = true;
             con.model = model;
             con.rotationEnabled = false;
             obj.EnsureComponent<ConstructableBounds>();
@@ -198,6 +199,7 @@ namespace ArchitectsLibrary.Items
             con.allowedOutside = false;
             con.allowedOnCeiling = false;
             con.allowedOnGround = false;
+            con.allowedOnConstructables = true;
             con.model = model;
             con.rotationEnabled = false;
             obj.EnsureComponent<ConstructableBounds>();
