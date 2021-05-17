@@ -76,7 +76,7 @@ namespace ArchitectsLibrary.Buildables
             buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
             buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
-            buildablePrefab.EnsureComponent<SkyApplier>();
+            SkyApplier sky = buildablePrefab.EnsureComponent<SkyApplier>();
             Constructable con = buildablePrefab.AddComponent<Constructable>();
             con.model = model;
             ConstructableSettings conSettings = GetConstructableSettings;
@@ -99,6 +99,7 @@ namespace ArchitectsLibrary.Buildables
             }
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
+            sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
 
             return buildablePrefab;
         }
