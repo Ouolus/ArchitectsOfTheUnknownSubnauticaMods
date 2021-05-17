@@ -4,7 +4,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildablePlatform : GenericPrecursorDecoration
     {
-        public BuildablePlatform() : base("BuildablePlatform", "Alien Platform", "A flat platform, for decoration. Placeable inside and outside.")
+        public BuildablePlatform() : base("BuildablePlatform", "Alien Platform", "A large, flat platform, for decoration. Placeable inside and outside.")
         {
         }
 
