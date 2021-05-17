@@ -35,7 +35,8 @@ namespace ArchitectsLibrary.Buildables
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
-            GameObject.Instantiate(originalPrefab).transform.SetParent(buildablePrefab.transform, false);
+            GameObject model = GameObject.Instantiate(originalPrefab);
+            model.transform.SetParent(buildablePrefab.transform, false);
             DeleteChildComponentIfExists<LargeWorldEntity>(buildablePrefab);
             DeleteChildComponentIfExists<PrefabIdentifier>(buildablePrefab);
             DeleteChildComponentIfExists<TechTag>(buildablePrefab);
@@ -44,13 +45,27 @@ namespace ArchitectsLibrary.Buildables
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
             buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             buildablePrefab.EnsureComponent<SkyApplier>();
-            var con = buildablePrefab.AddComponent<Constructable>();
-            SetConstructableSettings(con);
+            Constructable con = buildablePrefab.AddComponent<Constructable>();
+            con.model = model;
+            ConstructableSettings conSettings = GetConstructableSettings;
+            con.allowedInBase = conSettings.AllowedInBase;
+            con.allowedOutside = conSettings.AllowedOutside;
+            con.allowedInSub = conSettings.AllowedInSub;
+            con.allowedOnWall = conSettings.AllowedOnWall;
+            con.allowedOnGround = conSettings.AllowedOnGround;
+            con.allowedOnCeiling = conSettings.AllowedOnCeiling;
+            con.rotationEnabled = conSettings.RotationEnabled;
+            ApplyExtraConstructableSettings(con);
 
             return buildablePrefab;
         }
 
-        protected abstract void SetConstructableSettings(Constructable con);
+        protected abstract ConstructableSettings GetConstructableSettings { get; }
+
+        protected virtual void ApplyExtraConstructableSettings(Constructable constructable)
+        {
+
+        }
 
         private void DeleteChildComponentIfExists<T>(GameObject prefab) where T : Component
         {
@@ -58,6 +73,28 @@ namespace ArchitectsLibrary.Buildables
             if (component)
             {
                 Object.DestroyImmediate(component);
+            }
+        }
+
+        internal struct ConstructableSettings
+        {
+            internal bool AllowedInBase;
+            internal bool AllowedOutside;
+            internal bool AllowedInSub;
+            internal bool AllowedOnWall;
+            internal bool AllowedOnGround;
+            internal bool AllowedOnCeiling;
+            internal bool RotationEnabled;
+
+            public ConstructableSettings(bool allowedInBase, bool allowedInSub, bool allowedOutside, bool allowedOnWall, bool allowedOnGround, bool allowedOnCeiling, bool rotationEnabled)
+            {
+                AllowedInBase = allowedInBase;
+                AllowedInSub = allowedInSub;
+                AllowedOutside = allowedOutside;
+                AllowedOnWall = allowedOnWall;
+                AllowedOnGround = allowedOnGround;
+                AllowedOnCeiling = allowedOnCeiling;
+                RotationEnabled = rotationEnabled;
             }
         }
     }
