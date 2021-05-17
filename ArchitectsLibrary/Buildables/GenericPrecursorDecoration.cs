@@ -66,6 +66,7 @@ namespace ArchitectsLibrary.Buildables
             GameObject model = GameObject.Instantiate(originalPrefab);
             model.transform.SetParent(buildablePrefab.transform, false);
             model.transform.localPosition = Vector3.zero;
+            model.transform.localEulerAngles = Vector3.zero;
             model.SetActive(true);
             DeleteChildComponentIfExists<LargeWorldEntity>(buildablePrefab);
             DeleteChildComponentIfExists<PrefabIdentifier>(buildablePrefab);
