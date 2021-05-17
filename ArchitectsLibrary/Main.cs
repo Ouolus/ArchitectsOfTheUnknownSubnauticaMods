@@ -59,6 +59,7 @@ namespace ArchitectsLibrary
         static BuildableDissectionTank buildableDissectionTank;
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
+        static BuildableAlienRobot buildableAlienRobot;
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
 
@@ -230,6 +231,10 @@ namespace ArchitectsLibrary
 
             buildableLight5 = new BuildableLight5();
             buildableLight5.Patch();
+
+            buildableAlienRobot = new BuildableAlienRobot();
+            buildableAlienRobot.Patch();
+
 
         }
     }
