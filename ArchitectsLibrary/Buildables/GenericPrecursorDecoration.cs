@@ -18,7 +18,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(TechType.Titanium, 1), new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
+            return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
         }
 
         public override TechCategory CategoryForPDA
