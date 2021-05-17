@@ -15,5 +15,17 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "738892ae-64b0-4240-953c-cea1d19ca111";
 
         protected override bool ExteriorOnly => false;
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            foreach (Collider col in prefab.GetComponentsInChildren<Collider>())
+            {
+                Object.DestroyImmediate(col);
+            }
+            prefab.transform.GetChild(0).GetChild(0).transform.localPosition = Vector3.zero;
+            BoxCollider boxCollider = prefab.transform.GetChild(0).gameObject.EnsureComponent<BoxCollider>();
+            boxCollider.center = new Vector3(0f, 0.5f, 0f);
+            boxCollider.size = new Vector3(4f, 1f, 4f);
+        }
     }
 }

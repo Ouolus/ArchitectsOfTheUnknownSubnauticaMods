@@ -18,6 +18,7 @@ namespace ArchitectsLibrary.Buildables
         protected override void EditPrefab(GameObject prefab)
         {
             prefab.transform.GetChild(0).transform.eulerAngles = new Vector3(180f, 0f, 0f);
+            prefab.GetComponentInChildren<SphereCollider>().radius = 6f;
         }
 
         protected override bool ExteriorOnly => false;
