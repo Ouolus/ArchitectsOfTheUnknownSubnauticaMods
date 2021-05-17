@@ -4,7 +4,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableArchway : GenericPrecursorDecoration
     {
-        public BuildableArchway() : base("BuildableArchway", "Alien Door Structure", "A large object, likely used as a door frame.")
+        public BuildableArchway() : base("BuildableArchway", "Alien Door Structure", "A large object, likely used as a door frame. Decorational.")
         {
         }
 

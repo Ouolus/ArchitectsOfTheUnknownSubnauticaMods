@@ -125,7 +125,11 @@
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
+    <Compile Include="Buildables\BuildableSonicDeterrent.cs" />
+    <Compile Include="Buildables\BuildableMicroscope.cs" />
     <Compile Include="Buildables\BuildableAlienRobot.cs" />
+    <Compile Include="Buildables\BuildableInfoPanel.cs" />
+    <Compile Include="Buildables\BuildableClaw.cs" />
     <Compile Include="Buildables\BuildableLargeRelicTank.cs" />
     <Compile Include="Buildables\BuildableRelicTank.cs" />
     <Compile Include="Buildables\BuildableDissectionTank.cs" />

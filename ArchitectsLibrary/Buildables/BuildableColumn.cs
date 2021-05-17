@@ -4,7 +4,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableColumn : GenericPrecursorDecoration
     {
-        public BuildableColumn() : base("BuildableColumn", "Alien Column Structure", "A tall, column-like object with a complex design.")
+        public BuildableColumn() : base("BuildableColumn", "Alien Column Structure", "A tall, column-like object with a complex design. Decorational.")
         {
         }
 
