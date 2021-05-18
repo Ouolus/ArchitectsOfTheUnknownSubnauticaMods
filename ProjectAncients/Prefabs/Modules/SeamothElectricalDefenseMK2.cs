@@ -60,7 +60,9 @@ namespace ProjectAncients.Prefabs.Modules
             var electricalDefense = Utils
                 .SpawnZeroedAt(obj, seaMoth.transform)
                 .GetComponent<ElectricalDefenseMK2>();
-            
+
+            MainCameraControl.main.ShakeCamera(6f * slotCharge, 2f * slotCharge, MainCameraControl.ShakeMode.Quadratic);
+
             if (electricalDefense is not null)
             {
                 electricalDefense.charge = charge;
