@@ -15,5 +15,7 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "1b85a183-2084-42a6-8d85-7e58dd6864bd";
 
         protected override bool ExteriorOnly => false;
+
+        protected override string GetSpriteName => "RelicCaseLarge";
     }
 }

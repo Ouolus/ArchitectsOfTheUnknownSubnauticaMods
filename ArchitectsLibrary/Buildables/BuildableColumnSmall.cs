@@ -20,5 +20,7 @@ namespace ArchitectsLibrary.Buildables
         {
             prefab.transform.GetChild(0).localScale = Vector3.one * 0.37f;
         }
+
+        protected override string GetSpriteName => "Column";
     }
 }

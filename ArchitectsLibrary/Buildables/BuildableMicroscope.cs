@@ -19,5 +19,7 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "a30d0115-c37e-40ec-a5d9-318819e94f81";
 
         protected override bool ExteriorOnly => false;
+
+        protected override string GetSpriteName => "Microscope";
     }
 }

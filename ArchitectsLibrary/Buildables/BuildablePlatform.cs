@@ -27,5 +27,8 @@ namespace ArchitectsLibrary.Buildables
             boxCollider.center = new Vector3(0f, 0.5f, 0f);
             boxCollider.size = new Vector3(4f, 1f, 4f);
         }
+
+        protected override string GetSpriteName => "Platform";
+
     }
 }

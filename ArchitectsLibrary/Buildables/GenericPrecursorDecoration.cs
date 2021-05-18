@@ -57,6 +57,8 @@ namespace ArchitectsLibrary.Buildables
         protected abstract OrientedBounds[] GetBounds { get; }
         protected abstract string GetOriginalClassId { get; }
 
+        protected virtual string GetSpriteName { get; }
+
         protected abstract bool ExteriorOnly { get; }
 
 #if SN1
