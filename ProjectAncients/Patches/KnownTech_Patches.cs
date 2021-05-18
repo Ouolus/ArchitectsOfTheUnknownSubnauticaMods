@@ -40,6 +40,11 @@ namespace ProjectAncients.Patches
                 {
                     i.unlockTechTypes.Clear();
                 }
+
+                if(i.techType == Mod.architectElectricityMasterTech)
+                {
+                    i.unlockPopup = Mod.assetBundle.LoadAsset<Sprite>("IonicPulse_Popup");
+                }
             }
 
             var analysisTech = KnownTech.analysisTech.ToHashSet();
