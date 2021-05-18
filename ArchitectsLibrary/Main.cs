@@ -238,8 +238,8 @@ namespace ArchitectsLibrary
             buildableLight5 = new BuildableLight5();
             buildableLight5.Patch();
 
-            buildableAlienRobot = new BuildableAlienRobot();
-            buildableAlienRobot.Patch();
+            //buildableAlienRobot = new BuildableAlienRobot();
+            //buildableAlienRobot.Patch();
 
             //buildableClaw = new BuildableClaw();
             //buildableClaw.Patch();
