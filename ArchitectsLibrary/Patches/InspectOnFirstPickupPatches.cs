@@ -29,7 +29,7 @@ namespace ArchitectsLibrary.Patches
             {
                 __instance.gameObject.transform.GetChild(0).localScale = Vector3.one * 0.59f;
                 __instance.gameObject.transform.GetChild(0).localEulerAngles = new Vector3(0f, 90f, 0f);
-                __instance.gameObject.transform.GetChild(0).localPosition = new Vector3(-0.21f, 0f, 0f);
+                __instance.gameObject.transform.GetChild(0).localPosition = new Vector3(-0.21f, -0.05f, 0f);
             }
         }
 
