@@ -322,7 +322,7 @@ namespace ProjectAncients
 
             PatchEncy(ency_aquariumSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
 
-            PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
+            PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained Singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
 
             PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
 
