@@ -20,5 +20,7 @@ namespace ArchitectsLibrary.Buildables
         {
             prefab.transform.GetChild(0).transform.localScale = Vector3.one * 0.4f;
         }
+
+        protected override string GetSpriteName => "Infoframe";
     }
 }

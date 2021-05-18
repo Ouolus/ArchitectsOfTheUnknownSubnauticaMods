@@ -78,5 +78,7 @@ namespace ArchitectsLibrary.Buildables
         {
             return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1), new Ingredient(TechType.PrecursorIonCrystal, 1) });
         }
+
+        protected override string GetSpriteName => "IonCubePedestal";
     }
 }
