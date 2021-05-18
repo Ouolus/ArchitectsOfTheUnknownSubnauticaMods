@@ -86,12 +86,15 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.3f;
             components.locomotion.upRotationSpeed = 1f;
 
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            if (TentaclesHaveTrails)
+            {
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            }
 
             const float jawTentacleSnapSpeed = 6f;
             CreateTrail(prefab.SearchChild("LLA"), components, jawTentacleSnapSpeed);
@@ -192,6 +195,14 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool TentaclesHaveTrails
+        {
+            get
+            {
+                return true;
+            }
         }
 
         public virtual bool CanRoar

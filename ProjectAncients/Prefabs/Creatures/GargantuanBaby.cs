@@ -65,6 +65,8 @@ namespace ProjectAncients.Prefabs
 
         public override float TentacleSnapSpeed => 1.5f;
 
+        public override bool TentaclesHaveTrails => false;
+
         public override bool AttackPlayer => false;
 
         public override float Mass => 600f;
