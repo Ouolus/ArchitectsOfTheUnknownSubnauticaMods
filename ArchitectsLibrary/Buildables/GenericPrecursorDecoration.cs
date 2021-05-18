@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Utility;
 using ArchitectsLibrary.Handlers;
 using UnityEngine;
 using UWE;
@@ -60,6 +61,18 @@ namespace ArchitectsLibrary.Buildables
         protected virtual string GetSpriteName { get; }
 
         protected abstract bool ExteriorOnly { get; }
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            if (string.IsNullOrEmpty(GetSpriteName))
+            {
+                return SpriteManager.defaultSprite;
+            }
+            else
+            {
+                return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>(GetSpriteName));
+            }
+        }
 
 #if SN1
         public override GameObject GetGameObject()
