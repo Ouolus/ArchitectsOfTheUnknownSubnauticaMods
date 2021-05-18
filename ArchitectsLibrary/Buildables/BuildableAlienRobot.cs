@@ -24,5 +24,7 @@ namespace ArchitectsLibrary.Buildables
         {
             return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) });
         }
+
+        protected override string GetSpriteName => "AlienRobot";
     }
 }
