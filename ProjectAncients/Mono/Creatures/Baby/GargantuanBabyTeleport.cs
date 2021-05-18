@@ -47,6 +47,11 @@ namespace ProjectAncients.Mono
 					}
 				}
 				transform.position = vector2;
+				var swim = GetComponent<SwimBehaviour>();
+                if (swim)
+                {
+					swim.overridingTarget = false;
+                }
 			}
 		}
 
