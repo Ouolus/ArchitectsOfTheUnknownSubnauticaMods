@@ -15,5 +15,7 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "db5a85f5-a5fe-43f8-b71e-7b1f0a8636fe";
 
         protected override bool ExteriorOnly => true;
+
+        protected override string GetSpriteName => "Archway";
     }
 }

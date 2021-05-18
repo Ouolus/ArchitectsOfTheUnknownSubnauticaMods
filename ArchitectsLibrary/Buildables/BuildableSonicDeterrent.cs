@@ -20,5 +20,7 @@ namespace ArchitectsLibrary.Buildables
         {
             prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 5f, 0f);
         }
+
+        protected override string GetSpriteName => "SonicDeterrent";
     }
 }

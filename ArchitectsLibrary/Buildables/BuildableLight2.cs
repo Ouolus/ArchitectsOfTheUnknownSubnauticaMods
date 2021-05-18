@@ -22,5 +22,7 @@ namespace ArchitectsLibrary.Buildables
         }
 
         protected override bool ExteriorOnly => false;
+
+        protected override string GetSpriteName => "Light2";
     }
 }
