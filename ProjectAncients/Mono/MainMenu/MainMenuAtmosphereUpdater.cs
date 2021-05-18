@@ -14,8 +14,9 @@ namespace ProjectAncients.Mono
             uSkyManager skyManager = FindObjectOfType<uSkyManager>();
             skyManager.Timeline = 4f;
             skyManager.StarIntensity = 2f;
-            skyManager.NightSky = uSkyManager.NightModes.Rotation;
-            skyManager.planetRadius = 500f;
+            skyManager.NightSky = uSkyManager.NightModes.Static;
+            skyManager.planetRadius = 3500f;
+            skyManager.planetDistance = 10000f;
             clipPool = ECCAudio.CreateClipPool("garg_for_anth_distant");
             source = gameObject.AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume() / 2f;
