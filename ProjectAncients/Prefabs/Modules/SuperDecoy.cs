@@ -33,10 +33,9 @@ namespace ProjectAncients.Prefabs.Modules
                 Ingredients =
                 {
                     new Ingredient(TechType.CyclopsDecoy, 3),
-                    new Ingredient(TechType.PrecursorIonCrystal, 2),
+                    new Ingredient(TechType.PrecursorIonCrystal, 1),
                     new Ingredient(TechType.UraniniteCrystal, 2),
                     new Ingredient(TechType.Polyaniline, 1),
-                    new Ingredient(TechType.PlasteelIngot, 1)
                 }
             };
         }
