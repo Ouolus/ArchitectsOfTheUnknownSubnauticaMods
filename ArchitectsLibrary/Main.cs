@@ -133,7 +133,7 @@ namespace ArchitectsLibrary
             PrecursorFabricator.Root.AddTabNode("AlienMaterials", "Alien Materials", assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
             PrecursorFabricator.Root.AddTabNode("AlienEquipment", "Equipment", assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
             PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", assetBundle.LoadAsset<Sprite>("Tab_Devices"));
-            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", "Advanced Upgrade Modules", assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials_Alt"));
+            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", "Advanced Upgrade Modules", assetBundle.LoadAsset<Sprite>("Tab_Upgrades"));
             PrecursorFabricator.Root.AddTabNode("AlienDecorations", "Decoration Items", assetBundle.LoadAsset<Sprite>("Tab_Decorations"));
             PrecursorFabricator.Root.AddTabNode("AlienEggs", "Eggs", assetBundle.LoadAsset<Sprite>("Tab_Eggs"));
 
