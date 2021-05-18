@@ -20,5 +20,7 @@ namespace ArchitectsLibrary.Buildables
         {
             prefab.transform.GetChild(0).position = new Vector3(0f, 0.1f, 0f);
         }
+
+        protected override string GetSpriteName => "RelicCaseLarge";
     }
 }
