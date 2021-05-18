@@ -94,13 +94,13 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.Dunes_SandDune,
                 count = 1,
-                probability = 0.075f
+                probability = 0.0375f
             },
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.Dunes_SandPlateau,
                 count = 1,
-                probability = 0.075f
+                probability = 0.0375f
             }
         };
     }
