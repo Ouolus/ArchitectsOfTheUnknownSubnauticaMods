@@ -47,17 +47,20 @@ namespace ProjectAncients.Mono
             {
                 if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
                 {
-                    audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
-                    clipLoudness = 0f;
-                    foreach (var sample in clipSampleData)
+                    if (GargantuanBehaviour.PlayerIsKillable())
                     {
-                        clipLoudness += (Mathf.Abs(sample) * Mod.config.GetRoarScreenShakeNormalized);
+                        audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
+                        clipLoudness = 0f;
+                        foreach (var sample in clipSampleData)
+                        {
+                            clipLoudness += (Mathf.Abs(sample) * Mod.config.GetRoarScreenShakeNormalized);
+                        }
+                        if (clipLoudness > 0.8f)
+                        {
+                            MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                        }
+                        timeUpdateShakeAgain = Time.time + 0.5f;
                     }
-                    if (clipLoudness > 0.8f)
-                    {
-                        MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
-                    }
-                    timeUpdateShakeAgain = Time.time + 0.5f;
                 }
             }
         }
