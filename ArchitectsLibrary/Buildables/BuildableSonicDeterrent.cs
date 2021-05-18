@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using SMLHelper.V2.Crafting;
+using UnityEngine;
+using System.Collections.Generic;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -22,5 +25,10 @@ namespace ArchitectsLibrary.Buildables
         }
 
         protected override string GetSpriteName => "SonicDeterrent";
+
+        protected override TechData GetBlueprintRecipe()
+        {
+            return new TechData() { Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) } };
+        }
     }
 }
