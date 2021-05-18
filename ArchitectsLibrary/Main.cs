@@ -98,6 +98,8 @@ namespace ArchitectsLibrary
 
             VehiclePatches.Patch(harmony);
 
+            InspectOnFirstPickupPatches.Patch(harmony);
+
             //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
             
