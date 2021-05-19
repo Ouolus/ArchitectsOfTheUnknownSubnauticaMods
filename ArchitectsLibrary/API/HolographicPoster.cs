@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class HolographicPoster : Equipable
     {
-        private GameObject cachedPrefab;
+        GameObject cachedPrefab;
 
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => Handlers.AUHandler.PrecursorAlloyIngotTechType;
@@ -39,12 +39,12 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData()
+            return new()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(TechType.Titanium, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
+                    new(TechType.Titanium, 2), new(Handlers.AUHandler.EmeraldTechType, 1)
                 }
             };
         }
@@ -66,7 +66,7 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         public abstract PosterDimensions GetPosterDimensions { get; }
 
-        private static string GetPrefabNameForDimensions(PosterDimensions dimensions)
+        static string GetPrefabNameForDimensions(PosterDimensions dimensions)
         {
             switch (dimensions)
             {
@@ -142,7 +142,7 @@ namespace ArchitectsLibrary.API
             return cachedPrefab;
         }
 
-        public override sealed IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             gameObject.Set(GetGameObject());
             yield return null;
