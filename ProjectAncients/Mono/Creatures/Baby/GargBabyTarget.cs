@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace ProjectAncients.Mono
 {
-	//For
 	public class GargBabyTarget : HandTarget, IHandTarget
 	{
 		public bool cinematicPlaying = false;
