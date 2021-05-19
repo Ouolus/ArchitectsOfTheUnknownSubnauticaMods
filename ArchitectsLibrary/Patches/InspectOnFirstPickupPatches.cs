@@ -18,7 +18,7 @@ namespace ArchitectsLibrary.Patches
 
         }
 
-        public static void InspectOnFirstPickup_InspectBegin_Patch(InspectOnFirstPickup __instance)
+        static void InspectOnFirstPickup_InspectBegin_Patch(InspectOnFirstPickup __instance)
         {
             TechTag techTag = __instance.GetComponent<TechTag>();
             if (techTag == null)
@@ -33,7 +33,7 @@ namespace ArchitectsLibrary.Patches
             }
         }
 
-        public static void InspectOnFirstPickup_InspectEnd_Patch(InspectOnFirstPickup __instance)
+        static void InspectOnFirstPickup_InspectEnd_Patch(InspectOnFirstPickup __instance)
         {
             TechTag techTag = __instance.GetComponent<TechTag>();
             if (techTag == null)
