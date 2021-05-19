@@ -31,10 +31,8 @@ namespace ArchitectsLibrary.Buildables
                 {
                     return TechCategory.ExteriorOther;
                 }
-                else
-                {
-                    return TechCategory.Misc;
-                }
+                
+                return TechCategory.Misc;
             }
         }
         public override TechGroup GroupForPDA
@@ -45,10 +43,8 @@ namespace ArchitectsLibrary.Buildables
                 {
                     return TechGroup.ExteriorModules;
                 }
-                else
-                {
-                    return TechGroup.Miscellaneous;
-                }
+                
+                return TechGroup.Miscellaneous;
             }
         }
 
@@ -68,10 +64,8 @@ namespace ArchitectsLibrary.Buildables
             {
                 return SpriteManager.defaultSprite;
             }
-            else
-            {
-                return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>(GetSpriteName));
-            }
+            
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>(GetSpriteName));
         }
 
 #if SN1
