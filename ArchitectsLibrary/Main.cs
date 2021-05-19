@@ -59,7 +59,7 @@ namespace ArchitectsLibrary
         static BuildableDissectionTank buildableDissectionTank;
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
-        static BuildableAlienRobot buildableAlienRobot;
+        //static BuildableAlienRobot buildableAlienRobot;
         //static BuildableClaw buildableClaw;
         static BuildableInfoPanel buildableInfoPanel;
         static BuildableMicroscope buildableMicroscope;
