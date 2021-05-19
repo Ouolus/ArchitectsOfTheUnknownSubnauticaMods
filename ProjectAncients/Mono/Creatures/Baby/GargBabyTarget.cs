@@ -30,7 +30,7 @@ namespace ProjectAncients.Mono
 			cinematicController.animator = animator;
 			cinematicController.animParam = "cin_play";
 			cinematicController.animParamReceivers = new GameObject[0];
-			cinematicController.animatedTransform = gameObject.SearchChild("PlayerCam").transform;
+			cinematicController.animatedTransform = transform.parent.gameObject.SearchChild("PlayerCam").transform;
 
 		}
 		public void OnHandHover(GUIHand hand)
