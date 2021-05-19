@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using ArchitectsLibrary.Utility;
 
 namespace ProjectAncients.Mono
 {
@@ -13,6 +14,7 @@ namespace ProjectAncients.Mono
 		Pickupable pickupable;
 		Creature creature;
 		GargantuanRoar roar;
+		PlayerCinematicController cinematicController;
 
 		void Start()
 		{
@@ -23,6 +25,13 @@ namespace ProjectAncients.Mono
 			pickupable = GetComponentInParent<Pickupable>();
 			creature = GetComponentInParent<Creature>();
 			roar = GetComponentInParent<GargantuanRoar>();
+			cinematicController = gameObject.EnsureComponent<PlayerCinematicController>();
+			cinematicController.playerViewAnimationName = "cutefish_tickled";
+			cinematicController.animator = animator;
+			cinematicController.animParam = "cin_play";
+			cinematicController.animParamReceivers = new GameObject[0];
+			cinematicController.animatedTransform = gameObject.SearchChild("PlayerCam").transform;
+
 		}
 		public void OnHandHover(GUIHand hand)
 		{
@@ -54,9 +63,10 @@ namespace ProjectAncients.Mono
 			//animation parameter idea (bool): cutefish_tickled
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
-			animator.SetTrigger("cin_play");
+			cinematicController.StartCinematicMode(Player.main);
 			roar.PlayOnce(out float _, GargantuanRoar.RoarMode.CloseOnly);
 			yield return new WaitForSeconds(GetAnimationLength(random));
+			cinematicController.EndCinematicMode();
 			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
