@@ -15,10 +15,12 @@ namespace ProjectAncients.Mono
 		Creature creature;
 		GargantuanRoar roar;
 		PlayerCinematicController cinematicController;
+		Rigidbody rb;
 
 		void Start()
 		{
 			animator = transform.parent.GetComponentInChildren<Animator>();
+			rb = transform.parent.GetComponentInChildren<Rigidbody>();
 			swimBehaviour = GetComponentInParent<SwimBehaviour>();
 			lm = GetComponentInParent<LiveMixin>();
 			gameObject.layer = 13;
@@ -64,8 +66,10 @@ namespace ProjectAncients.Mono
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
 			cinematicController.StartCinematicMode(Player.main);
+			rb.isKinematic = true;
 			roar.PlayOnce(out float _, GargantuanRoar.RoarMode.CloseOnly);
 			yield return new WaitForSeconds(GetAnimationLength(random));
+			rb.isKinematic = false;
 			cinematicController.EndCinematicMode();
 			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);
@@ -94,7 +98,7 @@ namespace ProjectAncients.Mono
             }
 			else if(random <= 0.677777f)
             {
-				return 8f;
+				return 4.8f;
             }
             else
             {
