@@ -7,7 +7,7 @@ using Logger = QModManager.Utility.Logger;
 
 namespace ArchitectsLibrary.Patches
 {
-    public class VehiclePatches
+    class VehiclePatches
     {
         internal static Dictionary<TechType, ISeaMothOnUse> seaMothOnUses = new();
         internal static Dictionary<TechType, IVehicleOnEquip> VehicleOnEquips = new();
