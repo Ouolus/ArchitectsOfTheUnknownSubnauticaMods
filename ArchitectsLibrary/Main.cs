@@ -132,7 +132,6 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            Atlas.Sprite tabSprite = SpriteManager.defaultSprite;
             PrecursorFabricator.Root.AddTabNode("AlienMaterials", "Alien Materials", assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
             PrecursorFabricator.Root.AddTabNode("AlienEquipment", "Equipment", assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
             PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", assetBundle.LoadAsset<Sprite>("Tab_Devices"));
