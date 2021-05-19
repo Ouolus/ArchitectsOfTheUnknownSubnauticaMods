@@ -53,7 +53,7 @@ namespace ArchitectsLibrary.Buildables
         }
 
         public override bool UnlockedAtStart => false;
-        public override TechType RequiredForUnlock => AUHandler.PrecursorAlloyIngotTechType;
+        public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
 
         protected abstract OrientedBounds[] GetBounds { get; }
         protected abstract string GetOriginalClassId { get; }

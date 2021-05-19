@@ -15,7 +15,7 @@ namespace ArchitectsLibrary.API
         private GameObject cachedPrefab;
 
         public override bool UnlockedAtStart => false;
-        public override TechType RequiredForUnlock => Handlers.AUHandler.PrecursorAlloyIngotTechType;
+        public override TechType RequiredForUnlock => Handlers.AUHandler.AlienTechnologyMasterTech;
 
         /// <summary>
         /// Constructor for this poster.

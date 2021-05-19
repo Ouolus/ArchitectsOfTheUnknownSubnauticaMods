@@ -1,5 +1,6 @@
 using System.Collections;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.Handlers;
 using FMODUnity;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
@@ -30,6 +31,8 @@ namespace ArchitectsLibrary.Items
         public override TechGroup GroupForPDA { get; } = TechGroup.InteriorModules;
 
         public override bool UnlockedAtStart { get; } = false;
+
+        public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
 
         protected override Atlas.Sprite GetItemSprite()
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Items
 {
@@ -17,6 +18,10 @@ namespace ArchitectsLibrary.Items
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
+
+        public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
+        public override bool UnlockedAtStart => false;
+
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         public override float CraftingTime => 8f;
