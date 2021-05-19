@@ -40,6 +40,7 @@ namespace ArchitectsLibrary
         const string fabBundleName = "fabricatorassets";
 
         internal static PrecursorFabricator PrecursorFabricator;
+        static TechType alienTechnologyMasterTech;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
         static DrillableEmerald drillableEmerald;
@@ -149,14 +150,16 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.GetTabNode(PrecursorFabricatorService.TabToNameID(entry.tab)).AddCraftingNode(entry.techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType, PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
 
             PatchBuildables();
         }
 
         static void PatchItems()
         {
-            AUHandler.AlienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.");
+            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.");
+            AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
 
             emerald = new Emerald();
             emerald.Patch();

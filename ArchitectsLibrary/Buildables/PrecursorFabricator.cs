@@ -32,8 +32,6 @@ namespace ArchitectsLibrary.Items
 
         public override bool UnlockedAtStart { get; } = false;
 
-        public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
-
         protected override Atlas.Sprite GetItemSprite()
         {
             return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("PrecFabricator_Icon"));

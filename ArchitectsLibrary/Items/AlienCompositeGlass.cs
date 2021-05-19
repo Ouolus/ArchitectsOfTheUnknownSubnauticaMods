@@ -19,7 +19,6 @@ namespace ArchitectsLibrary.Items
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
 
-        public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
         public override bool UnlockedAtStart => false;
 
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
