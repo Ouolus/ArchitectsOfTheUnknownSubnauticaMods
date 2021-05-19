@@ -157,7 +157,7 @@ namespace ArchitectsLibrary
 
         static void PatchItems()
         {
-            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.");
+            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
             AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
 
             emerald = new Emerald();
