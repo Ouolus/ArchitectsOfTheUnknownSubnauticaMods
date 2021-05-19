@@ -53,6 +53,10 @@ namespace ArchitectsLibrary.Handlers
         /// </summary>
         public static TechType AlienCompositeGlassTechType { get; internal set; }
 
+        /// <summary>
+        /// Gets the TechType that is used to unlock all basic alien technology. Return of the Ancients unlocks this in the Supply Cache base.
+        /// </summary>
+        public static TechType AlienTechnologyMasterTech { get; internal set; }
 
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
