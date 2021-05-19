@@ -12,7 +12,7 @@ namespace ProjectAncients.Mono
         void Start()
         {
             uSkyManager skyManager = FindObjectOfType<uSkyManager>();
-            skyManager.Timeline = 4f;
+            skyManager.Timeline = 5.25f;
             skyManager.StarIntensity = 2f;
             skyManager.NightSky = uSkyManager.NightModes.Static;
             skyManager.planetRadius = 3500f;
