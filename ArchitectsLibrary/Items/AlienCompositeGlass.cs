@@ -28,12 +28,12 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData()
+            return new()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(Handlers.AUHandler.ReinforcedGlassTechType, 1), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
+                    new(AUHandler.ReinforcedGlassTechType, 1), new(AUHandler.EmeraldTechType, 1)
                 }
             };
         }

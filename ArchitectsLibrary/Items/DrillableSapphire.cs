@@ -41,27 +41,27 @@ namespace ArchitectsLibrary.Items
             techType = TechType
         };
 
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.GrandReef_Ground,
                 count = 1,
                 probability = 0.07f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.DeepGrandReef_Ground,
                 count = 1,
                 probability = 0.08f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
                 probability = 0.04f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.KooshZone_CaveFloor,
                 count = 1,

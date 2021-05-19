@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.Items
     abstract class ReskinCraftable : Craftable
     {
         Atlas.Sprite sprite;
-        private GameObject cachedPrefab;
+        GameObject cachedPrefab;
 
         protected ReskinCraftable(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {
