@@ -66,18 +66,13 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         public abstract PosterDimensions GetPosterDimensions { get; }
 
-        static string GetPrefabNameForDimensions(PosterDimensions dimensions)
+        static string GetPrefabNameForDimensions(PosterDimensions dimensions) => dimensions switch
         {
-            switch (dimensions)
-            {
-                default:
-                    return "PrecursorPoster_Prefab";
-                case PosterDimensions.Square:
-                    return "PrecursorPosterSquare_Prefab";
-                case PosterDimensions.Landscape:
-                    return "PrecursorPosterLandscape_Prefab";
-            }
-        }
+            PosterDimensions.Square => "PrecursorPosterSquare_Prefab",
+            PosterDimensions.Landscape => "PrecursorPosterLandscape_Prefab",
+            _ => "PrecursorPoster_Prefab"
+        };
+
         public sealed override GameObject GetGameObject()
         {
             if (cachedPrefab == null)
