@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using UWE;
 using ProjectAncients.Prefabs.Equipment;
 using ArchitectsLibrary.API;
+using ArchitectsLibrary.Handlers;
 
 namespace ProjectAncients
 {
@@ -77,6 +78,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab spamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
+        public static DataTerminalPrefab masterTechTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -459,6 +461,10 @@ namespace ProjectAncients
 
             eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", ency_eggRoom, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             eggRoomTerminal.Patch();
+
+            masterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            masterTechTerminal.Patch();
+            
             #endregion
 
             #region Teleporters
