@@ -78,8 +78,6 @@ namespace ArchitectsLibrary
         [QModPatch]
         public static void Load()
         {
-            AUHandler.AlienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.");
-
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
             
             DictionaryInit.PatchAllDictionaries();
@@ -158,6 +156,8 @@ namespace ArchitectsLibrary
 
         static void PatchItems()
         {
+            AUHandler.AlienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.");
+
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
