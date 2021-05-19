@@ -37,9 +37,9 @@ namespace ProjectAncients.Patches
             if(subtitlePrefab is not null)
             {
                 GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-8.148f, 0.2f, 16f);
+                subtitle.transform.position = new Vector3(-5.54f, 0.40f, 11.00f);
                 subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-                subtitle.transform.localScale = Vector3.one * 0.7f;
+                subtitle.transform.localScale = Vector3.one * 0.5f;
             }
 
             var lights = Object.FindObjectsOfType<Light>();
