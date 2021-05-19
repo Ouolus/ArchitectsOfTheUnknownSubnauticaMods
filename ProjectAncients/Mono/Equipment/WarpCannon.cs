@@ -42,6 +42,11 @@ namespace ProjectAncients.Mono.Equipment
             animator.SetFloat("charge", GetChargePercent());
         }
 
+        public override void OnHolster()
+        {
+            StopCharging();
+        }
+
         public override bool OnRightHandUp()
         {
             float chargeScale = GetChargePercent();
@@ -66,16 +71,21 @@ namespace ProjectAncients.Mono.Equipment
                 }
                 else
                 {
-                    if (chargeLoop.GetIsStartingOrPlaying())
-                    {
-                        chargeLoop.Stop(false);
-                    }
-                    timeCanUseAgain = Time.time + 0.5f;
-                    handDown = false;
+                    StopCharging();
                     return true;
                 }
             }
             return false;
+        }
+
+        private void StopCharging()
+        {
+            if (chargeLoop.GetIsStartingOrPlaying())
+            {
+                chargeLoop.Stop(false);
+            }
+            timeCanUseAgain = Time.time + 0.5f;
+            handDown = false;
         }
 
         float GetChargePercent()
