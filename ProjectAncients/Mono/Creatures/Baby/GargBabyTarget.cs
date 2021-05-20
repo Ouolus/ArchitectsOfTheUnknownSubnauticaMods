@@ -16,6 +16,7 @@ namespace ProjectAncients.Mono
 		GargantuanRoar roar;
 		PlayerCinematicController cinematicController;
 		Rigidbody rb;
+		bool _goodBye;
 
 		void Start()
 		{
@@ -37,19 +38,29 @@ namespace ProjectAncients.Mono
 		}
 		public void OnHandHover(GUIHand hand)
 		{
-			if (CanInteract())
-			{
-				HandReticle.main.SetInteractText("PlayWithFish", true, HandReticle.Hand.Right);
-				HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
-			}
+			if (!CanInteract()) 
+				return;
+
+			var goodByeText = Rocket.IsAnyRocketReady ? "SayFarewell" : null;
+			
+			if (goodByeText is not null)
+				goodByeText = LanguageCache.GetButtonFormat(goodByeText, GameInput.Button.RightHand);
+
+			if (Rocket.IsAnyRocketReady)
+				_goodBye = Player.main.GetRightHandDown();
+			
+#pragma warning disable 618
+			HandReticle.main.SetInteractText("PlayWithFish", goodByeText, true, false, true);
+#pragma warning restore 618
+			HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
 		}
 
 		public void OnHandClick(GUIHand hand)
 		{
-			if (CanInteract())
-			{
-				PlayCinematic();
-			}
+			if (!CanInteract())
+				return;
+				
+			PlayCinematic();
 		}
 
 		public void PlayCinematic()
@@ -66,7 +77,7 @@ namespace ProjectAncients.Mono
 			animator.SetFloat("random", random);
 			cinematicController.StartCinematicMode(Player.main);
 			rb.isKinematic = true;
-			roar.PlayOnce(out float _, GargantuanRoar.RoarMode.CloseOnly);
+			roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
 			yield return new WaitForSeconds(GetAnimationLength(random));
 			rb.isKinematic = false;
 			cinematicController.EndCinematicMode();
@@ -107,10 +118,16 @@ namespace ProjectAncients.Mono
 
 		void Update()
         {
-            if (cinematicPlaying)
-            {
-				swimBehaviour.Idle();
-			}
-		}
+	        if (cinematicPlaying)
+	        {
+		        swimBehaviour.Idle();
+	        }
+	        
+	        if (_goodBye)
+	        {
+		        _goodBye = false;
+		        PlayCinematic();
+	        }
+        }
 	}
 }
