@@ -85,6 +85,9 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
 
+            warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
+            warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
@@ -142,12 +145,32 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
 
+            warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
+            warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
             gameObject.Set(prefab);
         }
 #endif
+
+        GameObject GetLoopingWarperVfx(GameObject originalVfx)
+        {
+            GameObject returnObj = GameObject.Instantiate(originalVfx);
+            returnObj.SetActive(false);
+            var destroyAfterSeconds = returnObj.GetComponent<VFXDestroyAfterSeconds>();
+            if (destroyAfterSeconds)
+            {
+                Object.DestroyImmediate(destroyAfterSeconds);
+            }
+            foreach(ParticleSystem ps in returnObj.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                var main = ps.main;
+                main.loop = true;
+            }
+            return returnObj;
+        }
 
         public override TechType RequiredForUnlock => Mod.warpMasterTech;
     }

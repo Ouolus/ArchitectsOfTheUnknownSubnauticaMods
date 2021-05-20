@@ -19,6 +19,10 @@ namespace ProjectAncients.Mono.Equipment
         public float warpSpeed = 4;
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
+
+        public GameObject primaryNodeVfxPrefab;
+        public GameObject secondaryNodeVfxPrefab;
+
         public FireMode fireMode = FireMode.Warp;
 
         /// <summary>
