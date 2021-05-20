@@ -144,7 +144,7 @@ namespace ProjectAncients.Mono.Equipment
             float chargeScale = GetChargePercent();
             if (Time.time > timeCanUseAgain && handDown)
             {
-                if (TryUse(chargeScale, out Vector3 warpPos))
+                if (WarpForward(chargeScale, out Vector3 warpPos))
                 {
                     if (chargeLoop.GetIsStartingOrPlaying())
                     {
@@ -170,6 +170,9 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
+        /// <summary>
+        /// Forcefully cancel the charge of the weapon and add a slight cooldown.
+        /// </summary>
         private void StopCharging()
         {
             if (chargeLoop.GetIsStartingOrPlaying())
@@ -180,6 +183,10 @@ namespace ProjectAncients.Mono.Equipment
             handDown = false;
         }
 
+        /// <summary>
+        /// For Warp mode only. How charged the tool is on a scale from 0.2 - 1. A charge below 0.2 counts as 0.2 because warping 0ish meters is pointless, 
+        /// </summary>
+        /// <returns></returns>
         float GetChargePercent()
         {
             if (!handDown)
@@ -195,12 +202,22 @@ namespace ProjectAncients.Mono.Equipment
             return chargeScale;
         }
 
+        /// <summary>
+        /// The layer mask for raycasts when outside of a base. Inside of a base you might want to include all layers.
+        /// </summary>
+        /// <returns></returns>
         int GetOutsideLayerMask()
         {
             return LayerMask.GetMask("Default", "Useable", "NotUseable", "TerrainCollider");
         }
 
-        bool TryUse(float chargeScale, out Vector3 targetPosition)
+        /// <summary>
+        /// Attempt to warp the player forward, with distance being based on on <paramref name="chargeScale"/>. Only used in in personal teleportation/warp mode.
+        /// </summary>
+        /// <param name="chargeScale"></param>
+        /// <param name="targetPosition"></param>
+        /// <returns></returns>
+        bool WarpForward(float chargeScale, out Vector3 targetPosition)
         {
             targetPosition = default;
             Transform mainCam = MainCamera.camera.transform;
@@ -261,11 +278,19 @@ namespace ProjectAncients.Mono.Equipment
             }
         }
 
+        /// <summary>
+        /// Teleportation method for the player that should be done ONLY in bases (not cyclops either).
+        /// </summary>
+        /// <param name="position"></param>
         void MovePlayerWhileInBase(Vector3 position)
         {
             PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
         }
 
+        /// <summary>
+        /// Teleportation method for the player that should be done while outside of bases and submarines.
+        /// </summary>
+        /// <param name="position"></param>
         void MovePlayerWhileInWater(Vector3 position)
         {
             Instantiate(warpInPrefab, Player.main.transform.position, MainCamera.camera.transform.rotation);
@@ -274,6 +299,12 @@ namespace ProjectAncients.Mono.Equipment
             PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed * 2f);
         }
 
+        /// <summary>
+        /// Check if a location <paramref name="distance"/> meters in front of you has space for you to teleport to. If so, return true.
+        /// </summary>
+        /// <param name="distance"></param>
+        /// <param name="landingPosition"></param>
+        /// <returns></returns>
         bool SurveyBaseWarpPosition(float distance, out Vector3 landingPosition)
         {
             Transform playerTransform = Player.main.transform;
@@ -290,19 +321,6 @@ namespace ProjectAncients.Mono.Equipment
             }
             return false;
         }
-
-        /*public override bool OnAltDown()
-        {
-            if (Time.time > timeCanUseAgain)
-            {
-                timeCanUseAgain = Time.time + 3f;
-                Utils.PlayFMODAsset(altFireSound, transform.position, 20f);
-                ErrorMessage.AddMessage("Warp forward alt-fire!");
-                animator.SetTrigger("use_alt");
-                return true;
-            }
-            return false;
-        }*/
 
         public override string animToolName => "stasisrifle";
 
