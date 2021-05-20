@@ -85,10 +85,17 @@ namespace ArchitectsLibrary.MonoBehaviours
                 var directionToSwim = (creature.transform.position - position).normalized;
                 var targetPosition = position + directionToSwim * deterDistance;
                 creature.Scared.Add(1f);
+                creature.leashPosition = targetPosition;
                 var swimBehaviour = creature.GetComponent<SwimBehaviour>();
                 if (swimBehaviour != null)
                 {
-                    swimBehaviour.SwimTo(targetPosition, 10f);
+                    float swimVelocity = 6f;
+                    var fleeOnDamage = creature.GetComponent<FleeOnDamage>();
+                    if (fleeOnDamage)
+                    {
+                        swimVelocity = fleeOnDamage.swimVelocity;
+                    }
+                    swimBehaviour.SwimTo(targetPosition, swimVelocity);
                 }
             }
 
