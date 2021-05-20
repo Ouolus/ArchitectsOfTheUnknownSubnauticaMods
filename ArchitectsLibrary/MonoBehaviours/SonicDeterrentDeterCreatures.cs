@@ -33,7 +33,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void Update()
         {
-            if (constructable is null)
+            if (constructable == null)
             {
                 return;
             }
@@ -62,7 +62,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 
                 var creature = obj.GetComponent<Creature>();
                 
-                if (creature is not null)
+                if (creature != null)
                     DeterCreature(creature);
             }
         }
@@ -71,7 +71,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             var targetType = EcoTargetType.SmallFish;
             var ecoTarget = creature.GetComponent<EcoTarget>();
-            if (ecoTarget is not null)
+            if (ecoTarget != null)
                 targetType = ecoTarget.type;
             
             if (TryGetDeterDistance(targetType, out var deterDistance))
@@ -92,7 +92,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 {
                     float swimVelocity = 6f;
                     var fleeOnDamage = creature.GetComponent<FleeOnDamage>();
-                    if (fleeOnDamage)
+                    if (fleeOnDamage != null)
                     {
                         swimVelocity = fleeOnDamage.swimVelocity;
                     }
