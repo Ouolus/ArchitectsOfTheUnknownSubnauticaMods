@@ -16,6 +16,9 @@ namespace ProjectAncients.Mono.Equipment
         public float maxChargeSeconds = 1.5f;
         bool handDown = false;
         float timeStartedCharging = 0f;
+        /// <summary>
+        /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
+        /// </summary>
         public float warpSpeed = 4;
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
