@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -22,6 +23,8 @@ namespace ArchitectsLibrary.Buildables
         protected override void EditPrefab(GameObject prefab)
         {
             prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 5f, 0f);
+            prefab.transform.GetChild(0).transform.localScale = Vector3.one * 0.75f;
+            prefab.EnsureComponent<SonicDeterrentDeterCreatures>();
         }
 
         protected override string GetSpriteName => "SonicDeterrent";
