@@ -7,9 +7,9 @@ namespace ArchitectsLibrary.MonoBehaviours
     {
         float timeDeterAgain;
         float deterDelay = 1f;
-        float smallFishDeterRadius = 15f;
-        float aggressiveFishDeterRadius = 60f;
-        float maxDeterRadius = 60f;
+        float smallFishDeterRadius = 45f;
+        float aggressiveFishDeterRadius = 75f;
+        float maxDeterRadius = 75f;
         Constructable constructable;
         
         readonly List<EcoTargetType> aggressiveTargetTypes = new()
