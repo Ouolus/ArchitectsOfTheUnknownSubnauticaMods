@@ -10,7 +10,7 @@ namespace ProjectAncients.Prefabs.Equipment
 {
     public class WarpCannonPrefab : Equipable
     {
-        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "A warp cannon that makes metious go yes.")
+        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use.")
         {
         }
 
