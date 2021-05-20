@@ -8,7 +8,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableSonicDeterrent : GenericPrecursorDecoration
     {
-        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", "Sonic Deterrent", "A large alien object that is designed to ward off aggressive fauna. Non-functional.")
+        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", "Sonic Deterrent", "A large alien object that wards off aggressive fauna. Functional.")
         {
         }
 
