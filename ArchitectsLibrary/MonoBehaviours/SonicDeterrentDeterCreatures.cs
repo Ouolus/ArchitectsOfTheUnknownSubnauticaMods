@@ -83,9 +83,10 @@ namespace ArchitectsLibrary.MonoBehaviours
 
                 var position = transform.position; // apparently this looks way more efficient according to Rider.
                 var directionToSwim = (creature.transform.position - position).normalized;
-                var targetPosition = position + directionToSwim * deterDistance;
+                var targetPosition = position + (directionToSwim * deterDistance);
+                var targetLeashPosition = position + (directionToSwim * (deterDistance + 10f));
                 creature.Scared.Add(1f);
-                creature.leashPosition = targetPosition;
+                creature.leashPosition = targetLeashPosition;
                 var swimBehaviour = creature.GetComponent<SwimBehaviour>();
                 if (swimBehaviour != null)
                 {
