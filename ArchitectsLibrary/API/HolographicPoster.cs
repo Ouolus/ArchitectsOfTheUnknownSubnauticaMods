@@ -50,6 +50,15 @@ namespace ArchitectsLibrary.API
         }
 
         /// <summary>
+        /// These posters have a Sprite by default but you can override it if you want.
+        /// </summary>
+        /// <returns></returns>
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Poster_Icon"));
+        }
+
+        /// <summary>
         /// How long it takes to craft the poster
         /// </summary>
         public override float CraftingTime => 7f;
