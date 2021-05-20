@@ -69,12 +69,11 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void DeterCreature(Creature creature)
         {
-            EcoTargetType targetType = EcoTargetType.SmallFish;
+            var targetType = EcoTargetType.SmallFish;
             var ecoTarget = creature.GetComponent<EcoTarget>();
-            if (ecoTarget)
-            {
+            if (ecoTarget is not null)
                 targetType = ecoTarget.type;
-            }
+            
             if (TryGetDeterDistance(targetType, out var deterDistance))
             {
                 if (Vector3.Distance(creature.transform.position, transform.position) > deterDistance)
@@ -83,8 +82,8 @@ namespace ArchitectsLibrary.MonoBehaviours
                 }
 
                 var position = transform.position; // apparently this looks way more efficient according to Rider.
-                Vector3 directionToSwim = (creature.transform.position - position).normalized;
-                Vector3 targetPosition = position + directionToSwim * deterDistance;
+                var directionToSwim = (creature.transform.position - position).normalized;
+                var targetPosition = position + directionToSwim * deterDistance;
                 creature.Scared.Add(1f);
                 var swimBehaviour = creature.GetComponent<SwimBehaviour>();
                 if (swimBehaviour != null)
