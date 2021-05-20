@@ -29,13 +29,34 @@ namespace ProjectAncients.Mono.Equipment
             }
             if (Time.time > timeCanUseAgain)
             {
-                timeStartedCharging = Time.time;
-                handDown = true;
-                chargeLoop.StartEvent();
-                return true;
+                if(fireMode == FireMode.Manipulate)
+                {
+                    return FireManipulateMode();
+                }
+                else
+                {
+                    return FireWarpMode();
+                }
             }
             return false;
+        }
 
+        bool FireWarpMode()
+        {
+            timeStartedCharging = Time.time;
+            handDown = true;
+            chargeLoop.StartEvent();
+            return true;
+        }
+
+        bool FireManipulateMode()
+        {
+            if (Player.main.IsInSub())
+            {
+                ErrorMessage.AddMessage("Cannot fire Warping Device while in Manipulate Mode while inside bases.");
+                return false;
+            }
+            return true;
         }
 
         void Update()
@@ -56,9 +77,24 @@ namespace ProjectAncients.Mono.Equipment
             }
             if (fireMode == FireMode.Manipulate)
             {
-                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
+                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateKey, GameInput.Button.AltTool);
             }
             return base.GetCustomUseText();
+        }
+
+        public override bool OnAltDown()
+        {
+            if (fireMode == FireMode.Warp)
+            {
+                fireMode = FireMode.Manipulate;
+                return true;
+            }
+            if (fireMode == FireMode.Manipulate)
+            {
+                fireMode = FireMode.Warp;
+                return true;
+            }
+            return false;
         }
 
         public override bool OnRightHandUp()
@@ -105,6 +141,10 @@ namespace ProjectAncients.Mono.Equipment
         float GetChargePercent()
         {
             if (!handDown)
+            {
+                return 0f;
+            }
+            if(fireMode == FireMode.Manipulate)
             {
                 return 0f;
             }

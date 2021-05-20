@@ -205,8 +205,8 @@ namespace ProjectAncients
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
-            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal warp. Switch fire mode ({0})");
-            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateKey, "Current fire mode: Environment manipulation. Switch fire mode ({0})");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal teleportation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateKey, "Current fire mode: Environment manipulation. Switch fire mode: {0}");
             #endregion
 
             #region Tech
