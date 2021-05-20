@@ -11,19 +11,17 @@ namespace ArchitectsLibrary.MonoBehaviours
         float aggressiveFishDeterRadius = 60f;
         float maxDeterRadius = 60f;
         Constructable constructable;
-
-        Collider[] colliderBuffer;
-
-        readonly List<EcoTargetType> aggressiveTargetTypes = new List<EcoTargetType>()
+        
+        readonly List<EcoTargetType> aggressiveTargetTypes = new()
         {
             EcoTargetType.Biter,
             EcoTargetType.Shark,
             EcoTargetType.Leviathan,
             EcoTargetType.LavaLarva,
-            EcoTargetType.Whale //not aggressive but whatever
+            EcoTargetType.Whale // not aggressive but whatever
         };
 
-        readonly List<EcoTargetType> dontDeterTargetTypes = new List<EcoTargetType>()
+        readonly List<EcoTargetType> dontDeterTargetTypes = new()
         {
             EcoTargetType.SubDecoy,
             EcoTargetType.CuteFish,
@@ -31,42 +29,45 @@ namespace ArchitectsLibrary.MonoBehaviours
             EcoTargetType.CuredWarp
         };
 
-        void Start()
-        {
-            constructable = gameObject.GetComponent<Constructable>();
-        }
+        void Start() => constructable = gameObject.GetComponent<Constructable>();
 
         void Update()
         {
-            if(constructable == null)
+            if (constructable is null)
             {
                 return;
             }
+            
             if (!constructable.constructed)
             {
                 return;
             }
-            if(Time.time > timeDeterAgain)
+            
+            if (Time.time > timeDeterAgain)
             {
                 timeDeterAgain = Time.time + deterDelay;
                 Deter();
             }
         }
 
-        public void Deter()
+        void Deter()
         {
-            colliderBuffer = Physics.OverlapSphere(transform.position, maxDeterRadius);
-            foreach(var collider in colliderBuffer)
+            // non-allocated OverlapSphere generates less garbage than Physics.OverlapSphere
+            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(transform.position, maxDeterRadius);
+            for (var i = 0; i < hitColliders; i++)
             {
-                Creature creature = collider.GetComponent<Creature>();
-                if (creature)
-                {
-                    TryDeterCreature(creature);
-                }
+                var collider = UWE.Utils.sharedColliderBuffer[i];
+                var obj = UWE.Utils.GetEntityRoot(collider.gameObject);
+                obj ??= collider.gameObject;
+                
+                var creature = obj.GetComponent<Creature>();
+                
+                if (creature is not null)
+                    DeterCreature(creature);
             }
         }
 
-        void TryDeterCreature(Creature creature)
+        void DeterCreature(Creature creature)
         {
             EcoTargetType targetType = EcoTargetType.SmallFish;
             var ecoTarget = creature.GetComponent<EcoTarget>();
@@ -74,17 +75,19 @@ namespace ArchitectsLibrary.MonoBehaviours
             {
                 targetType = ecoTarget.type;
             }
-            if(TryGetDeterDistance(targetType, out float deterDistance))
+            if (TryGetDeterDistance(targetType, out var deterDistance))
             {
-                if(Vector3.Distance(creature.transform.position, this.transform.position) > deterDistance)
+                if (Vector3.Distance(creature.transform.position, transform.position) > deterDistance)
                 {
                     return;
                 }
-                Vector3 directionToSwim = (creature.transform.position - this.transform.position).normalized;
-                Vector3 targetPosition = transform.position + (directionToSwim * deterDistance);
+
+                var position = transform.position; // apparently this looks way more efficient according to Rider.
+                Vector3 directionToSwim = (creature.transform.position - position).normalized;
+                Vector3 targetPosition = position + directionToSwim * deterDistance;
                 creature.Scared.Add(1f);
                 var swimBehaviour = creature.GetComponent<SwimBehaviour>();
-                if (swimBehaviour)
+                if (swimBehaviour != null)
                 {
                     swimBehaviour.SwimTo(targetPosition, 10f);
                 }
@@ -104,6 +107,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 deterDistance = aggressiveFishDeterRadius;
                 return true;
             }
+            
             deterDistance = smallFishDeterRadius;
             return true;
         }
