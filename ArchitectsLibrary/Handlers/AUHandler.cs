@@ -86,12 +86,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="techType">the <see cref="TechType"/> to make immune</param>
         public static void MakeItemAcidImmune(TechType techType)
         {
-            var acidToList = DamageSystem.acidImmune.ToList();
-            
-            if (!acidToList.Contains(techType))
-                acidToList.Add(techType);
-
-            DamageSystem.acidImmune = acidToList.ToArray();
+            DamageSystem.acidImmune.Add(techType);
         }
 
         /// <summary>
