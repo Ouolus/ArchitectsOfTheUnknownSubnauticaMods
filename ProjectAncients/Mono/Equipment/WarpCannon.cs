@@ -84,6 +84,10 @@ namespace ProjectAncients.Mono.Equipment
 
         public override bool OnAltDown()
         {
+            if(Time.time < timeCanUseAgain)
+            {
+                return false;
+            }
             if(GetChargePercent() > 0f)
             {
                 return false;
