@@ -14,12 +14,18 @@ namespace ProjectAncients.Mono.Equipment
         public float maxDistanceInBase = 20f;
         public float surveyRadius = 0.2f;
         public float maxChargeSeconds = 1.5f;
+        public float nodeMaxDistance = 50f;
         bool handDown = false;
         float timeStartedCharging = 0f;
+
+        private GameObject myPrimaryNode;
+        private GameObject mySecondaryNode;
+
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
         /// </summary>
         public float warpSpeed = 4;
+
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
 
@@ -92,6 +98,24 @@ namespace ProjectAncients.Mono.Equipment
         public override void OnHolster()
         {
             StopCharging();
+        }
+        
+        /// <summary>
+        /// Spawns a node, either on the first terrain the raycast hits, or <see cref="nodeMaxDistance"/> meters in front of the player if no terrain is traced.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <returns></returns>
+        private GameObject CreateNode(GameObject prefab)
+        {
+            Transform mainCam = MainCamera.camera.transform;
+            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, -1, QueryTriggerInteraction.Ignore))
+            {
+                return Instantiate(prefab, hit.point, Quaternion.identity);
+            }
+            else
+            {
+                return Instantiate(prefab, mainCam.position + (mainCam.forward * nodeMaxDistance), Quaternion.identity);
+            }
         }
 
         /// <summary>
