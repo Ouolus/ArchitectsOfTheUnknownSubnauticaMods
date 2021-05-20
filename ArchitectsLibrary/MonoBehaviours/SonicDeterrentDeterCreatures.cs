@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace ArchitectsLibrary.MonoBehaviours
@@ -9,14 +7,14 @@ namespace ArchitectsLibrary.MonoBehaviours
     {
         float timeDeterAgain;
         float deterDelay = 1f;
-        static float smallFishDeterRadius = 15f;
-        static float aggressiveFishDeterRadius = 60f;
-        static float maxDeterRadius = 60f;
+        float smallFishDeterRadius = 15f;
+        float aggressiveFishDeterRadius = 60f;
+        float maxDeterRadius = 60f;
         Constructable constructable;
 
         Collider[] colliderBuffer;
 
-        static readonly List<EcoTargetType> aggressiveTargetTypes = new List<EcoTargetType>()
+        readonly List<EcoTargetType> aggressiveTargetTypes = new List<EcoTargetType>()
         {
             EcoTargetType.Biter,
             EcoTargetType.Shark,
@@ -25,7 +23,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             EcoTargetType.Whale //not aggressive but whatever
         };
 
-        static readonly List<EcoTargetType> dontDeterTargetTypes = new List<EcoTargetType>()
+        readonly List<EcoTargetType> dontDeterTargetTypes = new List<EcoTargetType>()
         {
             EcoTargetType.SubDecoy,
             EcoTargetType.CuteFish,
@@ -94,7 +92,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         }
 
-        static bool TryGetDeterDistance(EcoTargetType creature, out float deterDistance)
+        bool TryGetDeterDistance(EcoTargetType creature, out float deterDistance)
         {
             if (dontDeterTargetTypes.Contains(creature))
             {
