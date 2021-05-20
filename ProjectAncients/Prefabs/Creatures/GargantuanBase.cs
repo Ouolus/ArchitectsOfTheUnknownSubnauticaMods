@@ -96,13 +96,12 @@ namespace ProjectAncients.Prefabs
                 FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
             }
 
-            const float jawTentacleSnapSpeed = 6f;
-            CreateTrail(prefab.SearchChild("LLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("LRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("SLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("SRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("LJT"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LLA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LRA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SLA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SRA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LJT"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("RJT"), components, JawTentacleSnapSpeed);
 
             ApplyAggression();
 
@@ -241,7 +240,13 @@ namespace ProjectAncients.Prefabs
                 return true;
             }
         }
-
+        public virtual float JawTentacleSnapSpeed
+        {
+            get
+            {
+                return 6f;
+            }
+        }
         public virtual bool CanBeScaredByElectricity
         {
             get

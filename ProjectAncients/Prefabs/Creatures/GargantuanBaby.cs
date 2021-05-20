@@ -31,6 +31,8 @@ namespace ProjectAncients.Prefabs
             prefab.AddComponent<GargantuanBabyAggression>();
         }
 
+        public override float JawTentacleSnapSpeed => 4f;
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
