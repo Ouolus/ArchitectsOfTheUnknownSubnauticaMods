@@ -18,7 +18,7 @@ namespace ProjectAncients.Mono
 		Rigidbody rb;
 		bool _goodBye;
 
-		void Start()
+		public void Start()
 		{
 			animator = transform.parent.GetComponentInChildren<Animator>();
 			rb = transform.parent.GetComponentInChildren<Rigidbody>();
@@ -34,8 +34,8 @@ namespace ProjectAncients.Mono
 			cinematicController.animParam = "cin_play";
 			cinematicController.animParamReceivers = new GameObject[0];
 			cinematicController.animatedTransform = transform.parent.gameObject.SearchChild("PlayerCam").transform;
-
 		}
+
 		public void OnHandHover(GUIHand hand)
 		{
 			if (!CanInteract()) 
@@ -43,7 +43,7 @@ namespace ProjectAncients.Mono
 
 			var goodByeText = Rocket.IsAnyRocketReady ? "SayFarewell" : null;
 			
-			if (goodByeText is not null)
+			if (!string.IsNullOrEmpty(goodByeText))
 				goodByeText = LanguageCache.GetButtonFormat(goodByeText, GameInput.Button.RightHand);
 
 			if (Rocket.IsAnyRocketReady)
