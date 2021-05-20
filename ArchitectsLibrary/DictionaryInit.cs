@@ -3,12 +3,12 @@ using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary
 {
-    class DictionaryInit
+    internal static class DictionaryInit
     {
         internal static void PatchAllDictionaries()
         {
-            PatchDictionary(WaterParkCreature.creatureEggs, AUHandler.customCreatureEggDictionary);
-            PatchDictionary(WaterParkCreature.waterParkCreatureParameters, AUHandler.customWaterParkCreatureParameters);
+            PatchDictionary(WaterParkCreature.creatureEggs, AUHandler.CustomCreatureEggDictionary);
+            PatchDictionary(WaterParkCreature.waterParkCreatureParameters, AUHandler.CustomWaterParkCreatureParameters);
             PatchDictionary(CraftData.maxCharges, VehicleHandler.CustomMaxCharges);
             PatchDictionary(CraftData.energyCost, VehicleHandler.CustomEnergyCosts);
         }

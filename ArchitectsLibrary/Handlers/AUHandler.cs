@@ -12,10 +12,10 @@ namespace ArchitectsLibrary.Handlers
     /// </summary>
     public static class AUHandler
     {
-        internal static IDictionary<TechType, TechType> customCreatureEggDictionary = 
+        internal static readonly IDictionary<TechType, TechType> CustomCreatureEggDictionary = 
             new HashDictionary<TechType, TechType>();
 
-        internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
+        internal static readonly IDictionary<TechType, WaterParkCreatureParameters> CustomWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="eggType">the Egg's <see cref="TechType"/></param>
         public static void SetCreatureEgg(TechType creatureType, TechType eggType)
         {
-            customCreatureEggDictionary[creatureType] = eggType;
+            CustomCreatureEggDictionary[creatureType] = eggType;
         }
         
         /// <summary>
@@ -112,7 +112,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="waterParkCreatureParameters">the <see cref="WaterParkCreatureParameters"/> to set.</param>
         public static void SetCreatureParameters(TechType creatureType, WaterParkCreatureParameters waterParkCreatureParameters)
         {
-            customWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
+            CustomWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
         }
     }
 }
