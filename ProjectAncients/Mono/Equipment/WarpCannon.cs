@@ -19,6 +19,7 @@ namespace ProjectAncients.Mono.Equipment
         public float warpSpeed = 4;
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
+        public FireMode fireMode = FireMode.Warp;
 
         public override bool OnRightHandDown()
         {
@@ -45,6 +46,19 @@ namespace ProjectAncients.Mono.Equipment
         public override void OnHolster()
         {
             StopCharging();
+        }
+
+        public override string GetCustomUseText()
+        {
+            if(fireMode == FireMode.Warp)
+            {
+                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
+            }
+            if (fireMode == FireMode.Manipulate)
+            {
+                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
+            }
+            return base.GetCustomUseText();
         }
 
         public override bool OnRightHandUp()
@@ -209,5 +223,11 @@ namespace ProjectAncients.Mono.Equipment
         }*/
 
         public override string animToolName => "stasisrifle";
+
+        public enum FireMode
+        {
+            Warp,
+            Manipulate
+        }
     }
 }
