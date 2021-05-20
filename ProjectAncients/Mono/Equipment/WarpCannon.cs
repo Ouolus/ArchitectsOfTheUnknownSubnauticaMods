@@ -84,6 +84,10 @@ namespace ProjectAncients.Mono.Equipment
 
         public override bool OnAltDown()
         {
+            if(GetChargePercent() > 0f)
+            {
+                return false;
+            }
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
