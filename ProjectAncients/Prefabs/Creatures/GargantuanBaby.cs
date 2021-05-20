@@ -14,7 +14,7 @@ namespace ProjectAncients.Prefabs
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 36f, 6f, 7f, 2f, 15f);
         public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, true);
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
-        public override EcoTargetType EcoTargetType => EcoTargetType.Shark;
+        public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
         public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
 
