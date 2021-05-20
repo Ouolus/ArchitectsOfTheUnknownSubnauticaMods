@@ -21,6 +21,10 @@ namespace ProjectAncients.Mono.Equipment
         public GameObject warpOutPrefab;
         public FireMode fireMode = FireMode.Warp;
 
+        /// <summary>
+        /// Controls what happens when you right click.
+        /// </summary>
+        /// <returns></returns>
         public override bool OnRightHandDown()
         {
             if (handDown)
@@ -29,11 +33,11 @@ namespace ProjectAncients.Mono.Equipment
             }
             if (Time.time > timeCanUseAgain)
             {
-                if(fireMode == FireMode.Manipulate)
+                if (fireMode == FireMode.Manipulate)
                 {
                     return FireManipulateMode();
                 }
-                else
+                else if (fireMode == FireMode.Warp)
                 {
                     return FireWarpMode();
                 }
@@ -41,6 +45,10 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
+        /// <summary>
+        /// Fires the weapon while in Personal teleportation mode.
+        /// </summary>
+        /// <returns></returns>
         bool FireWarpMode()
         {
             timeStartedCharging = Time.time;
@@ -49,6 +57,10 @@ namespace ProjectAncients.Mono.Equipment
             return true;
         }
 
+        /// <summary>
+        /// Fires the weapon while in Manipulation mode.
+        /// </summary>
+        /// <returns></returns>
         bool FireManipulateMode()
         {
             if (Player.main.IsInSub())
@@ -59,19 +71,29 @@ namespace ProjectAncients.Mono.Equipment
             return true;
         }
 
+        /// <summary>
+        /// Updates animations based on charge, every frame.
+        /// </summary>
         void Update()
         {
             animator.SetFloat("charge", GetChargePercent());
         }
 
+        /// <summary>
+        /// Controls behavior done when the weapon is put away.
+        /// </summary>
         public override void OnHolster()
         {
             StopCharging();
         }
 
+        /// <summary>
+        /// Controls the displaying of controls at the bottom of the screen.
+        /// </summary>
+        /// <returns></returns>
         public override string GetCustomUseText()
         {
-            if(fireMode == FireMode.Warp)
+            if (fireMode == FireMode.Warp)
             {
                 return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
             }
@@ -82,13 +104,17 @@ namespace ProjectAncients.Mono.Equipment
             return base.GetCustomUseText();
         }
 
+        /// <summary>
+        /// Controls the switching between fire modes.
+        /// </summary>
+        /// <returns></returns>
         public override bool OnAltDown()
         {
-            if(Time.time < timeCanUseAgain)
+            if (Time.time < timeCanUseAgain)
             {
                 return false;
             }
-            if(GetChargePercent() > 0f)
+            if (GetChargePercent() > 0f)
             {
                 return false;
             }
@@ -105,10 +131,18 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
+        /// <summary>
+        /// Controls what happens when you release right click.
+        /// </summary>
+        /// <returns></returns>
         public override bool OnRightHandUp()
         {
+            if (fireMode != FireMode.Warp)
+            {
+                return false;
+            }
             float chargeScale = GetChargePercent();
-            if(Time.time > timeCanUseAgain && handDown)
+            if (Time.time > timeCanUseAgain && handDown)
             {
                 if (TryUse(chargeScale, out Vector3 warpPos))
                 {
@@ -152,7 +186,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return 0f;
             }
-            if(fireMode == FireMode.Manipulate)
+            if (fireMode == FireMode.Manipulate)
             {
                 return 0f;
             }
