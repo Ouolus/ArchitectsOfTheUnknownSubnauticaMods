@@ -6,8 +6,8 @@ namespace ProjectAncients.Mono.Equipment
     public class WarpCannon : PlayerTool
     {
         public Animator animator;
-        public FMODAsset fireSound;
-        public FMODAsset altFireSound;
+        public FMODAsset portalOpenSound;
+        public FMODAsset portalCloseSound;
         public FMOD_StudioEventEmitter chargeLoop;
         float timeCanUseAgain = 0f;
         public float maxDistance = 40f;
@@ -258,7 +258,7 @@ namespace ProjectAncients.Mono.Equipment
                         delay = 1f;
                     }
                     timeCanUseAgain = Time.time + delay;
-                    Utils.PlayFMODAsset(fireSound, warpPos, 20f);
+                    Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
                     return true;
