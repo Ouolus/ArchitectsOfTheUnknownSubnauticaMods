@@ -168,9 +168,10 @@ namespace ProjectAncients.Prefabs.Equipment
             {
                 var main = ps.main;
                 main.loop = true;
-                main.duration = 2f;
-                main.startLifetime = 2f;
+                /*main.duration = 2.5f;
+                main.startLifetime = 3f;
                 main.startDelay = 0f;
+                main.maxParticles = main.maxParticles * 3;*/
             }
             return returnObj;
         }

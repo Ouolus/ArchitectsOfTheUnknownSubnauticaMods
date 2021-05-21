@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace ProjectAncients.Mono.Equipment
 {
@@ -33,6 +34,8 @@ namespace ProjectAncients.Mono.Equipment
         public GameObject secondaryNodeVfxPrefab;
 
         public FireMode fireMode = FireMode.Warp;
+
+        List<IPropulsionCannonAmmo> iammo; //IDK why this exists but the propulsion cannon does it
 
         /// <summary>
         /// Controls what happens when you right click.
@@ -70,6 +73,43 @@ namespace ProjectAncients.Mono.Equipment
             return true;
         }
 
+        void DoWarp()
+        {
+            Vector3 primaryNodePosition = myPrimaryNode.transform.position;
+            Vector3 secondaryNodePosition = mySecondaryNode.transform.position;
+            GameObject warpVfx = GameObject.Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
+            warpVfx.SetActive(true);
+            Destroy(warpVfx, 3f);
+            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
+            for(int i = 0; i < hitColliders; i++)
+            {
+                var collider = UWE.Utils.sharedColliderBuffer[i];
+                var obj = UWE.Utils.GetEntityRoot(collider.gameObject);
+                obj ??= collider.gameObject;
+
+                var rb = obj.GetComponent<Rigidbody>();
+                if(rb == null || rb.mass > 500f)
+                {
+                    continue;
+                }
+                bool canTeleport = true;
+                obj.GetComponents(iammo);
+                for (int j = 0; j < iammo.Count; j++)
+                {
+                    if (!iammo[j].GetAllowedToGrab())
+                    {
+                        canTeleport = false;
+                        break;
+                    }
+                }
+                iammo.Clear();
+                if (canTeleport)
+                {
+                    obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 2f);
+                }
+            }
+        }
+
         /// <summary>
         /// Fires the weapon while in Manipulation mode.
         /// </summary>
@@ -90,6 +130,7 @@ namespace ProjectAncients.Mono.Equipment
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
+                DoWarp();
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 return true;
             }
