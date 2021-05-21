@@ -105,7 +105,7 @@ namespace ProjectAncients.Mono.Equipment
                 iammo.Clear();
                 if (canTeleport)
                 {
-                    obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 2f);
+                    obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 1f);
                     rb.isKinematic = false;
                 }
             }
