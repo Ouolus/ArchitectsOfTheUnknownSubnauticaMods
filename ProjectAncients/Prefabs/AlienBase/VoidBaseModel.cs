@@ -24,7 +24,7 @@ namespace ProjectAncients.Prefabs.AlienBase
             {
                 foreach(Material mat in renderer.materials)
                 {
-                    if (!mat.name.Contains("Transparent"))
+                    if (!mat.name.ToLower().Contains("transparent") && !mat.name.ToLower().Contains("glass"))
                     {
                         mat.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                     }
