@@ -137,7 +137,7 @@ namespace ProjectAncients.Mono.Equipment
             GameObject returnObj;
             if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
             {
-                returnObj = Instantiate(prefab, hit.point, Quaternion.identity);
+                returnObj = Instantiate(prefab, hit.point + (hit.normal * 1f), Quaternion.identity);
             }
             else
             {
