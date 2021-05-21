@@ -88,7 +88,7 @@ namespace ProjectAncients.Mono.Equipment
                 obj ??= collider.gameObject;
 
                 var rb = obj.GetComponent<Rigidbody>();
-                if(rb == null || rb.mass > 500f)
+                if(rb == null || rb.mass > 1000f)
                 {
                     continue;
                 }
