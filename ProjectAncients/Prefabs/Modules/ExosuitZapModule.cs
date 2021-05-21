@@ -75,7 +75,7 @@ namespace ProjectAncients.Prefabs.Modules
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("PrawnSuitAutoZapper"));
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("PrawnSuitAutoZapper"));
         }
     }
 }
