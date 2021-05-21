@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Utility
     /// <summary>
     /// Contains methods related to translations and other Language-related utility.
     /// </summary>
-    public class LanguageUtils
+    public static class LanguageUtils
     {
         /// <summary>
         /// A format with support for multiple buttons rather than just one.
