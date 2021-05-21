@@ -28,8 +28,8 @@ namespace ProjectAncients.Patches
             src.playOnAwake = false;
             src.spatialBlend = 1f;
             src.transform.position = Player.main.transform.position + new Vector3(-60f, -15f, -30f);
-            src.minDistance = 20f;
-            src.maxDistance = 150f;
+            src.minDistance = 60f;
+            src.maxDistance = 300f;
             src.Play();
             GameObject.Destroy(roarObj, 19f);
         }
