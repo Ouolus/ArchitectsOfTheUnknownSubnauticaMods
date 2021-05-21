@@ -35,7 +35,7 @@ namespace ProjectAncients.Mono.Equipment
 
         public FireMode fireMode = FireMode.Warp;
 
-        List<IPropulsionCannonAmmo> iammo; //IDK why this exists but the propulsion cannon does it
+        List<IPropulsionCannonAmmo> iammo = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
 
         /// <summary>
         /// Controls what happens when you right click.
@@ -106,6 +106,7 @@ namespace ProjectAncients.Mono.Equipment
                 if (canTeleport)
                 {
                     obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 2f);
+                    rb.isKinematic = false;
                 }
             }
         }
