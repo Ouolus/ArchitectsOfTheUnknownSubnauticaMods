@@ -93,16 +93,20 @@ namespace ProjectAncients.Mono.Equipment
                     continue;
                 }
                 bool canTeleport = true;
-                obj.GetComponents(iammo);
-                for (int j = 0; j < iammo.Count; j++)
+                var creature = obj.GetComponent<Creature>();
+                if(creature is null)
                 {
-                    if (!iammo[j].GetAllowedToGrab())
+                    obj.GetComponents(iammo);
+                    for (int j = 0; j < iammo.Count; j++)
                     {
-                        canTeleport = false;
-                        break;
+                        if (!iammo[j].GetAllowedToGrab())
+                        {
+                            canTeleport = false;
+                            break;
+                        }
                     }
+                    iammo.Clear();
                 }
-                iammo.Clear();
                 if (canTeleport)
                 {
                     obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 1f);
