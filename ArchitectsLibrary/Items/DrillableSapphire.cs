@@ -47,7 +47,19 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.GrandReef_Ground,
                 count = 1,
-                probability = 0.07f
+                probability = 0.08f
+            },
+            new()
+            {
+                biome = BiomeType.GrandReef_CaveCeiling,
+                count = 1,
+                probability = 0.08f
+            },
+            new()
+            {
+                biome = BiomeType.GrandReef_Grass,
+                count = 1,
+                probability = 0.08f
             },
             new()
             {
