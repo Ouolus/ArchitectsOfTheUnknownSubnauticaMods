@@ -81,6 +81,21 @@ namespace ProjectAncients.Mono.Equipment
                 ErrorMessage.AddMessage("Cannot fire Warping Device while in Manipulate Mode while inside bases.");
                 return false;
             }
+            if(mySecondaryNode != null) //check if both nodes already exist. if so, do nothing.
+            {
+                return false;
+            }
+            if(myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
+            {
+                mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
+                Destroy(mySecondaryNode, 2f);
+                Destroy(myPrimaryNode, 2f);
+                timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
+                return true;
+            }
+            myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
+            Destroy(myPrimaryNode, 60f);
+            timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
             return true;
         }
 
@@ -98,6 +113,17 @@ namespace ProjectAncients.Mono.Equipment
         public override void OnHolster()
         {
             StopCharging();
+
+            if(myPrimaryNode != null)
+            {
+                Destroy(myPrimaryNode, 2f);
+                myPrimaryNode = null;
+            }
+            if (mySecondaryNode != null)
+            {
+                Destroy(mySecondaryNode, 2f);
+                mySecondaryNode = null;
+            }
         }
         
         /// <summary>
@@ -108,14 +134,17 @@ namespace ProjectAncients.Mono.Equipment
         private GameObject CreateNode(GameObject prefab)
         {
             Transform mainCam = MainCamera.camera.transform;
-            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, -1, QueryTriggerInteraction.Ignore))
+            GameObject returnObj;
+            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
             {
-                return Instantiate(prefab, hit.point, Quaternion.identity);
+                returnObj = Instantiate(prefab, hit.point, Quaternion.identity);
             }
             else
             {
-                return Instantiate(prefab, mainCam.position + (mainCam.forward * nodeMaxDistance), Quaternion.identity);
+                returnObj = Instantiate(prefab, mainCam.position + (mainCam.forward * nodeMaxDistance), Quaternion.identity);
             }
+            returnObj.SetActive(true);
+            return returnObj;
         }
 
         /// <summary>
