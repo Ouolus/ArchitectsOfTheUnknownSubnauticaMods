@@ -132,10 +132,12 @@ namespace ProjectAncients.Mono.Equipment
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
                 DoWarp();
+                Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 40f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 return true;
             }
             myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
+            Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 30f); //portal open sound cus you're creating a new portal link
             Destroy(myPrimaryNode, 60f);
             timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
             return true;
@@ -201,7 +203,14 @@ namespace ProjectAncients.Mono.Equipment
             }
             if (fireMode == FireMode.Manipulate)
             {
-                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateKey, GameInput.Button.AltTool);
+                if(myPrimaryNode == null)
+                {
+                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
+                }
+                else if (mySecondaryNode == null)
+                {
+                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
+                }
             }
             return base.GetCustomUseText();
         }
