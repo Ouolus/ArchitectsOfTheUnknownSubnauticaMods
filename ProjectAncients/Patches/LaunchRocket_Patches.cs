@@ -19,7 +19,7 @@ namespace ProjectAncients.Patches
 
         static IEnumerator PlayGargRoarDelayed()
         {
-            yield return new WaitForSeconds(29f);
+            yield return new WaitForSeconds(19f);
             GameObject roarObj = new GameObject("RocketRoar");
             var src = roarObj.AddComponent<AudioSource>();
             src.volume = ECCLibrary.ECCHelpers.GetECCVolume();
