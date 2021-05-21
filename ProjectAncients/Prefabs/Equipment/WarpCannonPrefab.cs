@@ -168,7 +168,9 @@ namespace ProjectAncients.Prefabs.Equipment
             {
                 var main = ps.main;
                 main.loop = true;
-                main.duration = 2.6f;
+                main.duration = 2f;
+                main.startLifetime = 2f;
+                main.startDelay = 0f;
             }
             return returnObj;
         }
