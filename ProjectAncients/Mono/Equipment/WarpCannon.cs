@@ -326,7 +326,7 @@ namespace ProjectAncients.Mono.Equipment
                     Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
-                    if(Random.value < (0.3f * chargeScale))
+                    if(Random.value < (0.4f * chargeScale))
                     {
                         Misfire(warpPos);
                     }
