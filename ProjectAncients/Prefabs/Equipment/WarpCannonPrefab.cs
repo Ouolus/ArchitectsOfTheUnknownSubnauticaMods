@@ -10,7 +10,7 @@ namespace ProjectAncients.Prefabs.Equipment
 {
     public class WarpCannonPrefab : Equipable
     {
-        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use.")
+        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use. Potentially unstable.")
         {
         }
 
@@ -22,6 +22,8 @@ namespace ProjectAncients.Prefabs.Equipment
         public override TechGroup GroupForPDA => TechGroup.Personal;
 
         public override float CraftingTime => 12f;
+
+        static WarperData warperCreatureData;
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -85,7 +87,12 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
             warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
-            warpCannon.warperCreatureData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
+            if (warperCreatureData == null)
+            {
+                WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
+                warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
+            }
+            warpCannon.warperCreatureData = warperCreatureData;
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
             warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
@@ -147,7 +154,12 @@ namespace ProjectAncients.Prefabs.Equipment
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
             warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
-            warpCannon.warperCreatureData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
+            if (warperCreatureData == null)
+            {
+                WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
+                warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
+            }
+            warpCannon.warperCreatureData = warperCreatureData;
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
             warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
@@ -159,6 +171,26 @@ namespace ProjectAncients.Prefabs.Equipment
         }
 #endif
 
+        static WarperData GetWarpCannonCreatureSpawnData(WarperData original)
+        {
+            var so = ScriptableObject.CreateInstance<WarperData>();
+            so.biomeLookup = original.biomeLookup;
+            so.warpInCreaturesData = original.warpInCreaturesData;
+
+            var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 } };
+            AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures});
+            AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures});
+
+            return so;
+        }
+
+        static void AddBiomeToWarperData(WarperData warperData, string biomeName, WarperData.WarpInData creaturesData)
+        {
+            int biomeCount = warperData.biomeLookup.Count;
+            warperData.biomeLookup.Add(biomeName, biomeCount);
+            warperData.warpInCreaturesData.Add(creaturesData);
+            warperData.warpInCreaturesData[biomeCount].biomeName = biomeName;
+        }
         GameObject GetLoopingWarperVfx(GameObject originalVfx)
         {
             GameObject returnObj = GameObject.Instantiate(originalVfx);
