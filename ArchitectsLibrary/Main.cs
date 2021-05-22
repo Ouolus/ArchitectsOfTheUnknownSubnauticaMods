@@ -69,6 +69,8 @@ namespace ArchitectsLibrary
         static BuildableColumnSmall buildableColumnSmall;
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
+        static BuildablePedestal buildablePedestal;
+        static BuildablePedestalLarge buildablePedestalLarge;
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -264,6 +266,12 @@ namespace ArchitectsLibrary
 
             buildableColumnSmall = new BuildableColumnSmall();
             buildableColumnSmall.Patch();
+
+            buildablePedestal = new BuildablePedestal();
+            buildablePedestal.Patch();
+
+            buildablePedestalLarge = new BuildablePedestalLarge();
+            buildablePedestalLarge.Patch();
         }
     }
 }
