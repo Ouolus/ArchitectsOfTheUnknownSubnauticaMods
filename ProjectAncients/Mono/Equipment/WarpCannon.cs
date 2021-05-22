@@ -66,25 +66,25 @@ namespace ProjectAncients.Mono.Equipment
         /// <summary>
         /// Spawns a creature around the player.
         /// </summary>
-        void Misfire()
+        void Misfire(Vector3 warpPosition)
         {
             string biomeName = "";
             if (LargeWorld.main)
             {
-                biomeName = LargeWorld.main.GetBiome(transform.position);
+                biomeName = LargeWorld.main.GetBiome(warpPosition);
             }
             WarperData.WarpInCreature randomCreature = warperCreatureData.GetRandomCreature(biomeName);
             if (randomCreature == null)
             {
                 return;
             }
-            Vector3 creatureSpawnPosition = transform.position + (Random.onUnitSphere * 10f);
+            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * 10f);
             Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
             Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition, 20f);
             int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
             for (int i = 0; i < num; i++)
             {
-                WarpInCreature(randomCreature.techType);
+                WarpInCreature(randomCreature.techType, warpPosition);
             }
         }
 
@@ -92,14 +92,14 @@ namespace ProjectAncients.Mono.Equipment
         /// Stolen from WarpBall.cs
         /// </summary>
         /// <param name="techType"></param>
-        private void WarpInCreature(TechType techType)
+        private void WarpInCreature(TechType techType, Vector3 position)
         {
             if (techType == TechType.None)
             {
                 return;
             }
             GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType, false);
-            spawnedCreatureObj.transform.position = transform.position + UnityEngine.Random.insideUnitSphere * 0.5f;
+            spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
             WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
             warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
             warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
@@ -328,7 +328,7 @@ namespace ProjectAncients.Mono.Equipment
                     handDown = false;
                     if(Random.value < (0.3f * chargeScale))
                     {
-                        Misfire();
+                        Misfire(warpPos);
                     }
                     return true;
                 }
