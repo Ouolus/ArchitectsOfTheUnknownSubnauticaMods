@@ -24,14 +24,10 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(0.2f, 0.1f, 22.75f), Vector3.up * -24f));
 
             //Aquarium
-            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(5.16f, firstFloorY, -20.88f), new Vector3(0f, 74f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(-1.69f, firstFloorY, -20.82f), new Vector3(0f, 150f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(3.24f, firstFloorY, -28.05f), new Vector3(0f, -40f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(-7.96f, firstFloorY, -22.14f), new Vector3(0f, 50, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(1.97f, firstFloorY, -31.44f), new Vector3(0f, 50, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(0.16f, firstFloorY, -15.88f), new Vector3(0f, 0f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-1.37f, firstFloorY, -25.05f), new Vector3(0f, -220f, 0f)));
-            yield return StartCoroutine(SpawnPrefab(natural_coralClumpYellow, new Vector3(-1.37f, firstFloorY, -25.05f), new Vector3(0f, -220f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(-1.71f, 0.72f, -14.81f), new Vector3(6, 42, 4)));
+            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(-1.82f, 2.17f, -24.65f), new Vector3(-5, -9, 5)));
+            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(5.33f, 1.47f, -26.71f), new Vector3(23, 147, 5)));
+            yield return StartCoroutine(SpawnPrefab(natural_ameboid, new Vector3(-8.68f, 0.42f, -23.05f), new Vector3(-9, 5, 12)));
             yield return StartCoroutine(SpawnPrefabsArray(creature_rockgrub, 0.1f, Vector3.one * 3f, Vector3.one * 0.1f, new Vector3(0f, firstFloorY + 4f, -25)));
 
             yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 7.81f, -22.34f)));
