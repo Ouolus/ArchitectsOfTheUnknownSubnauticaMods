@@ -240,17 +240,7 @@ namespace ProjectAncients.Mono.Equipment
         public override void OnHolster()
         {
             StopCharging();
-
-            if(myPrimaryNode != null)
-            {
-                Destroy(myPrimaryNode, 2f);
-                myPrimaryNode = null;
-            }
-            if (mySecondaryNode != null)
-            {
-                Destroy(mySecondaryNode, 2f);
-                mySecondaryNode = null;
-            }
+            DestroyNodes();
         }
         
         /// <summary>
@@ -298,6 +288,20 @@ namespace ProjectAncients.Mono.Equipment
             return base.GetCustomUseText();
         }
 
+        void DestroyNodes()
+        {
+            if (myPrimaryNode != null)
+            {
+                Destroy(myPrimaryNode, 2f);
+                myPrimaryNode = null;
+            }
+            if (mySecondaryNode != null)
+            {
+                Destroy(mySecondaryNode, 2f);
+                mySecondaryNode = null;
+            }
+        }
+
         /// <summary>
         /// Controls the switching between fire modes.
         /// </summary>
@@ -312,6 +316,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return false;
             }
+            DestroyNodes();
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
