@@ -213,26 +213,19 @@ namespace ArchitectsLibrary
 
         static void PatchBuildables()
         {
+            //exterior only
             buildableColumn = new BuildableColumn();
             buildableColumn.Patch();
 
             buildableArchway = new BuildableArchway();
             buildableArchway.Patch();
 
+            buildableSonicDeterrent = new BuildableSonicDeterrent();
+            buildableSonicDeterrent.Patch();
+
+            //exterior and interior
             buildablePlatform = new BuildablePlatform();
             buildablePlatform.Patch();
-
-            buildableLight1 = new BuildableLight1();
-            buildableLight1.Patch();
-
-            buildableLight2 = new BuildableLight2();
-            buildableLight2.Patch();
-
-            buildableLight3 = new BuildableLight3();
-            buildableLight3.Patch();
-
-            buildableDissectionTank = new BuildableDissectionTank();
-            buildableDissectionTank.Patch();
 
             buildableRelicTank = new BuildableRelicTank();
             buildableRelicTank.Patch();
@@ -240,11 +233,8 @@ namespace ArchitectsLibrary
             buildableLargeRelicTank = new BuildableLargeRelicTank();
             buildableLargeRelicTank.Patch();
 
-            buildableLight4 = new BuildableLight4();
-            buildableLight4.Patch();
-
-            buildableLight5 = new BuildableLight5();
-            buildableLight5.Patch();
+            buildableDissectionTank = new BuildableDissectionTank();
+            buildableDissectionTank.Patch();
 
             //buildableAlienRobot = new BuildableAlienRobot();
             //buildableAlienRobot.Patch();
@@ -258,9 +248,6 @@ namespace ArchitectsLibrary
             buildableMicroscope = new BuildableMicroscope();
             buildableMicroscope.Patch();
 
-            buildableSonicDeterrent = new BuildableSonicDeterrent();
-            buildableSonicDeterrent.Patch();
-
             buildableIonCubePedestal = new BuildableIonCubePedestal();
             buildableIonCubePedestal.Patch();
 
@@ -272,6 +259,22 @@ namespace ArchitectsLibrary
 
             buildablePedestalLarge = new BuildablePedestalLarge();
             buildablePedestalLarge.Patch();
+
+            buildableLight1 = new BuildableLight1();
+            buildableLight1.Patch();
+
+            buildableLight2 = new BuildableLight2();
+            buildableLight2.Patch();
+
+            buildableLight3 = new BuildableLight3();
+            buildableLight3.Patch();
+
+            buildableLight4 = new BuildableLight4();
+            buildableLight4.Patch();
+
+            buildableLight5 = new BuildableLight5();
+            buildableLight5.Patch();
+
         }
     }
 }
