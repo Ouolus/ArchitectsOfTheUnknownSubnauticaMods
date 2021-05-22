@@ -124,10 +124,10 @@ namespace ProjectAncients.Prefabs.Equipment
             chargeSound.path = "event:/sub/cyclops/shield_on_loop";
 
             var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
-            warpCannon.fireSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.fireSound.path = "event:/creature/warper/portal_open";
-            warpCannon.altFireSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.altFireSound.path = "event:/creature/warper/portal_close";
+            warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
+            warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
+            warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
+            warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
             warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
             warpCannon.drawSound.path = "event:/player/key terminal_close";
             warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
