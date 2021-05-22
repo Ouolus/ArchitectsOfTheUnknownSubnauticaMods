@@ -21,6 +21,6 @@ namespace ArchitectsLibrary.Buildables
             
         }
 
-        protected override string GetSpriteName => "";
+        protected override string GetSpriteName => "Pedestal";
     }
 }
