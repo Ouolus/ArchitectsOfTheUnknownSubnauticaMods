@@ -316,7 +316,6 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return false;
             }
-            DestroyNodes();
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
