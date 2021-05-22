@@ -127,6 +127,8 @@
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableIonCubePedestal.cs" />
+    <Compile Include="Buildables\BuildablePedestal.cs" />
+    <Compile Include="Buildables\BuildablePedestalLarge.cs" />
     <Compile Include="Buildables\BuildableSonicDeterrent.cs" />
     <Compile Include="Buildables\BuildableMicroscope.cs" />
     <Compile Include="Buildables\BuildableAlienRobot.cs" />
@@ -184,7 +186,6 @@
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Items\ReskinSpawnable.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
-    <Compile Include="Language\LanguageSystem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Utility\GeneralExtensions.cs" />
     <Compile Include="Utility\HashDictionary.cs" />
     <Compile Include="Utility\ItemUtils.cs" />
+    <Compile Include="Utility\LanguageUtils.cs" />
     <Compile Include="Utility\MaterialUtils.cs" />
   </ItemGroup>
   <ItemGroup>
