@@ -46,6 +46,7 @@ namespace ArchitectsLibrary
         static DrillableEmerald drillableEmerald;
         static Sapphire sapphire;
         static DrillableSapphire drillableSapphire;
+        static RedBeryl redBeryl;
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
@@ -187,6 +188,10 @@ namespace ArchitectsLibrary
             drillableSapphire = new DrillableSapphire();
             drillableSapphire.Patch();
             AUHandler.DrillableSapphireTechType = drillableSapphire.TechType;
+
+            redBeryl = new RedBeryl();
+            redBeryl.Patch();
+            AUHandler.RedBerylTechType = redBeryl.TechType;
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
