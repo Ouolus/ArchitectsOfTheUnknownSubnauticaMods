@@ -9,6 +9,7 @@ namespace ProjectAncients.Mono.Equipment
         public FMODAsset portalOpenSound;
         public FMODAsset portalCloseSound;
         public FMOD_StudioEventEmitter chargeLoop;
+        public WarperData warperCreatureData;
         float timeCanUseAgain = 0f;
         public float maxDistance = 40f;
         public float minDistanceInBase = 1f;
@@ -29,6 +30,7 @@ namespace ProjectAncients.Mono.Equipment
 
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
+        public GameObject warpOutPrefabDestroyAutomatically;
 
         public GameObject primaryNodeVfxPrefab;
         public GameObject secondaryNodeVfxPrefab;
@@ -62,6 +64,53 @@ namespace ProjectAncients.Mono.Equipment
         }
 
         /// <summary>
+        /// Spawns a creature around the player.
+        /// </summary>
+        void Misfire()
+        {
+            string biomeName = "";
+            if (LargeWorld.main)
+            {
+                biomeName = LargeWorld.main.GetBiome(transform.position);
+            }
+            WarperData.WarpInCreature randomCreature = warperCreatureData.GetRandomCreature(biomeName);
+            if (randomCreature == null)
+            {
+                return;
+            }
+            Vector3 creatureSpawnPosition = transform.position + (Random.onUnitSphere * 10f);
+            Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
+            Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition, 20f);
+            int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
+            for (int i = 0; i < num; i++)
+            {
+                WarpInCreature(randomCreature.techType);
+            }
+        }
+
+        /// <summary>
+        /// Stolen from WarpBall.cs
+        /// </summary>
+        /// <param name="techType"></param>
+        private void WarpInCreature(TechType techType)
+        {
+            if (techType == TechType.None)
+            {
+                return;
+            }
+            GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType, false);
+            spawnedCreatureObj.transform.position = transform.position + UnityEngine.Random.insideUnitSphere * 0.5f;
+            WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
+            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
+            warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
+            warpedInCreature.warpOutSound = portalCloseSound;
+            if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
+            {
+                LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
+            }
+        }
+
+        /// <summary>
         /// Fires the weapon while in Personal teleportation mode.
         /// </summary>
         /// <returns></returns>
@@ -73,6 +122,9 @@ namespace ProjectAncients.Mono.Equipment
             return true;
         }
 
+        /// <summary>
+        /// Warp all small enough entities around the secondary node to the primary node
+        /// </summary>
         void DoWarp()
         {
             Vector3 primaryNodePosition = myPrimaryNode.transform.position;
@@ -247,7 +299,7 @@ namespace ProjectAncients.Mono.Equipment
         }
 
         /// <summary>
-        /// Controls what happens when you release right click.
+        /// Controls what happens when you release right click. Personal teleportation mode only.
         /// </summary>
         /// <returns></returns>
         public override bool OnRightHandUp()
@@ -274,6 +326,10 @@ namespace ProjectAncients.Mono.Equipment
                     Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
+                    if(Random.value < (0.3f * chargeScale))
+                    {
+                        Misfire();
+                    }
                     return true;
                 }
                 else

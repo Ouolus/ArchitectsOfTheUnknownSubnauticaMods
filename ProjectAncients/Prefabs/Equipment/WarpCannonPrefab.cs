@@ -84,6 +84,7 @@ namespace ProjectAncients.Prefabs.Equipment
 
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
+            warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
             warpCannon.warperCreatureData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
@@ -145,6 +146,7 @@ namespace ProjectAncients.Prefabs.Equipment
 
             warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
             warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
+            warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
             warpCannon.warperCreatureData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
