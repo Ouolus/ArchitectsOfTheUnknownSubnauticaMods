@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ProjectAncients.Mono.Equipment
 {
@@ -84,7 +85,11 @@ namespace ProjectAncients.Mono.Equipment
             int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
             for (int i = 0; i < num; i++)
             {
+#if SN1_exp
+                UWE.CoroutineHost.StartCoroutine(WarpInCreatureAsync(randomCreature.techType, warpPosition));
+#else
                 WarpInCreature(randomCreature.techType, warpPosition);
+#endif
             }
         }
 
@@ -92,6 +97,27 @@ namespace ProjectAncients.Mono.Equipment
         /// Stolen from WarpBall.cs
         /// </summary>
         /// <param name="techType"></param>
+#if SN1_exp
+        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position)
+        {
+            if (techType == TechType.None)
+            {
+                yield break;
+            }
+            TaskResult<GameObject> task = new TaskResult<GameObject>();
+            yield return CraftData.InstantiateFromPrefabAsync(techType, task);
+            GameObject spawnedCreatureObj = task.Get();
+            spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
+            WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
+            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
+            warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
+            warpedInCreature.warpOutSound = portalCloseSound;
+            if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
+            {
+                LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
+            }
+        }
+#else
         private void WarpInCreature(TechType techType, Vector3 position)
         {
             if (techType == TechType.None)
@@ -109,6 +135,7 @@ namespace ProjectAncients.Mono.Equipment
                 LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
             }
         }
+#endif
 
         /// <summary>
         /// Fires the weapon while in Personal teleportation mode.
