@@ -69,10 +69,10 @@ namespace ProjectAncients.Mono
             {
                 Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
                 float oceanLevel = 0f;
-#if SN1_exp
-                oceanLevel = Ocean.main.defaultOceanLevel;
-#else
+#if SN1
                 oceanLevel = Ocean.main.GetOceanLevel();
+#else
+                oceanLevel = Ocean.GetOceanLevel();
 #endif
                 if (Player.main.transform.position.y > oceanLevel || Player.main.precursorOutOfWater)
                 {
