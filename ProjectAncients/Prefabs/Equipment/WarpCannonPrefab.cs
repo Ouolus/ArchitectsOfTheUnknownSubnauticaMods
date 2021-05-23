@@ -197,6 +197,7 @@ namespace ProjectAncients.Prefabs.Equipment
                 if (warperData.warpInCreaturesData[i].biomeName == biomeName)
                 {
                     warperData.warpInCreaturesData[i] = creaturesData;
+                    warperData.warpInCreaturesData[i].biomeName = biomeName;
                 }
             }
         }
