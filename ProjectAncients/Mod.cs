@@ -227,7 +227,7 @@ namespace ProjectAncients
 
             superDecoy = new();
             superDecoy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
             #endregion
 
             #region Creatures
