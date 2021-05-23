@@ -197,6 +197,7 @@ namespace ArchitectsLibrary
             electricube = new Electricube();
             electricube.Patch();
             AUHandler.ElectricubeTechType = electricube.TechType;
+            CraftData.pickupSoundList.Add(electricube.TechType, "event:/loot/pickup_precursorioncrystal");
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
