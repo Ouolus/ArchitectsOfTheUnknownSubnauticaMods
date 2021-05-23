@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Utility;
 using ArchitectsLibrary.Handlers;
 using UnityEngine;
 using UWE;
@@ -20,33 +16,11 @@ namespace ArchitectsLibrary.Buildables
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
+            return new(new List<Ingredient>() { new(AUHandler.AlienCompositeGlassTechType, 1) });
         }
 
-        public override TechCategory CategoryForPDA
-        {
-            get
-            {
-                if (ExteriorOnly)
-                {
-                    return TechCategory.ExteriorOther;
-                }
-                
-                return TechCategory.Misc;
-            }
-        }
-        public override TechGroup GroupForPDA
-        {
-            get
-            {
-                if (ExteriorOnly)
-                {
-                    return TechGroup.ExteriorModules;
-                }
-                
-                return TechGroup.Miscellaneous;
-            }
-        }
+        public override TechCategory CategoryForPDA => ExteriorOnly ? TechCategory.ExteriorOther : TechCategory.Misc;
+        public override TechGroup GroupForPDA => ExteriorOnly ? TechGroup.ExteriorModules : TechGroup.Miscellaneous;
 
         public override bool UnlockedAtStart => false;
         public override TechType RequiredForUnlock => AUHandler.AlienTechnologyMasterTech;
@@ -193,18 +167,18 @@ namespace ArchitectsLibrary.Buildables
 
         internal struct ConstructableSettings
         {
-            internal bool AllowedInBase;
-            internal bool AllowedOutside;
-            internal bool AllowedInSub;
-            internal bool AllowedOnWall;
-            internal bool AllowedOnGround;
-            internal bool AllowedOnCeiling;
-            internal bool AllowedOnConstructables;
-            internal bool RotationEnabled;
-            internal bool ForceUpright;
-            internal float PlaceDefaultDistance;
-            internal float PlaceMinDistance;
-            internal float PlaceMaxDistance;
+            internal readonly bool AllowedInBase;
+            internal readonly bool AllowedOutside;
+            internal readonly bool AllowedInSub;
+            internal readonly bool AllowedOnWall;
+            internal readonly bool AllowedOnGround;
+            internal readonly bool AllowedOnCeiling;
+            internal readonly bool AllowedOnConstructables;
+            internal readonly bool RotationEnabled;
+            internal readonly bool ForceUpright;
+            internal readonly float PlaceDefaultDistance;
+            internal readonly float PlaceMinDistance;
+            internal readonly float PlaceMaxDistance;
 
             public ConstructableSettings(bool allowedInBase, bool allowedInSub, bool allowedOutside, bool allowedOnWall, bool allowedOnGround, bool allowedOnCeiling, bool allowedOnConstructables, bool rotationEnabled = true, bool forceUpright = false, float placeDefaultDistance = 2f, float placeMinDistance = 1.2f, float placeMaxDistance = 5f)
             {
