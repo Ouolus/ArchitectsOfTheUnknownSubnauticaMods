@@ -50,6 +50,7 @@ namespace ArchitectsLibrary
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
+        static Electricube electricube;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -192,6 +193,10 @@ namespace ArchitectsLibrary
             redBeryl = new RedBeryl();
             redBeryl.Patch();
             AUHandler.RedBerylTechType = redBeryl.TechType;
+
+            electricube = new Electricube();
+            electricube.Patch();
+            AUHandler.ElectricubeTechType = electricube.TechType;
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
