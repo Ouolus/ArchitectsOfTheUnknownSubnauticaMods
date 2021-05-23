@@ -15,7 +15,7 @@ namespace ArchitectsLibrary.Items
 
         }
 
-    protected override void ApplyChangesToPrefab(GameObject prefab)
+        protected override void ApplyChangesToPrefab(GameObject prefab)
         {
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
             var renderer = prefab.GetComponentInChildren<Renderer>();
