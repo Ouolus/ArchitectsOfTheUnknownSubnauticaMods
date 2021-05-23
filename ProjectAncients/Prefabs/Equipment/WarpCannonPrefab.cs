@@ -173,14 +173,17 @@ namespace ProjectAncients.Prefabs.Equipment
 
         static WarperData GetWarpCannonCreatureSpawnData(WarperData original)
         {
-            var so = ScriptableObject.CreateInstance<WarperData>();
-            so.biomeLookup = original.biomeLookup;
-            so.warpInCreaturesData = original.warpInCreaturesData;
+            WarperData so = ScriptableObject.CreateInstance<WarperData>();
+            so.biomeLookup = new Dictionary<string, int>(original.biomeLookup);
+            ErrorMessage.AddMessage("Original is null: " + (original == null));
+            ErrorMessage.AddMessage("Biome lookup is null: " + (so.biomeLookup == null));
+            so.warpInCreaturesData = new List<WarperData.WarpInData>(original.warpInCreaturesData);
+            ErrorMessage.AddMessage("Warp in creatures data is null: " + (so.warpInCreaturesData == null));
 
             var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 } };
             AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures});
             AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures});
-
+            ReplaceBiomeInWarperData(so, "safeShallows", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Gasopod, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.RabbitRay, minNum = 4, maxNum = 6 } } });
             return so;
         }
 
@@ -190,6 +193,13 @@ namespace ProjectAncients.Prefabs.Equipment
             warperData.biomeLookup.Add(biomeName, biomeCount);
             warperData.warpInCreaturesData.Add(creaturesData);
             warperData.warpInCreaturesData[biomeCount].biomeName = biomeName;
+        }
+
+        static void ReplaceBiomeInWarperData(WarperData warperData, string biomeName, WarperData.WarpInData creaturesData)
+        {
+            int biomeIndex = warperData.biomeLookup[biomeName];
+            warperData.warpInCreaturesData[biomeIndex] = creaturesData;
+            warperData.warpInCreaturesData[biomeIndex].biomeName = biomeName;
         }
         GameObject GetLoopingWarperVfx(GameObject originalVfx)
         {
