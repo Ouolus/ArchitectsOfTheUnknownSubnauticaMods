@@ -49,6 +49,11 @@ namespace ArchitectsLibrary.Handlers
         public static TechType RedBerylTechType { get; internal set; }
 
         /// <summary>
+        /// Gets the <see cref="Morganite"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType MorganiteTechType { get; internal set; }
+
+        /// <summary>
         /// Gets the <see cref="Electricube"/>'s TechType so you can spawn it up in your Mod.
         /// </summary>
         public static TechType ElectricubeTechType { get; internal set; }

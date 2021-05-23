@@ -50,6 +50,7 @@ namespace ArchitectsLibrary
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
+        static Morganite morganite;
         static Electricube electricube;
 
         static BuildableColumn buildableColumn;
@@ -194,10 +195,16 @@ namespace ArchitectsLibrary
             redBeryl.Patch();
             AUHandler.RedBerylTechType = redBeryl.TechType;
 
+            morganite = new Morganite();
+            morganite.Patch();
+            AUHandler.MorganiteTechType = morganite.TechType;
+            CraftData.pickupSoundList.Add(morganite.TechType, "event:/loot/pickup_glass");
+
             electricube = new Electricube();
             electricube.Patch();
             AUHandler.ElectricubeTechType = electricube.TechType;
             CraftData.pickupSoundList.Add(electricube.TechType, "event:/loot/pickup_precursorioncrystal");
+            PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
