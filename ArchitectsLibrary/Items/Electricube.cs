@@ -23,7 +23,16 @@ namespace ArchitectsLibrary.Items
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.GetComponentInChildren<Renderer>().material.SetColor("_Color", new Color(1f, 0f, 1f));
+            foreach(var renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.SetColor("_Color", new Color(0.5f, 0f, 1f));
+                renderer.material.SetColor("_SpecColor", new Color(0f, 0f, 1f));
+                renderer.material.SetColor("_DetailsColor", new Color(1f, 0f, 1f));
+                renderer.material.SetColor("_SquaresColor", new Color(0.5f, 0f, 0.5f));
+                renderer.material.SetFloat("_SquaresTile", 45f);
+                renderer.material.SetFloat("_SquaresSpeed", 5f);
+            }
+            prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 1f);
         }
 
         protected override string SpriteName()
