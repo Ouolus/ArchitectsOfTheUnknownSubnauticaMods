@@ -174,11 +174,7 @@ namespace ProjectAncients.Prefabs.Equipment
         static WarperData GetWarpCannonCreatureSpawnData(WarperData original)
         {
             WarperData so = ScriptableObject.CreateInstance<WarperData>();
-            so.biomeLookup = new Dictionary<string, int>(original.biomeLookup);
-            ErrorMessage.AddMessage("Original is null: " + (original == null));
-            ErrorMessage.AddMessage("Biome lookup is null: " + (so.biomeLookup == null));
             so.warpInCreaturesData = new List<WarperData.WarpInData>(original.warpInCreaturesData);
-            ErrorMessage.AddMessage("Warp in creatures data is null: " + (so.warpInCreaturesData == null));
 
             var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 } };
             AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures});
@@ -189,17 +185,20 @@ namespace ProjectAncients.Prefabs.Equipment
 
         static void AddBiomeToWarperData(WarperData warperData, string biomeName, WarperData.WarpInData creaturesData)
         {
-            int biomeCount = warperData.biomeLookup.Count;
-            warperData.biomeLookup.Add(biomeName, biomeCount);
+            int biomeCount = warperData.warpInCreaturesData.Count;
             warperData.warpInCreaturesData.Add(creaturesData);
             warperData.warpInCreaturesData[biomeCount].biomeName = biomeName;
         }
 
         static void ReplaceBiomeInWarperData(WarperData warperData, string biomeName, WarperData.WarpInData creaturesData)
         {
-            int biomeIndex = warperData.biomeLookup[biomeName];
-            warperData.warpInCreaturesData[biomeIndex] = creaturesData;
-            warperData.warpInCreaturesData[biomeIndex].biomeName = biomeName;
+            for(int i = 0; i < warperData.warpInCreaturesData.Count; i++)
+            {
+                if (warperData.warpInCreaturesData[i].biomeName == biomeName)
+                {
+                    warperData.warpInCreaturesData[i] = creaturesData;
+                }
+            }
         }
         GameObject GetLoopingWarperVfx(GameObject originalVfx)
         {
