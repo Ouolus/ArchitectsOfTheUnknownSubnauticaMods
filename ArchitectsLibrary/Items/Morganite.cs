@@ -44,12 +44,30 @@ namespace ArchitectsLibrary.Items
 
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            new LootDistributionData.BiomeData
+            new()
             {
-                biome = BiomeType.InactiveLavaZone_Chamber_Floor,
+                biome = BiomeType.KooshZone_Sand,
                 count = 1,
-                probability = 0.09f
-            }
+                probability = 0.13f
+            },
+            new()
+            {
+                biome = BiomeType.KooshZone_CaveFloor,
+                count = 1,
+                probability = 0.5f
+            },
+            new()
+            {
+                biome = BiomeType.KooshZone_CaveWall,
+                count = 1,
+                probability = 0.5f
+            },
+            new()
+            {
+                biome = BiomeType.KooshZone_RockWall,
+                count = 1,
+                probability = 0.3f
+            },
         };
     }
 }
