@@ -179,6 +179,8 @@
     <Compile Include="Items\AotuPoster.cs" />
     <Compile Include="Items\DrillableSapphire.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />
+    <Compile Include="Items\Electricube.cs" />
+    <Compile Include="Items\Morganite.cs" />
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
     <Compile Include="Items\ReskinCraftable.cs" />
