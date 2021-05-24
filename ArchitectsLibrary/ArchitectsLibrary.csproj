@@ -184,6 +184,7 @@
     <Compile Include="Items\Electricube.cs" />
     <Compile Include="Items\Morganite.cs" />
     <Compile Include="Items\RedBeryl.cs" />
+    <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
     <Compile Include="Items\ReskinCraftable.cs" />
     <Compile Include="Items\Sapphire.cs" />
