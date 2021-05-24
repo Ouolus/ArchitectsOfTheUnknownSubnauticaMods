@@ -123,6 +123,18 @@ namespace ArchitectsLibrary.API
         }
 
         /// <summary>
+        /// A method that fixes the crafting model that seems to break on some modules for some reason.
+        /// </summary>
+        /// <param name="vfx"></param>
+        protected void FixVFXFabricating(VFXFabricating vfx)
+        {
+            vfx.localMinY = -0.14f;
+            vfx.localMaxY = 0.13f;
+            vfx.posOffset = new Vector3(0f, 0.1f, 0f);
+            vfx.eulerOffset = new Vector3(0f, 90f, 90f);
+        }
+
+        /// <summary>
         /// Specifies the <see cref="Vehicle"/> that can Equip this Module. 
         /// </summary>
         public enum ModuleEquipmentType
