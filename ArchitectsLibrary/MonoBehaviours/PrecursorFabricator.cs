@@ -68,8 +68,15 @@ namespace ArchitectsLibrary.MonoBehaviours
                     {
 						if(mat != null)
                         {
-							mat.SetColor("_BorderColor", new Color(0.2f, 1f, 0f));
-							mat.SetFloat("_NoiseThickness", 0.41f);
+                            if (mat.name == "precursor_crystal_cube")
+                            {
+								mat.SetColor("_BorderColor", new Color(1f, 1f, 1f));
+							}
+							else
+                            {
+								mat.SetColor("_BorderColor", new Color(0.2f, 1f, 0f));
+							}
+							mat.SetFloat("_NoiseThickness", 0.2f);
 							mat.SetFloat("_NoiseStr", 0.91f);
 						}
 					}
