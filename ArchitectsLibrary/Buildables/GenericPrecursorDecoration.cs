@@ -60,7 +60,7 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<ConstructionObstacle>(buildablePrefab);
             buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
-            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
+            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             SkyApplier sky = buildablePrefab.EnsureComponent<SkyApplier>();
             Constructable con = buildablePrefab.AddComponent<Constructable>();
             con.model = model;
