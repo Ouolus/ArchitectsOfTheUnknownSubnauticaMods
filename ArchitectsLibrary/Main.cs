@@ -51,8 +51,8 @@ namespace ArchitectsLibrary
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
         static Morganite morganite;
-        static Electricube electricube;
         static DrillableMorganite drillableMorganite;
+        static Electricube electricube;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
