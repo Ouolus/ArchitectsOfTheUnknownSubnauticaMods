@@ -68,7 +68,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                     {
 						if(mat != null)
                         {
-                            if (mat.name == "precursor_crystal_cube")
+                            if (mat.name.Contains("precursor_crystal_cube"))
                             {
 								mat.SetColor("_BorderColor", new Color(1f, 1f, 1f));
 							}
