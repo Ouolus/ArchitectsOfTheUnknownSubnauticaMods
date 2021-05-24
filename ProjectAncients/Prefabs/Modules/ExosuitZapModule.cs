@@ -81,7 +81,9 @@ namespace ProjectAncients.Prefabs.Modules
 
         protected override void CustomizePrefab(GameObject prefab)
         {
-            FixVFXFabricating(prefab.GetComponentInChildren<VFXFabricating>(true));
+            var vfxFabricating = prefab.GetComponentInChildren<VFXFabricating>(true);
+            FixVFXFabricating(vfxFabricating);
+            vfxFabricating.localMinY = 0.05f;
         }
     }
 }

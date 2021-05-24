@@ -91,5 +91,10 @@ namespace ProjectAncients.Prefabs.Modules
         {
             return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("SeamothElectricalDefenseMk2"));
         }
+
+        protected override void CustomizePrefab(GameObject prefab)
+        {
+            FixVFXFabricating(prefab.GetComponentInChildren<VFXFabricating>(true));
+        }
     }
 }
