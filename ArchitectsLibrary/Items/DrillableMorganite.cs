@@ -49,40 +49,70 @@ namespace ArchitectsLibrary.Items
         {
             new()
             {
-                biome = BiomeType.GrandReef_Ground,
+                biome = BiomeType.BloodKelp_CaveFloor,
+                count = 1,
+                probability = 0.2f
+            },
+            new()
+            {
+                biome = BiomeType.BloodKelp_TrenchFloor,
+                count = 1,
+                probability = 0.1f
+            },
+            new()
+            {
+                biome = BiomeType.BloodKelp_Floor,
+                count = 1,
+                probability = 0.05f
+            },
+            new()
+            {
+                biome = BiomeType.BonesField_Ceiling,
                 count = 1,
                 probability = 0.08f
             },
             new()
             {
-                biome = BiomeType.GrandReef_CaveCeiling,
+                biome = BiomeType.BonesField_Ground,
                 count = 1,
-                probability = 0.08f
+                probability = 0.045f
             },
             new()
             {
-                biome = BiomeType.GrandReef_Grass,
+                biome = BiomeType.GhostTree_Grass,
                 count = 1,
-                probability = 0.08f
+                probability = 0.1f
             },
             new()
             {
-                biome = BiomeType.DeepGrandReef_Ground,
+                biome = BiomeType.GhostTree_Ground,
                 count = 1,
-                probability = 0.08f
+                probability = 0.06f
             },
             new()
             {
-                biome = BiomeType.KooshZone_Sand,
+                biome = BiomeType.TreeCove_Ground,
                 count = 1,
-                probability = 0.04f
+                probability = 0.09f
             },
             new()
             {
-                biome = BiomeType.KooshZone_CaveFloor,
+                biome = BiomeType.BonesField_Corridor_Ground,
                 count = 1,
-                probability = 0.25f
+                probability = 0.075f
             },
+            new()
+            {
+                biome = BiomeType.LostRiverCorridor_Ground,
+                count = 1,
+                probability = 0.09f
+            },
+            new()
+            {
+                biome = BiomeType.LostRiverJunction_Ground,
+                count = 1,
+                probability = 0.09f
+            }
         };
     }
 }
