@@ -17,6 +17,12 @@ namespace ArchitectsLibrary.Items
 
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
 
+        public override TechGroup GroupForPDA => TechGroup.Resources;
+
+        public override bool UnlockedAtStart => false;
+
+        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+
         protected override TechData GetBlueprintRecipe()
         {
             return new()
