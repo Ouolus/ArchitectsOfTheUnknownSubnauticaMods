@@ -54,6 +54,7 @@ namespace ArchitectsLibrary
         static Morganite morganite;
         static DrillableMorganite drillableMorganite;
         static Electricube electricube;
+        static RedIonCube redIonCube;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -217,6 +218,12 @@ namespace ArchitectsLibrary
             AUHandler.ElectricubeTechType = electricube.TechType;
             CraftData.pickupSoundList.Add(electricube.TechType, "event:/loot/pickup_precursorioncrystal");
             PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
+
+            redIonCube = new RedIonCube();
+            redIonCube.Patch();
+            AUHandler.RedIonCubeTechType = redIonCube.TechType;
+            CraftData.pickupSoundList.Add(redIonCube.TechType, "event:/loot/pickup_precursorioncrystal");
+            PrecursorFabricatorService.SubscribeToFabricator(redIonCube.TechType, PrecursorFabricatorTab.Materials);
 
             reinforcedGlass = new ReinforcedGlass();
             reinforcedGlass.Patch();
