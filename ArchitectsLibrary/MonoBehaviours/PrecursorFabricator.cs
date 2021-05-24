@@ -23,7 +23,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 			{
                 if (useMassiveEnergy)
                 {
-					ErrorMessage.AddMessage($"Ion cubes require {powerToConsume} energy to craft.");
+					ErrorMessage.AddMessage($"Energy cubes require {powerToConsume} energy to craft.");
 				}
                 else
                 {
