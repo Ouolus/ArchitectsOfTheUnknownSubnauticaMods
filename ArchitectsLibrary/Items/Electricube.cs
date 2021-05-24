@@ -11,7 +11,7 @@ namespace ArchitectsLibrary.Items
 {
     class Electricube : ReskinCraftable
     {
-        public Electricube() : base("Electricube", "Electricube", "A high capacity energy source, with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.")
+        public Electricube() : base("Electricube", "Electricube", "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.")
         {
         }
 
