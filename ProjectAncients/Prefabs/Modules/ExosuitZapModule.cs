@@ -1,5 +1,6 @@
 ﻿using ArchitectsLibrary.API;
 using ArchitectsLibrary.Interfaces;
+using ArchitectsLibrary.Handlers;
 using ProjectAncients.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
@@ -68,7 +69,7 @@ namespace ProjectAncients.Prefabs.Modules
                 {
                     new Ingredient(TechType.TitaniumIngot, 1),
                     new Ingredient(TechType.AdvancedWiringKit, 1),
-                    new Ingredient(TechType.PrecursorIonCrystal, 2),
+                    new Ingredient(AUHandler.RedIonCubeTechType, 1),
                 }
             };
         }
