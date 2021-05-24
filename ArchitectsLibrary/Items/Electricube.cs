@@ -29,6 +29,8 @@ namespace ArchitectsLibrary.Items
             };
         }
 
+        public override float CraftingTime => 30f;
+
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
             foreach(var renderer in prefab.GetComponentsInChildren<Renderer>())
