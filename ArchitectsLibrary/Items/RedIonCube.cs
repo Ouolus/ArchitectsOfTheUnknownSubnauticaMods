@@ -43,7 +43,7 @@ namespace ArchitectsLibrary.Items
             {
                 renderer.material.SetColor("_Color", new Color(1f, 0.2f, 0f));
                 renderer.material.SetColor("_SpecColor", new Color(1f, 0.2f, 0f));
-                renderer.material.SetColor("_DetailsColor", new Color(1f, 0f, 1f));
+                renderer.material.SetColor("_DetailsColor", new Color(1f, 1f, 1f));
                 renderer.material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
                 renderer.material.SetFloat("_SquaresTile", 70f);
                 renderer.material.SetFloat("_SquaresSpeed", 15f);
