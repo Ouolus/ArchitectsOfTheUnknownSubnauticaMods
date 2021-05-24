@@ -102,6 +102,8 @@ namespace ArchitectsLibrary.API
             prefab.SetActive(false);
             obj.SetActive(true);
 
+            CustomizePrefab(prefab);
+
             return obj;
         }
 #endif
@@ -117,9 +119,20 @@ namespace ArchitectsLibrary.API
                 
                 prefab.SetActive(false);
                 obj.SetActive(true);
-                
+
+                CustomizePrefab(prefab);
+
                 gameObject.Set(obj);
             }
+        }
+
+        /// <summary>
+        /// Allows you to customize the prefab for this item (which by default is a clone of <see cref="ModelTemplate"/>).
+        /// </summary>
+        /// <param name="prefab"></param>
+        protected virtual void CustomizePrefab(GameObject prefab)
+        {
+
         }
 
         /// <summary>
