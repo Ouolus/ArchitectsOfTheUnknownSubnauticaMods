@@ -82,6 +82,12 @@ namespace ArchitectsLibrary.Items
                 count = 1,
                 probability = 0.08f
             },
+            new LootDistributionData.BiomeData()
+            {
+                biome = BiomeType.ActiveLavaZone_Chamber_Floor,
+                count = 1,
+                probability = 0.05f
+            }
         };
     }
 }
