@@ -32,7 +32,7 @@ namespace ProjectAncients.Prefabs.Equipment
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.AlienCompositeGlassTechType, 1)
+                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.ElectricubeTechType, 1)
                 }
             };
         }
