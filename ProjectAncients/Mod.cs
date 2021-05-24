@@ -188,6 +188,20 @@ namespace ProjectAncients
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
+
+            #region Modules
+            electricalDefenseMk2 = new();
+            electricalDefenseMk2.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            exosuitZapModule = new();
+            exosuitZapModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            superDecoy = new();
+            superDecoy.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+            #endregion
         }
         [QModPatch]
         public static void Patch()
@@ -214,20 +228,6 @@ namespace ProjectAncients
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
             warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
-            #endregion
-
-            #region Modules
-            electricalDefenseMk2 = new();
-            electricalDefenseMk2.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            exosuitZapModule = new();
-            exosuitZapModule.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            superDecoy = new();
-            superDecoy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
             #endregion
 
             #region Creatures
