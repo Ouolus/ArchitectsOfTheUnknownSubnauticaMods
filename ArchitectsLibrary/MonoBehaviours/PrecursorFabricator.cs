@@ -1,4 +1,5 @@
 using UnityEngine;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
@@ -13,7 +14,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         public override void Craft(TechType techType, float duration)
         {
 			float powerToConsume = 100f;
-			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal;
+			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal || techType == AUHandler.ElectricubeTechType;
 			if (useMassiveEnergy)
             {
 				powerToConsume = 1000f;
