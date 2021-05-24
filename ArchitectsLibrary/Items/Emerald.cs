@@ -103,6 +103,18 @@ namespace ArchitectsLibrary.Items
             },
             new LootDistributionData.BiomeData
             {
+                biome = BiomeType.KooshZone_CaveFloor,
+                count = 1,
+                probability = 0.5f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.KooshZone_CaveWall,
+                count = 1,
+                probability = 0.5f
+            },
+            new LootDistributionData.BiomeData
+            {
                 biome = BiomeType.KooshZone_RockWall,
                 count = 1,
                 probability = 0.3f
