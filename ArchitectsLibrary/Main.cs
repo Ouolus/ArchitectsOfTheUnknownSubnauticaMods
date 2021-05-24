@@ -121,7 +121,7 @@ namespace ArchitectsLibrary
             var prefab = task.GetResult();
             var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
             vfxFabricating.localMinY = -0.12f;
-            vfxFabricating.localMaxY = 0.34f;
+            vfxFabricating.localMaxY = 0.44f;
             vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
             vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
             vfxFabricating.scaleFactor = 1.5f;
@@ -154,7 +154,7 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.GetTabNode(PrecursorFabricatorService.TabToNameID(entry.tab)).AddCraftingNode(entry.techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType });
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
 
             PatchBuildables();
