@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Items
 {
@@ -18,7 +19,14 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData() { Ingredients = new List<Ingredient>() { new Ingredient(TechType.Titanium, 2) } };
+            return new()
+            {
+                craftAmount = 1,
+                Ingredients = new List<Ingredient>
+                {
+                    new(AUHandler.MorganiteTechType, 2)
+                }
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
