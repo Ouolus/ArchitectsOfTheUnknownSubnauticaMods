@@ -31,7 +31,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData() { Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) } };
+            return new TechData() { Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(AUHandler.RedIonCubeTechType, 1) } };
         }
     }
 }
