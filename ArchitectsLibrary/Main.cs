@@ -52,6 +52,7 @@ namespace ArchitectsLibrary
         static AotuPoster aotuPoster;
         static Morganite morganite;
         static Electricube electricube;
+        static DrillableMorganite drillableMorganite;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -168,13 +169,14 @@ namespace ArchitectsLibrary
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
-            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small numbers in deeper areas. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
+            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small amounts in deep biomes, and in large deposits amongst areas with extensive sand dunes. While there are few known practical uses for this gemstone, a significant amount of this mineral can be observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
             ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
             CraftData.pickupSoundList.Add(emerald.TechType, "event:/loot/pickup_precursorioncrystal");
 
             drillableEmerald = new DrillableEmerald();
             drillableEmerald.Patch();
             AUHandler.DrillableEmeraldTechType = drillableEmerald.TechType;
+            ItemUtils.MakeObjectScannable(drillableEmerald.TechType, encyKey_emerald, 5f);
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
@@ -199,6 +201,10 @@ namespace ArchitectsLibrary
             morganite.Patch();
             AUHandler.MorganiteTechType = morganite.TechType;
             CraftData.pickupSoundList.Add(morganite.TechType, "event:/loot/pickup_glass");
+
+            drillableMorganite = new DrillableMorganite();
+            drillableMorganite.Patch();
+            AUHandler.DrillableMorganiteTechType = drillableMorganite.TechType;
 
             electricube = new Electricube();
             electricube.Patch();
