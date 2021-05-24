@@ -11,7 +11,7 @@ namespace ArchitectsLibrary.Items
 {
     class AlienCompositeGlass : ReskinCraftable
     {
-        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien Composite Glass", "Extremely resistant glass, infused with alien technology.")
+        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
         {
         }
 

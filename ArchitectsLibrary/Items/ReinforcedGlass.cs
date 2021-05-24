@@ -7,7 +7,7 @@ namespace ArchitectsLibrary.Items
 {
     class ReinforcedGlass : ReskinCraftable
     {
-        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced Glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
+        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
         {
         }
 
