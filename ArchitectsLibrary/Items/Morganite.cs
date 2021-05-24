@@ -22,9 +22,10 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("Morganite_diffuse"));
             renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Morganite_spec"));
             renderer.material.SetTexture("_Illum", Main.assetBundle.LoadAsset<Texture2D>("Morganite_illum"));
-            /*renderer.material.SetFloat("_SpecInt", 10f);
-            renderer.material.SetFloat("_GlowStrength", 2f);
-            renderer.material.SetFloat("_GlowStrengthNight", 2f);*/
+            renderer.material.SetColor("_GlowColor", new Color(0.5f, 0f, 0.5f));
+            renderer.material.SetColor("_SpecColor", new Color(2f, 1.5f, 2f));
+            renderer.material.SetFloat("_SpecInt", 2f);
+            renderer.material.SetFloat("_Shininess", 7f);
         }
 
         protected override Atlas.Sprite GetItemSprite()
