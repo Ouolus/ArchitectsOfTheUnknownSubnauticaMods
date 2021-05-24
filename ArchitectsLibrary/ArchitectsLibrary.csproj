@@ -177,6 +177,7 @@
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Items\AlienCompositeGlass.cs" />
     <Compile Include="Items\AotuPoster.cs" />
+    <Compile Include="Items\DrillableRedBeryl.cs" />
     <Compile Include="Items\DrillableMorganite.cs" />
     <Compile Include="Items\DrillableSapphire.cs" />
     <Compile Include="Items\DrillableEmerald.cs" />

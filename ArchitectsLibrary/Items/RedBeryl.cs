@@ -78,6 +78,12 @@ namespace ArchitectsLibrary.Items
                 biome = BiomeType.InactiveLavaZone_Corridor_Floor,
                 count = 1,
                 probability = 0.19f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.Mountains_Rock,
+                count = 1,
+                probability = 0.05f
             }
         };
     }

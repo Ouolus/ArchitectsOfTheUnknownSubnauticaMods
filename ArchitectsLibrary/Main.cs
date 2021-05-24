@@ -47,6 +47,7 @@ namespace ArchitectsLibrary
         static Sapphire sapphire;
         static DrillableSapphire drillableSapphire;
         static RedBeryl redBeryl;
+        static DrillableRedBeryl drillableRedBeryl;
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
@@ -196,6 +197,11 @@ namespace ArchitectsLibrary
             redBeryl = new RedBeryl();
             redBeryl.Patch();
             AUHandler.RedBerylTechType = redBeryl.TechType;
+            CraftData.pickupSoundList.Add(redBeryl.TechType, "event:/loot/pickup_precursorioncrystal");
+
+            drillableRedBeryl = new DrillableRedBeryl();
+            drillableRedBeryl.Patch();
+            AUHandler.DrillableRedBerylTechType = drillableRedBeryl.TechType;
 
             morganite = new Morganite();
             morganite.Patch();

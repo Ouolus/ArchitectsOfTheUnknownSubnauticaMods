@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Items
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.MorganiteTechType };
             drillable.kChanceToSpawnResources = 1f;
-            drillable.maxResourcesToSpawn = 3;
+            drillable.maxResourcesToSpawn = 2;
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach(Renderer renderer in renderers)
             {
