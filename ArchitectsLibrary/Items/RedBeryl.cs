@@ -47,43 +47,43 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.InactiveLavaZone_Chamber_Floor,
                 count = 1,
-                probability = 0.09f
+                probability = 0.08f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.InactiveLavaZone_Chamber_MagmaTree,
                 count = 1,
-                probability = 0.9f
+                probability = 0.8f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.InactiveLavaZone_Chamber_Ceiling,
                 count = 1,
-                probability = 0.9f
+                probability = 0.8f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.InactiveLavaZone_Chamber_MagmaBubble,
                 count = 1,
-                probability = 1.65f
+                probability = 1.5f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.InactiveLavaZone_Corridor_Wall,
                 count = 1,
-                probability = 0.19f
+                probability = 0.17f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.InactiveLavaZone_Corridor_Floor,
                 count = 1,
-                probability = 0.19f
+                probability = 0.17f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Mountains_Rock,
                 count = 1,
-                probability = 0.05f
+                probability = 0.03f
             }
         };
     }
