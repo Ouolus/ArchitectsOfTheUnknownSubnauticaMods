@@ -292,7 +292,7 @@ namespace ArchitectsLibrary.Items
                 craftAmount = 1,
                 Ingredients =
                 {
-                    new Ingredient(Handlers.AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1), new Ingredient(Handlers.AUHandler.SapphireTechType, 1)
+                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(AUHandler.EmeraldTechType, 1), new Ingredient(AUHandler.SapphireTechType, 1)
                 }
             };
         }
