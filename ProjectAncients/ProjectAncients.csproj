@@ -145,7 +145,6 @@
     <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
-    <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
