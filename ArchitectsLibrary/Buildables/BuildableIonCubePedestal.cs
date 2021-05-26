@@ -42,6 +42,13 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<WorldForces>(decorationalIonCube);
             DeleteChildComponentIfExists<Rigidbody>(decorationalIonCube);
             DeleteChildComponentIfExists<ResourceTracker>(decorationalIonCube);
+
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (2)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (3)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (4)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (5)").GetComponent<Collider>().enabled = false;
+            prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 0.1f, 0f);
+
             decorationalIonCube.SetActive(true);
 #endif
         }
@@ -67,7 +74,15 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<WorldForces>(decorationalIonCube);
             DeleteChildComponentIfExists<Rigidbody>(decorationalIonCube);
             DeleteChildComponentIfExists<ResourceTracker>(decorationalIonCube);
+
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (2)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (3)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (4)").GetComponent<Collider>().enabled = false;
+            prefab.SearchChild("precursor_block_solid_04_04_04_v2 (5)").GetComponent<Collider>().enabled = false;
+            prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 0.1f, 0f);
+
             decorationalIonCube.SetActive(true);
+
         }
 #endif
 
