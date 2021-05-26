@@ -200,12 +200,29 @@ namespace ProjectAncients.Mono.Equipment
         /// <returns></returns>
         bool FireManipulateMode()
         {
+            bool fail = false;
             if (Player.main.IsInSub())
             {
-                ErrorMessage.AddMessage("Cannot fire Warping Device while in Manipulate Mode while inside bases.");
+                fail = true;
+            }
+            if(fail == true)
+            {
+                CharacterController controller = Player.main.GetComponent<CharacterController>();
+                if (controller is not null)
+                {
+                    if (!controller.enabled) //if you're stuck inside a base and can't walk, this piece of code allows you to exit
+                    {
+                        fail = false;
+                    }
+                }
+            }
+            if (fail)
+            {
+                ErrorMessage.AddMessage("Cannot fire Warping Device in Manipulate Mode currently.");
                 return false;
             }
-            if(mySecondaryNode != null) //check if both nodes already exist. if so, do nothing.
+
+            if (mySecondaryNode != null) //check if both nodes already exist. if so, do nothing.
             {
                 return false;
             }
