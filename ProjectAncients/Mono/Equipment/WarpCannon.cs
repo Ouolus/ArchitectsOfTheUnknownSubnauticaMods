@@ -441,7 +441,10 @@ namespace ProjectAncients.Mono.Equipment
                     }
                     else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
                     {
-                        Misfire(warpPos, true);
+                        if (Random.value < (0.4f * chargeScale))
+                        {
+                            Misfire(warpPos, true);
+                        }
                     }
                     return true;
                 }
