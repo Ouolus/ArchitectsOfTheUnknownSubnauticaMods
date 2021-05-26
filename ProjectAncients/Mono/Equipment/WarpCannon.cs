@@ -104,17 +104,13 @@ namespace ProjectAncients.Mono.Equipment
         private WarperData.WarpInCreature GetRandomLandCreatures()
         {
             float random = Random.value;
-            if (random < 0.25f)
+            if (random < 0.33f)
             {
                 return new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 };
             }
-            if (random < 0.5f)
+            if (random < 0.67f)
             {
                 return new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 };
-            }
-            if (random < 0.75f)
-            {
-                return new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 };
             }
             return new WarperData.WarpInCreature() { techType = TechType.Shuttlebug, minNum = 1, maxNum = 1 };
         }
