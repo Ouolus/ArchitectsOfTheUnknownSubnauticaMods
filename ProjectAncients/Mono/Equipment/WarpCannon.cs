@@ -87,7 +87,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return;
             }
-            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * 10f);
+            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : 10f));
             Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
             Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition, 20f);
             int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
