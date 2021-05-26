@@ -9,7 +9,10 @@ namespace ArchitectsLibrary.MonoBehaviours
     public class SonicDeterrentDeterCreatures : MonoBehaviour
     {
         float timeDeterAgain;
-        float deterDelay = 1f;
+        /// <summary>
+        /// Delay between each deter. Should not be too low for the sake of lag.
+        /// </summary>
+        public float deterDelay = 1f;
         /// <summary>
         /// Distance for most fish to swim away.
         /// </summary>
@@ -22,6 +25,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         /// If a fish is further than this distance it won't get "evaluated" for swimming away.
         /// </summary>
         public float maxDeterRadius = 75f;
+
         Constructable constructable;
         
         readonly List<EcoTargetType> aggressiveTargetTypes = new()
@@ -45,14 +49,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void Update()
         {
-            if (constructable == null)
+            if (constructable != null)
             {
-                return;
-            }
-            
-            if (!constructable.constructed)
-            {
-                return;
+                if (!constructable.constructed)
+                {
+                    return;
+                }
             }
             
             if (Time.time > timeDeterAgain)
