@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableIonCubePedestal : GenericPrecursorDecoration
     {
-        public BuildableIonCubePedestal() : base("BuildableIonCubePedestal", "Ion Cube Pedestal", "A platform containing an ion cube. Placeable inside and outside.")
+        public BuildableIonCubePedestal(string classId, string displayName, string desc) : base(classId, displayName, desc)
         {
         }
 
@@ -27,9 +27,8 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<PrefabPlaceholder>(prefab);
             DeleteChildComponentIfExists<PrefabPlaceholdersGroup>(prefab);
 #if SN1
-            const string ionCubeClassId = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
             GameObject ionCubePlaceholderObj = prefab.gameObject.SearchChild("PrecursorIonCrystal(Placeholder)");
-            PrefabDatabase.TryGetPrefab(ionCubeClassId, out GameObject ionCubePrefab);
+            PrefabDatabase.TryGetPrefab(IonCubeClassId, out GameObject ionCubePrefab);
             var decorationalIonCube = GameObject.Instantiate(ionCubePrefab);
             decorationalIonCube.transform.parent = ionCubePlaceholderObj.transform.parent;
             decorationalIonCube.transform.localPosition = ionCubePlaceholderObj.transform.localPosition;
@@ -51,9 +50,8 @@ namespace ArchitectsLibrary.Buildables
 #else
         protected override IEnumerator EditPrefabAsyncOnly(GameObject prefab)
         {
-            const string ionCubeClassId = "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
             GameObject ionCubePlaceholderObj = prefab.gameObject.SearchChild("PrecursorIonCrystal(Placeholder)");
-            var prefabRequest = PrefabDatabase.GetPrefabAsync(ionCubeClassId);
+            var prefabRequest = PrefabDatabase.GetPrefabAsync(IonCubeClassId);
             yield return prefabRequest;
             prefabRequest.TryGetPrefab(out GameObject ionCubePrefab);
             var decorationalIonCube = GameObject.Instantiate(ionCubePrefab);
@@ -80,5 +78,7 @@ namespace ArchitectsLibrary.Buildables
         }
 
         protected override string GetSpriteName => "IonCubePedestal";
+
+        protected virtual string IonCubeClassId { get { return "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a"; } }
     }
 }

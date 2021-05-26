@@ -285,7 +285,7 @@ namespace ArchitectsLibrary
             buildableMicroscope = new BuildableMicroscope();
             buildableMicroscope.Patch();
 
-            buildableIonCubePedestal = new BuildableIonCubePedestal();
+            buildableIonCubePedestal = new BuildableIonCubePedestal("BuildableIonCubePedestal", "Ion Cube Pedestal", "A platform containing an ion cube. Placeable inside and outside.");
             buildableIonCubePedestal.Patch();
 
             buildableColumnSmall = new BuildableColumnSmall();
