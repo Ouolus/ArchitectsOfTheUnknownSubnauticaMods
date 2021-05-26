@@ -62,16 +62,16 @@ namespace ArchitectsLibrary
         static BuildableLight1 buildableLight1;
         static BuildableLight2 buildableLight2;
         static BuildableLight3 buildableLight3;
-
         static BuildableDissectionTank buildableDissectionTank;
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
         //static BuildableAlienRobot buildableAlienRobot;
-        //static BuildableClaw buildableClaw;
         static BuildableInfoPanel buildableInfoPanel;
         static BuildableMicroscope buildableMicroscope;
         static BuildableSonicDeterrent buildableSonicDeterrent;
         static BuildableIonCubePedestal buildableIonCubePedestal;
+        static BuildableElectricubePedestal buildableElectricubePedestal;
+        static BuildableRedIonCubePedestal buildableRedIonCubePedestal;
         static BuildableColumnSmall buildableColumnSmall;
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
@@ -276,17 +276,20 @@ namespace ArchitectsLibrary
             //buildableAlienRobot = new BuildableAlienRobot();
             //buildableAlienRobot.Patch();
 
-            //buildableClaw = new BuildableClaw();
-            //buildableClaw.Patch();
-
             buildableInfoPanel = new BuildableInfoPanel();
             buildableInfoPanel.Patch();
 
             buildableMicroscope = new BuildableMicroscope();
             buildableMicroscope.Patch();
 
-            buildableIonCubePedestal = new BuildableIonCubePedestal("BuildableIonCubePedestal", "Ion Cube Pedestal", "A platform containing an ion cube. Placeable inside and outside.");
+            buildableIonCubePedestal = new BuildableIonCubePedestal("BuildableIonCubePedestal", "Ion Cube Pedestal", "A platform containing an Ion Cube. Placeable inside and outside.");
             buildableIonCubePedestal.Patch();
+
+            buildableRedIonCubePedestal = new BuildableRedIonCubePedestal("BuildableRedIonCubePedestal", "Power Cube Pedestal", "A platform containing a Power Cube. Placeable inside and outside.");
+            buildableRedIonCubePedestal.Patch();
+
+            buildableElectricubePedestal = new BuildableElectricubePedestal("BuildableElectricubePedestal", "Electricube Pedestal", "A platform containing an Electricube. Placeable inside and outside.");
+            buildableElectricubePedestal.Patch();
 
             buildableColumnSmall = new BuildableColumnSmall();
             buildableColumnSmall.Patch();
