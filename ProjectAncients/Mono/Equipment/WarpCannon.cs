@@ -67,14 +67,22 @@ namespace ProjectAncients.Mono.Equipment
         /// <summary>
         /// Spawns a creature around the player.
         /// </summary>
-        void Misfire(Vector3 warpPosition)
+        void Misfire(Vector3 warpPosition, bool spawnLandFauna)
         {
             string biomeName = "";
             if (LargeWorld.main)
             {
                 biomeName = LargeWorld.main.GetBiome(warpPosition);
             }
-            WarperData.WarpInCreature randomCreature = warperCreatureData.GetRandomCreature(biomeName);
+            WarperData.WarpInCreature randomCreature;
+            if (spawnLandFauna)
+            {
+                randomCreature = GetRandomLandCreatures();
+            }
+            else
+            {
+                randomCreature = warperCreatureData.GetRandomCreature(biomeName);
+            }
             if (randomCreature == null)
             {
                 return;
@@ -91,6 +99,24 @@ namespace ProjectAncients.Mono.Equipment
                 WarpInCreature(randomCreature.techType, warpPosition);
 #endif
             }
+        }
+
+        private WarperData.WarpInCreature GetRandomLandCreatures()
+        {
+            float random = Random.value;
+            if (random < 0.25f)
+            {
+                return new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 };
+            }
+            if (random < 0.5f)
+            {
+                return new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 };
+            }
+            if (random < 0.75f)
+            {
+                return new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 };
+            }
+            return new WarperData.WarpInCreature() { techType = TechType.Shuttlebug, minNum = 1, maxNum = 1 };
         }
 
         /// <summary>
@@ -160,20 +186,20 @@ namespace ProjectAncients.Mono.Equipment
             warpVfx.SetActive(true);
             Destroy(warpVfx, 3f);
             var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
-            for(int i = 0; i < hitColliders; i++)
+            for (int i = 0; i < hitColliders; i++)
             {
                 var collider = UWE.Utils.sharedColliderBuffer[i];
                 var obj = UWE.Utils.GetEntityRoot(collider.gameObject);
                 obj ??= collider.gameObject;
 
                 var rb = obj.GetComponent<Rigidbody>();
-                if(rb == null || rb.mass > 1000f)
+                if (rb == null || rb.mass > 1000f)
                 {
                     continue;
                 }
                 bool canTeleport = true;
                 var creature = obj.GetComponent<Creature>();
-                if(creature is null)
+                if (creature is null)
                 {
                     obj.GetComponents(iammo);
                     for (int j = 0; j < iammo.Count; j++)
@@ -205,7 +231,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 fail = true;
             }
-            if(fail == true)
+            if (fail == true)
             {
                 CharacterController controller = Player.main.GetComponent<CharacterController>();
                 if (controller is not null)
@@ -226,7 +252,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return false;
             }
-            if(myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
+            if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
@@ -259,7 +285,7 @@ namespace ProjectAncients.Mono.Equipment
             StopCharging();
             DestroyNodes();
         }
-        
+
         /// <summary>
         /// Spawns a node, either on the first terrain the raycast hits, or <see cref="nodeMaxDistance"/> meters in front of the player if no terrain is traced.
         /// </summary>
@@ -293,7 +319,7 @@ namespace ProjectAncients.Mono.Equipment
             }
             if (fireMode == FireMode.Manipulate)
             {
-                if(myPrimaryNode == null)
+                if (myPrimaryNode == null)
                 {
                     return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
                 }
@@ -347,7 +373,7 @@ namespace ProjectAncients.Mono.Equipment
         }
 
         /// <summary>
-        /// Controls what happens when you release right click. Personal teleportation mode only.
+        /// Controls what happens when you release right click. Personal teleportation/warp mode only.
         /// </summary>
         /// <returns></returns>
         public override bool OnRightHandUp()
@@ -374,9 +400,16 @@ namespace ProjectAncients.Mono.Equipment
                     Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                     animator.SetTrigger("use");
                     handDown = false;
-                    if(Random.value < (0.4f * chargeScale))
+                    if (!Player.main.IsInSub()) //if you are not in a base or vehicle, spawn fish
                     {
-                        Misfire(warpPos);
+                        if (Random.value < (0.4f * chargeScale))
+                        {
+                            Misfire(warpPos, false);
+                        }
+                    }
+                    else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
+                    {
+                        Misfire(warpPos, true);
                     }
                     return true;
                 }
@@ -384,6 +417,26 @@ namespace ProjectAncients.Mono.Equipment
                 {
                     StopCharging();
                     return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if you are in a cyclops or something similar.
+        /// </summary>
+        /// <returns></returns>
+        private bool InsideMovableSub()
+        {
+            SubRoot currentSubRoot = Player.main.currentSub;
+            if (currentSubRoot)
+            {
+                if (currentSubRoot.rb is not null)
+                {
+                    if (!currentSubRoot.rb.isKinematic)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
