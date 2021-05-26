@@ -84,6 +84,7 @@ namespace ProjectAncients.Prefabs.Modules
             var vfxFabricating = prefab.GetComponentInChildren<VFXFabricating>(true);
             FixVFXFabricating(vfxFabricating);
             vfxFabricating.posOffset = new Vector3(0f, 0.05f, 0f);
+            Mod.ApplyAlienUpgradeMaterials(prefab.GetComponentInChildren<Renderer>());
         }
     }
 }

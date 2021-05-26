@@ -547,6 +547,13 @@ namespace ProjectAncients
                 harmony.Patch(pingOriginal, pingPrefix);
             }
         }
+        
+        public static void ApplyAlienUpgradeMaterials(Renderer renderer)
+        {
+            renderer.material.SetTexture("_MainTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
+            renderer.material.SetTexture("_SpecTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
+            renderer.material.SetTexture("_Illum", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
+        }
 
         static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
         {

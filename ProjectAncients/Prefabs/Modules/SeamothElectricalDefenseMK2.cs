@@ -95,6 +95,7 @@ namespace ProjectAncients.Prefabs.Modules
         protected override void CustomizePrefab(GameObject prefab)
         {
             FixVFXFabricating(prefab.GetComponentInChildren<VFXFabricating>(true));
+            Mod.ApplyAlienUpgradeMaterials(prefab.GetComponentInChildren<Renderer>());
         }
     }
 }
