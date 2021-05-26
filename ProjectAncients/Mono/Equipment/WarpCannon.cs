@@ -167,6 +167,31 @@ namespace ProjectAncients.Mono.Equipment
             {
                 LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
             }
+            bool inBase = Player.main.IsInSub();
+            if (inBase)
+            {
+                //skyray fixes
+                var flyAboveMinHeight = spawnedCreatureObj.GetComponent<FlyAboveMinHeight>();
+                if (flyAboveMinHeight is not null)
+                {
+                    flyAboveMinHeight.enabled = false;
+                }
+                var drowning = spawnedCreatureObj.GetComponent<Drowning>();
+                if (drowning is not null)
+                {
+                    Destroy(drowning);
+                }
+                //base sky applier fixes
+                SkyApplier creatureSkyApplier = spawnedCreatureObj.GetComponent<SkyApplier>();
+                if(creatureSkyApplier is not null)
+                {
+                    mset.Sky baseSky = Player.main.GetCurrentSub().GetComponentInChildren<mset.Sky>();
+                    if(baseSky is not null)
+                    {
+                        creatureSkyApplier.SetCustomSky(baseSky);
+                    }
+                }
+            }
         }
 #endif
 
