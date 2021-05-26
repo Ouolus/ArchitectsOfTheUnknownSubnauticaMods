@@ -3,13 +3,25 @@ using System.Collections.Generic;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
-    class SonicDeterrentDeterCreatures : MonoBehaviour
+    /// <summary>
+    /// Deters away creatures. Customizable. May have an impact on performance.
+    /// </summary>
+    public class SonicDeterrentDeterCreatures : MonoBehaviour
     {
         float timeDeterAgain;
         float deterDelay = 1f;
-        float smallFishDeterRadius = 45f;
-        float aggressiveFishDeterRadius = 75f;
-        float maxDeterRadius = 75f;
+        /// <summary>
+        /// Distance for most fish to swim away.
+        /// </summary>
+        public float smallFishDeterRadius = 45f;
+        /// <summary>
+        /// Distance for whales (gasopod, thalassacean, etc), sharks (stalker, lava lizard, etc), biters, leviathans, and lava larva to swim away.
+        /// </summary>
+        public float aggressiveFishDeterRadius = 75f;
+        /// <summary>
+        /// If a fish is further than this distance it won't get "evaluated" for swimming away.
+        /// </summary>
+        public float maxDeterRadius = 75f;
         Constructable constructable;
         
         readonly List<EcoTargetType> aggressiveTargetTypes = new()
