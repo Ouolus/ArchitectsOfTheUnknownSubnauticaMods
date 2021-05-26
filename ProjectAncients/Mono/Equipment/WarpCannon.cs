@@ -64,7 +64,7 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
-        private bool PlayerAboveWater()
+        private bool PositionAboveWater(float y)
         {
             float oceanLevel;
 #if SN1
@@ -72,7 +72,7 @@ namespace ProjectAncients.Mono.Equipment
 #else
                 oceanLevel = Ocean.GetOceanLevel();
 #endif
-            return Player.main.transform.position.y > oceanLevel;
+            return y > oceanLevel;
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace ProjectAncients.Mono.Equipment
                     {
                         if (Random.value < (0.4f * chargeScale))
                         {
-                            Misfire(warpPos, PlayerAboveWater());
+                            Misfire(warpPos, PositionAboveWater(warpPos.y));
                         }
                     }
                     else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
