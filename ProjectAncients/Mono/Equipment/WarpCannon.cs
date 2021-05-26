@@ -123,7 +123,7 @@ namespace ProjectAncients.Mono.Equipment
             {
                 return new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 };
             }
-            return new WarperData.WarpInCreature() { techType = TechType.Shuttlebug, minNum = 1, maxNum = 1 };
+            return new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 };
         }
 
         /// <summary>
