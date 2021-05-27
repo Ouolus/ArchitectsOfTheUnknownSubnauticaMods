@@ -53,8 +53,7 @@ namespace ArchitectsLibrary.Buildables
 #endif
         }
 
-#if SN1
-#else
+#if !SN1
         protected override IEnumerator EditPrefabAsyncOnly(GameObject prefab)
         {
             GameObject ionCubePlaceholderObj = prefab.gameObject.SearchChild("PrecursorIonCrystal(Placeholder)");
