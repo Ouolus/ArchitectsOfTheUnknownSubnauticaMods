@@ -31,7 +31,6 @@ namespace ProjectAncients.Mono.AlienTech
             }
 
             solarSystemDestroyed = true;
-            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect")));
             StartCoroutine(Crash());
         }
 
@@ -40,7 +39,8 @@ namespace ProjectAncients.Mono.AlienTech
             IngameMenu.main.mainPanel.SetActive(false);
             yield return IngameMenu.main.SaveGameAsync();
             ErrorMessage.AddMessage("Save file corrupted.");
-            
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect")));
+
             yield return IngameMenu.main.QuitGameAsync(false);
         }
 
