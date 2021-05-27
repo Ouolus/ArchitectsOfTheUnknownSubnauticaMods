@@ -161,7 +161,8 @@ namespace RotA.Mono.Equipment
             GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType, false);
             spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
             WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
-            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
+            float creatureLifetime = (techType == TechType.Mesmer ? 30f : 10f) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
+            warpedInCreature.SetLifeTime(creatureLifetime);
             warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
             warpedInCreature.warpOutSound = portalCloseSound;
             if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
