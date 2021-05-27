@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using UWE;
 using ProjectAncients.Prefabs.Equipment;
 using ArchitectsLibrary.API;
+using ArchitectsLibrary.Handlers;
 
 namespace ProjectAncients
 {
@@ -77,6 +78,7 @@ namespace ProjectAncients
         public static DataTerminalPrefab spamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
+        public static DataTerminalPrefab precursorMasterTechTerminal;
 
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
@@ -109,8 +111,6 @@ namespace ProjectAncients
         /// this value is only used by this mod, please dont use it or it'll cause conflicts.
         /// </summary>
         internal static EcoTargetType superDecoyTargetType = (EcoTargetType)49013491;
-
-        public const float voidBaseZOffset = -20;
 
         private const string assetBundleName = "projectancientsassets";
 
@@ -149,6 +149,10 @@ namespace ProjectAncients
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
+        public static string warpCannonSwitchFireModeCurrentlyWarpKey = "WarpCannonSwitchFireModeWarp";
+        public static string warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey = "WarpCannonSwitchFireModeManipulatePrimary";
+        public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
+
         [QModPostPatch]
         public static void PostPatch()
         {
@@ -184,6 +188,20 @@ namespace ProjectAncients
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
+
+            #region Modules
+            electricalDefenseMk2 = new();
+            electricalDefenseMk2.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            exosuitZapModule = new();
+            exosuitZapModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            superDecoy = new();
+            superDecoy.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+            #endregion
         }
         [QModPatch]
         public static void Patch()
@@ -202,25 +220,14 @@ namespace ProjectAncients
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal teleportation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
             #endregion
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
             warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
-            #endregion
-
-            #region Modules
-            electricalDefenseMk2 = new();
-            electricalDefenseMk2.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            exosuitZapModule = new();
-            exosuitZapModule.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            superDecoy = new();
-            superDecoy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
 
             #region Creatures
@@ -296,9 +303,9 @@ namespace ProjectAncients
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
-            PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has given your PDA access to an encrypted tracking network. The only activity on the network is a distress signal from a distant location. Proceed with caution.", "Popup_Blue", "BlueGlyph_Ency");
+            PatchEncy(ency_distressSignal, modEncyPath_tech, "Alien Distress Signal", "This Data Terminal has given your PDA access to an encrypted tracking network. The only activity on the network is a distress signal from over a kilometer away. Proceed with caution.", "Popup_Blue", "BlueGlyph_Ency");
 
-            PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This Data Terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.\n\nSynthesized blueprints:\n- Seamoth Perimeter Defense MK2\n- Prawn Suit Ion Defense Module\n- Creature Decoy MK2", "Popup_Orange", "OrangeGlyph_Ency");
+            PatchEncy(ency_archElectricityTerminal, modEncyPath_tech, "Ionic Pulse Nanotechnology", "This Data Terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.\n\nSynthesized blueprints:\n- Seamoth Perimeter Defense MK2\n- Prawn Suit Ion Defense Module\n- Creature Decoy MK2", "IonicPulse_Popup", "OrangeGlyph_Ency");
 
             PatchEncy(ency_voidBaseTerminal, modEncyPath_terminalInfo, "Emperor Communications Apparatus", "This data terminal contains schematics and statistics relating to the facility. Analysis is shown below.\n\nDue to the outbreak of the kharaa bacterium, the aliens were desperate to develop a vaccine. The only known cure at the time, found in the last known 'Emperor', is too diluted to provide any definite use.\n\nDue to belief that more of these Emperors may exist, far away from the crater, this apparatus was constructed. While initially appearing similar to any other alien structure on the planet, schematics show an odd ability to expand downwards over half a kilometer, exposing a significant number of complex machines.\n\nThis machinery was designed to communicate with and attract any stray Emperors. Obviously, this plan has failed. However, it did attract another unusual juvenile specimen.\n\nThe base was eventually repurposed for vaccine development studies.", "Popup_green", "GreenGlyph_Ency");
 
@@ -320,11 +327,11 @@ namespace ProjectAncients
 
             PatchEncy(ency_alienSpam, modEncyPath_terminalInfo, "Alien Document", alienSpamEncyText, "Popup_green", "GreenGlyph_Ency");
 
-            PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Research Laboratory Logs", "This document is interestingly portrayed in a way that is universally understood. File too large to upload to PDA.\n\nTranscript:\n- Unknown creature is approaching facility from below.\n- Creature appears to act extremely aggressive.\n- Creature is attacking Communications Apparatus.\n- Creature has been captured for vaccine research.\n- Specimen analysis: Juvenile leviathan-class creature. Has very few similarities in DNA with any other species observed on the planet.\n- 1 DNA match found: Egg Specimen 18.\n- Specimen interestingly has no signs of infection. Preparing specimen for Kharaa testing procedures.\n- [PERFORMING PLANET-WIDE QUARANTINE. VACCINE DEVELOPMENT TERMINATED. SPECIMEN PLACED IN LONG-TERM STORAGE TANK]", "Popup_green", "GreenGlyph_Ency");
+            PatchEncy(ency_eggRoom, modEncyPath_terminalInfo, "Research Laboratory Logs", "This document is portrayed in a way that is universally understood. File too large to upload to PDA.\n\nTranscript:\n- Unknown creature is approaching facility from below.\n- Creature appears to act extremely aggressive.\n- Creature is attacking Communications Apparatus.\n- Creature has been captured for vaccine research.\n- Specimen analysis: Juvenile leviathan-class creature. Has very few similarities in DNA with any other species observed on the planet.\n- 1 DNA match found: Egg Specimen 18.\n- Specimen interestingly has no signs of infection. Preparing specimen for Kharaa testing procedures.\n- [PERFORMING PLANET-WIDE QUARANTINE. VACCINE DEVELOPMENT TERMINATED. SPECIMEN PLACED IN LONG-TERM STORAGE TANK]", "Popup_green", "GreenGlyph_Ency");
 
             PatchEncy(ency_aquariumSkeleton, modEncyPath_analysis, "Gargantuan Skeleton", "The skeletal remains of a juvenile leviathan specimen, encased in a sealed environment. Carbon dating shows it has died approximately one thousand years ago. Relative intactness of the bones suggests it has died of starvation.");
 
-            PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
+            PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained Singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
 
             PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
 
@@ -340,7 +347,7 @@ namespace ProjectAncients
             purpleTabletTerminal = new TabletTerminalPrefab("PurpleTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Purple);
             purpleTabletTerminal.Patch();
 
-            redTabletTerminal = new TabletTerminalPrefab("RedTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red, 5f);
+            redTabletTerminal = new TabletTerminalPrefab("RedTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red);
             redTabletTerminal.Patch();
 
             whiteTabletTerminal = new TabletTerminalPrefab("WhiteTabletTerminal", PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White);
@@ -357,19 +364,19 @@ namespace ProjectAncients
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
             const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
-            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 16f), Vector3.up * 0f, bigDoor, false);
+            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
             voidDoor_red.Patch();
 
-            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-3.5f, 0f, 14.5f), Vector3.up * -45f, bigDoor, false);
+            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-5f, 0f, 14.5f), Vector3.up * 90f, bigDoor, false);
             voidDoor_blue.Patch();
 
-            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-5f, 0f, 11f), Vector3.up * 270f, bigDoor, false);
+            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-3.5f, 0f, 11f), Vector3.up * 45f, bigDoor, false);
             voidDoor_purple.Patch();
 
-            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(5f, 0f, 11f), Vector3.up * -270f, bigDoor, false);
+            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(3.5f, 0f, 11f), Vector3.up * 315f, bigDoor, false);
             voidDoor_orange.Patch();
 
-            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(3.5f, 0f, 14.5f), Vector3.up * 45f, bigDoor, false);
+            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
             voidDoor_white.Patch();
 
             voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(0f, 0f, 3f), Vector3.up * 180f, bigDoor, true);
@@ -461,19 +468,23 @@ namespace ProjectAncients
 
             eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", ency_eggRoom, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             eggRoomTerminal.Patch();
+
+            precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            precursorMasterTechTerminal.Patch();
+            
             #endregion
 
             #region Teleporters
-            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 + voidBaseZOffset - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 - 40f - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
             voidPcfNetwork.Patch();
 
-            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
+            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
             voidWeaponsNetwork.Patch();
 
-            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 + voidBaseZOffset - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.4f, -1183.00f - 14f), 0f, false, true);
+            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.4f, -1183.00f - 14f), 0f, false, true);
             voidSupplyNetwork.Patch();
 
-            TeleporterNetwork voidSecretNetwork = new TeleporterNetwork("VoidBaseGrassy", new Vector3(373, -400 + 35f, -1880 + voidBaseZOffset - 52f), 0f, new Vector3(269.39f, -245.00f, 314.00f), 206f, false, true);
+            TeleporterNetwork voidSecretNetwork = new TeleporterNetwork("VoidBaseGrassy", new Vector3(373, -400 + 35f, -1880 - 40f - 52f), 0f, new Vector3(269.39f, -245.00f, 314.00f), 206f, false, true);
             voidSecretNetwork.Patch();
 
             TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false, true);
@@ -487,9 +498,6 @@ namespace ProjectAncients
             var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
             outpostBInitializer.Patch();
 
-            var towerOutpostInitializer = new AlienBaseInitializer<TowerOutpostSpawner>("TowerOutpost", new Vector3(-526, -58, 22)); //Grassy plateaus
-            towerOutpostInitializer.Patch();
-
             var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
             guardianCablesInitializer.Patch();
 
@@ -499,10 +507,10 @@ namespace ProjectAncients
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 + voidBaseZOffset), 300f, LargeWorldEntity.CellLevel.Far); //Void
+            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
             eggBase.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 + voidBaseZOffset), 90, LargeWorldEntity.CellLevel.Medium); //Void
+            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 - 40f), 90, LargeWorldEntity.CellLevel.Medium); //Void
             eggBaseInterior.Patch();
 
             var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
@@ -538,6 +546,13 @@ namespace ProjectAncients
                 var pingPrefix = new HarmonyMethod(AccessTools.Method(typeof(PingMapIcon_Patch), "Prefix"));
                 harmony.Patch(pingOriginal, pingPrefix);
             }
+        }
+        
+        public static void ApplyAlienUpgradeMaterials(Renderer renderer)
+        {
+            renderer.material.SetTexture("_MainTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
+            renderer.material.SetTexture("_SpecTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
+            renderer.material.SetTexture("_Illum", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
         }
 
         static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)

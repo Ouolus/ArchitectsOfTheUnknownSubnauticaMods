@@ -23,7 +23,7 @@ namespace ProjectAncients.Prefabs.Modules
         
         public override float? MaxCharge => 30f;
         
-        public override float? EnergyCost => 5f;
+        public override float? EnergyCost => 10f;
 
         public override float CraftingTime => 7f;
 
@@ -60,7 +60,9 @@ namespace ProjectAncients.Prefabs.Modules
             var electricalDefense = Utils
                 .SpawnZeroedAt(obj, seaMoth.transform)
                 .GetComponent<ElectricalDefenseMK2>();
-            
+
+            MainCameraControl.main.ShakeCamera(6f * slotCharge, 2f * slotCharge, MainCameraControl.ShakeMode.Quadratic);
+
             if (electricalDefense is not null)
             {
                 electricalDefense.charge = charge;
@@ -87,7 +89,13 @@ namespace ProjectAncients.Prefabs.Modules
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("SeamothElectricalDefenseMk2"));
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("SeamothElectricalDefenseMk2"));
+        }
+
+        protected override void CustomizePrefab(GameObject prefab)
+        {
+            FixVFXFabricating(prefab.GetComponentInChildren<VFXFabricating>(true));
+            Mod.ApplyAlienUpgradeMaterials(prefab.GetComponentInChildren<Renderer>());
         }
     }
 }

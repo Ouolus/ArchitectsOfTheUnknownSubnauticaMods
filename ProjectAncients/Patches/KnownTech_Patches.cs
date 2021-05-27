@@ -40,6 +40,7 @@ namespace ProjectAncients.Patches
                 {
                     i.unlockTechTypes.Clear();
                 }
+
             }
 
             var analysisTech = KnownTech.analysisTech.ToHashSet();

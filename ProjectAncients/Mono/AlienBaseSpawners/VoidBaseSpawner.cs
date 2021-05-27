@@ -21,14 +21,9 @@ namespace ProjectAncients.Mono.AlienBaseSpawners
             yield return SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, platformY, 62f));
             yield return SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f+ platformY, 62f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1.30f));
             //yield return SpawnPrefab(light_big_ceiling_animated, new Vector3(0f, 0f, 72f), Vector3.right * 180f, Vector3.one);
-            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(0f, 16, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
-            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(0f, 28, 62.5f), new Vector3(0f, 90f, 90f), Vector3.one * 2f);
-            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(17f, 11, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
-            yield return SpawnPrefab(light_verybig_novolumetrics, new Vector3(-17f, 11, 62.5f), Vector3.right * 90f, Vector3.one * 2f);
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 16, 62.5f), Vector3.zero, new Vector3(1f, 1f, 1.5f));
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 28, 62.5f), Vector3.zero, new Vector3(1f, 1f, 1.5f));
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(17f, 11, 62.5f), Vector3.zero, new Vector3(0.5f, 1f, 1f));
-            yield return SpawnPrefab(light_volumetric_1, new Vector3(-17f, 11, 62.5f), Vector3.zero, new Vector3(0.5f, 1f, 1f));
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 11, 62.5f), Vector3.zero, new Vector3(1f, 0.5f, 1f));
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 21, 62.5f), Vector3.zero, new Vector3(1f, 2f, 1f));
+            yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 32, 62.5f), Vector3.zero, new Vector3(1f, 0.5f, 1f));
 
             //Exterior cables
             const float cableDrop = 24f;

@@ -86,20 +86,22 @@ namespace ProjectAncients.Prefabs
             components.locomotion.forwardRotationSpeed = 0.3f;
             components.locomotion.upRotationSpeed = 1f;
 
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            if (TentaclesHaveTrails)
+            {
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("BLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("BRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("TLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("TRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("MLT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+                FixRotationMultipliers(CreateTrail(prefab.SearchChild("MRT"), components, TentacleSnapSpeed), 0.25f, 0.26f);
+            }
 
-            const float jawTentacleSnapSpeed = 6f;
-            CreateTrail(prefab.SearchChild("LLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("LRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("SLA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("SRA"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("LJT"), components, jawTentacleSnapSpeed);
-            CreateTrail(prefab.SearchChild("RJT"), components, jawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LLA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LRA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SLA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("SRA"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("LJT"), components, JawTentacleSnapSpeed);
+            CreateTrail(prefab.SearchChild("RJT"), components, JawTentacleSnapSpeed);
 
             ApplyAggression();
 
@@ -194,6 +196,14 @@ namespace ProjectAncients.Prefabs
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
         }
 
+        public virtual bool TentaclesHaveTrails
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         public virtual bool CanRoar
         {
             get
@@ -230,7 +240,13 @@ namespace ProjectAncients.Prefabs
                 return true;
             }
         }
-
+        public virtual float JawTentacleSnapSpeed
+        {
+            get
+            {
+                return 6f;
+            }
+        }
         public virtual bool CanBeScaredByElectricity
         {
             get

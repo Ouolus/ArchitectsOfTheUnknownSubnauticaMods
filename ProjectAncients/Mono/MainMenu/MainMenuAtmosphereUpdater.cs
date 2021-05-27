@@ -9,16 +9,22 @@ namespace ProjectAncients.Mono
     {
         ECCAudio.AudioClipPool clipPool;
         AudioSource source;
+        WaterSurface currentWaterSurface;
+        Camera currentCamera;
+
+        float timeStart;
         void Start()
         {
             uSkyManager skyManager = FindObjectOfType<uSkyManager>();
-            skyManager.Timeline = 4f;
+            skyManager.Timeline = 5.25f;
             skyManager.StarIntensity = 2f;
-            skyManager.NightSky = uSkyManager.NightModes.Rotation;
-            skyManager.planetRadius = 500f;
+            skyManager.NightSky = uSkyManager.NightModes.Static;
+            skyManager.planetRadius = 3500f;
+            skyManager.planetDistance = 10000f;
             clipPool = ECCAudio.CreateClipPool("garg_for_anth_distant");
             source = gameObject.AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume() / 2f;
+            timeStart = Time.time;
             StartCoroutine(RoarLoop());
         }
 
@@ -35,10 +41,41 @@ namespace ProjectAncients.Mono
 
         void PlayRoar()
         {
+            if (AlienTech.BlackHole.solarSystemDestroyed)
+            {
+                return;
+            }
             AudioClip nextClip = clipPool.GetRandomClip();
             source.volume = ECCHelpers.GetECCVolume() / 2f;
             source.clip = nextClip;
             source.Play();
+        }
+
+        void Update()
+        {
+            if (AlienTech.BlackHole.solarSystemDestroyed)
+            {
+                if(currentWaterSurface is null)
+                {
+                    currentWaterSurface = Object.FindObjectOfType<WaterSurface>();
+                }
+                if(currentWaterSurface is not null)
+                {
+                    currentWaterSurface.transform.position = new Vector3(0f, -1000f, 0f);
+                }
+                if (currentCamera is null)
+                {
+                    var al = Object.FindObjectOfType<AudioListener>();
+                    if (al)
+                    {
+                        currentCamera = al.GetComponent<Camera>();
+                    }
+                }
+                if (currentCamera is not null)
+                {
+                    currentCamera.transform.position = new Vector3(0f, 500f + (Time.time - timeStart) * 0.25f * Time.deltaTime, (Time.time - timeStart) * -0.5f * Time.deltaTime);
+                }
+            }
         }
     }
 }

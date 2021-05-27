@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using ProjectAncients.Mono;
+using ProjectAncients.Mono.AlienTech;
 using UnityEngine.UI;
 
 namespace ProjectAncients.Patches
@@ -17,11 +18,18 @@ namespace ProjectAncients.Patches
             {
                 return;
             }
-            FMODAsset wreakMusic = ScriptableObject.CreateInstance<FMODAsset>();
-            wreakMusic.path = "event:/env/music/wreak_ambience_big_music";
-            wreakMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
+            FMODAsset newMusic = ScriptableObject.CreateInstance<FMODAsset>();
+            if (BlackHole.solarSystemDestroyed)
+            {
+                newMusic.path = "event:/env/music/dunes_background_music";
+            }
+            else
+            {
+                newMusic.path = "event:/env/music/wreak_ambience_big_music";
+            }
+            //newMusic.id = "{433ab5c7-6190-430a-929a-9b9b39593524}";
 
-            __instance.music = wreakMusic;
+            __instance.music = newMusic;
         }
         
         [HarmonyPatch(typeof(uGUI_MainMenu))]
@@ -29,17 +37,27 @@ namespace ProjectAncients.Patches
         [HarmonyPostfix]
         static void uGUI_MainMenu_Postfix(uGUI_MainMenu __instance)
         {
-            if (!Mod.config.OverrideMainMenu)
+            if (!BlackHole.solarSystemDestroyed)
             {
-                return;
+                if (!Mod.config.OverrideMainMenu)
+                {
+                    return;
+                }
             }
-            GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
-            if(subtitlePrefab is not null)
+            if (BlackHole.solarSystemDestroyed)
             {
-                GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
-                subtitle.transform.position = new Vector3(-8.148f, 0.2f, 16f);
-                subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-                subtitle.transform.localScale = Vector3.one * 0.7f;
+                GameObject.Destroy(__instance.gameObject);
+            }
+            else
+            {
+                GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
+                if (subtitlePrefab is not null)
+                {
+                    GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
+                    subtitle.transform.position = new Vector3(-5.54f, 0.40f, 11.00f);
+                    subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+                    subtitle.transform.localScale = Vector3.one * 0.5f;
+                }
             }
 
             var lights = Object.FindObjectsOfType<Light>();
@@ -51,9 +69,8 @@ namespace ProjectAncients.Patches
             sun.intensity = 0f;
             sun.gameObject.AddComponent<MainMenuAtmosphereUpdater>();
 
-            //GameObject.Destroy(__instance.gameObject);
         }
-        
+
         [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.Begin))]
         [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.BeginAsyncSceneLoad))]
         [HarmonyPatch(typeof(uGUI_SceneLoading), nameof(uGUI_SceneLoading.DelayedBegin))]

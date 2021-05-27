@@ -1,5 +1,6 @@
 ﻿using ArchitectsLibrary.API;
 using ArchitectsLibrary.Interfaces;
+using ArchitectsLibrary.Handlers;
 using ProjectAncients.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
@@ -68,14 +69,22 @@ namespace ProjectAncients.Prefabs.Modules
                 {
                     new Ingredient(TechType.TitaniumIngot, 1),
                     new Ingredient(TechType.AdvancedWiringKit, 1),
-                    new Ingredient(TechType.PrecursorIonCrystal, 2),
+                    new Ingredient(AUHandler.RedIonCubeTechType, 1),
                 }
             };
         }
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return ImageUtils.LoadSpriteFromTexture(Mod.assetBundle.LoadAsset<Texture2D>("PrawnSuitAutoZapper"));
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("PrawnSuitAutoZapper"));
+        }
+
+        protected override void CustomizePrefab(GameObject prefab)
+        {
+            var vfxFabricating = prefab.GetComponentInChildren<VFXFabricating>(true);
+            FixVFXFabricating(vfxFabricating);
+            vfxFabricating.posOffset = new Vector3(0f, 0.05f, 0f);
+            Mod.ApplyAlienUpgradeMaterials(prefab.GetComponentInChildren<Renderer>());
         }
     }
 }

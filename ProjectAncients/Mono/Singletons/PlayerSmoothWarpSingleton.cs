@@ -68,7 +68,13 @@ namespace ProjectAncients.Mono
             else
             {
                 Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
-                if(Player.main.transform.position.y > Ocean.main.GetOceanLevel() || Player.main.precursorOutOfWater)
+                float oceanLevel = 0f;
+#if SN1
+                oceanLevel = Ocean.main.GetOceanLevel();
+#else
+                oceanLevel = Ocean.GetOceanLevel();
+#endif
+                if (Player.main.transform.position.y > oceanLevel || Player.main.precursorOutOfWater)
                 {
                     controller.enabled = true;
                 }

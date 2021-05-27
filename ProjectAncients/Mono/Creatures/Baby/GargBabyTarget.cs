@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using ArchitectsLibrary.Utility;
 
 namespace ProjectAncients.Mono
 {
-	//For
 	public class GargBabyTarget : HandTarget, IHandTarget
 	{
 		public bool cinematicPlaying = false;
@@ -14,32 +14,53 @@ namespace ProjectAncients.Mono
 		Pickupable pickupable;
 		Creature creature;
 		GargantuanRoar roar;
+		PlayerCinematicController cinematicController;
+		Rigidbody rb;
+		bool _goodBye;
 
-		void Start()
+		public void Start()
 		{
 			animator = transform.parent.GetComponentInChildren<Animator>();
+			rb = transform.parent.GetComponentInChildren<Rigidbody>();
 			swimBehaviour = GetComponentInParent<SwimBehaviour>();
 			lm = GetComponentInParent<LiveMixin>();
 			gameObject.layer = 13;
 			pickupable = GetComponentInParent<Pickupable>();
 			creature = GetComponentInParent<Creature>();
 			roar = GetComponentInParent<GargantuanRoar>();
+			cinematicController = gameObject.EnsureComponent<PlayerCinematicController>();
+			cinematicController.playerViewAnimationName = "cutefish_tickled";
+			cinematicController.animator = animator;
+			cinematicController.animParam = "cin_play";
+			cinematicController.animParamReceivers = new GameObject[0];
+			cinematicController.animatedTransform = transform.parent.gameObject.SearchChild("PlayerCam").transform;
 		}
+
 		public void OnHandHover(GUIHand hand)
 		{
-			if (CanInteract())
-			{
-				HandReticle.main.SetInteractText("PlayWithFish", true, HandReticle.Hand.Right);
-				HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
-			}
+			if (!CanInteract()) 
+				return;
+
+			var goodByeText = Rocket.IsAnyRocketReady ? "SayFarewell" : null;
+			
+			if (!string.IsNullOrEmpty(goodByeText))
+				goodByeText = LanguageCache.GetButtonFormat(goodByeText, GameInput.Button.RightHand);
+
+			if (Rocket.IsAnyRocketReady)
+				_goodBye = Player.main.GetRightHandDown();
+			
+#pragma warning disable 618
+			HandReticle.main.SetInteractText("PlayWithFish", goodByeText, true, false, true);
+#pragma warning restore 618
+			HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
 		}
 
 		public void OnHandClick(GUIHand hand)
 		{
-			if (CanInteract())
-			{
-				PlayCinematic();
-			}
+			if (!CanInteract())
+				return;
+				
+			PlayCinematic();
 		}
 
 		public void PlayCinematic()
@@ -52,12 +73,14 @@ namespace ProjectAncients.Mono
 			pickupable.isPickupable = false;
 			swimBehaviour.Idle();
 			float random = Random.value;
-			//animation parameter idea (bool): cutefish_tickled
 			swimBehaviour.LookAt(Player.main.transform);
 			animator.SetFloat("random", random);
-			animator.SetTrigger("cin_play");
-			roar.PlayOnce(out float _, GargantuanRoar.RoarMode.CloseOnly);
+			cinematicController.StartCinematicMode(Player.main);
+			rb.isKinematic = true;
+			roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
 			yield return new WaitForSeconds(GetAnimationLength(random));
+			rb.isKinematic = false;
+			cinematicController.EndCinematicMode();
 			cinematicPlaying = false;
 			swimBehaviour.LookAt(null);
 			pickupable.isPickupable = true;
@@ -85,7 +108,7 @@ namespace ProjectAncients.Mono
             }
 			else if(random <= 0.677777f)
             {
-				return 8f;
+				return 4.8f;
             }
             else
             {
@@ -95,10 +118,16 @@ namespace ProjectAncients.Mono
 
 		void Update()
         {
-            if (cinematicPlaying)
-            {
-				swimBehaviour.Idle();
-			}
-		}
+	        if (cinematicPlaying)
+	        {
+		        swimBehaviour.Idle();
+	        }
+	        
+	        if (_goodBye)
+	        {
+		        _goodBye = false;
+		        PlayCinematic();
+	        }
+        }
 	}
 }

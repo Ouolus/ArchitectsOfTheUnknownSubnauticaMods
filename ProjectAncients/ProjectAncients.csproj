@@ -145,7 +145,6 @@
     <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
-    <Compile Include="Mono\AlienBaseSpawners\TowerOutpostSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
@@ -192,6 +191,7 @@
     <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
     <Compile Include="Patches\GotoCommand_Patches.cs" />
     <Compile Include="Patches\KnownTech_Patches.cs" />
+    <Compile Include="Patches\LaunchRocket_Patches.cs" />
     <Compile Include="Patches\LiveMixin_Patches.cs" />
     <Compile Include="Patches\MainMenu_Patches.cs" />
     <Compile Include="Patches\MapMod_Patches.cs" />
@@ -199,6 +199,7 @@
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
     <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
+    <Compile Include="Patches\uSkyManager_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
     <Compile Include="Patches\WaterAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />

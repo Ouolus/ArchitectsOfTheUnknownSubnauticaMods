@@ -46,6 +46,10 @@ namespace ProjectAncients.Prefabs
                     MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
                 }
                 CustomizePrefab();
+                foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
+                {
+                    col.gameObject.EnsureComponent<ConstructionObstacle>();
+                }
             }
             return prefab;
         }
