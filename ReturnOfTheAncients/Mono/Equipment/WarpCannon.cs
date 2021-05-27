@@ -21,6 +21,7 @@ namespace RotA.Mono.Equipment
         public float massThreshold = 1250;
         bool handDown = false;
         float timeStartedCharging = 0f;
+        public bool removeWarpCannonLimits = false;
 
         private GameObject myPrimaryNode;
         private GameObject mySecondaryNode;
@@ -229,27 +230,33 @@ namespace RotA.Mono.Equipment
                 var rb = obj.GetComponent<Rigidbody>();
                 if (rb == null || rb.mass > massThreshold)
                 {
-                    continue;
+                    if (!removeWarpCannonLimits)
+                    {
+                        continue;
+                    }
                 }
                 bool canTeleport = true;
-                var creature = obj.GetComponent<Creature>();
-                if (creature is null)
+                if (!removeWarpCannonLimits)
                 {
-                    obj.GetComponents(iammo);
-                    for (int j = 0; j < iammo.Count; j++)
+                    var creature = obj.GetComponent<Creature>();
+                    if (creature is null)
                     {
-                        if (!iammo[j].GetAllowedToGrab())
+                        obj.GetComponents(iammo);
+                        for (int j = 0; j < iammo.Count; j++)
                         {
-                            canTeleport = false;
-                            break;
+                            if (!iammo[j].GetAllowedToGrab())
+                            {
+                                canTeleport = false;
+                                break;
+                            }
                         }
+                        iammo.Clear();
                     }
-                    iammo.Clear();
                 }
                 if (canTeleport)
                 {
                     obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 1f);
-                    rb.isKinematic = false;
+                    if(rb) rb.isKinematic = false;
                 }
             }
         }
