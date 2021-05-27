@@ -1,9 +1,5 @@
 ﻿using SMLHelper.V2.Crafting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ArchitectsLibrary.Handlers;
 using UnityEngine;
 
@@ -11,7 +7,7 @@ namespace ArchitectsLibrary.Items
 {
     class ReinforcedGlass : ReskinCraftable
     {
-        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced Glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
+        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
         {
         }
 
@@ -30,12 +26,12 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData()
+            return new()
             {
                 craftAmount = 1,
-                Ingredients = new List<Ingredient>()
+                Ingredients = new List<Ingredient>
                 {
-                    new Ingredient(AUHandler.SapphireTechType, 2)
+                    new(AUHandler.SapphireTechType, 2)
                 }
             };
         }

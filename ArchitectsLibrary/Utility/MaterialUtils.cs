@@ -116,16 +116,16 @@ namespace ArchitectsLibrary.Utility
                     Material material = renderer.materials[i];
                     if (material.name.Contains("IonShader"))
                     {
-                        Material[] sharedMats = renderer.sharedMaterials;
+                        Material[] sharedMats = renderer.materials;
                         sharedMats[i] = IonCubeMaterial;
-                        renderer.sharedMaterials = sharedMats;
+                        renderer.materials = sharedMats;
                         continue;
                     }
                     if (material.name.Contains("Transparent"))
                     {
-                        Material[] sharedMats = renderer.sharedMaterials;
+                        Material[] sharedMats = renderer.materials;
                         sharedMats[i] = PrecursorGlassMaterial;
-                        renderer.sharedMaterials = sharedMats;
+                        renderer.materials = sharedMats;
                         continue;
                     }
                     material.SetColor("_SpecColor", new Color(0.25f, 0.54f, 0.41f));
@@ -176,7 +176,9 @@ namespace ArchitectsLibrary.Utility
 
             if(request.TryGetPrefab(out GameObject glassPanel))
             {
-                PrecursorGlassMaterial = glassPanel.GetComponentInChildren<MeshRenderer>().material;
+                PrecursorGlassMaterial = new Material(glassPanel.GetComponentInChildren<MeshRenderer>().material);
+                PrecursorGlassMaterial.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f, 0.4f));
+                PrecursorGlassMaterial.SetFloat("_SpecInt", 1f);
             }
         }
     }

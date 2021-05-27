@@ -1,5 +1,6 @@
 using System.Collections;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.Handlers;
 using FMODUnity;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
@@ -78,6 +79,7 @@ namespace ArchitectsLibrary.Items
             con.allowedOutside = false;
             con.allowedOnCeiling = false;
             con.allowedOnGround = false;
+            con.allowedOnConstructables = true;
             con.model = model;
             con.rotationEnabled = false;
             obj.EnsureComponent<ConstructableBounds>();
@@ -198,6 +200,7 @@ namespace ArchitectsLibrary.Items
             con.allowedOutside = false;
             con.allowedOnCeiling = false;
             con.allowedOnGround = false;
+            con.allowedOnConstructables = true;
             con.model = model;
             con.rotationEnabled = false;
             obj.EnsureComponent<ConstructableBounds>();
@@ -289,7 +292,7 @@ namespace ArchitectsLibrary.Items
                 craftAmount = 1,
                 Ingredients =
                 {
-                    new Ingredient(Handlers.AUHandler.PrecursorAlloyIngotTechType, 1), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1), new Ingredient(Handlers.AUHandler.SapphireTechType, 1)
+                    new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 2), new Ingredient(AUHandler.EmeraldTechType, 1), new Ingredient(AUHandler.SapphireTechType, 1)
                 }
             };
         }

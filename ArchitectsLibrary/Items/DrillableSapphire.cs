@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Items
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.SapphireTechType };
             drillable.kChanceToSpawnResources = 1f;
-            drillable.maxResourcesToSpawn = 3;
+            drillable.maxResourcesToSpawn = 4;
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach(Renderer renderer in renderers)
             {
@@ -41,27 +41,39 @@ namespace ArchitectsLibrary.Items
             techType = TechType
         };
 
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.GrandReef_Ground,
                 count = 1,
-                probability = 0.07f
+                probability = 0.08f
             },
-            new LootDistributionData.BiomeData()
+            new()
+            {
+                biome = BiomeType.GrandReef_CaveCeiling,
+                count = 1,
+                probability = 0.08f
+            },
+            new()
+            {
+                biome = BiomeType.GrandReef_Grass,
+                count = 1,
+                probability = 0.08f
+            },
+            new()
             {
                 biome = BiomeType.DeepGrandReef_Ground,
                 count = 1,
                 probability = 0.08f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
                 probability = 0.04f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.KooshZone_CaveFloor,
                 count = 1,

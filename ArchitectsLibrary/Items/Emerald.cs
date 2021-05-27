@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SMLHelper.V2.Utility;
 using UnityEngine;
 using UWE;
 
@@ -101,6 +100,18 @@ namespace ArchitectsLibrary.Items
                 biome = BiomeType.KooshZone_Sand,
                 count = 1,
                 probability = 0.13f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.KooshZone_CaveFloor,
+                count = 1,
+                probability = 0.5f
+            },
+            new LootDistributionData.BiomeData
+            {
+                biome = BiomeType.KooshZone_CaveWall,
+                count = 1,
+                probability = 0.5f
             },
             new LootDistributionData.BiomeData
             {

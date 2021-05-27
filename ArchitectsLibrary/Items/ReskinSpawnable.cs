@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Items
 {
     abstract class ReskinSpawnable : Spawnable
     {
-        private GameObject cachedPrefab;
+        GameObject cachedPrefab;
 
         protected ReskinSpawnable(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {

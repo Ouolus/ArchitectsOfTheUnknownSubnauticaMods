@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace ArchitectsLibrary.Utility
 {
     /// <summary>
-    /// a Class that contains a collection of useful extensions for <see cref="GameObject"/>s.
+    /// a Class that contains a collection of useful extensions.
     /// </summary>
-    public static class GameObjectExtensions
+    public static class GeneralExtensions
     {
         /// <summary>
         /// Disables the <see cref="Collider"/>s and <see cref="Renderer"/>s of a <see cref="GameObject"/> without making it completely In Active.
@@ -19,6 +20,17 @@ namespace ArchitectsLibrary.Utility
             foreach (var renderer in gameObject.GetAllComponentsInChildren<Renderer>())
                 renderer.enabled = false;
         }
+		
+		/// <summary>
+		/// An extension for adding an item to an array.
+		/// </summary>
+		/// <param name="array">the array to add to.</param>
+		/// <param name="item">item to add to the array.</param>
+		public static void Add<T>(this T[] array, T item)
+		{
+			Array.Resize<T>(ref array, array.Length + 1);
+			array[array.Length - 1] = item;
+		}
 
         /// <summary>
         /// searches for a Child Object of a <see cref="GameObject"/> by passing the Child's name.

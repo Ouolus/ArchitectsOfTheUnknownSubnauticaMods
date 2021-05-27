@@ -102,6 +102,8 @@ namespace ArchitectsLibrary.API
             prefab.SetActive(false);
             obj.SetActive(true);
 
+            CustomizePrefab(prefab);
+
             return obj;
         }
 #endif
@@ -117,9 +119,32 @@ namespace ArchitectsLibrary.API
                 
                 prefab.SetActive(false);
                 obj.SetActive(true);
-                
+
+                CustomizePrefab(prefab);
+
                 gameObject.Set(obj);
             }
+        }
+
+        /// <summary>
+        /// Allows you to customize the prefab for this item (which by default is a clone of <see cref="ModelTemplate"/>).
+        /// </summary>
+        /// <param name="prefab"></param>
+        protected virtual void CustomizePrefab(GameObject prefab)
+        {
+
+        }
+
+        /// <summary>
+        /// A method that fixes the crafting model that seems to break on some modules for some reason.
+        /// </summary>
+        /// <param name="vfx"></param>
+        protected void FixVFXFabricating(VFXFabricating vfx)
+        {
+            vfx.localMinY = -0.14f;
+            vfx.localMaxY = 0.13f;
+            vfx.posOffset = new Vector3(0f, 0.1f, 0f);
+            vfx.eulerOffset = new Vector3(0f, 90f, 90f);
         }
 
         /// <summary>
