@@ -3,6 +3,7 @@ using System.Collections;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 using UWE;
 
@@ -85,6 +86,7 @@ namespace ArchitectsLibrary.Buildables
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
+            buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
 
             return buildablePrefab;
         }
@@ -134,6 +136,7 @@ namespace ArchitectsLibrary.Buildables
             yield return EditPrefabAsyncOnly(buildablePrefab);
             buildablePrefab.SetActive(true);
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
+            buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
 
             gameObject.Set(buildablePrefab);
     }

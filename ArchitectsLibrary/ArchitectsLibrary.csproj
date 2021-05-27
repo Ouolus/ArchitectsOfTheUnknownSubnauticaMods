@@ -194,6 +194,7 @@
     <Compile Include="Items\ReskinSpawnable.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
