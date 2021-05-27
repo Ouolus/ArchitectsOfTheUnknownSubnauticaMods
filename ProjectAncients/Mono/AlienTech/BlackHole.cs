@@ -39,6 +39,7 @@ namespace ProjectAncients.Mono.AlienTech
         {
             IngameMenu.main.mainPanel.SetActive(false);
             yield return IngameMenu.main.SaveGameAsync();
+            ErrorMessage.AddMessage("Save file corrupted.");
             
             yield return IngameMenu.main.QuitGameAsync(false);
         }
