@@ -126,14 +126,15 @@
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
+    <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
     <Compile Include="Buildables\BuildableIonCubePedestal.cs" />
     <Compile Include="Buildables\BuildablePedestal.cs" />
     <Compile Include="Buildables\BuildablePedestalLarge.cs" />
+    <Compile Include="Buildables\BuildableRedIonCubePedestal.cs" />
     <Compile Include="Buildables\BuildableSonicDeterrent.cs" />
     <Compile Include="Buildables\BuildableMicroscope.cs" />
     <Compile Include="Buildables\BuildableAlienRobot.cs" />
     <Compile Include="Buildables\BuildableInfoPanel.cs" />
-    <Compile Include="Buildables\BuildableClaw.cs" />
     <Compile Include="Buildables\BuildableLargeRelicTank.cs" />
     <Compile Include="Buildables\BuildableRelicTank.cs" />
     <Compile Include="Buildables\BuildableDissectionTank.cs" />
