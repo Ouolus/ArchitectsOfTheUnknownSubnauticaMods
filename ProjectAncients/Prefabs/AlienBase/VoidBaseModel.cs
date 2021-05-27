@@ -30,6 +30,10 @@ namespace ProjectAncients.Prefabs.AlienBase
                     }
                 }
             }
+            var deter = prefab.EnsureComponent<ArchitectsLibrary.MonoBehaviours.SonicDeterrentDeterCreatures>();
+            deter.aggressiveFishDeterRadius = 175f;
+            deter.maxDeterRadius = 175f;
+            deter.smallFishDeterRadius = 50f;
         }
     }
 }
