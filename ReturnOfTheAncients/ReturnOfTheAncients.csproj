@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50CD2D6F-A5B2-492D-BC69-C1F79A3BE3D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RotA</RootNamespace>
+    <AssemblyName>ReturnOfTheAncients</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>9</LangVersion>
+    <OutputPath>$(SolutionDir)..\Qmods\$(Configuration)\$(AssemblyName)\</OutputPath>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BZ|AnyCPU'">
+    <DefineConstants>BZ;BELOWZERO</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DepDir>$(SolutionDir)\Dependencies\BZ</DepDir>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>9</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SN1|AnyCPU'">
+    <DefineConstants>SN1;SUBNAUTICA_STABLE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DepDir>$(SolutionDir)\Dependencies\SN1</DepDir>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>9</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SN1.exp|AnyCPU' ">
+    <DefineConstants>SN1_exp;SUBNAUTICA_EXPERIMENTAL</DefineConstants>
+    <Optimize>true</Optimize>
+    <DepDir>$(SolutionDir)\Dependencies\SN1.exp</DepDir>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(DepDir)\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ArchitectsLibrary">
+      <HintPath>$(DepDir)\ArchitectsLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass_publicized">
+      <HintPath>$(DepDir)\Assembly-CSharp-firstpass_publicized.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp_publicized">
+      <HintPath>$(DepDir)\Assembly-CSharp_publicized.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ECCLibrary">
+      <HintPath>$(DepDir)\ECCLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DepDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="QModInstaller">
+      <HintPath>$(DepDir)\QModInstaller.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMLHelper">
+      <HintPath>$(DepDir)\SMLHelper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>$(DepDir)\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(DepDir)\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(DepDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(DepDir)\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(DepDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>$(DepDir)\Unity.ResourceManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>$(DepDir)\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(DepDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(DepDir)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(DepDir)\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(DepDir)\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Mod.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecondaryContainmentFacility.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SupplyCacheBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\BonesFieldsOutpostSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
+    <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
+    <Compile Include="Mono\AlienTech\AlienBasePlayerTrigger.cs" />
+    <Compile Include="Mono\AlienTech\BlackHole.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalAnalyzeTech.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
+    <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
+    <Compile Include="Mono\AlienTech\InfectionTesterOpenDoor.cs" />
+    <Compile Include="Mono\AlienTech\InfectionTesterTriggerArea.cs" />
+    <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
+    <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
+    <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
+    <Compile Include="Mono\Commands\SecretCommand.cs" />
+    <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
+    <Compile Include="Mono\Commands\TrollVoice.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargantuanBabyGrowthManager.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargantuanBabyTeleport.cs" />
+    <Compile Include="Mono\Creatures\Baby\GargBabyTarget.cs" />
+    <Compile Include="Mono\Creatures\CreatureActions\GargantuanBabyAggression.cs" />
+    <Compile Include="Mono\Creatures\CreatureActions\RunAwayWhenScared.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanBehaviour.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanMouthAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
+    <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
+    <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\Equipment\WarpCannon.cs" />
+    <Compile Include="Mono\GargantuanEncounterPDA.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
+    <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
+    <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
+    <Compile Include="Mono\Modules\IOnArchitectElectricityZap.cs" />
+    <Compile Include="Mono\Modules\ZapOnDamage.cs" />
+    <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
+    <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
+    <Compile Include="Mono\VoidGargSpawner.cs" />
+    <Compile Include="Mono\ExplosionRoar.cs" />
+    <Compile Include="Mono\VoidShoalSpawner.cs" />
+    <Compile Include="Patches\CyclopsDecoy_Patches.cs" />
+    <Compile Include="Patches\GotoCommand_Patches.cs" />
+    <Compile Include="Patches\KnownTech_Patches.cs" />
+    <Compile Include="Patches\LaunchRocket_Patches.cs" />
+    <Compile Include="Patches\LiveMixin_Patches.cs" />
+    <Compile Include="Patches\MainMenu_Patches.cs" />
+    <Compile Include="Patches\MapMod_Patches.cs" />
+    <Compile Include="Patches\PDAScanner_Patches.cs" />
+    <Compile Include="Patches\Ping_Patches.cs" />
+    <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
+    <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
+    <Compile Include="Patches\uSkyManager_Patches.cs" />
+    <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
+    <Compile Include="Patches\WaterAmbience_Patch.cs" />
+    <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
+    <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\BlackHolePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
+    <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterFramePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterNetwork.cs" />
+    <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterPrimaryPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
+    <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
+    <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
+    <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
+    <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
+    <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
+    <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
+    <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
+    <Compile Include="Prefabs\GargantuanEgg.cs" />
+    <Compile Include="Prefabs\GenericWorldPrefab.cs" />
+    <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
+    <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
+    <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
+    <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
+    <Compile Include="Prefabs\Placeable\GargPoster.cs" />
+    <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
+    <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
+    <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
+    <Compile Include="Prefabs\Initializers\AlienBaseInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomPDALinesManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mod_SN1.json" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
+  </PropertyGroup>
+</Project>
