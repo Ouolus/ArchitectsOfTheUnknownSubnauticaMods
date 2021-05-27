@@ -18,6 +18,7 @@ namespace RotA.Mono.Equipment
         public float surveyRadius = 0.2f;
         public float maxChargeSeconds = 1.5f;
         public float nodeMaxDistance = 50f;
+        public float massThreshold = 1250;
         bool handDown = false;
         float timeStartedCharging = 0f;
 
@@ -225,7 +226,7 @@ namespace RotA.Mono.Equipment
                 obj ??= collider.gameObject;
 
                 var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null || rb.mass > 1000f)
+                if (rb == null || rb.mass > massThreshold)
                 {
                     continue;
                 }
@@ -289,7 +290,7 @@ namespace RotA.Mono.Equipment
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
-                DoWarp();
+                DoWarp(); //warp creatures from the newly placed node to the first node
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 return true;
