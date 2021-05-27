@@ -7,6 +7,8 @@ namespace ProjectAncients.Mono.AlienTech
     {
         int _attempts = 3;
         float _clickCooldown;
+
+        public static bool solarSystemDestroyed;
         
         public void OnHandHover(GUIHand hand)
         {
@@ -27,7 +29,9 @@ namespace ProjectAncients.Mono.AlienTech
                 TryPlayVoiceLine(_attempts);
                 return;
             }
-            
+
+            solarSystemDestroyed = true;
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect")));
             StartCoroutine(Crash());
         }
 
@@ -36,7 +40,7 @@ namespace ProjectAncients.Mono.AlienTech
             IngameMenu.main.mainPanel.SetActive(false);
             yield return IngameMenu.main.SaveGameAsync();
             
-            yield return IngameMenu.main.QuitGameAsync(true);
+            yield return IngameMenu.main.QuitGameAsync(false);
         }
 
         void TryPlayVoiceLine(int attemptsNow)
