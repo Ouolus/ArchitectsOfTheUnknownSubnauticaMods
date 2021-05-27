@@ -47,7 +47,7 @@ namespace ArchitectsLibrary.Buildables
             prefab.SearchChild("precursor_block_solid_04_04_04_v2 (3)").GetComponentInChildren<Collider>().enabled = false;
             prefab.SearchChild("precursor_block_solid_04_04_04_v2 (4)").GetComponentInChildren<Collider>().enabled = false;
             prefab.SearchChild("precursor_block_solid_04_04_04_v2 (5)").GetComponentInChildren<Collider>().enabled = false;
-            prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 0.1f, 0f);
+            prefab.transform.GetChild(0).transform.localPosition = new Vector3(0f, 0.3f, 0f);
 
             decorationalIonCube.SetActive(true);
 #endif

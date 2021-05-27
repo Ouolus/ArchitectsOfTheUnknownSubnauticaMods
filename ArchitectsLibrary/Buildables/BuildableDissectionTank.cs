@@ -19,7 +19,7 @@ namespace ArchitectsLibrary.Buildables
         protected override void EditPrefab(GameObject prefab)
         {
             var modelTransform = prefab.transform.GetChild(0);
-            modelTransform.position = new Vector3(0f, 0.5f, 0f);
+            modelTransform.position = new Vector3(0f, 0.6f, 0f);
             modelTransform.localScale = Vector3.one;
         }
 
