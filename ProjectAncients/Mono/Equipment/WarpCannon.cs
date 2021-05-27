@@ -629,7 +629,7 @@ namespace ProjectAncients.Mono.Equipment
             return false;
         }
 
-        public override string animToolName => "stasisrifle";
+        public override string animToolName => "propulsioncannon";
 
         public enum FireMode
         {
