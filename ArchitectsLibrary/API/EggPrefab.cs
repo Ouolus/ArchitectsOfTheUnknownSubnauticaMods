@@ -221,7 +221,7 @@ namespace ArchitectsLibrary.API
 
             var creatureEgg = obj.EnsureComponent<CreatureEgg>();
             Animator eggAnimator = obj.GetComponentInChildren<Animator>();
-            if (eggAnimator is null)
+            if (eggAnimator == null)
             {
                 eggAnimator = obj.EnsureComponent<Animator>();
             }

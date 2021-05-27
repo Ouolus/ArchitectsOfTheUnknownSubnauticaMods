@@ -16,9 +16,6 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void OnDisable() => CancelInvoke(nameof(DoThing));
 
-        void DoThing()
-        {
-            vehicleOnToggle.DoRepeatingAction(slotID, vehicle);
-        }
+        void DoThing() => vehicleOnToggle.DoRepeatingAction(slotID, vehicle);
     }
 }

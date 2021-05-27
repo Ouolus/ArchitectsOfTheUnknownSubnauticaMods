@@ -1,0 +1,21 @@
+{
+  "Id": "ProjectAncients",
+  "DisplayName": "Return of the Ancients",
+  "Author": "ArchitectsOfTheUnknown",
+  "Version": "1.0.0",
+  "Dependencies": [
+    "SMLHelper",
+    "ArchitectsLibrary",
+    "ECCLibrary"
+  ],
+  "VersionDependencies": {
+    "SMLHelper": "2.9",
+    "ECCLibrary": "1.1.1"
+  },
+  "LoadAfter": [
+     "DecorationsMod"
+  ],
+  "Game": "Subnautica",
+  "AssemblyName": "ReturnOfTheAncients.dll",
+  "Enable": true
+}

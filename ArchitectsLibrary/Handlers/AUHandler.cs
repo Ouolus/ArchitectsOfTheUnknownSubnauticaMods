@@ -12,10 +12,10 @@ namespace ArchitectsLibrary.Handlers
     /// </summary>
     public static class AUHandler
     {
-        internal static IDictionary<TechType, TechType> customCreatureEggDictionary = 
+        internal static readonly IDictionary<TechType, TechType> CustomCreatureEggDictionary = 
             new HashDictionary<TechType, TechType>();
 
-        internal static IDictionary<TechType, WaterParkCreatureParameters> customWaterParkCreatureParameters =
+        internal static readonly IDictionary<TechType, WaterParkCreatureParameters> CustomWaterParkCreatureParameters =
             new HashDictionary<TechType, WaterParkCreatureParameters>();
 
         /// <summary>
@@ -44,15 +44,49 @@ namespace ArchitectsLibrary.Handlers
         public static TechType DrillableSapphireTechType { get; internal set; }
 
         /// <summary>
-        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// Gets the <see cref="RedBeryl"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType RedBerylTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="DrillableRedBeryl"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType DrillableRedBerylTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="RedIonCube"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType RedIonCubeTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Morganite"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType MorganiteTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="DrillableMorganite"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType DrillableMorganiteTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="Electricube"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType ElectricubeTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 2 sapphire.
         /// </summary>
         public static TechType ReinforcedGlassTechType { get; internal set; }
 
         /// <summary>
-        /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod.
+        /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 1 reinforced glass and 1 emerald.
         /// </summary>
         public static TechType AlienCompositeGlassTechType { get; internal set; }
 
+        /// <summary>
+        /// Gets the TechType that is used to unlock all basic alien technology. Return of the Ancients unlocks this in the Supply Cache base.
+        /// </summary>
+        public static TechType AlienTechnologyMasterTech { get; internal set; }
 
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.
@@ -82,12 +116,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="techType">the <see cref="TechType"/> to make immune</param>
         public static void MakeItemAcidImmune(TechType techType)
         {
-            var acidToList = DamageSystem.acidImmune.ToList();
-            
-            if (!acidToList.Contains(techType))
-                acidToList.Add(techType);
-
-            DamageSystem.acidImmune = acidToList.ToArray();
+            DamageSystem.acidImmune.Add(techType);
         }
 
         /// <summary>
@@ -98,7 +127,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="eggType">the Egg's <see cref="TechType"/></param>
         public static void SetCreatureEgg(TechType creatureType, TechType eggType)
         {
-            customCreatureEggDictionary[creatureType] = eggType;
+            CustomCreatureEggDictionary[creatureType] = eggType;
         }
         
         /// <summary>
@@ -108,7 +137,7 @@ namespace ArchitectsLibrary.Handlers
         /// <param name="waterParkCreatureParameters">the <see cref="WaterParkCreatureParameters"/> to set.</param>
         public static void SetCreatureParameters(TechType creatureType, WaterParkCreatureParameters waterParkCreatureParameters)
         {
-            customWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
+            CustomWaterParkCreatureParameters[creatureType] = waterParkCreatureParameters;
         }
     }
 }

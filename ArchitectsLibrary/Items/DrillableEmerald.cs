@@ -7,7 +7,7 @@ using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    class DrillableEmerald : ReskinSpawnable
+    internal class DrillableEmerald : ReskinSpawnable
     {
         protected override string ReferenceClassId => "4f441e53-7a9a-44dc-83a4-b1791dc88ffd";
 
@@ -48,7 +48,7 @@ namespace ArchitectsLibrary.Items
             }
         }
 
-        private void ApplyTranslucency(Renderer renderer)
+        void ApplyTranslucency(Renderer renderer)
         {
             renderer.material.EnableKeyword("_ZWRITE_ON");
             renderer.material.EnableKeyword("WBOIT");
@@ -76,31 +76,31 @@ namespace ArchitectsLibrary.Items
             techType = TechType
         };
 
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
                 probability = 0.03f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
                 probability = 0.03f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.Dunes_SandDune,
                 count = 1,
-                probability = 0.075f
+                probability = 0.0375f
             },
-            new LootDistributionData.BiomeData()
+            new()
             {
                 biome = BiomeType.Dunes_SandPlateau,
                 count = 1,
-                probability = 0.075f
+                probability = 0.0375f
             }
         };
     }

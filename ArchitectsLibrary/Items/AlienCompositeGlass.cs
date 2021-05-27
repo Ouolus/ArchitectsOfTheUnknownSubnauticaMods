@@ -5,30 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Items
 {
     class AlienCompositeGlass : ReskinCraftable
     {
-        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien Composite Glass", "Extremely resistant glass, infused with alien technology.")
+        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
         {
         }
 
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
+
+        public override bool UnlockedAtStart => false;
+
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         public override float CraftingTime => 8f;
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData()
+            return new()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(Handlers.AUHandler.ReinforcedGlassTechType, 1), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
+                    new(AUHandler.ReinforcedGlassTechType, 1), new(AUHandler.EmeraldTechType, 1)
                 }
             };
         }

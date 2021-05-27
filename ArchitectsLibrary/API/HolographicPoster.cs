@@ -3,6 +3,7 @@ using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using ArchitectsLibrary.Utility;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ArchitectsLibrary.API
 {
@@ -11,10 +12,10 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class HolographicPoster : Equipable
     {
-        private GameObject cachedPrefab;
+        GameObject cachedPrefab;
 
         public override bool UnlockedAtStart => false;
-        public override TechType RequiredForUnlock => Handlers.AUHandler.PrecursorAlloyIngotTechType;
+        public override TechType RequiredForUnlock => Handlers.AUHandler.AlienTechnologyMasterTech;
 
         /// <summary>
         /// Constructor for this poster.
@@ -38,14 +39,23 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData()
+            return new()
             {
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>()
                 {
-                    new Ingredient(TechType.Titanium, 2), new Ingredient(Handlers.AUHandler.EmeraldTechType, 1)
+                    new(TechType.Titanium, 2), new(Handlers.AUHandler.EmeraldTechType, 1)
                 }
             };
+        }
+
+        /// <summary>
+        /// These posters have a Sprite by default but you can override it if you want.
+        /// </summary>
+        /// <returns></returns>
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Poster_Icon"));
         }
 
         /// <summary>
@@ -65,18 +75,13 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         public abstract PosterDimensions GetPosterDimensions { get; }
 
-        private static string GetPrefabNameForDimensions(PosterDimensions dimensions)
+        static string GetPrefabNameForDimensions(PosterDimensions dimensions) => dimensions switch
         {
-            switch (dimensions)
-            {
-                default:
-                    return "PrecursorPoster_Prefab";
-                case PosterDimensions.Square:
-                    return "PrecursorPosterSquare_Prefab";
-                case PosterDimensions.Landscape:
-                    return "PrecursorPosterLandscape_Prefab";
-            }
-        }
+            PosterDimensions.Square => "PrecursorPosterSquare_Prefab",
+            PosterDimensions.Landscape => "PrecursorPosterLandscape_Prefab",
+            _ => "PrecursorPoster_Prefab"
+        };
+
         public sealed override GameObject GetGameObject()
         {
             if (cachedPrefab == null)
@@ -139,6 +144,12 @@ namespace ArchitectsLibrary.API
                 }
             }
             return cachedPrefab;
+        }
+
+        public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        {
+            gameObject.Set(GetGameObject());
+            yield return null;
         }
 
         /// <summary>
