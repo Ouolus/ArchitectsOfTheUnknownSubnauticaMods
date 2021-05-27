@@ -17,5 +17,10 @@ namespace ArchitectsLibrary.Buildables
         protected override bool ExteriorOnly => false;
 
         protected override string GetSpriteName => "RelicCaseLarge";
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.GetComponentInChildren<Collider>().transform.localPosition = new Vector3(0f, 0.1f, 0f);
+        }
     }
 }
