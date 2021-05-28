@@ -16,7 +16,7 @@ namespace RotA.Mono.Equipment
         public float minDistanceInBase = 1f;
         public float maxDistanceInBase = 30f;
         public float surveyRadius = 0.2f;
-        public float maxChargeSeconds = 3f;
+        public float maxChargeSeconds = 2.7f;
         public float nodeMaxDistance = 50f;
         public float massThreshold = 1250;
         bool handDown = false;
