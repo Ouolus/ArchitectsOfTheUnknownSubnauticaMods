@@ -28,7 +28,7 @@ namespace RotA.Mono.Equipment
 
         private WarpCannonIllumControl illumControl;
 
-        private Color precursorGreen = new Color(0f, 1f, 0f);
+        private Color precursorGreen = new Color(0.54f, 1f, 0.54f);
         private Color precursorPurple = new Color(0.75f, 0f, 1f);
 
         /// <summary>
