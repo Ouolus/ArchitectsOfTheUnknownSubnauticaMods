@@ -65,7 +65,7 @@ namespace RotA.Prefabs.Equipment
             vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
 
             var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-            chargeSound.path = "event:/sub/cyclops/shield_on_loop";
+            chargeSound.path = "event:/tools/stasis_gun/charge";
 
             var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
             warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
@@ -130,7 +130,7 @@ namespace RotA.Prefabs.Equipment
             vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
 
             var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-            chargeSound.path = "event:/sub/cyclops/shield_on_loop";
+            chargeSound.path = "event:/tools/stasis_gun/charge";
 
             var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
             warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
