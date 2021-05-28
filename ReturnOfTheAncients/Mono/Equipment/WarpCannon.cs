@@ -26,6 +26,11 @@ namespace RotA.Mono.Equipment
         private GameObject myPrimaryNode;
         private GameObject mySecondaryNode;
 
+        private WarpCannonIllumControl illumControl;
+
+        private Color precursorGreen = new Color(0f, 1f, 0f);
+        private Color precursorPurple = new Color(1f, 0f, 1f);
+
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
         /// </summary>
@@ -42,6 +47,10 @@ namespace RotA.Mono.Equipment
 
         List<IPropulsionCannonAmmo> iammo = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
 
+        void Start()
+        {
+            illumControl = gameObject.EnsureComponent<WarpCannonIllumControl>();
+        }
         /// <summary>
         /// Controls what happens when you right click.
         /// </summary>
@@ -207,6 +216,7 @@ namespace RotA.Mono.Equipment
             timeStartedCharging = Time.time;
             handDown = true;
             chargeLoop.StartEvent();
+            illumControl.SetTargetColor(precursorPurple, 0.2f);
             return true;
         }
 
@@ -440,6 +450,7 @@ namespace RotA.Mono.Equipment
                     timeCanUseAgain = Time.time + delay;
                     Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                     animator.SetTrigger("use");
+                    illumControl.SetTargetColor(precursorGreen, delay);
                     handDown = false;
                     if (!Player.main.IsInSub()) //if you are not in a base or vehicle, spawn fish
                     {
@@ -496,6 +507,7 @@ namespace RotA.Mono.Equipment
                 chargeLoop.Stop(false);
             }
             timeCanUseAgain = Time.time + 0.5f;
+            illumControl.SetTargetColor(precursorGreen, 0.5f);
             handDown = false;
         }
 

@@ -16,7 +16,7 @@ namespace RotA.Mono.Equipment
         private Color colorNow;
         private Color targetColor;
         private float timeColorShifted;
-        private float shiftSpeed;
+        private float shiftLength;
         private Renderer renderer;
 
         private void Start()
@@ -26,17 +26,17 @@ namespace RotA.Mono.Equipment
             renderer = GetComponentInChildren<Renderer>();
         }
 
-        public void SetTargetColor(Color color, float shiftSpeed)
+        public void SetTargetColor(Color color, float shiftLength)
         {
             colorBefore = colorNow;
             targetColor = color;
             timeColorShifted = Time.time;
-            this.shiftSpeed = shiftSpeed;
+            this.shiftLength = shiftLength;
         }
 
         void Update()
         {
-            colorNow = Color.Lerp(colorBefore, targetColor, (Time.time - timeColorShifted) * shiftSpeed);
+            colorNow = Color.Lerp(colorBefore, targetColor, (Time.time - timeColorShifted) / shiftLength);
             renderer.material.SetColor("_Color", colorNow);
         }
     }
