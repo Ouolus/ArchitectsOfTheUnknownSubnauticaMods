@@ -42,7 +42,6 @@ namespace RotA.Mono.Equipment
             targetColor = color;
             timeColorShifted = Time.time;
             this.shiftLength = shiftLength;
-            this.StopAllCoroutines();
         }
 
         public void Pulse(Color intoColor, Color resetColor, float pulseLength, float transitionInLength, float transitionOutLength)
