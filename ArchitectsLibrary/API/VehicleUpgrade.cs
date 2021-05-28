@@ -102,7 +102,7 @@ namespace ArchitectsLibrary.API
             prefab.SetActive(false);
             obj.SetActive(true);
 
-            CustomizePrefab(prefab);
+            CustomizePrefab(obj);
 
             return obj;
         }
@@ -120,7 +120,7 @@ namespace ArchitectsLibrary.API
                 prefab.SetActive(false);
                 obj.SetActive(true);
 
-                CustomizePrefab(prefab);
+                CustomizePrefab(obj);
 
                 gameObject.Set(obj);
             }
