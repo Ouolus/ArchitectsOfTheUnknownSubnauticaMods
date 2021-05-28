@@ -29,7 +29,7 @@ namespace RotA.Mono.Equipment
         private WarpCannonIllumControl illumControl;
 
         private Color precursorGreen = new Color(0f, 1f, 0f);
-        private Color precursorPurple = new Color(1f, 0f, 1f);
+        private Color precursorPurple = new Color(0.75f, 0f, 1f);
 
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
