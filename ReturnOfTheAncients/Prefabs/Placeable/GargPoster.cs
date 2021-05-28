@@ -15,5 +15,10 @@ namespace RotA.Prefabs
         public override Texture2D GetPosterTexture => Mod.assetBundle.LoadAsset<Texture2D>("GargPoster");
 
         public override PosterDimensions GetPosterDimensions => PosterDimensions.Landscape;
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("GargPoster_Icon"));
+        }
     }
 }
