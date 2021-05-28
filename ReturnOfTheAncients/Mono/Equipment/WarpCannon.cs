@@ -305,6 +305,7 @@ namespace RotA.Mono.Equipment
             }
             if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
+                illumControl.Pulse(precursorPurple, precursorGreen, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
@@ -316,6 +317,7 @@ namespace RotA.Mono.Equipment
             myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
             Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
             Destroy(myPrimaryNode, 60f);
+            illumControl.Pulse(precursorPurple, precursorGreen, 0.4f, 0.1f, 0.25f);
             timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
             return true;
         }
