@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace RotA.Mono.Equipment
     {
         private Color colorBefore;
         /// <summary>
-        /// The color that the material is set to each frame.
+        /// The color that the material will be set to each frame.
         /// </summary>
         private Color colorNow;
         private Color targetColor;
@@ -32,6 +33,28 @@ namespace RotA.Mono.Equipment
             targetColor = color;
             timeColorShifted = Time.time;
             this.shiftLength = shiftLength;
+            this.StopAllCoroutines();
+        }
+
+        private void SetTargetColorWithoutStoppingCoroutine(Color color, float shiftLength)
+        {
+            colorBefore = colorNow;
+            targetColor = color;
+            timeColorShifted = Time.time;
+            this.shiftLength = shiftLength;
+            this.StopAllCoroutines();
+        }
+
+        public void Pulse(Color intoColor, Color resetColor, float pulseLength, float transitionInLength, float transitionOutLength)
+        {
+            StartCoroutine(PulseCoroutine(intoColor, resetColor, pulseLength, transitionInLength, transitionOutLength));
+        }
+
+        private IEnumerator PulseCoroutine(Color target, Color resetColor, float pulseLength, float transitionInLength, float transitionOutLength)
+        {
+            SetTargetColorWithoutStoppingCoroutine(target, transitionInLength);
+            yield return new WaitForSeconds(transitionInLength + pulseLength);
+            SetTargetColorWithoutStoppingCoroutine(resetColor, transitionOutLength);
         }
 
         void Update()
