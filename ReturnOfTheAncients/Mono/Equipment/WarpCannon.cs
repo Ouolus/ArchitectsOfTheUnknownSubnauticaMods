@@ -30,6 +30,7 @@ namespace RotA.Mono.Equipment
 
         private Color precursorGreen = new Color(0.54f, 1f, 0.54f);
         private Color precursorPurple = new Color(0.75f, 0f, 1f);
+        private Color precursorPink = new Color(1f, 0.5f, 0.8f);
 
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
@@ -412,6 +413,7 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
+            illumControl.Pulse(precursorPink, precursorGreen, 0.2f, 0.1f, 0.3f);
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
