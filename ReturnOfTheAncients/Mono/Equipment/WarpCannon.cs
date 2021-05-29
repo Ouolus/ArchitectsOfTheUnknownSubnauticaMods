@@ -13,7 +13,7 @@ namespace RotA.Mono.Equipment
         public FMOD_StudioEventEmitter chargeLoop;
         public WarperData warperCreatureData;
         float timeCanUseAgain = 0f;
-        public float maxDistance = 60f;
+        public float maxDistance = 50f;
         public float minDistanceInBase = 1f;
         public float maxDistanceInBase = 30f;
         public float surveyRadius = 0.2f;
