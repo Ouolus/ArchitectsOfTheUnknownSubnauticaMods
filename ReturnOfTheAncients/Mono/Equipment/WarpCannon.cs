@@ -38,6 +38,9 @@ namespace RotA.Mono.Equipment
         /// </summary>
         public float warpSpeed = 4;
 
+        public float warpModeEnergyCost = 20;
+        public float manipulateModeEnergyCost = 30;
+
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
         public GameObject warpOutPrefabDestroyAutomatically;
@@ -229,7 +232,7 @@ namespace RotA.Mono.Equipment
         {
             Vector3 primaryNodePosition = myPrimaryNode.transform.position;
             Vector3 secondaryNodePosition = mySecondaryNode.transform.position;
-            GameObject warpVfx = GameObject.Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
+            GameObject warpVfx = Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
             warpVfx.SetActive(true);
             Destroy(warpVfx, 3f);
             var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
@@ -301,7 +304,7 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
+            if (myPrimaryNode != null && energyMixin.ConsumeEnergy(manipulateModeEnergyCost)) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
                 illumControl.Pulse(precursorPurple, precursorGreen, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
@@ -312,12 +315,16 @@ namespace RotA.Mono.Equipment
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 return true;
             }
-            myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
-            Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
-            Destroy(myPrimaryNode, 60f);
-            illumControl.Pulse(precursorPurple, precursorGreen, 0.4f, 0.1f, 0.25f);
-            timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
-            return true;
+            if (energyMixin.ConsumeEnergy(manipulateModeEnergyCost))
+            {
+                myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
+                Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
+                Destroy(myPrimaryNode, 60f);
+                illumControl.Pulse(precursorPurple, precursorGreen, 0.4f, 0.1f, 0.25f);
+                timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -455,14 +462,14 @@ namespace RotA.Mono.Equipment
                     handDown = false;
                     if (!Player.main.IsInSub()) //if you are not in a base or vehicle, spawn fish
                     {
-                        if (Random.value < (0.4f * chargeScale))
+                        if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
                         {
                             Misfire(warpPos, PositionAboveWater(warpPos.y));
                         }
                     }
                     else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
                     {
-                        if (Random.value < (0.4f * chargeScale))
+                        if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
                         {
                             Misfire(warpPos, true);
                         }

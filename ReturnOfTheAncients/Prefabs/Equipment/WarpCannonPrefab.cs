@@ -5,6 +5,7 @@ using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 namespace RotA.Prefabs.Equipment
 {
@@ -13,6 +14,8 @@ namespace RotA.Prefabs.Equipment
         public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use. Potentially unstable.")
         {
         }
+
+        List<TechType> compatibleTech => BatteryCharger.compatibleTech.ToList();
 
         public override EquipmentType EquipmentType => EquipmentType.Hand;
 
@@ -96,6 +99,10 @@ namespace RotA.Prefabs.Equipment
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
             warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+
+            var energyMixin = prefab.GetComponent<EnergyMixin>();
+            energyMixin.compatibleBatteries = compatibleTech;
+            energyMixin.defaultBattery = TechType.PrecursorIonBattery;
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
