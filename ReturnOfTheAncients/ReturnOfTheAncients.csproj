@@ -217,6 +217,7 @@
     <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterPrimaryPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
+    <Compile Include="Prefabs\ComingSoonItem.cs" />
     <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
     <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
@@ -232,7 +233,6 @@
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
     <Compile Include="Prefabs\Placeable\GargPoster.cs" />
-    <Compile Include="Prefabs\SecretItem.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
     <Compile Include="Prefabs\Initializers\ExplosionRoarInitializer.cs" />
