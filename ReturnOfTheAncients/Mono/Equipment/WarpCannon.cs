@@ -472,14 +472,14 @@ namespace RotA.Mono.Equipment
                     animator.SetTrigger("use");
                     illumControl.SetTargetColor(precursorGreen, delay);
                     handDown = false;
-                    if (!Player.main.IsInSub()) //if you are not in a base or vehicle, spawn fish
+                    if (!Player.main.IsInSub()) //if you are not in a base or vehicle
                     {
                         if (Random.value < (0.4f * chargeScale) && (energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale) || !GameModeUtils.RequiresPower()))
                         {
                             Misfire(warpPos, PositionAboveWater(warpPos.y));
                         }
                     }
-                    else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
+                    else if (!InsideMovableSub()) //if you are inside a base (NOT cyclops), spawn land fauna
                     {
                         if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale) || !GameModeUtils.RequiresPower())
                         {
