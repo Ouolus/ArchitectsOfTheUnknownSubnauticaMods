@@ -209,10 +209,10 @@ namespace RotA.Mono.Equipment
                 }
                 //base sky applier fixes
                 SkyApplier creatureSkyApplier = spawnedCreatureObj.GetComponent<SkyApplier>();
-                if(creatureSkyApplier is not null)
+                if (creatureSkyApplier is not null)
                 {
                     mset.Sky baseSky = Player.main.GetCurrentSub().GetComponentInChildren<mset.Sky>();
-                    if(baseSky is not null)
+                    if (baseSky is not null)
                     {
                         creatureSkyApplier.SetCustomSky(baseSky);
                     }
@@ -280,7 +280,7 @@ namespace RotA.Mono.Equipment
                 if (canTeleport)
                 {
                     obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 1f);
-                    if(rb) rb.isKinematic = false;
+                    if (rb) rb.isKinematic = false;
                 }
             }
         }
@@ -456,43 +456,49 @@ namespace RotA.Mono.Equipment
             float chargeScale = GetChargePercent();
             if (Time.time > timeCanUseAgain && handDown)
             {
-                if (WarpForward(chargeScale, out Vector3 warpPos))
+                float energyToConsume = warpModeEnergyCost * chargeScale;
+                if (GameModeUtils.RequiresPower() || energyMixin.energy <= energyToConsume)
                 {
-                    if (chargeLoop.GetIsStartingOrPlaying())
+                    if (WarpForward(chargeScale, out Vector3 warpPos))
                     {
-                        chargeLoop.Stop(false);
-                    }
-                    float delay = 0.5f;
-                    if (chargeScale > 0.5f)
-                    {
-                        delay = 1f;
-                    }
-                    timeCanUseAgain = Time.time + delay;
-                    Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
-                    animator.SetTrigger("use");
-                    illumControl.SetTargetColor(precursorGreen, delay);
-                    handDown = false;
-                    if (!Player.main.IsInSub()) //if you are not in a base or vehicle
-                    {
-                        if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
+                        energyMixin.ConsumeEnergy(energyToConsume);
+                        if (chargeLoop.GetIsStartingOrPlaying())
                         {
-                            Misfire(warpPos, PositionAboveWater(warpPos.y));
+                            chargeLoop.Stop(false);
                         }
-                    }
-                    else if (!InsideMovableSub()) //if you are inside a base (NOT cyclops), spawn land fauna
-                    {
-                        if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
+                        float delay = 0.5f;
+                        if (chargeScale > 0.5f)
                         {
-                            Misfire(warpPos, true);
+                            delay = 1f;
                         }
+                        timeCanUseAgain = Time.time + delay;
+                        Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
+                        animator.SetTrigger("use");
+                        illumControl.SetTargetColor(precursorGreen, delay);
+                        handDown = false;
+                        if (!Player.main.IsInSub()) //if you are not in a base or vehicle
+                        {
+                            if (Random.value < (0.4f * chargeScale))
+                            {
+                                Misfire(warpPos, PositionAboveWater(warpPos.y));
+                            }
+                        }
+                        else if (!InsideMovableSub()) //if you are inside a base (NOT cyclops), spawn land fauna
+                        {
+                            if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
+                            {
+                                Misfire(warpPos, true);
+                            }
+                        }
+                        return true;
                     }
-                    return true;
                 }
                 else
                 {
-                    StopCharging();
-                    return true;
+                    ErrorMessage.AddMessage(Mod.warpCannonNotEnoughPowerError);
                 }
+                StopCharging();
+                return true;
             }
             return false;
         }
