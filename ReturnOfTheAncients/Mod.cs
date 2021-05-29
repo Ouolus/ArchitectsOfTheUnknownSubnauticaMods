@@ -178,12 +178,12 @@ namespace RotA
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
 
             //This stuff uses Architects Library resources so it must be patched AFTER that library
-            //warpCannon = new WarpCannonPrefab();
-            //warpCannon.Patch();
-            //PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
 
-            //warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
-            //warpCannonTerminal.Patch();
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
+            warpCannonTerminal.Patch();
 
             gargPoster = new GargPoster();
             gargPoster.Patch();
@@ -202,10 +202,6 @@ namespace RotA
             superDecoy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
             #endregion
-
-            var warpCannonComingSoon = new ComingSoonItem("WarpCannon", "Warp Cannon", "Coming soon!");
-            warpCannonComingSoon.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(warpCannonComingSoon.TechType, PrecursorFabricatorTab.Equipment);
         }
         [QModPatch]
         public static void Patch()
@@ -231,7 +227,7 @@ namespace RotA
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
-            //warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
+            warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
             #endregion
 
             #region Creatures
@@ -301,9 +297,9 @@ namespace RotA
 
             PatchEncy(ency_tertiaryOutpostTerminalLostRiver, modEncyPath_terminalInfo, "Tertiary Outpost C Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Orange Tablet:\nA rare alien artifact. It was likely put here for future use, but was never reclaimed.", "Popup_Blue", "TO_LR_Ency");
 
-            PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "Oh, you did ency all, okay. We have a lot of stuff coming here soon, we just don't want to spoil it!", "Popup_Green", "SupplyCache_Ency");
+            PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- The arch-like structure situated in the back of the cache, if not decorational, was likely used for quick transportation of supplies.", "Popup_Green", "SupplyCache_Ency");
 
-            /*PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- Several alien robots wandering about the facility suggests they were used as tools for the construction of weaponry, or even as tests subjects for said weaponry.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "ResearchBase_Ency");
+            PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- Several alien robots wandering about the facility suggests they were used as tools for the construction of weaponry, or even as tests subjects for said weaponry.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "ResearchBase_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
@@ -337,7 +333,7 @@ namespace RotA
 
             PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained Singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
 
-            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");*/
+            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
 
             #endregion
 
@@ -479,7 +475,7 @@ namespace RotA
             #endregion
 
             #region Teleporters
-            /*TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 - 40f - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 - 40f - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
             voidPcfNetwork.Patch();
 
             TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
@@ -492,21 +488,17 @@ namespace RotA
             voidSecretNetwork.Patch();
 
             TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false, true);
-            secretTeleporter.Patch();*/
+            secretTeleporter.Patch();
             #endregion
 
             #region Alien bases
             var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
             outpostAInitializer.Patch();
 
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(blackHole.ClassID, new Vector3(-702, -213 + 20f, -780), "BlackHoleSecret1", 70f));
-
             var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
             outpostBInitializer.Patch();
 
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(blackHole.ClassID, new Vector3(-726, -757 + 20f, -218), "BlackHoleSecret1", 70f));
-
-            /*var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
+            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
             guardianCablesInitializer.Patch();
 
             var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183)); //Crag field
@@ -522,7 +514,7 @@ namespace RotA
             eggBaseInterior.Patch();
 
             var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
-            secondaryContainmentFacility.Patch();*/
+            secondaryContainmentFacility.Patch();
             #endregion
 
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
