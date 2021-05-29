@@ -309,11 +309,11 @@ namespace RotA.Mono.Equipment
                 return false;
             }
 
-            if (mySecondaryNode != null) //check if both nodes already exist. if so, do nothing.
+            if (mySecondaryNode != null) //Check if both nodes already exist. if so, do nothing.
             {
                 return false;
             }
-            if (myPrimaryNode != null && (energyMixin.ConsumeEnergy(manipulateModeEnergyCost) || !GameModeUtils.RequiresPower())) //check if primary node exists but secondary doesn't. if so create a secondary node
+            if (myPrimaryNode != null && (!GameModeUtils.RequiresPower() || energyMixin.ConsumeEnergy(manipulateModeEnergyCost))) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
                 illumControl.Pulse(precursorPurple, precursorGreen, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
@@ -324,7 +324,7 @@ namespace RotA.Mono.Equipment
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 return true;
             }
-            if (energyMixin.ConsumeEnergy(manipulateModeEnergyCost) || !GameModeUtils.RequiresPower())
+            if (!GameModeUtils.RequiresPower() || energyMixin.ConsumeEnergy(manipulateModeEnergyCost)) //Neither node exists
             {
                 myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
                 Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
