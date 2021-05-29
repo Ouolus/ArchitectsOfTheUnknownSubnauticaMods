@@ -105,7 +105,7 @@ namespace RotA.Prefabs.Equipment
             energyMixin.defaultBattery = TechType.PrecursorIonBattery;
 
             var batterySlot = new GameObject("BatterySlot");
-            batterySlot.transform.parent = prefab.gameObject.transform;
+            batterySlot.transform.parent = prefab.transform;
             energyMixin.storageRoot = batterySlot.EnsureComponent<ChildObjectIdentifier>();
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
