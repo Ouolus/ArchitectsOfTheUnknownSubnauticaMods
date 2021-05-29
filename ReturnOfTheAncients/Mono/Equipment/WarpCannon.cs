@@ -444,7 +444,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Controls what happens when you release right click. Personal teleportation/warp mode only.
+        /// Controls what happens when you release right click. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
         /// <returns></returns>
         public override bool OnRightHandUp()
@@ -498,7 +498,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Returns true if you are in a cyclops or something similar.
+        /// Returns true if you are in a cyclops or something similar. Warping inside of a Sub with a rigidbody causes issues.
         /// </summary>
         /// <returns></returns>
         private bool InsideMovableSub()
@@ -518,7 +518,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Forcefully cancel the charge of the weapon and add a slight cooldown.
+        /// Forcefully cancel the charge of the weapon and add a slight cooldown. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
         private void StopCharging()
         {
@@ -532,7 +532,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// For Warp mode only. How charged the tool is on a scale from 0.2 - 1. A charge below 0.2 counts as 0.2 because warping 0ish meters is pointless, 
+        /// For Warp mode only. How charged the tool is on a scale from 0.2 - 1. A charge below 0.2 counts as 0.2 because warping 0ish meters is pointless. Only used in in <see cref="FireMode.Warp"/> mode, otherwise returns 0.
         /// </summary>
         /// <returns></returns>
         float GetChargePercent()
