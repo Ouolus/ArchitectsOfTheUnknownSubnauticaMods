@@ -457,7 +457,7 @@ namespace RotA.Mono.Equipment
             if (Time.time > timeCanUseAgain && handDown)
             {
                 float energyToConsume = warpModeEnergyCost * chargeScale;
-                if (GameModeUtils.RequiresPower() || energyMixin.energy <= energyToConsume)
+                if (!GameModeUtils.RequiresPower() || energyMixin.energy <= energyToConsume)
                 {
                     if (WarpForward(chargeScale, out Vector3 warpPos))
                     {
