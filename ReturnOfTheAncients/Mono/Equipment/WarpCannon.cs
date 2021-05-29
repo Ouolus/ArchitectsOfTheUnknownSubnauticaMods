@@ -39,7 +39,7 @@ namespace RotA.Mono.Equipment
         public float warpSpeed = 4;
 
         public float warpModeEnergyCost = 20;
-        public float manipulateModeEnergyCost = 30;
+        public float manipulateModeEnergyCost = 15;
 
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
