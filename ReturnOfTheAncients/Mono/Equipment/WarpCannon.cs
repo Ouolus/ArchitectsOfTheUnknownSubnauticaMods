@@ -560,7 +560,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Attempt to warp the player forward, with distance being based on on <paramref name="chargeScale"/>. Only used in in personal teleportation/warp mode.
+        /// Attempt to warp the player forward, with distance being based on on <paramref name="chargeScale"/>. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
         /// <param name="chargeScale"></param>
         /// <param name="targetPosition"></param>
