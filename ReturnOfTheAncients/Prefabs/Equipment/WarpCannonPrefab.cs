@@ -15,7 +15,7 @@ namespace RotA.Prefabs.Equipment
         {
         }
 
-        List<TechType> compatibleTech => BatteryCharger.compatibleTech.ToList();
+        List<TechType> compatibleTech => BatteryCharger.compatibleTech.Where(x => x != TechType.Battery).ToList();
 
         public override EquipmentType EquipmentType => EquipmentType.Hand;
 
@@ -103,6 +103,10 @@ namespace RotA.Prefabs.Equipment
             var energyMixin = prefab.GetComponent<EnergyMixin>();
             energyMixin.compatibleBatteries = compatibleTech;
             energyMixin.defaultBattery = TechType.PrecursorIonBattery;
+
+            var batterySlot = new GameObject("BatterySlot");
+            batterySlot.transform.parent = prefab.gameObject.transform;
+            energyMixin.storageRoot = batterySlot.EnsureComponent<ChildObjectIdentifier>();
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
