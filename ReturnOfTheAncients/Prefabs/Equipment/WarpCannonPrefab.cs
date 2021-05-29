@@ -103,7 +103,6 @@ namespace RotA.Prefabs.Equipment
             var energyMixin = prefab.GetComponent<EnergyMixin>();
             energyMixin.compatibleBatteries = compatibleTech;
             energyMixin.defaultBattery = TechType.PrecursorIonBattery;
-
             energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
@@ -172,6 +171,11 @@ namespace RotA.Prefabs.Equipment
 
             warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
             warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+            
+            var energyMixin = prefab.GetComponent<EnergyMixin>();
+            energyMixin.compatibleBatteries = compatibleTech;
+            energyMixin.defaultBattery = TechType.PrecursorIonBattery;
+            energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
