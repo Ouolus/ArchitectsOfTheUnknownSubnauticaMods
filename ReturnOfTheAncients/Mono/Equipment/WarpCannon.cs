@@ -4,6 +4,7 @@ using System.Collections;
 
 namespace RotA.Mono.Equipment
 {
+    [RequireComponent(typeof(EnergyMixin))]
     public class WarpCannon : PlayerTool
     {
         public Animator animator;
@@ -278,12 +279,8 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         bool FireManipulateMode()
         {
-            bool fail = false;
-            if (Player.main.IsInSub())
-            {
-                fail = true;
-            }
-            if (fail == true)
+            bool fail = Player.main.IsInSub();
+            if (fail)
             {
                 CharacterController controller = Player.main.GetComponent<CharacterController>();
                 if (controller is not null)
