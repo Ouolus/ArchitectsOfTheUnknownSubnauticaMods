@@ -80,7 +80,12 @@ namespace RotA.Mono.Equipment
             return false;
         }
 
-        private bool PositionAboveWater(float y)
+        /// <summary>
+        /// Simply checks if <paramref name="y"/> is above the water level.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        private static bool PositionAboveWater(float y)
         {
             float oceanLevel;
 #if SN1
@@ -128,6 +133,10 @@ namespace RotA.Mono.Equipment
             }
         }
 
+        /// <summary>
+        /// Returns a random creature that walks on land or flies.
+        /// </summary>
+        /// <returns></returns>
         private WarperData.WarpInCreature GetRandomLandCreatures()
         {
             float random = Random.value;
@@ -389,6 +398,9 @@ namespace RotA.Mono.Equipment
             return base.GetCustomUseText();
         }
 
+        /// <summary>
+        /// Destroy both portals (after a few seconds to let the animation finish) without warping.
+        /// </summary>
         void DestroyNodes()
         {
             if (myPrimaryNode != null)
