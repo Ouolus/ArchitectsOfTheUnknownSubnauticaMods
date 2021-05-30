@@ -311,7 +311,7 @@ namespace RotA.Mono.Equipment
             }
             if(energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
             {
-                ErrorMessage.AddMessage(Mod.warpCannonNotEnoughPowerError);
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
             }
             if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
@@ -511,7 +511,7 @@ namespace RotA.Mono.Equipment
                 }
                 else
                 {
-                    ErrorMessage.AddMessage(Mod.warpCannonNotEnoughPowerError);
+                    ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 }
                 StopCharging();
                 return true;
