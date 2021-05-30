@@ -226,7 +226,7 @@ namespace RotA.Mono.Equipment
             timeStartedCharging = Time.time;
             handDown = true;
             chargeLoop.StartEvent();
-            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Purple, 0.2f);
+            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Purple, maxChargeSeconds);
             return true;
         }
 
