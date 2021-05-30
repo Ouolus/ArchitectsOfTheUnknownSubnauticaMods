@@ -311,6 +311,7 @@ namespace RotA.Mono.Equipment
             }
             if(energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
             {
+                ErrorMessage.AddMessage(Mod.warpCannonNotEnoughPowerError);
                 return false;
             }
             if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
@@ -472,7 +473,7 @@ namespace RotA.Mono.Equipment
             if (Time.time > timeCanUseAgain && handDown)
             {
                 float energyToConsume = warpModeEnergyCost * chargeScale;
-                if (!GameModeUtils.RequiresPower() || energyMixin.charge <= energyToConsume)
+                if (!GameModeUtils.RequiresPower() || energyMixin.charge >= energyToConsume)
                 {
                     if (WarpForward(chargeScale, out Vector3 warpPos))
                     {
