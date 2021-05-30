@@ -27,7 +27,7 @@ namespace RotA.Mono.Equipment
         private GameObject myPrimaryNode;
         private GameObject mySecondaryNode;
 
-        private WarpCannonIllumControl illumControl;
+        private PrecursorIllumControl illumControl;
 
         private Color color_precursorGreen = new Color(0.54f, 1f, 0.54f);
         private Color color_precursorPurple = new Color(0.75f, 0f, 1f);
@@ -55,7 +55,7 @@ namespace RotA.Mono.Equipment
 
         void Start()
         {
-            illumControl = gameObject.EnsureComponent<WarpCannonIllumControl>();
+            illumControl = gameObject.EnsureComponent<PrecursorIllumControl>();
         }
         /// <summary>
         /// Controls what happens when you right click.

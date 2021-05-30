@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace RotA.Mono.Equipment
+namespace RotA.Mono
 {
-    public class WarpCannonIllumControl : MonoBehaviour
+    public class PrecursorIllumControl : MonoBehaviour
     {
         private Color colorBefore;
         /// <summary>
