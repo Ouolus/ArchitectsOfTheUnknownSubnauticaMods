@@ -141,7 +141,7 @@ namespace RotA.Prefabs.Equipment
 
                     batteryModels.Add(new()
                     {
-                        techType = TechType.PrecursorIonBattery,
+                        techType = techType,
                         model = obj
                     });
                 }
