@@ -224,7 +224,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal teleportation. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
-            LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Teleport failed; Insufficient power.");
+            LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");
             #endregion
 
             #region Tech
