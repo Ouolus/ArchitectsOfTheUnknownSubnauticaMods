@@ -309,7 +309,11 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            if (myPrimaryNode != null && energyMixin.ConsumeEnergy(manipulateModeEnergyCost)) //check if primary node exists but secondary doesn't. if so create a secondary node
+            if(energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
+            {
+                return false;
+            }
+            if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
                 illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
@@ -318,18 +322,19 @@ namespace RotA.Mono.Equipment
                 DoWarp(); //warp creatures from the newly placed node to the first node
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
+                energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
                 return true;
             }
-            if (energyMixin.ConsumeEnergy(manipulateModeEnergyCost)) //Neither node exists
+            else //Neither node exists
             {
                 myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
                 Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
                 Destroy(myPrimaryNode, 60f);
                 illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.4f, 0.1f, 0.25f);
                 timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
+                energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
                 return true;
             }
-            return false;
         }
 
         /// <summary>
