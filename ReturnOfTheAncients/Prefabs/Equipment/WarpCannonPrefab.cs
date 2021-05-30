@@ -103,7 +103,45 @@ namespace RotA.Prefabs.Equipment
             var energyMixin = prefab.GetComponent<EnergyMixin>();
             energyMixin.compatibleBatteries = compatibleTech;
             energyMixin.defaultBattery = TechType.PrecursorIonBattery;
-            energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
+            var batterySlot = prefab.FindChild("BatterySlot").gameObject;
+            energyMixin.storageRoot = batterySlot.EnsureComponent<ChildObjectIdentifier>();
+
+            var batteryModels = new List<EnergyMixin.BatteryModels>();
+            
+            // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
+            var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+
+            foreach (var techType in defaultTechTypes)
+            {
+                var gameObject = CraftData.GetPrefabForTechType(techType);
+                var obj = GameObject.Instantiate(gameObject);
+                gameObject.SetActive(false);
+                obj.SetActive(false);
+
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<WorldForces>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<Rigidbody>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<Battery>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<LargeWorldEntity>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<TechTag>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<EntityTag>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<Pickupable>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
+                GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+
+                obj.transform.SetParent(prefab.transform);
+                obj.transform.localPosition = new(-.01f, -.19f, .03f);
+                obj.transform.localScale = new(.52f, .52f, .76f);
+                obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+
+                batteryModels.Add(new()
+                {
+                    techType = TechType.PrecursorIonBattery,
+                    model = obj
+                });
+            }
+
+            energyMixin.batteryModels = batteryModels.ToArray();
 
             var skyApplier = prefab.AddComponent<SkyApplier>();
             skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
