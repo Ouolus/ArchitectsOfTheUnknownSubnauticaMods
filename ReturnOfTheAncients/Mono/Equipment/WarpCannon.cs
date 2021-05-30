@@ -29,11 +29,6 @@ namespace RotA.Mono.Equipment
 
         private PrecursorIllumControl illumControl;
 
-        private Color color_precursorGreen = new Color(0.54f, 1f, 0.54f);
-        private Color color_precursorPurple = new Color(0.75f, 0f, 1f);
-        private Color color_precursorPink = new Color(1f, 0.5f, 0.8f);
-        private Color color_uncharged = new Color(0f, 0f, 0f);
-
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
         /// </summary>
@@ -231,7 +226,7 @@ namespace RotA.Mono.Equipment
             timeStartedCharging = Time.time;
             handDown = true;
             chargeLoop.StartEvent();
-            illumControl.SetTargetColor(color_precursorPurple, 0.2f);
+            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Purple, 0.2f);
             return true;
         }
 
@@ -316,7 +311,7 @@ namespace RotA.Mono.Equipment
             }
             if (myPrimaryNode != null && energyMixin.ConsumeEnergy(manipulateModeEnergyCost)) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
-                illumControl.Pulse(color_precursorPurple, color_precursorGreen, 0.3f, 0.2f, 0.5f);
+                illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
@@ -330,7 +325,7 @@ namespace RotA.Mono.Equipment
                 myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
                 Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
                 Destroy(myPrimaryNode, 60f);
-                illumControl.Pulse(color_precursorPurple, color_precursorGreen, 0.4f, 0.1f, 0.25f);
+                illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.4f, 0.1f, 0.25f);
                 timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
                 return true;
             }
@@ -345,9 +340,9 @@ namespace RotA.Mono.Equipment
             animator.SetFloat("charge", GetChargePercent());
             if(energyMixin.charge <= 0f)
             {
-                if (illumControl.TargetColor != color_uncharged)
+                if (illumControl.TargetColor != Color.black)
                 {
-                    illumControl.SetTargetColor(color_uncharged, 1f);
+                    illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Black, 1f);
                 }
             }
         }
@@ -437,7 +432,7 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            illumControl.Pulse(color_precursorPink, color_precursorGreen, 0.2f, 0.1f, 0.3f);
+            illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
@@ -482,7 +477,7 @@ namespace RotA.Mono.Equipment
                         timeCanUseAgain = Time.time + delay;
                         Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
                         animator.SetTrigger("use");
-                        illumControl.SetTargetColor(color_precursorGreen, delay);
+                        illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, delay);
                         handDown = false;
                         if (!Player.main.IsInSub()) //if you are not in a base or vehicle
                         {
@@ -541,7 +536,7 @@ namespace RotA.Mono.Equipment
                 chargeLoop.Stop(false);
             }
             timeCanUseAgain = Time.time + 0.5f;
-            illumControl.SetTargetColor(color_precursorGreen, 0.5f);
+            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 0.5f);
             handDown = false;
         }
 
