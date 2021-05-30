@@ -345,6 +345,13 @@ namespace RotA.Mono.Equipment
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Black, 1f);
                 }
             }
+            else
+            {
+                if (illumControl.TargetColor == Color.black)
+                {
+                    illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
+                }
+            }
         }
 
         /// <summary>
@@ -460,7 +467,7 @@ namespace RotA.Mono.Equipment
             if (Time.time > timeCanUseAgain && handDown)
             {
                 float energyToConsume = warpModeEnergyCost * chargeScale;
-                if (!GameModeUtils.RequiresPower() || energyMixin.energy <= energyToConsume)
+                if (!GameModeUtils.RequiresPower() || energyMixin.charge <= energyToConsume)
                 {
                     if (WarpForward(chargeScale, out Vector3 warpPos))
                     {
