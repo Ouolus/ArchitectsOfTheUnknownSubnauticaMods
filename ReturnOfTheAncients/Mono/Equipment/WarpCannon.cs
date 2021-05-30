@@ -343,6 +343,13 @@ namespace RotA.Mono.Equipment
         void Update()
         {
             animator.SetFloat("charge", GetChargePercent());
+            if(energyMixin.charge <= 0f)
+            {
+                if (illumControl.TargetColor != color_uncharged)
+                {
+                    illumControl.SetTargetColor(color_uncharged, 1f);
+                }
+            }
         }
 
         /// <summary>

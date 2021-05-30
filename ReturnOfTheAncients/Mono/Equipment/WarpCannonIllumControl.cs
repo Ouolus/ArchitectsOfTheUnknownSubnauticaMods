@@ -20,6 +20,8 @@ namespace RotA.Mono.Equipment
         private float shiftLength;
         private Renderer renderer;
 
+        public Color TargetColor { get { return targetColor; } }
+
         private void Start()
         {
             colorNow = Color.green;
