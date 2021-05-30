@@ -125,8 +125,10 @@
     <Compile Include="Configurations\Config.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\GroundedChecker.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
+    <Compile Include="MonoBehaviours\WalkingManager.cs" />
     <Compile Include="Patches\Creature_Patches.cs" />
     <Compile Include="Patches\Drowning_Patches.cs" />
     <Compile Include="Patches\Player_Patches.cs" />
