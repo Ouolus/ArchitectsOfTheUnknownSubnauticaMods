@@ -11,6 +11,7 @@ namespace RotA.Prefabs.Equipment
 {
     public class WarpCannonPrefab : Equipable
     {
+        GameObject _cachedPrefab;
         public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function. Unstable.")
         {
         }
@@ -43,219 +44,234 @@ namespace RotA.Prefabs.Equipment
 #if SN1
         public override GameObject GetGameObject()
         {
-            GameObject model = Mod.assetBundle.LoadAsset<GameObject>("WarpCannon_Prefab");
-            GameObject prefab = GameObject.Instantiate(model);
-            prefab.SetActive(false);
-            prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
-            prefab.EnsureComponent<TechTag>().type = TechType;
-            prefab.EnsureComponent<Pickupable>();
-            var rb = prefab.EnsureComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.mass = 10f;
-            prefab.EnsureComponent<WorldForces>();
-            var fpModel = prefab.EnsureComponent<FPModel>();
-            fpModel.propModel = prefab.SearchChild("WorldModel");
-            fpModel.viewModel = prefab.SearchChild("ViewModel");
-
-            MaterialUtils.ApplySNShaders(prefab);
-            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);            
-
-            var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = -0.31f;
-            vfxFabricating.localMaxY = 0.1f;
-            vfxFabricating.scaleFactor = 0.1f;
-            vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
-            vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
-
-            var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-            chargeSound.path = "event:/tools/stasis_gun/charge";
-
-            var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
-            warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
-            warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
-            warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.drawSound.path = "event:/player/key terminal_close";
-            warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
-            warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
-            warpCannon.ikAimRightArm = true;
-            warpCannon.ikAimLeftArm = true;
-            warpCannon.mainCollider = prefab.GetComponent<Collider>();
-            warpCannon.chargeLoop = chargeSound;
-
-            GameObject warperPrefab = CraftData.GetPrefabForTechType(TechType.Warper);
-            var warper = warperPrefab.GetComponent<Warper>();
-
-            warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
-            warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
-            warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
-            if (warperCreatureData == null)
+            if (_cachedPrefab == null)
             {
-                WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
-                warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
-            }
-            warpCannon.warperCreatureData = warperCreatureData;
+                GameObject model = Mod.assetBundle.LoadAsset<GameObject>("WarpCannon_Prefab");
+                GameObject prefab = GameObject.Instantiate(model);
+                prefab.SetActive(false);
+                prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+                prefab.EnsureComponent<TechTag>().type = TechType;
+                prefab.EnsureComponent<Pickupable>();
+                var rb = prefab.EnsureComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.mass = 10f;
+                prefab.EnsureComponent<WorldForces>();
+                var fpModel = prefab.EnsureComponent<FPModel>();
+                fpModel.propModel = prefab.SearchChild("WorldModel");
+                fpModel.viewModel = prefab.SearchChild("ViewModel");
 
-            warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
-            warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+                MaterialUtils.ApplySNShaders(prefab);
+                MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
-            var energyMixin = prefab.GetComponent<EnergyMixin>();
-            energyMixin.compatibleBatteries = compatibleTech;
-            energyMixin.defaultBattery = TechType.PrecursorIonBattery;
-            energyMixin.storageRoot = prefab.FindChild("BatterySlot").gameObject.EnsureComponent<ChildObjectIdentifier>();
+                var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
+                vfxFabricating.localMinY = -0.31f;
+                vfxFabricating.localMaxY = 0.1f;
+                vfxFabricating.scaleFactor = 0.1f;
+                vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
+                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
 
-            var batteryModels = new List<EnergyMixin.BatteryModels>();
-            
-            // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
-            var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+                var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
+                chargeSound.path = "event:/tools/stasis_gun/charge";
 
-            foreach (var techType in defaultTechTypes)
-            {
-                var gameObject = CraftData.GetPrefabForTechType(techType);
-                var obj = GameObject.Instantiate(gameObject);
-                gameObject.SetActive(false);
-                obj.SetActive(false);
+                var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
+                warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
+                warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
+                warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.drawSound.path = "event:/player/key terminal_close";
+                warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
+                warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
+                warpCannon.ikAimRightArm = true;
+                warpCannon.ikAimLeftArm = true;
+                warpCannon.mainCollider = prefab.GetComponent<Collider>();
+                warpCannon.chargeLoop = chargeSound;
 
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<WorldForces>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Rigidbody>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Battery>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<LargeWorldEntity>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<TechTag>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<EntityTag>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Pickupable>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+                GameObject warperPrefab = CraftData.GetPrefabForTechType(TechType.Warper);
+                var warper = warperPrefab.GetComponent<Warper>();
 
-                obj.transform.SetParent(prefab.transform);
-                obj.transform.localPosition = new(-.01f, -.19f, .03f);
-                obj.transform.localScale = new(.52f, .52f, .76f);
-                obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
-
-                batteryModels.Add(new()
+                warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
+                warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
+                warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
+                if (warperCreatureData == null)
                 {
-                    techType = TechType.PrecursorIonBattery,
-                    model = obj
-                });
+                    WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0]
+                        .ammoPrefab.GetComponent<WarpBall>().warperData;
+                    warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
+                }
+
+                warpCannon.warperCreatureData = warperCreatureData;
+
+                warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
+                warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+
+                var energyMixin = prefab.GetComponent<EnergyMixin>();
+                energyMixin.compatibleBatteries = compatibleTech;
+                energyMixin.defaultBattery = TechType.PrecursorIonBattery;
+                energyMixin.storageRoot =
+                    prefab.FindChild("BatterySlot").gameObject.EnsureComponent<ChildObjectIdentifier>();
+
+                var batteryModels = new List<EnergyMixin.BatteryModels>();
+
+                // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
+                var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+
+                foreach (var techType in defaultTechTypes)
+                {
+                    var gameObject = CraftData.GetPrefabForTechType(techType);
+                    var obj = GameObject.Instantiate(gameObject);
+                    gameObject.SetActive(false);
+                    obj.SetActive(false);
+
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<WorldForces>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Rigidbody>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Battery>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<LargeWorldEntity>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<TechTag>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<EntityTag>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Pickupable>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+
+                    obj.transform.SetParent(prefab.transform);
+                    obj.transform.localPosition = new(-.01f, -.19f, .03f);
+                    obj.transform.localScale = new(.52f, .52f, .76f);
+                    obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+
+                    batteryModels.Add(new()
+                    {
+                        techType = TechType.PrecursorIonBattery,
+                        model = obj
+                    });
+                }
+
+                energyMixin.batteryModels = batteryModels.ToArray();
+
+                var skyApplier = prefab.AddComponent<SkyApplier>();
+                skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
+                
+                _cachedPrefab = prefab;
             }
-
-            energyMixin.batteryModels = batteryModels.ToArray();
-
-            var skyApplier = prefab.AddComponent<SkyApplier>();
-            skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
-
-            return prefab;
+            
+            return _cachedPrefab;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-            GameObject model = Mod.assetBundle.LoadAsset<GameObject>("WarpCannon_Prefab");
-            GameObject prefab = GameObject.Instantiate(model);
-            prefab.SetActive(false);
-            prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
-            prefab.EnsureComponent<TechTag>().type = TechType;
-            prefab.EnsureComponent<Pickupable>();
-            var rb = prefab.EnsureComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.mass = 10f;
-            prefab.EnsureComponent<WorldForces>();
-            var fpModel = prefab.EnsureComponent<FPModel>();
-            fpModel.propModel = prefab.SearchChild("WorldModel");
-            fpModel.viewModel = prefab.SearchChild("ViewModel");
-
-            MaterialUtils.ApplySNShaders(prefab);
-            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
-
-            var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = -0.31f;
-            vfxFabricating.localMaxY = 0.1f;
-            vfxFabricating.scaleFactor = 0.1f;
-            vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
-            vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
-
-            var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-            chargeSound.path = "event:/tools/stasis_gun/charge";
-
-            var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
-            warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
-            warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
-            warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
-            warpCannon.drawSound.path = "event:/player/key terminal_close";
-            warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
-            warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
-            warpCannon.ikAimRightArm = true;
-            warpCannon.ikAimLeftArm = true;
-            warpCannon.mainCollider = prefab.GetComponent<Collider>();
-            warpCannon.chargeLoop = chargeSound;
-
-            var warperPrefabTask = CraftData.GetPrefabForTechTypeAsync(TechType.Warper);
-            yield return warperPrefabTask;
-            var warperPrefab = warperPrefabTask.GetResult();
-            var warper = warperPrefab.GetComponent<Warper>();
-
-            warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
-            warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
-            warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
-            if (warperCreatureData == null)
+            if (_cachedPrefab == null)
             {
-                WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
-                warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
-            }
-            warpCannon.warperCreatureData = warperCreatureData;
+                GameObject model = Mod.assetBundle.LoadAsset<GameObject>("WarpCannon_Prefab");
+                GameObject prefab = GameObject.Instantiate(model);
+                prefab.SetActive(false);
+                prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+                prefab.EnsureComponent<TechTag>().type = TechType;
+                prefab.EnsureComponent<Pickupable>();
+                var rb = prefab.EnsureComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.mass = 10f;
+                prefab.EnsureComponent<WorldForces>();
+                var fpModel = prefab.EnsureComponent<FPModel>();
+                fpModel.propModel = prefab.SearchChild("WorldModel");
+                fpModel.viewModel = prefab.SearchChild("ViewModel");
 
-            warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
-            warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
-            
-            var energyMixin = prefab.GetComponent<EnergyMixin>();
-            energyMixin.compatibleBatteries = compatibleTech;
-            energyMixin.defaultBattery = TechType.PrecursorIonBattery;
-            energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
-            
-            var batteryModels = new List<EnergyMixin.BatteryModels>();
-            
-            // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
-            var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+                MaterialUtils.ApplySNShaders(prefab);
+                MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
-            foreach (var techType in defaultTechTypes)
-            {
-                var task = CraftData.GetPrefabForTechTypeAsync(techType);
-                var go = task.GetResult();
-                var obj = GameObject.Instantiate(go);
-                go.SetActive(false);
-                obj.SetActive(false);
+                var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
+                vfxFabricating.localMinY = -0.31f;
+                vfxFabricating.localMaxY = 0.1f;
+                vfxFabricating.scaleFactor = 0.1f;
+                vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
+                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
 
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<WorldForces>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Rigidbody>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Battery>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<LargeWorldEntity>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<TechTag>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<EntityTag>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Pickupable>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
-                GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+                var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
+                chargeSound.path = "event:/tools/stasis_gun/charge";
 
-                obj.transform.SetParent(prefab.transform);
-                obj.transform.localPosition = new(-.01f, -.19f, .03f);
-                obj.transform.localScale = new(.52f, .52f, .76f);
-                obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+                var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
+                warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
+                warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
+                warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.drawSound.path = "event:/player/key terminal_close";
+                warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
+                warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
+                warpCannon.ikAimRightArm = true;
+                warpCannon.ikAimLeftArm = true;
+                warpCannon.mainCollider = prefab.GetComponent<Collider>();
+                warpCannon.chargeLoop = chargeSound;
 
-                batteryModels.Add(new()
+                var warperPrefabTask = CraftData.GetPrefabForTechTypeAsync(TechType.Warper);
+                yield return warperPrefabTask;
+                var warperPrefab = warperPrefabTask.GetResult();
+                var warper = warperPrefab.GetComponent<Warper>();
+
+                warpCannon.warpInPrefab = warper.warpOutEffectPrefab; //Yes I know they are swapped
+                warpCannon.warpOutPrefab = warper.warpInEffectPrefab;
+                warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
+                if (warperCreatureData == null)
                 {
-                    techType = TechType.PrecursorIonBattery,
-                    model = obj
-                });
+                    WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0]
+                        .ammoPrefab.GetComponent<WarpBall>().warperData;
+                    warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
+                }
+
+                warpCannon.warperCreatureData = warperCreatureData;
+
+                warpCannon.primaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpInEffectPrefab);
+                warpCannon.secondaryNodeVfxPrefab = GetLoopingWarperVfx(warper.warpOutEffectPrefab);
+
+                var energyMixin = prefab.GetComponent<EnergyMixin>();
+                energyMixin.compatibleBatteries = compatibleTech;
+                energyMixin.defaultBattery = TechType.PrecursorIonBattery;
+                energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
+
+                var batteryModels = new List<EnergyMixin.BatteryModels>();
+
+                // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
+                var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+
+                foreach (var techType in defaultTechTypes)
+                {
+                    var task = CraftData.GetPrefabForTechTypeAsync(techType);
+                    var go = task.GetResult();
+                    var obj = GameObject.Instantiate(go);
+                    go.SetActive(false);
+                    obj.SetActive(false);
+
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<WorldForces>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Rigidbody>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Battery>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<LargeWorldEntity>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<TechTag>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<EntityTag>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Pickupable>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+
+                    obj.transform.SetParent(prefab.transform);
+                    obj.transform.localPosition = new(-.01f, -.19f, .03f);
+                    obj.transform.localScale = new(.52f, .52f, .76f);
+                    obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+
+                    batteryModels.Add(new()
+                    {
+                        techType = TechType.PrecursorIonBattery,
+                        model = obj
+                    });
+                }
+
+                energyMixin.batteryModels = batteryModels.ToArray();
+
+                var skyApplier = prefab.AddComponent<SkyApplier>();
+                skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
+
+                _cachedPrefab = prefab;
             }
 
-            energyMixin.batteryModels = batteryModels.ToArray();
-
-            var skyApplier = prefab.AddComponent<SkyApplier>();
-            skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
-
-            gameObject.Set(prefab);
+            gameObject.Set(_cachedPrefab);
         }
 #endif
 
