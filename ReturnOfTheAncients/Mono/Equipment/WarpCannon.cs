@@ -96,7 +96,7 @@ namespace RotA.Mono.Equipment
         /// <summary>
         /// Spawns creatures around <paramref name="warpPosition"/>.
         /// </summary>
-        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f, bool friendly = false)
+        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
             string biomeName = "";
             if (LargeWorld.main)
@@ -123,9 +123,9 @@ namespace RotA.Mono.Equipment
             for (int i = 0; i < num; i++)
             {
 #if SN1_exp
-                UWE.CoroutineHost.StartCoroutine(WarpInCreatureAsync(randomCreature.techType, warpPosition));
+                UWE.CoroutineHost.StartCoroutine(WarpInCreatureAsync(randomCreature.techType, warpPosition, timeBeforeWarpOut, friendly));
 #else
-                WarpInCreature(randomCreature.techType, warpPosition);
+                WarpInCreature(randomCreature.techType, warpPosition, timeBeforeWarpOut, friendly);
 #endif
             }
         }
@@ -172,6 +172,14 @@ namespace RotA.Mono.Equipment
             {
                 LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
             }
+            if (friendly)
+            {
+                Creature creature = spawnedCreatureObj.GetComponent<Creature>();
+                if (creature)
+                {
+                    creature.friend = Player.main.gameObject;
+                }
+            }
             bool inBase = Player.main.IsInSub();
             if (inBase)
             {
@@ -215,6 +223,14 @@ namespace RotA.Mono.Equipment
             if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
             {
                 LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
+            }
+            if (friendly)
+            {
+                Creature creature = spawnedCreatureObj.GetComponent<Creature>();
+                if (creature)
+                {
+                    creature.friend = Player.main.gameObject;
+                }
             }
             bool inBase = Player.main.IsInSub();
             if (inBase)
@@ -402,7 +418,7 @@ namespace RotA.Mono.Equipment
                 spawnPosition = mainCam.position + (mainCam.forward * nodeMaxDistance);
             }
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
-            SpawnCreaturesAtPosition(spawnPosition, inBase, 2f);
+            SpawnCreaturesAtPosition(spawnPosition, inBase, 2f, 45f, true);
             timeCanUseAgain = Time.time + 0.2f;
             return true;
         }
