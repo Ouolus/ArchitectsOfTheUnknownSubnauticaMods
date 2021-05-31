@@ -116,7 +116,8 @@ namespace RotA.Mono
 
         Vector3 GetRandomSpawnPosition()
         {
-            return Player.main.transform.position + (Random.onUnitSphere * 50f);
+            Vector3 pos = Player.main.transform.position + (Random.onUnitSphere * 50f);
+            return new Vector3(pos.x, Mathf.Clamp(pos.y, -9999f, -5f), pos.z);
         }
     }
 }
