@@ -66,6 +66,7 @@ namespace ArchitectsLibrary
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
         static BuildableAlienRobot buildableAlienRobot;
+        static BuildableWarper buildableWarper;
         static BuildableInfoPanel buildableInfoPanel;
         static BuildableMicroscope buildableMicroscope;
         static BuildableSonicDeterrent buildableSonicDeterrent;
@@ -275,6 +276,9 @@ namespace ArchitectsLibrary
 
             buildableAlienRobot = new BuildableAlienRobot();
             buildableAlienRobot.Patch();
+
+            buildableWarper = new BuildableWarper();
+            buildableWarper.Patch();
 
             buildableInfoPanel = new BuildableInfoPanel();
             buildableInfoPanel.Patch();
