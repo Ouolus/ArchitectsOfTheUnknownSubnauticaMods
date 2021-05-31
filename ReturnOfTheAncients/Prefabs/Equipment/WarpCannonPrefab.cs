@@ -45,6 +45,8 @@ namespace RotA.Prefabs.Equipment
         {
             renderer.material.SetFloat("_Shininess", 6.1f);
             renderer.material.SetFloat("_Fresnel", 0.2f);
+            renderer.material.SetFloat("_EmissionLM", 0.01f);
+            renderer.material.SetFloat("_EmissionLMNight", 0.01f);
             if (renderer.material.name.Contains("Precursor"))
             {
                 MaterialUtils.ApplyPrecursorMaterials(renderer.gameObject, 8f, MaterialUtils.PrecursorSpecularColor.Blue, 0.2f);
@@ -150,9 +152,9 @@ namespace RotA.Prefabs.Equipment
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<VFXFabricating>());
 
                     obj.transform.SetParent(prefab.SearchChild("ViewModel").transform);
-                    obj.transform.localPosition = new(-.01f, -.19f, .03f);
+                    obj.transform.localPosition = new(-0.05f, -0.00f, -0.08f);
                     obj.transform.localScale = new(.52f, .52f, .76f);
-                    obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+                    obj.transform.localEulerAngles = new(0, 52, 180);
 
                     batteryModels.Add(new()
                     {
