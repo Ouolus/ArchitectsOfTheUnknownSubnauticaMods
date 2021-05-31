@@ -153,7 +153,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         /// <param name="techType"></param>
 #if SN1_exp
-        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly)
+        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
             if (techType == TechType.None)
             {
@@ -199,7 +199,7 @@ namespace RotA.Mono.Equipment
             }
         }
 #else
-        private void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly)
+        private void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
             if (techType == TechType.None)
             {
