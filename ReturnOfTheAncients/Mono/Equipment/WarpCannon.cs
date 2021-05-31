@@ -249,6 +249,10 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         bool FireWarpMode()
         {
+            if (Player.main.precursorOutOfWater)
+            {
+                return false;
+            }
             if(energyMixin.charge <= 5f)
             {
                 ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
@@ -380,7 +384,7 @@ namespace RotA.Mono.Equipment
                 ErrorMessage.AddMessage("Cannot fire Warping Device in Creature Spawn Mode currently.");
                 return false;
             }
-            if(energyMixin.charge < creatureSpawnModeEnergyCost)
+            if(!GameModeUtils.RequiresPower() && energyMixin.charge < creatureSpawnModeEnergyCost)
             {
                 ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
