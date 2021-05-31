@@ -41,6 +41,15 @@ namespace RotA.Prefabs.Equipment
             };
         }
 
+        private void UpdateWarpCannonRenderer(Renderer renderer)
+        {
+            renderer.material.SetFloat("_Shininess", 6.1f);
+            renderer.material.SetFloat("_Fresnel", 0.2f);
+            if (renderer.material.name.Contains("Precursor"))
+            {
+                MaterialUtils.ApplyPrecursorMaterials(renderer.gameObject, 8f, MaterialUtils.PrecursorSpecularColor.Blue, 0.2f);
+            }
+        }
 #if SN1
         public override GameObject GetGameObject()
         {
@@ -63,9 +72,8 @@ namespace RotA.Prefabs.Equipment
                 MaterialUtils.ApplySNShaders(prefab);
                 foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
                 {
-                    renderer.material.SetFloat("_Shininess", 6.1f);
+                    UpdateWarpCannonRenderer(renderer);
                 }
-                MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = -0.31f;
@@ -182,9 +190,8 @@ namespace RotA.Prefabs.Equipment
                 MaterialUtils.ApplySNShaders(prefab);
                 foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
                 {
-                    renderer.material.SetFloat("_Shininess", 6.1f);
+                    UpdateWarpCannonRenderer(renderer);
                 }
-                MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = -0.31f;
