@@ -402,6 +402,7 @@ namespace RotA.Mono.Equipment
             }
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             SpawnCreaturesAtPosition(spawnPosition, inBase, 2f);
+            timeCanUseAgain = Time.time + 0.2f;
             return true;
         }
 
