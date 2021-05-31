@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableWarper : GenericPrecursorDecoration
     {
-        public BuildableWarper() : base("BuildableWarper", "Warper", "A Self-Warping Quarantine Enforcer Unit that destroys infected creatures.")
+        public BuildableWarper() : base("BuildableWarper", "Warper", "A Self-Warping Quarantine Enforcer Unit that attacks infected creatures.")
         {
         }
 
