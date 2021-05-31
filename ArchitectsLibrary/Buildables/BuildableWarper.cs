@@ -3,6 +3,7 @@ using SMLHelper.V2.Crafting;
 using System.Collections;
 using System.Collections.Generic;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -23,6 +24,11 @@ namespace ArchitectsLibrary.Buildables
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData(new List<Ingredient>() { new Ingredient(TechType.Warper, 1)});
+        }
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.EnsureComponent<WarperBuildableFix>();
         }
 
         //protected override string GetSpriteName => "AlienRobot";
