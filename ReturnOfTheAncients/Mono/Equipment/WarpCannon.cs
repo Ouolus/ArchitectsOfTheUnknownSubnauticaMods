@@ -340,7 +340,7 @@ namespace RotA.Mono.Equipment
         void Update()
         {
             animator.SetFloat("charge", GetChargePercent());
-            if(energyMixin.charge <= 0f)
+            if(energyMixin.charge <= 5f)
             {
                 if (illumControl.TargetColor != Color.black)
                 {
