@@ -96,7 +96,7 @@ namespace RotA.Mono.Equipment
         /// <summary>
         /// Spawns creatures around <paramref name="warpPosition"/>.
         /// </summary>
-        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna)
+        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f)
         {
             string biomeName = "";
             if (LargeWorld.main)
@@ -116,7 +116,7 @@ namespace RotA.Mono.Equipment
             {
                 return;
             }
-            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : 10f));
+            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : spawnRadius));
             Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
             Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition, 20f);
             int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
@@ -389,14 +389,14 @@ namespace RotA.Mono.Equipment
             Transform mainCam = MainCamera.camera.transform;
             if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
             {
-                spawnPosition = hit.point;
+                spawnPosition = hit.point + (hit.normal * 2f);
             }
             else
             {
                 spawnPosition = mainCam.position + (mainCam.forward * nodeMaxDistance);
             }
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
-            SpawnCreaturesAtPosition(spawnPosition, inBase);
+            SpawnCreaturesAtPosition(spawnPosition, inBase, 2f);
             return true;
         }
 
