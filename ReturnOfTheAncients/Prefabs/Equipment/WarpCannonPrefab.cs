@@ -146,7 +146,7 @@ namespace RotA.Prefabs.Equipment
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
 
-                    obj.transform.SetParent(prefab.transform);
+                    obj.transform.SetParent(prefab.SearchChild("ViewModel").transform);
                     obj.transform.localPosition = new(-.01f, -.19f, .03f);
                     obj.transform.localScale = new(.52f, .52f, .76f);
                     obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
@@ -275,7 +275,7 @@ namespace RotA.Prefabs.Equipment
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
 
-                    obj.transform.SetParent(prefab.transform);
+                    obj.transform.SetParent(prefab.SearchChild("ViewModel").transform);
                     obj.transform.localPosition = new(-.01f, -.19f, .03f);
                     obj.transform.localScale = new(.52f, .52f, .76f);
                     obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
