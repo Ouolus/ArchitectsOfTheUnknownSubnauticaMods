@@ -53,6 +53,8 @@ namespace RotA.Prefabs.Equipment
                 MaterialUtils.ApplyPrecursorMaterials(renderer.gameObject, 8f, MaterialUtils.PrecursorSpecularColor.Blue, 0.2f);
                 renderer.material.SetFloat("_GlowStrength", 10f);
                 renderer.material.SetFloat("_GlowStrengthNight", 10f);
+                renderer.material.SetFloat("_EmissionLM", 0.3f);
+                renderer.material.SetFloat("_EmissionLMNight", 0.3f);
             }
         }
 #if SN1
