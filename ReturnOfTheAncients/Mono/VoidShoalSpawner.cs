@@ -11,7 +11,7 @@ namespace RotA.Mono
         VFXSchoolFishManager shoalManager;
         private const string spinefishShoalClassId = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
         private const string hoopfishShoalClassId = "08cb3290-504b-4191-97ee-6af1588af5c0";
-        private const int shoalCap = 40;
+        private const int shoalCap = 20;
         private bool canSpawn = false;
 
         private IEnumerator Start()
