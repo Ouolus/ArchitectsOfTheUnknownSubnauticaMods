@@ -47,6 +47,7 @@ namespace RotA.Prefabs.Equipment
             renderer.material.SetFloat("_Fresnel", 0.2f);
             renderer.material.SetFloat("_EmissionLM", 0.01f);
             renderer.material.SetFloat("_EmissionLMNight", 0.01f);
+            renderer.material.SetColor("_GlowColor", new Color(0.54f, 1f, 0.54f));
             if (renderer.material.name.Contains("Precursor"))
             {
                 MaterialUtils.ApplyPrecursorMaterials(renderer.gameObject, 8f, MaterialUtils.PrecursorSpecularColor.Blue, 0.2f);
