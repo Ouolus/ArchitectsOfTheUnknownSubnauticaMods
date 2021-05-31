@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) });
+            return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorDroid, 1) });
         }
 
         protected override string GetSpriteName => "AlienRobot";
