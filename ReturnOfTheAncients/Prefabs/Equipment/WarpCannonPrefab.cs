@@ -331,6 +331,7 @@ namespace RotA.Prefabs.Equipment
             AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures});
             ReplaceBiomeInWarperData(so, "safeShallows", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Gasopod, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.RabbitRay, minNum = 4, maxNum = 6 }, new WarperData.WarpInCreature() { techType = TechType.Crash, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.Jumper, minNum = 1, maxNum = 2 } } });
             ReplaceBiomeInWarperData(so, "kelpForest", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Stalker, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Mesmer, minNum = 4, maxNum = 6 } } });
+            ReplaceBiomeInWarperData(so, "void", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.GhostLeviathan, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Warper, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 1 } } });
             return so;
         }
 
