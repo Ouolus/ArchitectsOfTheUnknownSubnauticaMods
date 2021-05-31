@@ -51,9 +51,9 @@ namespace ArchitectsLibrary.Items
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 1f);
         }
 
-        protected override string SpriteName()
+        protected override Atlas.Sprite GetItemSprite()
         {
-            return "Electricube_Icon";
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Electricube_Icon"));
         }
     }
 }

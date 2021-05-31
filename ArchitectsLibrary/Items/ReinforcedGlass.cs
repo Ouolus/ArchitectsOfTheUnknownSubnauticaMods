@@ -42,9 +42,9 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("Material_Reinforced_Glass_specular"));
         }
 
-        protected override string SpriteName()
+        protected override Atlas.Sprite GetItemSprite()
         {
-            return "Reinforced_glass";
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Reinforced_glass"));
         }
     }
 }

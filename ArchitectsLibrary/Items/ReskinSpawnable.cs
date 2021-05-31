@@ -7,23 +7,39 @@ using UWE;
 
 namespace ArchitectsLibrary.Items
 {
-    abstract class ReskinSpawnable : Spawnable
+    /// <summary>
+    ///An item based of off a base-game item, that can spawn in the world if you want.
+    /// </summary>
+    public abstract class ReskinSpawnable : Spawnable
     {
         GameObject cachedPrefab;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="classId">Class ID.</param>
+        /// <param name="friendlyName">Name.</param>
+        /// <param name="description">Tooltip.</param>
         protected ReskinSpawnable(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {
         }
 
+        /// <summary>
+        /// The original class id of this crafable.
+        /// </summary>
         protected abstract string ReferenceClassId { get; }
 
+        /// <summary>
+        /// Allows you to customize this object.
+        /// </summary>
+        /// <param name="prefab"></param>
         protected virtual void ApplyChangesToPrefab(GameObject prefab)
         {
 
         }
 
 #if SN1
-        public override GameObject GetGameObject()
+        public sealed override GameObject GetGameObject()
         {
             if (cachedPrefab == null)
             {
@@ -37,7 +53,7 @@ namespace ArchitectsLibrary.Items
             return cachedPrefab;
         }
 #else
-        public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
+        public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (cachedPrefab == null)
             {

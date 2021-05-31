@@ -46,9 +46,9 @@ namespace ArchitectsLibrary.Items
             vfxFabricating.localMinY = -0.15f;
         }
 
-        protected override string SpriteName()
+        protected override Atlas.Sprite GetItemSprite()
         {
-            return "Precursor_glass";
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Precursor_glass"));
         }
     }
 }
