@@ -65,7 +65,7 @@ namespace ArchitectsLibrary
         static BuildableDissectionTank buildableDissectionTank;
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
-        //static BuildableAlienRobot buildableAlienRobot;
+        static BuildableAlienRobot buildableAlienRobot;
         static BuildableInfoPanel buildableInfoPanel;
         static BuildableMicroscope buildableMicroscope;
         static BuildableSonicDeterrent buildableSonicDeterrent;
@@ -273,8 +273,8 @@ namespace ArchitectsLibrary
             buildableDissectionTank = new BuildableDissectionTank();
             buildableDissectionTank.Patch();
 
-            //buildableAlienRobot = new BuildableAlienRobot();
-            //buildableAlienRobot.Patch();
+            buildableAlienRobot = new BuildableAlienRobot();
+            buildableAlienRobot.Patch();
 
             buildableInfoPanel = new BuildableInfoPanel();
             buildableInfoPanel.Patch();
