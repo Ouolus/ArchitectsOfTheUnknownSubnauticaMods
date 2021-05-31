@@ -165,11 +165,13 @@ namespace RotA.Prefabs.Equipment
 
                 var illumControl = prefab.SearchChild("ViewModel").AddComponent<Mono.PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_battery_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_button_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_couplers_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_grip_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_hood_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.001").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.002").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.003").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_front_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_arms_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_prongs_low").GetComponent<Renderer>());
                 warpCannon.illumControl = illumControl;
                 
                 _cachedPrefab = prefab;
@@ -294,11 +296,13 @@ namespace RotA.Prefabs.Equipment
 
                 var illumControl = prefab.SearchChild("ViewModel").AddComponent<Mono.PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_battery_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_button_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_couplers_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_grip_low").GetComponent<Renderer>());
-                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_hood_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.001").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.002").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.003").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_front_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_arms_low").GetComponent<Renderer>());
+                illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_prongs_low").GetComponent<Renderer>());
                 warpCannon.illumControl = illumControl;
 
                 _cachedPrefab = prefab;
