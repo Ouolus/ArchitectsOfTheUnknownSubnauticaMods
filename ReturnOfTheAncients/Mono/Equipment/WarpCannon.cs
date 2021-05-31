@@ -19,6 +19,7 @@ namespace RotA.Mono.Equipment
         public float surveyRadius = 0.2f;
         public float maxChargeSeconds = 2.7f;
         public float nodeMaxDistance = 50f;
+        public float spawnCreatureMaxDistance = 25f;
         public float massThreshold = 1250;
         bool handDown = false;
         float timeStartedCharging = 0f;
@@ -409,13 +410,13 @@ namespace RotA.Mono.Equipment
             energyMixin.ConsumeEnergy(creatureSpawnModeEnergyCost);
             Vector3 spawnPosition;
             Transform mainCam = MainCamera.camera.transform;
-            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, spawnCreatureMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
             {
                 spawnPosition = hit.point + (hit.normal * 2f);
             }
             else
             {
-                spawnPosition = mainCam.position + (mainCam.forward * nodeMaxDistance);
+                spawnPosition = mainCam.position + (mainCam.forward * spawnCreatureMaxDistance);
             }
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             SpawnCreaturesAtPosition(spawnPosition, inBase, 2f, 45f, true);
