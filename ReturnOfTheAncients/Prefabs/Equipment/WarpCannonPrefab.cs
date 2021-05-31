@@ -284,9 +284,9 @@ namespace RotA.Prefabs.Equipment
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<VFXFabricating>());
 
                     obj.transform.SetParent(prefab.SearchChild("ViewModel").transform);
-                    obj.transform.localPosition = new(-.01f, -.19f, .03f);
+                    obj.transform.localPosition = new(-0.05f, -0.00f, -0.08f);
                     obj.transform.localScale = new(.52f, .52f, .76f);
-                    obj.transform.localEulerAngles = new(42.6f, 68.6f, 0f);
+                    obj.transform.localEulerAngles = new(0, 52, 180);
 
                     batteryModels.Add(new()
                     {
