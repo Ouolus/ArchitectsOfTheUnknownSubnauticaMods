@@ -96,7 +96,7 @@ namespace RotA.Mono.Equipment
         /// <summary>
         /// Spawns creatures around <paramref name="warpPosition"/>.
         /// </summary>
-        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f)
+        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f, bool friendly = false)
         {
             string biomeName = "";
             if (LargeWorld.main)
@@ -153,7 +153,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         /// <param name="techType"></param>
 #if SN1_exp
-        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position)
+        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly)
         {
             if (techType == TechType.None)
             {
@@ -164,7 +164,8 @@ namespace RotA.Mono.Equipment
             GameObject spawnedCreatureObj = task.Get();
             spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
             WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
-            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
+            float creatureLifetime = (techType == TechType.Mesmer ? 30f : timeBeforeWarpOut) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
+            warpedInCreature.SetLifeTime(creatureLifetime);
             warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
             warpedInCreature.warpOutSound = portalCloseSound;
             if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
@@ -198,7 +199,7 @@ namespace RotA.Mono.Equipment
             }
         }
 #else
-        private void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f)
+        private void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly)
         {
             if (techType == TechType.None)
             {
