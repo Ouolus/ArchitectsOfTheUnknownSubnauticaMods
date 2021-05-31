@@ -46,7 +46,7 @@ namespace RotA.Mono.Equipment
 
         public FireMode fireMode = FireMode.Warp;
 
-        List<IPropulsionCannonAmmo> iammo = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
+        List<IPropulsionCannonAmmo> iammoCache = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
 
         /// <summary>
         /// Controls what happens when you right click.
@@ -257,16 +257,16 @@ namespace RotA.Mono.Equipment
                     var creature = obj.GetComponent<Creature>();
                     if (creature is null)
                     {
-                        obj.GetComponents(iammo);
-                        for (int j = 0; j < iammo.Count; j++)
+                        obj.GetComponents(iammoCache);
+                        for (int j = 0; j < iammoCache.Count; j++)
                         {
-                            if (!iammo[j].GetAllowedToGrab())
+                            if (!iammoCache[j].GetAllowedToGrab())
                             {
                                 canTeleport = false;
                                 break;
                             }
                         }
-                        iammo.Clear();
+                        iammoCache.Clear();
                     }
                 }
                 if (canTeleport)
