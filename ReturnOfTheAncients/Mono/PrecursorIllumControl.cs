@@ -18,7 +18,7 @@ namespace RotA.Mono
         private Color targetColor;
         private float timeColorShifted;
         private float shiftLength;
-        private Renderer renderer;
+        public List<Renderer> renderers;
 
         public Color TargetColor { get { return targetColor; } }
 
@@ -26,7 +26,6 @@ namespace RotA.Mono
         {
             colorNow = Color.green;
             SetTargetColor(Color.green, 1f);
-            renderer = GetComponentInChildren<Renderer>();
         }
 
         public void SetTargetColor(Color color, float shiftLength)
@@ -75,7 +74,10 @@ namespace RotA.Mono
         void Update()
         {
             colorNow = Color.Lerp(colorBefore, targetColor, (Time.time - timeColorShifted) / shiftLength);
-            renderer.material.SetColor("_Color", colorNow);
+            foreach(Renderer renderer in renderers)
+            {
+                renderer.material.SetColor("_Color", colorNow);
+            }
         }
 
         public enum PrecursorColor
