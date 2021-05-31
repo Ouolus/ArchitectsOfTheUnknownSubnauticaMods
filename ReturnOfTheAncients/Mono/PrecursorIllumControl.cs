@@ -76,7 +76,7 @@ namespace RotA.Mono
             colorNow = Color.Lerp(colorBefore, targetColor, (Time.time - timeColorShifted) / shiftLength);
             foreach(Renderer renderer in renderers)
             {
-                renderer.material.SetColor("_Color", colorNow);
+                renderer.material.SetColor("_GlowColor", colorNow);
             }
         }
 
