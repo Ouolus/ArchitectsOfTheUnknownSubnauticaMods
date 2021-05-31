@@ -274,11 +274,11 @@ namespace ArchitectsLibrary
             buildableDissectionTank = new BuildableDissectionTank();
             buildableDissectionTank.Patch();
 
-            buildableAlienRobot = new BuildableAlienRobot();
+            /*buildableAlienRobot = new BuildableAlienRobot();
             buildableAlienRobot.Patch();
 
             buildableWarper = new BuildableWarper();
-            buildableWarper.Patch();
+            buildableWarper.Patch();*/
 
             buildableInfoPanel = new BuildableInfoPanel();
             buildableInfoPanel.Patch();
