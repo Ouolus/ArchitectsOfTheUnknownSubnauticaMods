@@ -81,7 +81,7 @@ namespace RotA.Prefabs.Equipment
                 }
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.15f;
+                vfxFabricating.localMinY = -0.42f;
                 vfxFabricating.localMaxY = 0.15f;
                 vfxFabricating.scaleFactor = 1f;
                 vfxFabricating.posOffset = new Vector3(0f, 0.15f, 0f);
@@ -211,11 +211,11 @@ namespace RotA.Prefabs.Equipment
                 }
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.31f;
-                vfxFabricating.localMaxY = 0.1f;
-                vfxFabricating.scaleFactor = 0.1f;
-                vfxFabricating.posOffset = new Vector3(-0.70f, 0.1f, -0.1f);
-                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 90f);
+                vfxFabricating.localMinY = -0.42f;
+                vfxFabricating.localMaxY = 0.15f;
+                vfxFabricating.scaleFactor = 1f;
+                vfxFabricating.posOffset = new Vector3(0f, 0.15f, 0f);
+                vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
 
                 var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
                 chargeSound.path = "event:/tools/stasis_gun/charge";
