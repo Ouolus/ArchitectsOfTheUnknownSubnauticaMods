@@ -382,6 +382,7 @@ namespace RotA.Mono.Equipment
             }
             if(energyMixin.charge < creatureSpawnModeEnergyCost)
             {
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
             }
             energyMixin.ConsumeEnergy(creatureSpawnModeEnergyCost);
