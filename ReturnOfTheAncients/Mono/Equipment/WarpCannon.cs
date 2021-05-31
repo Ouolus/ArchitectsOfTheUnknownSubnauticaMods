@@ -27,7 +27,7 @@ namespace RotA.Mono.Equipment
         private GameObject myPrimaryNode;
         private GameObject mySecondaryNode;
 
-        private PrecursorIllumControl illumControl;
+        public PrecursorIllumControl illumControl;
 
         /// <summary>
         /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
@@ -48,10 +48,6 @@ namespace RotA.Mono.Equipment
 
         List<IPropulsionCannonAmmo> iammo = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
 
-        void Start()
-        {
-            illumControl = gameObject.EnsureComponent<PrecursorIllumControl>();
-        }
         /// <summary>
         /// Controls what happens when you right click.
         /// </summary>
