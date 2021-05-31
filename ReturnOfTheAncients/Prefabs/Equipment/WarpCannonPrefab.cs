@@ -61,6 +61,10 @@ namespace RotA.Prefabs.Equipment
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
 
                 MaterialUtils.ApplySNShaders(prefab);
+                foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+                {
+                    renderer.material.SetFloat("_Shininess", 6.1f);
+                }
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
@@ -176,6 +180,10 @@ namespace RotA.Prefabs.Equipment
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
 
                 MaterialUtils.ApplySNShaders(prefab);
+                foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+                {
+                    renderer.material.SetFloat("_Shininess", 6.1f);
+                }
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
