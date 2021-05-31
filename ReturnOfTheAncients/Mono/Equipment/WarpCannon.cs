@@ -253,7 +253,7 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            if(energyMixin.charge <= 5f)
+            if (energyMixin.charge <= 5f)
             {
                 ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
@@ -344,7 +344,7 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            if(energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
+            if (energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
             {
                 ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
@@ -384,7 +384,7 @@ namespace RotA.Mono.Equipment
                 ErrorMessage.AddMessage("Cannot fire Warping Device in Creature Spawn Mode currently.");
                 return false;
             }
-            if(!GameModeUtils.RequiresPower() && energyMixin.charge < creatureSpawnModeEnergyCost)
+            if (GameModeUtils.RequiresPower() && energyMixin.charge < creatureSpawnModeEnergyCost)
             {
                 ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
@@ -411,7 +411,7 @@ namespace RotA.Mono.Equipment
         void Update()
         {
             animator.SetFloat("charge", GetChargePercent());
-            if(energyMixin.charge <= 5f)
+            if (energyMixin.charge <= 5f)
             {
                 if (illumControl.TargetColor != Color.black)
                 {
@@ -527,7 +527,7 @@ namespace RotA.Mono.Equipment
                 fireMode = FireMode.CreatureSpawn;
                 return true;
             }
-            if(fireMode == FireMode.CreatureSpawn)
+            if (fireMode == FireMode.CreatureSpawn)
             {
                 fireMode = FireMode.Warp;
                 return true;
