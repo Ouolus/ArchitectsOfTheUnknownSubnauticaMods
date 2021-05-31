@@ -25,6 +25,11 @@ namespace ArchitectsLibrary.Buildables
             return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorDroid, 1) });
         }
 
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.transform.GetChild(0).localPosition = new Vector3(0f, 0.7f, 0f);
+        }
+
         protected override string GetSpriteName => "AlienRobot";
     }
 }
