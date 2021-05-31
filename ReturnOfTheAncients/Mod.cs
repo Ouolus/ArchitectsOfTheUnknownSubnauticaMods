@@ -150,6 +150,7 @@ namespace RotA
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
         public static string warpCannonSwitchFireModeCurrentlyWarpKey = "WarpCannonSwitchFireModeWarp";
+        public static string warpCannonSwitchFireModeCurrentlyCreatureKey = "WarpCannonSwitchFireModeCreature";
         public static string warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey = "WarpCannonSwitchFireModeManipulatePrimary";
         public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
         public static string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
@@ -222,6 +223,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal teleportation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyCreatureKey, "Current fire mode: Creature summon. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
             LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");

@@ -36,6 +36,7 @@ namespace RotA.Mono.Equipment
 
         public float warpModeEnergyCost = 20;
         public float manipulateModeEnergyCost = 15;
+        public float creatureSpawnModeEnergyCost = 75;
 
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
@@ -68,6 +69,10 @@ namespace RotA.Mono.Equipment
                 {
                     return FireWarpMode();
                 }
+                else if (fireMode == FireMode.CreatureSpawn)
+                {
+                    return FireCreatureSpawnMode();
+                }
             }
             return false;
         }
@@ -89,9 +94,9 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Spawns a creature around the player.
+        /// Spawns creatures around <paramref name="warpPosition"/>.
         /// </summary>
-        void Misfire(Vector3 warpPosition, bool spawnLandFauna)
+        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna)
         {
             string biomeName = "";
             if (LargeWorld.main)
@@ -168,7 +173,7 @@ namespace RotA.Mono.Equipment
             }
         }
 #else
-        private void WarpInCreature(TechType techType, Vector3 position)
+        private void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f)
         {
             if (techType == TechType.None)
             {
@@ -177,7 +182,7 @@ namespace RotA.Mono.Equipment
             GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType, false);
             spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
             WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
-            float creatureLifetime = (techType == TechType.Mesmer ? 30f : 10f) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
+            float creatureLifetime = (techType == TechType.Mesmer ? 30f : timeBeforeWarpOut) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
             warpedInCreature.SetLifeTime(creatureLifetime);
             warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
             warpedInCreature.warpOutSound = portalCloseSound;
@@ -219,6 +224,11 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         bool FireWarpMode()
         {
+            if(energyMixin.charge <= 5f)
+            {
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
+                return false;
+            }
             timeStartedCharging = Time.time;
             handDown = true;
             chargeLoop.StartEvent();
@@ -229,7 +239,7 @@ namespace RotA.Mono.Equipment
         /// <summary>
         /// Warp all small enough entities around the secondary node to the primary node
         /// </summary>
-        void DoWarp()
+        void WarpObjectsToPoint()
         {
             Vector3 primaryNodePosition = myPrimaryNode.transform.position;
             Vector3 secondaryNodePosition = mySecondaryNode.transform.position;
@@ -316,7 +326,7 @@ namespace RotA.Mono.Equipment
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
-                DoWarp(); //warp creatures from the newly placed node to the first node
+                WarpObjectsToPoint(); //warp creatures from the newly placed node to the first node
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
@@ -332,6 +342,37 @@ namespace RotA.Mono.Equipment
                 energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Fires the weapon while in Creature spawn mode.
+        /// </summary>
+        /// <returns></returns>
+        bool FireCreatureSpawnMode()
+        {
+            if (InsideMovableSub())
+            {
+                ErrorMessage.AddMessage("Cannot fire Warping Device in Creature Spawn Mode currently.");
+                return false;
+            }
+            if(energyMixin.charge < creatureSpawnModeEnergyCost)
+            {
+                return false;
+            }
+            energyMixin.ConsumeEnergy(creatureSpawnModeEnergyCost);
+            Vector3 spawnPosition;
+            Transform mainCam = MainCamera.camera.transform;
+            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, nodeMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
+            {
+                spawnPosition = hit.point;
+            }
+            else
+            {
+                spawnPosition = mainCam.position + (mainCam.forward * nodeMaxDistance);
+            }
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
+            SpawnCreaturesAtPosition(spawnPosition, inBase);
+            return true;
         }
 
         /// <summary>
@@ -407,6 +448,10 @@ namespace RotA.Mono.Equipment
                     return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
                 }
             }
+            if (fireMode == FireMode.CreatureSpawn)
+            {
+                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool);
+            }
             return base.GetCustomUseText();
         }
 
@@ -448,6 +493,11 @@ namespace RotA.Mono.Equipment
                 return true;
             }
             if (fireMode == FireMode.Manipulate)
+            {
+                fireMode = FireMode.CreatureSpawn;
+                return true;
+            }
+            if(fireMode == FireMode.CreatureSpawn)
             {
                 fireMode = FireMode.Warp;
                 return true;
@@ -492,14 +542,14 @@ namespace RotA.Mono.Equipment
                         {
                             if (Random.value < (0.4f * chargeScale))
                             {
-                                Misfire(warpPos, PositionAboveWater(warpPos.y));
+                                SpawnCreaturesAtPosition(warpPos, PositionAboveWater(warpPos.y));
                             }
                         }
-                        else if (!InsideMovableSub()) //if you are inside a base (NOT cyclops), spawn land fauna
+                        else if (!InsideMovableSub() || Player.main.precursorOutOfWater) //if you are inside a base (NOT cyclops), spawn land fauna
                         {
                             if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
                             {
-                                Misfire(warpPos, true);
+                                SpawnCreaturesAtPosition(warpPos, true);
                             }
                         }
                         return true;
@@ -693,7 +743,8 @@ namespace RotA.Mono.Equipment
         public enum FireMode
         {
             Warp,
-            Manipulate
+            Manipulate,
+            CreatureSpawn
         }
     }
 }
