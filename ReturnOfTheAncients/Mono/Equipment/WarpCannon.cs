@@ -115,7 +115,14 @@ namespace RotA.Mono.Equipment
             }
             if (randomCreature == null)
             {
-                return;
+                if(Random.value <= 0.5f)
+                {
+                    randomCreature = new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 2 };
+                }
+                else
+                {
+                    randomCreature = new WarperData.WarpInCreature() { techType = TechType.Jellyray, minNum = 1, maxNum = 2 };
+                }
             }
             Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : spawnRadius));
             Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
