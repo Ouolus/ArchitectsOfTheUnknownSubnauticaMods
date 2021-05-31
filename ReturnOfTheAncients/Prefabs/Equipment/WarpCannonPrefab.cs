@@ -279,6 +279,7 @@ namespace RotA.Prefabs.Equipment
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<Collider>());
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<SkyApplier>());
                     GameObject.DestroyImmediate(obj.GetComponentInChildren<UniqueIdentifier>());
+                    GameObject.DestroyImmediate(obj.GetComponentInChildren<VFXFabricating>());
 
                     obj.transform.SetParent(prefab.SearchChild("ViewModel").transform);
                     obj.transform.localPosition = new(-.01f, -.19f, .03f);
