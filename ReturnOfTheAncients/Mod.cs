@@ -85,6 +85,7 @@ namespace RotA
         public static GenericWorldPrefab guardianTailfinModel;
         public static AquariumSkeleton aquariumSkeleton;
         public static BlackHolePrefab blackHole;
+        public static OmegaCube omegaCube;
 
         public static AtmosphereVolumePrefab precursorAtmosphereVolume;
 
@@ -190,6 +191,11 @@ namespace RotA
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
+
+            omegaCube = new OmegaCube();
+            omegaCube.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(omegaCube.TechType, new List<TechType>() { omegaCube.TechType });
+            PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials);
 
             #region Modules
             electricalDefenseMk2 = new();
