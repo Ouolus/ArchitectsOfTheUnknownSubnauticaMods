@@ -32,6 +32,7 @@ namespace RotA.Prefabs.AlienBase
             var drillableBase = GameObject.Instantiate(drillableIonCubePrefab, prefab.transform);
             drillableBase.transform.localPosition = Vector3.zero;
             drillableBase.transform.localEulerAngles = new Vector3(0f, 45f, 0f);
+            drillableBase.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
             DestroyPrefabComponents(drillableBase);

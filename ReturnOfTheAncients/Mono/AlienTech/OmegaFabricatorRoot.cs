@@ -58,7 +58,7 @@ namespace RotA.Mono
             }
             if (currentCube != null)
             {
-                return false;
+                return !currentCube.activeSelf;
             }
             return true;
         }
@@ -78,6 +78,7 @@ namespace RotA.Mono
             yield return task;
             task.TryGetPrefab(out GameObject prefab);
             GameObject cube = GameObject.Instantiate(prefab, generateCubeTransform);
+            cube.SetActive(false);
             cube.TryDestroyChildComponents<LargeWorldEntity>();
             cube.TryDestroyChildComponents<PrefabIdentifier>();
             cube.TryDestroyChildComponents<ResourceTracker>();
@@ -94,6 +95,7 @@ namespace RotA.Mono
                 renderer.material.SetColor("_SquaresColor", new(0.5f, 0.5f, 0.5f));
                 renderer.material.SetFloat("_SquaresSpeed", 4f);
             }
+            cube.SetActive(true);
             currentCube = cube;
             cubeCoroutineInProcess = false;
         }
