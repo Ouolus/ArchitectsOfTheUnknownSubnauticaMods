@@ -158,6 +158,7 @@ namespace RotA
         public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
         public static string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
 
+        public static string omegaTerminalHoverText = "OmegaTerminalHoverText";
         public static string omegaTerminalInteract = "OmegaTerminalInteract";
         public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
 
@@ -239,6 +240,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}.\nCurrent mode: Environment manipulation. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");
 
+            LanguageHandler.SetLanguageLine(omegaTerminalHoverText, "Omega terminal");
             LanguageHandler.SetLanguageLine(omegaTerminalInteract, "Insert data ({0})");
             LanguageHandler.SetLanguageLine(omegaTerminalRegenerateCube, "Generate omega cube ({0})");
             #endregion

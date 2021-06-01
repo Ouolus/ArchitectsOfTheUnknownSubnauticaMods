@@ -12,7 +12,15 @@ namespace RotA.Mono
 
         public bool FormulaUnlocked()
         {
-            return StoryGoalManager.main.IsGoalComplete(Patches.PDAScanner_Patches.scanAdultGargGoal.key);
+            if (StoryGoalManager.main.IsGoalComplete(Patches.PDAScanner_Patches.scanAdultGargGoal.key))
+            {
+                return true;
+            }
+            if (PDAEncyclopedia.ContainsEntry(Mod.gargVoidPrefab.ClassID))
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool FabricatorEnabled()

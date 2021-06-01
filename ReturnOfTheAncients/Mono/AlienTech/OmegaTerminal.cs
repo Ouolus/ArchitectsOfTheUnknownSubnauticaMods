@@ -53,19 +53,18 @@ namespace RotA.Mono
         {
             if (!fabricator.FabricatorEnabled())
             {
-                HandReticle.main.SetInteractText(LanguageCache.GetButtonFormat(Mod.omegaTerminalInteract, GameInput.Button.LeftHand));
+                HandReticle.main.SetInteractText(Mod.omegaTerminalHoverText, Mod.omegaTerminalInteract, true, true, HandReticle.Hand.Left);
                 HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
                 return;
             }
             if (fabricator.CanGenerateCube())
             {
-                HandReticle.main.SetInteractText(LanguageCache.GetButtonFormat(Mod.omegaTerminalRegenerateCube, GameInput.Button.LeftHand));
+                HandReticle.main.SetInteractText(Mod.omegaTerminalHoverText, Mod.omegaTerminalRegenerateCube, true, true, HandReticle.Hand.Left);
                 HandReticle.main.SetIcon(HandReticle.IconType.Hand, 1f);
+                return;
             }
-            else
-            {
-                HandReticle.main.SetIcon(HandReticle.IconType.HandDeny, 1f);
-            }
+            HandReticle.main.SetInteractText(Mod.omegaTerminalHoverText, true, HandReticle.Hand.None);
+            HandReticle.main.SetIcon(HandReticle.IconType.HandDeny, 1f);
         }
     }
 }
