@@ -241,8 +241,8 @@ namespace RotA
             LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");
 
             LanguageHandler.SetLanguageLine(omegaTerminalHoverText, "Omega terminal");
-            LanguageHandler.SetLanguageLine(omegaTerminalInteract, "Insert data ({0})");
-            LanguageHandler.SetLanguageLine(omegaTerminalRegenerateCube, "Generate omega cube ({0})");
+            LanguageHandler.SetLanguageLine(omegaTerminalInteract, "Insert data");
+            LanguageHandler.SetLanguageLine(omegaTerminalRegenerateCube, "Generate omega cube");
             #endregion
 
             #region Tech
