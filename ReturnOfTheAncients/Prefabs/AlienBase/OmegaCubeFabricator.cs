@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
+using RotA.Mono;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;  
@@ -22,6 +23,9 @@ namespace RotA.Prefabs.AlienBase
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             prefab.EnsureComponent<TechTag>().type = TechType;
+            MaterialUtils.ApplySNShaders(prefab, 8f);
+            MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
+            OmegaFabricatorRoot fabricatorRootComponent = prefab.EnsureComponent<OmegaFabricatorRoot>();
 
             //drillable base
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);
@@ -31,6 +35,19 @@ namespace RotA.Prefabs.AlienBase
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
             DestroyPrefabComponents(drillableBase);
+
+            //terminal
+            PrefabDatabase.TryGetPrefab("b629c806-d3cd-4ee4-ae99-7b1359b60049", out GameObject terminalPrefab);
+            var terminal = GameObject.Instantiate(terminalPrefab, prefab.SearchChild("OmegaCubeTerminalSpawn").transform);
+            terminal.transform.localPosition = Vector3.zero;
+            terminal.transform.localEulerAngles = Vector3.zero;
+            DestroyPrefabComponents(terminal);
+            terminal.TryDestroyChildComponent<StoryHandTarget>();
+            OmegaTerminal terminalComponent = terminal.EnsureComponent<OmegaTerminal>();
+
+            //component connections
+            fabricatorRootComponent.terminal = terminalComponent;
+            terminalComponent.fabricator = fabricatorRootComponent;
             return prefab;
         }
 

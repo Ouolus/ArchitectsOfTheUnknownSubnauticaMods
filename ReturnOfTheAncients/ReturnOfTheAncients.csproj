@@ -156,6 +156,8 @@
     <Compile Include="Mono\AlienTech\GuardianEyes.cs" />
     <Compile Include="Mono\AlienTech\InfectionTesterOpenDoor.cs" />
     <Compile Include="Mono\AlienTech\InfectionTesterTriggerArea.cs" />
+    <Compile Include="Mono\AlienTech\OmegaFabricatorRoot.cs" />
+    <Compile Include="Mono\AlienTech\OmegaTerminal.cs" />
     <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />

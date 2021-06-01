@@ -7,7 +7,7 @@ namespace RotA.Patches
     [HarmonyPatch(typeof(PDAScanner))]
     public class PDAScanner_Patches
     {
-        static StoryGoal scanAdultGargGoal = new StoryGoal("ScanAdultGargantuan", Story.GoalType.Story, 0f);
+        public static StoryGoal scanAdultGargGoal = new StoryGoal("ScanAdultGargantuan", Story.GoalType.Story, 0f);
 
         [HarmonyPatch(nameof(PDAScanner.Unlock))]
         [HarmonyPostfix]
