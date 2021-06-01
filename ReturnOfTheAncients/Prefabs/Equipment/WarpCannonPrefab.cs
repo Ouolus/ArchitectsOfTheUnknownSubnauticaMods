@@ -43,18 +43,22 @@ namespace RotA.Prefabs.Equipment
 
         private void UpdateWarpCannonRenderer(Renderer renderer)
         {
-            renderer.material.SetFloat("_Shininess", 6.1f);
+            renderer.material.SetFloat("_Shininess", 7f);
             renderer.material.SetFloat("_Fresnel", 0.2f);
             renderer.material.SetFloat("_EmissionLM", 0.01f);
             renderer.material.SetFloat("_EmissionLMNight", 0.01f);
             renderer.material.SetColor("_GlowColor", new Color(0.54f, 1f, 0.54f));
-            if (renderer.material.name.Contains("Precursor"))
+            if (renderer.material.name.Contains("Precursor")) //precursor-only
             {
                 MaterialUtils.ApplyPrecursorMaterials(renderer.gameObject, 8f, MaterialUtils.PrecursorSpecularColor.Blue, 0.2f);
                 renderer.material.SetFloat("_GlowStrength", 10f);
                 renderer.material.SetFloat("_GlowStrengthNight", 10f);
                 renderer.material.SetFloat("_EmissionLM", 0.3f);
                 renderer.material.SetFloat("_EmissionLMNight", 0.3f);
+            }
+            else //alterra-only
+            {
+                renderer.material.SetFloat("_SpecInt", 2f);
             }
         }
 #if SN1
