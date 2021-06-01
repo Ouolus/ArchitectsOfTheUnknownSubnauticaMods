@@ -194,7 +194,6 @@ namespace RotA
 
             omegaCube = new OmegaCube();
             omegaCube.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials);
 
             #region Modules
             electricalDefenseMk2 = new();
