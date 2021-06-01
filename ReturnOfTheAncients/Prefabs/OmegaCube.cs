@@ -25,8 +25,8 @@ namespace RotA.Prefabs
             {
                 renderer.material.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                 renderer.material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
-                renderer.material.SetColor("_DetailsColor", new Color(1f, 4f, 2.5f));
-                renderer.material.SetColor("_SquaresColor", new Color(1f, 1f, 1f));
+                renderer.material.SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
+                renderer.material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
             }
             prefab.GetComponentInChildren<Light>().color = new Color(0.8f, 1f, 1f);
         }
