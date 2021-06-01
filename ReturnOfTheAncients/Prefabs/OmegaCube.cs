@@ -40,9 +40,7 @@ namespace RotA.Prefabs
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new(TechType.PrecursorIonCrystal, 1),
-                    new(AUHandler.RedIonCubeTechType, 1),
-                    new(AUHandler.ElectricubeTechType, 1)
+                    new(TechType.Unobtanium, 1),
                 }
             };
         }

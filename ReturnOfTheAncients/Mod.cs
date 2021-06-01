@@ -194,7 +194,6 @@ namespace RotA
 
             omegaCube = new OmegaCube();
             omegaCube.Patch();
-            KnownTechHandler.SetAnalysisTechEntry(omegaCube.TechType, new List<TechType>() { omegaCube.TechType });
             PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials);
 
             #region Modules
