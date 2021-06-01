@@ -55,8 +55,11 @@ namespace RotA.Mono
 
         public void SuccessInteractionAgain()
         {
-            ErrorMessage.AddMessage("Beginning fabrication process...");
-            fabricator.AttemptToGenerateCube();
+            if (fabricator.CanGenerateCube())
+            {
+                ErrorMessage.AddMessage("Beginning fabrication process...");
+                fabricator.AttemptToGenerateCube();
+            }
         }
 
         public void OnHandHover(GUIHand hand)
