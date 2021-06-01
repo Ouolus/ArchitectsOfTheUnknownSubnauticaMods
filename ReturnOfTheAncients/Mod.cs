@@ -197,6 +197,8 @@ namespace RotA
             omegaCube = new OmegaCube();
             omegaCube.Patch();
 
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
