@@ -53,6 +53,8 @@ namespace RotA.Prefabs.AlienBase
             terminal.TryDestroyChildComponent<StoryHandTarget>();
             OmegaTerminal terminalComponent = terminal.EnsureComponent<OmegaTerminal>();
 
+            // class id e8143977-448e-4202-b780-83485fa5f31a for antechamber to nab the beam VFX (stored in its VFXController component maybe?)
+
             //component connections
             fabricatorRootComponent.terminal = terminalComponent;
             terminalComponent.fabricator = fabricatorRootComponent;
