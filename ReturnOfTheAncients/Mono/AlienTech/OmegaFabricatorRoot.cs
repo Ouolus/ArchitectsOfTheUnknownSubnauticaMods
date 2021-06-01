@@ -107,12 +107,9 @@ namespace RotA.Mono
 
         void Update()
         {
-            if (currentCube != null)
+            if (CubeBeingFabricated)
             {
-                if (Time.time < (timeFabricationStart + animationLength))
-                {
-
-                }
+                UpdateScanAmountMaterials();
             }
         }
 
@@ -120,7 +117,7 @@ namespace RotA.Mono
         {
             cachedMaterials = new List<Material>();
             Renderer[] componentsInChildren = currentCube.GetComponentsInChildren<Renderer>();
-            float value = currentCube.transform.position.y - 0.5f;
+            float value = currentCube.transform.position.y - 1.5f;
             float value2 = currentCube.transform.position.y + 2.5f;
             foreach (Renderer renderer in componentsInChildren)
             {
@@ -145,7 +142,7 @@ namespace RotA.Mono
 
         void UpdateScanAmountMaterials()
         {
-            float value = currentCube.transform.position.y - 0.5f;
+            float value = currentCube.transform.position.y - 1.5f;
             float value2 = currentCube.transform.position.y + 2.5f;
             float num = 1f;
             if (CubeBeingFabricated)
