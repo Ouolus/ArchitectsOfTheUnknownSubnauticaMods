@@ -29,7 +29,16 @@ namespace RotA.Prefabs.AlienBase
             drillableBase.transform.localPosition = Vector3.zero;
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
+            DestroyPrefabComponents(drillableBase);
             return prefab;
+        }
+
+        private void DestroyPrefabComponents(GameObject obj)
+        {
+            obj.TryDestroyChildComponents<LargeWorldEntity>();
+            obj.TryDestroyChildComponents<PrefabIdentifier>();
+            obj.TryDestroyChildComponents<TechTag>();
+            obj.TryDestroyChildComponents<Rigidbody>();
         }
     }
 }
