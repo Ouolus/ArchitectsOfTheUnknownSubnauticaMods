@@ -358,7 +358,7 @@ namespace RotA
 
             PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The");
 
-            PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube", "Fabricates omega cubes.");
+            PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube Fabrication Device", "Fabricates omega cubes.");
 
             #endregion
 
