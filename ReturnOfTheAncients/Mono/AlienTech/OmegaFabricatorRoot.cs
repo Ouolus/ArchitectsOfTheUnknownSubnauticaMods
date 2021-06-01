@@ -17,6 +17,7 @@ namespace RotA.Mono
         public Transform generateCubeTransform;
 
         public Animator animator;
+        public FMOD_CustomLoopingEmitter constructSoundEmitter;
 
         private bool cubeBeingBuilt;
 
@@ -81,6 +82,7 @@ namespace RotA.Mono
         public IEnumerator GenerateCubeCoroutine()
         {
             animator.SetBool("fabricating", true);
+            constructSoundEmitter.Play();
             cubeBeingBuilt = true;
             var task = PrefabDatabase.GetPrefabAsync("41406e76-4b4c-4072-86f8-f5b8e6523b73");
             yield return task;
@@ -104,9 +106,11 @@ namespace RotA.Mono
                 renderer.material.SetFloat("_SquaresSpeed", 4f);
             }
             cube.SetActive(true);
+            yield return new WaitForSeconds(20f);
             currentCube = cube;
             cubeBeingBuilt = false;
             animator.SetBool("fabricating", false);
+            constructSoundEmitter.Stop();
         }
     }
 }

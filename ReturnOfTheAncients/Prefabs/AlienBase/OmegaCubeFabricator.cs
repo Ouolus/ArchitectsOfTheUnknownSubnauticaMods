@@ -27,6 +27,9 @@ namespace RotA.Prefabs.AlienBase
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
             OmegaFabricatorRoot fabricatorRootComponent = prefab.EnsureComponent<OmegaFabricatorRoot>();
             fabricatorRootComponent.animator = prefab.GetComponent<Animator>();
+            fabricatorRootComponent.constructSoundEmitter = prefab.EnsureComponent<FMOD_CustomLoopingEmitter>();
+            fabricatorRootComponent.constructSoundEmitter.asset = ScriptableObject.CreateInstance<FMODAsset>();
+            fabricatorRootComponent.constructSoundEmitter.asset.path = "event:/env/antechamber_scan_loop";
 
             //drillable base
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);
