@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;  
@@ -26,6 +27,8 @@ namespace RotA.Prefabs.AlienBase
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);
             var drillableBase = GameObject.Instantiate(drillableIonCubePrefab, prefab.transform);
             drillableBase.transform.localPosition = Vector3.zero;
+            drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
+            drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
             return prefab;
         }
     }
