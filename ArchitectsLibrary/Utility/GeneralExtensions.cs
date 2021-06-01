@@ -53,9 +53,10 @@ namespace ArchitectsLibrary.Utility
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="gameObject"></param>
-        public static bool TryDestroyChildComponent<T>(this GameObject gameObject) where T : Component
+        /// <param name="includeInactive"></param>
+        public static bool TryDestroyChildComponent<T>(this GameObject gameObject, bool includeInactive = true) where T : Component
         {
-            T component = gameObject.GetComponentInChildren<T>();
+            T component = gameObject.GetComponentInChildren<T>(includeInactive);
             if(component is not null)
             {
                 UnityEngine.Object.DestroyImmediate(component);
@@ -69,9 +70,10 @@ namespace ArchitectsLibrary.Utility
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="gameObject"></param>
-        public static void TryDestroyChildComponents<T>(this GameObject gameObject) where T : Component
+        /// <param name="includeInactive"></param>
+        public static void TryDestroyChildComponents<T>(this GameObject gameObject, bool includeInactive = true) where T : Component
         {
-            T[] components = gameObject.GetComponentsInChildren<T>();
+            T[] components = gameObject.GetComponentsInChildren<T>(includeInactive);
             if (components is not null)
             {
                 for (int i = 0; i < components.Length; i++)
