@@ -27,6 +27,8 @@ namespace RotA.Mono
 
         List<Material> cachedMaterials;
 
+        public VFXController vfxController;
+
         bool CubeBeingFabricated
         {
             get
@@ -90,8 +92,8 @@ namespace RotA.Mono
         {
             timeFabricationStart = Time.time;
             animator.SetBool("fabricating", true);
-            constructSoundEmitter.Play();
             CacheMaterials();
+            vfxController.Play();
         }
 
         void StopFabricationAnimation()
@@ -103,6 +105,7 @@ namespace RotA.Mono
             {
                 componentsInChildren[i].enabled = true;
             }
+            vfxController.StopAndDestroy(1f);
         }
 
         void Update()
@@ -190,6 +193,8 @@ namespace RotA.Mono
                 col.enabled = false;
             }
             currentCube = cube;
+            constructSoundEmitter.Play();
+            yield return new WaitForSeconds(4f);
             StartFabricationAnimation();
             cube.SetActive(true);
             yield return new WaitForSeconds(animationLength);

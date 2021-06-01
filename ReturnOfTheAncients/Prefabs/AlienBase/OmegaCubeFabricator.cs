@@ -53,11 +53,41 @@ namespace RotA.Prefabs.AlienBase
             terminal.TryDestroyChildComponent<StoryHandTarget>();
             OmegaTerminal terminalComponent = terminal.EnsureComponent<OmegaTerminal>();
 
-            // class id e8143977-448e-4202-b780-83485fa5f31a for antechamber to nab the beam VFX (stored in its VFXController component maybe?)
+            PrefabDatabase.TryGetPrefab("e8143977-448e-4202-b780-83485fa5f31a", out GameObject antechamberPrefab);
+            fabricatorRootComponent.vfxController = fabricatorRootComponent.gameObject.EnsureComponent<VFXController>();
+            VFXController originalController = antechamberPrefab.GetComponent<VFXController>();
+            fabricatorRootComponent.vfxController.emitters = originalController.emitters;
+            fabricatorRootComponent.vfxController.emitters[0].parentTransform = fabricatorRootComponent.transform;
+            fabricatorRootComponent.vfxController.emitters[1].parentTransform = fabricatorRootComponent.transform;
+            fabricatorRootComponent.vfxController.emitters[0].posOffset = new Vector3(0f, 11f, 0f);
+            fabricatorRootComponent.vfxController.emitters[1].posOffset = new Vector3(0f, 11f, 0f);
+            fabricatorRootComponent.vfxController.emitters[0].fx = CreateNewElecArcPrefab(originalController.emitters[0].fx);
+            fabricatorRootComponent.vfxController.emitters[1].fx = CreateNewBeamPrefab(originalController.emitters[1].fx);
 
             //component connections
             fabricatorRootComponent.terminal = terminalComponent;
             terminalComponent.fabricator = fabricatorRootComponent;
+            return prefab;
+        }
+
+        GameObject CreateNewElecArcPrefab(GameObject originalPrefab)
+        {
+            GameObject prefab = GameObject.Instantiate(originalPrefab);
+            prefab.name = "OmegaElecArc";
+            prefab.SetActive(false);
+            prefab.SearchChild("ElecArcTarget").transform.localPosition = new Vector3(0f, -11f, 0f);
+            return prefab;
+        }
+        GameObject CreateNewBeamPrefab(GameObject originalPrefab)
+        {
+            GameObject prefab = GameObject.Instantiate(originalPrefab);
+            prefab.name = "OmegaBeam";
+            prefab.SetActive(false);
+            foreach(ParticleSystem ps in originalPrefab.GetComponentsInChildren<ParticleSystem>())
+            {
+                var main = ps.main;
+                main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);
+            }
             return prefab;
         }
 
