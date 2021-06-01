@@ -31,10 +31,12 @@ namespace RotA.Prefabs.AlienBase
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);
             var drillableBase = GameObject.Instantiate(drillableIonCubePrefab, prefab.transform);
             drillableBase.transform.localPosition = Vector3.zero;
-            drillableBase.transform.localEulerAngles = new Vector3(0f, 45f, 0f);
-            drillableBase.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            drillableBase.transform.localEulerAngles = new(0f, 45f, 0f);
+            drillableBase.transform.localScale = new(1.5f, 1.5f, 1.5f);
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
+            drillableBase.GetComponentInChildren<VFXVolumetricLight>().color = new(0.25f, 1f, 0.63f);
+            drillableBase.GetComponentInChildren<Light>().color = new(0.25f, 1f, 0.63f);
             DestroyPrefabComponents(drillableBase);
             fabricatorRootComponent.generateCubeTransform = drillableBase.SearchChild("DrillablePrecursorIonCrystal(Placeholder)").transform;
 
