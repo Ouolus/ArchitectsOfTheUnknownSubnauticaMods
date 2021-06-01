@@ -48,6 +48,39 @@ namespace ArchitectsLibrary.Utility
             return obj;
         }
 
+        /// <summary>
+        /// Destroy component of type <typeparamref name="T"/> if it exists in this object or its children.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="gameObject"></param>
+        public static bool TryDestroyChildComponent<T>(this GameObject gameObject) where T : Component
+        {
+            T component = gameObject.GetComponentInChildren<T>();
+            if(component is not null)
+            {
+                UnityEngine.Object.DestroyImmediate(component);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Destroys all component of type <typeparamref name="T"/> if they exist in this object or its children.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="gameObject"></param>
+        public static void TryDestroyChildComponents<T>(this GameObject gameObject) where T : Component
+        {
+            T[] components = gameObject.GetComponentsInChildren<T>();
+            if (components is not null)
+            {
+                for (int i = 0; i < components.Length; i++)
+                {
+                    UnityEngine.Object.DestroyImmediate(components[i]);
+                }
+            }
+        }
+
         static GameObject SearchChildRecursive(GameObject gameObject, string byName)
         {
             foreach (Transform child in gameObject.transform)
