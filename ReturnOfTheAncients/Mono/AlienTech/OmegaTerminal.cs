@@ -19,6 +19,10 @@ namespace RotA.Mono
                 {
                     SuccessInteraction();
                 }
+                else 
+                {
+                    SuccessInteractionAgain();
+                }
             }
             else 
             {
@@ -45,8 +49,14 @@ namespace RotA.Mono
 
         public void SuccessInteraction()
         {
-            ErrorMessage.AddMessage("Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized. Beginning fabrication process... Fabrication complete.");
+            ErrorMessage.AddMessage("Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized. Beginning fabrication process...");
+            fabricator.AttemptToGenerateCube();
+        }
 
+        public void SuccessInteractionAgain()
+        {
+            ErrorMessage.AddMessage("Beginning fabrication process...");
+            fabricator.AttemptToGenerateCube();
         }
 
         public void OnHandHover(GUIHand hand)

@@ -35,6 +35,7 @@ namespace RotA.Prefabs.AlienBase
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
             DestroyPrefabComponents(drillableBase);
+            fabricatorRootComponent.generateCubeTransform = drillableBase.SearchChild("DrillablePrecursorIonCrystal(Placeholder)").transform;
 
             //terminal
             PrefabDatabase.TryGetPrefab("b629c806-d3cd-4ee4-ae99-7b1359b60049", out GameObject terminalPrefab);
