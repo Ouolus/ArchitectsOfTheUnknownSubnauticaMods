@@ -26,6 +26,7 @@ namespace RotA.Prefabs.AlienBase
             MaterialUtils.ApplySNShaders(prefab, 8f);
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
             OmegaFabricatorRoot fabricatorRootComponent = prefab.EnsureComponent<OmegaFabricatorRoot>();
+            fabricatorRootComponent.animator = prefab.GetComponent<Animator>();
 
             //drillable base
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);

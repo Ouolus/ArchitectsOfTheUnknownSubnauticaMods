@@ -16,6 +16,8 @@ namespace RotA.Mono
 
         public Transform generateCubeTransform;
 
+        public Animator animator;
+
         private bool cubeCoroutineInProcess;
 
         GameObject currentCube;
