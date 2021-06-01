@@ -59,8 +59,8 @@ namespace RotA.Prefabs.AlienBase
             fabricatorRootComponent.vfxController.emitters = originalController.emitters;
             fabricatorRootComponent.vfxController.emitters[0].parentTransform = fabricatorRootComponent.transform;
             fabricatorRootComponent.vfxController.emitters[1].parentTransform = fabricatorRootComponent.transform;
-            fabricatorRootComponent.vfxController.emitters[0].posOffset = new Vector3(0f, 11f, 0f);
-            fabricatorRootComponent.vfxController.emitters[1].posOffset = new Vector3(0f, 11f, 0f);
+            fabricatorRootComponent.vfxController.emitters[0].posOffset = new Vector3(0f, 11f, 0f); //elec arc
+            fabricatorRootComponent.vfxController.emitters[1].posOffset = new Vector3(0f, 2f, 0f); //beam
             fabricatorRootComponent.vfxController.emitters[0].fx = CreateNewElecArcPrefab(originalController.emitters[0].fx);
             fabricatorRootComponent.vfxController.emitters[1].fx = CreateNewBeamPrefab(originalController.emitters[1].fx);
 
@@ -88,6 +88,7 @@ namespace RotA.Prefabs.AlienBase
                 var main = ps.main;
                 main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);
             }
+            prefab.SearchChild("xTopGlow").transform.localPosition = new Vector3(0f, 0f, -8f);
             return prefab;
         }
 
