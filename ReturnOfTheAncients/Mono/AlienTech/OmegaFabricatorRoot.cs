@@ -18,7 +18,7 @@ namespace RotA.Mono
 
         public Animator animator;
 
-        private bool cubeCoroutineInProcess;
+        private bool cubeBeingBuilt;
 
         GameObject currentCube;
 
@@ -54,7 +54,7 @@ namespace RotA.Mono
             {
                 return false;
             }
-            if (cubeCoroutineInProcess == true)
+            if (cubeBeingBuilt == true)
             {
                 return false;
             }
@@ -73,9 +73,15 @@ namespace RotA.Mono
             }
         }
 
+        void Update()
+        {
+
+        }
+
         public IEnumerator GenerateCubeCoroutine()
         {
-            cubeCoroutineInProcess = true;
+            animator.SetBool("fabricating", true);
+            cubeBeingBuilt = true;
             var task = PrefabDatabase.GetPrefabAsync("41406e76-4b4c-4072-86f8-f5b8e6523b73");
             yield return task;
             task.TryGetPrefab(out GameObject prefab);
@@ -99,7 +105,8 @@ namespace RotA.Mono
             }
             cube.SetActive(true);
             currentCube = cube;
-            cubeCoroutineInProcess = false;
+            cubeBeingBuilt = false;
+            animator.SetBool("fabricating", false);
         }
     }
 }
