@@ -148,7 +148,7 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.gargPoster.ClassID, new Vector3(42.58f, 4f, 29.57f), new Vector3(0f, 225f, 0f), Vector3.one * 5f));
 
             //Right lower room
-            yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-22, 0f, 28), new Vector3(0f, 45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-56, 0f, 16), new Vector3(0f, -90, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-18, 0f, 24), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-26, 0f, 32), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(-40, 0f, 27), new Vector3(0f, 45, 0f)));
