@@ -426,7 +426,7 @@ namespace RotA.Mono.Equipment
                 spawnPosition = mainCam.position + (mainCam.forward * spawnCreatureMaxDistance);
             }
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
-            SpawnCreaturesAtPosition(spawnPosition, inBase, 2f, 45f, true);
+            SpawnCreaturesAtPosition(spawnPosition, inBase || Player.main.transform.position.y > 0f, 2f, 45f, true);
             timeCanUseAgain = Time.time + 0.2f;
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.1f);
             return true;
