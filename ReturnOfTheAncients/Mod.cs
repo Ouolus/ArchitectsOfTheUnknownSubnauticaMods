@@ -358,7 +358,7 @@ namespace RotA
 
             PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "This terminal contains schematics for alien warp technology, which utilizes the unnatural properties of Electricubes. As a result of this finding, your PDA has synthesized blueprints for a Handheld Warping Device.\n\nWarping Device Operation:\nEnergy is quickly routed through the system from the battery up into the barrel, where it can be released in a controlled pulse. The magnitude and effects of this pulse can be adjusted by precise mechanical rotations to the four calibration discs.\n\nThese pulses generate a warping field that transports atoms from a point to another at extremely fast speeds.\n\nPractical uses include personal teleportation and manipulation of the state of objects in the environment.", "WarpCannon_Popup", "WarpCannon_Ency");
 
-            PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube Fabrication Device", "Fabricates omega cubes.");
+            PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube Fabrication Device", "A powerful device which is obviously alien in design. Appears to be a fabrication device of some sort.\n\nThe data terminal connected to the fabricator has an incomplete set of data. It is emitting a broadcast, which reads in English: \"Project 'Omega' formula is 95% complete. Data sets missing: '1'. Data set type: 'biometric data'. Species name: 'Gargantuan Leviathan'. Data must be obtained from an adult specimen.\"\n\nYou will likely have to scan an adult Gargantuan Leviathan to complete this formula. Good luck.");
 
             #endregion
 
