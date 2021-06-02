@@ -19,6 +19,7 @@ namespace RotA.Mono
         private float timeColorShifted;
         private float shiftLength;
         public List<Renderer> renderers;
+        public Light light;
 
         public Color TargetColor { get { return targetColor; } }
 
@@ -77,6 +78,10 @@ namespace RotA.Mono
             foreach(Renderer renderer in renderers)
             {
                 renderer.material.SetColor("_GlowColor", colorNow);
+            }
+            if(light is not null)
+            {
+                light.color = colorNow;
             }
         }
 
