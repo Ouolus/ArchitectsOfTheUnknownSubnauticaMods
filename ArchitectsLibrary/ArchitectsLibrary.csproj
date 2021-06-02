@@ -146,6 +146,7 @@
     <Compile Include="Buildables\BuildableLight1.cs" />
     <Compile Include="Buildables\BuildablePlatform.cs" />
     <Compile Include="Buildables\BuildableColumn.cs" />
+    <Compile Include="Buildables\BuildableWarper.cs" />
     <Compile Include="Buildables\GenericPrecursorDecoration.cs" />
     <Compile Include="CreatorKit\Mono\FilterableList.cs" />
     <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
+    <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
