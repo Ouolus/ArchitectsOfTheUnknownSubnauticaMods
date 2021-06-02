@@ -185,6 +185,7 @@ namespace RotA.Prefabs.Equipment
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_arms_low").GetComponent<Renderer>());
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("d_prongs_low").GetComponent<Renderer>());
                 illumControl.light = illumControl.gameObject.SearchChild("Light").EnsureComponent<Light>();
+                illumControl.light.intensity = 0.5f;
                 warpCannon.illumControl = illumControl;
                 
                 _cachedPrefab = prefab;
@@ -318,6 +319,7 @@ namespace RotA.Prefabs.Equipment
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_arms_low").GetComponent<Renderer>());
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("d_prongs_low").GetComponent<Renderer>());
                 illumControl.light = illumControl.gameObject.SearchChild("Light").EnsureComponent<Light>();
+                illumControl.light.intensity = 0.5f;
                 warpCannon.illumControl = illumControl;
 
                 _cachedPrefab = prefab;
