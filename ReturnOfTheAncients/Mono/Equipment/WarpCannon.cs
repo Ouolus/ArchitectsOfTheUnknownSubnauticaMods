@@ -37,7 +37,7 @@ namespace RotA.Mono.Equipment
 
         public float warpModeEnergyCost = 20;
         public float manipulateModeEnergyCost = 15;
-        public float creatureSpawnModeEnergyCost = 75;
+        public float creatureSpawnModeEnergyCost = 40;
 
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
