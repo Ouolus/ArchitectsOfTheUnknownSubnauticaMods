@@ -50,6 +50,12 @@ namespace ArchitectsLibrary.Buildables
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
             GameObject model = GameObject.Instantiate(originalPrefab);
+            if (this is not BuildableAlienRobot or BuildableWarper)
+            {
+                var rigidBody = model.GetComponent<Rigidbody>();
+                if (rigidBody != null)
+                    Object.DestroyImmediate(rigidBody);
+            }
             model.transform.SetParent(buildablePrefab.transform, false);
             model.transform.localPosition = Vector3.zero;
             model.transform.localEulerAngles = Vector3.zero;
@@ -87,7 +93,9 @@ namespace ArchitectsLibrary.Buildables
             buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
             if (this is not BuildableAlienRobot and BuildableWarper)
             {
-                Object.DestroyImmediate(buildablePrefab.GetComponent<Rigidbody>());
+                var rb = buildablePrefab.GetComponent<Rigidbody>();
+                if (rb != null)
+                    Object.DestroyImmediate(rb);
                 foreach (var rigidbody in buildablePrefab.GetAllComponentsInChildren<Rigidbody>())
                 {
                     Object.DestroyImmediate(rigidbody);
