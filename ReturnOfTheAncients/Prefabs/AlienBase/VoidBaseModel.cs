@@ -18,7 +18,7 @@ namespace RotA.Prefabs.AlienBase
             {
                 foreach(Material mat in renderer.materials)
                 {
-                    if (!mat.name.ToLower().Contains("transparent") && !mat.name.ToLower().Contains("glass") && !mat.name.ToLower().Contains("tiles") || !mat.name.ToLower().Contains("maze"))
+                    if (!mat.name.ToLower().Contains("transparent") && !mat.name.ToLower().Contains("glass") && !mat.name.ToLower().Contains("tiles") && !mat.name.ToLower().Contains("maze"))
                     {
                         mat.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                     }
