@@ -3,6 +3,7 @@ using ECCLibrary;
 using UnityEngine;
 using System.Reflection;
 using RotA.Prefabs;
+using RotA.Prefabs.Buildable;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using HarmonyLib;

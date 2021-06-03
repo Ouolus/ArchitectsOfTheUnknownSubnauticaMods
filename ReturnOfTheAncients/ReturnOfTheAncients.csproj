@@ -220,6 +220,7 @@
     <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterPrimaryPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
+    <Compile Include="Prefabs\Buildable\OmegaCubePedestal.cs" />
     <Compile Include="Prefabs\ComingSoonItem.cs" />
     <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
     <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
