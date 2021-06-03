@@ -1,7 +1,8 @@
 ﻿using HarmonyLib;
-using RotA.Prefabs;
-using System.Collections.Generic;
+using System.Reflection;
+using SMLHelper.V2.Utility;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UWE;
 
@@ -10,6 +11,28 @@ namespace RotA.Patches
     [HarmonyPatch(typeof(LaunchRocket))]
     public static class LaunchRocket_Patches
     {
+        [HarmonyPatch(nameof(LaunchRocket.RevealPlanet))]
+        [HarmonyPostfix]
+        static void RevealPlanet_Patch(LaunchRocket __instance)
+        {
+            var planetTexture = ImageUtils.LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", "planet_surface_02_diffuse.png"));
+            if (planetTexture == null)
+            {
+                QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error, "Couldn't find the planet texture, skipping the replacement", showOnScreen: true);
+                return;
+            }
+
+            var renderers = __instance.planetGo.GetAllComponentsInChildren<Renderer>();
+            foreach (var renderer in renderers)
+            {
+                if (renderer.name.Contains("Planet"))
+                {
+                    renderer.material.mainTexture = planetTexture;
+                    QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "Successfully changed the Planet textures.", showOnScreen: true);
+                    return;
+                }
+            }
+        }
         [HarmonyPatch(nameof(LaunchRocket.HideCrashedShip))]
         [HarmonyPostfix]
         public static void HideCrashedShip_Patch()
