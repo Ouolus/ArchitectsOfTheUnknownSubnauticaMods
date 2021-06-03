@@ -107,13 +107,12 @@ namespace ArchitectsLibrary
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
             VehiclePatches.Patch(harmony);
-
             InspectOnFirstPickupPatches.Patch(harmony);
-
             //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
-            
             CraftingMenuPatches.Patch(harmony);
+            BuilderPatches.Patch(harmony);
+            
             
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }

@@ -83,10 +83,10 @@ namespace ArchitectsLibrary.Buildables
             {
                 buildablePrefab.AddComponent<ConstructableBounds>().bounds = bounds;
             }
-            EditPrefab(buildablePrefab);
-            buildablePrefab.SetActive(true);
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
             buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
+            EditPrefab(buildablePrefab);
+            buildablePrefab.SetActive(true);
 
             return buildablePrefab;
         }

@@ -202,6 +202,7 @@
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
+    <Compile Include="Patches\BuilderPatches.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
