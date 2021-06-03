@@ -12,7 +12,7 @@ namespace RotA.Prefabs.Equipment
     public class WarpCannonPrefab : Equipable
     {
         GameObject _cachedPrefab;
-        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function. Unstable.")
+        public WarpCannonPrefab() : base("WarpCannon", "Handheld Warping Device", "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function.")
         {
         }
 
