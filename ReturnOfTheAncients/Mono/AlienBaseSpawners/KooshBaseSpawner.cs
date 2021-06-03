@@ -19,8 +19,8 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 14f, floorLocalY, 6f), Vector3.zero, columnScale));
             yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableMorganiteTechType), new Vector3(centerLocalX - 5f, floorLocalY, 13f)));
             yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableSapphireTechType), new Vector3(centerLocalX + 5f, floorLocalY, 13f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableLithium, new Vector3(centerLocalX - 2.5f, floorLocalY, -7f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableIonCube, new Vector3(centerLocalX - 9f, floorLocalY, 11f)));
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableEmeraldTechType), new Vector3(centerLocalX - 5f, floorLocalY, 16f)));
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.DrillableMorganiteTechType), new Vector3(centerLocalX + 5f, floorLocalY, 16f)));
             yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(centerLocalX, floorLocalY + 0.1f, 19f), new Vector3(0f, 240f, 0f)));
             //yield return StartCoroutine(SpawnPrefab(Mod.precursorMasterTechTerminal.ClassID, new Vector3(centerLocalX, floorLocalY, -3f), new Vector3(0f, 0f, 0f)));
 
