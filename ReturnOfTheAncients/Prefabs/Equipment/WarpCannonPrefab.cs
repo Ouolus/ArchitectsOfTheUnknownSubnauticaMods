@@ -29,6 +29,8 @@ namespace RotA.Prefabs.Equipment
 
         static WarperData warperCreatureData;
 
+        public override Vector2int SizeInInventory => new Vector2int(2, 2);
+
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData()
