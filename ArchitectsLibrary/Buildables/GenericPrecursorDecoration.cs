@@ -85,6 +85,14 @@ namespace ArchitectsLibrary.Buildables
             }
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
             buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
+            if (this is not BuildableAlienRobot and BuildableWarper)
+            {
+                Object.DestroyImmediate(buildablePrefab.GetComponent<Rigidbody>());
+                foreach (var rigidbody in buildablePrefab.GetAllComponentsInChildren<Rigidbody>())
+                {
+                    Object.DestroyImmediate(rigidbody);
+                }
+            }
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
 
