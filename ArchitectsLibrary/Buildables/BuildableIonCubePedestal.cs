@@ -8,7 +8,10 @@ using UWE;
 
 namespace ArchitectsLibrary.Buildables
 {
-    class BuildableIonCubePedestal : GenericPrecursorDecoration
+    /// <summary>
+    /// Only public for RotA's OmegaCubePedestal.
+    /// </summary>
+    public class BuildableIonCubePedestal : GenericPrecursorDecoration
     {
         public BuildableIonCubePedestal(string classId, string displayName, string desc) : base(classId, displayName, desc)
         {
