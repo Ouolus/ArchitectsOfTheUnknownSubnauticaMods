@@ -10,7 +10,7 @@ using UWE;
 namespace ArchitectsLibrary.Buildables
 {
     /// <summary>
-    /// A buildable precursor decoration. This is meant for Architect's Library ONLY but is public just in case.
+    /// A buildable precursor decoration. This is meant for Architect's Library ONLY but is public just for RotA's omega cube pedestal.
     /// </summary>
     public abstract class GenericPrecursorDecoration : Buildable
     {
