@@ -15,8 +15,9 @@ namespace RotA.Patches
         [HarmonyPostfix]
         static void RevealPlanet_Patch(LaunchRocket __instance)
         {
-            var planetTexture = ImageUtils.LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", "planet_surface_02_diffuse.png"));
-            if (planetTexture == null)
+            var planetMainTexture = ImageUtils.LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", "Planetskin.png"));
+            var planetSpecTexture = ImageUtils.LoadTextureFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", "Planetspec.png"));
+            if (planetMainTexture == null || planetSpecTexture == null)
             {
                 QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error, "Couldn't find the planet texture, skipping the replacement", showOnScreen: true);
                 return;
@@ -27,7 +28,8 @@ namespace RotA.Patches
             {
                 if (renderer.name.Contains("Planet"))
                 {
-                    renderer.material.mainTexture = planetTexture;
+                    renderer.material.mainTexture = planetMainTexture;
+                    renderer.material.SetTexture(ShaderPropertyID._SpecTex, planetSpecTexture);
                     QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "Successfully changed the Planet textures.", showOnScreen: true);
                     return;
                 }
