@@ -55,6 +55,7 @@ namespace RotA
 
         public static PrecursorDoorPrefab door_supplyCache;
         public static PrecursorDoorPrefab door_researchBase;
+        public static PrecursorDoorPrefab door_kooshBase;
         public static PrecursorDoorPrefab whiteTabletDoor;
 
         public static VoidInteriorForcefield voidInteriorForcefield;
@@ -73,6 +74,7 @@ namespace RotA
         public static DataTerminalPrefab guardianTerminal;
         public static DataTerminalPrefab researchBaseTerminal;
         public static DataTerminalPrefab supplyCacheTerminal;
+        public static DataTerminalPrefab kooshBaseTerminal;
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
@@ -130,6 +132,7 @@ namespace RotA
         private const string ency_tertiaryOutpostTerminalLostRiver = "TertiaryOutpostTerminal3Ency";
         private const string ency_supplyCacheTerminal = "SupplyCacheTerminalEncy";
         private const string ency_researchBaseTerminal = "ResearchBaseTerminalEncy";
+        private const string ency_kooshBaseTerminal = "KooshBaseTerminalEncy";
         private const string ency_archElectricityTerminal = "ArchitectElectricityEncy";
         private const string ency_voidBaseTerminal = "VoidBaseTerminalEncy";
         private const string ency_ruinedGuardian = "RuinedGuardianEncy";
@@ -329,6 +332,8 @@ namespace RotA
             PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- The arch-like structure situated in the back of the cache, if not decorational, was likely used for quick transportation of supplies.", "Popup_Green", "SupplyCache_Ency");
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- Several alien robots wandering about the facility suggests they were used as tools for the construction of weaponry, or even as tests subjects for said weaponry.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "ResearchBase_Ency");
+            
+            PatchEncy(ency_kooshBaseTerminal, modEncyPath_terminalInfo, "Koosh Zone Outpost", "???", "Popup_green", "ResearchBase_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
@@ -392,6 +397,9 @@ namespace RotA
 
             door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_researchBase.Patch();
+
+            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", "Bulb Zone base door", purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_kooshBase.Patch();
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
             const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
@@ -488,6 +496,9 @@ namespace RotA
 
             researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", ency_researchBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             researchBaseTerminal.Patch();
+
+            kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", ency_kooshBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            kooshBaseTerminal.Patch();
 
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
