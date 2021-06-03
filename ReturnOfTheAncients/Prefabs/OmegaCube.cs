@@ -45,6 +45,11 @@ namespace RotA.Prefabs
             };
         }
 
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
+        }
+
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
     }
 }

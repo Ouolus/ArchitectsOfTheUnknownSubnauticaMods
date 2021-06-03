@@ -383,5 +383,10 @@ namespace RotA.Prefabs.Equipment
         }
 
         public override TechType RequiredForUnlock => Mod.warpMasterTech;
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Icon"));
+        }
     }
 }
