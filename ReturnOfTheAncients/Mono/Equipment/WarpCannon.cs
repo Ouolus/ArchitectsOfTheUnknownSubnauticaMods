@@ -384,6 +384,7 @@ namespace RotA.Mono.Equipment
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
+                animations.PlayFireAnimation();
                 return true;
             }
             else //Neither node exists
@@ -394,6 +395,7 @@ namespace RotA.Mono.Equipment
                 illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.4f, 0.1f, 0.25f);
                 timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
                 energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
+                animations.PlayFireAnimation();
                 return true;
             }
         }
@@ -415,6 +417,8 @@ namespace RotA.Mono.Equipment
                 return false;
             }
             energyMixin.ConsumeEnergy(creatureSpawnModeEnergyCost);
+            animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
+            animations.PlayFireAnimation();
             Vector3 spawnPosition;
             Transform mainCam = MainCamera.camera.transform;
             if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, spawnCreatureMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
@@ -433,12 +437,32 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Updates animations based on charge, every frame.
+        /// Updates the appearance of the weapon every frame.
         /// </summary>
         void Update()
         {
-            animator.SetFloat("charge", GetChargePercent());
-            if (energyMixin.charge <= 5f)
+            if(fireMode == FireMode.Manipulate)
+            {
+                if (mySecondaryNode != null) //if both nodes exist, spin super fast
+                {
+                    animations.SpinSpeed = 0.5f;
+                }
+                else if (myPrimaryNode != null) //if only one node exists, spin pretty fast
+                {
+                    animations.SpinSpeed = 0.25f;
+                }
+                else
+                {
+                    animations.SpinSpeed = 0.05f;
+                }
+            }
+            else
+            {
+                animations.SpinSpeed = GetChargePercent();
+            }
+            float chargePercent = GetBatteryPercent();
+            animations.BatteryPercent = chargePercent;
+            if (chargePercent <= 0.02f)
             {
                 if (illumControl.TargetColor != Color.black)
                 {
@@ -452,6 +476,15 @@ namespace RotA.Mono.Equipment
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
                 }
             }
+        }
+
+        private float GetBatteryPercent()
+        {
+            if (energyMixin.maxEnergy > 0.01f) //we dont want a divide by 0 error
+            {
+                return energyMixin.charge / energyMixin.maxEnergy;
+            }
+            return 0f;
         }
 
         /// <summary>
@@ -544,6 +577,7 @@ namespace RotA.Mono.Equipment
                 return false;
             }
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
+            animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
             if (fireMode == FireMode.Warp)
             {
                 fireMode = FireMode.Manipulate;
@@ -570,7 +604,7 @@ namespace RotA.Mono.Equipment
         {
             if (fireMode != FireMode.Warp)
             {
-                return false;
+                return false; //quit if you're not in personal teleportation mode
             }
             float chargeScale = GetChargePercent();
             if (Time.time > timeCanUseAgain && handDown)
@@ -589,10 +623,14 @@ namespace RotA.Mono.Equipment
                         if (chargeScale > 0.5f)
                         {
                             delay = 1f;
+                            animations.PlayFireAnimation();
+                        }
+                        else
+                        {
+                            animations.PlayFastFireAnimation();
                         }
                         timeCanUseAgain = Time.time + delay;
                         Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
-                        animator.SetTrigger("use");
                         illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, delay);
                         handDown = false;
                         if (!Player.main.IsInSub()) //if you are not in a base or vehicle
