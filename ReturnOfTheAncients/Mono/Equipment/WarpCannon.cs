@@ -104,6 +104,10 @@ namespace RotA.Mono.Equipment
             {
                 biomeName = LargeWorld.main.GetBiome(warpPosition);
             }
+            if (biomeName.ToLower().Contains("lostriver"))
+            {
+                biomeName = "LostRiver";
+            }
             WarperData.WarpInCreature randomCreature;
             if (spawnLandFauna)
             {
