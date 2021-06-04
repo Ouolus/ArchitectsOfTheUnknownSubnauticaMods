@@ -480,9 +480,9 @@ namespace RotA.Mono.Equipment
 
         private float GetBatteryPercent()
         {
-            if (energyMixin.maxEnergy > 0.01f) //we dont want a divide by 0 error
+            if (energyMixin.capacity > 0.01f) //we dont want a divide by 0 error
             {
-                return energyMixin.charge / energyMixin.maxEnergy;
+                return energyMixin.charge / energyMixin.capacity;
             }
             return 0f;
         }
