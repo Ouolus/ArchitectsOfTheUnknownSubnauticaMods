@@ -61,13 +61,13 @@ namespace RotA.Mono
             CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
             if (beingWarped)
             {
-                Player.main.playerAnimator.SetBool("precursor_elevator_decend", true);
+                //Player.main.playerAnimator.SetBool("precursor_elevator_decend", true);
                 saveControllerEnabled = controller.enabled;
                 controller.enabled = false;
             }
             else
             {
-                Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
+                //Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
                 float oceanLevel = 0f;
 #if SN1
                 oceanLevel = Ocean.main.GetOceanLevel();
