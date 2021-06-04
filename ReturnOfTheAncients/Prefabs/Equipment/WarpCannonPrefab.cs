@@ -5,6 +5,7 @@ using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 using UnityEngine;
 using System.Collections;
+using RotA.Mono.Equipment;
 using System.Linq;
 
 namespace RotA.Prefabs.Equipment
@@ -98,14 +99,17 @@ namespace RotA.Prefabs.Equipment
                 var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
                 chargeSound.path = "event:/tools/stasis_gun/charge";
 
-                var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
+                WarpCannonAnimations animationController = prefab.EnsureComponent<WarpCannonAnimations>();
+                animationController.animator = prefab.GetComponentInChildren<Animator>(true);
+
+                var warpCannon = prefab.AddComponent<WarpCannon>();
                 warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
                 warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
-                warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
+                warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
                 warpCannon.ikAimLeftArm = true;
@@ -230,14 +234,17 @@ namespace RotA.Prefabs.Equipment
                 var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
                 chargeSound.path = "event:/tools/stasis_gun/charge";
 
-                var warpCannon = prefab.AddComponent<Mono.Equipment.WarpCannon>();
+                WarpCannonAnimations animationController = prefab.EnsureComponent<WarpCannonAnimations>();
+                animationController.animator = prefab.GetComponentInChildren<Animator>(true);
+
+                var warpCannon = prefab.AddComponent<WarpCannon>();
                 warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
                 warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
-                warpCannon.animator = prefab.GetComponentInChildren<Animator>(true);
+                warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
                 warpCannon.ikAimLeftArm = true;

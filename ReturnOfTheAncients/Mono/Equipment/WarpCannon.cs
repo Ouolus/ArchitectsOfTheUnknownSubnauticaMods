@@ -7,7 +7,7 @@ namespace RotA.Mono.Equipment
     [RequireComponent(typeof(EnergyMixin))]
     public class WarpCannon : PlayerTool
     {
-        public Animator animator;
+        public WarpCannonAnimations animations;
         public FMODAsset portalOpenSound;
         public FMODAsset portalCloseSound;
         public FMOD_StudioEventEmitter chargeLoop;
