@@ -31,9 +31,9 @@ namespace RotA.Mono.Equipment
         public PrecursorIllumControl illumControl;
 
         /// <summary>
-        /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
+        /// The speed for warping. It's a smooth animation rather than instant.
         /// </summary>
-        public float warpSpeed = 4;
+        public float warpSpeed = 8f;
 
         public float warpModeEnergyCost = 20;
         public float manipulateModeEnergyCost = 15;
@@ -807,7 +807,7 @@ namespace RotA.Mono.Equipment
             Instantiate(warpInPrefab, Player.main.transform.position, MainCamera.camera.transform.rotation);
             Instantiate(warpOutPrefab, position, MainCamera.camera.transform.rotation);
             //Player.main.transform.position = position;
-            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed * 2f);
+            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
         }
 
         /// <summary>
