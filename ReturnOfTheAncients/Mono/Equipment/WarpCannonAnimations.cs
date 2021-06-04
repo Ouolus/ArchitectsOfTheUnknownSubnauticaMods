@@ -51,7 +51,7 @@ namespace RotA.Mono.Equipment
         {
             actualSpinSpeed = Mathf.MoveTowards(actualSpinSpeed, spinSpeedTarget, Time.deltaTime);
             actualBattery = Mathf.MoveTowards(actualBattery, batteryTarget, Time.deltaTime * 2f);
-            animator.SetFloat(param_speed, actualSpinSpeed);
+            animator.SetFloat(param_speed, SpinSpeedToDisplay);
             animator.SetFloat(param_battery, actualBattery);
         }
 
