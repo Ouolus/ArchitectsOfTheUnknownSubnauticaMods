@@ -307,7 +307,7 @@ namespace RotA
             signal_sparseReefBase = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(0f, 0f, 0f), 3); //purple tablet icon
+            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
             signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747));
@@ -557,7 +557,7 @@ namespace RotA
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457f, 1457)); //Koosh/bulb zone
+            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
             kooshBase.Patch();
 
             var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
