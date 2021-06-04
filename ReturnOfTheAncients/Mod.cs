@@ -553,7 +553,7 @@ namespace RotA
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
 
-            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(0f, 0f, 0f)); //Sparse reef
+            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457f, 1457)); //Koosh/bulb zone
             kooshBase.Patch();
 
             var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
