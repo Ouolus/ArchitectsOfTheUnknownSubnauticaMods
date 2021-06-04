@@ -32,6 +32,21 @@ namespace RotA.Mono.Equipment
             }
         }
 
+        private float SpinSpeedToDisplay
+        {
+            get
+            {
+                if(batteryTarget <= 0.02f)
+                {
+                    return 0f;
+                }
+                else
+                {
+                    return actualSpinSpeed;
+                }
+            }
+        }
+
         private void Update()
         {
             actualSpinSpeed = Mathf.MoveTowards(actualSpinSpeed, spinSpeedTarget, Time.deltaTime);
