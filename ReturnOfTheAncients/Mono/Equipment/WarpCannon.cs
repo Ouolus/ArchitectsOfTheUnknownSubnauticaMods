@@ -623,11 +623,11 @@ namespace RotA.Mono.Equipment
                         if (chargeScale > 0.5f)
                         {
                             delay = 1f;
-                            animations.PlayFireAnimation();
+                            animations.PlayFastFireAnimation(); //feels more powerful
                         }
                         else
                         {
-                            animations.PlayFastFireAnimation();
+                            animations.PlayFireAnimation();
                         }
                         timeCanUseAgain = Time.time + delay;
                         Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
