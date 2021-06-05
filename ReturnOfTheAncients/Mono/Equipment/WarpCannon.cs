@@ -482,19 +482,23 @@ namespace RotA.Mono.Equipment
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
                 }
             }
-            if (Time.time < timeCanUseAgain)
+            if (fireMode == FireMode.Warp)
             {
-                if (Input.GetKeyDown(Mod.config.WarpToBaseKey))
+                if (Time.time >= timeCanUseAgain)
                 {
-                    if (Time.time < (timeWarpHomeKeyLastPressed + 1f)) //checks if you have pressed the warp home key in the last second
+                    if (Input.GetKeyDown(Mod.config.WarpToBaseKey))
                     {
-                        timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
-                        WarpToLastVisitedBase();
-                    }
-                    else
-                    {
-                        timeWarpHomeKeyLastPressed = Time.time;
-                        ErrorMessage.AddMessage(string.Format("Press {0} again to warp to your last visited base.", ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)));
+                        if (Time.time < (timeWarpHomeKeyLastPressed + 1f)) //checks if you have pressed the warp home key in the last second
+                        {
+                            timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
+                            timeCanUseAgain = Time.time + 3f;
+                            WarpToLastVisitedBase();
+                        }
+                        else
+                        {
+                            timeWarpHomeKeyLastPressed = Time.time;
+                            ErrorMessage.AddMessage(string.Format("Press {0} again to warp to your last visited base.", ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)));
+                        }
                     }
                 }
             }
