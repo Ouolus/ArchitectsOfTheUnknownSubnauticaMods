@@ -7,10 +7,11 @@ using UnityEngine.UI;
 namespace RotA.Patches
 {
     [HarmonyPatch]
-    public class MainMenu_Patches
+    static class MainMenu_Patches
     {
         static Renderer _subTitleRenderer;
         internal static Renderer SubTitleRenderer => _subTitleRenderer;
+        
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
