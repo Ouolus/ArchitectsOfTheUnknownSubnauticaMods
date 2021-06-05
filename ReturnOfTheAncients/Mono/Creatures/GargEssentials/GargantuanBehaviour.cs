@@ -16,6 +16,7 @@ namespace RotA.Mono
         Quaternion vehicleInitialRotation;
         Vector3 vehicleInitialPosition;
         AudioSource vehicleGrabSound;
+        AudioSource leviathanGrabSound;
         Transform vehicleHoldPoint;
         GargantuanMouthAttack mouthAttack;
         public GargantuanRoar roar;
@@ -33,7 +34,8 @@ namespace RotA.Mono
         void Start()
         {
             creature = GetComponent<Creature>();
-            vehicleGrabSound = AddVehicleGrabSound();
+            vehicleGrabSound = AddGrabSound(5f, 20f);
+            leviathanGrabSound = AddGrabSound(15f, 150f);
             vehicleHoldPoint = gameObject.SearchChild(attachBoneName).transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
@@ -46,12 +48,12 @@ namespace RotA.Mono
         {
             return vehicleHoldPoint;
         }
-        private AudioSource AddVehicleGrabSound()
+        private AudioSource AddGrabSound(float min, float max)
         {
             var source = gameObject.AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume() * 0.75f;
-            source.minDistance = 5f;
-            source.maxDistance = 20f;
+            source.minDistance = min;
+            source.maxDistance = max;
             source.spatialBlend = 1f;
             return source;
         }
@@ -271,16 +273,16 @@ namespace RotA.Mono
 
             if (IsHoldingGhostLeviathan())
             {
-                vehicleGrabSound.clip = ECCAudio.LoadAudioClip("GargGhostLeviathanAttack");
-                vehicleGrabSound.Play();
+                leviathanGrabSound.clip = ECCAudio.LoadAudioClip("GargGhostLeviathanAttack");
+                leviathanGrabSound.Play();
             }
             else if (IsHoldingReaperLeviathan())
             {
-                vehicleGrabSound.clip = ECCAudio.LoadAudioClip("GargReaperAttack");
-                vehicleGrabSound.Play();
+                leviathanGrabSound.clip = ECCAudio.LoadAudioClip("GargReaperAttack");
+                leviathanGrabSound.Play();
             }
 
-            foreach (Collider col in leviathan.GetComponentsInChildren<Collider>())
+            foreach (Collider col in leviathan.GetComponentsInChildren<Collider>(true))
             {
                 col.enabled = false;
             }
@@ -368,11 +370,8 @@ namespace RotA.Mono
             if (heldLeviathan != null)
             {
                 var creatureLm = heldLeviathan.GetComponent<LiveMixin>();
-                creatureLm.TakeDamage(5000f);
-                foreach(Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
-                {
-                    col.enabled = true;
-                }
+                creatureLm.TakeDamage(10000f);
+                Destroy(heldLeviathan);
             }
             timeVehicleReleased = Time.time;
             currentlyGrabbing = GrabType.None;
