@@ -14,7 +14,7 @@ namespace RotA.Prefabs
 
         public override bool CanBeScaredByElectricity => true;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 9f, Mod.modEncyPath_creatures, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 9f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 15f, 20f, 17f, 30f);
 

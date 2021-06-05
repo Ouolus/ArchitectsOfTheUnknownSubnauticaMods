@@ -127,7 +127,7 @@ namespace RotA
         public const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
         public const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
         public const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
-        public const string modEncyPath_creatures = "GargMod/GargModCreatures";
+        public const string modEncyPath_gargantuan = "GargMod/GargModGargantuanLeviathan";
 
         private const string ency_tertiaryOutpostTerminalGrassy = "TertiaryOutpostTerminal1Ency";
         private const string ency_tertiaryOutpostTerminalSparseReef = "TertiaryOutpostTerminal2Ency";
@@ -245,7 +245,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_creatures), "Creatures");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_gargantuan), "Gargantuan Leviathan");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current mode: Personal teleportation. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyCreatureKey, "Current mode: Creature summon. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}.\nCurrent mode: Environment manipulation. Switch fire mode: {0}");
