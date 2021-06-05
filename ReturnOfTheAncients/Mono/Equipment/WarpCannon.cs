@@ -297,7 +297,7 @@ namespace RotA.Mono.Equipment
         /// <summary>
         /// Warp all small enough entities around the secondary node to the primary node
         /// </summary>
-        void WarpObjectsToPoint()
+        void WarpObjectsFromNodeToNode()
         {
             Vector3 primaryNodePosition = myPrimaryNode.transform.position;
             Vector3 secondaryNodePosition = mySecondaryNode.transform.position;
@@ -384,7 +384,7 @@ namespace RotA.Mono.Equipment
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
-                WarpObjectsToPoint(); //warp creatures from the newly placed node to the first node
+                WarpObjectsFromNodeToNode(); //warp creatures from the newly placed node to the first node
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
                 energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
