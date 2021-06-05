@@ -120,7 +120,7 @@ namespace RotA.Mono
         /// <returns></returns>
         public bool IsHoldingGenericSub()
         {
-            return heldVehicleType == VehicleType.GenericSub;
+            return heldVehicleType == VehicleType.GenericVehicle;
         }
         /// <summary>
         /// Holding a Cyclops.
@@ -136,10 +136,11 @@ namespace RotA.Mono
         }
         private enum VehicleType
         {
-            None = 0,
-            Exosuit = 1,
-            GenericSub = 2,
-            Cyclops
+            None,
+            Exosuit,
+            GenericVehicle,
+            Cyclops,
+            Leviathan
         }
         public void GrabLargeSub(SubRoot subRoot)
         {
@@ -147,7 +148,7 @@ namespace RotA.Mono
         }
         public void GrabGenericSub(Vehicle vehicle)
         {
-            GrabVehicle(vehicle, VehicleType.GenericSub);
+            GrabVehicle(vehicle, VehicleType.GenericVehicle);
         }
         public void GrabExosuit(Vehicle exosuit)
         {
@@ -198,7 +199,7 @@ namespace RotA.Mono
             timeVehicleGrabbed = Time.time;
             vehicleInitialRotation = vehicle.transform.rotation;
             vehicleInitialPosition = vehicle.transform.position;
-            if (heldVehicleType == VehicleType.GenericSub)
+            if (heldVehicleType == VehicleType.GenericVehicle)
             {
                 vehicleGrabSound.clip = seamothSounds.GetRandomClip();
             }
