@@ -405,6 +405,7 @@ namespace RotA.Mono
             }
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", IsHoldingLeviathan());
             GameObject held = null;
             if (heldVehicle != null)
             {
