@@ -56,7 +56,7 @@ namespace RotA.Mono
                 if (gargantuan.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
                 {
                     GameObject target = GetTarget(collider);
-                    if (!behaviour.Edible(target))
+                    if (!behaviour.CanEat(target))
                     {
                         return;
                     }

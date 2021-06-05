@@ -58,7 +58,7 @@ namespace RotA.Mono
             return source;
         }
 
-        public bool Edible(GameObject target)
+        public bool CanEat(GameObject target)
         {
             return target.GetComponent<Creature>() || target.GetComponent<Player>() || target.GetComponent<Vehicle>() || target.GetComponent<SubRoot>() || target.GetComponent<CyclopsDecoy>();
         }
