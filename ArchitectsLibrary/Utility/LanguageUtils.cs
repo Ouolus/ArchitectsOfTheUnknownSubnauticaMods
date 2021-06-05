@@ -12,7 +12,10 @@ namespace ArchitectsLibrary.Utility
     /// </summary>
     public static class LanguageUtils
     {
-        private static Dictionary<string, MultipleButtonCache> buttonCache = new Dictionary<string, MultipleButtonCache>();
+        /// <summary>
+        /// LanguageCache does this in the base game. I assume the language system is slow and that's why we cache it.
+        /// </summary>
+        private static Dictionary<string, MultipleButtonCache> translatedButtonCache = new Dictionary<string, MultipleButtonCache>();
 
         /// <summary>
         /// A format with support for multiple buttons rather than just one.
@@ -25,7 +28,7 @@ namespace ArchitectsLibrary.Utility
         {
             string bindingName = GameInput.GetBindingName(button, GameInput.BindingSet.Primary, false);
             string bindingName2 = GameInput.GetBindingName(button2, GameInput.BindingSet.Primary, false);
-            MultipleButtonCache orAddNew = buttonCache.GetOrAddNew(key);
+            MultipleButtonCache orAddNew = translatedButtonCache.GetOrAddNew(key);
             if (orAddNew.button != button || orAddNew.button2 != button2 || orAddNew.bindingName != bindingName || orAddNew.bindingName2 != bindingName2 || string.IsNullOrEmpty(orAddNew.cachedUIText))
             {
                 orAddNew.button = button;
@@ -47,11 +50,12 @@ namespace ArchitectsLibrary.Utility
         public static string GetMultipleButtonFormat(string key, GameInput.Button button, string button2)
         {
             string bindingName = GameInput.GetBindingName(button, GameInput.BindingSet.Primary, false);
-            LanguageCache.ButtonText orAddNew = LanguageCache.buttonTextCache.GetOrAddNew(key);
-            if (orAddNew.button != button || orAddNew.bindingName != bindingName || string.IsNullOrEmpty(orAddNew.cachedUIText))
+            MultipleButtonCache orAddNew = translatedButtonCache.GetOrAddNew(key);
+            if (orAddNew.button != button || orAddNew.bindingName != bindingName || orAddNew.bindingName2 != button2 || string.IsNullOrEmpty(orAddNew.cachedUIText))
             {
                 orAddNew.button = button;
                 orAddNew.bindingName = bindingName;
+                orAddNew.bindingName2 = button2;
                 orAddNew.cachedUIText = Language.main.GetFormat(key, uGUI.FormatButton(button, false, " / ", false), button2);
             }
             return orAddNew.cachedUIText;
