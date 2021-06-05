@@ -59,7 +59,7 @@ namespace RotA.Patches
                     subtitle.transform.position = new Vector3(-5.54f, 0.40f, 11.00f);
                     subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
                     subtitle.transform.localScale = Vector3.one * 0.5f;
-                    _subTitleRenderer = subtitlePrefab.FindChild("RRR").GetComponent<Renderer>();
+                    _subTitleRenderer = subtitle.FindChild("RRR").GetComponent<Renderer>();
                 }
             }
 
