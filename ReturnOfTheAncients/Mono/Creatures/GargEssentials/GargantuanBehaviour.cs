@@ -9,7 +9,8 @@ namespace RotA.Mono
     {
         Vehicle heldVehicle;
         SubRoot heldSubroot;
-        VehicleType heldVehicleType;
+        GameObject heldLeviathan;
+        GrabType currentlyGrabbing;
         float timeVehicleGrabbed;
         float timeVehicleReleased;
         Quaternion vehicleInitialRotation;
@@ -95,7 +96,7 @@ namespace RotA.Mono
 
         public bool IsVehicle(GameObject gameObject)
         {
-            if(gameObject is null)
+            if (gameObject is null)
             {
                 return false;
             }
@@ -112,7 +113,7 @@ namespace RotA.Mono
 
         public bool IsHoldingVehicle()
         {
-            return heldVehicleType != VehicleType.None;
+            return currentlyGrabbing != GrabType.None;
         }
         /// <summary>
         /// Holding Seamoth or Seatruck.
@@ -120,7 +121,7 @@ namespace RotA.Mono
         /// <returns></returns>
         public bool IsHoldingGenericSub()
         {
-            return heldVehicleType == VehicleType.GenericVehicle;
+            return currentlyGrabbing == GrabType.GenericVehicle;
         }
         /// <summary>
         /// Holding a Cyclops.
@@ -128,13 +129,47 @@ namespace RotA.Mono
         /// <returns></returns>
         public bool IsHoldingLargeSub()
         {
-            return heldVehicleType == VehicleType.Cyclops;
+            return currentlyGrabbing == GrabType.Cyclops;
         }
         public bool IsHoldingExosuit()
         {
-            return heldVehicleType == VehicleType.Exosuit;
+            return currentlyGrabbing == GrabType.Exosuit;
         }
-        private enum VehicleType
+        public bool IsHoldingLeviathan()
+        {
+            return currentlyGrabbing == GrabType.Leviathan;
+        }
+        public bool IsHoldingGhostLeviathan()
+        {
+            if (currentlyGrabbing != GrabType.Leviathan)
+            {
+                return false;
+            }
+            if (heldLeviathan != null)
+            {
+                if (heldLeviathan.GetComponent<GhostLeviathan>() is not null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool IsHoldingReaperLeviathan()
+        {
+            if (currentlyGrabbing != GrabType.Leviathan)
+            {
+                return false;
+            }
+            if (heldLeviathan != null)
+            {
+                if (heldLeviathan.GetComponent<ReaperLeviathan>() is not null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private enum GrabType
         {
             None,
             Exosuit,
@@ -148,11 +183,11 @@ namespace RotA.Mono
         }
         public void GrabGenericSub(Vehicle vehicle)
         {
-            GrabVehicle(vehicle, VehicleType.GenericVehicle);
+            GrabVehicle(vehicle, GrabType.GenericVehicle);
         }
         public void GrabExosuit(Vehicle exosuit)
         {
-            GrabVehicle(exosuit, VehicleType.Exosuit);
+            GrabVehicle(exosuit, GrabType.Exosuit);
         }
         public bool GetCanGrabVehicle()
         {
@@ -161,7 +196,7 @@ namespace RotA.Mono
         private void GrabSubRoot(SubRoot subRoot)
         {
             heldSubroot = subRoot;
-            heldVehicleType = VehicleType.Cyclops;
+            currentlyGrabbing = GrabType.Cyclops;
             timeVehicleGrabbed = Time.time;
             vehicleInitialRotation = subRoot.transform.rotation;
             vehicleInitialPosition = subRoot.transform.position;
@@ -181,13 +216,13 @@ namespace RotA.Mono
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             timeCanAttackAgain = Time.time + attackLength + 1f;
         }
-        private void GrabVehicle(Vehicle vehicle, VehicleType vehicleType)
+        private void GrabVehicle(Vehicle vehicle, GrabType vehicleType)
         {
             vehicle.GetComponent<Rigidbody>().isKinematic = true;
             vehicle.collisionModel.SetActive(false);
             heldVehicle = vehicle;
-            heldVehicleType = vehicleType;
-            if (heldVehicleType == VehicleType.Exosuit)
+            currentlyGrabbing = vehicleType;
+            if (currentlyGrabbing == GrabType.Exosuit)
             {
                 SafeAnimator.SetBool(vehicle.mainAnimator, "reaper_attack", true);
                 Exosuit component = vehicle.GetComponent<Exosuit>();
@@ -199,11 +234,11 @@ namespace RotA.Mono
             timeVehicleGrabbed = Time.time;
             vehicleInitialRotation = vehicle.transform.rotation;
             vehicleInitialPosition = vehicle.transform.position;
-            if (heldVehicleType == VehicleType.GenericVehicle)
+            if (currentlyGrabbing == GrabType.GenericVehicle)
             {
                 vehicleGrabSound.clip = seamothSounds.GetRandomClip();
             }
-            else if (heldVehicleType == VehicleType.Exosuit)
+            else if (currentlyGrabbing == GrabType.Exosuit)
             {
                 vehicleGrabSound.clip = exosuitSounds.GetRandomClip();
             }
@@ -224,9 +259,39 @@ namespace RotA.Mono
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             }
         }
+        public void GrabLeviathan(GameObject leviathan)
+        {
+            leviathan.GetComponent<Rigidbody>().isKinematic = true;
+            heldLeviathan = leviathan;
+            currentlyGrabbing = GrabType.Leviathan;
+            timeVehicleGrabbed = Time.time;
+
+            vehicleInitialRotation = leviathan.transform.rotation;
+            vehicleInitialPosition = leviathan.transform.position;
+
+            if (IsHoldingGhostLeviathan())
+            {
+                vehicleGrabSound.clip = ECCAudio.LoadAudioClip("GargGhostLeviathanAttack");
+                vehicleGrabSound.Play();
+            }
+            else if (IsHoldingReaperLeviathan())
+            {
+                vehicleGrabSound.clip = ECCAudio.LoadAudioClip("GargReaperAttack");
+                vehicleGrabSound.Play();
+            }
+
+            foreach (Collider col in leviathan.GetComponentsInChildren<Collider>())
+            {
+                col.enabled = false;
+            }
+
+            float attackLength = 5f;
+
+            Invoke("ReleaseVehicle", attackLength);
+        }
         public static bool PlayerIsKillable()
         {
-            if (Player.main.GetCurrentSub() != null) 
+            if (Player.main.GetCurrentSub() != null)
             {
                 return false;
             }
@@ -235,7 +300,7 @@ namespace RotA.Mono
                 return false;
             }
             return true;
-            
+
         }
         public static bool PlayerInPrecursorBase()
         {
@@ -276,7 +341,7 @@ namespace RotA.Mono
         {
             if (heldVehicle != null)
             {
-                if (heldVehicleType == VehicleType.Exosuit)
+                if (currentlyGrabbing == GrabType.Exosuit)
                 {
                     SafeAnimator.SetBool(heldVehicle.mainAnimator, "reaper_attack", false);
                     Exosuit component = heldVehicle.GetComponent<Exosuit>();
@@ -300,13 +365,22 @@ namespace RotA.Mono
                 ToggleSubrootColliders(true);
                 heldSubroot = null;
             }
+            if (heldLeviathan != null)
+            {
+                var creatureLm = heldLeviathan.GetComponent<LiveMixin>();
+                creatureLm.TakeDamage(5000f);
+                foreach(Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
+                {
+                    col.enabled = true;
+                }
+            }
             timeVehicleReleased = Time.time;
-            heldVehicleType = VehicleType.None;
+            currentlyGrabbing = GrabType.None;
             CancelInvoke("DamageVehicle");
             mouthAttack.OnVehicleReleased();
             MainCameraControl.main.ShakeCamera(0f, 0f);
             var lastTarget = gameObject.GetComponent<LastTarget>();
-            if(lastTarget) lastTarget.target = null;
+            if (lastTarget) lastTarget.target = null;
         }
 
         /// <summary>
@@ -325,7 +399,7 @@ namespace RotA.Mono
         }
         public void Update()
         {
-            if (heldVehicleType != VehicleType.None && (heldVehicle == null && heldSubroot == null))
+            if (currentlyGrabbing != GrabType.None && (heldVehicle == null && heldSubroot == null))
             {
                 ReleaseVehicle();
             }
@@ -339,6 +413,10 @@ namespace RotA.Mono
             if (heldSubroot != null)
             {
                 held = heldSubroot.gameObject;
+            }
+            if (heldLeviathan != null)
+            {
+                held = heldLeviathan;
             }
             if (held != null)
             {

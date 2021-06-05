@@ -52,8 +52,8 @@ namespace RotA.Mono
         {
             if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
-                Creature thisCreature = gameObject.GetComponent<Creature>();
-                if (thisCreature.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
+                Creature gargantuan = gameObject.GetComponent<Creature>();
+                if (gargantuan.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
                 {
                     GameObject target = GetTarget(collider);
                     if (!behaviour.Edible(target))
@@ -72,11 +72,12 @@ namespace RotA.Mono
                             }
                             if (!canAttackPlayer)
                             {
+                                //gargantuan baby nibble behavior
                                 Pickupable held = Inventory.main.GetHeld();
-                                if(held is not null && held.GetComponent<Creature>() != null)
+                                if (held is not null && held.GetComponent<Creature>() != null)
                                 {
                                     LiveMixin heldLm = held.GetComponent<LiveMixin>();
-                                    if(heldLm.maxHealth < 100f)
+                                    if (heldLm.maxHealth < 100f)
                                     {
                                         animator.SetFloat("random", UnityEngine.Random.value);
                                         animator.SetTrigger("bite");
@@ -94,6 +95,7 @@ namespace RotA.Mono
                             }
                             else
                             {
+                                //attack player normally
                                 float baseDmg;
                                 if (oneShotPlayer)
                                 {
@@ -119,18 +121,19 @@ namespace RotA.Mono
                         }
                         else if (canAttackPlayer && behaviour.GetCanGrabVehicle())
                         {
-                            SeaMoth component4 = target.GetComponent<SeaMoth>();
-                            if (component4 && !component4.docked)
+                            //try to perform vehicle attack
+                            SeaMoth seamoth = target.GetComponent<SeaMoth>();
+                            if (seamoth && !seamoth.docked)
                             {
-                                behaviour.GrabGenericSub(component4);
-                                thisCreature.Aggression.Value -= 0.5f;
+                                behaviour.GrabGenericSub(seamoth);
+                                gargantuan.Aggression.Value -= 0.5f;
                                 return;
                             }
-                            Exosuit component5 = target.GetComponent<Exosuit>();
-                            if (component5 && !component5.docked)
+                            Exosuit exosuit = target.GetComponent<Exosuit>();
+                            if (exosuit && !exosuit.docked)
                             {
-                                behaviour.GrabExosuit(component5);
-                                thisCreature.Aggression.Value -= 0.5f;
+                                behaviour.GrabExosuit(exosuit);
+                                gargantuan.Aggression.Value -= 0.5f;
                                 return;
                             }
                             if (canPerformCyclopsCinematic)
@@ -140,9 +143,16 @@ namespace RotA.Mono
                                 {
                                     behaviour.GrabLargeSub(subRoot);
                                     behaviour.roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
-                                    thisCreature.Aggression.Value -= 1f;
+                                    gargantuan.Aggression.Value -= 1f;
                                     return;
                                 }
+                            }
+                            Creature otherCreature = target.GetComponent<Creature>();
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && (otherCreature is GhostLeviathan || otherCreature is GhostLeviatanVoid || otherCreature is ReaperLeviathan || otherCreature is SeaDragon))
+                            {
+                                gargantuan.Aggression.Value -= 0.6f;
+                                gargantuan.Hunger.Value = 0f;
+                                behaviour.GrabLeviathan(otherCreature.gameObject);
                             }
                         }
                         if (targetLm == null) return;
@@ -157,7 +167,7 @@ namespace RotA.Mono
                         if (behaviour.CanSwallowWhole(target, targetLm))
                         {
                             creature.GetAnimator().SetTrigger("bite");
-                            thisCreature.Hunger.Value -= 0.15f;
+                            gargantuan.Hunger.Value -= 0.15f;
                             var swallowing = target.AddComponent<BeingSuckedInWhole>();
                             swallowing.target = throat.transform;
                             swallowing.animationLength = 1f;
@@ -170,7 +180,7 @@ namespace RotA.Mono
                             {
                                 creature.Aggression.Value = 0f;
                             }
-                            thisCreature.Aggression.Value -= 0.15f;
+                            gargantuan.Aggression.Value -= 0.15f;
                         }
                     }
                 }
@@ -211,7 +221,7 @@ namespace RotA.Mono
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if(target is not null)
+            if (target is not null)
             {
                 var targetLm = target.GetComponent<LiveMixin>();
                 if (targetLm)
