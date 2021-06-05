@@ -529,7 +529,7 @@ namespace RotA.Mono.Equipment
         {
             if (fireMode == FireMode.Warp)
             {
-                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
+                return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool, ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey));
             }
             if (fireMode == FireMode.Manipulate)
             {
@@ -544,7 +544,7 @@ namespace RotA.Mono.Equipment
             }
             if (fireMode == FireMode.CreatureSpawn)
             {
-                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool);
+                return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
             }
             return base.GetCustomUseText();
         }
