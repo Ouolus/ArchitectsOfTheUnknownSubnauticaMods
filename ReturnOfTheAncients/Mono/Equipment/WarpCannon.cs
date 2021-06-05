@@ -28,6 +28,8 @@ namespace RotA.Mono.Equipment
         private GameObject myPrimaryNode;
         private GameObject mySecondaryNode;
 
+        private float timeWarpHomeKeyLastPressed = -1f;
+
         public PrecursorIllumControl illumControl;
 
         /// <summary>
@@ -479,6 +481,36 @@ namespace RotA.Mono.Equipment
                 {
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
                 }
+            }
+            if (Time.time < timeCanUseAgain)
+            {
+                if (Input.GetKeyDown(Mod.config.WarpToBaseKey))
+                {
+                    if (Time.time < (timeWarpHomeKeyLastPressed + 1f)) //checks if you have pressed the warp home key in the last second
+                    {
+                        timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
+                        WarpToLastVisitedBase();
+                    }
+                    else
+                    {
+                        timeWarpHomeKeyLastPressed = Time.time;
+                        ErrorMessage.AddMessage(string.Format("Press {0} again to warp to your last visited base.", ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)));
+                    }
+                }
+            }
+        }
+
+        public void WarpToLastVisitedBase()
+        {
+            if (GetBatteryPercent() >= 0.50f)
+            {
+                energyMixin.ConsumeEnergy(energyMixin.charge / energyMixin.capacity);
+                animations.SetOverrideSpinSpeed(10f, 3f);
+                ErrorMessage.AddMessage("Teleporting");
+            }
+            else
+            {
+                ErrorMessage.AddMessage("You must have above 50% energy to perform this action.");
             }
         }
 

@@ -10,6 +10,8 @@ namespace RotA.Mono.Equipment
         private float actualSpinSpeed = 0f;
         private float batteryTarget = 1f;
         private float actualBattery = 1f;
+        private bool isOverridingSpinSpeed = false;
+        private float overrideSpinSpeed;
 
         private static readonly int param_speed = Animator.StringToHash("speed");
         private static readonly int param_battery = Animator.StringToHash("battery");
@@ -47,9 +49,24 @@ namespace RotA.Mono.Equipment
             }
         }
 
+        private float SpinSpeedTarget
+        {
+            get
+            {
+                if (isOverridingSpinSpeed)
+                {
+                    return overrideSpinSpeed;
+                }
+                else
+                {
+                    return spinSpeedTarget;
+                }
+            }
+        }
+
         private void Update()
         {
-            actualSpinSpeed = Mathf.MoveTowards(actualSpinSpeed, spinSpeedTarget, Time.deltaTime);
+            actualSpinSpeed = Mathf.MoveTowards(actualSpinSpeed, SpinSpeedTarget, Time.deltaTime);
             actualBattery = Mathf.MoveTowards(actualBattery, batteryTarget, Time.deltaTime * 2f);
             animator.SetFloat(param_speed, SpinSpeedToDisplay);
             animator.SetFloat(param_battery, actualBattery);
@@ -72,6 +89,18 @@ namespace RotA.Mono.Equipment
             {
                 spinSpeedTarget = newSpeed;
             }
+        }
+
+        public void SetOverrideSpinSpeed(float overrideSpinSpeed, float seconds)
+        {
+            this.overrideSpinSpeed = overrideSpinSpeed;
+            isOverridingSpinSpeed = true;
+            Invoke("StopOverrideSpinSpeed", seconds);
+        }
+
+        private void StopOverrideSpinSpeed()
+        {
+            isOverridingSpinSpeed = false;
         }
     }
 }
