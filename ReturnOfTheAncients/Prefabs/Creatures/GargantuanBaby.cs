@@ -16,7 +16,7 @@ namespace RotA.Prefabs
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, Mod.modEncyPath_creatures, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
 
         public override string GetEncyTitle => "Gargantuan Leviathan Baby";
         public override string GetEncyDesc => "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.";
