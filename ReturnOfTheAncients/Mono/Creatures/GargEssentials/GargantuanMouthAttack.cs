@@ -153,6 +153,7 @@ namespace RotA.Mono
                                 gargantuan.Aggression.Value -= 0.6f;
                                 gargantuan.Hunger.Value = 0f;
                                 behaviour.GrabLeviathan(otherCreature.gameObject);
+                                return;
                             }
                         }
                         if (targetLm == null) return;
