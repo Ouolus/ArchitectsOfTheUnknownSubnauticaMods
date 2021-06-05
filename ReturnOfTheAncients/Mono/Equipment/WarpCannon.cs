@@ -497,7 +497,7 @@ namespace RotA.Mono.Equipment
                         else
                         {
                             timeWarpHomeKeyLastPressed = Time.time;
-                            ErrorMessage.AddMessage(string.Format("Press {0} again to warp to your last visited base.", ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)));
+                            ErrorMessage.AddMessage(string.Format("Double tap {0} to warp to your last visited base.", ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)));
                         }
                     }
                 }
