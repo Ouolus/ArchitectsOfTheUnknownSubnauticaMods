@@ -149,7 +149,7 @@ namespace RotA.Mono
             }
             if (heldLeviathan != null)
             {
-                if (heldLeviathan.GetComponent<GhostLeviathan>() is not null)
+                if (heldLeviathan.GetComponent<GhostLeviathan>() is not null || heldLeviathan.GetComponent<GhostLeviatanVoid>() is not null)
                 {
                     return true;
                 }
@@ -287,9 +287,7 @@ namespace RotA.Mono
                 col.enabled = false;
             }
 
-            float attackLength = 5f;
-
-            Invoke("ReleaseVehicle", attackLength);
+            Invoke("ReleaseVehicle", 5f);
         }
         public static bool PlayerIsKillable()
         {
@@ -398,7 +396,7 @@ namespace RotA.Mono
         }
         public void Update()
         {
-            if (currentlyGrabbing != GrabType.None && (heldVehicle == null && heldSubroot == null))
+            if (currentlyGrabbing != GrabType.None && heldVehicle == null && heldSubroot == null && heldLeviathan == null)
             {
                 ReleaseVehicle();
             }
