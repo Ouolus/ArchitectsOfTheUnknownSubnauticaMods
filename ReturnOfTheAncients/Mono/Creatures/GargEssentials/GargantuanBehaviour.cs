@@ -178,7 +178,7 @@ namespace RotA.Mono
             float attackLength = 9f;
             Invoke("ReleaseVehicle", attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
-            timeCanAttackAgain = Time.time + attackLength;
+            timeCanAttackAgain = Time.time + attackLength + 1f;
         }
         private void GrabVehicle(Vehicle vehicle, VehicleType vehicleType)
         {
