@@ -135,6 +135,10 @@ namespace RotA.Mono
         {
             return currentlyGrabbing == GrabType.Cyclops;
         }
+        public bool IsHoldingPickupableFish()
+        {
+            return currentlyGrabbing == GrabType.Leviathan && grabFishMode == GargGrabFishMode.PickupableOnly;
+        }
         public bool IsHoldingExosuit()
         {
             return currentlyGrabbing == GrabType.Exosuit;
@@ -448,6 +452,10 @@ namespace RotA.Mono
                     {
                         held.transform.rotation = InverseRotation(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
                     }
+                    else if (IsHoldingPickupableFish())
+                    {
+                        held.transform.rotation = FixSmallFishRotation(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
+                    }
                     else
                     {
                         held.transform.rotation = holdPoint.transform.rotation;
@@ -459,6 +467,10 @@ namespace RotA.Mono
                 {
                     held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, InverseRotation(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
                 }
+                else if (IsHoldingPickupableFish())
+                {
+                    held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, FixSmallFishRotation(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
+                }
                 else
                 {
                     held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, holdPoint.rotation, num);
@@ -468,6 +480,10 @@ namespace RotA.Mono
         private Quaternion InverseRotation(Quaternion input)
         {
             return Quaternion.Euler(input.eulerAngles + new Vector3(0f, 180f, 0f));
+        }
+        private Quaternion FixSmallFishRotation(Quaternion input)
+        {
+            return Quaternion.Euler(input.eulerAngles + new Vector3(0f, 0f, 90f));
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
