@@ -188,6 +188,8 @@ namespace RotA.Prefabs
             prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
 
             prefab.AddComponent<VFXSchoolFishRepulsor>();
+
+            components.creature.eyeFOV = EyeFov;
         }
 
         public virtual void ApplyAggression()

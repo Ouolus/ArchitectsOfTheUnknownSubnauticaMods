@@ -102,7 +102,7 @@ namespace RotA.Prefabs
 
         public override bool CanPerformCyclopsCinematic => true;
 
-        public override float EyeFov => 0.9f;
+        public override float EyeFov => 0.6f;
 
         public override bool DoesScreenShake => true;
 

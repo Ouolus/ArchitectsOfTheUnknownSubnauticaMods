@@ -18,7 +18,7 @@ namespace RotA.Prefabs
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 15f, 20f, 17f, 30f);
 
-        public override float EyeFov => 0.8f;
+        public override float EyeFov => 0.35f;
 
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 

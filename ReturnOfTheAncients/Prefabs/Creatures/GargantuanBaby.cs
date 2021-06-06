@@ -92,5 +92,7 @@ namespace RotA.Prefabs
         public override float TurnSpeed => 1f;
 
         public override GargGrabFishMode GrabFishMode => GargGrabFishMode.SmallFishOnly;
+
+        public override float EyeFov => 0.6f;
     }
 }
