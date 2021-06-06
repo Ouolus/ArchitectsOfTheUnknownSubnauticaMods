@@ -56,7 +56,7 @@ namespace ArchitectsLibrary.Utility
                 orAddNew.button = button;
                 orAddNew.bindingName = bindingName;
                 orAddNew.bindingName2 = button2;
-                orAddNew.cachedUIText = Language.main.GetFormat(key, uGUI.FormatButton(button, false, " / ", false), button2);
+                orAddNew.cachedUIText = Language.main.GetFormat(key, uGUI.FormatButton(button), button2);
             }
             return orAddNew.cachedUIText;
         }
@@ -77,7 +77,7 @@ namespace ArchitectsLibrary.Utility
                 orAddNew.button = button2;
                 orAddNew.bindingName = bindingName;
                 orAddNew.bindingName2 = button;
-                orAddNew.cachedUIText = Language.main.GetFormat(key, button, uGUI.FormatButton(button2, false, " / ", false));
+                orAddNew.cachedUIText = Language.main.GetFormat(key, button, uGUI.FormatButton(button2));
             }
             return orAddNew.cachedUIText;
         }
@@ -108,7 +108,7 @@ namespace ArchitectsLibrary.Utility
         /// </summary>
         /// <param name="keyCode"></param>
         /// <returns></returns>
-        private static string ConvertKeyCodeToBindingName(KeyCode keyCode)
+        static string ConvertKeyCodeToBindingName(KeyCode keyCode)
         {
             if(keyCodeToBindingName.TryGetValue(keyCode.ToString(), out string bindingName))
             {
@@ -120,7 +120,7 @@ namespace ArchitectsLibrary.Utility
         /// <summary>
         /// Used for binding formatting for modded inputs. Converts it from Unity KeyCodes to the names used by <see cref="GameInput"/>.
         /// </summary>
-        private static readonly Dictionary<string, string> keyCodeToBindingName = new Dictionary<string, string>()
+        static readonly Dictionary<string, string> keyCodeToBindingName = new Dictionary<string, string>()
         {
             {
                 "Mouse0",
@@ -137,18 +137,13 @@ namespace ArchitectsLibrary.Utility
         };
 
 
-        private class MultipleButtonCache
+        class MultipleButtonCache
         {
             public GameInput.Button button;
             public GameInput.Button button2;
             public string bindingName;
             public string bindingName2;
             public string cachedUIText;
-
-            public MultipleButtonCache()
-            {
-
-            }
         }
     }
 }
