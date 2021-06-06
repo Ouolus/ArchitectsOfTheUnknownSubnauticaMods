@@ -179,6 +179,7 @@ namespace RotA.Mono
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
                                 otherCreature.transform.localScale = Vector3.one * 0.5f;
+                                otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
                                 return;
                             }
                         }
