@@ -52,6 +52,8 @@ namespace RotA.Prefabs
             prefab.GetComponent<AvoidObstacles>().scanRadius = 5f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
+
+            components.creature.Hunger = new CreatureTrait(0f, -0.025f);
         }
 
         public override bool UseSwimSounds => false;
