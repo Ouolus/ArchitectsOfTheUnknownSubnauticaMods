@@ -178,6 +178,7 @@ namespace RotA.Mono
                                 behaviour.GrabLeviathan(otherCreature.gameObject);
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
+                                otherCreature.transform.localScale = Vector3.one * 0.5f;
                                 return;
                             }
                         }
