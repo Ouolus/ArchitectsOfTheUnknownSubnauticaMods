@@ -166,6 +166,17 @@ namespace RotA.Mono
                                 return;
                             }
                         }
+                        else if (grabFishMode == GargGrabFishMode.PickupableOnly)
+                        {
+                            Creature otherCreature = target.GetComponent<Creature>();
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null)
+                            {
+                                gargantuan.Aggression.Value -= 0.6f;
+                                gargantuan.Hunger.Value = 0f;
+                                behaviour.GrabLeviathan(otherCreature.gameObject);
+                                return;
+                            }
+                        }
                         if (!CanAttackTargetFromPosition(target))
                         {
                             return;
