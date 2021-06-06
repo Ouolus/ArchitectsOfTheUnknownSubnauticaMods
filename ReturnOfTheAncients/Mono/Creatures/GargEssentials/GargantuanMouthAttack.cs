@@ -66,7 +66,7 @@ namespace RotA.Mono
                     {
                         LiveMixin targetLm = target.GetComponent<LiveMixin>();
                         Player player = target.GetComponent<Player>();
-                        if (player != null)
+                        if (player != null) //start player attack logic
                         {
                             if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
                             {
@@ -120,8 +120,8 @@ namespace RotA.Mono
                                     return;
                                 }
                             }
-                        }
-                        else if (canAttackPlayer && behaviour.GetCanGrabVehicle())
+                        } //end player attack logic
+                        else if (canAttackPlayer && behaviour.GetCanGrabVehicle()) //start vehicle attack logic
                         {
                             //try to perform vehicle attack
                             SeaMoth seamoth = target.GetComponent<SeaMoth>();
@@ -149,9 +149,9 @@ namespace RotA.Mono
                                     return;
                                 }
                             }
-                        }
-                        if (targetLm == null) return;
-                        if (!targetLm.IsAlive())
+                        } //end vehicle attack logic
+                        if (targetLm == null) return; //just in case I guess
+                        if (!targetLm.IsAlive()) //dont wanna chomp on a dead fish
                         {
                             return;
                         }
@@ -183,7 +183,7 @@ namespace RotA.Mono
                                 behaviour.GrabFish(otherCreature.gameObject);
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
-                                otherCreature.transform.localScale = Vector3.one * 0.5f;
+                                otherCreature.transform.localScale = Vector3.one * 0.75f;
                                 otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
                                 EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
                                 if (heldFishEcoTarget != null)
@@ -193,7 +193,7 @@ namespace RotA.Mono
                                 return;
                             }
                         }
-                        if (!CanAttackTargetFromPosition(target))
+                        if (!CanAttackTargetFromPosition(target)) //any attack past this point must not have collisions between the garg and the target
                         {
                             return;
                         }
