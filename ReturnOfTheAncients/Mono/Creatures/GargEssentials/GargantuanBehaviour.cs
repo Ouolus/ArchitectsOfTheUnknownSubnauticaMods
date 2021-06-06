@@ -383,6 +383,7 @@ namespace RotA.Mono
                     {
                         col.enabled = true;
                     }
+                    heldLeviathan = null;
                 }
             }
             timeVehicleReleased = Time.time;
