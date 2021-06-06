@@ -380,11 +380,6 @@ namespace RotA.Mono
                     var swallowing = heldFish.AddComponent<BeingSuckedInWhole>();
                     swallowing.target = mouthAttack.throat.transform;
                     swallowing.animationLength = animationLength;
-                    EcoTarget heldFishEcoTarget = heldFish.GetComponent<EcoTarget>();
-                    if (heldFishEcoTarget != null)
-                    {
-                        Destroy(heldFishEcoTarget);
-                    }
                     Destroy(heldFish, animationLength);
                 }
                 else

@@ -165,6 +165,11 @@ namespace RotA.Mono
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
                                 behaviour.GrabFish(otherCreature.gameObject);
+                                EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
+                                if (heldFishEcoTarget != null)
+                                {
+                                    Destroy(heldFishEcoTarget);
+                                }
                                 return;
                             }
                         }
@@ -180,6 +185,11 @@ namespace RotA.Mono
                                 otherCreature.Scared.Value = 1f;
                                 otherCreature.transform.localScale = Vector3.one * 0.5f;
                                 otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
+                                EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
+                                if (heldFishEcoTarget != null)
+                                {
+                                    Destroy(heldFishEcoTarget);
+                                }
                                 return;
                             }
                         }
