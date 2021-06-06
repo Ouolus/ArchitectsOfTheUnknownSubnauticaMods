@@ -10,7 +10,7 @@ namespace RotA.Mono
     {
         Vehicle heldVehicle;
         SubRoot heldSubroot;
-        GameObject heldLeviathan;
+        GameObject heldFish;
         GrabType currentlyGrabbing;
         float timeVehicleGrabbed;
         float timeVehicleReleased;
@@ -137,25 +137,25 @@ namespace RotA.Mono
         }
         public bool IsHoldingPickupableFish()
         {
-            return currentlyGrabbing == GrabType.Leviathan && grabFishMode == GargGrabFishMode.PickupableOnly;
+            return currentlyGrabbing == GrabType.Fish && grabFishMode == GargGrabFishMode.PickupableOnly;
         }
         public bool IsHoldingExosuit()
         {
             return currentlyGrabbing == GrabType.Exosuit;
         }
-        public bool IsHoldingLeviathan()
+        public bool IsHoldingFish()
         {
-            return currentlyGrabbing == GrabType.Leviathan;
+            return currentlyGrabbing == GrabType.Fish;
         }
         public bool IsHoldingGhostLeviathan()
         {
-            if (currentlyGrabbing != GrabType.Leviathan)
+            if (currentlyGrabbing != GrabType.Fish)
             {
                 return false;
             }
-            if (heldLeviathan != null)
+            if (heldFish != null)
             {
-                if (heldLeviathan.GetComponent<GhostLeviathan>() is not null || heldLeviathan.GetComponent<GhostLeviatanVoid>() is not null)
+                if (heldFish.GetComponent<GhostLeviathan>() is not null || heldFish.GetComponent<GhostLeviatanVoid>() is not null)
                 {
                     return true;
                 }
@@ -164,13 +164,13 @@ namespace RotA.Mono
         }
         public bool IsHoldingReaperLeviathan()
         {
-            if (currentlyGrabbing != GrabType.Leviathan)
+            if (currentlyGrabbing != GrabType.Fish)
             {
                 return false;
             }
-            if (heldLeviathan != null)
+            if (heldFish != null)
             {
-                if (heldLeviathan.GetComponent<ReaperLeviathan>() is not null)
+                if (heldFish.GetComponent<ReaperLeviathan>() is not null)
                 {
                     return true;
                 }
@@ -183,7 +183,7 @@ namespace RotA.Mono
             Exosuit,
             GenericVehicle,
             Cyclops,
-            Leviathan
+            Fish
         }
         public void GrabLargeSub(SubRoot subRoot)
         {
@@ -267,15 +267,15 @@ namespace RotA.Mono
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             }
         }
-        public void GrabLeviathan(GameObject leviathan)
+        public void GrabFish(GameObject fish)
         {
-            leviathan.GetComponent<Rigidbody>().isKinematic = true;
-            heldLeviathan = leviathan;
-            currentlyGrabbing = GrabType.Leviathan;
+            fish.GetComponent<Rigidbody>().isKinematic = true;
+            heldFish = fish;
+            currentlyGrabbing = GrabType.Fish;
             timeVehicleGrabbed = Time.time;
 
-            vehicleInitialRotation = leviathan.transform.rotation;
-            vehicleInitialPosition = leviathan.transform.position;
+            vehicleInitialRotation = fish.transform.rotation;
+            vehicleInitialPosition = fish.transform.position;
 
             if (IsHoldingGhostLeviathan())
             {
@@ -288,7 +288,7 @@ namespace RotA.Mono
                 leviathanGrabSound.Play();
             }
 
-            foreach (Collider col in leviathan.GetComponentsInChildren<Collider>(true))
+            foreach (Collider col in fish.GetComponentsInChildren<Collider>(true))
             {
                 col.enabled = false;
             }
@@ -371,29 +371,29 @@ namespace RotA.Mono
                 ToggleSubrootColliders(true);
                 heldSubroot = null;
             }
-            if (heldLeviathan != null)
+            if (heldFish != null)
             {
-                var creatureLm = heldLeviathan.GetComponent<LiveMixin>();
+                var creatureLm = heldFish.GetComponent<LiveMixin>();
                 if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
                 {
-                    var swallowing = heldLeviathan.AddComponent<BeingSuckedInWhole>();
+                    var swallowing = heldFish.AddComponent<BeingSuckedInWhole>();
                     swallowing.target = mouthAttack.throat.transform;
                     swallowing.animationLength = 1.5f;
-                    EcoTarget heldLeviathanEcoTarget = heldLeviathan.GetComponent<EcoTarget>();
+                    EcoTarget heldLeviathanEcoTarget = heldFish.GetComponent<EcoTarget>();
                     if (heldLeviathanEcoTarget != null)
                     {
                         Destroy(heldLeviathanEcoTarget);
                     }
-                    Destroy(heldLeviathan, 1.5f);
+                    Destroy(heldFish, 1.5f);
                 }
                 else
                 {
                     creatureLm.TakeDamage(10000f);
-                    foreach (Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
+                    foreach (Collider col in heldFish.GetComponentsInChildren<Collider>())
                     {
                         col.enabled = true;
                     }
-                    heldLeviathan = null;
+                    heldFish = null;
                 }
             }
             timeVehicleReleased = Time.time;
@@ -421,13 +421,13 @@ namespace RotA.Mono
         }
         public void Update()
         {
-            if (currentlyGrabbing != GrabType.None && heldVehicle == null && heldSubroot == null && heldLeviathan == null)
+            if (currentlyGrabbing != GrabType.None && heldVehicle == null && heldSubroot == null && heldFish == null)
             {
                 ReleaseVehicle();
             }
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", IsHoldingLeviathan());
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", IsHoldingFish());
             GameObject held = null;
             if (heldVehicle != null)
             {
@@ -437,9 +437,9 @@ namespace RotA.Mono
             {
                 held = heldSubroot.gameObject;
             }
-            if (heldLeviathan != null)
+            if (heldFish != null)
             {
-                held = heldLeviathan;
+                held = heldFish;
             }
             if (held != null)
             {

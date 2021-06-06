@@ -164,7 +164,7 @@ namespace RotA.Mono
                                 gargantuan.Hunger.Value = 0f;
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
-                                behaviour.GrabLeviathan(otherCreature.gameObject);
+                                behaviour.GrabFish(otherCreature.gameObject);
                                 return;
                             }
                         }
@@ -175,7 +175,7 @@ namespace RotA.Mono
                             {
                                 gargantuan.Aggression.Value -= 0.6f;
                                 gargantuan.Hunger.Value = 0f;
-                                behaviour.GrabLeviathan(otherCreature.gameObject);
+                                behaviour.GrabFish(otherCreature.gameObject);
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
                                 otherCreature.transform.localScale = Vector3.one * 0.5f;
