@@ -50,6 +50,14 @@ namespace RotA.Mono
 
 		private GameObject GetAggressionTarget()
 		{
+			if(creature.Hunger.Value >= 0.95f) 
+			{
+				IEcoTarget smallFish = EcoRegionManager.main.FindNearestTarget(EcoTargetType.SmallFish, transform.position, isTargetValidFilter, 2);
+				if (smallFish != null)
+                {
+					return smallFish.GetGameObject();
+                }
+			}
 			IEcoTarget ecoTarget = EcoRegionManager.main.FindNearestTarget(EcoTargetType.Shark, transform.position, isTargetValidFilter, 2);
 			if (ecoTarget == null)
 			{
