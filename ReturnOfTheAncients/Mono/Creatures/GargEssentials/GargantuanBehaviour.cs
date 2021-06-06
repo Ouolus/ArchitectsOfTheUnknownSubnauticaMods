@@ -2,6 +2,7 @@
 using ECCLibrary;
 using ECCLibrary.Internal;
 using RotA.Mono.Modules;
+using RotA.Prefabs;
 
 namespace RotA.Mono
 {
@@ -23,6 +24,7 @@ namespace RotA.Mono
         ECCAudio.AudioClipPool seamothSounds;
         ECCAudio.AudioClipPool exosuitSounds;
         ECCAudio.AudioClipPool cyclopsSounds;
+        public GargGrabFishMode grabFishMode;
 
         Collider[] subrootStoredColliders;
 
@@ -368,8 +370,20 @@ namespace RotA.Mono
             if (heldLeviathan != null)
             {
                 var creatureLm = heldLeviathan.GetComponent<LiveMixin>();
-                creatureLm.TakeDamage(10000f);
-                Destroy(heldLeviathan);
+                if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
+                {
+                    var swallowing = heldLeviathan.AddComponent<BeingSuckedInWhole>();
+                    swallowing.target = mouthAttack.throat.transform;
+                    swallowing.animationLength = 1f;
+                }
+                else
+                {
+                    creatureLm.TakeDamage(10000f);
+                    foreach(Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
+                    {
+                        col.enabled = true;
+                    }
+                }
             }
             timeVehicleReleased = Time.time;
             currentlyGrabbing = GrabType.None;

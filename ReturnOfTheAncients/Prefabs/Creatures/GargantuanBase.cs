@@ -118,6 +118,7 @@ namespace RotA.Prefabs
             gargBehaviour.creature = components.creature;
             gargBehaviour.attachBoneName = AttachBoneName;
             gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
+            gargBehaviour.grabFishMode = GrabFishMode;
             
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();

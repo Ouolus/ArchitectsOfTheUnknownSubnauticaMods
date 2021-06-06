@@ -16,7 +16,7 @@ namespace RotA.Mono
         private ECCAudio.AudioClipPool biteClipPool;
         private ECCAudio.AudioClipPool cinematicClipPool;
         private GargantuanBehaviour behaviour;
-        private GameObject throat;
+        public GameObject throat;
         private GargantuanRoar roar;
 
         private PlayerCinematicController playerDeathCinematic;
@@ -149,6 +149,14 @@ namespace RotA.Mono
                                     return;
                                 }
                             }
+                        }
+                        if (targetLm == null) return;
+                        if (!targetLm.IsAlive())
+                        {
+                            return;
+                        }
+                        if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow)
+                        {
                             Creature otherCreature = target.GetComponent<Creature>();
                             if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && (otherCreature is GhostLeviathan || otherCreature is GhostLeviatanVoid || otherCreature is ReaperLeviathan || otherCreature is SeaDragon))
                             {
@@ -157,11 +165,6 @@ namespace RotA.Mono
                                 behaviour.GrabLeviathan(otherCreature.gameObject);
                                 return;
                             }
-                        }
-                        if (targetLm == null) return;
-                        if (!targetLm.IsAlive())
-                        {
-                            return;
                         }
                         if (!CanAttackTargetFromPosition(target))
                         {
