@@ -137,7 +137,7 @@ namespace RotA.Mono
         }
         public bool IsHoldingPickupableFish()
         {
-            return currentlyGrabbing == GrabType.Fish && grabFishMode == GargGrabFishMode.PickupableOnly;
+            return currentlyGrabbing == GrabType.Fish && grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow;
         }
         public bool IsHoldingExosuit()
         {
@@ -374,17 +374,18 @@ namespace RotA.Mono
             if (heldFish != null)
             {
                 var creatureLm = heldFish.GetComponent<LiveMixin>();
-                if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
+                if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow)
                 {
+                    float animationLength = (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) ? 0.5f : 1.5f;
                     var swallowing = heldFish.AddComponent<BeingSuckedInWhole>();
                     swallowing.target = mouthAttack.throat.transform;
-                    swallowing.animationLength = 1.5f;
-                    EcoTarget heldLeviathanEcoTarget = heldFish.GetComponent<EcoTarget>();
-                    if (heldLeviathanEcoTarget != null)
+                    swallowing.animationLength = animationLength;
+                    EcoTarget heldFishEcoTarget = heldFish.GetComponent<EcoTarget>();
+                    if (heldFishEcoTarget != null)
                     {
-                        Destroy(heldLeviathanEcoTarget);
+                        Destroy(heldFishEcoTarget);
                     }
-                    Destroy(heldFish, 1.5f);
+                    Destroy(heldFish, animationLength);
                 }
                 else
                 {

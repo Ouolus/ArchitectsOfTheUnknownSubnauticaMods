@@ -377,6 +377,6 @@ namespace RotA.Prefabs
         CantGrabFish,
         LeviathansOnlyNoSwallow,
         LeviathansOnlyAndSwallow,
-        PickupableOnly
+        PickupableOnlyAndSwalllow
     }
 }

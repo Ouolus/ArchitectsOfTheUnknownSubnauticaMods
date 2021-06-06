@@ -95,7 +95,7 @@ namespace RotA.Prefabs
 
         public override float TurnSpeed => 1f;
 
-        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.PickupableOnly;
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.PickupableOnlyAndSwalllow;
 
         public override float EyeFov => 0.6f;
 

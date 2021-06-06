@@ -168,7 +168,7 @@ namespace RotA.Mono
                                 return;
                             }
                         }
-                        else if (grabFishMode == GargGrabFishMode.PickupableOnly) //baby "play with food" animation
+                        else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
                         {
                             Creature otherCreature = target.GetComponent<Creature>();
                             if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null)
