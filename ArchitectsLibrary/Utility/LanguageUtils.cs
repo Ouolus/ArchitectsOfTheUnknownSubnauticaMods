@@ -46,7 +46,7 @@ namespace ArchitectsLibrary.Utility
         /// <param name="key">The untranslated key. This key when translated should look something like this: '... {0}...{1}...`</param>
         /// <param name="button">The button to replace '{0}' in the translated text.</param>
         /// <param name="button2">Whatever you put here will replace '{1}' in the translated text. For modded input, use <see cref="FormatKeyCode(KeyCode)"/></param>
-        /// <returns></returns>
+        /// <returns>The formatted Buttons as a string.</returns>
         public static string GetMultipleButtonFormat(string key, GameInput.Button button, string button2)
         {
             string bindingName = GameInput.GetBindingName(button, GameInput.BindingSet.Primary, false);
@@ -67,7 +67,7 @@ namespace ArchitectsLibrary.Utility
         /// <param name="key">The untranslated key. This key when translated should look something like this: '... {0}...{1}...`</param>
         /// <param name="button">Whatever you put here will replace '{1}' in the translated text. For modded input, use <see cref="FormatKeyCode(KeyCode)"></see>.</param>
         /// <param name="button2">The button to replace '{0}' in the translated text</param>
-        /// <returns></returns>
+        /// <returns>The formatted Buttons as a string.</returns>
         public static string GetMultipleButtonFormat(string key, string button, GameInput.Button button2)
         {
             string bindingName = GameInput.GetBindingName(button2, GameInput.BindingSet.Primary, false);
@@ -85,8 +85,8 @@ namespace ArchitectsLibrary.Utility
         /// <summary>
         /// Converts a KeyCode into something that looks pretty.
         /// </summary>
-        /// <param name="keyCode"></param>
-        /// <returns></returns>
+        /// <param name="keyCode">Keycode to format</param>
+        /// <returns>The formatted keycode as a string.</returns>
         public static string FormatKeyCode(KeyCode keyCode)
         {
             string formattedKeyCode;
@@ -102,12 +102,8 @@ namespace ArchitectsLibrary.Utility
             }
             return formattedKeyCode;
         }
-
-        /// <summary>
-        /// Binding name strings and <see cref="GameInput.Button"/> are the preferred forms of input for Subnautica.
-        /// </summary>
-        /// <param name="keyCode"></param>
-        /// <returns></returns>
+        
+        // Binding name strings and GameInput.Button are the preferred forms of input for Subnautica.
         static string ConvertKeyCodeToBindingName(KeyCode keyCode)
         {
             if(keyCodeToBindingName.TryGetValue(keyCode.ToString(), out string bindingName))
@@ -117,9 +113,8 @@ namespace ArchitectsLibrary.Utility
             return keyCode.ToString();
         }
 
-        /// <summary>
-        /// Used for binding formatting for modded inputs. Converts it from Unity KeyCodes to the names used by <see cref="GameInput"/>.
-        /// </summary>
+
+        // Used for binding formatting for modded inputs. Converts it from Unity KeyCodes to the names used by GameInput.
         static readonly Dictionary<string, string> keyCodeToBindingName = new Dictionary<string, string>()
         {
             {
