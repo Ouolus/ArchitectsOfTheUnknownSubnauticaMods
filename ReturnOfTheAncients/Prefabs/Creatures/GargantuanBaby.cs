@@ -96,5 +96,7 @@ namespace RotA.Prefabs
         public override GargGrabFishMode GrabFishMode => GargGrabFishMode.SmallFishOnly;
 
         public override float EyeFov => 0.6f;
+
+        public override SmallVehicleAggressivenessSettings AggressivenessToSmallVehicles => new SmallVehicleAggressivenessSettings(0f, 0f);
     }
 }
