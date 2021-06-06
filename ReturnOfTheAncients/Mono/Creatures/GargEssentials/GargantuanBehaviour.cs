@@ -374,12 +374,18 @@ namespace RotA.Mono
                 {
                     var swallowing = heldLeviathan.AddComponent<BeingSuckedInWhole>();
                     swallowing.target = mouthAttack.throat.transform;
-                    swallowing.animationLength = 1f;
+                    swallowing.animationLength = 1.5f;
+                    EcoTarget heldLeviathanEcoTarget = heldLeviathan.GetComponent<EcoTarget>();
+                    if (heldLeviathanEcoTarget != null)
+                    {
+                        Destroy(heldLeviathanEcoTarget);
+                    }
+                    Destroy(heldLeviathan, 1.5f);
                 }
                 else
                 {
                     creatureLm.TakeDamage(10000f);
-                    foreach(Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
+                    foreach (Collider col in heldLeviathan.GetComponentsInChildren<Collider>())
                     {
                         col.enabled = true;
                     }
