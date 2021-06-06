@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using ECCLibrary;
 using ECCLibrary.Internal;
+using RotA.Prefabs;
 
 namespace RotA.Mono
 {
@@ -24,6 +25,7 @@ namespace RotA.Mono
         public bool oneShotPlayer;
         public string attachBoneName;
         public bool canPerformCyclopsCinematic;
+        public GargGrabFishMode grabFishMode;
 
         void Start()
         {

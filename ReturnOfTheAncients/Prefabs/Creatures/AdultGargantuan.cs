@@ -107,5 +107,7 @@ namespace RotA.Prefabs
         public override bool DoesScreenShake => true;
 
         public override float CloseRoarThreshold => 350f;
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.LeviathansOnlyAndSwallow;
     }
 }

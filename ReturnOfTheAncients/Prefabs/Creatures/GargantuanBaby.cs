@@ -90,5 +90,7 @@ namespace RotA.Prefabs
         public override ItemSoundsType ItemSounds => ItemSoundsType.Fish;
 
         public override float TurnSpeed => 1f;
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.SmallFishOnly;
     }
 }

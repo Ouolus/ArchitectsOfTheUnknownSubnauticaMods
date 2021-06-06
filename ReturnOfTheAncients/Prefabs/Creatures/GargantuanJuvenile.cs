@@ -35,5 +35,7 @@ namespace RotA.Prefabs
             base.AddCustomBehaviour(components);
             prefab.AddComponent<GargantuanEncounterPDA>();
         }
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.LeviathansOnlyNoSwallow;
     }
 }

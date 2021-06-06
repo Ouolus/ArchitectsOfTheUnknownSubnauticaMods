@@ -133,6 +133,7 @@ namespace RotA.Prefabs
             mouthAttack.oneShotPlayer = OneShotsPlayer;
             mouthAttack.attachBoneName = AttachBoneName;
             mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
+            mouthAttack.grabFishMode = GrabFishMode;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
@@ -346,6 +347,14 @@ namespace RotA.Prefabs
             }
         }
 
+        public virtual GargGrabFishMode GrabFishMode
+        {
+            get
+            {
+                return GargGrabFishMode.CantGrabFish;
+            }
+        }
+
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
         {
             liveMixinData.maxHealth = 50000f;
@@ -358,5 +367,13 @@ namespace RotA.Prefabs
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
         }
+    }
+
+    public enum GargGrabFishMode
+    {
+        CantGrabFish,
+        LeviathansOnlyNoSwallow,
+        LeviathansOnlyAndSwallow,
+        SmallFishOnly
     }
 }
