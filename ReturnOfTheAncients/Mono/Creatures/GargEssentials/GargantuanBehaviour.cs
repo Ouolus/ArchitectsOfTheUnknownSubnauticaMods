@@ -46,6 +46,26 @@ namespace RotA.Mono
             roar = GetComponent<GargantuanRoar>();
         }
 
+        GameObject CurrentHeldObject
+        {
+            get
+            {
+                if (heldVehicle != null)
+                {
+                    return heldVehicle.gameObject;
+                }
+                if (heldSubroot != null)
+                {
+                    return heldSubroot.gameObject;
+                }
+                if (heldFish != null)
+                {
+                    return heldFish;
+                }
+                return null;
+            }
+        }
+
         Transform GetHoldPoint()
         {
             return vehicleHoldPoint;
@@ -138,6 +158,10 @@ namespace RotA.Mono
         public bool IsHoldingPickupableFish()
         {
             return currentlyGrabbing == GrabType.Fish && grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow;
+        }
+        public bool IsGargJuvenile()
+        {
+            return grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow;
         }
         public bool IsHoldingExosuit()
         {
@@ -421,29 +445,26 @@ namespace RotA.Mono
             {
                 ReleaseVehicle();
             }
+
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", IsHoldingFish());
-            GameObject held = null;
-            if (heldVehicle != null)
+
+            if (CurrentHeldObject != null)
             {
-                held = heldVehicle.gameObject;
-            }
-            if (heldSubroot != null)
-            {
-                held = heldSubroot.gameObject;
-            }
-            if (heldFish != null)
-            {
-                held = heldFish;
-            }
-            if (held != null)
-            {
+                Transform held = CurrentHeldObject.transform;
                 Transform holdPoint = GetHoldPoint();
                 float num = Mathf.Clamp01(Time.time - timeVehicleGrabbed);
                 if (num >= 1f)
                 {
-                    held.transform.position = holdPoint.position;
+                    if (IsGargJuvenile())
+                    {
+                        held.transform.position = FixJuvenileHoldPosition(holdPoint, holdPoint.position);
+                    }
+                    else
+                    {
+                        held.transform.position = holdPoint.position;
+                    }
                     if (IsHoldingLargeSub())
                     {
                         held.transform.rotation = InverseRotation(holdPoint.transform.rotation); //cyclops faces backwards for whatever reason so we need to invert the rotation
@@ -458,7 +479,14 @@ namespace RotA.Mono
                     }
                     return;
                 }
-                held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
+                if (IsGargJuvenile())
+                {
+                    held.transform.position = (FixJuvenileHoldPosition(holdPoint, holdPoint.position) - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
+                }
+                else
+                {
+                    held.transform.position = (holdPoint.position - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
+                }
                 if (IsHoldingLargeSub())
                 {
                     held.transform.rotation = Quaternion.Lerp(this.vehicleInitialRotation, InverseRotation(holdPoint.rotation), num); //cyclops faces backwards for whatever reason so we need to invert the rotation
@@ -480,6 +508,10 @@ namespace RotA.Mono
         private Quaternion FixSmallFishRotation(Quaternion input)
         {
             return Quaternion.Euler(input.eulerAngles + new Vector3(0f, 0f, 90f));
+        }
+        private Vector3 FixJuvenileHoldPosition(Transform holdPoint, Vector3 input)
+        {
+            return input + (holdPoint.up * 3f);
         }
         public void OnTakeDamage(DamageInfo damageInfo)
         {
