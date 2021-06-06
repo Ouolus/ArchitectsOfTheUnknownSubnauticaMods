@@ -7,7 +7,7 @@ namespace RotA.Prefabs
 {
     public class GargantuanBaby : GargantuanBase
     {
-        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 4f, 0.5f, 0.1f);
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 2f, 1f, 0.1f);
         public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.39f, 9f);
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.38f, true, 5f);
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.organic;
