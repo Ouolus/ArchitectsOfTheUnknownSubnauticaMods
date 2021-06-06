@@ -24,6 +24,7 @@ namespace RotA.Mono
         ECCAudio.AudioClipPool seamothSounds;
         ECCAudio.AudioClipPool exosuitSounds;
         ECCAudio.AudioClipPool cyclopsSounds;
+        LastTarget lastTarget;
         public GargGrabFishMode grabFishMode;
 
         Collider[] subrootStoredColliders;
@@ -44,6 +45,7 @@ namespace RotA.Mono
             cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
             roar = GetComponent<GargantuanRoar>();
+            lastTarget = gameObject.GetComponent<LastTarget>();
         }
 
         GameObject CurrentHeldObject
@@ -250,7 +252,7 @@ namespace RotA.Mono
         }
         private void GrabVehicle(Vehicle vehicle, GrabType vehicleType)
         {
-            vehicle.GetComponent<Rigidbody>().isKinematic = true;
+            vehicle.useRigidbody.isKinematic = true;
             vehicle.collisionModel.SetActive(false);
             heldVehicle = vehicle;
             currentlyGrabbing = vehicleType;
@@ -380,7 +382,7 @@ namespace RotA.Mono
                         component.cinematicMode = false;
                     }
                 }
-                heldVehicle.GetComponent<Rigidbody>().isKinematic = false;
+                heldVehicle.useRigidbody.isKinematic = false;
                 heldVehicle.collisionModel.SetActive(true);
                 heldVehicle = null;
             }
@@ -421,7 +423,6 @@ namespace RotA.Mono
             CancelInvoke("DamageVehicle");
             mouthAttack.OnVehicleReleased();
             MainCameraControl.main.ShakeCamera(0f, 0f);
-            var lastTarget = gameObject.GetComponent<LastTarget>();
             if (lastTarget) lastTarget.target = null;
         }
 
@@ -540,8 +541,7 @@ namespace RotA.Mono
                 creature.Aggression.Value = 0f;
                 timeCanAttackAgain = Time.time + 5f;
             }
-            var lastTarget = gameObject.GetComponent<LastTarget>();
-            if (lastTarget) lastTarget.target = null;
+            if (lastTarget != null) lastTarget.target = null;
             roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
         }
     }
