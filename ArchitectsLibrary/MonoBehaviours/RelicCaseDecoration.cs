@@ -8,7 +8,7 @@ namespace ArchitectsLibrary.MonoBehaviours
     {
         public Transform spawnPosition;
         
-        // add whatever other item to be displayed
+        // add whatever other item thats allowed to be displayed
         List<TechType> _allowedTechTypes = new()
         {
             TechType.Titanium,
@@ -21,10 +21,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         
         bool _initialized;
 
-        void Awake()
-        {
-            _storageContainer = GetComponent<StorageContainer>();
-        }
+        void Awake() => _storageContainer = GetComponent<StorageContainer>();
 
         void OnEnable()
         {
