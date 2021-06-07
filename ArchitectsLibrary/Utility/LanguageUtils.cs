@@ -62,27 +62,6 @@ namespace ArchitectsLibrary.Utility
         }
 
         /// <summary>
-        /// A format with support for multiple buttons rather than just one. This overload allows you to put in a custom mod keybinding if you want.
-        /// </summary>
-        /// <param name="key">The untranslated key. This key when translated should look something like this: '... {0}...{1}...`</param>
-        /// <param name="button">Whatever you put here will replace '{1}' in the translated text. For modded input, use <see cref="FormatKeyCode(KeyCode)"></see>.</param>
-        /// <param name="button2">The button to replace '{0}' in the translated text</param>
-        /// <returns>The formatted Buttons as a string.</returns>
-        public static string GetMultipleButtonFormat(string key, string button, GameInput.Button button2)
-        {
-            string bindingName = GameInput.GetBindingName(button2, GameInput.BindingSet.Primary, false);
-            MultipleButtonCache orAddNew = translatedButtonCache.GetOrAddNew(key);
-            if (orAddNew.button != button2 || orAddNew.bindingName != bindingName || orAddNew.bindingName2 != button || string.IsNullOrEmpty(orAddNew.cachedUIText))
-            {
-                orAddNew.button = button2;
-                orAddNew.bindingName = bindingName;
-                orAddNew.bindingName2 = button;
-                orAddNew.cachedUIText = Language.main.GetFormat(key, button, uGUI.FormatButton(button2));
-            }
-            return orAddNew.cachedUIText;
-        }
-
-        /// <summary>
         /// Converts a KeyCode into something that looks pretty.
         /// </summary>
         /// <param name="keyCode">Keycode to format</param>
