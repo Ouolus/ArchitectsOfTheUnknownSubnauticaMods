@@ -494,7 +494,7 @@ namespace RotA.Mono.Equipment
             if (GetBatteryPercent() >= 0.50f)
             {
                 energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
-                animations.SetOverrideSpinSpeed(10f, 3f);
+                animations.SetOverrideSpinSpeed(10f, 2f);
                 var lastValidSub = Player.main.lastValidSub;
                 if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
                 {
@@ -514,7 +514,7 @@ namespace RotA.Mono.Equipment
             }
             else
             {
-                ErrorMessage.AddMessage("You must have above 50% energy to perform this action.");
+                ErrorMessage.AddMessage("You must have 50% or more battery charge to perform this action.");
             }
         }
 
