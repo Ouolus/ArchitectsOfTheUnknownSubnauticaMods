@@ -84,6 +84,11 @@ namespace ArchitectsLibrary.Buildables
             return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>(GetSpriteName));
         }
 
+        /// <summary>
+        /// Cell level of the buildable object.
+        /// </summary>
+        protected virtual LargeWorldEntity.CellLevel CellLevel { get { return LargeWorldEntity.CellLevel.Medium; } }
+
 #if SN1
         public override GameObject GetGameObject()
         {
@@ -108,7 +113,7 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<ConstructionObstacle>(buildablePrefab);
             buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
-            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
+            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = CellLevel;
             SkyApplier sky = buildablePrefab.EnsureComponent<SkyApplier>();
             Constructable con = buildablePrefab.AddComponent<Constructable>();
             con.model = model;
@@ -167,7 +172,7 @@ namespace ArchitectsLibrary.Buildables
             DeleteChildComponentIfExists<ConstructionObstacle>(buildablePrefab);
             buildablePrefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             buildablePrefab.EnsureComponent<TechTag>().type = TechType;
-            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
+            buildablePrefab.EnsureComponent<LargeWorldEntity>().cellLevel = CellLevel;
             SkyApplier sky = buildablePrefab.EnsureComponent<SkyApplier>();
             Constructable con = buildablePrefab.AddComponent<Constructable>();
             con.model = model;
