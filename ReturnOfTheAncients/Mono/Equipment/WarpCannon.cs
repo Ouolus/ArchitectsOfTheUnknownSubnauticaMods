@@ -493,7 +493,7 @@ namespace RotA.Mono.Equipment
         {
             if (GetBatteryPercent() >= 0.50f)
             {
-                energyMixin.ConsumeEnergy(energyMixin.charge / energyMixin.capacity);
+                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
                 animations.SetOverrideSpinSpeed(10f, 3f);
                 var lastValidSub = Player.main.lastValidSub;
                 if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
