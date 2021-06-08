@@ -510,7 +510,19 @@ namespace RotA.Mono.Equipment
             {
                 energyMixin.ConsumeEnergy(energyMixin.charge / energyMixin.capacity);
                 animations.SetOverrideSpinSpeed(10f, 3f);
-                ErrorMessage.AddMessage("Teleporting");
+                var lastValidSub = Player.main.lastValidSub;
+                if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
+                {
+                    var respawnPoint = lastValidSub.gameObject.GetComponentInChildren<RespawnPoint>();
+                    if (respawnPoint != null)
+                    {
+                        Player.main.SetPosition(respawnPoint.GetSpawnPosition());
+                        Player.main.SetCurrentSub(lastValidSub);
+                        return;
+                    }
+                }
+                EscapePod.main.RespawnPlayer();
+                Player.main.SetCurrentSub(null);
             }
             else
             {
