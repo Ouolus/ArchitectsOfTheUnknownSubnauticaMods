@@ -508,6 +508,9 @@ namespace RotA.Mono.Equipment
                 }
                 EscapePod.main.RespawnPlayer();
                 Player.main.SetCurrentSub(null);
+                Vector3 playerPosition = Player.main.transform.position;
+                Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
+                Utils.PlayFMODAsset(portalOpenSound, playerPosition);
             }
             else
             {
