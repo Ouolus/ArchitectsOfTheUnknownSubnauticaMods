@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableRelicTank : GenericPrecursorDecoration
     {
-        public BuildableRelicTank() : base("BuildableRelicTank", "Relic Case", "An empty relic case. Placeable inside and outside.")
+        public BuildableRelicTank() : base("BuildableRelicTank", "Relic Case", "An empty relic case. Can hold 1 item. Placeable inside and outside.")
         {
         }
 

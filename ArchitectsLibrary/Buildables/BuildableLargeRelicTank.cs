@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableLargeRelicTank : GenericPrecursorDecoration
     {
-        public BuildableLargeRelicTank() : base("BuildableLargeRelicTank", "Large Relic Case", "A large, empty relic case. Placeable inside and outside.")
+        public BuildableLargeRelicTank() : base("BuildableLargeRelicTank", "Large Relic Case", "A large, empty relic case. Can hold 3 items. Placeable inside and outside.")
         {
         }
 
