@@ -50,7 +50,8 @@ namespace ArchitectsLibrary.MonoBehaviours
         bool IsAllowedToAdd(Pickupable pickupable, bool verbose)
         {
             var tt = pickupable.GetTechType();
-            return _allowedTechTypes.Contains(tt);
+            if (_allowedTechTypes.Contains(tt)) return false;
+            return _storageContainer.container.count < 1;
         }
         void AddItem(InventoryItem item) => Spawn(item.item.gameObject);
 
