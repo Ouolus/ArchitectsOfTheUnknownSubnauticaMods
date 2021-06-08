@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.API
 {
     /// <summary>
-    /// Use this to allow/disallow items from your mod to be placed in Architect Library's display items (currently just relic tanks and pedestals).
+    /// Use this to allow/disallow items from your mod to be placed in Architect Library's display buildables (currently just relic tanks and pedestals).
     /// </summary>
-    public static class ResourceDisplayServices
+    public static class DisplayCaseServices
     {
         internal static readonly List<TechType> whitelistedTechTypes = new List<TechType>();
         internal static readonly List<TechType> blacklistedTechTypes = new List<TechType>();
-        internal static readonly Dictionary<TechType, float> overrideItemScaleInDisplayCase = new Dictionary<TechType, float>();
+        internal static readonly Dictionary<TechType, float> overrideItemScaleInRelicTank = new Dictionary<TechType, float>();
         internal static readonly Dictionary<TechType, float> overrideItemScaleInPedestal = new Dictionary<TechType, float>();
 
         /// <summary>
@@ -49,12 +50,25 @@ namespace ArchitectsLibrary.API
         /// <param name="newScale"></param>
         public static void SetScaleInRelicTank(TechType techType, float newScale)
         {
-            overrideItemScaleInDisplayCase[techType] = newScale;
+            overrideItemScaleInRelicTank[techType] = newScale;
         }
 
         public static void SetScaleInPedestal(TechType techType, float newScale)
         {
             overrideItemScaleInPedestal[techType] = newScale;
+        }
+
+        internal static float GetScaleForItem(TechType techType, DisplayCaseType displayCaseType)
+        {
+            switch (displayCaseType)
+            {
+                default:
+                    return 1f;
+                case DisplayCaseType.RelicTank:
+                    return overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f);
+                case DisplayCaseType.Pedestal:
+                    return overrideItemScaleInPedestal.GetOrDefault(techType, 1.25f);
+            }
         }
     }
 }

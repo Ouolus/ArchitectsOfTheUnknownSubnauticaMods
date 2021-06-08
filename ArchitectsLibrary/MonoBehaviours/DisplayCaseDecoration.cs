@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.API;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
-    class RelicCaseDecoration : MonoBehaviour
+    class DisplayCaseDecoration : MonoBehaviour
     {
         public Transform[] spawnPositions;
+        public DisplayCaseType displayCaseType;
 
         // add whatever other item thats allowed to be displayed
         List<TechType> _allowedTechTypes = new()
@@ -109,7 +111,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         GameObject[] _spawnedObjs;
 
         StorageContainer _storageContainer;
-        
+
         bool _initialized;
 
         void Awake()
@@ -120,7 +122,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void Start()
         {
-            foreach(InventoryItem item in _storageContainer.container)
+            foreach (InventoryItem item in _storageContainer.container)
             {
                 Spawn(item.item.gameObject);
             }
@@ -154,6 +156,8 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             var tt = pickupable.GetTechType();
             if (!_allowedTechTypes.Contains(tt)) return false;
+            if (!DisplayCaseServices.whitelistedTechTypes.Contains(tt)) return false;
+            if (DisplayCaseServices.blacklistedTechTypes.Contains(tt)) return false;
             return _storageContainer.container.count < spawnPositions.Length;
         }
 
@@ -164,7 +168,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         void Spawn(GameObject obj)
         {
             Transform spawnPosition = GetEmptySpawnPosition(out int spawnedObjIndex);
-            if(spawnPosition == null)
+            if (spawnPosition == null)
             {
                 return;
             }
@@ -173,7 +177,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             Destroy(spawnedObj.GetComponent<Rigidbody>());
             Destroy(spawnedObj.GetComponent<WorldForces>());
             spawnedObj.EnsureComponent<SpinInRelicCase>();
-            spawnedObj.transform.localScale = Vector3.one * 1.25f;
+            spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(obj.GetComponent<Pickupable>().GetTechType(), displayCaseType);
             spawnedObj.transform.localPosition = Vector3.zero;
             spawnedObj.SetActive(true);
         }
@@ -184,7 +188,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 return;
 
             int index = GetSpawnedObjWithMatchingTechType(item.item.GetComponent<Pickupable>().GetTechType());
-            if(index > -1)
+            if (index > -1)
             {
                 Destroy(_spawnedObjs[index]);
             }
@@ -194,7 +198,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             for (int i = 0; i < spawnPositions.Length; i++)
             {
-                if(spawnPositions[i].childCount == 0)
+                if (spawnPositions[i].childCount == 0)
                 {
                     index = i;
                     return spawnPositions[i];
@@ -208,17 +212,23 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             for (int i = 0; i < _spawnedObjs.Length; i++)
             {
-                if(_spawnedObjs[i] == null)
+                if (_spawnedObjs[i] == null)
                 {
                     continue;
                 }
                 TechType tt = CraftData.GetTechType(_spawnedObjs[i]);
-                if(tt == techType)
+                if (tt == techType)
                 {
                     return i;
                 }
             }
             return -1;
         }
+    }
+
+    enum DisplayCaseType
+    {
+        RelicTank,
+        Pedestal
     }
 }

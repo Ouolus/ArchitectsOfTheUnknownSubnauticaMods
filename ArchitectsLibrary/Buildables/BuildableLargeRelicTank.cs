@@ -46,7 +46,9 @@ namespace ArchitectsLibrary.Buildables
             storageContainer.storageRoot.ClassId = "BuildableLargeRelicTankContainer";
             storageContainer.preventDeconstructionIfNotEmpty = true;
 
-            prefab.EnsureComponent<RelicCaseDecoration>().spawnPositions = new Transform[] { spawnPosition.transform, spawnPosition2.transform, spawnPosition3.transform };
+            var displayCase = prefab.EnsureComponent<DisplayCaseDecoration>();
+            displayCase.spawnPositions = new Transform[] { spawnPosition.transform, spawnPosition2.transform, spawnPosition3.transform };
+            displayCase.displayCaseType = DisplayCaseType.RelicTank;
         }
     }
 }

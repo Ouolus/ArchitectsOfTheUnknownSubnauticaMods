@@ -124,7 +124,7 @@
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
-    <Compile Include="API\ResourceDisplayServices.cs" />
+    <Compile Include="API\DisplayCaseServices.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
@@ -199,7 +199,7 @@
     <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
-    <Compile Include="MonoBehaviours\RelicCaseDecoration.cs" />
+    <Compile Include="MonoBehaviours\DisplayCaseDecoration.cs" />
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
     <Compile Include="MonoBehaviours\SpinInRelicCase.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
