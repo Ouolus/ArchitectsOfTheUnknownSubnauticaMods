@@ -13,7 +13,6 @@ namespace ArchitectsLibrary.MonoBehaviours
         List<TechType> _allowedTechTypes = new()
         {
             TechType.Quartz,
-            TechType.ScrapMetal,
             TechType.FiberMesh,
             TechType.Copper,
             TechType.Lead,
@@ -66,7 +65,6 @@ namespace ArchitectsLibrary.MonoBehaviours
             TechType.Compass,
             TechType.AirBladder,
             TechType.Terraformer,
-            TechType.Pipe,
             TechType.Thermometer,
             TechType.DiveReel,
             TechType.Rebreather,
