@@ -97,7 +97,6 @@ namespace ArchitectsLibrary.MonoBehaviours
             TechType.StarshipSouvenir,
             TechType.ArcadeGorgetoy,
             TechType.ToyCar,
-            TechType.Seaglide,
             AUHandler.EmeraldTechType,
             AUHandler.SapphireTechType,
             AUHandler.RedBerylTechType,
