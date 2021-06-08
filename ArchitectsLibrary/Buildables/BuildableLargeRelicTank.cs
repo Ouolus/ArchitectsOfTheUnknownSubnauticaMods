@@ -32,17 +32,18 @@ namespace ArchitectsLibrary.Buildables
 
             var spawnPosition2 = new GameObject("SpawnPosition2");
             spawnPosition2.transform.SetParent(prefab.transform);
-            spawnPosition2.transform.localPosition = new(0f, 1.3f, 2f);
+            spawnPosition2.transform.localPosition = new(0f, 1.3f, 1.5f);
 
             var spawnPosition3 = new GameObject("SpawnPosition3");
             spawnPosition3.transform.SetParent(prefab.transform);
-            spawnPosition3.transform.localPosition = new(0f, 1.3f, -2f);
+            spawnPosition3.transform.localPosition = new(0f, 1.3f, -1.5f);
 
             var storageContainer = prefab.EnsureComponent<StorageContainer>();
             storageContainer.height = 2;
             storageContainer.width = 2;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.storageRoot.ClassId = "BuildableLargeRelicTankContainer";
             storageContainer.preventDeconstructionIfNotEmpty = true;
 
             prefab.EnsureComponent<RelicCaseDecoration>().spawnPositions = new Transform[] { spawnPosition.transform, spawnPosition2.transform, spawnPosition3.transform };

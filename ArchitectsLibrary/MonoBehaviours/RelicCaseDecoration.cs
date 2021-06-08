@@ -191,7 +191,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         private bool ContainerAlreadyHasItemWithSameTechType(TechType techType)
         {
-            return _storageContainer.container.GetItems(techType).Count > 0;
+            var itemsMatchingTechType = _storageContainer.container.GetItems(techType);
+            if (itemsMatchingTechType is null)
+            {
+                return false;
+            }
+            return itemsMatchingTechType.Count > 0;
         }
 
         int GetSpawnedObjWithMatchingTechType(TechType techType)

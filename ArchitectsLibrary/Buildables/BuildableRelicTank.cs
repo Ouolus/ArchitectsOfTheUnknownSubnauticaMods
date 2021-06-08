@@ -35,6 +35,7 @@ namespace ArchitectsLibrary.Buildables
             storageContainer.width = 2;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.storageRoot.ClassId = "BuildableRelicTankContainer";
             storageContainer.preventDeconstructionIfNotEmpty = true;
 
             prefab.EnsureComponent<RelicCaseDecoration>().spawnPositions = new Transform[] { spawnPosition.transform };
