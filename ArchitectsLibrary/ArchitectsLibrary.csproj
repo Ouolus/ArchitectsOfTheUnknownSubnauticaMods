@@ -124,6 +124,7 @@
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
+    <Compile Include="API\ResourceDisplayServices.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
