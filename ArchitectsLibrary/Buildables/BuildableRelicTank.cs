@@ -35,6 +35,7 @@ namespace ArchitectsLibrary.Buildables
             storageContainer.width = 1;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.preventDeconstructionIfNotEmpty = true;
             
             prefab.EnsureComponent<RelicCaseDecoration>().spawnPosition = spawnPosition.transform;
         }
