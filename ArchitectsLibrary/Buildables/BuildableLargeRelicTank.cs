@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -21,6 +22,30 @@ namespace ArchitectsLibrary.Buildables
         protected override void EditPrefab(GameObject prefab)
         {
             prefab.GetComponentInChildren<Collider>().transform.localPosition = new Vector3(0f, 0.1f, 0f);
+
+            var storageRoot = new GameObject("StorageRoot");
+            storageRoot.transform.SetParent(prefab.transform);
+
+            var spawnPosition = new GameObject("SpawnPosition");
+            spawnPosition.transform.SetParent(prefab.transform);
+            spawnPosition.transform.localPosition = new(0f, 1.3f, 0f);
+
+            var spawnPosition2 = new GameObject("SpawnPosition2");
+            spawnPosition2.transform.SetParent(prefab.transform);
+            spawnPosition2.transform.localPosition = new(0f, 1.3f, 2f);
+
+            var spawnPosition3 = new GameObject("SpawnPosition3");
+            spawnPosition3.transform.SetParent(prefab.transform);
+            spawnPosition3.transform.localPosition = new(0f, 1.3f, -2f);
+
+            var storageContainer = prefab.EnsureComponent<StorageContainer>();
+            storageContainer.height = 2;
+            storageContainer.width = 2;
+            storageContainer.prefabRoot = prefab;
+            storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.preventDeconstructionIfNotEmpty = true;
+
+            prefab.EnsureComponent<RelicCaseDecoration>().spawnPositions = new Transform[] { spawnPosition.transform, spawnPosition2.transform, spawnPosition3.transform };
         }
     }
 }
