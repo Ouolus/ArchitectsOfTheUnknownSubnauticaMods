@@ -91,13 +91,20 @@ namespace ArchitectsLibrary.MonoBehaviours
             TechType.Snack2,
             TechType.Snack3,
             TechType.Coffee,
+            TechType.HatchingEnzymes,
+            TechType.SeaTreaderPoop,
+            TechType.AcidMushroom,
+            TechType.StarshipSouvenir,
+            TechType.ArcadeGorgetoy,
+            TechType.ToyCar,
+            TechType.Seamoth,
             AUHandler.EmeraldTechType,
             AUHandler.SapphireTechType,
             AUHandler.RedBerylTechType,
             AUHandler.MorganiteTechType,
             AUHandler.ElectricubeTechType,
             AUHandler.RedIonCubeTechType,
-            AUHandler.PrecursorAlloyIngotTechType
+            AUHandler.PrecursorAlloyIngotTechType,
         };
 
         GameObject[] _spawnedObjs;
