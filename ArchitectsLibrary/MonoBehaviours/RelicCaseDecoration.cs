@@ -148,7 +148,6 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             var tt = pickupable.GetTechType();
             if (!_allowedTechTypes.Contains(tt)) return false;
-            if (ContainerAlreadyHasItemWithSameTechType(pickupable.GetTechType())) return false;
             return _storageContainer.container.count < spawnPositions.Length;
         }
 
@@ -196,16 +195,6 @@ namespace ArchitectsLibrary.MonoBehaviours
             }
             index = -1;
             return null;
-        }
-
-        private bool ContainerAlreadyHasItemWithSameTechType(TechType techType)
-        {
-            var itemsMatchingTechType = _storageContainer.container.GetItems(techType);
-            if (itemsMatchingTechType is null)
-            {
-                return false;
-            }
-            return itemsMatchingTechType.Count > 0;
         }
 
         int GetSpawnedObjWithMatchingTechType(TechType techType)
