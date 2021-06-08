@@ -50,7 +50,7 @@ namespace RotA.Mono.Equipment
 
         public FireMode fireMode = FireMode.Warp;
 
-        List<IPropulsionCannonAmmo> iammoCache = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
+        List<IPropulsionCannonAmmo> iammoCache = new(); //IDK why this exists but the propulsion cannon does it
 
         /// <summary>
         /// Controls what happens when you right click.
@@ -62,22 +62,16 @@ namespace RotA.Mono.Equipment
             {
                 return true;
             }
-            if (Time.time > timeCanUseAgain)
+
+            if (!(Time.time > timeCanUseAgain)) return false;
+            
+            return fireMode switch
             {
-                if (fireMode == FireMode.Manipulate)
-                {
-                    return FireManipulateMode();
-                }
-                else if (fireMode == FireMode.Warp)
-                {
-                    return FireWarpMode();
-                }
-                else if (fireMode == FireMode.CreatureSpawn)
-                {
-                    return FireCreatureSpawnMode();
-                }
-            }
-            return false;
+                FireMode.Manipulate => FireManipulateMode(),
+                FireMode.Warp => FireWarpMode(),
+                FireMode.CreatureSpawn => FireCreatureSpawnMode(),
+                _ => false
+            };
         }
 
         /// <summary>
@@ -87,11 +81,10 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         static bool PositionAboveWater(float y)
         {
-            float oceanLevel;
 #if SN1
-            oceanLevel = Ocean.main.GetOceanLevel();
+            var oceanLevel = Ocean.main.GetOceanLevel();
 #else
-                oceanLevel = Ocean.GetOceanLevel();
+            var oceanLevel = Ocean.GetOceanLevel();
 #endif
             return y > oceanLevel;
         }
@@ -101,7 +94,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
-            string biomeName = "";
+            var biomeName = "";
             if (LargeWorld.main)
             {
                 biomeName = LargeWorld.main.GetBiome(warpPosition);
@@ -151,15 +144,12 @@ namespace RotA.Mono.Equipment
         WarperData.WarpInCreature GetRandomLandCreatures()
         {
             float random = Random.value;
-            if (random < 0.33f)
+            return random switch
             {
-                return new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 };
-            }
-            if (random < 0.67f)
-            {
-                return new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 };
-            }
-            return new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 };
+                < 0.33f => new WarperData.WarpInCreature() {techType = TechType.Skyray, minNum = 2, maxNum = 3},
+                < 0.67f => new WarperData.WarpInCreature() {techType = TechType.CaveCrawler, minNum = 1, maxNum = 2},
+                _ => new WarperData.WarpInCreature() {techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1}
+            };
         }
 
         // Yoinked from WarpBall.cs
@@ -569,26 +559,28 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         public override string GetCustomUseText()
         {
-            if (fireMode == FireMode.Warp)
+            return fireMode switch
             {
-                return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool, ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey));
-            }
-            if (fireMode == FireMode.Manipulate)
-            {
-                if (myPrimaryNode == null)
-                {
-                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
-                }
-                else if (mySecondaryNode == null)
-                {
-                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
-                }
-            }
-            if (fireMode == FireMode.CreatureSpawn)
-            {
-                return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
-            }
-            return base.GetCustomUseText();
+                FireMode.Warp => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                    Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool,
+                    ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)),
+                
+                FireMode.Manipulate when myPrimaryNode == null =>
+                    ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                        Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool,
+                        GameInput.Button.RightHand),
+                
+                FireMode.Manipulate when mySecondaryNode == null =>
+                    ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                        Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool,
+                        GameInput.Button.RightHand),
+                
+                FireMode.CreatureSpawn => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                    Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool,
+                    GameInput.Button.RightHand),
+                
+                _ => base.GetCustomUseText()
+            };
         }
 
         /// <summary>
@@ -624,22 +616,20 @@ namespace RotA.Mono.Equipment
             }
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
             animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
-            if (fireMode == FireMode.Warp)
+            switch (fireMode)
             {
-                fireMode = FireMode.Manipulate;
-                return true;
+                case FireMode.Warp:
+                    fireMode = FireMode.Manipulate;
+                    return true;
+                case FireMode.Manipulate:
+                    fireMode = FireMode.CreatureSpawn;
+                    return true;
+                case FireMode.CreatureSpawn:
+                    fireMode = FireMode.Warp;
+                    return true;
+                default:
+                    return false;
             }
-            if (fireMode == FireMode.Manipulate)
-            {
-                fireMode = FireMode.CreatureSpawn;
-                return true;
-            }
-            if (fireMode == FireMode.CreatureSpawn)
-            {
-                fireMode = FireMode.Warp;
-                return true;
-            }
-            return false;
         }
 
         /// <summary>
