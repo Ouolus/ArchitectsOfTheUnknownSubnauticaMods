@@ -112,6 +112,14 @@ namespace ArchitectsLibrary.MonoBehaviours
             _spawnedObjs = new GameObject[spawnPositions.Length];
         }
 
+        void Start()
+        {
+            foreach(InventoryItem item in _storageContainer.container)
+            {
+                Spawn(item.item.gameObject);
+            }
+        }
+
         void OnEnable()
         {
             if (!_initialized)
@@ -143,6 +151,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             if (ContainerAlreadyHasItemWithSameTechType(pickupable.GetTechType())) return false;
             return _storageContainer.container.count < spawnPositions.Length;
         }
+
         void AddItem(InventoryItem item) => Spawn(item.item.gameObject);
 
         void RemoveItem(InventoryItem item) => DeSpawn(item);
