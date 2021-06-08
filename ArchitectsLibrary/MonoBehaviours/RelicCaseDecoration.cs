@@ -7,7 +7,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 {
     class RelicCaseDecoration : MonoBehaviour
     {
-        public Transform spawnPosition;
+        public Transform[] spawnPositions;
 
         // add whatever other item thats allowed to be displayed
         List<TechType> _allowedTechTypes = new()
@@ -100,13 +100,17 @@ namespace ArchitectsLibrary.MonoBehaviours
             AUHandler.PrecursorAlloyIngotTechType
         };
 
-        GameObject _spawnedObj;
+        GameObject[] _spawnedObjs;
 
         StorageContainer _storageContainer;
         
         bool _initialized;
 
-        void Awake() => _storageContainer = GetComponent<StorageContainer>();
+        void Awake()
+        {
+            _storageContainer = GetComponent<StorageContainer>();
+            _spawnedObjs = new GameObject[spawnPositions.Length];
+        }
 
         void OnEnable()
         {
@@ -136,28 +140,75 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             var tt = pickupable.GetTechType();
             if (!_allowedTechTypes.Contains(tt)) return false;
-            return _storageContainer.container.count < 1;
+            if (ContainerAlreadyHasItemWithSameTechType(pickupable.GetTechType())) return false;
+            return _storageContainer.container.count < spawnPositions.Length;
         }
         void AddItem(InventoryItem item) => Spawn(item.item.gameObject);
 
-        void RemoveItem(InventoryItem item) => DeSpawn();
+        void RemoveItem(InventoryItem item) => DeSpawn(item);
 
         void Spawn(GameObject obj)
         {
-            _spawnedObj = Instantiate(obj, spawnPosition, false);
-            Destroy(_spawnedObj.GetComponent<Rigidbody>());
-            Destroy(_spawnedObj.GetComponent<WorldForces>());
-            _spawnedObj.EnsureComponent<SpinInRelicCase>();
-            _spawnedObj.transform.localScale = Vector3.one * 1.25f;
-            _spawnedObj.SetActive(true);
+            Transform spawnPosition = GetEmptySpawnPosition(out int spawnedObjIndex);
+            if(spawnPosition == null)
+            {
+                return;
+            }
+            _spawnedObjs[spawnedObjIndex] = Instantiate(obj, spawnPosition, false);
+            GameObject spawnedObj = _spawnedObjs[spawnedObjIndex];
+            Destroy(spawnedObj.GetComponent<Rigidbody>());
+            Destroy(spawnedObj.GetComponent<WorldForces>());
+            spawnedObj.EnsureComponent<SpinInRelicCase>();
+            spawnedObj.transform.localScale = Vector3.one * 1.25f;
+            spawnedObj.SetActive(true);
         }
 
-        void DeSpawn()
+        void DeSpawn(InventoryItem item)
         {
-            if (_spawnedObj == null)
+            if (_spawnedObjs == null)
                 return;
-            
-            Destroy(_spawnedObj);
+
+            int index = GetSpawnedObjWithMatchingTechType(item.item.GetComponent<Pickupable>().GetTechType());
+            if(index > -1)
+            {
+                Destroy(_spawnedObjs[index]);
+            }
+        }
+
+        private Transform GetEmptySpawnPosition(out int index)
+        {
+            for (int i = 0; i < spawnPositions.Length; i++)
+            {
+                if(spawnPositions[i].childCount == 0)
+                {
+                    index = i;
+                    return spawnPositions[i];
+                }
+            }
+            index = -1;
+            return null;
+        }
+
+        private bool ContainerAlreadyHasItemWithSameTechType(TechType techType)
+        {
+            return _storageContainer.container.GetItems(techType).Count > 0;
+        }
+
+        int GetSpawnedObjWithMatchingTechType(TechType techType)
+        {
+            for (int i = 0; i < _spawnedObjs.Length; i++)
+            {
+                if(_spawnedObjs[i] == null)
+                {
+                    continue;
+                }
+                TechType tt = CraftData.GetTechType(_spawnedObjs[i]);
+                if(tt == techType)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
