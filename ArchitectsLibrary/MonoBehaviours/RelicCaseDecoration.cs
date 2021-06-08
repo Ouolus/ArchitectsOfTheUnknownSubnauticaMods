@@ -147,6 +147,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             _spawnedObj = Instantiate(obj, spawnPosition, false);
             Destroy(_spawnedObj.GetComponent<Rigidbody>());
             Destroy(_spawnedObj.GetComponent<WorldForces>());
+            _spawnedObj.EnsureComponent<SpinInRelicCase>();
             _spawnedObj.SetActive(true);
         }
 
