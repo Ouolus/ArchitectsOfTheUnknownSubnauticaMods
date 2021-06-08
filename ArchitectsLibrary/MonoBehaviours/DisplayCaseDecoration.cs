@@ -175,7 +175,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             GameObject spawnedObj = _spawnedObjs[spawnedObjIndex];
             Destroy(spawnedObj.GetComponent<Rigidbody>());
             Destroy(spawnedObj.GetComponent<WorldForces>());
-            spawnedObj.EnsureComponent<SpinInRelicCase>();
+            if (displayCaseType == DisplayCaseType.RelicTank) spawnedObj.EnsureComponent<SpinInRelicCase>();
             spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(obj.GetComponent<Pickupable>().GetTechType(), displayCaseType);
             spawnedObj.transform.localPosition = Vector3.zero;
             spawnedObj.SetActive(true);
