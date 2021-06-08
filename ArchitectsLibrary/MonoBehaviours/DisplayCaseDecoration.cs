@@ -155,8 +155,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         bool IsAllowedToAdd(Pickupable pickupable, bool verbose)
         {
             var tt = pickupable.GetTechType();
-            if (!_allowedTechTypes.Contains(tt)) return false;
-            if (!DisplayCaseServices.whitelistedTechTypes.Contains(tt)) return false;
+            if (!_allowedTechTypes.Contains(tt) && !DisplayCaseServices.whitelistedTechTypes.Contains(tt)) return false;
             if (DisplayCaseServices.blacklistedTechTypes.Contains(tt)) return false;
             return _storageContainer.container.count < spawnPositions.Length;
         }
