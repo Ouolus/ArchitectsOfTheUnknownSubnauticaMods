@@ -148,6 +148,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             Destroy(_spawnedObj.GetComponent<Rigidbody>());
             Destroy(_spawnedObj.GetComponent<WorldForces>());
             _spawnedObj.EnsureComponent<SpinInRelicCase>();
+            _spawnedObj.transform.localScale = Vector3.one * 1.25f;
             _spawnedObj.SetActive(true);
         }
 
