@@ -1,12 +1,10 @@
-﻿using SMLHelper.V2.Assets;
-using ECCLibrary;
-using RotA.Mono;
+﻿using ECCLibrary;
+using RotA.Mono.AlienBaseSpawners;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using RotA.Mono.AlienBaseSpawners;
-using System;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Initializers
 {
     class AlienBaseInitializer<T> : Spawnable where T : AlienBaseSpawner
     {

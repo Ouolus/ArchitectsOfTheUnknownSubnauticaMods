@@ -18,6 +18,11 @@ using UWE;
 using RotA.Prefabs.Equipment;
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
+using RotA.Prefabs.AlienBase.Teleporter;
+using RotA.Prefabs.Creatures;
+using RotA.Prefabs.Initializers;
+using RotA.Prefabs.Placeable;
+using RotA.Prefabs.Signals;
 
 namespace RotA
 {

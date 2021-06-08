@@ -1,7 +1,6 @@
-﻿using ECCLibrary.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Singletons
 {
 	// Ensures there is only ever one NATURALLY spawned adult.
 	public class VoidGargSingleton : MonoBehaviour

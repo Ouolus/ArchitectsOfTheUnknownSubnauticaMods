@@ -2,6 +2,7 @@
 using UnityEngine;
 using RotA.Mono;
 using RotA.Mono.AlienTech;
+using RotA.Mono.MainMenu;
 using UnityEngine.UI;
 
 namespace RotA.Patches

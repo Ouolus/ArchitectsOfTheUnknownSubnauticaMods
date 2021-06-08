@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using System.Collections;
 using ECCLibrary;
 using ECCLibrary.Internal;
-using RotA.Prefabs;
+using RotA.Prefabs.Creatures;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanMouthAttack : MeleeAttack
     {

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
+﻿using System.Collections;
 using ArchitectsLibrary.Utility;
+using RotA.Mono.Creatures.GargEssentials;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.Baby
 {
 	public class GargBabyTarget : HandTarget, IHandTarget
 	{

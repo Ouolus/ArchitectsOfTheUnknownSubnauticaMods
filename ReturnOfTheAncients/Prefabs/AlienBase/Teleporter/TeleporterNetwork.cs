@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using ECCLibrary;
+﻿using ECCLibrary;
+using UnityEngine;
 
-namespace RotA.Prefabs.AlienBase
+namespace RotA.Prefabs.AlienBase.Teleporter
 {
     public class TeleporterNetwork
     {

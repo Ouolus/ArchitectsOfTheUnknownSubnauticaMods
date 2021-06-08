@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using ECCLibrary;
+﻿using ECCLibrary;
 using ECCLibrary.Internal;
 using RotA.Mono.Modules;
-using RotA.Prefabs;
+using RotA.Prefabs.Creatures;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     class GargantuanBehaviour : MonoBehaviour, IOnTakeDamage, IOnArchitectElectricityZap
     {

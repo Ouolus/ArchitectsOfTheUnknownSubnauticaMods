@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RotA.Prefabs;
 using System.Reflection;
+using RotA.Prefabs.Signals;
 using UnityEngine;
 
 namespace RotA.Patches

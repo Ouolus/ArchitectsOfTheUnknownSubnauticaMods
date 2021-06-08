@@ -1,10 +1,10 @@
-using SMLHelper.V2.Assets;
 using ECCLibrary;
 using RotA.Mono;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Initializers
 {
     class ExplosionRoarInitializer : Spawnable
     {

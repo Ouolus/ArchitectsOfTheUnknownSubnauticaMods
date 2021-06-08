@@ -1,9 +1,9 @@
-﻿using RotA.Mono;
-using ArchitectsLibrary.MonoBehaviours;
+﻿using ECCLibrary;
+using RotA.Mono.Creatures.Baby;
+using RotA.Mono.Creatures.CreatureActions;
 using UnityEngine;
-using ECCLibrary;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanBaby : GargantuanBase
     {

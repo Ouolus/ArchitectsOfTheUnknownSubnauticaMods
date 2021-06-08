@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ECCLibrary;
-using RotA.Mono;
+using RotA.Mono.Creatures.CreatureActions;
+using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanBase : CreatureAsset
     {

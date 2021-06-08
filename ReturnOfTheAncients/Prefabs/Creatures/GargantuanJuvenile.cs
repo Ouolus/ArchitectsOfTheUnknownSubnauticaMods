@@ -1,8 +1,8 @@
 ﻿using ECCLibrary;
-using UnityEngine;
 using RotA.Mono;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanJuvenile : GargantuanBase
     {

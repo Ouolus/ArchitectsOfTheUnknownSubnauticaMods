@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Story;
+﻿using Story;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class OmegaTerminal : HandTarget, IHandTarget
     {

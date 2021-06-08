@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
 using RotA.Mono;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;  

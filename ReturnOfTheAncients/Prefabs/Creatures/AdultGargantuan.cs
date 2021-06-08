@@ -1,13 +1,9 @@
 ﻿using ECCLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using RotA.Mono;
+using RotA.Mono.Creatures.GargEssentials;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class AdultGargantuan : GargantuanBase
     {

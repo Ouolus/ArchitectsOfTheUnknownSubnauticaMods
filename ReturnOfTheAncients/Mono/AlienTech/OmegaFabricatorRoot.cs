@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using Story;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
+using Story;
+using UnityEngine;
 using UWE;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class OmegaFabricatorRoot : MonoBehaviour
     {

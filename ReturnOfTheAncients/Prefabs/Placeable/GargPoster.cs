@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using ArchitectsLibrary.API;
+﻿using ArchitectsLibrary.API;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Placeable
 {
     public class GargPoster : HolographicPoster
     {

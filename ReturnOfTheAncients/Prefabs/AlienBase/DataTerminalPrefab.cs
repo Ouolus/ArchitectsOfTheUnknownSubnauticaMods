@@ -4,6 +4,7 @@ using UnityEngine;
 using SMLHelper.V2.Handlers;
 using UWE;
 using System.Collections;
+using RotA.Mono.AlienTech;
 
 namespace RotA.Prefabs.AlienBase
 {
