@@ -39,7 +39,7 @@ namespace ArchitectsLibrary.Buildables
             spawnPosition3.transform.localPosition = new(0f, 1.3f, -1.5f);
 
             var storageContainer = prefab.EnsureComponent<StorageContainer>();
-            storageContainer.height = 2;
+            storageContainer.height = 6;
             storageContainer.width = 2;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
