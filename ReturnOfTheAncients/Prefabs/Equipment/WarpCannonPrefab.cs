@@ -137,8 +137,9 @@ namespace RotA.Prefabs.Equipment
                 var energyMixin = prefab.GetComponent<EnergyMixin>();
                 energyMixin.compatibleBatteries = compatibleTech;
                 energyMixin.defaultBattery = TechType.PrecursorIonBattery;
-                energyMixin.storageRoot =
-                    prefab.FindChild("BatterySlot").gameObject.EnsureComponent<ChildObjectIdentifier>();
+                energyMixin.storageRoot = prefab.FindChild("BatterySlot").gameObject.EnsureComponent<ChildObjectIdentifier>();
+                energyMixin.storageRoot.Id = "7b8d3e00-1da2-4bb8-9602-2ea16dca26f6";
+                energyMixin.storageRoot.ClassId = "e8763b70-1579-45db-ace9-1593eb7e772d";
 
                 var batteryModels = new List<EnergyMixin.BatteryModels>();
 
@@ -275,6 +276,8 @@ namespace RotA.Prefabs.Equipment
                 energyMixin.compatibleBatteries = compatibleTech;
                 energyMixin.defaultBattery = TechType.PrecursorIonBattery;
                 energyMixin.storageRoot = prefab.FindChild("BatterySlot").EnsureComponent<ChildObjectIdentifier>();
+                energyMixin.storageRoot.Id = "7b8d3e00-1da2-4bb8-9602-2ea16dca26f6";
+                energyMixin.storageRoot.ClassId = "e8763b70-1579-45db-ace9-1593eb7e772d";
 
                 var batteryModels = new List<EnergyMixin.BatteryModels>();
 
