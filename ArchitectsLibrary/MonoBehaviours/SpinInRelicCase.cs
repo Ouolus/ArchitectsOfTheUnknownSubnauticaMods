@@ -6,7 +6,7 @@ namespace ArchitectsLibrary.MonoBehaviours
     {
         void Update()
         {
-            transform.eulerAngles += Vector3.up * 45f * Time.deltaTime;
+            transform.localEulerAngles += Vector3.up * 45f * Time.deltaTime;
         }
     }
 }
