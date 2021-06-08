@@ -28,15 +28,15 @@ namespace ArchitectsLibrary.Buildables
 
             var spawnPosition = new GameObject("SpawnPosition");
             spawnPosition.transform.SetParent(prefab.transform);
-            spawnPosition.transform.localPosition = new(0f, 1.3f, 0f);
+            spawnPosition.transform.localPosition = new(0f, 1.3f, -1.5f);
 
             var spawnPosition2 = new GameObject("SpawnPosition2");
             spawnPosition2.transform.SetParent(prefab.transform);
-            spawnPosition2.transform.localPosition = new(0f, 1.3f, 1.5f);
+            spawnPosition2.transform.localPosition = new(0f, 1.3f, 0f);
 
             var spawnPosition3 = new GameObject("SpawnPosition3");
             spawnPosition3.transform.SetParent(prefab.transform);
-            spawnPosition3.transform.localPosition = new(0f, 1.3f, -1.5f);
+            spawnPosition3.transform.localPosition = new(0f, 1.3f, 1.5f);
 
             var storageContainer = prefab.EnsureComponent<StorageContainer>();
             storageContainer.height = 6;
