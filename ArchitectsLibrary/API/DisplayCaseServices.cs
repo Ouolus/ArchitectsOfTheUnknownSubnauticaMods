@@ -53,6 +53,11 @@ namespace ArchitectsLibrary.API
             overrideItemScaleInRelicTank[techType] = newScale;
         }
 
+        /// <summary>
+        /// Set the scale of <paramref name="techType"/> when put on top of an item pedestal. Default scale is 1.
+        /// </summary>
+        /// <param name="techType"></param>
+        /// <param name="newScale"></param>
         public static void SetScaleInPedestal(TechType techType, float newScale)
         {
             overrideItemScaleInPedestal[techType] = newScale;
