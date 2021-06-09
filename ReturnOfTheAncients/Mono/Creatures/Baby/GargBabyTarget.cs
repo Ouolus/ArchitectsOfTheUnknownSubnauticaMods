@@ -102,17 +102,21 @@ namespace RotA.Mono.Creatures.Baby
 
 		float GetAnimationLength(float random)
         {
-			if(random <= 0.33333f)
+			if(random <= 0.25f)
             {
-				return 4.02f;
+				return 14.12f / 2f;
             }
-			else if(random <= 0.677777f)
+			else if(random <= 0.5f)
             {
-				return 4.8f;
+				return 8f / 2f;
+            }
+			else if(random <= 0.75f)
+            {
+				return 8f / 2f;
             }
             else
             {
-				return 4f;
+				return 8.36f / 2f;
 			}
         }
 
