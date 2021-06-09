@@ -178,7 +178,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             if (displayCaseType == DisplayCaseType.RelicTank) spawnedObj.EnsureComponent<SpinInRelicCase>();
             spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(obj.GetComponent<Pickupable>().GetTechType(), displayCaseType);
             spawnedObj.transform.localPosition = Vector3.zero;
-            spawnedObj.transform.localEulerAngles = displayCaseType == DisplayCaseType.RelicTank ? Vector3.zero : new Vector3(0f, 0f, 90f);
+            spawnedObj.transform.localEulerAngles = Vector3.zero;
             spawnedObj.SetActive(true);
         }
 
