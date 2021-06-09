@@ -8,7 +8,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
 using UnityEngine;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Buildables
 {
     class PrecursorFabricator : Buildable
     {
@@ -42,7 +42,7 @@ namespace ArchitectsLibrary.Items
         {
             if (_processedPrefab != null)
             {
-                var go = GameObject.Instantiate(_processedPrefab);
+                var go = Object.Instantiate(_processedPrefab);
                 go.SetActive(true);
                 return go;
             }
@@ -51,9 +51,8 @@ namespace ArchitectsLibrary.Items
 
             var obj = new GameObject("PrecursorFabricator");
             
-            var model = Object.Instantiate(prefab);
+            var model = Object.Instantiate(prefab, obj.transform, true);
             model.name = "model";
-            model.transform.parent = obj.transform;
             model.transform.localPosition = Vector3.zero;
 
             var sa = obj.EnsureComponent<SkyApplier>();
@@ -132,7 +131,7 @@ namespace ArchitectsLibrary.Items
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach(ParticleSystemRenderer ps in particleSystems)
             {
-                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+                ps.material.SetColor(ShaderPropertyID._Color, new Color(0f, 1.5f, 0f));
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
@@ -154,7 +153,7 @@ namespace ArchitectsLibrary.Items
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             
-            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab = Object.Instantiate(obj);
             _processedPrefab.SetActive(false);
 
             obj.SetActive(true);
@@ -165,7 +164,7 @@ namespace ArchitectsLibrary.Items
         {
             if (_processedPrefab != null)
             {
-                var go = GameObject.Instantiate(_processedPrefab);
+                var go = Object.Instantiate(_processedPrefab);
                 go.SetActive(true);
                 gameObject.Set(go);
             }
@@ -174,9 +173,8 @@ namespace ArchitectsLibrary.Items
 
             var obj = new GameObject("PrecursorFabricator");
             
-            var model = Object.Instantiate(prefab);
+            var model = Object.Instantiate(prefab, obj.transform, true);
             model.name = "model";
-            model.transform.parent = obj.transform;
             model.transform.localPosition = Vector3.zero;
 
             var sa = obj.EnsureComponent<SkyApplier>();
@@ -259,7 +257,7 @@ namespace ArchitectsLibrary.Items
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach (ParticleSystemRenderer ps in particleSystems)
             {
-                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+                ps.material.SetColor(ShaderPropertyID._Color, new Color(0f, 1.5f, 0f));
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
@@ -281,7 +279,7 @@ namespace ArchitectsLibrary.Items
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             
-            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab = Object.Instantiate(obj);
             _processedPrefab.SetActive(false);
 
             obj.SetActive(true);
