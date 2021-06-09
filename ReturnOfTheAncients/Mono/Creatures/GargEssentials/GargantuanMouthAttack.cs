@@ -172,7 +172,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                         else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
                         {
                             Creature otherCreature = target.GetComponent<Creature>();
-                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null)
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null && otherCreature.gameObject.GetComponent<GargantuanRoar>() is null)
                             {
                                 gargantuan.Aggression.Value -= 0.6f;
                                 gargantuan.Hunger.Value = 0f;
