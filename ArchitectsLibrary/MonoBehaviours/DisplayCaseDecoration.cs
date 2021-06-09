@@ -120,14 +120,6 @@ namespace ArchitectsLibrary.MonoBehaviours
             _spawnedObjs = new GameObject[spawnPositions.Length];
         }
 
-        void Start()
-        {
-            foreach (var item in _storageContainer.container)
-            {
-                Spawn(item.item.gameObject);
-            }
-        }
-
         void OnEnable()
         {
             if (!_initialized)
