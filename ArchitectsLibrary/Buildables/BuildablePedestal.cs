@@ -4,7 +4,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildablePedestal : GenericPrecursorDecoration
     {
-        public BuildablePedestal() : base("BuildablePedestal", "Alien Pedestal", "A pedestal that can be used for decoration or to display something. Placeable inside and outside.")
+        public BuildablePedestal() : base("BuildablePedestal", "Alien Pedestal", "A pedestal that can be used for decoration. Placeable inside and outside.")
         {
         }
 
