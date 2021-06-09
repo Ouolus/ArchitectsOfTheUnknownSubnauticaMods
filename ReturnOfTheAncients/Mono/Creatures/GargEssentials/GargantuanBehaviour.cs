@@ -458,9 +458,9 @@ namespace RotA.Mono.Creatures.GargEssentials
                 float num = Mathf.Clamp01(Time.time - timeVehicleGrabbed);
                 if (num >= 1f)
                 {
-                    if (IsGargJuvenile())
+                    if (IsGargJuvenile() && IsHoldingFish())
                     {
-                        held.transform.position = FixJuvenileHoldPosition(holdPoint, holdPoint.position);
+                        held.transform.position = FixJuvenileFishHoldPosition(holdPoint, holdPoint.position);
                     }
                     else
                     {
@@ -480,9 +480,9 @@ namespace RotA.Mono.Creatures.GargEssentials
                     }
                     return;
                 }
-                if (IsGargJuvenile())
+                if (IsGargJuvenile() && IsHoldingFish())
                 {
-                    held.transform.position = (FixJuvenileHoldPosition(holdPoint, holdPoint.position) - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
+                    held.transform.position = (FixJuvenileFishHoldPosition(holdPoint, holdPoint.position) - this.vehicleInitialPosition) * num + this.vehicleInitialPosition;
                 }
                 else
                 {
@@ -510,7 +510,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         {
             return Quaternion.Euler(input.eulerAngles + new Vector3(0f, 0f, 90f));
         }
-        private Vector3 FixJuvenileHoldPosition(Transform holdPoint, Vector3 input)
+        private Vector3 FixJuvenileFishHoldPosition(Transform holdPoint, Vector3 input)
         {
             return input + (holdPoint.up * 3f);
         }
