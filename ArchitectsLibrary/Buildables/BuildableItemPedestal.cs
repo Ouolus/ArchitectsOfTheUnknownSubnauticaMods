@@ -1,10 +1,9 @@
 ﻿using SMLHelper.V2.Crafting;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.MonoBehaviours;
 using ArchitectsLibrary.Utility;
-using UWE;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -26,6 +25,25 @@ namespace ArchitectsLibrary.Buildables
         {
             DeleteChildComponentIfExists<PrefabPlaceholder>(prefab);
             DeleteChildComponentIfExists<PrefabPlaceholdersGroup>(prefab);
+
+            var storageRoot = new GameObject("StorageRoot");
+            storageRoot.transform.SetParent(prefab.transform);
+
+            GameObject spawnPosition = new GameObject("SpawnPosition");
+            spawnPosition.transform.SetParent(prefab.gameObject.SearchChild("PrecursorIonCrystal(Placeholder)").transform, false);
+            spawnPosition.transform.localEulerAngles = Vector3.zero;
+
+            var storageContainer = prefab.EnsureComponent<StorageContainer>();
+            storageContainer.height = 2;
+            storageContainer.width = 2;
+            storageContainer.prefabRoot = prefab;
+            storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.storageRoot.ClassId = "BuildableItemPedestalContainer";
+            storageContainer.preventDeconstructionIfNotEmpty = true;
+
+            var displayCase = prefab.EnsureComponent<DisplayCaseDecoration>();
+            displayCase.spawnPositions = new Transform[] { spawnPosition.transform };
+            displayCase.displayCaseType = DisplayCaseType.Pedestal;
         }
 
 
