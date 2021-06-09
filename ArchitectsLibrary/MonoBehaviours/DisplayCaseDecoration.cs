@@ -127,7 +127,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 _storageContainer.enabled = true;
                 _storageContainer.container.onAddItem += AddItem;
                 _storageContainer.container.onRemoveItem += RemoveItem;
-                _storageContainer.container.isAllowedToAdd += IsAllowedToAdd;
+                _storageContainer.container.isAllowedToAdd = IsAllowedToAdd;
                 _initialized = true;
             }
         }
