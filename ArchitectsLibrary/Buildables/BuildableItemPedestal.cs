@@ -52,6 +52,6 @@ namespace ArchitectsLibrary.Buildables
             return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
         }
 
-        protected override string GetSpriteName => "IonCubePedestal";
+        protected override string GetSpriteName => "EmptyItemPedestal";
     }
 }
