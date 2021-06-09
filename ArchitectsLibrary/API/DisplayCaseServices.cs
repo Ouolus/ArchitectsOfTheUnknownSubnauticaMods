@@ -67,7 +67,7 @@ namespace ArchitectsLibrary.API
                 case DisplayCaseType.RelicTank:
                     return overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f);
                 case DisplayCaseType.Pedestal:
-                    return overrideItemScaleInPedestal.GetOrDefault(techType, 1.25f);
+                    return overrideItemScaleInPedestal.GetOrDefault(techType, 1f);
             }
         }
     }
