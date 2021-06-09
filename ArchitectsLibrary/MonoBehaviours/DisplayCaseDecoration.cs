@@ -119,6 +119,12 @@ namespace ArchitectsLibrary.MonoBehaviours
             _storageContainer = GetComponent<StorageContainer>();
             _spawnedObjs = new GameObject[spawnPositions.Length];
         }
+		
+		void Start()
+		{
+			foreach (var item in _storageContainer.container)
+				Spawn(item.item.gameObject);
+		}
 
         void OnEnable()
         {
