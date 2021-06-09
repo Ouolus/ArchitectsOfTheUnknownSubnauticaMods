@@ -78,7 +78,7 @@ namespace RotA.Mono.Creatures.Baby
 			cinematicController.StartCinematicMode(Player.main);
 			rb.isKinematic = true;
 			roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
-			yield return new WaitForSeconds(GetAnimationLength(random));
+			yield return new WaitForSeconds(GetAnimationLength(animator.GetFloat("random")));
 			rb.isKinematic = false;
 			cinematicController.EndCinematicMode();
 			cinematicPlaying = false;
