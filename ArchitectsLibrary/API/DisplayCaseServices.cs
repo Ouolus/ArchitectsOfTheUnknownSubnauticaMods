@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.API
@@ -12,21 +8,22 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public static class DisplayCaseServices
     {
-        internal static readonly List<TechType> whitelistedTechTypes = new List<TechType>();
-        internal static readonly List<TechType> blacklistedTechTypes = new List<TechType>();
-        internal static readonly Dictionary<TechType, float> overrideItemScaleInRelicTank = new Dictionary<TechType, float>();
-        internal static readonly Dictionary<TechType, float> overrideItemScaleInPedestal = new Dictionary<TechType, float>();
+        internal static readonly List<TechType> WhitelistedTechTypes = new();
+        internal static readonly List<TechType> BlacklistedTechTypes = new();
+        
+        static readonly Dictionary<TechType, float> overrideItemScaleInRelicTank = new();
+        static readonly Dictionary<TechType, float> overrideItemScaleInPedestal = new();
 
         /// <summary>
-        /// Allow <paramref name="techType"/> to be added into relic tanks and onto pedestals.
+        /// Allows the passed TechType to be added into relic tanks and onto pedestals.
         /// </summary>
-        /// <param name="techType"></param>
-        public static void WhitelistTechtype(TechType techType)
+        /// <param name="techType">the TechType to allow</param>
+        public static void WhitelistTechType(TechType techType)
         {
-            whitelistedTechTypes.Add(techType);
-            if (blacklistedTechTypes.Contains(techType))
+            WhitelistedTechTypes.Add(techType);
+            if (BlacklistedTechTypes.Contains(techType))
             {
-                blacklistedTechTypes.Remove(techType);
+                BlacklistedTechTypes.Remove(techType);
             }
         }
 
@@ -36,10 +33,10 @@ namespace ArchitectsLibrary.API
         /// <param name="techType"></param>
         public static void BlackListTechType(TechType techType)
         {
-            blacklistedTechTypes.Add(techType);
-            if (whitelistedTechTypes.Contains(techType))
+            BlacklistedTechTypes.Add(techType);
+            if (WhitelistedTechTypes.Contains(techType))
             {
-                whitelistedTechTypes.Remove(techType);
+                WhitelistedTechTypes.Remove(techType);
             }
         }
 
@@ -63,17 +60,11 @@ namespace ArchitectsLibrary.API
             overrideItemScaleInPedestal[techType] = newScale;
         }
 
-        internal static float GetScaleForItem(TechType techType, DisplayCaseType displayCaseType)
+        internal static float GetScaleForItem(TechType techType, DisplayCaseType displayCaseType) => displayCaseType switch
         {
-            switch (displayCaseType)
-            {
-                default:
-                    return 1f;
-                case DisplayCaseType.RelicTank:
-                    return overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f);
-                case DisplayCaseType.Pedestal:
-                    return overrideItemScaleInPedestal.GetOrDefault(techType, 1f);
-            }
-        }
+            DisplayCaseType.RelicTank => overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f),
+            DisplayCaseType.Pedestal => overrideItemScaleInPedestal.GetOrDefault(techType, 1f),
+            _ => 1f
+        };
     }
 }

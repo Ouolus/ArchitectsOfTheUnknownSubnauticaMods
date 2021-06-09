@@ -122,7 +122,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void Start()
         {
-            foreach (InventoryItem item in _storageContainer.container)
+            foreach (var item in _storageContainer.container)
             {
                 Spawn(item.item.gameObject);
             }
@@ -155,8 +155,12 @@ namespace ArchitectsLibrary.MonoBehaviours
         bool IsAllowedToAdd(Pickupable pickupable, bool verbose)
         {
             var tt = pickupable.GetTechType();
-            if (!_allowedTechTypes.Contains(tt) && !DisplayCaseServices.whitelistedTechTypes.Contains(tt)) return false;
-            if (DisplayCaseServices.blacklistedTechTypes.Contains(tt)) return false;
+            if (!_allowedTechTypes.Contains(tt) && !DisplayCaseServices.WhitelistedTechTypes.Contains(tt)) 
+                return false;
+            
+            if (DisplayCaseServices.BlacklistedTechTypes.Contains(tt)) 
+                return false;
+            
             return _storageContainer.container.count < spawnPositions.Length;
         }
 
@@ -166,13 +170,13 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         void Spawn(GameObject obj)
         {
-            Transform spawnPosition = GetEmptySpawnPosition(out int spawnedObjIndex);
+            var spawnPosition = GetEmptySpawnPosition(out int spawnedObjIndex);
             if (spawnPosition == null)
             {
                 return;
             }
             _spawnedObjs[spawnedObjIndex] = Instantiate(obj, spawnPosition, false);
-            GameObject spawnedObj = _spawnedObjs[spawnedObjIndex];
+            var spawnedObj = _spawnedObjs[spawnedObjIndex];
             Destroy(spawnedObj.GetComponent<Rigidbody>());
             Destroy(spawnedObj.GetComponent<WorldForces>());
             if (displayCaseType == DisplayCaseType.RelicTank) spawnedObj.EnsureComponent<SpinInRelicCase>();
@@ -187,36 +191,37 @@ namespace ArchitectsLibrary.MonoBehaviours
             if (_spawnedObjs == null)
                 return;
 
-            int index = GetSpawnedObjWithMatchingTechType(item.item.GetComponent<Pickupable>().GetTechType());
+            var index = GetSpawnedObjIndex(item.item.GetComponent<Pickupable>().GetTechType());
             if (index > -1)
             {
                 Destroy(_spawnedObjs[index]);
             }
         }
 
-        private Transform GetEmptySpawnPosition(out int index)
+        Transform GetEmptySpawnPosition(out int index)
         {
             for (int i = 0; i < spawnPositions.Length; i++)
             {
-                if (spawnPositions[i].childCount == 0)
-                {
-                    index = i;
-                    return spawnPositions[i];
-                }
+                if (spawnPositions[i].childCount != 0) 
+                    continue;
+                
+                index = i;
+                return spawnPositions[i];
             }
             index = -1;
             return null;
         }
 
-        int GetSpawnedObjWithMatchingTechType(TechType techType)
+        int GetSpawnedObjIndex(TechType techType)
         {
             for (int i = 0; i < _spawnedObjs.Length; i++)
             {
                 if (_spawnedObjs[i] == null)
                 {
-                    continue;
+                    continue; // safety check
                 }
-                TechType tt = CraftData.GetTechType(_spawnedObjs[i]);
+                
+                var tt = CraftData.GetTechType(_spawnedObjs[i]);
                 if (tt == techType)
                 {
                     return i;

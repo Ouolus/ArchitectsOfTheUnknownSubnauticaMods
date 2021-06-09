@@ -13,9 +13,9 @@ namespace ArchitectsLibrary.Buildables
         {
         }
 
-        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
+        protected override ConstructableSettings GetConstructableSettings => new(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
-        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 0.5f, 0f), Quaternion.identity, new Vector3(1f, 0.4f, 1f)) };
+        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new(new Vector3(0f, 0.5f, 0f), Quaternion.identity, new Vector3(1f, 0.4f, 1f)) };
 
         protected override string GetOriginalClassId => "ea65ef91-e875-4157-99f9-a8f4f6dc92f8";
 
@@ -42,14 +42,14 @@ namespace ArchitectsLibrary.Buildables
             storageContainer.preventDeconstructionIfNotEmpty = true;
 
             var displayCase = prefab.EnsureComponent<DisplayCaseDecoration>();
-            displayCase.spawnPositions = new Transform[] { spawnPosition.transform };
+            displayCase.spawnPositions = new[] { spawnPosition.transform };
             displayCase.displayCaseType = DisplayCaseType.Pedestal;
         }
 
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1) });
+            return new(new List<Ingredient> { new(AUHandler.AlienCompositeGlassTechType, 1) });
         }
 
         protected override string GetSpriteName => "EmptyItemPedestal";
