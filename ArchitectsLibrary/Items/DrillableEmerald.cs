@@ -82,13 +82,13 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
-                probability = 0.02f
+                probability = 0.015f
             },
             new()
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
-                probability = 0.02f
+                probability = 0.015f
             },
             new()
             {
