@@ -213,7 +213,7 @@ namespace ArchitectsLibrary
 
             drillableBismuth = new DrillableBismuth();
             drillableBismuth.Patch();
-            AUHandler.DrillableBismuthTechType = drillableRedBeryl.TechType;
+            AUHandler.DrillableBismuthTechType = drillableBismuth.TechType;
 
             morganite = new Morganite();
             morganite.Patch();
