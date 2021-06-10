@@ -48,8 +48,6 @@ namespace ArchitectsLibrary
         static DrillableSapphire drillableSapphire;
         static RedBeryl redBeryl;
         static DrillableRedBeryl drillableRedBeryl;
-        static Bismuth bismuth;
-        static DrillableBismuth drillableBismuth;
         static ReinforcedGlass reinforcedGlass;
         static AlienCompositeGlass alienCompositeGlass;
         static AotuPoster aotuPoster;
@@ -205,15 +203,6 @@ namespace ArchitectsLibrary
             drillableRedBeryl = new DrillableRedBeryl();
             drillableRedBeryl.Patch();
             AUHandler.DrillableRedBerylTechType = drillableRedBeryl.TechType;
-
-            bismuth = new Bismuth();
-            bismuth.Patch();
-            AUHandler.BismuthTechType = bismuth.TechType;
-            CraftData.pickupSoundList.Add(bismuth.TechType, "event:/loot/pickup_precursorioncrystal");
-
-            drillableBismuth = new DrillableBismuth();
-            drillableBismuth.Patch();
-            AUHandler.DrillableBismuthTechType = drillableBismuth.TechType;
 
             morganite = new Morganite();
             morganite.Patch();
