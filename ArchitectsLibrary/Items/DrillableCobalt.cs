@@ -11,13 +11,13 @@ namespace ArchitectsLibrary.Items
     {
         protected override string ReferenceClassId => "9c8f56e6-3380-42e4-a758-e8d733b5ddec";
 
-        public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Cobalt that makes Metious go yes.")
+        public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Cobalt drillable that makes Metious go yes.")
         {
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            //prefab.EnsureComponent<Light>().color = new Color(1f, 0f, 0f);
+            prefab.EnsureComponent<Light>().color = new Color(1f, 0f, 1f);
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.RedBerylTechType;
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.CobaltTechType };
