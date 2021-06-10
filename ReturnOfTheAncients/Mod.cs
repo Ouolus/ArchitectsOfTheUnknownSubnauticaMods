@@ -203,7 +203,7 @@ namespace RotA
             warpCannon = new WarpCannonPrefab();
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
-            DisplayCaseServices.WhitelistTechtype(warpCannon.TechType);
+            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
 
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
             warpCannonTerminal.Patch();
@@ -214,7 +214,7 @@ namespace RotA
 
             omegaCube = new OmegaCube();
             omegaCube.Patch();
-            DisplayCaseServices.WhitelistTechtype(omegaCube.TechType);
+            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
 
             buildableOmegaCubePedestal = new OmegaCubePedestal();
             buildableOmegaCubePedestal.Patch();
