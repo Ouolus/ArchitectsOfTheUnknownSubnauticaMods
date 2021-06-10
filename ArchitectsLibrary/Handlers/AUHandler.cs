@@ -79,6 +79,16 @@ namespace ArchitectsLibrary.Handlers
         public static TechType ReinforcedGlassTechType { get; internal set; }
 
         /// <summary>
+        /// Gets the <see cref="Bismuth"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType BismuthTechType { get; internal set; }
+
+        /// <summary>
+        /// Gets the <see cref="DrillableBismuth"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType DrillableBismuthTechType { get; internal set; }
+
+        /// <summary>
         /// Gets the <see cref="AlienCompositeGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 1 reinforced glass and 1 emerald.
         /// </summary>
         public static TechType AlienCompositeGlassTechType { get; internal set; }
