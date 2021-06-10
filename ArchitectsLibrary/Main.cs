@@ -55,6 +55,7 @@ namespace ArchitectsLibrary
         static DrillableMorganite drillableMorganite;
         static Electricube electricube;
         static RedIonCube redIonCube;
+        static Cobalt cobalt;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -81,6 +82,8 @@ namespace ArchitectsLibrary
         static BuildablePedestalLarge buildablePedestalLarge;
 
         const string encyKey_emerald = "EmeraldEncy";
+
+        private const string ionCubePickupSound = "event:/loot/pickup_precursorioncrystal";
 
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
@@ -173,23 +176,28 @@ namespace ArchitectsLibrary
             AUHandler.EmeraldTechType = emerald.TechType;
             ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small amounts in deep biomes, and in large deposits amongst areas with extensive sand dunes. While there are few known practical uses for this gemstone, a significant amount of this mineral has been observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
             ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
-            CraftData.pickupSoundList.Add(emerald.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(emerald.TechType, ionCubePickupSound);
 
             drillableEmerald = new DrillableEmerald();
             drillableEmerald.Patch();
             AUHandler.DrillableEmeraldTechType = drillableEmerald.TechType;
             ItemUtils.MakeObjectScannable(drillableEmerald.TechType, encyKey_emerald, 5f);
 
+            cobalt = new Cobalt();
+            cobalt.Patch();
+            AUHandler.CobaltTechType = cobalt.TechType;
+            CraftData.pickupSoundList.Add(cobalt.TechType, ionCubePickupSound);
+
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
-            CraftData.pickupSoundList.Add(precursorAlloy.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(precursorAlloy.TechType, ionCubePickupSound);
 
             sapphire = new Sapphire();
             sapphire.Patch();
             AUHandler.SapphireTechType = sapphire.TechType;
-            CraftData.pickupSoundList.Add(sapphire.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(sapphire.TechType, ionCubePickupSound);
 
             drillableSapphire = new DrillableSapphire();
             drillableSapphire.Patch();
@@ -198,7 +206,7 @@ namespace ArchitectsLibrary
             redBeryl = new RedBeryl();
             redBeryl.Patch();
             AUHandler.RedBerylTechType = redBeryl.TechType;
-            CraftData.pickupSoundList.Add(redBeryl.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(redBeryl.TechType, ionCubePickupSound);
 
             drillableRedBeryl = new DrillableRedBeryl();
             drillableRedBeryl.Patch();
@@ -216,13 +224,13 @@ namespace ArchitectsLibrary
             electricube = new Electricube();
             electricube.Patch();
             AUHandler.ElectricubeTechType = electricube.TechType;
-            CraftData.pickupSoundList.Add(electricube.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(electricube.TechType, ionCubePickupSound);
             PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
 
             redIonCube = new RedIonCube();
             redIonCube.Patch();
             AUHandler.RedIonCubeTechType = redIonCube.TechType;
-            CraftData.pickupSoundList.Add(redIonCube.TechType, "event:/loot/pickup_precursorioncrystal");
+            CraftData.pickupSoundList.Add(redIonCube.TechType, ionCubePickupSound);
             PrecursorFabricatorService.SubscribeToFabricator(redIonCube.TechType, PrecursorFabricatorTab.Materials);
 
             reinforcedGlass = new ReinforcedGlass();

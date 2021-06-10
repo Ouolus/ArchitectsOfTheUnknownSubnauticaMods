@@ -74,6 +74,11 @@ namespace ArchitectsLibrary.Handlers
         public static TechType ElectricubeTechType { get; internal set; }
 
         /// <summary>
+        /// Gets the <see cref="Cobalt"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType CobaltTechType { get; internal set; }
+
+        /// <summary>
         /// Gets the <see cref="ReinforcedGlass"/>'s TechType so you can spawn it up in your Mod. Crafted with 2 sapphire.
         /// </summary>
         public static TechType ReinforcedGlassTechType { get; internal set; }
