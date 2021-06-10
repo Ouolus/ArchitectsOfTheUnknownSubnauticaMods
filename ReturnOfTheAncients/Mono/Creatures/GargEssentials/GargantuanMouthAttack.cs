@@ -179,7 +179,6 @@ namespace RotA.Mono.Creatures.GargEssentials
                                 behaviour.GrabFish(otherCreature.gameObject);
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
-                                otherCreature.transform.localScale = Vector3.one * 0.75f;
                                 otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
                                 EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
                                 if (heldFishEcoTarget != null)
