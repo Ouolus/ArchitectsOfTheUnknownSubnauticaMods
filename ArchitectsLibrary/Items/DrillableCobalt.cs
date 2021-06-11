@@ -65,6 +65,12 @@ namespace ArchitectsLibrary.Items
             },
             new()
             {
+                biome = BiomeType.SparseReef_Sand,
+                count = 1,
+                probability = 0.05f
+            },
+            new()
+            {
                 biome = BiomeType.SparseReef_Spike,
                 count = 1,
                 probability = 0.04f
