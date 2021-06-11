@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Crafting;
-using ArchitectsLibrary.Handlers;
-using ArchitectsLibrary.MonoBehaviours;
-using UnityEngine;
-using UWE;
-
-namespace ArchitectsLibrary.API
+﻿namespace ArchitectsLibrary.API
 {
+    using System.Collections.Generic;
+    using System.Collections;
+    using SMLHelper.V2.Assets;
+    using Buildables;
+    using Handlers;
+    using MonoBehaviours;
+    using UnityEngine;
+    using UWE;
+    
     /// <summary>
     /// A buildable precursor decoration. This is meant for Architect's Library ONLY but is public just for RotA's omega cube pedestal.
     /// </summary>
