@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.Items
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "7815b1b7-2830-418b-9b5d-19949b0ae9ec";
 
-        public Cobalt() : base("Cobalt", "Cobalt", "Cobalt that makes Metious go yes.")
+        public Cobalt() : base("Cobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
         }
 

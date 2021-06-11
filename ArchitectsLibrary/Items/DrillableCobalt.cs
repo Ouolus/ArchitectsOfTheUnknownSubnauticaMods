@@ -11,7 +11,7 @@ namespace ArchitectsLibrary.Items
     {
         protected override string ReferenceClassId => "9c8f56e6-3380-42e4-a758-e8d733b5ddec";
 
-        public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Cobalt drillable that makes Metious go yes.")
+        public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
         }
 
