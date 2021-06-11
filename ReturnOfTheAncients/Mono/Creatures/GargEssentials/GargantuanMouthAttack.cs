@@ -16,8 +16,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         GargantuanBehaviour behaviour;
         GargantuanRoar roar;
         PlayerCinematicController playerDeathCinematic;
-
-        List<Type> _leviathanTypes = new() {typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid)};
+        readonly List<Type> _leviathanTypes = new() {typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid)};
 
         public GameObject throat;
         public bool canAttackPlayer = true;
