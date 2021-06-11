@@ -2,6 +2,7 @@
 using SMLHelper.V2.Crafting;
 using System.Collections;
 using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Buildables
@@ -22,7 +23,12 @@ namespace ArchitectsLibrary.Buildables
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorIonBattery, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) });
+            return new TechData(new List<Ingredient>() { new Ingredient(TechType.PrecursorDroid, 1) });
+        }
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.transform.GetChild(0).localPosition = new Vector3(0f, 0.7f, 0f);
         }
 
         protected override string GetSpriteName => "AlienRobot";

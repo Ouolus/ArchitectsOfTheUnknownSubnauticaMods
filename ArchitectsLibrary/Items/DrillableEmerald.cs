@@ -1,12 +1,11 @@
-﻿using SMLHelper.V2.Assets;
-using SMLHelper.V2.Utility;
-using UnityEngine;
-using ArchitectsLibrary.Handlers;
-using System.Collections.Generic;
-using UWE;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
+    using UnityEngine;
+    using API;
+    using Handlers;
+    using System.Collections.Generic;
+    using UWE;
+    
     internal class DrillableEmerald : ReskinSpawnable
     {
         protected override string ReferenceClassId => "4f441e53-7a9a-44dc-83a4-b1791dc88ffd";
@@ -82,13 +81,13 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
-                probability = 0.03f
+                probability = 0.015f
             },
             new()
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
-                probability = 0.03f
+                probability = 0.015f
             },
             new()
             {

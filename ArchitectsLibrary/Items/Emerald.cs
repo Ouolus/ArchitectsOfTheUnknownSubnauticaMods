@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UWE;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UWE;
+    using API;
+    
     class Emerald : ReskinSpawnable
     {
         Atlas.Sprite sprite;

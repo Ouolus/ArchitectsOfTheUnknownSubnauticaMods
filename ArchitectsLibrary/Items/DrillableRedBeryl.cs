@@ -1,12 +1,11 @@
-﻿using SMLHelper.V2.Assets;
-using SMLHelper.V2.Utility;
-using UnityEngine;
-using ArchitectsLibrary.Handlers;
-using System.Collections.Generic;
-using UWE;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
+    using UnityEngine;
+    using API;
+    using Handlers;
+    using System.Collections.Generic;
+    using UWE;
+    
     class DrillableRedBeryl : ReskinSpawnable
     {
         protected override string ReferenceClassId => "fb5de2b6-1fe8-44fc-a555-dc0a09dc292a";

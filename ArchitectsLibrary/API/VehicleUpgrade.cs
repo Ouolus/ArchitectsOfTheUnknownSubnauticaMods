@@ -102,7 +102,7 @@ namespace ArchitectsLibrary.API
             prefab.SetActive(false);
             obj.SetActive(true);
 
-            CustomizePrefab(prefab);
+            CustomizePrefab(obj);
 
             return obj;
         }
@@ -120,7 +120,7 @@ namespace ArchitectsLibrary.API
                 prefab.SetActive(false);
                 obj.SetActive(true);
 
-                CustomizePrefab(prefab);
+                CustomizePrefab(obj);
 
                 gameObject.Set(obj);
             }
@@ -141,7 +141,7 @@ namespace ArchitectsLibrary.API
         /// <param name="vfx"></param>
         protected void FixVFXFabricating(VFXFabricating vfx)
         {
-            vfx.localMinY = -0.14f;
+            vfx.localMinY = -0.19f;
             vfx.localMaxY = 0.13f;
             vfx.posOffset = new Vector3(0f, 0.1f, 0f);
             vfx.eulerOffset = new Vector3(0f, 90f, 90f);

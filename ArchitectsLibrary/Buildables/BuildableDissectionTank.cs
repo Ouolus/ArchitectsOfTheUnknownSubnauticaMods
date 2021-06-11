@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.API;
+using UnityEngine;
 
 namespace ArchitectsLibrary.Buildables
 {
@@ -18,7 +19,9 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
-            prefab.transform.GetChild(0).position = new Vector3(0f, 0.1f, 0f);
+            var modelTransform = prefab.transform.GetChild(0);
+            modelTransform.position = new Vector3(0f, 0.6f, 0f);
+            modelTransform.localScale = Vector3.one;
         }
 
         protected override string GetSpriteName => "RelicCaseLarge";

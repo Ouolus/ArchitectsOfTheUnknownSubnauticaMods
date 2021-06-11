@@ -20,7 +20,7 @@ namespace ArchitectsLibrary.Items
 
         protected override TechData GetBlueprintRecipe()
         {
-            TechData techData = new TechData(new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2), new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Kyanite, 1), new Ingredient(TechType.Diamond, 1) });
+            TechData techData = new TechData(new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2), new Ingredient(AUHandler.CobaltIngotTechType, 1), new Ingredient(TechType.Kyanite, 1), new Ingredient(TechType.Diamond, 1) });
             techData.craftAmount = 3;
             return techData;
         }
