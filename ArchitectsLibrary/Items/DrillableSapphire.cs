@@ -1,12 +1,11 @@
-﻿using SMLHelper.V2.Assets;
-using SMLHelper.V2.Utility;
-using UnityEngine;
-using ArchitectsLibrary.Handlers;
-using System.Collections.Generic;
-using UWE;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
+    using UnityEngine;
+    using API;
+    using Handlers;
+    using System.Collections.Generic;
+    using UWE;
+    
     class DrillableSapphire : ReskinSpawnable
     {
         protected override string ReferenceClassId => "109bbd29-c445-4ad8-a4bf-be7bc6d421d6";

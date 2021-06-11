@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using SMLHelper.V2.Crafting;
-using UnityEngine;
-using UWE;
-using ArchitectsLibrary.Handlers;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
-    class CobaltIngot : ReskinCraftable
+    using System.Collections.Generic;
+    using SMLHelper.V2.Crafting;
+    using UnityEngine;
+    using UWE;
+    using API;
+    using Handlers;
+    
+    class CobaltIngot : ReskinSpawnable
     {
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "4ae90608-40da-45ce-8480-e2f0133f96b2";

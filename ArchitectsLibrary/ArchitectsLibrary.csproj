@@ -125,6 +125,7 @@
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\DisplayCaseServices.cs" />
+    <Compile Include="API\ReskinSpawnable.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
@@ -193,11 +194,9 @@
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
-    <Compile Include="Items\ReskinCraftable.cs" />
     <Compile Include="Items\Sapphire.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
-    <Compile Include="Items\ReskinSpawnable.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />

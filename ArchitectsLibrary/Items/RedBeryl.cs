@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using SMLHelper.V2.Utility;
-using UnityEngine;
-using UWE;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UWE;
+    using API;
+    
     class RedBeryl : ReskinSpawnable
     {
         Atlas.Sprite sprite;

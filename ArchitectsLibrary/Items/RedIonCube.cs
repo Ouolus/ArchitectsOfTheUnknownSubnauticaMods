@@ -1,15 +1,12 @@
-﻿using SMLHelper.V2.Crafting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using ArchitectsLibrary.Handlers;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
-    class RedIonCube : ReskinCraftable
+    using SMLHelper.V2.Crafting;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using Handlers;
+    using API;
+    
+    class RedIonCube : ReskinSpawnable
     {
         public RedIonCube() : base("RedIonCube", "Power cube", "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.")
         {
@@ -18,9 +15,7 @@ namespace ArchitectsLibrary.Items
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override bool UnlockedAtStart => false;
-
+        
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected override TechData GetBlueprintRecipe()
@@ -53,7 +48,7 @@ namespace ArchitectsLibrary.Items
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("RedIonCube_Icon"));
+            return new (Main.assetBundle.LoadAsset<Sprite>("RedIonCube_Icon"));
         }
     }
 }
