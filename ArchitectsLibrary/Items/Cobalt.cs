@@ -42,7 +42,30 @@ namespace ArchitectsLibrary.Items
 
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new()
         {
-            
+            new()
+            {
+                biome = BiomeType.CragField_Ground,
+                count = 1,
+                probability = 0.03f
+            },
+            new()
+            {
+                biome = BiomeType.CragField_Ground,
+                count = 1,
+                probability = 0.03f
+            },
+            new()
+            {
+                biome = BiomeType.SparseReef_Wall,
+                count = 1,
+                probability = 0.01f
+            },
+            new()
+            {
+                biome = BiomeType.SparseReef_Spike,
+                count = 1,
+                probability = 0.1f
+            }
         };
     }
 }
