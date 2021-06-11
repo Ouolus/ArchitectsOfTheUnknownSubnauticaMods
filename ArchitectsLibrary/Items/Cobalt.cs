@@ -64,13 +64,13 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.SparseReef_Wall,
                 count = 1,
-                probability = 0.01f
+                probability = 0.02f
             },
             new()
             {
                 biome = BiomeType.SparseReef_Spike,
                 count = 1,
-                probability = 0.1f
+                probability = 0.2f
             }
         };
     }
