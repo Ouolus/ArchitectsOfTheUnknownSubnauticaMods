@@ -1,22 +1,18 @@
-﻿using ArchitectsLibrary.Items;
-using ArchitectsLibrary.Handlers;
+﻿using ArchitectsLibrary.API;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace RotA.Prefabs
 {
-    public class OmegaCube : ReskinCraftable
+    public class OmegaCube : ReskinSpawnable
     {
         public OmegaCube() : base("OmegaCube", "Omega Cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
         }
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override bool UnlockedAtStart => false;
-
+        
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
@@ -47,7 +43,7 @@ namespace RotA.Prefabs
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
+            return new (Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
         }
 
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
