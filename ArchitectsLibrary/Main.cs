@@ -57,6 +57,7 @@ namespace ArchitectsLibrary
         static RedIonCube redIonCube;
         static Cobalt cobalt;
         static DrillableCobalt drillableCobalt;
+        static CobaltIngot cobaltIngot;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -192,6 +193,11 @@ namespace ArchitectsLibrary
             drillableCobalt = new DrillableCobalt();
             drillableCobalt.Patch();
             AUHandler.DrillableCobaltTechType = drillableCobalt.TechType;
+
+            cobaltIngot = new CobaltIngot();
+            cobaltIngot.Patch();
+            AUHandler.CobaltIngotTechType = cobaltIngot.TechType;
+            CraftData.pickupSoundList.Add(cobaltIngot.TechType, ionCubePickupSound);
 
             precursorAlloy =  new PrecursorAlloyIngot();
             precursorAlloy.Patch();

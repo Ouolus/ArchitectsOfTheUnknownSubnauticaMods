@@ -181,6 +181,7 @@
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Items\AlienCompositeGlass.cs" />
     <Compile Include="Items\AotuPoster.cs" />
+    <Compile Include="Items\CobaltIngot.cs" />
     <Compile Include="Items\Cobalt.cs" />
     <Compile Include="Items\DrillableCobalt.cs" />
     <Compile Include="Items\DrillableRedBeryl.cs" />
