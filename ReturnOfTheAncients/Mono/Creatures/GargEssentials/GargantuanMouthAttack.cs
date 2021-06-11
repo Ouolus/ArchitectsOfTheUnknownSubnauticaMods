@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using ECCLibrary;
 using ECCLibrary.Internal;
 using RotA.Prefabs.Creatures;
@@ -8,15 +10,16 @@ namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanMouthAttack : MeleeAttack
     {
-        private AudioSource attackSource;
-        private ECCAudio.AudioClipPool biteClipPool;
-        private ECCAudio.AudioClipPool cinematicClipPool;
-        private GargantuanBehaviour behaviour;
+        AudioSource attackSource;
+        ECCAudio.AudioClipPool biteClipPool;
+        ECCAudio.AudioClipPool cinematicClipPool;
+        GargantuanBehaviour behaviour;
+        GargantuanRoar roar;
+        PlayerCinematicController playerDeathCinematic;
+
+        List<Type> _leviathanTypes = new() {typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid)};
+
         public GameObject throat;
-        private GargantuanRoar roar;
-
-        private PlayerCinematicController playerDeathCinematic;
-
         public bool canAttackPlayer = true;
         public bool oneShotPlayer;
         public string attachBoneName;
@@ -154,18 +157,14 @@ namespace RotA.Mono.Creatures.GargEssentials
                         if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
                         {
                             Creature otherCreature = target.GetComponent<Creature>();
-                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && (otherCreature is GhostLeviathan || otherCreature is GhostLeviatanVoid || otherCreature is ReaperLeviathan || otherCreature is SeaDragon))
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && _leviathanTypes.Contains(otherCreature.GetType()))
                             {
                                 gargantuan.Aggression.Value -= 0.6f;
                                 gargantuan.Hunger.Value = 0f;
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
                                 behaviour.GrabFish(otherCreature.gameObject);
-                                EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
-                                if (heldFishEcoTarget != null)
-                                {
-                                    Destroy(heldFishEcoTarget);
-                                }
+                                Destroy(otherCreature.GetComponent<EcoTarget>());
                                 return;
                             }
                         }
@@ -180,11 +179,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                                 otherCreature.flinch = 1f;
                                 otherCreature.Scared.Value = 1f;
                                 otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
-                                EcoTarget heldFishEcoTarget = otherCreature.GetComponent<EcoTarget>();
-                                if (heldFishEcoTarget != null)
-                                {
-                                    Destroy(heldFishEcoTarget);
-                                }
+                                Destroy(otherCreature.GetComponent<EcoTarget>());
                                 return;
                             }
                         }
