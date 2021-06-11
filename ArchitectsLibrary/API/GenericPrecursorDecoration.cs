@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Collections;
+    using SMLHelper.V2.Crafting;
     using SMLHelper.V2.Assets;
     using Buildables;
     using Handlers;
@@ -87,7 +88,7 @@
         /// <summary>
         /// Cell level of the buildable object.
         /// </summary>
-        protected virtual LargeWorldEntity.CellLevel CellLevel { get { return LargeWorldEntity.CellLevel.Medium; } }
+        protected virtual LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Medium;
 
 #if SN1
         public override GameObject GetGameObject()
