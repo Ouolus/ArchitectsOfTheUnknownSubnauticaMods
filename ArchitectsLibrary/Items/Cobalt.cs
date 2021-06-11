@@ -46,13 +46,19 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.CragField_Ground,
                 count = 1,
-                probability = 0.03f
+                probability = 0.12f
             },
             new()
             {
-                biome = BiomeType.CragField_Ground,
+                biome = BiomeType.CragField_Rock,
                 count = 1,
-                probability = 0.03f
+                probability = 0.14f
+            },
+            new()
+            {
+                biome = BiomeType.CragField_Sand,
+                count = 1,
+                probability = 0.05f
             },
             new()
             {
