@@ -6,26 +6,33 @@ using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 using UWE;
 
-namespace ArchitectsLibrary.Buildables
+namespace ArchitectsLibrary.API
 {
     /// <summary>
-    /// Only public for RotA's OmegaCubePedestal.
+    /// Creates an Ion Cube Pedestal.
+    /// <remarks>Only public for RotA's OmegaCubePedestal.</remarks>
     /// </summary>
     public class BuildableIonCubePedestal : GenericPrecursorDecoration
     {
-        public BuildableIonCubePedestal(string classId, string displayName, string desc) : base(classId, displayName, desc)
+        /// <summary>
+        /// Creates a new Buildable Ion Cube Pedestal.
+        /// </summary>
+        /// <param name="classId">Class ID</param>
+        /// <param name="displayName">Item's display name</param>
+        /// <param name="description">Item's description</param>
+        public BuildableIonCubePedestal(string classId, string displayName, string description) : base(classId, displayName, description)
         {
         }
 
-        protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
+        protected sealed override ConstructableSettings GetConstructableSettings => new (true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
-        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 0.5f, 0f), Quaternion.identity, new Vector3(1f, 0.4f, 1f)) };
-
-        protected override string GetOriginalClassId => "ea65ef91-e875-4157-99f9-a8f4f6dc92f8";
-
-        protected override bool ExteriorOnly => false;
-
-        protected override void EditPrefab(GameObject prefab)
+        protected sealed override OrientedBounds[] GetBounds => new[] { new OrientedBounds(new Vector3(0f, 0.5f, 0f), Quaternion.identity, new Vector3(1f, 0.4f, 1f)) };
+ 
+        protected sealed override string GetOriginalClassId => "ea65ef91-e875-4157-99f9-a8f4f6dc92f8";
+ 
+        protected sealed override bool ExteriorOnly => false;
+ 
+        protected sealed override void EditPrefab(GameObject prefab)
         {
             DeleteChildComponentIfExists<PrefabPlaceholder>(prefab);
             DeleteChildComponentIfExists<PrefabPlaceholdersGroup>(prefab);
@@ -57,7 +64,7 @@ namespace ArchitectsLibrary.Buildables
         }
 
 #if !SN1
-        protected override IEnumerator EditPrefabAsyncOnly(GameObject prefab)
+        protected sealed override IEnumerator EditPrefabAsyncOnly(GameObject prefab)
         {
             GameObject ionCubePlaceholderObj = prefab.gameObject.SearchChild("PrecursorIonCrystal(Placeholder)");
             var prefabRequest = PrefabDatabase.GetPrefabAsync(IonCubeClassId);
@@ -89,13 +96,20 @@ namespace ArchitectsLibrary.Buildables
 #endif
 
 
+        /// <summary>
+        /// Recipe for this buildable.
+        /// </summary>
+        /// <returns></returns>
         protected override TechData GetBlueprintRecipe()
         {
             return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1), new Ingredient(TechType.PrecursorIonCrystal, 1) });
         }
-
+        
         protected override string GetSpriteName => "IonCubePedestal";
 
-        protected virtual string IonCubeClassId { get { return "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a"; } }
+        /// <summary>
+        /// The Ion Cube's Class ID.
+        /// </summary>
+        protected virtual string IonCubeClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
     }
 }

@@ -7,7 +7,7 @@ using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 using UWE;
 
-namespace ArchitectsLibrary.Buildables
+namespace ArchitectsLibrary.API
 {
     /// <summary>
     /// A buildable precursor decoration. This is meant for Architect's Library ONLY but is public just for RotA's omega cube pedestal.
@@ -62,7 +62,7 @@ namespace ArchitectsLibrary.Buildables
 
         /// <summary>
         /// By default, <see cref="GetItemSprite"/> loads a sprite by name <see cref="GetSpriteName"/> from Architect Library's asset bundle. If you want a sprite from your own asset bundle, you must override <see cref="GetItemSprite"/>.
-        /// /// </summary>
+        /// </summary>
         protected virtual string GetSpriteName { get; }
 
         /// <summary>
@@ -95,14 +95,14 @@ namespace ArchitectsLibrary.Buildables
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
-            GameObject model = GameObject.Instantiate(originalPrefab);
+            GameObject model = GameObject.Instantiate(originalPrefab, buildablePrefab.transform, false);
             if (this is not BuildableAlienRobot or BuildableWarper)
             {
                 var rigidBody = model.GetComponent<Rigidbody>();
                 if (rigidBody != null)
                     Object.DestroyImmediate(rigidBody);
             }
-            model.transform.SetParent(buildablePrefab.transform, false);
+
             model.transform.localPosition = Vector3.zero;
             model.transform.localEulerAngles = Vector3.zero;
             model.SetActive(true);
@@ -160,8 +160,7 @@ namespace ArchitectsLibrary.Buildables
             var request = PrefabDatabase.GetPrefabAsync(GetOriginalClassId);
             yield return request;
             request.TryGetPrefab(out GameObject originalPrefab);
-            GameObject model = GameObject.Instantiate(originalPrefab);
-            model.transform.SetParent(buildablePrefab.transform, false);
+            GameObject model = GameObject.Instantiate(originalPrefab, buildablePrefab.transform, false);
             model.transform.localPosition = Vector3.zero;
             model.transform.localEulerAngles = Vector3.zero;
             model.SetActive(true);
