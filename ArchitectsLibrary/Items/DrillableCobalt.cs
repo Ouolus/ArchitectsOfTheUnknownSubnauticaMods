@@ -49,25 +49,25 @@ namespace ArchitectsLibrary.Items
             {
                 biome = BiomeType.Mountains_Rock,
                 count = 1,
-                probability = 0.03f
+                probability = 0.04f
             },
             new LootDistributionData.BiomeData
             {
                 biome = BiomeType.Mountains_Sand,
                 count = 1,
-                probability = 0.01f
+                probability = 0.05f
             },
             new()
             {
                 biome = BiomeType.SparseReef_Wall,
                 count = 1,
-                probability = 0.01f
+                probability = 0.05f
             },
             new()
             {
                 biome = BiomeType.SparseReef_Spike,
                 count = 1,
-                probability = 0.01f
+                probability = 0.04f
             }
         };
     }
