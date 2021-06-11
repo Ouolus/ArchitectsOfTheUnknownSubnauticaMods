@@ -40,9 +40,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.warpCannonTerminal.ClassID, new Vector3(0f, 0f, -36), new Vector3(0f, 0, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystalPyramid, new Vector3(0f, 0f, 0.4f), new Vector3(0f, 45f, 0f))); //Ion cube in front of aquarium
 
-            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, 11.9f), Vector3.back, transform.position + new Vector3(0f, 11f, -9.5f), Vector3.back, Vector3.down, 5f, scale: 1.5f));
-            yield return StartCoroutine(GenerateCable(transform.position + new Vector3(0f, 11f, -57.6f), Vector3.forward, transform.position + new Vector3(0f, 11f, -35.75f), Vector3.forward, Vector3.down, 5f, scale: 1.5f));
-
             //Upper aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Second floor doorway on left
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior_left.ClassID, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, 45f, 0f), Vector3.one * 1.2f));//Forcefield
@@ -141,22 +138,24 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(26, 0f, 32), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(40, 0f, 27), new Vector3(0f, -135f, 0f)));
             yield return SpawnRelicInCase(new Vector3(33.78f, 0f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
+            yield return SpawnRelicInCase(new Vector3(26.22f, 0f, 18.9f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
 
             yield return StartCoroutine(SpawnPrefab(Mod.gargPoster.ClassID, new Vector3(42.58f, 4f, 29.57f), new Vector3(0f, 225f, 0f), Vector3.one * 5f));
 
-            //Right lower room
+            //Right lower room (with omega fabricator)
             yield return StartCoroutine(SpawnPrefab(Mod.spamTerminal.ClassID, new Vector3(-22, 0f, 28), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-18, 0f, 24), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(-26, 0f, 32), new Vector3(0f, 45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(-40, 0f, 27), new Vector3(0f, 45, 0f)));
-            yield return SpawnRelicInCase(new Vector3(-33.78f, 0f, 11.34f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, 135f, 0f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
+
+            yield return StartCoroutine(SpawnPrefab(Mod.omegaCubeFabricator.ClassID, new Vector3(-36, 0, 14)));
 
             //Top
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 35f, 0f), Vector3.up * 45f));

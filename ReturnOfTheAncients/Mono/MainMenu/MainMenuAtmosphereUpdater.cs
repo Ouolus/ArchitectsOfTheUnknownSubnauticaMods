@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections;
 using ECCLibrary;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.MainMenu
 {
     public class MainMenuAtmosphereUpdater : MonoBehaviour
     {

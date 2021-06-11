@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+using System.Collections.Generic;
 using ECCLibrary;
 using ECCLibrary.Internal;
+using RotA.Prefabs.Creatures;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanMouthAttack : MeleeAttack
     {
-        private AudioSource attackSource;
-        private ECCAudio.AudioClipPool biteClipPool;
-        private ECCAudio.AudioClipPool cinematicClipPool;
-        private GargantuanBehaviour behaviour;
-        private GameObject throat;
-        private GargantuanRoar roar;
+        AudioSource attackSource;
+        ECCAudio.AudioClipPool biteClipPool;
+        ECCAudio.AudioClipPool cinematicClipPool;
+        GargantuanBehaviour behaviour;
+        GargantuanRoar roar;
+        PlayerCinematicController playerDeathCinematic;
+        readonly List<Type> _leviathanTypes = new() {typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid)};
 
-        private PlayerCinematicController playerDeathCinematic;
-
+        public GameObject throat;
         public bool canAttackPlayer = true;
         public bool oneShotPlayer;
         public string attachBoneName;
         public bool canPerformCyclopsCinematic;
+        public GargGrabFishMode grabFishMode;
 
         void Start()
         {
@@ -52,11 +52,11 @@ namespace RotA.Mono
         {
             if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
-                Creature thisCreature = gameObject.GetComponent<Creature>();
-                if (thisCreature.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
+                Creature gargantuan = gameObject.GetComponent<Creature>();
+                if (gargantuan.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
                 {
                     GameObject target = GetTarget(collider);
-                    if (!behaviour.Edible(target))
+                    if (!behaviour.CanEat(target))
                     {
                         return;
                     }
@@ -64,7 +64,7 @@ namespace RotA.Mono
                     {
                         LiveMixin targetLm = target.GetComponent<LiveMixin>();
                         Player player = target.GetComponent<Player>();
-                        if (player != null)
+                        if (player != null) //start player attack logic
                         {
                             if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
                             {
@@ -72,11 +72,12 @@ namespace RotA.Mono
                             }
                             if (!canAttackPlayer)
                             {
+                                //gargantuan baby nibble behavior
                                 Pickupable held = Inventory.main.GetHeld();
-                                if(held is not null && held.GetComponent<Creature>() != null)
+                                if (held is not null && held.GetComponent<Creature>() != null)
                                 {
                                     LiveMixin heldLm = held.GetComponent<LiveMixin>();
-                                    if(heldLm.maxHealth < 100f)
+                                    if (heldLm.maxHealth < 100f)
                                     {
                                         animator.SetFloat("random", UnityEngine.Random.value);
                                         animator.SetTrigger("bite");
@@ -94,6 +95,7 @@ namespace RotA.Mono
                             }
                             else
                             {
+                                //attack player normally
                                 float baseDmg;
                                 if (oneShotPlayer)
                                 {
@@ -116,21 +118,22 @@ namespace RotA.Mono
                                     return;
                                 }
                             }
-                        }
-                        else if (canAttackPlayer && behaviour.GetCanGrabVehicle())
+                        } //end player attack logic
+                        else if (canAttackPlayer && behaviour.GetCanGrabVehicle()) //start vehicle attack logic
                         {
-                            SeaMoth component4 = target.GetComponent<SeaMoth>();
-                            if (component4 && !component4.docked)
+                            //try to perform vehicle attack
+                            SeaMoth seamoth = target.GetComponent<SeaMoth>();
+                            if (seamoth && !seamoth.docked)
                             {
-                                behaviour.GrabGenericSub(component4);
-                                thisCreature.Aggression.Value -= 0.5f;
+                                behaviour.GrabGenericSub(seamoth);
+                                gargantuan.Aggression.Value -= 0.5f;
                                 return;
                             }
-                            Exosuit component5 = target.GetComponent<Exosuit>();
-                            if (component5 && !component5.docked)
+                            Exosuit exosuit = target.GetComponent<Exosuit>();
+                            if (exosuit && !exosuit.docked)
                             {
-                                behaviour.GrabExosuit(component5);
-                                thisCreature.Aggression.Value -= 0.5f;
+                                behaviour.GrabExosuit(exosuit);
+                                gargantuan.Aggression.Value -= 0.5f;
                                 return;
                             }
                             if (canPerformCyclopsCinematic)
@@ -140,24 +143,53 @@ namespace RotA.Mono
                                 {
                                     behaviour.GrabLargeSub(subRoot);
                                     behaviour.roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
-                                    thisCreature.Aggression.Value -= 1f;
+                                    gargantuan.Aggression.Value -= 1f;
                                     return;
                                 }
                             }
-                        }
-                        if (targetLm == null) return;
-                        if (!targetLm.IsAlive())
+                        } //end vehicle attack logic
+                        if (targetLm == null) return; //just in case I guess
+                        if (!targetLm.IsAlive()) //dont wanna chomp on a dead fish
                         {
                             return;
                         }
-                        if (!CanAttackTargetFromPosition(target))
+                        if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
+                        {
+                            Creature otherCreature = target.GetComponent<Creature>();
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && _leviathanTypes.Contains(otherCreature.GetType()))
+                            {
+                                gargantuan.Aggression.Value -= 0.6f;
+                                gargantuan.Hunger.Value = 0f;
+                                otherCreature.flinch = 1f;
+                                otherCreature.Scared.Value = 1f;
+                                behaviour.GrabFish(otherCreature.gameObject);
+                                Destroy(otherCreature.GetComponent<EcoTarget>());
+                                return;
+                            }
+                        }
+                        else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
+                        {
+                            Creature otherCreature = target.GetComponent<Creature>();
+                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null && otherCreature.gameObject.GetComponent<GargantuanRoar>() is null)
+                            {
+                                gargantuan.Aggression.Value -= 0.6f;
+                                gargantuan.Hunger.Value = 0f;
+                                behaviour.GrabFish(otherCreature.gameObject);
+                                otherCreature.flinch = 1f;
+                                otherCreature.Scared.Value = 1f;
+                                otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
+                                Destroy(otherCreature.GetComponent<EcoTarget>());
+                                return;
+                            }
+                        }
+                        if (!CanAttackTargetFromPosition(target)) //any attack past this point must not have collisions between the garg and the target
                         {
                             return;
                         }
                         if (behaviour.CanSwallowWhole(target, targetLm))
                         {
                             creature.GetAnimator().SetTrigger("bite");
-                            thisCreature.Hunger.Value -= 0.15f;
+                            gargantuan.Hunger.Value -= 0.15f;
                             var swallowing = target.AddComponent<BeingSuckedInWhole>();
                             swallowing.target = throat.transform;
                             swallowing.animationLength = 1f;
@@ -170,7 +202,7 @@ namespace RotA.Mono
                             {
                                 creature.Aggression.Value = 0f;
                             }
-                            thisCreature.Aggression.Value -= 0.15f;
+                            gargantuan.Aggression.Value -= 0.15f;
                         }
                     }
                 }
@@ -211,7 +243,7 @@ namespace RotA.Mono
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
             yield return new WaitForSeconds(0.5f);
-            if(target is not null)
+            if (target is not null)
             {
                 var targetLm = target.GetComponent<LiveMixin>();
                 if (targetLm)

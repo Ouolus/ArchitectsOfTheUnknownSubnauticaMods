@@ -1,10 +1,10 @@
-﻿using SMLHelper.V2.Assets;
-using ECCLibrary;
+﻿using ECCLibrary;
 using RotA.Mono;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Initializers
 {
     //Initializer for the adult garg, but ALSO the spinefish spawning
     class AdultGargSpawnerInitializer : Spawnable

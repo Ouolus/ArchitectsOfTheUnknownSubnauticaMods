@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RotA.Mono;
+using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 

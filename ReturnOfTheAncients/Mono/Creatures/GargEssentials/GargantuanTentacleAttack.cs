@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using UnityEngine;
 using ECCLibrary;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanTentacleAttack : MeleeAttack
     {

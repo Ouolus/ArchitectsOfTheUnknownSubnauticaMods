@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
+﻿using System.Collections;
 using ArchitectsLibrary.Utility;
+using RotA.Mono.Creatures.GargEssentials;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.Baby
 {
 	public class GargBabyTarget : HandTarget, IHandTarget
 	{
@@ -78,7 +78,7 @@ namespace RotA.Mono
 			cinematicController.StartCinematicMode(Player.main);
 			rb.isKinematic = true;
 			roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
-			yield return new WaitForSeconds(GetAnimationLength(random));
+			yield return new WaitForSeconds(GetAnimationLength(animator.GetFloat("random")));
 			rb.isKinematic = false;
 			cinematicController.EndCinematicMode();
 			cinematicPlaying = false;
@@ -102,17 +102,21 @@ namespace RotA.Mono
 
 		float GetAnimationLength(float random)
         {
-			if(random <= 0.33333f)
+			if(random <= 0.25f)
             {
-				return 4.02f;
+				return 14.12f / 2f;
             }
-			else if(random <= 0.677777f)
+			else if(random <= 0.5f)
             {
-				return 4.8f;
+				return 8f / 2f;
+            }
+			else if(random <= 0.75f)
+            {
+				return 8f / 2f;
             }
             else
             {
-				return 4f;
+				return 8.36f / 2f;
 			}
         }
 

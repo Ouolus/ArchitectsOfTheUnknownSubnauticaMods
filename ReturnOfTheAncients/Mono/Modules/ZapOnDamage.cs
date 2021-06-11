@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RotA.Mono.Creatures.GargEssentials;
+using UnityEngine;
 using RotA.Prefabs.Modules;
 
 namespace RotA.Mono.Modules

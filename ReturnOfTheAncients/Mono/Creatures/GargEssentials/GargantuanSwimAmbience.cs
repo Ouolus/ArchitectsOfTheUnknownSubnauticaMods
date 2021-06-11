@@ -1,9 +1,8 @@
-﻿using ECCLibrary;
-using ECCLibrary.Internal;
-using System.Collections;
+﻿using System.Collections;
+using ECCLibrary;
 using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanSwimAmbience : MonoBehaviour
     {

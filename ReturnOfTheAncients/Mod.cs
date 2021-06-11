@@ -3,6 +3,7 @@ using ECCLibrary;
 using UnityEngine;
 using System.Reflection;
 using RotA.Prefabs;
+using RotA.Prefabs.Buildable;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using HarmonyLib;
@@ -17,6 +18,11 @@ using UWE;
 using RotA.Prefabs.Equipment;
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
+using RotA.Prefabs.AlienBase.Teleporter;
+using RotA.Prefabs.Creatures;
+using RotA.Prefabs.Initializers;
+using RotA.Prefabs.Placeable;
+using RotA.Prefabs.Signals;
 
 namespace RotA
 {
@@ -37,8 +43,9 @@ namespace RotA
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
 
-        public static GenericSignalPrefab signal_outpostC;
-        public static GenericSignalPrefab signal_outpostD;
+        public static GenericSignalPrefab signal_cragFieldBase;
+        public static GenericSignalPrefab signal_sparseReefBase;
+        public static GenericSignalPrefab signal_kooshZoneBase;
         public static GenericSignalPrefab signal_ruinedGuardian;
         public static GenericSignalPrefab signal_cache_bloodKelp;
         public static GenericSignalPrefab signal_cache_sparseReef;
@@ -54,6 +61,7 @@ namespace RotA
 
         public static PrecursorDoorPrefab door_supplyCache;
         public static PrecursorDoorPrefab door_researchBase;
+        public static PrecursorDoorPrefab door_kooshBase;
         public static PrecursorDoorPrefab whiteTabletDoor;
 
         public static VoidInteriorForcefield voidInteriorForcefield;
@@ -72,6 +80,7 @@ namespace RotA
         public static DataTerminalPrefab guardianTerminal;
         public static DataTerminalPrefab researchBaseTerminal;
         public static DataTerminalPrefab supplyCacheTerminal;
+        public static DataTerminalPrefab kooshBaseTerminal;
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
@@ -80,11 +89,15 @@ namespace RotA
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
 
+        public static OmegaCubePedestal buildableOmegaCubePedestal;
+
         public static GenericWorldPrefab secondaryBaseModel;
         public static GenericWorldPrefab voidBaseModel;
         public static GenericWorldPrefab guardianTailfinModel;
         public static AquariumSkeleton aquariumSkeleton;
         public static BlackHolePrefab blackHole;
+        public static OmegaCube omegaCube;
+        public static OmegaCubeFabricator omegaCubeFabricator;
 
         public static AtmosphereVolumePrefab precursorAtmosphereVolume;
 
@@ -119,12 +132,14 @@ namespace RotA
         public const string modEncyPath_analysis = "GargMod/GargModPrecursorAnalysis";
         public const string modEncyPath_tech = "GargMod/GargModPrecursorTech";
         public const string modEncyPath_relics = "GargMod/GargModPrecursorRelics";
+        public const string modEncyPath_gargantuan = "GargMod/GargModGargantuanLeviathan";
 
         private const string ency_tertiaryOutpostTerminalGrassy = "TertiaryOutpostTerminal1Ency";
         private const string ency_tertiaryOutpostTerminalSparseReef = "TertiaryOutpostTerminal2Ency";
         private const string ency_tertiaryOutpostTerminalLostRiver = "TertiaryOutpostTerminal3Ency";
         private const string ency_supplyCacheTerminal = "SupplyCacheTerminalEncy";
         private const string ency_researchBaseTerminal = "ResearchBaseTerminalEncy";
+        private const string ency_kooshBaseTerminal = "KooshBaseTerminalEncy";
         private const string ency_archElectricityTerminal = "ArchitectElectricityEncy";
         private const string ency_voidBaseTerminal = "VoidBaseTerminalEncy";
         private const string ency_ruinedGuardian = "RuinedGuardianEncy";
@@ -142,6 +157,7 @@ namespace RotA
         private const string ency_aquariumSkeleton = "BabyGargSkeletonEncy";
         private const string ency_blackHole = "ResearchBaseSingularityEncy";
         private const string ency_warpCannonTerminal = "WarpCannonTerminalEncy";
+        private const string ency_omegaCubeFabricator = "OmegaCubeFabricatorEncy";
 
         private const string alienSignalName = "Alien Signal";
 
@@ -150,8 +166,14 @@ namespace RotA
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
         public static string warpCannonSwitchFireModeCurrentlyWarpKey = "WarpCannonSwitchFireModeWarp";
+        public static string warpCannonSwitchFireModeCurrentlyCreatureKey = "WarpCannonSwitchFireModeCreature";
         public static string warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey = "WarpCannonSwitchFireModeManipulatePrimary";
         public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
+        public static string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
+
+        public static string omegaTerminalHoverText = "OmegaTerminalHoverText";
+        public static string omegaTerminalInteract = "OmegaTerminalInteract";
+        public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
 
         [QModPostPatch]
         public static void PostPatch()
@@ -181,6 +203,7 @@ namespace RotA
             warpCannon = new WarpCannonPrefab();
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
 
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
             warpCannonTerminal.Patch();
@@ -188,6 +211,15 @@ namespace RotA
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
+
+            omegaCube = new OmegaCube();
+            omegaCube.Patch();
+            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
+
+            buildableOmegaCubePedestal = new OmegaCubePedestal();
+            buildableOmegaCubePedestal.Patch();
+
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
 
             #region Modules
             electricalDefenseMk2 = new();
@@ -220,9 +252,16 @@ namespace RotA
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
             LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
-            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Current fire mode: Personal teleportation. Switch fire mode: {0}");
-            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
-            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}.\nCurrent fire mode: Environment manipulation. Switch fire mode: {0}.");
+            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_gargantuan), "Gargantuan Leviathan");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Teleport to base: {1}\nCurrent mode: Personal teleportation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyCreatureKey, "Warp in creatures: {1}\nCurrent mode: Creature summon. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, "Create entrance portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}");
+            LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");
+
+            LanguageHandler.SetLanguageLine(omegaTerminalHoverText, "Omega terminal");
+            LanguageHandler.SetLanguageLine(omegaTerminalInteract, "Insert data");
+            LanguageHandler.SetLanguageLine(omegaTerminalRegenerateCube, "Generate omega cube");
             #endregion
 
             #region Tech
@@ -253,7 +292,10 @@ namespace RotA
             #region CreatureSpawns
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1245, -40, -716), "GargBehindAurora", 400f));
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1450, -100, 180), "GargBehindAurora2", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1386, -117 ,346), "GargDunesMid", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1386, -117, 346), "GargDunesMid", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1244, -117, 989), "GargDunesMidUpper", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1122, -117, 1420), "GargDunesUpper", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1370, -60, -29f), "GargDunesLower", 400f));
             #endregion
 
             #region Initializers
@@ -268,11 +310,14 @@ namespace RotA
             #endregion
 
             #region Signals
-            signal_outpostC = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3);
-            signal_outpostC.Patch();
+            signal_cragFieldBase = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
+            signal_cragFieldBase.Patch();
 
-            signal_outpostD = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3);
-            signal_outpostD.Patch();
+            signal_sparseReefBase = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
+            signal_sparseReefBase.Patch();
+
+            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3); //purple tablet icon
+            signal_kooshZoneBase.Patch();
 
             signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747));
             signal_ruinedGuardian.Patch();
@@ -291,15 +336,17 @@ namespace RotA
             #endregion
 
             #region Ency entries
-            PatchEncy(ency_tertiaryOutpostTerminalGrassy, modEncyPath_terminalInfo, "Tertiary Outpost A Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.", "Popup_Blue", "TO_G_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminalGrassy, modEncyPath_terminalInfo, "Tertiary Outpost C Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source. You just read cut content, by the way :)", "Popup_Blue", "TO_G_Ency");
 
-            PatchEncy(ency_tertiaryOutpostTerminalSparseReef, modEncyPath_terminalInfo, "Tertiary Outpost B Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Alien robot:\nThese devices are a common occurence in all alien technology. However, they are likely present in this base only to repair alien machinery while it is charging in the claw device.", "Popup_Blue", "TO_S_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminalSparseReef, modEncyPath_terminalInfo, "Tertiary Outpost A Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Alien robot:\nThese devices are a common occurence in all alien technology. However, they are likely present in this base only to repair alien machinery while it is charging in the claw device.", "Popup_Blue", "TO_S_Ency");
 
-            PatchEncy(ency_tertiaryOutpostTerminalLostRiver, modEncyPath_terminalInfo, "Tertiary Outpost C Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Orange Tablet:\nA rare alien artifact. It was likely put here for future use, but was never reclaimed.", "Popup_Blue", "TO_LR_Ency");
+            PatchEncy(ency_tertiaryOutpostTerminalLostRiver, modEncyPath_terminalInfo, "Tertiary Outpost B Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Orange Tablet:\nA rare alien artifact. It was likely put here for future use, but was never reclaimed.", "Popup_Blue", "TO_LR_Ency");
 
             PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- The arch-like structure situated in the back of the cache, if not decorational, was likely used for quick transportation of supplies.", "Popup_Green", "SupplyCache_Ency");
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- Several alien robots wandering about the facility suggests they were used as tools for the construction of weaponry, or even as tests subjects for said weaponry.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "ResearchBase_Ency");
+            
+            PatchEncy(ency_kooshBaseTerminal, modEncyPath_terminalInfo, "Data Storage Facility", " ???", "Popup_green", "ResearchBase_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
 
@@ -333,7 +380,9 @@ namespace RotA
 
             PatchEncy(ency_blackHole, modEncyPath_analysis, "Contained Singularity", "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.");
 
-            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "The schematics for a sort of tool that enables teleportation for the user.");
+            PatchEncy(ency_warpCannonTerminal, modEncyPath_tech, "Handheld Warping Device Schematics", "This terminal contains schematics for alien warp technology, which utilizes the unnatural properties of Electricubes. As a result of this finding, your PDA has synthesized blueprints for a Handheld Warping Device.\n\nWarping Device Operation:\nEnergy is quickly routed through the system from the battery up into the barrel, where it can be released in a controlled pulse. The magnitude and effects of this pulse can be adjusted by precise mechanical rotations to the four calibration discs.\n\nThese pulses generate a warping field that transports atoms from a point to another at extremely fast speeds.\n\nPractical uses include personal teleportation and manipulation of the state of objects in the environment.", "WarpCannon_Popup", "WarpCannon_Ency");
+
+            PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube Fabrication Device", "A powerful device which is obviously alien in design. Appears to be a fabrication device of some sort.\n\nThe data terminal connected to the fabricator has an incomplete set of data. It is emitting a broadcast, which reads in English: \"Project 'Omega' formula is 95% complete. Data sets missing: '1'. Data set type: 'biometric data'. Species name: 'Gargantuan Leviathan'. Data must be obtained from an adult specimen.\"\n\nYou will likely have to scan an adult Gargantuan Leviathan to complete this formula. Good luck.");
 
             #endregion
 
@@ -362,6 +411,9 @@ namespace RotA
             door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_researchBase.Patch();
 
+            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", "Bulb Zone base door", purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_kooshBase.Patch();
+
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
             const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
             voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
@@ -379,7 +431,7 @@ namespace RotA
             voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
             voidDoor_white.Patch();
 
-            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(0f, 0f, 3f), Vector3.up * 180f, bigDoor, true);
+            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(-4f, 0f, 4f), Vector3.up * -90f, bigDoor, true);
             voidDoor_interior_infectionTest.Patch();
 
             voidInteriorForcefield = new VoidInteriorForcefield();
@@ -433,16 +485,20 @@ namespace RotA
 
             precursorAtmosphereVolume = new AtmosphereVolumePrefab("PrecursorAntechamberVolume");
             precursorAtmosphereVolume.Patch();
+
+            omegaCubeFabricator = new OmegaCubeFabricator();
+            omegaCubeFabricator.Patch();
+            MakeObjectScannable(omegaCubeFabricator.TechType, ency_omegaCubeFabricator, 3f);
             #endregion
 
             #region Alien terminals
-            tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", ency_tertiaryOutpostTerminalGrassy, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", ency_tertiaryOutpostTerminalGrassy, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalGrassy.Patch();
 
-            tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", ency_tertiaryOutpostTerminalSparseReef, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", ency_tertiaryOutpostTerminalSparseReef, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalSparseReef.Patch();
 
-            tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", ency_tertiaryOutpostTerminalLostRiver, new string[] { signal_outpostC.ClassID, signal_outpostD.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", ency_tertiaryOutpostTerminalLostRiver, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalLostRiver.Patch();
 
             guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminalDistress", DataTerminalPrefab.blueTerminalCID, delay: 6f, subtitles: "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.");
@@ -453,6 +509,9 @@ namespace RotA
 
             researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", ency_researchBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             researchBaseTerminal.Patch();
+
+            kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", ency_kooshBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            kooshBaseTerminal.Patch();
 
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
@@ -506,6 +565,9 @@ namespace RotA
 
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
             researchBase.Patch();
+
+            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
+            kooshBase.Patch();
 
             var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
             eggBase.Patch();

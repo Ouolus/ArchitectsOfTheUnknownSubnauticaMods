@@ -1,13 +1,6 @@
-﻿using ECCLibrary.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UWE;
+﻿using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class DataTerminalAnalyzeTech : MonoBehaviour
     {

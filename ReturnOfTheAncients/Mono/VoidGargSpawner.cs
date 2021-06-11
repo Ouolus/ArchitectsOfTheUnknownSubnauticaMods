@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using RotA.Mono.Creatures;
+using RotA.Mono.Singletons;
 using UnityEngine;
 
 namespace RotA.Mono

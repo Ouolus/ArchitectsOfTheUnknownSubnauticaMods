@@ -1,8 +1,8 @@
 ﻿using ECCLibrary;
-using UnityEngine;
 using RotA.Mono;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanJuvenile : GargantuanBase
     {
@@ -14,11 +14,11 @@ namespace RotA.Prefabs
 
         public override bool CanBeScaredByElectricity => true;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 9f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 9f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Juvenile_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 20f, 15f, 20f, 17f, 30f);
 
-        public override float EyeFov => 0.8f;
+        public override float EyeFov => 0.35f;
 
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
@@ -35,5 +35,7 @@ namespace RotA.Prefabs
             base.AddCustomBehaviour(components);
             prefab.AddComponent<GargantuanEncounterPDA>();
         }
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.LeviathansOnlyNoSwallow;
     }
 }

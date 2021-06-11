@@ -94,7 +94,9 @@ namespace RotA.Prefabs.Modules
 
         protected override void CustomizePrefab(GameObject prefab)
         {
-            FixVFXFabricating(prefab.GetComponentInChildren<VFXFabricating>(true));
+            var vfxFabricating = prefab.GetComponentInChildren<VFXFabricating>(true);
+            FixVFXFabricating(vfxFabricating);
+            vfxFabricating.posOffset = new Vector3(0f, 0.05f, 0f);
             Mod.ApplyAlienUpgradeMaterials(prefab.GetComponentInChildren<Renderer>());
         }
     }

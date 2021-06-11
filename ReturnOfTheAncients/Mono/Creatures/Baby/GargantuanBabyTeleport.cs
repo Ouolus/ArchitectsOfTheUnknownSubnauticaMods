@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Story;
+﻿using Story;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.Baby
 {
 	public class GargantuanBabyTeleport : MonoBehaviour
 	{
