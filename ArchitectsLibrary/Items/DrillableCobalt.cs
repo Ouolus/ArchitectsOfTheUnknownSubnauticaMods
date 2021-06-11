@@ -17,7 +17,7 @@ namespace ArchitectsLibrary.Items
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.EnsureComponent<Light>().color = new Color(1f, 0f, 1f);
+            prefab.EnsureComponent<Light>().color = new Color(0.3f, 0f, 1f);
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.RedBerylTechType;
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.CobaltTechType };
@@ -28,7 +28,7 @@ namespace ArchitectsLibrary.Items
             {
                 renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Diffuse"));
                 renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Spec"));
-                renderer.material.SetFloat("_SpecInt", 3f);
+                renderer.material.SetFloat("_SpecInt", 1.5f);
                 renderer.material.SetFloat("_Fresnel", 0.26f);
                 renderer.material.SetFloat("_Shininess", 6f);
                 renderer.material.SetColor("_SpecColor", new Color(3f, 2f, 1f));
