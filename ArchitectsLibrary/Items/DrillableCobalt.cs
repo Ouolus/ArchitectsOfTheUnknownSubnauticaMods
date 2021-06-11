@@ -17,8 +17,7 @@ namespace ArchitectsLibrary.Items
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            prefab.EnsureComponent<Light>().color = new Color(0.3f, 0f, 1f);
-            prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.RedBerylTechType;
+            prefab.EnsureComponent<ResourceTracker>().overrideTechType = AUHandler.CobaltTechType;
             var drillable = prefab.GetComponent<Drillable>();
             drillable.resources[0] = new Drillable.ResourceType() { chance = 1f, techType = AUHandler.CobaltTechType };
             drillable.kChanceToSpawnResources = 1f;
