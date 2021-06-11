@@ -3,6 +3,7 @@ using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 using RotA.Mono;
+using RotA.Mono.AlienTech;
 
 namespace RotA.Prefabs.AlienBase
 {

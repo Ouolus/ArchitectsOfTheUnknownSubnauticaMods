@@ -1,15 +1,12 @@
-﻿using SMLHelper.V2.Crafting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using ArchitectsLibrary.Handlers;
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items
 {
-    class Electricube : ReskinCraftable
+    using SMLHelper.V2.Crafting;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using API;
+    using Handlers;
+    
+    class Electricube : ReskinSpawnable
     {
         public Electricube() : base("Electricube", "Electricube", "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.")
         {
@@ -18,8 +15,6 @@ namespace ArchitectsLibrary.Items
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override bool UnlockedAtStart => false;
 
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
@@ -51,9 +46,9 @@ namespace ArchitectsLibrary.Items
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 1f);
         }
 
-        protected override string SpriteName()
+        protected override Atlas.Sprite GetItemSprite()
         {
-            return "Electricube_Icon";
+            return new (Main.assetBundle.LoadAsset<Sprite>("Electricube_Icon"));
         }
     }
 }

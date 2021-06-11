@@ -1,5 +1,6 @@
 ﻿using SMLHelper.V2.Json;
 using SMLHelper.V2.Options.Attributes;
+using UnityEngine;
 
 namespace RotA
 {
@@ -19,5 +20,7 @@ namespace RotA
                 return RoarScreenShakeIntensity / 100f;
             }
         }
+        [Keybind("Warp to base key", Tooltip = "The key that needs to be pressed (twice) to return to your base.")]
+        public KeyCode WarpToBaseKey = KeyCode.H;
     }
 }

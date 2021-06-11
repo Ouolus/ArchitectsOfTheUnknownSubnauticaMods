@@ -15,6 +15,7 @@ namespace RotA.Patches
             AddTeleportPosition(__instance, "lostriveroutpost", new Vector3(-730, -759, -224));
             AddTeleportPosition(__instance, "supplycache", new Vector3(-16, -172, -1133));
             AddTeleportPosition(__instance, "researchbase", new Vector3(-852, -189, -579));
+            AddTeleportPosition(__instance, "kooshzonebase", new Vector3(1483, -456, 1508));
             AddTeleportPosition(__instance, "destroyedguardian", new Vector3(367, -335f, -1750));
             AddTeleportPosition(__instance, "voidbase", new Vector3(372, -395, -1801));
         }

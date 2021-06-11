@@ -121,13 +121,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\BuildableIonCubePedestal.cs" />
     <Compile Include="API\EggPrefab.cs" />
+    <Compile Include="API\GenericPrecursorDecoration.cs" />
     <Compile Include="API\HolographicPoster.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
+    <Compile Include="API\DisplayCaseServices.cs" />
+    <Compile Include="API\ReskinSpawnable.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
-    <Compile Include="Buildables\BuildableIonCubePedestal.cs" />
+    <Compile Include="Buildables\BuildableItemPedestal.cs" />
     <Compile Include="Buildables\BuildablePedestal.cs" />
     <Compile Include="Buildables\BuildablePedestalLarge.cs" />
     <Compile Include="Buildables\BuildableRedIonCubePedestal.cs" />
@@ -146,7 +150,7 @@
     <Compile Include="Buildables\BuildableLight1.cs" />
     <Compile Include="Buildables\BuildablePlatform.cs" />
     <Compile Include="Buildables\BuildableColumn.cs" />
-    <Compile Include="Buildables\GenericPrecursorDecoration.cs" />
+    <Compile Include="Buildables\BuildableWarper.cs" />
     <Compile Include="CreatorKit\Mono\FilterableList.cs" />
     <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
     <Compile Include="CreatorKit\Mono\GenericButton.cs" />
@@ -178,6 +182,9 @@
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Items\AlienCompositeGlass.cs" />
     <Compile Include="Items\AotuPoster.cs" />
+    <Compile Include="Items\CobaltIngot.cs" />
+    <Compile Include="Items\Cobalt.cs" />
+    <Compile Include="Items\DrillableCobalt.cs" />
     <Compile Include="Items\DrillableRedBeryl.cs" />
     <Compile Include="Items\DrillableMorganite.cs" />
     <Compile Include="Items\DrillableSapphire.cs" />
@@ -187,18 +194,20 @@
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
-    <Compile Include="Items\ReskinCraftable.cs" />
     <Compile Include="Items\Sapphire.cs" />
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
-    <Compile Include="Items\ReskinSpawnable.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
+    <Compile Include="MonoBehaviours\DisplayCaseDecoration.cs" />
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
+    <Compile Include="MonoBehaviours\SpinInRelicCase.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
+    <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />

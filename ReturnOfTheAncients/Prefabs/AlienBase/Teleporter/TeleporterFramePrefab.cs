@@ -1,10 +1,9 @@
-﻿using SMLHelper.V2.Assets;
+﻿using ECCLibrary;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using System.Collections;
-using ECCLibrary;
 
-namespace RotA.Prefabs.AlienBase
+namespace RotA.Prefabs.AlienBase.Teleporter
 {
     public class TeleporterFramePrefab : Spawnable
     {

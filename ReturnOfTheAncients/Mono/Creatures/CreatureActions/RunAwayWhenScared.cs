@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.CreatureActions
 {
     public class RunAwayWhenScared : CreatureAction
     {

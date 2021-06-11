@@ -1,13 +1,12 @@
-﻿using ECCLibrary;
-using RotA.Mono;
+﻿using System.Collections.Generic;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
-using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Signals
 {
     public class GenericSignalPrefab : Spawnable
     {

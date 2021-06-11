@@ -1,10 +1,10 @@
-﻿using SMLHelper.V2.Assets;
-using ECCLibrary;
+﻿using ECCLibrary;
 using RotA.Mono.Commands;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Initializers
 {
     public class SecretCommandInitializer : Spawnable
     {

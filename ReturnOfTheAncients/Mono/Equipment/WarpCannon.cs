@@ -1,33 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using RotA.Mono.Singletons;
 
 namespace RotA.Mono.Equipment
 {
+    [RequireComponent(typeof(EnergyMixin))]
     public class WarpCannon : PlayerTool
     {
-        public Animator animator;
+        public WarpCannonAnimations animations;
         public FMODAsset portalOpenSound;
         public FMODAsset portalCloseSound;
         public FMOD_StudioEventEmitter chargeLoop;
         public WarperData warperCreatureData;
-        float timeCanUseAgain = 0f;
-        public float maxDistance = 40f;
+        float timeCanUseAgain;
+        public float maxDistance = 50f;
         public float minDistanceInBase = 1f;
-        public float maxDistanceInBase = 20f;
+        public float maxDistanceInBase = 30f;
         public float surveyRadius = 0.2f;
-        public float maxChargeSeconds = 1.5f;
+        public float maxChargeSeconds = 2.7f;
         public float nodeMaxDistance = 50f;
-        bool handDown = false;
-        float timeStartedCharging = 0f;
+        public float spawnCreatureMaxDistance = 25f;
+        public float massThreshold = 1250;
+        bool handDown;
+        float timeStartedCharging;
+        public bool removeWarpCannonLimits;
 
-        private GameObject myPrimaryNode;
-        private GameObject mySecondaryNode;
+        GameObject myPrimaryNode;
+        GameObject mySecondaryNode;
+
+        float timeWarpHomeKeyLastPressed = -1f;
+
+        public PrecursorIllumControl illumControl;
 
         /// <summary>
-        /// The speed for warping. It's a smooth animation rather than instant. You warp 2x faster in open water.
+        /// The speed for warping. It's a smooth animation rather than instant.
         /// </summary>
-        public float warpSpeed = 4;
+        public float warpSpeed = 8f;
+
+        public float warpModeEnergyCost = 20;
+        public float manipulateModeEnergyCost = 15;
+        public float creatureSpawnModeEnergyCost = 40;
 
         public GameObject warpInPrefab;
         public GameObject warpOutPrefab;
@@ -38,7 +51,7 @@ namespace RotA.Mono.Equipment
 
         public FireMode fireMode = FireMode.Warp;
 
-        List<IPropulsionCannonAmmo> iammo = new List<IPropulsionCannonAmmo>(); //IDK why this exists but the propulsion cannon does it
+        List<IPropulsionCannonAmmo> iammoCache = new(); //IDK why this exists but the propulsion cannon does it
 
         /// <summary>
         /// Controls what happens when you right click.
@@ -50,40 +63,46 @@ namespace RotA.Mono.Equipment
             {
                 return true;
             }
-            if (Time.time > timeCanUseAgain)
+
+            if (!(Time.time > timeCanUseAgain)) return false;
+            
+            return fireMode switch
             {
-                if (fireMode == FireMode.Manipulate)
-                {
-                    return FireManipulateMode();
-                }
-                else if (fireMode == FireMode.Warp)
-                {
-                    return FireWarpMode();
-                }
-            }
-            return false;
+                FireMode.Manipulate => FireManipulateMode(),
+                FireMode.Warp => FireWarpMode(),
+                FireMode.CreatureSpawn => FireCreatureSpawnMode(),
+                _ => false
+            };
         }
 
-        private bool PositionAboveWater(float y)
+        /// <summary>
+        /// Simply checks if <paramref name="y"/> is above the water level.
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static bool PositionAboveWater(float y)
         {
-            float oceanLevel;
 #if SN1
-            oceanLevel = Ocean.main.GetOceanLevel();
+            var oceanLevel = Ocean.main.GetOceanLevel();
 #else
-                oceanLevel = Ocean.GetOceanLevel();
+            var oceanLevel = Ocean.GetOceanLevel();
 #endif
             return y > oceanLevel;
         }
 
         /// <summary>
-        /// Spawns a creature around the player.
+        /// Spawns creatures around <paramref name="warpPosition"/>.
         /// </summary>
-        void Misfire(Vector3 warpPosition, bool spawnLandFauna)
+        void SpawnCreaturesAtPosition(Vector3 warpPosition, bool spawnLandFauna, float spawnRadius = 10f, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
-            string biomeName = "";
+            var biomeName = "";
             if (LargeWorld.main)
             {
                 biomeName = LargeWorld.main.GetBiome(warpPosition);
+            }
+            if (biomeName.ToLower().Contains("lostriver"))
+            {
+                biomeName = "LostRiver";
             }
             WarperData.WarpInCreature randomCreature;
             if (spawnLandFauna)
@@ -96,42 +115,47 @@ namespace RotA.Mono.Equipment
             }
             if (randomCreature == null)
             {
-                return;
+                if(Random.value <= 0.5f)
+                {
+                    randomCreature = new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 2 };
+                }
+                else
+                {
+                    randomCreature = new WarperData.WarpInCreature() { techType = TechType.Jellyray, minNum = 1, maxNum = 2 };
+                }
             }
-            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : 10f));
+            Vector3 creatureSpawnPosition = warpPosition + (Random.onUnitSphere * (spawnLandFauna ? 1f : spawnRadius));
             Destroy(Utils.SpawnPrefabAt(warpInPrefab, null, creatureSpawnPosition), 2f);
-            Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition, 20f);
+            Utils.PlayFMODAsset(portalCloseSound, creatureSpawnPosition);
             int num = Random.Range(randomCreature.minNum, randomCreature.maxNum + 1);
             for (int i = 0; i < num; i++)
             {
 #if SN1_exp
-                UWE.CoroutineHost.StartCoroutine(WarpInCreatureAsync(randomCreature.techType, warpPosition));
+                StartCoroutine(WarpInCreatureAsync(randomCreature.techType, warpPosition, timeBeforeWarpOut, friendly));
 #else
-                WarpInCreature(randomCreature.techType, warpPosition);
+                WarpInCreature(randomCreature.techType, warpPosition, timeBeforeWarpOut, friendly);
 #endif
             }
         }
 
-        private WarperData.WarpInCreature GetRandomLandCreatures()
+        /// <summary>
+        /// Returns a random creature that walks on land or flies.
+        /// </summary>
+        /// <returns></returns>
+        WarperData.WarpInCreature GetRandomLandCreatures()
         {
             float random = Random.value;
-            if (random < 0.33f)
+            return random switch
             {
-                return new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 };
-            }
-            if (random < 0.67f)
-            {
-                return new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 };
-            }
-            return new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 };
+                < 0.33f => new WarperData.WarpInCreature() {techType = TechType.Skyray, minNum = 2, maxNum = 3},
+                < 0.67f => new WarperData.WarpInCreature() {techType = TechType.CaveCrawler, minNum = 1, maxNum = 2},
+                _ => new WarperData.WarpInCreature() {techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1}
+            };
         }
 
-        /// <summary>
-        /// Stolen from WarpBall.cs
-        /// </summary>
-        /// <param name="techType"></param>
+        // Yoinked from WarpBall.cs
 #if SN1_exp
-        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position)
+        private IEnumerator WarpInCreatureAsync(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly = false)
         {
             if (techType == TechType.None)
             {
@@ -142,30 +166,21 @@ namespace RotA.Mono.Equipment
             GameObject spawnedCreatureObj = task.Get();
             spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
             WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
-            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
+            float creatureLifetime = (techType == TechType.Mesmer ? 30f : timeBeforeWarpOut) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
+            warpedInCreature.SetLifeTime(creatureLifetime);
             warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
             warpedInCreature.warpOutSound = portalCloseSound;
             if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
             {
                 LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
             }
-        }
-#else
-        private void WarpInCreature(TechType techType, Vector3 position)
-        {
-            if (techType == TechType.None)
+            if (friendly)
             {
-                return;
-            }
-            GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType, false);
-            spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
-            WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
-            warpedInCreature.SetLifeTime(10f + Random.Range(-2f, 2f));
-            warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
-            warpedInCreature.warpOutSound = portalCloseSound;
-            if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
-            {
-                LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
+                Creature creature = spawnedCreatureObj.GetComponent<Creature>();
+                if (creature)
+                {
+                    creature.friend = Player.main.gameObject;
+                }
             }
             bool inBase = Player.main.IsInSub();
             if (inBase)
@@ -183,10 +198,62 @@ namespace RotA.Mono.Equipment
                 }
                 //base sky applier fixes
                 SkyApplier creatureSkyApplier = spawnedCreatureObj.GetComponent<SkyApplier>();
-                if(creatureSkyApplier is not null)
+                if (creatureSkyApplier is not null)
                 {
                     mset.Sky baseSky = Player.main.GetCurrentSub().GetComponentInChildren<mset.Sky>();
-                    if(baseSky is not null)
+                    if (baseSky is not null)
+                    {
+                        creatureSkyApplier.SetCustomSky(baseSky);
+                    }
+                }
+            }
+        }
+#else
+        void WarpInCreature(TechType techType, Vector3 position, float timeBeforeWarpOut = 10f, bool friendly = false)
+        {
+            if (techType == TechType.None)
+            {
+                return;
+            }
+            GameObject spawnedCreatureObj = CraftData.InstantiateFromPrefab(techType);
+            spawnedCreatureObj.transform.position = position + (Random.insideUnitSphere * 0.5f);
+            WarpedInCreature warpedInCreature = spawnedCreatureObj.AddComponent<WarpedInCreature>();
+            float creatureLifetime = (techType == TechType.Mesmer ? 30f : timeBeforeWarpOut) + Random.Range(-2f, 2f); //I like mesmers. They're too rare so they get to stay for longer.
+            warpedInCreature.SetLifeTime(creatureLifetime);
+            warpedInCreature.warpOutEffectPrefab = warpOutPrefabDestroyAutomatically;
+            warpedInCreature.warpOutSound = portalCloseSound;
+            if (LargeWorld.main != null && LargeWorld.main.streamer != null && LargeWorld.main.streamer.cellManager != null)
+            {
+                LargeWorld.main.streamer.cellManager.UnregisterEntity(spawnedCreatureObj);
+            }
+            if (friendly)
+            {
+                Creature creature = spawnedCreatureObj.GetComponent<Creature>();
+                if (creature)
+                {
+                    creature.friend = Player.main.gameObject;
+                }
+            }
+            bool inBase = Player.main.IsInSub();
+            if (inBase)
+            {
+                //skyray fixes
+                var flyAboveMinHeight = spawnedCreatureObj.GetComponent<FlyAboveMinHeight>();
+                if (flyAboveMinHeight is not null)
+                {
+                    flyAboveMinHeight.enabled = false;
+                }
+                var drowning = spawnedCreatureObj.GetComponent<Drowning>();
+                if (drowning is not null)
+                {
+                    Destroy(drowning);
+                }
+                //base sky applier fixes
+                SkyApplier creatureSkyApplier = spawnedCreatureObj.GetComponent<SkyApplier>();
+                if (creatureSkyApplier is not null)
+                {
+                    mset.Sky baseSky = Player.main.GetCurrentSub().GetComponentInChildren<mset.Sky>();
+                    if (baseSky is not null)
                     {
                         creatureSkyApplier.SetCustomSky(baseSky);
                     }
@@ -201,20 +268,30 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         bool FireWarpMode()
         {
+            if (Player.main.precursorOutOfWater)
+            {
+                return false;
+            }
+            if (energyMixin.charge <= 5f)
+            {
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
+                return false;
+            }
             timeStartedCharging = Time.time;
             handDown = true;
             chargeLoop.StartEvent();
+            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Purple, maxChargeSeconds);
             return true;
         }
 
         /// <summary>
         /// Warp all small enough entities around the secondary node to the primary node
         /// </summary>
-        void DoWarp()
+        void WarpObjectsFromNodeToNode()
         {
             Vector3 primaryNodePosition = myPrimaryNode.transform.position;
             Vector3 secondaryNodePosition = mySecondaryNode.transform.position;
-            GameObject warpVfx = GameObject.Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
+            GameObject warpVfx = Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
             warpVfx.SetActive(true);
             Destroy(warpVfx, 3f);
             var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
@@ -225,29 +302,35 @@ namespace RotA.Mono.Equipment
                 obj ??= collider.gameObject;
 
                 var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null || rb.mass > 1000f)
+                if (rb == null || rb.mass > massThreshold)
                 {
-                    continue;
+                    if (!removeWarpCannonLimits)
+                    {
+                        continue;
+                    }
                 }
                 bool canTeleport = true;
-                var creature = obj.GetComponent<Creature>();
-                if (creature is null)
+                if (!removeWarpCannonLimits)
                 {
-                    obj.GetComponents(iammo);
-                    for (int j = 0; j < iammo.Count; j++)
+                    var creature = obj.GetComponent<Creature>();
+                    if (creature is null)
                     {
-                        if (!iammo[j].GetAllowedToGrab())
+                        obj.GetComponents(iammoCache);
+                        for (int j = 0; j < iammoCache.Count; j++)
                         {
-                            canTeleport = false;
-                            break;
+                            if (!iammoCache[j].GetAllowedToGrab())
+                            {
+                                canTeleport = false;
+                                break;
+                            }
                         }
+                        iammoCache.Clear();
                     }
-                    iammo.Clear();
                 }
                 if (canTeleport)
                 {
                     obj.transform.position = primaryNodePosition + (Random.insideUnitSphere * 1f);
-                    rb.isKinematic = false;
+                    if (rb) rb.isKinematic = false;
                 }
             }
         }
@@ -258,12 +341,8 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         bool FireManipulateMode()
         {
-            bool fail = false;
-            if (Player.main.IsInSub())
-            {
-                fail = true;
-            }
-            if (fail == true)
+            bool fail = Player.main.IsInSub();
+            if (fail)
             {
                 CharacterController controller = Player.main.GetComponent<CharacterController>();
                 if (controller is not null)
@@ -280,33 +359,172 @@ namespace RotA.Mono.Equipment
                 return false;
             }
 
-            if (mySecondaryNode != null) //check if both nodes already exist. if so, do nothing.
+            if (mySecondaryNode != null) //Check if both nodes already exist. if so, do nothing.
             {
+                return false;
+            }
+            if (energyMixin.charge < manipulateModeEnergyCost && GameModeUtils.RequiresPower())
+            {
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 return false;
             }
             if (myPrimaryNode != null) //check if primary node exists but secondary doesn't. if so create a secondary node
             {
+                illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.3f, 0.2f, 0.5f);
                 mySecondaryNode = CreateNode(secondaryNodeVfxPrefab);
                 Destroy(mySecondaryNode, 2f);
                 Destroy(myPrimaryNode, 2f);
-                DoWarp();
+                WarpObjectsFromNodeToNode(); //warp creatures from the newly placed node to the first node
                 Utils.PlayFMODAsset(portalCloseSound, mySecondaryNode.transform.position, 60f); //portal close sound cus this closes the portal link
                 timeCanUseAgain = Time.time + 2f; //you just teleported something. you need some decently long delay.
+                energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
+                animations.PlayFireAnimation();
                 return true;
             }
-            myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
-            Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
-            Destroy(myPrimaryNode, 60f);
-            timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
+            else //Neither node exists
+            {
+                myPrimaryNode = CreateNode(primaryNodeVfxPrefab); //otherwise, there should be space for a primary node
+                Utils.PlayFMODAsset(portalOpenSound, myPrimaryNode.transform.position, 60f); //portal open sound cus you're creating a new portal link
+                Destroy(myPrimaryNode, 60f);
+                illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.4f, 0.1f, 0.25f);
+                timeCanUseAgain = Time.time + 0.5f; //only a small cooldown is needed
+                energyMixin.ConsumeEnergy(manipulateModeEnergyCost);
+                animations.PlayFireAnimation();
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Fires the weapon while in Creature spawn mode.
+        /// </summary>
+        /// <returns></returns>
+        bool FireCreatureSpawnMode()
+        {
+            if (InsideMovableSub())
+            {
+                ErrorMessage.AddMessage("Cannot fire Warping Device in Creature Spawn Mode currently.");
+                return false;
+            }
+            if (GameModeUtils.RequiresPower() && energyMixin.charge < creatureSpawnModeEnergyCost)
+            {
+                ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
+                return false;
+            }
+            energyMixin.ConsumeEnergy(creatureSpawnModeEnergyCost);
+            animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
+            animations.PlayFireAnimation();
+            Vector3 spawnPosition;
+            Transform mainCam = MainCamera.camera.transform;
+            if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, spawnCreatureMaxDistance, GetOutsideLayerMask(), QueryTriggerInteraction.Ignore))
+            {
+                spawnPosition = hit.point + (hit.normal * 2f);
+            }
+            else
+            {
+                spawnPosition = mainCam.position + (mainCam.forward * spawnCreatureMaxDistance);
+            }
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
+            SpawnCreaturesAtPosition(spawnPosition, inBase || spawnPosition.y > 0f, 2f, 45f, true);
+            timeCanUseAgain = Time.time + 0.2f;
+            illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Purple, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.1f);
             return true;
         }
 
         /// <summary>
-        /// Updates animations based on charge, every frame.
+        /// Updates the appearance of the weapon every frame.
         /// </summary>
         void Update()
         {
-            animator.SetFloat("charge", GetChargePercent());
+            if(fireMode == FireMode.Manipulate)
+            {
+                if (mySecondaryNode != null) //if both nodes exist, spin super fast
+                {
+                    animations.SpinSpeed = 0.5f;
+                }
+                else if (myPrimaryNode != null) //if only one node exists, spin pretty fast
+                {
+                    animations.SpinSpeed = 0.25f;
+                }
+                else
+                {
+                    animations.SpinSpeed = 0.05f;
+                }
+            }
+            else
+            {
+                animations.SpinSpeed = GetChargePercent();
+            }
+            float chargePercent = GetBatteryPercent();
+            animations.BatteryPercent = chargePercent;
+            if (chargePercent <= 0.02f)
+            {
+                if (illumControl.TargetColor != Color.black)
+                {
+                    illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Black, 1f);
+                }
+            }
+            else
+            {
+                if (illumControl.TargetColor == Color.black)
+                {
+                    illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
+                }
+            }
+            if (fireMode == FireMode.Warp)
+            {
+                if (Time.time >= timeCanUseAgain && Input.GetKeyDown(Mod.config.WarpToBaseKey))
+                {
+                    if (Time.time < (timeWarpHomeKeyLastPressed + 1f)) //checks if you have pressed the warp home key in the last second
+                    {
+                        timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
+                        timeCanUseAgain = Time.time + 3f;
+                        WarpToLastVisitedBase();
+                    }
+                    else
+                    {
+                        timeWarpHomeKeyLastPressed = Time.time;
+                        ErrorMessage.AddMessage($"Double tap {ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)} to warp to your last visited base.");
+                    }
+                }
+            }
+        }
+
+        public void WarpToLastVisitedBase()
+        {
+            if (GetBatteryPercent() >= 0.50f)
+            {
+                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
+                animations.SetOverrideSpinSpeed(10f, 2f);
+                var lastValidSub = Player.main.lastValidSub;
+                if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
+                {
+                    var respawnPoint = lastValidSub.gameObject.GetComponentInChildren<RespawnPoint>();
+                    if (respawnPoint is not null)
+                    {
+                        Player.main.SetPosition(respawnPoint.GetSpawnPosition());
+                        Player.main.SetCurrentSub(lastValidSub);
+                        return;
+                    }
+                }
+                EscapePod.main.RespawnPlayer();
+                Player.main.SetCurrentSub(null);
+                Vector3 playerPosition = Player.main.transform.position;
+                Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
+                Utils.PlayFMODAsset(portalOpenSound, playerPosition);
+            }
+            else
+            {
+                ErrorMessage.AddMessage("You must have 50% or more battery charge to perform this action.");
+            }
+        }
+
+        float GetBatteryPercent()
+        {
+            if (energyMixin.capacity > 0.01f) //we dont want a divide by 0 error
+            {
+                return energyMixin.charge / energyMixin.capacity;
+            }
+            return 0f;
         }
 
         /// <summary>
@@ -323,7 +541,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
-        private GameObject CreateNode(GameObject prefab)
+        GameObject CreateNode(GameObject prefab)
         {
             Transform mainCam = MainCamera.camera.transform;
             GameObject returnObj;
@@ -345,24 +563,33 @@ namespace RotA.Mono.Equipment
         /// <returns></returns>
         public override string GetCustomUseText()
         {
-            if (fireMode == FireMode.Warp)
+            return fireMode switch
             {
-                return LanguageCache.GetButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool);
-            }
-            if (fireMode == FireMode.Manipulate)
-            {
-                if (myPrimaryNode == null)
-                {
-                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
-                }
-                else if (mySecondaryNode == null)
-                {
-                    return ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool, GameInput.Button.RightHand);
-                }
-            }
-            return base.GetCustomUseText();
+                FireMode.Warp => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                    Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool,
+                    ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)),
+                
+                FireMode.Manipulate when myPrimaryNode == null =>
+                    ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                        Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool,
+                        GameInput.Button.RightHand),
+                
+                FireMode.Manipulate when mySecondaryNode == null =>
+                    ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                        Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool,
+                        GameInput.Button.RightHand),
+                
+                FireMode.CreatureSpawn => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
+                    Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool,
+                    GameInput.Button.RightHand),
+                
+                _ => base.GetCustomUseText()
+            };
         }
 
+        /// <summary>
+        /// Destroy both portals (after a few seconds to let the animation finish) without warping.
+        /// </summary>
         void DestroyNodes()
         {
             if (myPrimaryNode != null)
@@ -391,77 +618,93 @@ namespace RotA.Mono.Equipment
             {
                 return false;
             }
-            if (fireMode == FireMode.Warp)
+            illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
+            animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
+            switch (fireMode)
             {
-                fireMode = FireMode.Manipulate;
-                return true;
+                case FireMode.Warp:
+                    fireMode = FireMode.Manipulate;
+                    return true;
+                case FireMode.Manipulate:
+                    fireMode = FireMode.CreatureSpawn;
+                    return true;
+                case FireMode.CreatureSpawn:
+                    fireMode = FireMode.Warp;
+                    return true;
+                default:
+                    return false;
             }
-            if (fireMode == FireMode.Manipulate)
-            {
-                fireMode = FireMode.Warp;
-                return true;
-            }
-            return false;
         }
 
         /// <summary>
-        /// Controls what happens when you release right click. Personal teleportation/warp mode only.
+        /// Controls what happens when you release right click. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
         /// <returns></returns>
         public override bool OnRightHandUp()
         {
             if (fireMode != FireMode.Warp)
             {
-                return false;
+                return false; //quit if you're not in personal teleportation mode
             }
             float chargeScale = GetChargePercent();
             if (Time.time > timeCanUseAgain && handDown)
             {
-                if (WarpForward(chargeScale, out Vector3 warpPos))
+                float energyToConsume = warpModeEnergyCost * chargeScale;
+                if (!GameModeUtils.RequiresPower() || energyMixin.charge >= energyToConsume)
                 {
-                    if (chargeLoop.GetIsStartingOrPlaying())
+                    if (WarpForward(chargeScale, out Vector3 warpPos))
                     {
-                        chargeLoop.Stop(false);
-                    }
-                    float delay = 0.5f;
-                    if (chargeScale > 0.5f)
-                    {
-                        delay = 1f;
-                    }
-                    timeCanUseAgain = Time.time + delay;
-                    Utils.PlayFMODAsset(portalOpenSound, warpPos, 20f);
-                    animator.SetTrigger("use");
-                    handDown = false;
-                    if (!Player.main.IsInSub()) //if you are not in a base or vehicle, spawn fish
-                    {
-                        if (Random.value < (0.4f * chargeScale))
+                        energyMixin.ConsumeEnergy(energyToConsume);
+                        if (chargeLoop.GetIsStartingOrPlaying())
                         {
-                            Misfire(warpPos, PositionAboveWater(warpPos.y));
+                            chargeLoop.Stop(false);
                         }
-                    }
-                    else if (!InsideMovableSub()) //if you are inside a base, spawn land fauna
-                    {
-                        if (Random.value < (0.4f * chargeScale))
+                        float delay = 0.5f;
+                        if (chargeScale > 0.5f)
                         {
-                            Misfire(warpPos, true);
+                            delay = 1f;
+                            animations.PlayFastFireAnimation(); //feels more powerful
                         }
+                        else
+                        {
+                            animations.PlayFireAnimation();
+                        }
+                        timeCanUseAgain = Time.time + delay;
+                        Utils.PlayFMODAsset(portalOpenSound, warpPos);
+                        illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, delay);
+                        handDown = false;
+                        if (!Player.main.IsInSub()) //if you are not in a base or vehicle
+                        {
+                            if (Random.value < (0.4f * chargeScale))
+                            {
+                                SpawnCreaturesAtPosition(warpPos, PositionAboveWater(warpPos.y));
+                            }
+                        }
+                        else if (!InsideMovableSub() || Player.main.precursorOutOfWater) //if you are inside a base (NOT cyclops), spawn land fauna
+                        {
+                            if (Random.value < (0.4f * chargeScale) && energyMixin.ConsumeEnergy(warpModeEnergyCost * chargeScale))
+                            {
+                                SpawnCreaturesAtPosition(warpPos, true);
+                            }
+                        }
+                        return true;
                     }
-                    return true;
                 }
                 else
                 {
-                    StopCharging();
-                    return true;
+                    ErrorMessage.AddMessage(Language.main.Get(Mod.warpCannonNotEnoughPowerError));
                 }
+                StopCharging();
+                return true;
             }
             return false;
         }
 
         /// <summary>
-        /// Returns true if you are in a cyclops or something similar.
+        /// Returns true if you are in a cyclops or something similar. Warping inside of a Sub with a rigidbody causes issues.
         /// </summary>
         /// <returns></returns>
-        private bool InsideMovableSub()
+        bool InsideMovableSub()
         {
             SubRoot currentSubRoot = Player.main.currentSub;
             if (currentSubRoot)
@@ -478,20 +721,21 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Forcefully cancel the charge of the weapon and add a slight cooldown.
+        /// Forcefully cancel the charge of the weapon and add a slight cooldown. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
-        private void StopCharging()
+        void StopCharging()
         {
             if (chargeLoop.GetIsStartingOrPlaying())
             {
                 chargeLoop.Stop(false);
             }
             timeCanUseAgain = Time.time + 0.5f;
+            illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 0.5f);
             handDown = false;
         }
 
         /// <summary>
-        /// For Warp mode only. How charged the tool is on a scale from 0.2 - 1. A charge below 0.2 counts as 0.2 because warping 0ish meters is pointless, 
+        /// For Warp mode only. How charged the tool is on a scale from 0.2 - 1. A charge below 0.2 counts as 0.2 because warping 0ish meters is pointless. Only used in in <see cref="FireMode.Warp"/> mode, otherwise returns 0.
         /// </summary>
         /// <returns></returns>
         float GetChargePercent()
@@ -519,7 +763,7 @@ namespace RotA.Mono.Equipment
         }
 
         /// <summary>
-        /// Attempt to warp the player forward, with distance being based on on <paramref name="chargeScale"/>. Only used in in personal teleportation/warp mode.
+        /// Attempt to warp the player forward, with distance being based on on <paramref name="chargeScale"/>. Only used in in <see cref="FireMode.Warp"/> mode.
         /// </summary>
         /// <param name="chargeScale"></param>
         /// <param name="targetPosition"></param>
@@ -544,8 +788,9 @@ namespace RotA.Mono.Equipment
                 for (int i = (int)minDistanceInBase; i <= (int)maxDistanceInBase; i++)
                 {
                     float testDistance = i * chargeScale;
-                    Vector3 warpDir = new Vector3(mainCam.forward.x, 0f, mainCam.forward.z);
-                    if (Physics.Raycast(mainCam.position, warpDir, out RaycastHit hit, testDistance + 1f, -1, QueryTriggerInteraction.Ignore))
+                    var forward = mainCam.forward;
+                    Vector3 warpDir = new Vector3(forward.x, 0f, forward.z);
+                    if (Physics.Raycast(mainCam.position, warpDir, out _, testDistance + 1f, -1, QueryTriggerInteraction.Ignore))
                     {
                         continue;
                     }
@@ -565,10 +810,7 @@ namespace RotA.Mono.Equipment
                     MovePlayerWhileInBase(currentWarpPos);
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
             else
             {
@@ -600,10 +842,12 @@ namespace RotA.Mono.Equipment
         /// <param name="position"></param>
         void MovePlayerWhileInWater(Vector3 position)
         {
-            Instantiate(warpInPrefab, Player.main.transform.position, MainCamera.camera.transform.rotation);
-            Instantiate(warpOutPrefab, position, MainCamera.camera.transform.rotation);
+            var playerPos = Player.main.transform.position;
+            var camRotation = MainCamera.camera.transform.rotation;
+            Instantiate(warpInPrefab, playerPos, camRotation);
+            Instantiate(warpOutPrefab, position, camRotation);
             //Player.main.transform.position = position;
-            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed * 2f);
+            PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
 
         /// <summary>
@@ -617,16 +861,8 @@ namespace RotA.Mono.Equipment
             Transform playerTransform = Player.main.transform;
             var mainCameraForward = MainCameraControl.main.transform.forward;
             landingPosition = playerTransform.position + (new Vector3(mainCameraForward.x, 0f, mainCameraForward.z) * distance);
-            var hitColliders = Physics.OverlapSphere(landingPosition + new Vector3(0f, 0f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
-            if (hitColliders == null)
-            {
-                return true;
-            }
-            if (hitColliders.Length == 0)
-            {
-                return true;
-            }
-            return false;
+            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(landingPosition + new Vector3(0f, 0f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
+            return hitColliders == 0;
         }
 
         public override string animToolName => "propulsioncannon";
@@ -634,7 +870,8 @@ namespace RotA.Mono.Equipment
         public enum FireMode
         {
             Warp,
-            Manipulate
+            Manipulate,
+            CreatureSpawn
         }
     }
 }

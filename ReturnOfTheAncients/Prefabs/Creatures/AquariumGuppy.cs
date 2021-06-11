@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using ECCLibrary;
+﻿using ECCLibrary;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class AquariumGuppy : CreatureAsset
     {

@@ -8,7 +8,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
 using UnityEngine;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Buildables
 {
     class PrecursorFabricator : Buildable
     {
@@ -42,7 +42,7 @@ namespace ArchitectsLibrary.Items
         {
             if (_processedPrefab != null)
             {
-                var go = GameObject.Instantiate(_processedPrefab);
+                var go = Object.Instantiate(_processedPrefab);
                 go.SetActive(true);
                 return go;
             }
@@ -51,9 +51,8 @@ namespace ArchitectsLibrary.Items
 
             var obj = new GameObject("PrecursorFabricator");
             
-            var model = Object.Instantiate(prefab);
+            var model = Object.Instantiate(prefab, obj.transform, true);
             model.name = "model";
-            model.transform.parent = obj.transform;
             model.transform.localPosition = Vector3.zero;
 
             var sa = obj.EnsureComponent<SkyApplier>();
@@ -104,12 +103,14 @@ namespace ArchitectsLibrary.Items
 
             // beams setup
             fab.leftBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_left/fabricatorBeam").gameObject;
-            fab.leftBeam.transform.localPosition = new(0f, 0f, 0.01f);
-            fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
+            fab.leftBeam.transform.localPosition = new(-0.15f, 0f, 0.01f);
+            fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.55f);
+            fab.leftBeam.transform.localEulerAngles = new(345f, 270.00f, 0f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new(0f, 0f, -0.01f);
-            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.7f);
+            fab.rightBeam.transform.localPosition = new(0.15f, 0f, -0.01f);
+            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.55f);
+            fab.rightBeam.transform.localEulerAngles = new(15f, 90f, 180f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
 
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
@@ -130,7 +131,7 @@ namespace ArchitectsLibrary.Items
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach(ParticleSystemRenderer ps in particleSystems)
             {
-                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+                ps.material.SetColor(ShaderPropertyID._Color, new Color(0f, 1.5f, 0f));
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
@@ -152,7 +153,7 @@ namespace ArchitectsLibrary.Items
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             
-            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab = Object.Instantiate(obj);
             _processedPrefab.SetActive(false);
 
             obj.SetActive(true);
@@ -163,7 +164,7 @@ namespace ArchitectsLibrary.Items
         {
             if (_processedPrefab != null)
             {
-                var go = GameObject.Instantiate(_processedPrefab);
+                var go = Object.Instantiate(_processedPrefab);
                 go.SetActive(true);
                 gameObject.Set(go);
             }
@@ -172,9 +173,8 @@ namespace ArchitectsLibrary.Items
 
             var obj = new GameObject("PrecursorFabricator");
             
-            var model = Object.Instantiate(prefab);
+            var model = Object.Instantiate(prefab, obj.transform, true);
             model.name = "model";
-            model.transform.parent = obj.transform;
             model.transform.localPosition = Vector3.zero;
 
             var sa = obj.EnsureComponent<SkyApplier>();
@@ -229,12 +229,14 @@ namespace ArchitectsLibrary.Items
 
             // beams setup
             fab.leftBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_left/fabricatorBeam").gameObject;
-            fab.leftBeam.transform.localPosition = new Vector3(0f, 0f, 0.01f);
-            fab.leftBeam.transform.localScale = new Vector3(0.5f, 0.5f, 0.7f);
+            fab.leftBeam.transform.localPosition = new(-0.15f, 0f, 0.01f);
+            fab.leftBeam.transform.localScale = new(0.5f, 0.5f, 0.55f);
+            fab.leftBeam.transform.localEulerAngles = new(345f, 270.00f, 0f);
             fab.leftBeam.GetComponent<MeshRenderer>().material = beamMat;
             fab.rightBeam = model.transform.Find("FabricatorMain/submarine_fabricator_01/fabricator/overhead/printer_right/fabricatorBeam 1").gameObject;
-            fab.rightBeam.transform.localPosition = new Vector3(0f, 0f, -0.01f);
-            fab.rightBeam.transform.localScale = new Vector3(0.5f, 0.5f, 0.7f);
+            fab.rightBeam.transform.localPosition = new(0.15f, 0f, -0.01f);
+            fab.rightBeam.transform.localScale = new(0.5f, 0.5f, 0.55f);
+            fab.rightBeam.transform.localEulerAngles = new(15f, 90f, 180f);
             fab.rightBeam.GetComponent<MeshRenderer>().material = beamMat;
             
             fab.animator.SetBool(AnimatorHashID.open_fabricator, false);
@@ -255,7 +257,7 @@ namespace ArchitectsLibrary.Items
             var particleSystems = obj.GetComponentsInChildren<ParticleSystemRenderer>(true);
             foreach (ParticleSystemRenderer ps in particleSystems)
             {
-                ps.material.SetColor("_Color", new Color(0f, 1.5f, 0f));
+                ps.material.SetColor(ShaderPropertyID._Color, new Color(0f, 1.5f, 0f));
             }
 
             fab.fabLight = model.transform.Find("FabLight").GetComponent<Light>();
@@ -277,7 +279,7 @@ namespace ArchitectsLibrary.Items
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             
-            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab = Object.Instantiate(obj);
             _processedPrefab.SetActive(false);
 
             obj.SetActive(true);

@@ -1,7 +1,7 @@
-﻿using RotA.Mono;
+﻿using RotA.Mono.Singletons;
 using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanVoid : AdultGargantuan
     {

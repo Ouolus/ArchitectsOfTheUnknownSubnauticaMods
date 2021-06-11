@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using ECCLibrary;
-using RotA.Prefabs;
+﻿using ECCLibrary;
+using RotA.Prefabs.Creatures;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.MainMenu
 {
     public class MainMenuGarg : MonoBehaviour
     {

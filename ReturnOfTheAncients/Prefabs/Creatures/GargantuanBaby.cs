@@ -1,22 +1,22 @@
-﻿using RotA.Mono;
-using ArchitectsLibrary.MonoBehaviours;
+﻿using ECCLibrary;
+using RotA.Mono.Creatures.Baby;
+using RotA.Mono.Creatures.CreatureActions;
 using UnityEngine;
-using ECCLibrary;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanBaby : GargantuanBase
     {
-        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 4f, 0.5f, 0.1f);
+        public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(10f, 3f, 10f), 2f, 1f, 0.1f);
         public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.39f, 9f);
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.38f, true, 5f);
         public override VFXSurfaceTypes SurfaceType => VFXSurfaceTypes.organic;
-        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 36f, 6f, 7f, 2f, 15f);
+        public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 15f, 6f, 7f, 2f, 15f);
         public override WaterParkCreatureParameters WaterParkParameters => new WaterParkCreatureParameters(0.1f, 0.5f, 0.5f, 1f, true);
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
 
         public override string GetEncyTitle => "Gargantuan Leviathan Baby";
         public override string GetEncyDesc => "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.";
@@ -45,19 +45,23 @@ namespace RotA.Prefabs
             components.locomotion.forwardRotationSpeed = 0.4f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
-            prefab.GetComponent<AttackLastTarget>().swimInterval = 0.05f;
+            prefab.GetComponent<AttackLastTarget>().swimInterval = 0.01f;
             GameObject target = prefab.SearchChild("CinematicTarget");
             target.AddComponent<GargBabyTarget>();
             babyComponent.cinematicTarget = target;
             prefab.GetComponent<AvoidObstacles>().scanRadius = 5f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
+
+            components.creature.Hunger = new CreatureTrait(0f, -(1f / 60f));
         }
 
         public override bool UseSwimSounds => false;
 
         public override string CloseRoarPrefix => "GargBaby";
         public override string DistantRoarPrefix => "GargBaby";
+
+        public override string AttachBoneName => "AttachBone";
 
         public override (float, float) RoarDelayMinMax => (18f, 40f);
 
@@ -90,5 +94,11 @@ namespace RotA.Prefabs
         public override ItemSoundsType ItemSounds => ItemSoundsType.Fish;
 
         public override float TurnSpeed => 1f;
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.PickupableOnlyAndSwalllow;
+
+        public override float EyeFov => 0.6f;
+
+        public override SmallVehicleAggressivenessSettings AggressivenessToSmallVehicles => new SmallVehicleAggressivenessSettings(0f, 0f);
     }
 }

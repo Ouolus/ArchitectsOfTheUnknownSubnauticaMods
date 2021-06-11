@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using ECCLibrary;
+﻿using ECCLibrary;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargantuanRoar : MonoBehaviour
     {

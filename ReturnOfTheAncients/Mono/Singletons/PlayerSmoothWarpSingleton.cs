@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Singletons
 {
     public class PlayerSmoothWarpSingleton : MonoBehaviour
     {
@@ -61,13 +55,11 @@ namespace RotA.Mono
             CharacterController controller = ((GroundMotor)Player.main.playerController.groundController).controller;
             if (beingWarped)
             {
-                Player.main.playerAnimator.SetBool("precursor_elevator_decend", true);
                 saveControllerEnabled = controller.enabled;
                 controller.enabled = false;
             }
             else
             {
-                Player.main.playerAnimator.SetBool("precursor_elevator_decend", false);
                 float oceanLevel = 0f;
 #if SN1
                 oceanLevel = Ocean.main.GetOceanLevel();

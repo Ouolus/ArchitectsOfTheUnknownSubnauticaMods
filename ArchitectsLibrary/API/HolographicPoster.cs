@@ -107,6 +107,8 @@ namespace ArchitectsLibrary.API
                 placeTool.hasAnimations = false;
                 placeTool.placementSound = ScriptableObject.CreateInstance<FMODAsset>();
                 placeTool.placementSound.path = "event:/env/prec_light_on_2";
+                placeTool.alignWithSurface = true;
+                placeTool.allowedOnRigidBody = true;
                 var vfxFabricating = cachedPrefab.SearchChild("CraftModel").EnsureComponent<VFXFabricating>();
                 vfxFabricating.localMinY = -0.09f;
                 vfxFabricating.localMaxY = 0.06f;

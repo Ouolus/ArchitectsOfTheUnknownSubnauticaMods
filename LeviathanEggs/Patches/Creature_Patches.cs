@@ -1,6 +1,10 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using UnityEngine;
 using ArchitectsLibrary.MonoBehaviours;
+using LeviathanEggs.MonoBehaviours;
+using WorldStreaming;
+
 namespace LeviathanEggs.Patches
 {
     [HarmonyPatch]
@@ -20,6 +24,11 @@ namespace LeviathanEggs.Patches
 
             switch (techType)
             {
+                case TechType.Jumper:
+                    __instance.gameObject.EnsureComponent<GroundedChecker>();
+                    var walkingManager = __instance.gameObject.EnsureComponent<WalkingManager>();
+                    walkingManager.animator = __instance.GetAnimator();
+                    break;
                 case TechType.SeaEmperorBaby:
                     {
                         if (!Main.Config.GlobalStagedGrowth)

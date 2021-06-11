@@ -1,13 +1,9 @@
 ﻿using ECCLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using RotA.Mono;
+using RotA.Mono.Creatures.GargEssentials;
+using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class AdultGargantuan : GargantuanBase
     {
@@ -29,7 +25,7 @@ namespace RotA.Prefabs
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, "Lifeforms/Fauna/Leviathans", Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
@@ -102,10 +98,12 @@ namespace RotA.Prefabs
 
         public override bool CanPerformCyclopsCinematic => true;
 
-        public override float EyeFov => 0.9f;
+        public override float EyeFov => -1f;
 
         public override bool DoesScreenShake => true;
 
         public override float CloseRoarThreshold => 350f;
+
+        public override GargGrabFishMode GrabFishMode => GargGrabFishMode.LeviathansOnlyAndSwallow;
     }
 }

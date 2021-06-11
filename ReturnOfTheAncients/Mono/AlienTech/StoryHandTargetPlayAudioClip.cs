@@ -1,7 +1,7 @@
 ﻿using ECCLibrary;
 using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class StoryHandTargetPlayAudioClip : MonoBehaviour
     {

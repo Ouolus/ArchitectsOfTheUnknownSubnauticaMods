@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ECCLibrary;
 using UnityEngine;
-using ECCLibrary;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     //Secret!
     public class SkeletonGarg : GargantuanBase

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class DataTerminalUnlockTech : MonoBehaviour
     {

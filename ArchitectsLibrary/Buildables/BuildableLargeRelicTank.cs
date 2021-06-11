@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.API;
+using UnityEngine;
+using ArchitectsLibrary.MonoBehaviours;
 
 namespace ArchitectsLibrary.Buildables
 {
     class BuildableLargeRelicTank : GenericPrecursorDecoration
     {
-        public BuildableLargeRelicTank() : base("BuildableLargeRelicTank", "Large Relic Case", "A large, empty relic case. Placeable inside and outside.")
+        public BuildableLargeRelicTank() : base("BuildableLargeRelicTank", "Long Relic Case", "A large, empty relic case. Can hold 3 items. Placeable inside and outside.")
         {
         }
 
@@ -17,5 +19,37 @@ namespace ArchitectsLibrary.Buildables
         protected override bool ExteriorOnly => false;
 
         protected override string GetSpriteName => "RelicCaseLarge";
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.GetComponentInChildren<Collider>().transform.localPosition = new Vector3(0f, 0.1f, 0f);
+
+            var storageRoot = new GameObject("StorageRoot");
+            storageRoot.transform.SetParent(prefab.transform);
+
+            var spawnPosition = new GameObject("SpawnPosition");
+            spawnPosition.transform.SetParent(prefab.transform);
+            spawnPosition.transform.localPosition = new(0f, 1.3f, -1.5f);
+
+            var spawnPosition2 = new GameObject("SpawnPosition2");
+            spawnPosition2.transform.SetParent(prefab.transform);
+            spawnPosition2.transform.localPosition = new(0f, 1.3f, 0f);
+
+            var spawnPosition3 = new GameObject("SpawnPosition3");
+            spawnPosition3.transform.SetParent(prefab.transform);
+            spawnPosition3.transform.localPosition = new(0f, 1.3f, 1.5f);
+
+            var storageContainer = prefab.EnsureComponent<StorageContainer>();
+            storageContainer.height = 6;
+            storageContainer.width = 2;
+            storageContainer.prefabRoot = prefab;
+            storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+            storageContainer.storageRoot.ClassId = "BuildableLargeRelicTankContainer";
+            storageContainer.preventDeconstructionIfNotEmpty = true;
+
+            var displayCase = prefab.EnsureComponent<DisplayCaseDecoration>();
+            displayCase.spawnPositions = new Transform[] { spawnPosition.transform, spawnPosition2.transform, spawnPosition3.transform };
+            displayCase.displayCaseType = DisplayCaseType.RelicTank;
+        }
     }
 }

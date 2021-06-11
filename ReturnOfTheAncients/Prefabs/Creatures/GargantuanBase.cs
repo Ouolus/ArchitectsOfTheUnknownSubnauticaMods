@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ECCLibrary;
-using RotA.Mono;
+using RotA.Mono.Creatures.CreatureActions;
+using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
 
-namespace RotA.Prefabs
+namespace RotA.Prefabs.Creatures
 {
     public class GargantuanBase : CreatureAsset
     {
@@ -118,6 +118,7 @@ namespace RotA.Prefabs
             gargBehaviour.creature = components.creature;
             gargBehaviour.attachBoneName = AttachBoneName;
             gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
+            gargBehaviour.grabFishMode = GrabFishMode;
             
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
@@ -133,6 +134,7 @@ namespace RotA.Prefabs
             mouthAttack.oneShotPlayer = OneShotsPlayer;
             mouthAttack.attachBoneName = AttachBoneName;
             mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
+            mouthAttack.grabFishMode = GrabFishMode;
 
             /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
             GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
@@ -186,6 +188,8 @@ namespace RotA.Prefabs
             prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
 
             prefab.AddComponent<VFXSchoolFishRepulsor>();
+
+            components.creature.eyeFOV = EyeFov;
         }
 
         public virtual void ApplyAggression()
@@ -346,6 +350,14 @@ namespace RotA.Prefabs
             }
         }
 
+        public virtual GargGrabFishMode GrabFishMode
+        {
+            get
+            {
+                return GargGrabFishMode.CantGrabFish;
+            }
+        }
+
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
         {
             liveMixinData.maxHealth = 50000f;
@@ -358,5 +370,13 @@ namespace RotA.Prefabs
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
         }
+    }
+
+    public enum GargGrabFishMode
+    {
+        CantGrabFish,
+        LeviathansOnlyNoSwallow,
+        LeviathansOnlyAndSwallow,
+        PickupableOnlyAndSwalllow
     }
 }

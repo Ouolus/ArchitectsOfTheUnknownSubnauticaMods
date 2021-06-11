@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.API;
+using UnityEngine;
 
 namespace ArchitectsLibrary.Buildables
 {
     class BuildablePedestalLarge : GenericPrecursorDecoration
     {
-        public BuildablePedestalLarge() : base("BuildablePedestalLarge", "Tall Alien Pedestal", "A large pedestal that can be used for decoration or to display something. Placeable inside and outside (likely will not fit in most habitat installations).")
+        public BuildablePedestalLarge() : base("BuildablePedestalLarge", "Tall Alien Pedestal", "A large pedestal that can be used for decoration. Placeable inside and outside (likely will not fit in most habitat installations).")
         {
         }
 

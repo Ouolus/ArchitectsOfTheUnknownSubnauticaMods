@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using Story;
+using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.AlienTech
 {
     public class InfectionTesterOpenDoor : HandTarget, IHandTarget, IStoryGoalListener
     {

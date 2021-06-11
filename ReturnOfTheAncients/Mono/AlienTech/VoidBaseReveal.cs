@@ -78,8 +78,12 @@ namespace RotA.Mono.AlienTech
         protected override void Setup()
         {
             lightsParent = gameObject.SearchChild("Lights").transform;
-            interiorMaterials = new Material[0];
-            //interiorMaterials[0] = gameObject.SearchChild("VoidBase-UpperMaze.002").GetComponent<Renderer>().sharedMaterials[0];
+            interiorMaterials = new Material[5];
+            interiorMaterials[0] = gameObject.SearchChild("EntryFloor").GetComponent<Renderer>().sharedMaterials[0];
+            interiorMaterials[1] = gameObject.SearchChild("EntryFloor").GetComponent<Renderer>().sharedMaterials[1];
+            interiorMaterials[2] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[0];
+            interiorMaterials[3] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[1];
+            interiorMaterials[4] = gameObject.SearchChild("VoidBaseInterior").GetComponent<Renderer>().sharedMaterials[0];
             //interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();

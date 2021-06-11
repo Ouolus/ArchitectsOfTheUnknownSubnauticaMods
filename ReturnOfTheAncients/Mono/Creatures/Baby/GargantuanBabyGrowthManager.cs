@@ -1,7 +1,7 @@
 using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.Creatures.Baby
 {
     public class GargantuanBabyGrowthManager : MonoBehaviour
     {

@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ArchitectsLibrary.API;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
 
 namespace ArchitectsLibrary.Items
 {
-    class AlienCompositeGlass : ReskinCraftable
+    class AlienCompositeGlass : ReskinSpawnable
     {
         public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
         {
@@ -18,8 +19,6 @@ namespace ArchitectsLibrary.Items
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override bool UnlockedAtStart => false;
 
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
@@ -46,9 +45,9 @@ namespace ArchitectsLibrary.Items
             vfxFabricating.localMinY = -0.15f;
         }
 
-        protected override string SpriteName()
+        protected override Atlas.Sprite GetItemSprite()
         {
-            return "Precursor_glass";
+            return new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("Precursor_glass"));
         }
     }
 }

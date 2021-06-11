@@ -2,13 +2,17 @@
 using UnityEngine;
 using RotA.Mono;
 using RotA.Mono.AlienTech;
+using RotA.Mono.MainMenu;
 using UnityEngine.UI;
 
 namespace RotA.Patches
 {
     [HarmonyPatch]
-    public class MainMenu_Patches
+    static class MainMenu_Patches
     {
+        static Renderer _subTitleRenderer;
+        internal static Renderer SubTitleRenderer => _subTitleRenderer;
+        
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
@@ -51,12 +55,13 @@ namespace RotA.Patches
             else
             {
                 GameObject subtitlePrefab = Mod.assetBundle.LoadAsset<GameObject>("SubTitle_Prefab");
-                if (subtitlePrefab is not null)
+                if (subtitlePrefab != null)
                 {
                     GameObject subtitle = GameObject.Instantiate(subtitlePrefab);
                     subtitle.transform.position = new Vector3(-5.54f, 0.40f, 11.00f);
                     subtitle.transform.eulerAngles = new Vector3(0f, 180f, 0f);
                     subtitle.transform.localScale = Vector3.one * 0.5f;
+                    _subTitleRenderer = subtitle.GetComponentInChildren<Renderer>();
                 }
             }
 
