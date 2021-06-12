@@ -237,7 +237,7 @@ namespace RotA
 
             exosuitDashModule = new();
             exosuitDashModule.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitDashModule.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
         }
         [QModPatch]
