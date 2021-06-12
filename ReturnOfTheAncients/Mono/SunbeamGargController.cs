@@ -9,7 +9,7 @@ namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(1162, -2500f, 4333);
+        private Vector3 position = new Vector3(700f, -2500f, 4333);
         private GameObject spawnedGarg;
         private float farplaneDistanceBefore;
 
