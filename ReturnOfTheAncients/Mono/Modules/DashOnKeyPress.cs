@@ -31,7 +31,7 @@ namespace RotA.Mono.Modules
 
         Vector3 GetThrustForce(float thrustPower)
         {
-            return MainCameraControl.main.transform.forward * thrustPower * 15f;
+            return MainCamera.camera.transform.forward * thrustPower * 30f;
         }
     }
 }
