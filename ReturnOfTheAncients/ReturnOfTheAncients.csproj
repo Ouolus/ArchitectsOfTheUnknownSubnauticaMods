@@ -191,6 +191,7 @@
     <Compile Include="Mono\Modules\ZapOnDamage.cs" />
     <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
+    <Compile Include="Mono\SunbeamGargController.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\VoidShoalSpawner.cs" />
