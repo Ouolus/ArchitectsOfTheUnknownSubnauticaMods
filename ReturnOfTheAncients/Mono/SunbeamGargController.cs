@@ -9,11 +9,13 @@ namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(0f, 0f, 0f);
+        private Vector3 position = new Vector3(313f, 0f, 1347f);
         public void Start()
         {
             GameObject prefab = GetSunbeamGargPrefab();
-            GameObject.Instantiate(prefab, position, Quaternion.identity);
+            GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.identity);
+            spawned.SetActive(true);
+            Destroy(spawned, 15f);
         }
 
         public GameObject GetSunbeamGargPrefab()
@@ -57,7 +59,6 @@ namespace RotA.Mono
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
             FixRotationMultipliers(CreateTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
-
             return prefab;
         }
 
