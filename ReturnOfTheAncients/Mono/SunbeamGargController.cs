@@ -47,7 +47,7 @@ namespace RotA.Mono
 
         void Update()
         {
-            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime / 5f));
+            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 2000f));
         }
 
         public GameObject GetSunbeamGargPrefab()
