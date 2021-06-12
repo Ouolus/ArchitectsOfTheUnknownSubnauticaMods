@@ -16,6 +16,7 @@ namespace RotA.Mono
             GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.identity);
             spawned.SetActive(true);
             Destroy(spawned, 15f);
+            Destroy(gameObject, 20f);
         }
 
         public GameObject GetSunbeamGargPrefab()
