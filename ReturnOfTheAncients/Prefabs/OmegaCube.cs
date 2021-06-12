@@ -7,7 +7,7 @@ namespace RotA.Prefabs
 {
     public class OmegaCube : ReskinSpawnable
     {
-        public OmegaCube() : base("OmegaCube", "Omega Cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
+        public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
         }
 
