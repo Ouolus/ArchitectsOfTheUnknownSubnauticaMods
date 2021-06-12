@@ -20,7 +20,7 @@ namespace RotA.Mono
             GameObject prefab = GetSunbeamGargPrefab();
             spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
             spawnedGarg.SetActive(true);
-            this.Invoke(nameof(EndCinematic), 20f);
+            this.Invoke(nameof(EndCinematic), 30f);
         }
 
         private void EndCinematic()
