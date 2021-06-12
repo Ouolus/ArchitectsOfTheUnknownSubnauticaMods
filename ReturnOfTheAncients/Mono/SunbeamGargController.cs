@@ -9,11 +9,11 @@ namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(313f, 0f, 1500f);
+        private Vector3 position = new Vector3(313f, 0f, 1600f);
         public void Start()
         {
             GameObject prefab = GetSunbeamGargPrefab();
-            GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.identity);
+            GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
             spawned.SetActive(true);
             Destroy(spawned, 15f);
             Destroy(gameObject, 20f);
