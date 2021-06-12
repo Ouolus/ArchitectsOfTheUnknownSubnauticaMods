@@ -18,7 +18,7 @@ namespace RotA.Mono
             farplaneDistanceBefore = SNCameraRoot.main.mainCamera.farClipPlane;
             SNCameraRoot.main.SetFarPlaneDistance(10000f);
             GameObject prefab = GetSunbeamGargPrefab();
-            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * (180f+90f)));
+            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             this.Invoke(nameof(EndCinematic), 30f);
         }
@@ -83,8 +83,8 @@ namespace RotA.Mono
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f;
-            trail.maxSegmentOffset = 40f;
+            trail.segmentSnapSpeed = 0.075f / 5f;
+            trail.maxSegmentOffset = 500f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
             trail.pitchMultiplier = decreasing;
