@@ -9,7 +9,7 @@ namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(313f, 0f, 1347f);
+        private Vector3 position = new Vector3(313f, 0f, 700f);
         public void Start()
         {
             GameObject prefab = GetSunbeamGargPrefab();
