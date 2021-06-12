@@ -9,9 +9,10 @@ namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(313f, 0f, 1600f);
+        private Vector3 position = new Vector3(1162, 0f, 4333);
         public void Start()
         {
+            SNCameraRoot.main.SetFarPlaneDistance(5000f);
             GameObject prefab = GetSunbeamGargPrefab();
             GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
             spawned.SetActive(true);
