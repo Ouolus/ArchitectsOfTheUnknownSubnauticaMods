@@ -53,7 +53,7 @@ namespace RotA.Patches
 
         static IEnumerator Roar()
         {
-            yield return new WaitForSeconds(36f);
+            yield return new WaitForSeconds(34f);
             GameObject sunbeamGargController = new GameObject("SunbeamGargController");
             sunbeamGargController.AddComponent<SunbeamGargController>();
             yield return new WaitForSeconds(10f);
