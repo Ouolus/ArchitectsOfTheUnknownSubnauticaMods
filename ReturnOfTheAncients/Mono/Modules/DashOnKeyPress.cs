@@ -6,7 +6,19 @@ namespace RotA.Mono.Modules
     public class DashOnKeyPress : MonoBehaviour
     {
         Exosuit exosuit;
+        private AudioSource audioSource;
 
+        void OnEnable()
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 1f;
+            audioSource.maxDistance = 50f;
+            audioSource.volume = ECCLibrary.ECCHelpers.GetECCVolume();
+        }
+        void OnDisable()
+        {
+            Destroy(audioSource);
+        }
         public void Start()
         {
             if (!uGUI.isLoading)
