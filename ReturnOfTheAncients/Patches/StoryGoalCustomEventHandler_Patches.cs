@@ -8,6 +8,7 @@ using HarmonyLib;
 using Story;
 using UnityEngine;
 using UWE;
+using RotA.Mono;
 using Logger = QModManager.Utility.Logger;
 
 namespace RotA.Patches
@@ -52,7 +53,10 @@ namespace RotA.Patches
 
         static IEnumerator Roar()
         {
-            yield return new WaitForSeconds(5f+35f);
+            yield return new WaitForSeconds(30f);
+            GameObject sunbeamGargController = new GameObject("SunbeamGargController");
+            sunbeamGargController.AddComponent<SunbeamGargController>();
+            yield return new WaitForSeconds(10f);
         
             var gameObject = new GameObject("SunbeamRoarEvent");
             gameObject.transform.position = new(170, 0, 1696);
