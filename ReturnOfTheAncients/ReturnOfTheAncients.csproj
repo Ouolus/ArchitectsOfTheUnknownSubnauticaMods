@@ -181,6 +181,7 @@
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
+    <Compile Include="Mono\Modules\DashOnKeyPress.cs" />
     <Compile Include="Mono\PrecursorIllumControl.cs" />
     <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
     <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
+    <Compile Include="Prefabs\Modules\ExosuitDashModule.cs" />
     <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />

@@ -22,5 +22,8 @@ namespace RotA
         }
         [Keybind("Warp to base key", Tooltip = "The key that needs to be pressed (twice) to return to your base.")]
         public KeyCode WarpToBaseKey = KeyCode.H;
+
+        [Keybind("Ion dash key", Tooltip = "The key that needs to be pressed to initiate an ion dash if you have the upgrade module for the Prawn Suit.")]
+        public KeyCode PrawnSuitDashKey = KeyCode.LeftShift;
     }
 }

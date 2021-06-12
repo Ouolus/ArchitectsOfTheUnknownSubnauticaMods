@@ -34,6 +34,7 @@ namespace RotA
         public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
         public static GameObject electricalDefensePrefab;
         public static ExosuitZapModule exosuitZapModule;
+        public static ExosuitDashModule exosuitDashModule;
         public static SuperDecoy superDecoy;
 
         public static GargantuanJuvenile gargJuvenilePrefab;
@@ -233,6 +234,10 @@ namespace RotA
             superDecoy = new();
             superDecoy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+
+            exosuitDashModule = new();
+            exosuitDashModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
         }
         [QModPatch]
