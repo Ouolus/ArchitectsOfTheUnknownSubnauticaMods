@@ -56,10 +56,10 @@ namespace RotA.Patches
             yield return new WaitForSeconds(34f);
             GameObject sunbeamGargController = new GameObject("SunbeamGargController");
             sunbeamGargController.AddComponent<SunbeamGargController>();
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(1f);
         
             var gameObject = new GameObject("SunbeamRoarEvent");
-            gameObject.transform.position = new(170, 0, 1696);
+            gameObject.transform.position = new Vector3(1162, 0f, 4333);
             var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
             var audioSource = gameObject.EnsureComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
