@@ -10,20 +10,31 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(1162, 0f, 4333);
+        private GameObject spawnedGarg;
+        private float farplaneDistanceBefore;
+
         public void Start()
         {
+            farplaneDistanceBefore = SNCameraRoot.main.mainCamera.farClipPlane;
             SNCameraRoot.main.SetFarPlaneDistance(5000f);
             GameObject prefab = GetSunbeamGargPrefab();
-            GameObject spawned = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
-            spawned.SetActive(true);
-            Destroy(spawned, 15f);
-            Destroy(gameObject, 20f);
+            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
+            spawnedGarg.SetActive(true);
+            this.Invoke(nameof(EndCinematic), 20f);
+        }
+
+        private void EndCinematic()
+        {
+            Destroy(spawnedGarg);
+            Destroy(gameObject);
+            SNCameraRoot.main.SetFarPlaneDistance(farplaneDistanceBefore);
         }
 
         public GameObject GetSunbeamGargPrefab()
         {
             GameObject prefab = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
+            prefab.transform.localScale = Vector3.one * 4f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
