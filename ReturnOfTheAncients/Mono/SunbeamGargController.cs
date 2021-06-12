@@ -11,23 +11,43 @@ namespace RotA.Mono
     {
         private Vector3 position = new Vector3(700f, -2500f, 4333);
         private GameObject spawnedGarg;
-        private float farplaneDistanceBefore;
+        private float defaultFarplane;
+        private float farplaneTarget;
+        private float timeStart;
 
+        private float FarplaneDistance
+        {
+            get
+            {
+                return SNCameraRoot.main.mainCamera.farClipPlane;
+            }
+        }
         public void Start()
         {
-            farplaneDistanceBefore = SNCameraRoot.main.mainCamera.farClipPlane;
-            SNCameraRoot.main.SetFarPlaneDistance(10000f);
+            defaultFarplane = FarplaneDistance;
+            farplaneTarget = 10000f;
             GameObject prefab = GetSunbeamGargPrefab();
             spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
-            this.Invoke(nameof(EndCinematic), 30f);
+            Invoke(nameof(StartFadingOut), 20f);
+            Invoke(nameof(EndCinematic), 30f);
+            timeStart = Time.time;
+        }
+
+        private void StartFadingOut()
+        {
+            farplaneTarget = defaultFarplane;
         }
 
         private void EndCinematic()
         {
             Destroy(spawnedGarg);
             Destroy(gameObject);
-            SNCameraRoot.main.SetFarPlaneDistance(farplaneDistanceBefore);
+        }
+
+        void Update()
+        {
+            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime / 5f));
         }
 
         public GameObject GetSunbeamGargPrefab()
@@ -83,7 +103,7 @@ namespace RotA.Mono
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 5f;
+            trail.segmentSnapSpeed = 0.075f / 4f;
             trail.maxSegmentOffset = 500f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
