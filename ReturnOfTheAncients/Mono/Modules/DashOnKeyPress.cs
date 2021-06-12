@@ -23,8 +23,12 @@ namespace RotA.Mono.Modules
                 if (Input.GetKeyDown(Mod.config.PrawnSuitDashKey))
                 {
                     float thrustPowerBefore = exosuit.thrustPower;
-                    exosuit.thrustPower = 0f;
-                    exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerBefore), ForceMode.VelocityChange);
+                    if(thrustPowerBefore >= 0.1f)
+                    {
+                        exosuit.thrustPower = 0f;
+                        exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerBefore), ForceMode.VelocityChange);
+                        exosuit.fxcontrol.Play(1);
+                    }
                 }
             }
         }
