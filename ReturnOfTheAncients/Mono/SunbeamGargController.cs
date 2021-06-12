@@ -103,7 +103,7 @@ namespace RotA.Mono
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 4f;
+            trail.segmentSnapSpeed = 0.075f / 3f;
             trail.maxSegmentOffset = 500f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
