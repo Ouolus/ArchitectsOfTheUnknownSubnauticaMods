@@ -18,7 +18,7 @@ namespace RotA.Mono
             farplaneDistanceBefore = SNCameraRoot.main.mainCamera.farClipPlane;
             SNCameraRoot.main.SetFarPlaneDistance(10000f);
             GameObject prefab = GetSunbeamGargPrefab();
-            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 190f));
+            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * (180f+90f)));
             spawnedGarg.SetActive(true);
             this.Invoke(nameof(EndCinematic), 30f);
         }
