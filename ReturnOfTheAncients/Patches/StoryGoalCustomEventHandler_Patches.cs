@@ -56,7 +56,7 @@ namespace RotA.Patches
             yield return new WaitForSeconds(34f);
             GameObject sunbeamGargController = new GameObject("SunbeamGargController");
             sunbeamGargController.AddComponent<SunbeamGargController>();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
         
             var gameObject = new GameObject("SunbeamRoarEvent");
             gameObject.transform.position = new Vector3(1162, 0f, 4333);
