@@ -301,7 +301,7 @@ namespace RotA
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1244, -117, 989), "GargDunesMidUpper", 400f));
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1122, -117, 1420), "GargDunesUpper", 400f));
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1370, -60, -29f), "GargDunesLower", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1430, -300, -1547), "MountainsGarg", 400f));
+            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1430, -300, 1547), "MountainsGarg", 400f));
             #endregion
 
             #region Initializers
