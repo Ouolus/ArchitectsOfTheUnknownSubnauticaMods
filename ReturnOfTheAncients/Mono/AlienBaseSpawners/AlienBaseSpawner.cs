@@ -135,6 +135,7 @@ namespace RotA.Mono.AlienBaseSpawners
         /// Faces up by default.
         /// </summary>
         public const string vfx_entrance = "8b5e6a02-533c-44cb-9f34-d2773aa82dc4";
+        public const string hugeExteriorCube = "b9df161b-529f-422c-8a9f-f3a7a25e57df>";
 
         public const string alterra_abandonedbase2 = "a1e2f322-7080-48ca-8eaf-a05afff8585d";
         public const string alterra_abandonedbase1 = "8f20a08c-c981-4fad-a57b-2de2106b8abf";
