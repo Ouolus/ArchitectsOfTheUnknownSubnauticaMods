@@ -38,6 +38,7 @@ namespace RotA.Prefabs.AlienBase
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
+            MaterialUtils.FixIonCubeMaterials(obj, 1f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
@@ -62,6 +63,7 @@ namespace RotA.Prefabs.AlienBase
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
+            MaterialUtils.FixIonCubeMaterials(obj, 1f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
