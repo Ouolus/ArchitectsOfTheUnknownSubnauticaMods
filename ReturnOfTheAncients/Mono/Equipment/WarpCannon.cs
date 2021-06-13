@@ -182,7 +182,7 @@ namespace RotA.Mono.Equipment
                     creature.friend = Player.main.gameObject;
                 }
             }
-            bool inBase = Player.main.IsInSub();
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             if (inBase)
             {
                 //skyray fixes
@@ -234,7 +234,7 @@ namespace RotA.Mono.Equipment
                     creature.friend = Player.main.gameObject;
                 }
             }
-            bool inBase = Player.main.IsInSub();
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             if (inBase)
             {
                 //skyray fixes
