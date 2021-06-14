@@ -344,7 +344,7 @@ namespace RotA.Prefabs.Equipment
             WarperData so = ScriptableObject.CreateInstance<WarperData>();
             so.warpInCreaturesData = new List<WarperData.WarpInData>(original.warpInCreaturesData);
 
-            var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 }, new WarperData.WarpInCreature { techType = Mod.aquariumGuppy.TechType, minNum = 1, maxNum = 2 } };
+            var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 } };
             AddBiomeToWarperData(so, "LostRiver", new WarperData.WarpInData() { creatures = lostRiverCreatures});
             AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures});
             AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures});
