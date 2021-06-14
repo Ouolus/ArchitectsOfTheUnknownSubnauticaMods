@@ -41,5 +41,15 @@ namespace RotA.Mono
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("IonCubePickup"), "ColorIonCubePickupVoiceline", "The various types of energy cubes are essential in most alien technology, but require large quantities of power to create. Despite their colorful appearance, please understand they are not edible.");
             }
         }
+
+        private void OnEnable()
+        {
+            StoryGoalManager.main.AddListener(this);
+        }
+
+        private void OnDisable()
+        {
+            StoryGoalManager.main.RemoveListener(this);
+        }
     }
 }
