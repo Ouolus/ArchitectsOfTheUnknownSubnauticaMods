@@ -479,7 +479,7 @@ namespace RotA.Mono.Equipment
                     {
                         timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
                         timeCanUseAgain = Time.time + 3f;
-                        WarpToLastVisitedBase();
+                        StartCoroutine(WarpToLastVisitedBase());
                     }
                     else
                     {
@@ -490,13 +490,16 @@ namespace RotA.Mono.Equipment
             }
         }
 
-        public void WarpToLastVisitedBase()
+        public IEnumerator WarpToLastVisitedBase()
         {
             if (GetBatteryPercent() >= 0.50f)
             {
                 energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
                 animations.SetOverrideSpinSpeed(10f, 2f);
+                MainCameraControl.main.GetComponent<TeleportScreenFXController>().StartTeleport();
+                yield return new WaitForSeconds(1f);
                 var lastValidSub = Player.main.lastValidSub;
+                bool teleportedToRespawnPoint = false;
                 if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
                 {
                     var respawnPoint = lastValidSub.gameObject.GetComponentInChildren<RespawnPoint>();
@@ -504,14 +507,21 @@ namespace RotA.Mono.Equipment
                     {
                         Player.main.SetPosition(respawnPoint.GetSpawnPosition());
                         Player.main.SetCurrentSub(lastValidSub);
-                        return;
+                        teleportedToRespawnPoint = true;
                     }
                 }
-                EscapePod.main.RespawnPlayer();
-                Player.main.SetCurrentSub(null);
+                if (!teleportedToRespawnPoint)
+                {
+                    EscapePod.main.RespawnPlayer();
+                    Player.main.SetCurrentSub(null);
+                }
                 Vector3 playerPosition = Player.main.transform.position;
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
+
+                yield return new WaitForSeconds(2f);
+
+                MainCameraControl.main.GetComponent<TeleportScreenFXController>().StopTeleport();
             }
             else
             {
