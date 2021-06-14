@@ -49,16 +49,14 @@ namespace RotA.Mono.Modules
                         exosuit.thrustPower -= thrustPowerToUse;
                         exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerToUse), ForceMode.VelocityChange);
                         exosuit.fxcontrol.Play(1);
-                        audioSource.Stop();
                         if (exosuit.IsUnderwater())
                         {
-                            audioSource.clip = ionDashUnderWaterSound;
+                            audioSource.PlayOneShot(ionDashUnderWaterSound);
                         }
                         else
                         {
-                            audioSource.clip = ionDashAboveWaterSound;
+                            audioSource.PlayOneShot(ionDashAboveWaterSound);
                         }
-                        audioSource.Play();
                     }
                 }
             }
