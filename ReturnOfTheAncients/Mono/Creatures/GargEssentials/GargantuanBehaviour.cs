@@ -37,7 +37,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         void Start()
         {
             creature = GetComponent<Creature>();
-            vehicleGrabSound = AddGrabSound(5f, 20f);
+            vehicleGrabSound = AddGrabSound(50f, 200f);
             leviathanGrabSound = AddGrabSound(15f, 150f);
             vehicleHoldPoint = gameObject.SearchChild(attachBoneName).transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
