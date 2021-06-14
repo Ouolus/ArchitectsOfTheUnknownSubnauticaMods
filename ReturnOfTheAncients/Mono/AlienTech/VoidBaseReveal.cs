@@ -131,7 +131,7 @@ namespace RotA.Mono.AlienTech
         {
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting leviathan-class lifeforms beyond this doorway. Approach with caution.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.");
             }
         }
 
