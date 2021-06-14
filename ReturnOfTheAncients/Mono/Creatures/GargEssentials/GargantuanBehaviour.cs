@@ -75,7 +75,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         private AudioSource AddGrabSound(float min, float max)
         {
             var source = gameObject.AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume() * 0.75f;
+            source.volume = ECCHelpers.GetECCVolume();
             source.minDistance = min;
             source.maxDistance = max;
             source.spatialBlend = 1f;

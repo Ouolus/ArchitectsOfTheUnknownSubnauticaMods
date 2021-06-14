@@ -17,6 +17,7 @@ namespace RotA.Mono.Modules
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = 1f;
             audioSource.maxDistance = 50f;
+            audioSource.pitch = 1.5f;
             audioSource.volume = ECCLibrary.ECCHelpers.GetECCVolume();
         }
         void OnDisable()
