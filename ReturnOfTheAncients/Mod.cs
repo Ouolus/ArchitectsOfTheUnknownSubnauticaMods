@@ -313,6 +313,9 @@ namespace RotA
 
             var gargSecretCommand = new SecretCommandInitializer();
             gargSecretCommand.Patch();
+
+            var miscInitializers = new MiscInitializers();
+            miscInitializers.Patch();
             #endregion
 
             #region Signals

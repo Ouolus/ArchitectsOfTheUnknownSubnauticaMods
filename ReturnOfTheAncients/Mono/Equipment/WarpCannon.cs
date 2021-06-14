@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using RotA.Mono.Singletons;
+using Story;
 
 namespace RotA.Mono.Equipment
 {

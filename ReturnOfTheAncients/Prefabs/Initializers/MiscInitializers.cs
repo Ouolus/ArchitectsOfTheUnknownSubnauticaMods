@@ -1,21 +1,20 @@
-﻿using ECCLibrary;
-using RotA.Mono;
-using SMLHelper.V2.Assets;
-using UnityEngine;
+﻿using SMLHelper.V2.Assets;
+using ECCLibrary;
 using UWE;
+using UnityEngine;
+using RotA.Mono;
 
 namespace RotA.Prefabs.Initializers
 {
-    //Initializer for the adult garg, but ALSO the spinefish spawning
-    class AdultGargSpawnerInitializer : Spawnable
+    class MiscInitializers : Spawnable
     {
-        public AdultGargSpawnerInitializer()
-            : base("AdultGargSpawner", ".", ".")
+        public MiscInitializers()
+            : base("MiscRotAInitializers", ".", ".")
         {
             OnFinishedPatching = () =>
             {
                 StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(0f, 0f, 0f),
-                    "AdultGargSpawner", 20000f));
+                    "MiscRotAInitializers", 20000f));
             };
         }
 
@@ -30,8 +29,9 @@ namespace RotA.Prefabs.Initializers
 
         public override GameObject GetGameObject()
         {
-            GameObject obj = new GameObject("AdultGargSpawner");
-            obj.EnsureComponent<VoidGargSpawner>();
+            GameObject obj = new GameObject("MiscRotAInitializers");
+            obj.EnsureComponent<MiscPDALines>();
+            obj.EnsureComponent<VoidShoalSpawner>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
