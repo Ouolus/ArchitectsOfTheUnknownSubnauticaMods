@@ -77,6 +77,11 @@ namespace RotA.Mono.Creatures.GargEssentials
             timeRoarAgain = Time.time + timeToWait;
         }
 
+        public void DelayTimeOfNextRoar(float length)
+        {
+            timeRoarAgain = Mathf.Max(timeRoarAgain + length, timeRoarAgain);
+        }
+
         private AudioClip GetAudioClip(float distance, RoarMode roarMode)
         {
             if (roarMode == RoarMode.CloseOnly)
