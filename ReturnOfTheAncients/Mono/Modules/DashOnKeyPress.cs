@@ -7,6 +7,8 @@ namespace RotA.Mono.Modules
     {
         Exosuit exosuit;
         private AudioSource audioSource;
+        const float maxThrustConsumption = 0.3f;
+        const float energyConsumption = 15f;
 
         void OnEnable()
         {
@@ -34,11 +36,13 @@ namespace RotA.Mono.Modules
             {
                 if (Input.GetKeyDown(Mod.config.PrawnSuitDashKey))
                 {
-                    float thrustPowerBefore = exosuit.thrustPower;
-                    if(thrustPowerBefore >= 0.1f)
+                    float thrustPowerToUse = Mathf.Min(exosuit.thrustPower, maxThrustConsumption);
+                    if(thrustPowerToUse >= 0.05f)
                     {
-                        exosuit.thrustPower = 0f;
-                        exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerBefore), ForceMode.VelocityChange);
+                        if (!exosuit.ConsumeEnergy(energyConsumption))
+                            return;
+                        exosuit.thrustPower -= thrustPowerToUse;
+                        exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerToUse), ForceMode.VelocityChange);
                         exosuit.fxcontrol.Play(1);
                     }
                 }
@@ -47,7 +51,7 @@ namespace RotA.Mono.Modules
 
         Vector3 GetThrustForce(float thrustPower)
         {
-            return MainCamera.camera.transform.forward * thrustPower * 30f;
+            return MainCamera.camera.transform.forward * thrustPower * 60f;
         }
     }
 }
