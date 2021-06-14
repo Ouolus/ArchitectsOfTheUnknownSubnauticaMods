@@ -49,7 +49,7 @@ namespace RotA.Mono
             var goalManager = GoalManager.main;
             goalManager.onCompleteGoalEvent.AddHandler(gameObject, new Event<Goal>.HandleFunction(OnCompleteGoal));
             AddPickupGoal(Mod.warpCannon.TechType);
-            AddPickupGoal(Mod.gargEgg.TechType);
+            AddPickupGoal("GargantuanEggUndiscovered");
             AddPickupGoal(AUHandler.ElectricubeTechType);
             AddPickupGoal(AUHandler.RedIonCubeTechType);
         }
@@ -57,6 +57,11 @@ namespace RotA.Mono
         private void AddPickupGoal(TechType itemTechType)
         {
             GoalManager.main.goals.Add(new Goal() { customGoalName = $"Pickup_{itemTechType.AsString()}", displayed = false, itemType = itemTechType, goalType = GoalType.Custom});
+        }
+
+        private void AddPickupGoal(string techTypeName)
+        {
+            GoalManager.main.goals.Add(new Goal() { customGoalName = $"Pickup_{techTypeName}", displayed = false, goalType = GoalType.Custom });
         }
     }
 }
