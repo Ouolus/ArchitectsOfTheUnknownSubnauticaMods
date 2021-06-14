@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UWE;
 using Story;
+using ArchitectsLibrary.Handlers;
 
 namespace RotA.Mono
 {
-    public class MiscPDALines : MonoBehaviour, IStoryGoalListener
+    public class MiscPDALines : MonoBehaviour
     {
         StoryGoal colorfulIonCubeStoryGoal = new StoryGoal("ColorfulIonCubePickupGoal", Story.GoalType.PDA, 0f);
 
-        public void NotifyGoalComplete(string key)
+        private void OnCompleteGoal(Goal goal)
         {
-            switch (key)
+            switch (goal.customGoalName)
             {
                 default:
                     return;
@@ -42,14 +44,19 @@ namespace RotA.Mono
             }
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            StoryGoalManager.main.AddListener(this);
+            var goalManager = GoalManager.main;
+            goalManager.onCompleteGoalEvent.AddHandler(gameObject, new Event<Goal>.HandleFunction(OnCompleteGoal));
+            AddPickupGoal(Mod.warpCannon.TechType);
+            AddPickupGoal(Mod.gargEgg.TechType);
+            AddPickupGoal(AUHandler.ElectricubeTechType);
+            AddPickupGoal(AUHandler.RedIonCubeTechType);
         }
 
-        private void OnDisable()
+        private void AddPickupGoal(TechType itemTechType)
         {
-            StoryGoalManager.main.RemoveListener(this);
+            GoalManager.main.goals.Add(new Goal() { customGoalName = $"Pickup_{itemTechType.AsString()}", displayed = false, itemType = itemTechType, goalType = GoalType.Custom});
         }
     }
 }
