@@ -496,8 +496,12 @@ namespace RotA.Mono.Equipment
             {
                 energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
                 animations.SetOverrideSpinSpeed(10f, 2f);
-                MainCameraControl.main.GetComponent<TeleportScreenFXController>().StartTeleport();
+                var teleportScreenController = MainCamera.camera.GetComponent<TeleportScreenFXController>();
+                teleportScreenController.StartTeleport();
+                Player.main.teleportingLoopSound.Play();
+
                 yield return new WaitForSeconds(1f);
+
                 var lastValidSub = Player.main.lastValidSub;
                 bool teleportedToRespawnPoint = false;
                 if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
@@ -519,9 +523,10 @@ namespace RotA.Mono.Equipment
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1.5f);
 
-                MainCameraControl.main.GetComponent<TeleportScreenFXController>().StopTeleport();
+                teleportScreenController.StopTeleport();
+                Player.main.teleportingLoopSound.Stop();
             }
             else
             {
