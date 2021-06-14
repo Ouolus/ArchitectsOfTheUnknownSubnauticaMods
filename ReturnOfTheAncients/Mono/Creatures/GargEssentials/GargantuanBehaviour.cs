@@ -42,7 +42,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             vehicleHoldPoint = gameObject.SearchChild(attachBoneName).transform;
             seamothSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
-            cyclopsSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
+            cyclopsSounds = ECCAudio.CreateClipPool("GargCyclopsAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
             roar = GetComponent<GargantuanRoar>();
             lastTarget = gameObject.GetComponent<LastTarget>();
