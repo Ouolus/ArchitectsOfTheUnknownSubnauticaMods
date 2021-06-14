@@ -54,6 +54,8 @@ namespace RotA.Mono.Equipment
 
         List<IPropulsionCannonAmmo> iammoCache = new(); //IDK why this exists but the propulsion cannon does it
 
+        bool warpingBackToBase;
+
         /// <summary>
         /// Controls what happens when you right click.
         /// </summary>
@@ -490,6 +492,19 @@ namespace RotA.Mono.Equipment
             }
         }
 
+        public override bool GetUsedToolThisFrame()
+        {
+            if (fireMode == FireMode.Warp && handDown)
+            {
+                return true;
+            }
+            if (warpingBackToBase == true)
+            {
+                return true;
+            }
+            return base.GetUsedToolThisFrame();
+        }
+
         public IEnumerator WarpToLastVisitedBase()
         {
             if (GetBatteryPercent() >= 0.50f)
@@ -499,6 +514,8 @@ namespace RotA.Mono.Equipment
                 var teleportScreenController = MainCamera.camera.GetComponent<TeleportScreenFXController>();
                 teleportScreenController.StartTeleport();
                 Player.main.teleportingLoopSound.Play();
+
+                warpingBackToBase = true;
 
                 yield return new WaitForSeconds(1f);
 
@@ -527,6 +544,7 @@ namespace RotA.Mono.Equipment
 
                 teleportScreenController.StopTeleport();
                 Player.main.teleportingLoopSound.Stop();
+                warpingBackToBase = false;
             }
             else
             {
