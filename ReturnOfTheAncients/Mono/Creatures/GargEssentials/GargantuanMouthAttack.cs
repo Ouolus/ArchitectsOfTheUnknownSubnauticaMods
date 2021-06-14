@@ -142,7 +142,6 @@ namespace RotA.Mono.Creatures.GargEssentials
                                 if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
                                 {
                                     behaviour.GrabLargeSub(subRoot);
-                                    behaviour.roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
                                     gargantuan.Aggression.Value -= 1f;
                                     return;
                                 }
