@@ -9,6 +9,8 @@ namespace RotA.Mono.Modules
         private AudioSource audioSource;
         const float maxThrustConsumption = 0.3f;
         const float energyConsumption = 15f;
+        AudioClip ionDashUnderWaterSound;
+        AudioClip ionDashAboveWaterSound;
 
         void OnEnable()
         {
@@ -28,6 +30,8 @@ namespace RotA.Mono.Modules
                 ErrorMessage.AddMessage(string.Format("Press {0} to initiate an Ion dash.", LanguageUtils.FormatKeyCode(Mod.config.PrawnSuitDashKey)));
             }
             exosuit = GetComponent<Exosuit>();
+            ionDashUnderWaterSound = Mod.assetBundle.LoadAsset<AudioClip>("IonDashUnderWater");
+            ionDashAboveWaterSound = Mod.assetBundle.LoadAsset<AudioClip>("IonDashAboveWater");
         }
 
         void Update()
@@ -44,6 +48,14 @@ namespace RotA.Mono.Modules
                         exosuit.thrustPower -= thrustPowerToUse;
                         exosuit.useRigidbody.AddForce(GetThrustForce(thrustPowerToUse), ForceMode.VelocityChange);
                         exosuit.fxcontrol.Play(1);
+                        if (exosuit.IsUnderwater())
+                        {
+                            audioSource.PlayOneShot(ionDashUnderWaterSound);
+                        }
+                        else
+                        {
+                            audioSource.PlayOneShot(ionDashAboveWaterSound);
+                        }
                     }
                 }
             }
