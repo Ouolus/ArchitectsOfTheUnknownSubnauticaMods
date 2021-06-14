@@ -25,7 +25,7 @@ namespace RotA.Mono.Modules
 
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => fxElectSpheres is not null);
+            yield return new WaitUntil(() => fxElectSpheres == null);
             yield return null;
 
             var fxElects = (GameObject[])fxElectSpheres.Clone();
@@ -92,7 +92,7 @@ namespace RotA.Mono.Modules
             {
                 var collider = UWE.Utils.sharedColliderBuffer[i];
                 var obj = UWE.Utils.GetEntityRoot(collider.gameObject);
-                if (obj is null)
+                if (obj == null)
                     obj = collider.gameObject;
 
                 var creature = obj.GetComponent<Creature>();
