@@ -29,7 +29,7 @@ namespace RotA.Mono
                 case "Pickup_RedIonCube":
                     OnIonCubePickedUp();
                     return;
-                case "Pickup_GargantuanEgg":
+                case "Pickup_GargantuanEggUndiscovered":
                     CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("GargEggPickup"), "GargantuanEggPickupVoiceline", "This egg is unusually large, and likely contains a leviathan class lifeform within. Take caution in handling it.");
                     return;
 
