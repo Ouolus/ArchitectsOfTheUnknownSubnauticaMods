@@ -91,10 +91,7 @@ namespace RotA.Prefabs.AlienBase
             }
             if (techToUnlock != null)
             {
-                foreach(var tech in techToUnlock)
-                {
-                    obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = tech;
-                }
+                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = techToUnlock;
             }
             if(techToAnalyze != TechType.None)
             {
@@ -141,10 +138,7 @@ namespace RotA.Prefabs.AlienBase
             }
             if (techToUnlock != null)
             {
-                foreach(var tech in techToUnlock)
-                {
-                    obj.AddComponent<DataTerminalUnlockTech>().techToUnlock = tech;
-                }
+                obj.AddComponent<DataTerminalUnlockTech>().techsToUnlock = techToUnlock;
             }
             if(techToAnalyze != TechType.None)
             {
