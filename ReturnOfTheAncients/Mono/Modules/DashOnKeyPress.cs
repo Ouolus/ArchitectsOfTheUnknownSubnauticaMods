@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using ArchitectsLibrary.Utility;
+using System.Collections;
 
 namespace RotA.Mono.Modules
 {
@@ -11,6 +12,7 @@ namespace RotA.Mono.Modules
         const float energyConsumption = 15f;
         AudioClip ionDashUnderWaterSound;
         AudioClip ionDashAboveWaterSound;
+        float teleportVfxLength = 0.25f;
 
         void OnEnable()
         {
@@ -57,6 +59,7 @@ namespace RotA.Mono.Modules
                         {
                             audioSource.PlayOneShot(ionDashAboveWaterSound);
                         }
+                        StartCoroutine(DashVFXCoroutine());
                     }
                 }
             }
@@ -65,6 +68,14 @@ namespace RotA.Mono.Modules
         Vector3 GetThrustForce(float thrustPower)
         {
             return MainCamera.camera.transform.forward * thrustPower * 60f;
+        }
+
+        IEnumerator DashVFXCoroutine()
+        {
+            TeleportScreenFXController fxController = MainCamera.camera.GetComponent<TeleportScreenFXController>();
+            fxController.StartTeleport();
+            yield return new WaitForSeconds(teleportVfxLength);
+            fxController.StopTeleport();
         }
     }
 }
