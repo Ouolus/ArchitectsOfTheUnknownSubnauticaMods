@@ -12,7 +12,10 @@ namespace RotA.Prefabs
         public override TechType HatchingCreature => Mod.gargBabyPrefab.TechType;
         public override float HatchingTime => 1f;
         public override Sprite ItemSprite => null;
-        public override Texture2D ItemSpriteFromTexture => Mod.assetBundle.LoadAsset<Texture2D>("GargEgg_Icon");
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new(Mod.assetBundle.LoadAsset<Sprite>("GargEgg_Icon"));
+        }
         public override GameObject Model => Mod.assetBundle.LoadAsset<GameObject>("GargEgg_Prefab");
         public override bool MakeCreatureLayEggs => true;
         public override bool AcidImmune => true;
