@@ -179,6 +179,7 @@ namespace RotA
         [QModPostPatch]
         public static void PostPatch()
         {
+            //post patch because decorations mod does stuff to this recipe
             var redTabletTD = new TechData
             {
                 craftAmount = 1,
