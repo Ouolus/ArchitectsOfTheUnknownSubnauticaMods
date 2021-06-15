@@ -94,6 +94,9 @@ namespace ArchitectsLibrary
         [QModPrePatch]
         public static void PreLoad()
         {
+            fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
+            assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
+            
             alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
             AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
             
@@ -113,9 +116,6 @@ namespace ArchitectsLibrary
 
             MaterialUtils.LoadMaterials();
 
-            fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
-            assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
-            
             background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
