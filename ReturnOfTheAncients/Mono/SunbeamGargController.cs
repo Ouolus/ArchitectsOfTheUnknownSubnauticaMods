@@ -25,7 +25,7 @@ namespace RotA.Mono
         public void Start()
         {
             defaultFarplane = FarplaneDistance;
-            farplaneTarget = 10000f;
+            farplaneTarget = 20000f;
             GameObject prefab = GetSunbeamGargPrefab();
             spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
@@ -47,7 +47,7 @@ namespace RotA.Mono
 
         void Update()
         {
-            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 2000f));
+            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
         }
 
         public GameObject GetSunbeamGargPrefab()
