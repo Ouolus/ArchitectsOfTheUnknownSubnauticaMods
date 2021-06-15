@@ -13,7 +13,13 @@ namespace RotA.Prefabs.Modules
         public SeamothElectricalDefenseMK2()
             : base("SeamothElectricalDefenseMK2", "Seamoth Ion Perimeter Defense System",
                 "Generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
-        {}
+        {
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("SeamothElectricalDefenseMk2"));
+            };
+        }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.SeamothModule;
         
@@ -30,8 +36,8 @@ namespace RotA.Prefabs.Modules
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
         
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
-        
-        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
+
+        public override bool UnlockedAtStart { get; } = false;
 
         #region Interface Implementation
 

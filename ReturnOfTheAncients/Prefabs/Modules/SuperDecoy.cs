@@ -13,6 +13,11 @@ namespace RotA.Prefabs.Modules
     {
         public SuperDecoy() : base("CyclopsDecoyMk2", "Creature Decoy MK2", "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.")
         {
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("DecoyMk2_Icon"));
+            };
         }
 
         public override EquipmentType EquipmentType => EquipmentType.DecoySlot;
@@ -21,7 +26,7 @@ namespace RotA.Prefabs.Modules
 
         public override TechGroup GroupForPDA => TechGroup.Machines;
 
-        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
+        public override bool UnlockedAtStart { get; } = false;
 
         public override float CraftingTime => 7f;
 

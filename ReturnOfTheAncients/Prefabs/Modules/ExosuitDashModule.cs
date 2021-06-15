@@ -13,11 +13,15 @@ namespace RotA.Prefabs.Modules
 {
     public class ExosuitDashModule : VehicleUpgrade, IVehicleOnEquip
     {
-        public ExosuitDashModule()
-    : base("ExosuitDashModule", "Prawn Suit Ion Dash Module",
+        public ExosuitDashModule() 
+            : base("ExosuitDashModule", "Prawn Suit Ion Dash Module",
         "Allows the pilot to dash quickly in any direction, utilizing the Prawn Suit's built-in thrusters. Doesn't stack.")
         {
-
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("PrawnSuitAutoZapper"));
+            };
         }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.ExosuitModule;
@@ -34,7 +38,7 @@ namespace RotA.Prefabs.Modules
 
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
 
-        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
+        public override bool UnlockedAtStart { get; } = false;
 
         #region Interface Implementation
 
