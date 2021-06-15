@@ -91,6 +91,19 @@ namespace ArchitectsLibrary
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
         /// </summary>
         [Obsolete("Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.", true)]
+        [QModPrePatch]
+        public static void PreLoad()
+        {
+            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
+            AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
+            
+            PatchMinerals();
+        }
+
+        /// <summary>
+        /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
+        /// </summary>
+        [Obsolete("Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.", true)]
         [QModPatch]
         public static void Load()
         {
@@ -120,19 +133,6 @@ namespace ArchitectsLibrary
 
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
-        }
-
-        static IEnumerator FixIonCubeCraftingCoroutine()
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
-            var prefab = task.GetResult();
-            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = -0.25f;
-            vfxFabricating.localMaxY = 0.44f;
-            vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
-            vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
-            vfxFabricating.scaleFactor = 1.5f;
         }
 
         /// <summary>
@@ -167,12 +167,22 @@ namespace ArchitectsLibrary
 
             PatchBuildables();
         }
-
-        static void PatchItems()
+        
+        static IEnumerator FixIonCubeCraftingCoroutine()
         {
-            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
-            AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
+            yield return task;
+            var prefab = task.GetResult();
+            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
+            vfxFabricating.localMinY = -0.25f;
+            vfxFabricating.localMaxY = 0.44f;
+            vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
+            vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
+            vfxFabricating.scaleFactor = 1.5f;
+        }
 
+        static void PatchMinerals()
+        {
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
@@ -254,7 +264,10 @@ namespace ArchitectsLibrary
             PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
             CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
+        }
 
+        static void PatchItems()
+        {
             aotuPoster = new AotuPoster();
             aotuPoster.Patch();
 
