@@ -29,11 +29,8 @@ namespace RotA.Mono.Modules
             var fxElectSpheres = zapPrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
             var defenseSound = zapPrefab.GetComponent<ElectricalDefense>().defenseSound;
 
-            var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
-            if (ed is not null)
-            {
-                Object.Destroy(ed);
-            }
+            var ed = obj.GetComponent<ElectricalDefense>();
+            Object.DestroyImmediate(ed);
 
             var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
             if (edMk2 is not null)
@@ -56,6 +53,8 @@ namespace RotA.Mono.Modules
                 electricalDefense.charge = 1f;
                 electricalDefense.chargeScalar = 1f;
             }
+
+            obj.SetActive(true);
         }
 
         public void OnTakeDamage(DamageInfo damageInfo)
