@@ -222,24 +222,6 @@ namespace RotA
             buildableOmegaCubePedestal.Patch();
 
             CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
-
-            #region Modules
-            electricalDefenseMk2 = new();
-            electricalDefenseMk2.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            exosuitZapModule = new();
-            exosuitZapModule.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
-
-            superDecoy = new();
-            superDecoy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
-
-            exosuitDashModule = new();
-            exosuitDashModule.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(exosuitDashModule.TechType, PrecursorFabricatorTab.UpgradeModules);
-            #endregion
         }
         [QModPatch]
         public static void Patch()
@@ -273,6 +255,24 @@ namespace RotA
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
             warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
+            #endregion
+            
+            #region Modules
+            electricalDefenseMk2 = new();
+            electricalDefenseMk2.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            exosuitZapModule = new();
+            exosuitZapModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+
+            superDecoy = new();
+            superDecoy.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+
+            exosuitDashModule = new();
+            exosuitDashModule.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(exosuitDashModule.TechType, PrecursorFabricatorTab.UpgradeModules);
             #endregion
 
             #region Creatures
@@ -523,7 +523,7 @@ namespace RotA
             kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", ency_kooshBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             kooshBaseTerminal.Patch();
 
-            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: architectElectricityMasterTech, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
+            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", ency_archElectricityTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: new[] {superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, electricalDefenseMk2.TechType}, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
 
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
