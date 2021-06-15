@@ -43,10 +43,7 @@ namespace RotA.Prefabs.Modules
             obj.name = "ElectricalDefenseMK2";
 
             var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
-            if (ed is not null)
-            {
-                Object.Destroy(ed);
-            }
+            Object.DestroyImmediate(ed);
 
             var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
             if (edMk2 is not null)
@@ -69,6 +66,8 @@ namespace RotA.Prefabs.Modules
                 electricalDefense.chargeScalar = slotCharge;
                 electricalDefense.attackType = ElectricalDefenseMK2.AttackType.Both;
             }
+
+            obj.SetActive(true);
         }
 
         #endregion
