@@ -12,7 +12,7 @@ namespace RotA.Mono.Modules
         const float energyConsumption = 15f;
         AudioClip ionDashUnderWaterSound;
         AudioClip ionDashAboveWaterSound;
-        float teleportVfxLength = 0.25f;
+        float teleportVfxLength = 0.15f;
 
         void OnEnable()
         {
