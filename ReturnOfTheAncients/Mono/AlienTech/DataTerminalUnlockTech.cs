@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UWE;
 
 namespace RotA.Mono.AlienTech
 {
@@ -9,7 +10,7 @@ namespace RotA.Mono.AlienTech
 
         public void OnStoryHandTarget()
         {
-            StartCoroutine(DelayedUnlock());
+            CoroutineHost.StartCoroutine(DelayedUnlock());
         }
 
         IEnumerator DelayedUnlock()
