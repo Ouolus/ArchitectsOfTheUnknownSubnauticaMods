@@ -75,7 +75,7 @@ namespace RotA.Prefabs.Modules
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("PrawnSuitAutoZapper"));
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("IonDash_Icon"));
         }
 
         protected override void CustomizePrefab(GameObject prefab)
