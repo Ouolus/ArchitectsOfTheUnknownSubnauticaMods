@@ -86,7 +86,11 @@ namespace RotA.Prefabs.Signals
             if (voiceLineData.hasVoiceLine)
             {
                 var signalPingVoiceLine = obj.EnsureComponent<SignalPingVoiceLine>();
-                signalPingVoiceLine.data = new(voiceLineData);
+                signalPingVoiceLine.audioClip = voiceLineData.audioClip;
+                signalPingVoiceLine.delay = voiceLineData.delay;
+                signalPingVoiceLine.storyGoalKey = voiceLineData.storyGoalKey;
+                signalPingVoiceLine.subtitleKey = voiceLineData.subtitleKey;
+                signalPingVoiceLine.subtitleDisplayText = voiceLineData.subtitleDisplayText;
             }
 
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;

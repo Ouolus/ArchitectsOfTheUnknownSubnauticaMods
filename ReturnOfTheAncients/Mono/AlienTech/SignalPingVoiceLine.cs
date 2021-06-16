@@ -10,8 +10,6 @@ namespace RotA.Mono.AlienTech
 {
     public class SignalPingVoiceLine : MonoBehaviour
     {
-        public Data data;
-
         public struct Data
         {
             public bool hasVoiceLine;
@@ -30,36 +28,28 @@ namespace RotA.Mono.AlienTech
                 this.audioClip = audioClip;
                 this.delay = delay;
             }
-
-            public Data(Data data)
-            {
-                this.hasVoiceLine = data.hasVoiceLine;
-                this.subtitleKey = data.subtitleKey;
-                this.storyGoalKey = data.storyGoalKey;
-                this.subtitleDisplayText = data.subtitleDisplayText;
-                this.audioClip = data.audioClip;
-                this.delay = data.delay;
-            }
         }
+
+        public string subtitleKey;
+        public string storyGoalKey;
+        public string subtitleDisplayText;
+        public AudioClip audioClip;
+        public float delay;
 
         public void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.Equals(Player.main.gameObject))
             {
-                if (!data.hasVoiceLine)
+                if (StoryGoalManager.main.OnGoalComplete(subtitleKey))
                 {
-                    return;
-                }
-                if (StoryGoalManager.main.OnGoalComplete(data.subtitleKey))
-                {
-                    Invoke(nameof(PlayVoiceLine), data.delay);
+                    Invoke(nameof(PlayVoiceLine), delay);
                 }
             }
         }
 
         private void PlayVoiceLine()
         {
-            CustomPDALinesManager.PlayPDAVoiceLine(data.audioClip, data.subtitleKey, data.subtitleDisplayText);
+            CustomPDALinesManager.PlayPDAVoiceLine(audioClip, subtitleKey, subtitleDisplayText);
         }
     }
 }
