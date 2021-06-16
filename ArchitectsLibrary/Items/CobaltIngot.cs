@@ -28,6 +28,9 @@
             var renderer = prefab.GetComponentInChildren<Renderer>();
             renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltIngot_Diffuse"));
             renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltIngot_Spec"));
+            renderer.material.SetColor("_SpecColor", new Color(2f, 2f, 2f));
+            renderer.material.SetColor("_Color", new Color(5f, 5f, 5f));
+            renderer.material.SetFloat("_Shininess", 5f);
         }
 
         protected override Atlas.Sprite GetItemSprite()
