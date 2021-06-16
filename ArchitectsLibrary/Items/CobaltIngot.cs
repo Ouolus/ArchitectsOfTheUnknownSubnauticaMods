@@ -18,6 +18,8 @@
         public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
         public override string[] StepsToFabricatorTab => new string[] { "Resources", "AdvancedMaterials" };
 
+        public override TechType RequiredForUnlock => AUHandler.CobaltTechType;
+
         public CobaltIngot() : base("CobaltIngot", "Cobalt ingot", "Co. Condensed cobalt bar.")
         {
         }
