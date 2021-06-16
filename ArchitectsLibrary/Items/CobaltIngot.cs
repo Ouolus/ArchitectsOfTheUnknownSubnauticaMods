@@ -26,13 +26,13 @@
         {
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
             var renderer = prefab.GetComponentInChildren<Renderer>();
-            //renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Diffuse"));
-            //renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Spec"));
+            renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltIngot_Diffuse"));
+            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltIngot_Spec"));
         }
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("CobaltOre_Icon"));
+            return sprite ??= new Atlas.Sprite(Main.assetBundle.LoadAsset<Sprite>("CobaltIngot_Icon"));
         }
 
         protected override TechData GetBlueprintRecipe()
