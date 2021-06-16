@@ -16,5 +16,7 @@ namespace LeviathanEggs.Prefabs
         public override TechType HatchingCreature => TechType.Warper;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("WarperEgg");
+        
+        public override Vector2int SizeInInventory { get; } = new(2, 2);
     }
 }

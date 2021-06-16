@@ -17,6 +17,7 @@ namespace LeviathanEggs.Prefabs
         public override TechType HatchingCreature => TechType.SeaTreader;
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SeaTreaderEgg");
+        
         public override Vector2int SizeInInventory { get; } = new(3, 3);
     }
 }

@@ -68,6 +68,6 @@ namespace LeviathanEggs.Prefabs
 
             prefab.AddComponent<SpawnLocations>();
         }
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
+        public override Vector2int SizeInInventory => new (3, 3);
     }
 }
