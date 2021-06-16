@@ -27,6 +27,7 @@ namespace RotA.Prefabs.Signals
         /// <param name="label">Shows up in the HUD.</param>
         /// <param name="position"></param>
         /// <param name="defaultColorIndex"></param>
+        /// <param name="voiceLineSettings">Settings related to the voice line that plays when approaching the signal. By default does no voice line.</param>
         public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0, SignalPingVoiceLine.Data voiceLineSettings = default)
             : base(classId, displayName, ".")
         {
