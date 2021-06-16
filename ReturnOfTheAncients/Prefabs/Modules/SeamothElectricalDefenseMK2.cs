@@ -17,7 +17,7 @@ namespace RotA.Prefabs.Modules
             OnFinishedPatching += () =>
             {
                 KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
-                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("SeamothElectricalDefenseMk2"));
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("AlienUpgrade_Popup"));
             };
         }
 

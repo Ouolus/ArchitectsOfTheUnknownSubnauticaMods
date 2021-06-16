@@ -16,7 +16,7 @@ namespace RotA.Prefabs.Modules
             OnFinishedPatching += () =>
             {
                 KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
-                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("DecoyMk2_Icon"));
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("DecoyMk2_Popup"));
             };
         }
 
