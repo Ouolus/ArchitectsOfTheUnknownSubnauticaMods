@@ -30,6 +30,16 @@ namespace RotA.Mono.AlienTech
                 this.audioClip = audioClip;
                 this.delay = delay;
             }
+
+            public Data(Data data)
+            {
+                this.hasVoiceLine = data.hasVoiceLine;
+                this.subtitleKey = data.subtitleKey;
+                this.storyGoalKey = data.storyGoalKey;
+                this.subtitleDisplayText = data.subtitleDisplayText;
+                this.audioClip = data.audioClip;
+                this.delay = data.delay;
+            }
         }
 
         public void OnTriggerEnter(Collider other)
