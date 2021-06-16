@@ -160,6 +160,7 @@
     <Compile Include="Mono\AlienTech\OmegaFabricatorRoot.cs" />
     <Compile Include="Mono\AlienTech\OmegaTerminal.cs" />
     <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
+    <Compile Include="Mono\AlienTech\SignalPingVoiceLine.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
     <Compile Include="Mono\Commands\SecretCommand.cs" />
