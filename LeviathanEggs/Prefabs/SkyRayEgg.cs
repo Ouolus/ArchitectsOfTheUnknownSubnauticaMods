@@ -10,7 +10,7 @@ namespace LeviathanEggs.Prefabs
         public SkyRayEgg()
             : base("SkyRayEgg", "Skyray Egg", "Skyrays Hatch from these.")
         {
-            LateEnhancements += InitializeObject;
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
         }
         
         public override GameObject Model => LoadGameObject("SkyRayEgg.prefab");
@@ -19,7 +19,5 @@ namespace LeviathanEggs.Prefabs
         public override Sprite ItemSprite => LoadSprite("SkyRayEgg");
         public override Vector2int SizeInInventory { get; } = new(1, 1);
         public override bool MakeCreatureLayEggs { get; } = true;
-
-        public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
 }

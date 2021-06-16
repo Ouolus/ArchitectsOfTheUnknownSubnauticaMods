@@ -10,7 +10,7 @@ namespace LeviathanEggs.Prefabs
         public SeaTreaderEgg()
             : base("SeaTreaderEgg", "Sea Treader Egg", "Sea Treaders hatch from these.")
         {
-            LateEnhancements += InitializeObject;
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
         }
 
         public override GameObject Model => LoadGameObject("SeaTreaderEgg.prefab");
@@ -18,7 +18,5 @@ namespace LeviathanEggs.Prefabs
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SeaTreaderEgg");
         public override Vector2int SizeInInventory { get; } = new(3, 3);
-
-        public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
 }

@@ -11,7 +11,7 @@ namespace LeviathanEggs.Prefabs
         public ReaperEgg()
             : base("ReaperEgg", "Reaper Leviathan Egg", "Reapers hatch from these.")
         {
-            LateEnhancements += InitializeObject;
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
         }
 
         public override GameObject Model => LoadGameObject("ReaperEgg.prefab");
@@ -19,7 +19,5 @@ namespace LeviathanEggs.Prefabs
         public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("ReaperEgg");
         public override Vector2int SizeInInventory { get; } = new(3, 3);
-
-        public void InitializeObject(GameObject prefab) => prefab.AddComponent<SpawnLocations>();
     }
 }

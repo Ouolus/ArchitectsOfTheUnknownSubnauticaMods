@@ -9,10 +9,12 @@ namespace LeviathanEggs.Prefabs
     {
         public RiverProwlerEgg()
             : base("RiverProwlerEgg", "River Prowler Egg", "River Prowlers hatch from these.")
-        {}
+        {
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
+        }
         public override GameObject Model => LoadGameObject("RiverProwlerEgg.prefab");
         public override TechType HatchingCreature => TechType.SpineEel;
         public override float HatchingTime => 2f;
-        public override Sprite ItemSprite => LoadSprite("RiverProwlerEgg");
+        public override Sprite ItemSprite => LoadSprite("ProwlerEgg");
     }
 }

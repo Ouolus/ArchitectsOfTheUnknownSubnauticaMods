@@ -9,7 +9,9 @@ namespace LeviathanEggs.Prefabs
     {
         public GhostRayEgg()
             : base("GhostRayEgg", "Ghost Ray Egg", "Ghost Rays hatch from these.")
-        {}
+        {
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
+        }
         public override GameObject Model => LoadGameObject("GhostRayEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostRayBlue;
         public override float HatchingTime => 5f;
