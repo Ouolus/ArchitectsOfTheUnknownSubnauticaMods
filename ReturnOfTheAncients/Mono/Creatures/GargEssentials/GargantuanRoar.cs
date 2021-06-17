@@ -28,6 +28,8 @@ namespace RotA.Mono.Creatures.GargEssentials
         private float clipLoudness = 0f;
 
         private float maxDamageDistance = 200f;
+        private float roarMaxDamagePerSecond = 6f;
+        private float timeStopDamaging = 0f;
 
         private void Start()
         {
@@ -66,6 +68,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                     }
                 }
             }
+            if (roarDoesDamage && GargantuanBehaviour.PlayerIsKillable() && Time.time < timeStopDamaging)
+            {
+                DoDamage();
+            }
         }
 
         public void PlayOnce(out float roarLength, RoarMode roarMode)
@@ -79,22 +85,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             creature.GetAnimator().SetTrigger("roar");
             float timeToWait = roarLength + Random.Range(delayMin, delayMax);
             timeRoarAgain = Time.time + timeToWait;
-            if (roarDoesDamage && GargantuanBehaviour.PlayerIsKillable())
-            {
-                StartCoroutine(DamageCoroutine());
-            }
-        }
-
-        public IEnumerator DamageCoroutine()
-        {
-            yield return new WaitForSeconds(0.5f);
-            DoDamage();
-            yield return new WaitForSeconds(2f);
-            DoDamage();
-            yield return new WaitForSeconds(1f);
-            DoDamage();
-            yield return new WaitForSeconds(1f);
-            DoDamage();
+            timeStopDamaging = Time.time + 6f;
         }
 
         void DoDamage()
@@ -103,7 +94,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             if (distance < maxDamageDistance)
             {
                 float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
-                Player.main.liveMixin.TakeDamage(distanceScalar * 15f, transform.position, DamageType.Cold, gameObject);
+                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * roarMaxDamagePerSecond, transform.position, DamageType.Cold, gameObject);
             }
         }
 
