@@ -384,15 +384,6 @@ namespace RotA.Prefabs.Equipment
             {
                 Object.DestroyImmediate(destroyAfterSeconds);
             }
-            foreach(ParticleSystem ps in returnObj.GetComponentsInChildren<ParticleSystem>(true))
-            {
-                var main = ps.main;
-                main.loop = true;
-                /*main.duration = 2.5f;
-                main.startLifetime = 3f;
-                main.startDelay = 0f;
-                main.maxParticles = main.maxParticles * 3;*/
-            }
             return returnObj;
         }
 
