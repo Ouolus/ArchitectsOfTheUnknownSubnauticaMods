@@ -28,7 +28,7 @@ namespace RotA.Mono
             {
                 return 0f;
             }
-            return (Mathf.PingPong(Time.time / 5f, 1f) * 0.25f);
+            return (Mathf.PingPong(Time.time / 5f, 1f) * 0.5f);
         }
     }
 }
