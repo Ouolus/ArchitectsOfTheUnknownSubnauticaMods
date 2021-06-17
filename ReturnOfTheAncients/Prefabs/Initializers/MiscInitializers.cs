@@ -32,7 +32,6 @@ namespace RotA.Prefabs.Initializers
             GameObject obj = new GameObject("MiscRotAInitializers");
             obj.EnsureComponent<MiscPDALines>();
             obj.EnsureComponent<VoidShoalSpawner>();
-            obj.EnsureComponent<GargGrayscaleCameraEffects>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
