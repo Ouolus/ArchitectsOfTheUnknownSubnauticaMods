@@ -297,7 +297,7 @@ namespace RotA.Mono.Equipment
             GameObject warpVfx = Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
             warpVfx.SetActive(true);
             Destroy(warpVfx, 3f);
-            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
+            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 6f, -1, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < hitColliders; i++)
             {
                 var collider = UWE.Utils.sharedColliderBuffer[i];
