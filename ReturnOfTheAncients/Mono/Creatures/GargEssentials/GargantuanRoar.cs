@@ -1,5 +1,6 @@
 ﻿using ECCLibrary;
 using UnityEngine;
+using System.Collections;
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
@@ -26,7 +27,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         private float[] clipSampleData = new float[1024];
         private float clipLoudness = 0f;
 
-        private float maxDamageDistance = 150f;
+        private float maxDamageDistance = 200f;
 
         private void Start()
         {
@@ -80,17 +81,28 @@ namespace RotA.Mono.Creatures.GargEssentials
             timeRoarAgain = Time.time + timeToWait;
             if (roarDoesDamage && GargantuanBehaviour.PlayerIsKillable())
             {
-                DoDamage();
+                StartCoroutine(DamageCoroutine());
             }
         }
 
-        public void DoDamage()
+        public IEnumerator DamageCoroutine()
+        {
+            DoDamage();
+            yield return new WaitForSeconds(2f);
+            DoDamage();
+            yield return new WaitForSeconds(1f);
+            DoDamage();
+            yield return new WaitForSeconds(1f);
+            DoDamage();
+        }
+
+        void DoDamage()
         {
             float distance = Vector3.Distance(Player.main.transform.position, transform.position);
-            if(distance < maxDamageDistance)
+            if (distance < maxDamageDistance)
             {
                 float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
-                Player.main.liveMixin.TakeDamage(distanceScalar * 5f, transform.position, DamageType.Cold, gameObject);
+                Player.main.liveMixin.TakeDamage(distanceScalar * 15f, transform.position, DamageType.Explosive, gameObject);
             }
         }
 
