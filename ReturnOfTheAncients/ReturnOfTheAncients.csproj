@@ -182,6 +182,7 @@
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
+    <Compile Include="Mono\GargGrayscaleCameraEffects.cs" />
     <Compile Include="Mono\MiscPDALines.cs" />
     <Compile Include="Mono\Modules\DashOnKeyPress.cs" />
     <Compile Include="Mono\PrecursorIllumControl.cs" />
