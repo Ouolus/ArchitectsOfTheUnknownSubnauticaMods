@@ -87,6 +87,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         public IEnumerator DamageCoroutine()
         {
+            yield return new WaitForSeconds(0.5f);
             DoDamage();
             yield return new WaitForSeconds(2f);
             DoDamage();
@@ -102,7 +103,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             if (distance < maxDamageDistance)
             {
                 float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
-                Player.main.liveMixin.TakeDamage(distanceScalar * 15f, transform.position, DamageType.Explosive, gameObject);
+                Player.main.liveMixin.TakeDamage(distanceScalar * 15f, transform.position, DamageType.Cold, gameObject);
             }
         }
 
