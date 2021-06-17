@@ -174,6 +174,7 @@ namespace RotA.Prefabs.Creatures
                 roar.delayMax = RoarDelayMinMax.Item2;
                 roar.screenShake = DoesScreenShake;
                 roar.closeRoarThreshold = CloseRoarThreshold;
+                roar.roarDoesDamage = RoarDoesDamage;
             }
             if (UseSwimSounds)
             {
@@ -260,6 +261,14 @@ namespace RotA.Prefabs.Creatures
         }
 
         public virtual bool CanPerformCyclopsCinematic
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public virtual bool RoarDoesDamage
         {
             get
             {

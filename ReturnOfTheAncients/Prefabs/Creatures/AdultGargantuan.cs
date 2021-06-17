@@ -35,6 +35,8 @@ namespace RotA.Prefabs.Creatures
 
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
 
+        public override bool RoarDoesDamage => true;
+
         public override string GetEncyTitle => "Gargantuan Leviathan";
         public override string GetEncyDesc => "Adult gargantuan text";
 

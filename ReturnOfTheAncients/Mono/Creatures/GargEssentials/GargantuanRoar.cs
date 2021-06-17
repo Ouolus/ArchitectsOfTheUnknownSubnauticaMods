@@ -18,12 +18,15 @@ namespace RotA.Mono.Creatures.GargEssentials
         public float minDistance = 50f;
         public float maxDistance = 600f;
         public bool screenShake;
+        public bool roarDoesDamage;
 
         float timeRoarAgain = 0f;
         float timeUpdateShakeAgain = 0f;
 
         private float[] clipSampleData = new float[1024];
         private float clipLoudness = 0f;
+
+        private float maxDamageDistance = 150f;
 
         private void Start()
         {
@@ -75,6 +78,20 @@ namespace RotA.Mono.Creatures.GargEssentials
             creature.GetAnimator().SetTrigger("roar");
             float timeToWait = roarLength + Random.Range(delayMin, delayMax);
             timeRoarAgain = Time.time + timeToWait;
+            if (roarDoesDamage && GargantuanBehaviour.PlayerIsKillable())
+            {
+                DoDamage();
+            }
+        }
+
+        public void DoDamage()
+        {
+            float distance = Vector3.Distance(Player.main.transform.position, transform.position);
+            if(distance < maxDamageDistance)
+            {
+                float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
+                Player.main.liveMixin.TakeDamage(distanceScalar * 5f, transform.position, DamageType.Cold, gameObject);
+            }
         }
 
         public void DelayTimeOfNextRoar(float length)
