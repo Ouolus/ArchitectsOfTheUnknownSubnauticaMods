@@ -22,5 +22,10 @@ namespace ArchitectsLibrary.Buildables
         protected override bool ExteriorOnly => false;
 
         protected override string GetSpriteName => "Microscope";
+
+        protected override void EditPrefab(GameObject prefab)
+        {
+            prefab.transform.GetChild(0).localScale = Vector3.one * 0.7f;
+        }
     }
 }
