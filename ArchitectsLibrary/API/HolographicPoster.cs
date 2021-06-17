@@ -96,7 +96,7 @@ namespace ArchitectsLibrary.API
                 cachedPrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 cachedPrefab.EnsureComponent<SkyApplier>().renderers = cachedPrefab.GetComponentsInChildren<Renderer>();
                 var rb = cachedPrefab.EnsureComponent<Rigidbody>();
-                rb.mass = 15f;
+                rb.mass = 5f;
                 rb.useGravity = false;
                 rb.isKinematic = true;
                 cachedPrefab.EnsureComponent<WorldForces>();
