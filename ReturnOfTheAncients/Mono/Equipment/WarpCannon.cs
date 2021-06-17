@@ -494,10 +494,6 @@ namespace RotA.Mono.Equipment
 
         public override bool GetUsedToolThisFrame()
         {
-            if (fireMode == FireMode.Warp && handDown)
-            {
-                return true;
-            }
             if (warpingBackToBase == true)
             {
                 return true;
