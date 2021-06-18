@@ -49,13 +49,14 @@ namespace RotA.Prefabs.Modules
             obj.name = "ElectricalDefenseMK2";
 
             var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
-            Object.DestroyImmediate(ed);
 
             var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
             if (edMk2 is not null)
             {
-                edMk2.fxElectSpheres = seaMoth.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
+                edMk2.fxElectSpheres = ed.fxElecSpheres;
             }
+
+            Object.DestroyImmediate(ed);
 
             float charge = seaMoth.quickSlotCharge[slotID];
             float slotCharge = seaMoth.GetSlotCharge(slotID);
