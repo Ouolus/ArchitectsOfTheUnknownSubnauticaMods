@@ -17,7 +17,7 @@ namespace RotA.Prefabs
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            foreach (var renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach (var renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.material.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                 renderer.material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
