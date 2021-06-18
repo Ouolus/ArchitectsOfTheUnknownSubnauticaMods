@@ -30,8 +30,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
             if (customItemSettings.useCustomItem)
             {
-                var ionCubeTerminal = obj.GetComponent<PrecursorTeleporterActivationTerminal>();
-                var newTerminal = obj.EnsureComponent<CustomTeleporterTerminal>();
+                var ionCubeTerminal = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminal>();
+                var newTerminal = ionCubeTerminal.gameObject.EnsureComponent<CustomTeleporterTerminal>();
                 newTerminal.acceptedTechTypes = customItemSettings.acceptedTechTypes;
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
@@ -59,8 +59,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
             if (customItemSettings.useCustomItem)
             {
-                var ionCubeTerminal = obj.GetComponent<PrecursorTeleporterActivationTerminal>();
-                var newTerminal = obj.EnsureComponent<CustomTeleporterTerminal>();
+                var ionCubeTerminal = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminal>();
+                var newTerminal = ionCubeTerminal.gameObject.EnsureComponent<CustomTeleporterTerminal>();
                 newTerminal.acceptedTechTypes = customItemSettings.acceptedTechTypes;
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
