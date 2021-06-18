@@ -45,7 +45,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             }
             if (omegaTeleporter)
             {
-                var vfx = prefab.GetComponentInChildren<VFXPrecursorTeleporter>();
+                var vfx = obj.GetComponentInChildren<VFXPrecursorTeleporter>(true);
                 vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
             }
             return obj;
@@ -74,7 +74,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             }
             if (omegaTeleporter)
             {
-                var vfx = prefab.GetComponentInChildren<VFXPrecursorTeleporter>();
+                var vfx = obj.GetComponentInChildren<VFXPrecursorTeleporter>(true);
                 vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
             }
             gameObject.Set(obj);
