@@ -42,7 +42,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.useSound = ionCubeTerminal.useSound;
                 newTerminal.openSound = ionCubeTerminal.openSound;
                 newTerminal.closeSound = ionCubeTerminal.closeSound;
-                newTerminal.root = ionCubeTerminal.root;
+                newTerminal.root = obj;
                 Transform trigger = obj.GetComponentInChildren<PrecursorKeyTerminalTrigger>().transform;
                 trigger.transform.parent = newTerminal.transform;
                 Object.DestroyImmediate(ionCubeTerminal);
@@ -75,7 +75,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.useSound = ionCubeTerminal.useSound;
                 newTerminal.openSound = ionCubeTerminal.openSound;
                 newTerminal.closeSound = ionCubeTerminal.closeSound;
-                newTerminal.root = ionCubeTerminal.root;
+                newTerminal.root = obj;
                 Transform trigger = obj.GetComponentInChildren<PrecursorKeyTerminalTrigger>().transform;
                 trigger.transform.parent = newTerminal.transform;
                 Object.DestroyImmediate(ionCubeTerminal);
