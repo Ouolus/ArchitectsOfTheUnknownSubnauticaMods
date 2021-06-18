@@ -31,7 +31,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             if (customItemSettings.useCustomItem)
             {
                 var ionCubeTerminal = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminal>();
-                var newTerminal = ionCubeTerminal.gameObject.EnsureComponent<CustomTeleporterTerminal>();
+                var ionCubeTerminalProxy = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminalProxy>();
+                var newTerminal = ionCubeTerminalProxy.gameObject.EnsureComponent<CustomTeleporterTerminal>();
                 newTerminal.acceptedTechTypes = customItemSettings.acceptedTechTypes;
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
@@ -42,7 +43,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.closeSound = ionCubeTerminal.closeSound;
                 newTerminal.root = ionCubeTerminal.root;
                 Object.DestroyImmediate(ionCubeTerminal);
-                Object.DestroyImmediate(obj.GetComponent<PrecursorTeleporterActivationTerminalProxy>());
+                Object.DestroyImmediate(ionCubeTerminalProxy);
             }
             return obj;
         }
@@ -60,7 +61,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             if (customItemSettings.useCustomItem)
             {
                 var ionCubeTerminal = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminal>();
-                var newTerminal = ionCubeTerminal.gameObject.EnsureComponent<CustomTeleporterTerminal>();
+                var ionCubeTerminalProxy = obj.GetComponentInChildren<PrecursorTeleporterActivationTerminalProxy>();
+                var newTerminal = ionCubeTerminalProxy.gameObject.EnsureComponent<CustomTeleporterTerminal>();
                 newTerminal.acceptedTechTypes = customItemSettings.acceptedTechTypes;
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
@@ -71,7 +73,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.closeSound = ionCubeTerminal.closeSound;
                 newTerminal.root = ionCubeTerminal.root;
                 Object.DestroyImmediate(ionCubeTerminal);
-                Object.DestroyImmediate(obj.GetComponent<PrecursorTeleporterActivationTerminalProxy>());
+                Object.DestroyImmediate(ionCubeTerminalProxy);
             }
             gameObject.Set(obj);
         }
