@@ -11,7 +11,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         public Vector3 masterCoords, auxiliaryCoords;
         public float masterAngle, auxiliaryAngle;
 
-        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false, bool useAlternateColorScheme = false)
+        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false)
         {
             this.classIdRoot = classIdRoot;
             this.masterCoords = masterCoords;
@@ -19,7 +19,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             this.masterAngle = masterAngle;
             this.auxiliaryAngle = auxiliaryAngle;
             primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary);
-            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, useAlternateColorScheme);
+            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary);
         }
         
         public void Patch()

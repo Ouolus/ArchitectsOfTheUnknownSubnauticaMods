@@ -12,15 +12,13 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private Vector3 teleportPosition;
         private float teleportAngle;
         private bool disablePlatform;
-        private bool useAlternateColorScheme;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool useAlternateColorScheme) : base(classId, "", "")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
-            this.useAlternateColorScheme = useAlternateColorScheme;
         }
 
 #if SN1
@@ -42,16 +40,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
-            }
-            if (useAlternateColorScheme)
-            {
-                foreach(Renderer renderer in obj.GetComponentsInChildren<Renderer>())
-                {
-                    foreach(Material mat in renderer.materials)
-                    {
-                        mat.SetColor("_GlowColor", new Color(0.1f, 0.1f, 1f));
-                    }
-                }
             }
             return obj;
         }
@@ -76,16 +64,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
-            }
-            if (useAlternateColorScheme)
-            {
-                foreach (Renderer renderer in obj.GetComponentsInChildren<Renderer>())
-                {
-                    foreach (Material mat in renderer.materials)
-                    {
-                        mat.SetColor("_GlowColor", new Color(0.1f, 0.1f, 1f));
-                    }
-                }
             }
             gameObject.Set(obj);
         }
