@@ -213,11 +213,6 @@ namespace RotA
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
-
-            omegaCube = new OmegaCube();
-            omegaCube.Patch();
-            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
-
             buildableOmegaCubePedestal = new OmegaCubePedestal();
             buildableOmegaCubePedestal.Patch();
 
@@ -228,6 +223,12 @@ namespace RotA
         {
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
+
+            #region Resources
+            omegaCube = new OmegaCube();
+            omegaCube.Patch();
+            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
+            #endregion
 
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
@@ -556,7 +557,7 @@ namespace RotA
             TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false);
             secretTeleporter.Patch();
 
-            TeleporterNetwork kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(0f, 200f, 0f), 0f, false, true, true);
+            TeleporterNetwork kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(0f, 200f, 0f), 0f, false, true, true, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { omegaCube.TechType }, "KooshBasePortalTerminal", "Insert cube"));
             kooshBaseDevSecret.Patch();
             #endregion
 

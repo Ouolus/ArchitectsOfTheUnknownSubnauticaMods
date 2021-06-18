@@ -43,11 +43,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
-            if (omegaTeleporter)
-            {
-                var vfx = obj.GetComponentInChildren<VFXPrecursorTeleporter>(true);
-                vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
-            }
             return obj;
         }
 #elif SN1_exp
@@ -71,11 +66,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
-            }
-            if (omegaTeleporter)
-            {
-                var vfx = obj.GetComponentInChildren<VFXPrecursorTeleporter>(true);
-                vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
             }
             gameObject.Set(obj);
         }
