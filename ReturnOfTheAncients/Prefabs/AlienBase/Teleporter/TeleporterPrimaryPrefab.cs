@@ -9,9 +9,9 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         const string referenceClassId = "63e69987-7d34-41f0-aab9-1187ea06e740";
         private TeleporterFramePrefab frame;
 
-        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform) : base(classId, "", "")
+        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter) : base(classId, "", "")
         {
-            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform);
+            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, omegaTeleporter);
             frame.Patch();
         }
 

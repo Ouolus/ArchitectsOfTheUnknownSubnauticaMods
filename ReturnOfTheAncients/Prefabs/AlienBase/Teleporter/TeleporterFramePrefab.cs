@@ -12,13 +12,15 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private Vector3 teleportPosition;
         private float teleportAngle;
         private bool disablePlatform;
+        private bool omegaTeleporter;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform) : base(classId, "", "")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
+            this.omegaTeleporter = omegaTeleporter;
         }
 
 #if SN1
@@ -40,6 +42,11 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
+            }
+            if (omegaTeleporter)
+            {
+                var vfx = prefab.GetComponentInChildren<VFXPrecursorTeleporter>();
+                vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
             }
             return obj;
         }
@@ -64,6 +71,11 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
+            }
+            if (omegaTeleporter)
+            {
+                var vfx = prefab.GetComponentInChildren<VFXPrecursorTeleporter>();
+                vfx.portalRenderer.material.SetColor("_ColorStrength", new Color(1f, 3f, 10f));
             }
             gameObject.Set(obj);
         }
