@@ -555,6 +555,9 @@ namespace RotA
 
             TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false);
             secretTeleporter.Patch();
+
+            TeleporterNetwork kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f, 1457 - 14f), 0f, new Vector3(0f, 200f, 0f), 0f, false, true, true);
+            kooshBaseDevSecret.Patch();
             #endregion
 
             #region Alien bases
