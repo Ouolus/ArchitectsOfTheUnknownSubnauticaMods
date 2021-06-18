@@ -37,6 +37,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
                 newTerminal.cinematicController = ionCubeTerminal.cinematicController;
+                newTerminal.cinematicController.informGameObject = ionCubeTerminal.gameObject;
                 newTerminal.animator = ionCubeTerminal.animator;
                 newTerminal.useSound = ionCubeTerminal.useSound;
                 newTerminal.openSound = ionCubeTerminal.openSound;
@@ -67,6 +68,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 newTerminal.interactText = customItemSettings.interactText;
                 newTerminal.storyGoalName = customItemSettings.storyGoalName;
                 newTerminal.cinematicController = ionCubeTerminal.cinematicController;
+                newTerminal.cinematicController.informGameObject = ionCubeTerminal.gameObject;
                 newTerminal.animator = ionCubeTerminal.animator;
                 newTerminal.useSound = ionCubeTerminal.useSound;
                 newTerminal.openSound = ionCubeTerminal.openSound;
