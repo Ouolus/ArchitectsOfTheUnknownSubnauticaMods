@@ -25,7 +25,7 @@ namespace RotA.Mono.Modules
 
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => fxElectSpheres == null);
+            yield return new WaitUntil(() => fxElectSpheres != null);
             yield return null;
 
             var fxElects = (GameObject[])fxElectSpheres.Clone();
