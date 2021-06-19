@@ -106,6 +106,10 @@ namespace ArchitectsLibrary.MonoBehaviours
             AUHandler.ElectricubeTechType,
             AUHandler.RedIonCubeTechType,
             AUHandler.PrecursorAlloyIngotTechType,
+            AUHandler.CobaltTechType,
+            AUHandler.CobaltIngotTechType,
+            AUHandler.AlienCompositeGlassTechType,
+            AUHandler.ReinforcedGlassTechType
         };
 
         GameObject[] _spawnedObjs;
