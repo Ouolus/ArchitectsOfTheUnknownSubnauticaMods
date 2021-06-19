@@ -16,7 +16,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         GargantuanBehaviour behaviour;
         GargantuanRoar roar;
         PlayerCinematicController playerDeathCinematic;
-        readonly List<Type> _leviathanTypes = new() {typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid)};
+        readonly List<Type> _leviathanTypes = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid) };
 
         public GameObject throat;
         public bool canAttackPlayer = true;
@@ -53,157 +53,154 @@ namespace RotA.Mono.Creatures.GargEssentials
             if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
                 Creature gargantuan = gameObject.GetComponent<Creature>();
-                if (gargantuan.Aggression.Value >= 0.1f || !canAttackPlayer) //This creature must have at least some level of aggression to bite
+                GameObject target = GetTarget(collider);
+                if (!behaviour.CanEat(target))
                 {
-                    GameObject target = GetTarget(collider);
-                    if (!behaviour.CanEat(target))
+                    return;
+                }
+                if (!behaviour.IsHoldingVehicle())
+                {
+                    LiveMixin targetLm = target.GetComponent<LiveMixin>();
+                    Player player = target.GetComponent<Player>();
+                    if (player != null) //start player attack logic
                     {
-                        return;
-                    }
-                    if (!behaviour.IsHoldingVehicle())
-                    {
-                        LiveMixin targetLm = target.GetComponent<LiveMixin>();
-                        Player player = target.GetComponent<Player>();
-                        if (player != null) //start player attack logic
+                        if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable() || gargantuan.Aggression.Value < 0.15f)
                         {
-                            if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable())
+                            return;
+                        }
+                        if (!canAttackPlayer)
+                        {
+                            //gargantuan baby nibble behavior
+                            Pickupable held = Inventory.main.GetHeld();
+                            if (held is not null && held.GetComponent<Creature>() != null)
                             {
-                                return;
+                                LiveMixin heldLm = held.GetComponent<LiveMixin>();
+                                if (heldLm.maxHealth < 100f)
+                                {
+                                    animator.SetFloat("random", UnityEngine.Random.value);
+                                    animator.SetTrigger("bite");
+                                    attackSource.clip = biteClipPool.GetRandomClip();
+                                    attackSource.Play();
+                                    Destroy(held.gameObject);
+                                }
                             }
-                            if (!canAttackPlayer)
+                            else
                             {
-                                //gargantuan baby nibble behavior
-                                Pickupable held = Inventory.main.GetHeld();
-                                if (held is not null && held.GetComponent<Creature>() != null)
-                                {
-                                    LiveMixin heldLm = held.GetComponent<LiveMixin>();
-                                    if (heldLm.maxHealth < 100f)
-                                    {
-                                        animator.SetFloat("random", UnityEngine.Random.value);
-                                        animator.SetTrigger("bite");
-                                        attackSource.clip = biteClipPool.GetRandomClip();
-                                        attackSource.Play();
-                                        Destroy(held.gameObject);
-                                    }
-                                }
-                                else
-                                {
-                                    StartCoroutine(PerformBiteAttack(target, 1f));
-                                }
-                                behaviour.timeCanAttackAgain = Time.time + 1f;
+                                StartCoroutine(PerformBiteAttack(target, 1f));
+                            }
+                            behaviour.timeCanAttackAgain = Time.time + 1f;
+                            return;
+                        }
+                        else
+                        {
+                            //attack player normally
+                            float baseDmg;
+                            if (oneShotPlayer)
+                            {
+                                baseDmg = 1000f;
+                            }
+                            else
+                            {
+                                baseDmg = 80;
+                            }
+                            var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
+                            if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
+                            {
+                                StartCoroutine(PerformPlayerCinematic(player));
                                 return;
                             }
                             else
                             {
-                                //attack player normally
-                                float baseDmg;
-                                if (oneShotPlayer)
-                                {
-                                    baseDmg = 1000f;
-                                }
-                                else
-                                {
-                                    baseDmg = 80;
-                                }
-                                var num = DamageSystem.CalculateDamage(baseDmg, DamageType.Normal, target);
-                                if (targetLm.health - num <= 0f) // make sure that the nodamage cheat is not on
-                                {
-                                    StartCoroutine(PerformPlayerCinematic(player));
-                                    return;
-                                }
-                                else
-                                {
-                                    StartCoroutine(PerformBiteAttack(target, baseDmg));
-                                    behaviour.timeCanAttackAgain = Time.time + 2f;
-                                    return;
-                                }
-                            }
-                        } //end player attack logic
-                        else if (canAttackPlayer && behaviour.GetCanGrabVehicle()) //start vehicle attack logic
-                        {
-                            //try to perform vehicle attack
-                            SeaMoth seamoth = target.GetComponent<SeaMoth>();
-                            if (seamoth && !seamoth.docked)
-                            {
-                                behaviour.GrabGenericSub(seamoth);
-                                gargantuan.Aggression.Value -= 0.5f;
+                                StartCoroutine(PerformBiteAttack(target, baseDmg));
+                                behaviour.timeCanAttackAgain = Time.time + 2f;
                                 return;
                             }
-                            Exosuit exosuit = target.GetComponent<Exosuit>();
-                            if (exosuit && !exosuit.docked)
-                            {
-                                behaviour.GrabExosuit(exosuit);
-                                gargantuan.Aggression.Value -= 0.5f;
-                                return;
-                            }
-                            if (canPerformCyclopsCinematic)
-                            {
-                                SubRoot subRoot = target.GetComponent<SubRoot>();
-                                if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
-                                {
-                                    behaviour.GrabLargeSub(subRoot);
-                                    behaviour.roar.DelayTimeOfNextRoar(8f);
-                                    gargantuan.Aggression.Value -= 1f;
-                                    return;
-                                }
-                            }
-                        } //end vehicle attack logic
-                        if (targetLm == null) return; //just in case I guess
-                        if (!targetLm.IsAlive()) //dont wanna chomp on a dead fish
+                        }
+                    } //end player attack logic
+                    else if (canAttackPlayer && behaviour.GetCanGrabVehicle()) //start vehicle attack logic
+                    {
+                        //try to perform vehicle attack
+                        SeaMoth seamoth = target.GetComponent<SeaMoth>();
+                        if (seamoth && !seamoth.docked)
                         {
+                            behaviour.GrabGenericSub(seamoth);
+                            gargantuan.Aggression.Value -= 0.5f;
                             return;
                         }
-                        if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
+                        Exosuit exosuit = target.GetComponent<Exosuit>();
+                        if (exosuit && !exosuit.docked)
                         {
-                            Creature otherCreature = target.GetComponent<Creature>();
-                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && _leviathanTypes.Contains(otherCreature.GetType()))
-                            {
-                                gargantuan.Aggression.Value -= 0.6f;
-                                gargantuan.Hunger.Value = 0f;
-                                otherCreature.flinch = 1f;
-                                otherCreature.Scared.Value = 1f;
-                                behaviour.GrabFish(otherCreature.gameObject);
-                                Destroy(otherCreature.GetComponent<EcoTarget>());
-                                return;
-                            }
-                        }
-                        else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
-                        {
-                            Creature otherCreature = target.GetComponent<Creature>();
-                            if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null && otherCreature.gameObject.GetComponent<GargantuanRoar>() is null)
-                            {
-                                gargantuan.Aggression.Value -= 0.6f;
-                                gargantuan.Hunger.Value = 0f;
-                                behaviour.GrabFish(otherCreature.gameObject);
-                                otherCreature.flinch = 1f;
-                                otherCreature.Scared.Value = 1f;
-                                otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
-                                Destroy(otherCreature.GetComponent<EcoTarget>());
-                                return;
-                            }
-                        }
-                        if (!CanAttackTargetFromPosition(target)) //any attack past this point must not have collisions between the garg and the target
-                        {
+                            behaviour.GrabExosuit(exosuit);
+                            gargantuan.Aggression.Value -= 0.5f;
                             return;
                         }
-                        if (behaviour.CanSwallowWhole(target, targetLm))
+                        if (canPerformCyclopsCinematic)
                         {
-                            creature.GetAnimator().SetTrigger("bite");
-                            gargantuan.Hunger.Value -= 0.15f;
-                            var swallowing = target.AddComponent<BeingSuckedInWhole>();
-                            swallowing.target = throat.transform;
-                            swallowing.animationLength = 1f;
-                        }
-                        else if (canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
-                        {
-                            StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
-                            behaviour.timeCanAttackAgain = Time.time + 2f;
-                            if (canAttackPlayer)
+                            SubRoot subRoot = target.GetComponent<SubRoot>();
+                            if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
                             {
-                                creature.Aggression.Value = 0f;
+                                behaviour.GrabLargeSub(subRoot);
+                                behaviour.roar.DelayTimeOfNextRoar(8f);
+                                gargantuan.Aggression.Value -= 1f;
+                                return;
                             }
-                            gargantuan.Aggression.Value -= 0.15f;
                         }
+                    } //end vehicle attack logic
+                    if (targetLm == null) return; //just in case I guess
+                    if (!targetLm.IsAlive()) //dont wanna chomp on a dead fish
+                    {
+                        return;
+                    }
+                    if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
+                    {
+                        Creature otherCreature = target.GetComponent<Creature>();
+                        if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && _leviathanTypes.Contains(otherCreature.GetType()))
+                        {
+                            gargantuan.Aggression.Value -= 0.6f;
+                            gargantuan.Hunger.Value = 0f;
+                            otherCreature.flinch = 1f;
+                            otherCreature.Scared.Value = 1f;
+                            behaviour.GrabFish(otherCreature.gameObject);
+                            Destroy(otherCreature.GetComponent<EcoTarget>());
+                            return;
+                        }
+                    }
+                    else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
+                    {
+                        Creature otherCreature = target.GetComponent<Creature>();
+                        if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && otherCreature.gameObject.GetComponent<Pickupable>() is not null && otherCreature.gameObject.GetComponent<GargantuanRoar>() is null)
+                        {
+                            gargantuan.Aggression.Value -= 0.6f;
+                            gargantuan.Hunger.Value = 0f;
+                            behaviour.GrabFish(otherCreature.gameObject);
+                            otherCreature.flinch = 1f;
+                            otherCreature.Scared.Value = 1f;
+                            otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
+                            Destroy(otherCreature.GetComponent<EcoTarget>());
+                            return;
+                        }
+                    }
+                    if (!CanAttackTargetFromPosition(target)) //any attack past this point must not have collisions between the garg and the target
+                    {
+                        return;
+                    }
+                    if (behaviour.CanSwallowWhole(target, targetLm))
+                    {
+                        creature.GetAnimator().SetTrigger("bite");
+                        gargantuan.Hunger.Value -= 0.15f;
+                        var swallowing = target.AddComponent<BeingSuckedInWhole>();
+                        swallowing.target = throat.transform;
+                        swallowing.animationLength = 1f;
+                    }
+                    else if (canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
+                    {
+                        StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
+                        behaviour.timeCanAttackAgain = Time.time + 2f;
+                        if (canAttackPlayer)
+                        {
+                            creature.Aggression.Value = 0f;
+                        }
+                        gargantuan.Aggression.Value -= 0.15f;
                     }
                 }
             }
