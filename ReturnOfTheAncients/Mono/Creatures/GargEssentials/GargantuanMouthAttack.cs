@@ -64,7 +64,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                     Player player = target.GetComponent<Player>();
                     if (player != null) //start player attack logic
                     {
-                        if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable() || gargantuan.Aggression.Value < 0.15f)
+                        if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable() || (gargantuan.Aggression.Value < 0.15f && canAttackPlayer))
                         {
                             return;
                         }
