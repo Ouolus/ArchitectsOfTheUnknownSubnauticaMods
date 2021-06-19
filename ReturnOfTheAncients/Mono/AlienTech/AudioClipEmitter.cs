@@ -12,8 +12,8 @@ namespace RotA.Mono.AlienTech
         public string clipPoolPrefix;
         public float delayMin = 1f;
         public float delayMax = 2f;
-        public float minDistance = 5f;
-        public float maxDistance = 30f;
+        public float minDistance = 10f;
+        public float maxDistance = 50f;
 
         ECCAudio.AudioClipPool clipPool;
         AudioSource audioSource;
