@@ -418,7 +418,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                     heldFish = null;
                 }
             }
-            timeVehicleReleased = Time.time;
+            if (currentlyGrabbing != GrabType.Fish)
+            {
+                timeVehicleReleased = Time.time;
+            }
             currentlyGrabbing = GrabType.None;
             CancelInvoke("DamageVehicle");
             mouthAttack.OnVehicleReleased();
