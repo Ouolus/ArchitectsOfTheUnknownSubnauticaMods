@@ -542,7 +542,6 @@ namespace RotA.Mono.Creatures.GargEssentials
                 timeCanAttackAgain = Time.time + 5f;
             }
             if (lastTarget != null) lastTarget.target = null;
-            roar.PlayOnce(out _, GargantuanRoar.RoarMode.CloseOnly);
         }
     }
 }
