@@ -543,6 +543,7 @@ namespace RotA.Mono.Equipment
 
                 teleportScreenController.StopTeleport();
                 Player.main.teleportingLoopSound.Stop();
+                Player.main.SetPrecursorOutOfWater(false);
                 warpingBackToBase = false;
             }
             else
