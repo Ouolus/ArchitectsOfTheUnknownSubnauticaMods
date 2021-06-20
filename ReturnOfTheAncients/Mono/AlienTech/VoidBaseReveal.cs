@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using Story;
+using ArchitectsLibrary.API;
 
 namespace RotA.Mono.AlienTech
 {
@@ -131,6 +132,7 @@ namespace RotA.Mono.AlienTech
         {
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
+                AchievementServices.CompleteAchievement("VisitVoidBase");
                 CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.");
             }
         }

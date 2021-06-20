@@ -259,7 +259,8 @@ namespace RotA
             #endregion
 
             #region Achievements
-            AchievementServices.RegisterAchievement("CraftWarpCannon", "Hybrid Technology", Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "This achievement is locked.", "Obtained the Handheld Warping Device.", true);
+            AchievementServices.RegisterAchievement("CraftWarpCannon", "Hybrid Technology", Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "This achievement is hidden.", "Obtained the Handheld Warping Device.", true);
+            AchievementServices.RegisterAchievement("VisitVoidBase", "Structure over the Abyss", Mod.assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Encountered the alien structure in the crater edge.", true);
             #endregion
 
             #region Modules
