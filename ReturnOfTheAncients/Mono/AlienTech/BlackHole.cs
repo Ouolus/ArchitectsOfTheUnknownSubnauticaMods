@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using ArchitectsLibrary.API;
 
 namespace RotA.Mono.AlienTech
 {
@@ -37,12 +38,12 @@ namespace RotA.Mono.AlienTech
         IEnumerator Crash()
         {
             IngameMenu.main.mainPanel.SetActive(false);
+            AchievementServices.CompleteAchievement("TouchBlackHole");
             yield return IngameMenu.main.SaveGameAsync();
             ErrorMessage.AddMessage("Save file corrupted.");
             GameObject whiteout = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect"));
             GameObject.DontDestroyOnLoad(whiteout);
             whiteout.AddComponent<SceneCleanerPreserve>();
-
             yield return IngameMenu.main.QuitGameAsync(false);
         }
 
