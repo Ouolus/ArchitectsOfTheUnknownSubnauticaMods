@@ -100,7 +100,8 @@ namespace ArchitectsLibrary.API
 
         private static void ShowAchievementCompletePopup(string id)
         {
-            ErrorMessage.AddMessage($"Achievement completed: <color=#89FF89>{registeredAchievements[id].name}</color>!");
+            Achievement achievement = GetAchievement(id);
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, "Controls", Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon"));
         }
 
         internal struct Achievement
