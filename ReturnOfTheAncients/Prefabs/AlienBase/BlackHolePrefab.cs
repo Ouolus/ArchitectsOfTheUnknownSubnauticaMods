@@ -24,6 +24,7 @@ namespace RotA.Prefabs.AlienBase
             prefab.EnsureComponent<BlackHole>();
             GameObject containment = Object.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SingularityContainment_Prefab"));
             containment.transform.SetParent(prefab.transform, false);
+            containment.transform.localPosition = new Vector3(0f, -4.05f, 0f);
 
             return prefab;
         }
@@ -41,6 +42,7 @@ namespace RotA.Prefabs.AlienBase
             prefab.EnsureComponent<BlackHole>();
             GameObject containment = Object.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SingularityContainment_Prefab"));
             containment.transform.SetParent(prefab.transform, false);
+            containment.transform.localPosition = new Vector3(0f, -4.05f, 0f);
             
             gameObject.Set(prefab);
         }
