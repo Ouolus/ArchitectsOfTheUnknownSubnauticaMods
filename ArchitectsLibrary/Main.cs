@@ -127,6 +127,8 @@ namespace ArchitectsLibrary
             UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
 
             PatchItems();
+            
+            PatchBuildables();
 
             achievementData.Load();
 
@@ -173,8 +175,6 @@ namespace ArchitectsLibrary
 
             KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType, redIonCube.TechType });
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
-
-            PatchBuildables();
         }
         
         static IEnumerator FixIonCubeCraftingCoroutine()
