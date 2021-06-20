@@ -101,7 +101,7 @@ namespace ArchitectsLibrary.API
         private static void ShowAchievementCompletePopup(string id)
         {
             Achievement achievement = GetAchievement(id);
-            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, "Controls", Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon"));
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon"));
         }
 
         internal struct Achievement
