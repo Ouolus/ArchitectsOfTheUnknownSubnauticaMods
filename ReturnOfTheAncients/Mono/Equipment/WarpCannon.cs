@@ -511,6 +511,8 @@ namespace RotA.Mono.Equipment
                 teleportScreenController.StartTeleport();
                 Player.main.teleportingLoopSound.Play();
 
+                Vector3 oldPlayerPosition = Player.main.transform.position;
+
                 warpingBackToBase = true;
 
                 yield return new WaitForSeconds(1f);
@@ -533,6 +535,7 @@ namespace RotA.Mono.Equipment
                     Player.main.SetCurrentSub(null);
                 }
                 Vector3 playerPosition = Player.main.transform.position;
+                UpdateWarp2000MetersAchievement(Vector3.Distance(oldPlayerPosition, playerPosition));
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
 
@@ -863,6 +866,7 @@ namespace RotA.Mono.Equipment
         /// <param name="position"></param>
         void MovePlayerWhileInBase(Vector3 position)
         {
+            UpdateWarp2000MetersAchievement(Vector3.Distance(Player.main.transform.position, position));
             PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
         }
 
@@ -876,6 +880,7 @@ namespace RotA.Mono.Equipment
             var camRotation = MainCamera.camera.transform.rotation;
             Instantiate(warpInPrefab, playerPos, camRotation);
             Instantiate(warpOutPrefab, position, camRotation);
+            UpdateWarp2000MetersAchievement(Vector3.Distance(playerPos, position));
             //Player.main.transform.position = position;
             PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
@@ -893,6 +898,12 @@ namespace RotA.Mono.Equipment
             landingPosition = playerTransform.position + (new Vector3(mainCameraForward.x, 0f, mainCameraForward.z) * distance);
             var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(landingPosition + new Vector3(0f, 0f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
             return hitColliders == 0;
+        }
+
+        void UpdateWarp2000MetersAchievement(float amount)
+        {
+            ArchitectsLibrary.API.AchievementServices.ChangeAchievementCompletion("WarpFar", Mathf.RoundToInt(amount));
+            ErrorMessage.AddMessage(ArchitectsLibrary.API.AchievementServices.GetTasksCompleted("WarpFar").ToString());
         }
 
         public override string animToolName => "propulsioncannon";

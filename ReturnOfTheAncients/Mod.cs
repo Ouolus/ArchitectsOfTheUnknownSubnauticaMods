@@ -259,9 +259,10 @@ namespace RotA
             #endregion
 
             #region Achievements
-            AchievementServices.RegisterAchievement("CraftWarpCannon", "Hybrid Technology", Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "This achievement is hidden.", "Obtained the Handheld Warping Device.", true);
-            AchievementServices.RegisterAchievement("VisitVoidBase", "Structure over the Abyss", Mod.assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Encountered the alien structure in the crater edge.", true);
-            AchievementServices.RegisterAchievement("TouchBlackHole", "Do Not Touch", Mod.assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Really...?", true);
+            AchievementServices.RegisterAchievement("CraftWarpCannon", "Hybrid Technology", assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "This achievement is hidden.", "Obtained the Handheld Warping Device.", true);
+            AchievementServices.RegisterAchievement("VisitVoidBase", "Structure over the Abyss", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Encountered the alien structure in the crater edge.", true);
+            AchievementServices.RegisterAchievement("TouchBlackHole", "Do Not Touch", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Really...?", true);
+            AchievementServices.RegisterAchievement("WarpFar", "Teleportation Master", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "Warp 2000 meters.", "Warped 2000 meters.", true, 2000);
             #endregion
 
             #region Modules
