@@ -22,9 +22,9 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.archElectricityTerminal.ClassID, new Vector3(centerLocalX - 22f, floorLocalY, 0f), new Vector3(0f, -90f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 22f, floorLocalY, 3f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 22f, floorLocalY, -3f)));
+            yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX, floorLocalY + 1f, -4f)));
 
             yield return StartCoroutine(SpawnRelicInCase(new Vector3(centerLocalX, floorLocalY, 6f), Mod.rifleRelic.ClassID, new Vector3(0f, 1.25f, 0f))); //11.77, -13.88, 10.00
-            yield return StartCoroutine(SpawnPrefabsArray(creature_alienRobot, 2f, new Vector3(4, 1, 4), Vector3.one, new Vector3(0f, 5f, 0f)));
 
             yield return StartCoroutine(SpawnPrefab(Mod.blackHole.ClassID, new Vector3(centerLocalX, floorLocalY + 4.3f, 0f)));
 
