@@ -19,12 +19,12 @@ namespace RotA.Prefabs.AlienBase
             GameObject prefab = FixVFX(seamothPrefab.GetComponent<SeaMoth>().torpedoTypes[0].prefab.GetComponent<SeamothTorpedo>().explosionPrefab.GetComponent<PrefabSpawn>().prefab);
             prefab.EnsureComponent<TechTag>().type = TechType;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
-            prefab.EnsureComponent<SphereCollider>().radius = 3f;
+            prefab.EnsureComponent<SphereCollider>().radius = 3.5f;
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             prefab.EnsureComponent<BlackHole>();
             GameObject containment = Object.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SingularityContainment_Prefab"));
             containment.transform.SetParent(prefab.transform, false);
-            containment.transform.localPosition = new Vector3(0f, -4.05f, 0f);
+            containment.transform.localPosition = new Vector3(0f, -4.32f, 0f);
 
             return prefab;
         }
@@ -37,12 +37,12 @@ namespace RotA.Prefabs.AlienBase
             GameObject prefab = FixVFX(task.GetResult().GetComponent<SeaMoth>().torpedoTypes[0].prefab.GetComponent<SeamothTorpedo>().explosionPrefab.GetComponent<PrefabSpawn>().prefab);
             prefab.EnsureComponent<TechTag>().type = TechType;
             prefab.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
-            prefab.EnsureComponent<SphereCollider>().radius = 3f;
+            prefab.EnsureComponent<SphereCollider>().radius = 3.5f;
             prefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Medium;
             prefab.EnsureComponent<BlackHole>();
             GameObject containment = Object.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SingularityContainment_Prefab"));
             containment.transform.SetParent(prefab.transform, false);
-            containment.transform.localPosition = new Vector3(0f, -4.05f, 0f);
+            containment.transform.localPosition = new Vector3(0f, -4.32f, 0f);
             
             gameObject.Set(prefab);
         }
