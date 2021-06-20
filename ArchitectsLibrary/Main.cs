@@ -192,7 +192,7 @@ namespace ArchitectsLibrary
 
         static void PatchAchievements()
         {
-            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "Architect", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "This achievement is locked.", "Constructed 3 Precursor Fabricators.", true, 1);
+            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "Architect", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "This achievement is locked.", "Constructed a Precursor Fabricators.", true, 1);
         }
 
         static void PatchMinerals()

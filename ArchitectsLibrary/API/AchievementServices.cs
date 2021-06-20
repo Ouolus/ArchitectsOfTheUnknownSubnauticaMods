@@ -101,7 +101,30 @@ namespace ArchitectsLibrary.API
         private static void ShowAchievementCompletePopup(string id)
         {
             Achievement achievement = GetAchievement(id);
-            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon"));
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, );
+        }
+
+        private static Sprite GetAchievementSprite(string id, bool hideIfLocked)
+        {
+            Achievement achievement = GetAchievement(id);
+            if (hideIfLocked)
+            {
+                if (GetAchievementComplete(id))
+                {
+                    if (achievement.icon != null)
+                    {
+                        return achievement.icon;
+                    }
+                }
+            }
+            else
+            {
+                if(achievement.icon != null)
+                {
+                    return achievement.icon;
+                }
+            }
+            return Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon");
         }
 
         internal struct Achievement
