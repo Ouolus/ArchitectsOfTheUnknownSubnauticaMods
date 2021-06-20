@@ -30,8 +30,7 @@ namespace LeviathanEggs.Prefabs
                 if (material.name.Contains("Transparent"))
                 {
                     material.SetFloat("_Shininess", 2f);
-                    material.SetFloat("_SpecInt", 5f);
-                    break;
+                    material.SetFloat("_SpecInt", 8f);
                 }
             }
             prefab.AddComponent<SpawnLocations>();
