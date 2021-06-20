@@ -29,11 +29,16 @@ namespace LeviathanEggs.Prefabs
             foreach (var renderer in renderers)
             {
                 var material = renderer.material;
-                if (material.name.Contains("Transparent"))
+                if (material.name.Contains("2"))
                 {
-                    material.SetFloat("_Shininess", 3f);
+                    material.SetFloat("_Shininess", 8f);
                     material.SetFloat("_SpecInt", 3f);
-                    break;
+                }
+                else if (!material.name.Contains("2"))
+                {
+                    material.SetFloat("_Shininess", 6f);
+                    material.SetFloat("_SpecInt", 5f);
+                    material.SetFloat("_EmissionLMNight", .03f);
                 }
             }
             prefab.AddComponent<SpawnLocations>();
