@@ -128,6 +128,8 @@ namespace ArchitectsLibrary
 
             PatchItems();
 
+            achievementData.Load();
+
             PatchAchievements();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");

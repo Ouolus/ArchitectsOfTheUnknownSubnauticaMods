@@ -52,7 +52,14 @@ namespace ArchitectsLibrary.API
         /// <param name="tasks">The tasks done for this achievement.</param>
         public static void SetAchievementCompletion(string id, int tasks)
         {
-            Main.achievementData.achievements[id] = tasks;
+            if (Main.achievementData.achievements.ContainsKey(id))
+            {
+                Main.achievementData.achievements[id] = tasks;
+            }
+            else
+            {
+                Main.achievementData.achievements.Add(id, tasks);
+            }
         }
 
         /// <summary>
@@ -62,7 +69,7 @@ namespace ArchitectsLibrary.API
         /// <param name="amount">The amount to change this achievement's completion.</param>
         public static void ChangeAchievementCompletion(string id, int amount)
         {
-            Main.achievementData.achievements[id] = Mathf.Clamp(Main.achievementData.achievements[id] + amount, 0, GetAchievement(id).totalTasks);
+            SetAchievementCompletion(id, Mathf.Clamp(GetTasksCompleted(id) + amount, 0, GetAchievement(id).totalTasks));
         }
 
         /// <summary>
