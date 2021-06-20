@@ -128,6 +128,8 @@ namespace ArchitectsLibrary
 
             PatchItems();
 
+            PatchAchievements();
+
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
             VehiclePatches.Patch(harmony);
@@ -184,6 +186,12 @@ namespace ArchitectsLibrary
             vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
             vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
             vfxFabricating.scaleFactor = 1.5f;
+        }
+
+        static void PatchAchievements()
+        {
+            AchievementServices.RegisterAchievement("PrecursorFabricator", "Build 3 precursor fabricators", null, "Build these...", "You built them!!!!", false, 3);
+            AchievementServices.RegisterAchievement("PrecursorFabricatorCraft", "Use precursor fabricator", null, "Use this...", "You used it!!!!", false, 1);
         }
 
         static void PatchMinerals()
