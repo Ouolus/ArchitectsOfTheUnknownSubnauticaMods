@@ -23,6 +23,38 @@ namespace ArchitectsLibrary.API
             }
         }
 
+        private static string AchievementNotificationFormat
+        {
+            get
+            {
+                return string.Format("<color=#{0:X}{1:X}{2:X}>{{0}}</color>\n<color=#{3:X}{4:X}{5:X}>{{1}}</color>", new object[]
+                {
+                    AchievementNameColor.r,
+                    AchievementNameColor.g,
+                    AchievementNameColor.b,
+                    AchievementDescriptionColor.r,
+                    AchievementDescriptionColor.g,
+                    AchievementDescriptionColor.b
+                });
+            }
+        }
+
+        private static Color32 AchievementNameColor
+        {
+            get
+            {
+                return new Color32(137, byte.MaxValue, 137, byte.MaxValue);
+            }
+        }
+
+        private static Color32 AchievementDescriptionColor
+        {
+            get
+            {
+                return new Color32(119, 205, byte.MaxValue, byte.MaxValue);
+            }
+        }
+
         /// <summary>
         /// Registers an achievement into the game.
         /// </summary>
@@ -109,7 +141,7 @@ namespace ArchitectsLibrary.API
         private static void ShowAchievementCompletePopup(string id)
         {
             Achievement achievement = GetAchievement(id);
-            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete!", string.Format(uGUI_PopupNotification.formatMultiLine, achievement.name, achievement.unlockedDescription), null, GetAchievementSprite(id, false));
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete!", string.Format(AchievementNotificationFormat, achievement.name, achievement.unlockedDescription), null, GetAchievementSprite(id, false));
             uGUI_PopupNotification.main.TryPlaySound(UnlockSound);
         }
 
@@ -128,7 +160,7 @@ namespace ArchitectsLibrary.API
             }
             else
             {
-                if(achievement.icon != null)
+                if (achievement.icon != null)
                 {
                     return achievement.icon;
                 }
