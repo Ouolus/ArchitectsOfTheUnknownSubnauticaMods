@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             base.Start();
 			spawnAnimationDelay = 4f;
-			AchievementServices.ChangeAchievementCompletion("PrecursorFabricator", 1);
+			AchievementServices.CompleteAchievement("BuildPrecursorFabricator");
         }
 
         public override void Craft(TechType techType, float duration)
@@ -57,7 +57,6 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             base.OnCraftingBegin(techType, duration);
 			_progressDelayScalar = 4f / duration;
-			AchievementServices.SetAchievementCompletion("PrecursorFabricatorCraft", 1);
 		}
 
 		public override void LateUpdate()
