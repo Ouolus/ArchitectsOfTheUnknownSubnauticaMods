@@ -32,6 +32,10 @@ namespace LeviathanEggs.Prefabs
                     material.SetFloat("_Shininess", 2f);
                     material.SetFloat("_SpecInt", 8f);
                 }
+                else if (renderer.name.Contains("C_low"))
+                {
+                    material.SetFloat("_EmissionLMNight", .15f);
+                }
             }
             prefab.AddComponent<SpawnLocations>();
         }
