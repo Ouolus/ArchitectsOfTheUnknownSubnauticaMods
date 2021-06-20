@@ -257,7 +257,11 @@ namespace RotA
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
             warpMasterTech = TechTypeHandler.AddTechType("WarpingMasterTech", "Handheld Warping Device", "An alien device that enables short-range teleportation.", false);
             #endregion
-            
+
+            #region Achievements
+            AchievementServices.RegisterAchievement("CraftWarpCannon", "Hybrid Technology", Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "This achievement is locked.", "Obtained the Handheld Warping Device.", true);
+            #endregion
+
             #region Modules
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();

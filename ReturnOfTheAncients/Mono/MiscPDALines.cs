@@ -7,6 +7,7 @@ using UnityEngine;
 using UWE;
 using Story;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.API;
 
 namespace RotA.Mono
 {
@@ -22,6 +23,7 @@ namespace RotA.Mono
                     return;
                 case "Pickup_WarpCannon":
                     CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("WarpCannonPickup"), "WarpCannonPickupVoiceline", "The Handheld Warping Device enables both short and long range teleportation for the user. Be cautious of the various side effects of teleportation, including sudden death and failure of proper materialization.");
+                    AchievementServices.CompleteAchievement("CraftWarpCannon");
                     return;
                 case "Pickup_Electricube":
                     OnIonCubePickedUp();
