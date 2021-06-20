@@ -36,13 +36,7 @@ namespace ArchitectsLibrary.API
         /// <param name="id">The ID of the achievement.</param>
         public static void CompleteAchievement(string id)
         {
-            bool completedFirstTime = !GetAchievementComplete(id);
             SetAchievementCompletion(id, GetAchievement(id).totalTasks);
-            if (completedFirstTime)
-            {
-                ShowAchievementCompletePopup(id);
-                Main.achievementData.Save();
-            }
         }
 
         /// <summary>
@@ -52,6 +46,7 @@ namespace ArchitectsLibrary.API
         /// <param name="tasks">The tasks done for this achievement.</param>
         public static void SetAchievementCompletion(string id, int tasks)
         {
+            bool wasIncomplete = !GetAchievementComplete(id);
             if (Main.achievementData.achievements.ContainsKey(id))
             {
                 Main.achievementData.achievements[id] = tasks;
@@ -59,6 +54,11 @@ namespace ArchitectsLibrary.API
             else
             {
                 Main.achievementData.achievements.Add(id, tasks);
+            }
+            if (wasIncomplete && tasks >= GetAchievement(id).totalTasks)
+            {
+                ShowAchievementCompletePopup(id);
+                Main.achievementData.Save();
             }
         }
 
@@ -79,7 +79,7 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         public static bool GetAchievementComplete(string id)
         {
-            return GetAchievement(id).totalTasks >= GetTasksCompleted(id);
+            return GetTasksCompleted(id) >= GetAchievement(id).totalTasks;
         }
 
         private static Achievement GetAchievement(string id)
