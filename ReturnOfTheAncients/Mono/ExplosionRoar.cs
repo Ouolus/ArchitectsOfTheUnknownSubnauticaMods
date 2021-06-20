@@ -1,6 +1,7 @@
 using System.Collections;
 using ECCLibrary;
 using UnityEngine;
+using Story;
 
 namespace RotA.Mono
 {
@@ -8,8 +9,14 @@ namespace RotA.Mono
     {
         CrashedShipExploder _ship = CrashedShipExploder.main;
         AudioSource _audioSource;
+        const string storyGoalName = "GargExplosionRoar";
         IEnumerator Start()
         {
+            if (StoryGoalManager.main.IsGoalComplete(storyGoalName))
+            {
+                Destroy(gameObject);
+                yield break;
+            }
             var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
             _audioSource = gameObject.EnsureComponent<AudioSource>();
             _audioSource.volume = ECCHelpers.GetECCVolume();
@@ -27,6 +34,7 @@ namespace RotA.Mono
             MainCameraControl.main.ShakeCamera(0.25f, 5f, MainCameraControl.ShakeMode.Sqrt, 1f);
             yield return new WaitForSeconds(5f);
             CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAExplosionRoar"), "PDAExplosionRoar", "Minor tectonic activity detected. Pattern inconsistent with the quantum detonation of the Aurora's drive core. Point of origin somewhere within 3 kilometers. Extreme caution is advised.");
+            StoryGoalManager.main.OnGoalComplete(storyGoalName);
         }
     }
 }
