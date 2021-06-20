@@ -15,6 +15,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
+using ArchitectsLibrary.Config;
 
 namespace ArchitectsLibrary
 {
@@ -83,6 +84,8 @@ namespace ArchitectsLibrary
         static BuildablePedestal buildablePedestal;
         static BuildablePedestalLarge buildablePedestalLarge;
 
+        static internal AchievementData achievementData;
+
         const string encyKey_emerald = "EmeraldEncy";
 
         private const string ionCubePickupSound = "event:/loot/pickup_precursorioncrystal";
@@ -101,6 +104,8 @@ namespace ArchitectsLibrary
             AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
             
             PatchMinerals();
+
+            achievementData = new AchievementData();
         }
 
         /// <summary>

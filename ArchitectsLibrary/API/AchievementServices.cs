@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using ArchitectsLibrary.Config;
 
 namespace ArchitectsLibrary.API
 {
@@ -23,24 +24,45 @@ namespace ArchitectsLibrary.API
         /// <param name="lockedDescription">The description shown in the achievements list before you unlock this achievement.</param>
         /// <param name="unlockedDescription">The description shown in the achievements list after you unlock this achievement.</param>
         /// <param name="hideIconWhenLocked">Determines if the icon in the list should be shown as a question mark when it has not been unlocked.</param>
-        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked)
+        /// <param name="totalTasks">The amount of times a specific task must be completed in order for the achievement to be unlocked.</param>
+        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked, int totalTasks = 1)
         {
-            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked));
+            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked, totalTasks));
         }
 
         /// <summary>
-        /// Completes this achievement across all saves. Should only be called while in a save.
+        /// Instantly completes this achievement across all saves. Should only be called while in a save.
         /// </summary>
         /// <param name="id">The ID of the achievement.</param>
         public static void CompleteAchievement(string id)
         {
-            bool completedFirstTime = !IsAchievementComplete(id);
-            PlayerPrefs.SetInt(GetPlayerPrefName(id), 1);
+            bool completedFirstTime = !GetAchievementComplete(id);
+            SetAchievementCompletion(id, GetAchievement(id).totalTasks);
             if (completedFirstTime)
             {
-                ErrorMessage.AddMessage($"You have completed <color=#ADF8FFFF>{registeredAchievements[id].name}</color>!");
-                //show popup
+                ShowAchievementCompletePopup(id);
+                Main.achievementData.Save();
             }
+        }
+
+        /// <summary>
+        /// Sets an achievement's completion to <paramref name="tasks"/>.
+        /// </summary>
+        /// <param name="id">The id of the achievement.</param>
+        /// <param name="tasks">The tasks done for this achievement.</param>
+        public static void SetAchievementCompletion(string id, int tasks)
+        {
+            Main.achievementData.achievements[id] = tasks;
+        }
+
+        /// <summary>
+        /// Changes the completion of an achievement by <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="id">The id of the achievement.</param>
+        /// <param name="amount">The amount to change this achievement's completion.</param>
+        public static void ChangeAchievementCompletion(string id, int amount)
+        {
+            Main.achievementData.achievements[id] = Mathf.Clamp(Main.achievementData.achievements[id] + amount, 0, GetAchievement(id).totalTasks);
         }
 
         /// <summary>
@@ -48,14 +70,29 @@ namespace ArchitectsLibrary.API
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool IsAchievementComplete(string id)
+        public static bool GetAchievementComplete(string id)
         {
-            return PlayerPrefs.GetInt(GetPlayerPrefName(id), 0) == 1;
+            return GetAchievement(id).totalTasks >= GetTasksCompleted(id);
         }
 
-        private static string GetPlayerPrefName(string achievementId)
+        private static Achievement GetAchievement(string id)
         {
-            return $"ALAchievement_{achievementId}";
+            return registeredAchievements[id];
+        }
+
+        /// <summary>
+        /// The amount of tasks that have been completed towards a specific achievement.
+        /// </summary>
+        /// <param name="achievementId"></param>
+        /// <returns></returns>
+        public static int GetTasksCompleted(string achievementId)
+        {
+            return Main.achievementData.achievements.GetOrDefault(achievementId, 0);
+        }
+
+        private static void ShowAchievementCompletePopup(string id)
+        {
+            ErrorMessage.AddMessage($"You have completed <color=#ADF8FFFF>{registeredAchievements[id].name}</color>!");
         }
 
         internal struct Achievement
@@ -66,8 +103,9 @@ namespace ArchitectsLibrary.API
             public string lockedDescription;
             public string unlockedDescription;
             public bool hideWhenLocked;
+            public int totalTasks;
 
-            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideWhenLocked)
+            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideWhenLocked, int totalTasks)
             {
                 this.id = id;
                 this.name = name;
@@ -75,6 +113,7 @@ namespace ArchitectsLibrary.API
                 this.lockedDescription = lockedDescription;
                 this.unlockedDescription = unlockedDescription;
                 this.hideWhenLocked = hideWhenLocked;
+                this.totalTasks = totalTasks;
             }
         }
     }
