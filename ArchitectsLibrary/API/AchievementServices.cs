@@ -55,10 +55,10 @@ namespace ArchitectsLibrary.API
             {
                 Main.achievementData.achievements.Add(id, tasks);
             }
+            Main.achievementData.Save();
             if (wasIncomplete && tasks >= GetAchievement(id).totalTasks)
             {
                 ShowAchievementCompletePopup(id);
-                Main.achievementData.Save();
             }
         }
 
@@ -94,12 +94,13 @@ namespace ArchitectsLibrary.API
         /// <returns></returns>
         public static int GetTasksCompleted(string achievementId)
         {
+            Main.achievementData.Load();
             return Main.achievementData.achievements.GetOrDefault(achievementId, 0);
         }
 
         private static void ShowAchievementCompletePopup(string id)
         {
-            ErrorMessage.AddMessage($"You have completed <color=#ADF8FFFF>{registeredAchievements[id].name}</color>!");
+            ErrorMessage.AddMessage($"Achievement completed: <color=#89FF89>{registeredAchievements[id].name}</color>!");
         }
 
         internal struct Achievement
