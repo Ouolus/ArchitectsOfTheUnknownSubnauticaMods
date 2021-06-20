@@ -101,13 +101,13 @@ namespace ArchitectsLibrary.API
         private static void ShowAchievementCompletePopup(string id)
         {
             Achievement achievement = GetAchievement(id);
-            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, );
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, GetAchievementSprite(id, false));
         }
 
-        private static Sprite GetAchievementSprite(string id, bool hideIfLocked)
+        private static Sprite GetAchievementSprite(string id, bool showSpecialIconIfHidden)
         {
             Achievement achievement = GetAchievement(id);
-            if (hideIfLocked)
+            if (showSpecialIconIfHidden)
             {
                 if (GetAchievementComplete(id))
                 {
