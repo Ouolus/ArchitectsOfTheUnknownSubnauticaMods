@@ -15,6 +15,14 @@ namespace ArchitectsLibrary.API
     {
         internal static Dictionary<string, Achievement> registeredAchievements = new Dictionary<string, Achievement>();
 
+        private static FMODAsset UnlockSound
+        {
+            get
+            {
+                return uGUI_PopupNotification.main.soundEncyUnlock;
+            }
+        }
+
         /// <summary>
         /// Registers an achievement into the game.
         /// </summary>
@@ -102,6 +110,7 @@ namespace ArchitectsLibrary.API
         {
             Achievement achievement = GetAchievement(id);
             uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, "Achievement complete", achievement.name, achievement.unlockedDescription, GetAchievementSprite(id, false));
+            uGUI_PopupNotification.main.TryPlaySound(UnlockSound);
         }
 
         private static Sprite GetAchievementSprite(string id, bool showSpecialIconIfHidden)
