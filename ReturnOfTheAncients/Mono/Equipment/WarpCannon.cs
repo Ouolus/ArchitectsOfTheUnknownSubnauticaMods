@@ -903,7 +903,6 @@ namespace RotA.Mono.Equipment
         void UpdateWarp2000MetersAchievement(float amount)
         {
             ArchitectsLibrary.API.AchievementServices.ChangeAchievementCompletion("WarpFar", Mathf.RoundToInt(amount));
-            ErrorMessage.AddMessage(ArchitectsLibrary.API.AchievementServices.GetTasksCompleted("WarpFar").ToString());
         }
 
         public override string animToolName => "propulsioncannon";
