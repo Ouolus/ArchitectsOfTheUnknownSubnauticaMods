@@ -36,5 +36,7 @@ namespace LeviathanEggs.Prefabs
             }
             prefab.AddComponent<SpawnLocations>();
         }
+
+        public override Vector2int SizeInInventory => new(2, 2);
     }
 }
