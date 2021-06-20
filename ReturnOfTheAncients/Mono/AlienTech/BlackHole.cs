@@ -22,7 +22,7 @@ namespace RotA.Mono.AlienTech
             if (Time.time < _clickCooldown)
                 return;
             
-            if (_attempts >= 0)
+            if (_attempts > 0)
             {
                 _attempts--;
                 Player.main.PlayGrab();
