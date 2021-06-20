@@ -10,7 +10,7 @@ namespace LeviathanEggs.Prefabs
         public CrimsonRayEgg()
             : base("CrimsonRayEgg", "Crimson Ray Egg", "Crimson Rays hatch from these.")
         {
-            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
+            LateEnhancements += LateEnhance;
         }
         public override GameObject Model => LoadGameObject("CrimsonRayEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostRayRed;
@@ -18,5 +18,12 @@ namespace LeviathanEggs.Prefabs
         public override Sprite ItemSprite => LoadSprite("CrimsonRayEgg");
         public override Vector2int SizeInInventory { get; } = new(2, 2);
 
+        void LateEnhance(GameObject prefab)
+        {
+            var renderer = prefab.GetComponentInChildren<Renderer>();
+            renderer.material.SetFloat("_EmissionLMNight", 0.001f);
+            
+            prefab.AddComponent<SpawnLocations>();
+        }
     }
 }
