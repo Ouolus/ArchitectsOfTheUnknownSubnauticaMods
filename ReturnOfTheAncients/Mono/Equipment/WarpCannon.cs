@@ -12,6 +12,7 @@ namespace RotA.Mono.Equipment
         public WarpCannonAnimations animations;
         public FMODAsset portalOpenSound;
         public FMODAsset portalCloseSound;
+        public FMODAsset switchModeSound;
         public FMOD_StudioEventEmitter chargeLoop;
         public WarperData warperCreatureData;
         float timeCanUseAgain;
@@ -654,6 +655,7 @@ namespace RotA.Mono.Equipment
             }
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
             animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
+            Utils.PlayFMODAsset(switchModeSound, transform.position);
             switch (fireMode)
             {
                 case FireMode.Warp:

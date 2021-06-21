@@ -109,6 +109,8 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
+                warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.switchModeSound.path = "event:/tools/transfuser/fail";
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
