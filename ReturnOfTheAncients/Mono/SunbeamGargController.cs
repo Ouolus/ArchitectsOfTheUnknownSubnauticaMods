@@ -35,6 +35,7 @@ namespace RotA.Mono
             spawnedGarg.SetActive(true);
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
+            Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
         }
 
@@ -47,6 +48,11 @@ namespace RotA.Mono
         {
             Destroy(spawnedGarg);
             Destroy(gameObject);
+        }
+
+        private void Splash()
+        {
+            Utils.PlayFMODAsset(splashSound, new Vector3(position.x, 0f, position.z), 6000f);
         }
 
         void LateUpdate()
