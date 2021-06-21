@@ -20,7 +20,7 @@ namespace RotA.Mono.Modules
             audioSource.spatialBlend = 1f;
             audioSource.maxDistance = 50f;
             audioSource.pitch = 1.7f;
-            audioSource.volume = ECCLibrary.ECCHelpers.GetECCVolume();
+            audioSource.volume = ECCLibrary.ECCHelpers.GetECCVolume() * 0.5f;
         }
         void OnDisable()
         {
