@@ -110,7 +110,7 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
                 warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
-                warpCannon.switchModeSound.path = "event:/tools/transfuser/fail";
+                warpCannon.switchModeSound.path = "event:/tools/beacon/draw";
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
@@ -247,7 +247,7 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
                 warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
-                warpCannon.switchModeSound.path = "event:/tools/transfuser/fail";
+                warpCannon.switchModeSound.path = "event:/tools/beacon/draw";
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
