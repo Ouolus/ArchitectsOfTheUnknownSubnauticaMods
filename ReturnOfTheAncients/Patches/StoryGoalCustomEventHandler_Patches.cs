@@ -53,7 +53,7 @@ namespace RotA.Patches
 
         static IEnumerator Roar()
         {
-            yield return new WaitForSeconds(31f);
+            yield return new WaitForSeconds(30f);
             var gameObject = new GameObject("SunbeamRoarEvent");
             gameObject.transform.position = new Vector3(1162, 0f, 4333);
             var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
