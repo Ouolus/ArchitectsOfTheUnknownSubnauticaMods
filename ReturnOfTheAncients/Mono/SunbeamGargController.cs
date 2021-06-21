@@ -37,6 +37,7 @@ namespace RotA.Mono
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
+            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 500f));
         }
 
         private void StartFadingOut()
@@ -132,6 +133,20 @@ namespace RotA.Mono
             tm.pitchMultiplier = curve;
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
+        }
+
+        private IEnumerator PlaySplashVfx(Vector3 position, float scale)
+        {
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
+            yield return task;
+            GameObject exosuitPrefab = task.GetResult();
+            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX);
+            newVfx.transform.position = position;
+            var splashComponent = newVfx.GetComponent<VFXSplash>();
+            newVfx.SetActive(true);
+            splashComponent.Init();
+            splashComponent.surfaceSplashModel.transform.localScale = Vector3.one * scale;
+            splashComponent.Play();
         }
     }
 }
