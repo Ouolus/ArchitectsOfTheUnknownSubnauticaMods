@@ -4,6 +4,7 @@ using RotA.Prefabs.Creatures;
 using System.Collections;
 using System.Collections.Generic;
 using ECCLibrary;
+using UWE;
 
 namespace RotA.Mono
 {
@@ -14,6 +15,7 @@ namespace RotA.Mono
         private float defaultFarplane;
         private float farplaneTarget;
         private float timeStart;
+        private FMODAsset splashSound;
 
         private float FarplaneDistance
         {
@@ -24,6 +26,8 @@ namespace RotA.Mono
         }
         public void Start()
         {
+            splashSound = ScriptableObject.CreateInstance<FMODAsset>();
+            splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
             farplaneTarget = 20000f;
             GameObject prefab = GetSunbeamGargPrefab();
@@ -32,6 +36,7 @@ namespace RotA.Mono
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
             timeStart = Time.time;
+            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 500f));
         }
 
         private void StartFadingOut()
@@ -54,6 +59,7 @@ namespace RotA.Mono
         {
             GameObject prefab = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
+            prefab.transform.forward = Vector3.up;
             prefab.transform.localScale = Vector3.one * 6f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
@@ -121,6 +127,20 @@ namespace RotA.Mono
             tm.pitchMultiplier = curve;
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
+        }
+
+        private IEnumerator PlaySplashVfx(Vector3 position, float scale)
+        {
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
+            yield return task;
+            GameObject exosuitPrefab = task.GetResult();
+            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX);
+            newVfx.transform.position = position;
+            var splashComponent = newVfx.GetComponent<VFXSplash>();
+            newVfx.SetActive(true);
+            splashComponent.Init();
+            splashComponent.surfaceSplashModel.transform.localScale = Vector3.one * scale;
+            splashComponent.Play();
         }
     }
 }
