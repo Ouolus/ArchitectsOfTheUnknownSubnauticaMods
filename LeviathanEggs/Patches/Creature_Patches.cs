@@ -1,9 +1,7 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
 using ArchitectsLibrary.MonoBehaviours;
 using LeviathanEggs.MonoBehaviours;
-using WorldStreaming;
 
 namespace LeviathanEggs.Patches
 {
@@ -25,9 +23,20 @@ namespace LeviathanEggs.Patches
             switch (techType)
             {
                 case TechType.Jumper:
+                case TechType.CrabSquid:
                     __instance.gameObject.EnsureComponent<GroundedChecker>();
                     var walkingManager = __instance.gameObject.EnsureComponent<WalkingManager>();
                     walkingManager.animator = __instance.GetAnimator();
+
+                    var locomotion = __instance.gameObject.GetComponent<Locomotion>();
+                    locomotion.canWalkOnSurface = true;
+                    locomotion.canMoveAboveWater = true;
+
+                    var moveOnGround = __instance.gameObject.EnsureComponent<MoveOnGround>();
+                    moveOnGround.descendForce = __instance.gameObject.EnsureComponent<ConstantForce>();
+                    moveOnGround.descendForceValue = -10f;
+                    moveOnGround.onGroundTracker = __instance.gameObject.GetComponent<OnGroundTracker>();
+                    moveOnGround.enabled = true;
                     break;
                 case TechType.SeaEmperorBaby:
                     {
