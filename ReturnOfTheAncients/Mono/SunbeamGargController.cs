@@ -53,7 +53,7 @@ namespace RotA.Mono
 
         private void Splash()
         {
-            Utils.PlayFMODAsset(splashSound, new Vector3(position.x, 0f, position.z), 6000f);
+            Utils.PlayFMODAsset(splashSound, new Vector3(411f, 0f, 1213f), 6000f);
         }
 
         void LateUpdate()

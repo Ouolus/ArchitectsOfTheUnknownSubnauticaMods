@@ -53,14 +53,14 @@ namespace RotA.Patches
 
         static IEnumerator Roar()
         {
-            yield return new WaitForSeconds(25);
+            yield return new WaitForSeconds(31.5f);
             var gameObject = new GameObject("SunbeamRoarEvent");
             gameObject.transform.position = new Vector3(1162, 0f, 4333);
             var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
             var audioSource = gameObject.EnsureComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = 2000f;
+            audioSource.minDistance = 2500f;
             audioSource.maxDistance = 20000f;
             audioSource.clip = clip;
 
@@ -68,7 +68,6 @@ namespace RotA.Patches
             MainCameraControl.main.ShakeCamera(0.25f, 5f, MainCameraControl.ShakeMode.Sqrt);
             Object.Destroy(gameObject, 10);
 
-            yield return new WaitForSeconds(3);
             GameObject sunbeamGargController = new GameObject("SunbeamGargController");
             sunbeamGargController.AddComponent<SunbeamGargController>();
                     
