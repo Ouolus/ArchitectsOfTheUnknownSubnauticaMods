@@ -50,7 +50,7 @@ namespace RotA.Mono
             Destroy(gameObject);
         }
 
-        void Update()
+        void LateUpdate()
         {
             SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
         }
