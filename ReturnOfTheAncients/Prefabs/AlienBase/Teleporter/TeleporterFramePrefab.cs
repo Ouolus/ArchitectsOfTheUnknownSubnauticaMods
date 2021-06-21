@@ -2,6 +2,7 @@
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
+using RotA.Mono;
 
 namespace RotA.Prefabs.AlienBase.Teleporter
 {
@@ -34,7 +35,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
+            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);
@@ -58,7 +59,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
+            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);

@@ -192,6 +192,7 @@
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
     <Compile Include="Mono\Modules\IOnArchitectElectricityZap.cs" />
     <Compile Include="Mono\Modules\ZapOnDamage.cs" />
+    <Compile Include="Mono\SetTechTypeOnStart.cs" />
     <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\SunbeamGargController.cs" />
