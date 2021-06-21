@@ -536,7 +536,7 @@ namespace RotA.Mono.Equipment
                     Player.main.SetCurrentSub(null);
                 }
                 Vector3 playerPosition = Player.main.transform.position;
-                UpdateWarp2000MetersAchievement(Vector3.Distance(oldPlayerPosition, playerPosition));
+                UpdateWarpXMetersAchievement(Vector3.Distance(oldPlayerPosition, playerPosition));
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
 
@@ -869,7 +869,7 @@ namespace RotA.Mono.Equipment
         /// <param name="position"></param>
         void MovePlayerWhileInBase(Vector3 position)
         {
-            UpdateWarp2000MetersAchievement(Vector3.Distance(Player.main.transform.position, position));
+            UpdateWarpXMetersAchievement(Vector3.Distance(Player.main.transform.position, position));
             PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
         }
 
@@ -883,7 +883,7 @@ namespace RotA.Mono.Equipment
             var camRotation = MainCamera.camera.transform.rotation;
             Instantiate(warpInPrefab, playerPos, camRotation);
             Instantiate(warpOutPrefab, position, camRotation);
-            UpdateWarp2000MetersAchievement(Vector3.Distance(playerPos, position));
+            UpdateWarpXMetersAchievement(Vector3.Distance(playerPos, position));
             //Player.main.transform.position = position;
             PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
@@ -903,7 +903,7 @@ namespace RotA.Mono.Equipment
             return hitColliders == 0;
         }
 
-        void UpdateWarp2000MetersAchievement(float amount)
+        void UpdateWarpXMetersAchievement(float amount)
         {
             ArchitectsLibrary.API.AchievementServices.ChangeAchievementCompletion("WarpFar", Mathf.RoundToInt(amount));
         }
