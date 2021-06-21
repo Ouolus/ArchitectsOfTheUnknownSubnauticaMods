@@ -64,7 +64,7 @@ namespace RotA.Patches
             var audioSource = gameObject.EnsureComponent<AudioSource>();
             audioSource.volume = ECCHelpers.GetECCVolume();
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = 500f;
+            audioSource.minDistance = 2000f;
             audioSource.maxDistance = 20000f;
             audioSource.clip = clip;
             
