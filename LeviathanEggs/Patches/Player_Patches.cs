@@ -16,8 +16,6 @@ namespace LeviathanEggs.Patches
         }
         static IEnumerator TweakCreatures(TechType techType)
         {
-            yield return new WaitForSeconds(10f);
-
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(techType, false);
             yield return task;
 
