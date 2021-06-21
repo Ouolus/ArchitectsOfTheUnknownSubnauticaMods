@@ -10,12 +10,9 @@ namespace LeviathanEggs.Patches
         [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SetTeleporterTarget))]
         [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SwimToTeleporter))]
         [HarmonyPatch(typeof(SeaEmperorBaby), nameof(SeaEmperorBaby.SwimToMother))]
-        static bool Teleport_Patch(SeaEmperorBaby __instance)
+        static bool Prefix(SeaEmperorBaby __instance)
         {
-            if (__instance.gameObject.GetComponent<StagedGrowing>() != null)
-                return false;
-
-            return true;
+            return __instance.gameObject.GetComponent<StagedGrowing>() == null;
         }
     }
 }
