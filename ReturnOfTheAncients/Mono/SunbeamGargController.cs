@@ -33,6 +33,7 @@ namespace RotA.Mono
             GameObject prefab = GetSunbeamGargPrefab();
             spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
+            spawnedGarg.transform.parent = transform;
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
@@ -140,9 +141,13 @@ namespace RotA.Mono
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
             yield return task;
             GameObject exosuitPrefab = task.GetResult();
-            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>().surfaceSplashModel);
+            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>().surfacePrefab);
+            newVfx.name = "SunbeamGargSplash";
+            newVfx.transform.parent = transform;
             newVfx.transform.localScale = Vector3.one * scale;
             newVfx.transform.position = position;
+            Destroy(newVfx.GetComponent<VFXDestroyAfterSeconds>());
+            newVfx.SetActive(true);
         }
     }
 }
