@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using RotA.Mono.Singletons;
 using Story;
+using RotA.Mono.VFX;
 
 namespace RotA.Mono.Equipment
 {

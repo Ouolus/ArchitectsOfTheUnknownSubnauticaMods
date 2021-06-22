@@ -6,6 +6,7 @@ using ArchitectsLibrary.Utility;
 using UnityEngine;
 using System.Collections;
 using RotA.Mono.Equipment;
+using RotA.Mono.VFX;
 using System.Linq;
 
 namespace RotA.Prefabs.Equipment
@@ -183,7 +184,7 @@ namespace RotA.Prefabs.Equipment
                 var skyApplier = prefab.AddComponent<SkyApplier>();
                 skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
-                var illumControl = prefab.SearchChild("ViewModel").AddComponent<Mono.PrecursorIllumControl>();
+                var illumControl = prefab.SearchChild("ViewModel").AddComponent<PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low").GetComponent<Renderer>());
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.001").GetComponent<Renderer>());
