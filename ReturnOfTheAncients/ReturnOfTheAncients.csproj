@@ -185,6 +185,7 @@
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
     <Compile Include="Mono\MiscPDALines.cs" />
     <Compile Include="Mono\Modules\DashOnKeyPress.cs" />
+    <Compile Include="Mono\VFX\CustomSplash.cs" />
     <Compile Include="Mono\VFX\PrecursorIllumControl.cs" />
     <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />

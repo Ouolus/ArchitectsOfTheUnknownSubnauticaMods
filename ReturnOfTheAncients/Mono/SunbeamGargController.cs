@@ -140,13 +140,9 @@ namespace RotA.Mono
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
             yield return task;
             GameObject exosuitPrefab = task.GetResult();
-            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX);
+            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>().surfaceSplashModel);
+            newVfx.transform.localScale = Vector3.one * scale;
             newVfx.transform.position = position;
-            var splashComponent = newVfx.GetComponent<VFXSplash>();
-            newVfx.SetActive(true);
-            splashComponent.Init();
-            splashComponent.surfaceSplashModel.transform.localScale = Vector3.one * scale;
-            splashComponent.Play();
         }
     }
 }
