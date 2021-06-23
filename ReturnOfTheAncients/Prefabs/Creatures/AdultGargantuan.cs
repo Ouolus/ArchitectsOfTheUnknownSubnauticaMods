@@ -67,7 +67,7 @@ namespace RotA.Prefabs.Creatures
             avoidObstacles.scanDistance = 20;
             avoidObstacles.scanInterval = 0.2f;
             avoidObstacles.scanDistance = 50f;
-            avoidObstacles.scanRadius = 50;
+            avoidObstacles.scanRadius = 0; //this value should either be 0 or some random arbitrary number over 0. it's only used in a "greater than zero" check.
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
