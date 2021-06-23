@@ -33,6 +33,8 @@ namespace RotA.Prefabs.Creatures
 
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(1f, false, 30f);
 
+        public override float TurnSpeed => 0.15f;
+
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
 
         public override bool RoarDoesDamage => true;
