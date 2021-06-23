@@ -26,10 +26,10 @@
             {
                 renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Diffuse"));
                 renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Spec"));
-                renderer.material.SetFloat("_SpecInt", 1.5f);
+                renderer.material.SetFloat("_SpecInt", 3f);
                 renderer.material.SetFloat("_Fresnel", 0.26f);
                 renderer.material.SetFloat("_Shininess", 6f);
-                renderer.material.SetColor("_SpecColor", new Color(3f, 2f, 1f));
+                renderer.material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
             }
         }
 
