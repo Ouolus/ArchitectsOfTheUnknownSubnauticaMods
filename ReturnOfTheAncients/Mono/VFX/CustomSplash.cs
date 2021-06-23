@@ -10,7 +10,7 @@ namespace RotA.Mono.VFX
     public class CustomSplash : MonoBehaviour
     {
 		private float animTime = 0f;
-		private bool playing;
+		private bool playing = true;
 		private Vector3 newScale;
 		public Vector3 startScale;
 
