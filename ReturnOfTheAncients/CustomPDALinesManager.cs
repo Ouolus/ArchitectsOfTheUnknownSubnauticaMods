@@ -11,14 +11,14 @@ namespace RotA
 {
     public static class CustomPDALinesManager
     {
-        static readonly List<string> registeredSubtitleKeys = new List<string>();
+        static readonly List<string> translatedSubtitleKeys = new List<string>();
 
         public static void PlayPDAVoiceLine(AudioClip audioClip, string subtitleKey, string subtitleDisplayText)
         {
-            if (!registeredSubtitleKeys.Contains(subtitleKey))
+            if (!translatedSubtitleKeys.Contains(subtitleKey))
             {
                 LanguageHandler.SetLanguageLine(subtitleKey, subtitleDisplayText);
-                registeredSubtitleKeys.Add(subtitleKey);
+                translatedSubtitleKeys.Add(subtitleKey);
             }
             GameObject obj = new GameObject("PDA Line Instance");
             AudioSource source = obj.AddComponent<AudioSource>();
@@ -31,10 +31,10 @@ namespace RotA
 
         public static void PlayPDAVoiceLineFMOD(string eventPath, string subtitleKey, string subtitleDisplayText)
         {
-            if (!registeredSubtitleKeys.Contains(subtitleKey))
+            if (!translatedSubtitleKeys.Contains(subtitleKey))
             {
                 LanguageHandler.SetLanguageLine(subtitleKey, subtitleDisplayText);
-                registeredSubtitleKeys.Add(subtitleKey);
+                translatedSubtitleKeys.Add(subtitleKey);
             }
             FMODAsset soundAsset = ScriptableObject.CreateInstance<FMODAsset>();
             soundAsset.path = eventPath;
