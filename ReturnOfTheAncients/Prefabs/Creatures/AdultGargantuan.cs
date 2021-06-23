@@ -60,6 +60,14 @@ namespace RotA.Prefabs.Creatures
             prefab.GetComponent<StayAtLeashPosition>().swimVelocity = 20f;
 
             prefab.AddComponent<GargantuanEncounterPDA>();
+
+            var avoidObstacles = prefab.GetComponent<AvoidObstacles>();
+            avoidObstacles.avoidanceDistance = 50f;
+            avoidObstacles.avoidanceIterations = 20;
+            avoidObstacles.scanDistance = 20;
+            avoidObstacles.scanInterval = 0.2f;
+            avoidObstacles.scanDistance = 50f;
+            avoidObstacles.scanRadius = 50;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
