@@ -35,7 +35,7 @@ namespace RotA.Patches
                 emissiveScale = 0f,
                 sunlightScale = 1f,
                 murkiness = 0.7f,
-                startDistance = 50f,
+                startDistance = 100f,
                 scatteringColor = new Color(0f, 0.2f, 0.02f),
                 temperature = 5f,
                 scattering = 0.25f
