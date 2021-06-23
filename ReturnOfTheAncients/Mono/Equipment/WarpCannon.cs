@@ -505,9 +505,9 @@ namespace RotA.Mono.Equipment
 
         public IEnumerator WarpToLastVisitedBase()
         {
-            if (GetBatteryPercent() >= 0.50f)
+            if (GetBatteryPercent() >= 0.40f)
             {
-                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
+                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.4f);
                 animations.SetOverrideSpinSpeed(10f, 2f);
                 var teleportScreenController = MainCamera.camera.GetComponent<TeleportScreenFXController>();
                 teleportScreenController.StartTeleport();
@@ -550,7 +550,7 @@ namespace RotA.Mono.Equipment
             }
             else
             {
-                ErrorMessage.AddMessage("You must have 50% or more battery charge to perform this action.");
+                ErrorMessage.AddMessage("You must have 40% or more battery charge to perform this action.");
             }
         }
 
