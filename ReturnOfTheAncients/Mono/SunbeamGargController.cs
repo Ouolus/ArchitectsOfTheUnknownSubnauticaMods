@@ -39,7 +39,6 @@ namespace RotA.Mono
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
-            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 150f));
         }
 
         private void StartFadingOut()
@@ -56,6 +55,7 @@ namespace RotA.Mono
         private void Splash()
         {
             Utils.PlayFMODAsset(splashSound, new Vector3(411f, 0f, 1213f), 6000f);
+            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 75f));
         }
 
         void LateUpdate()
