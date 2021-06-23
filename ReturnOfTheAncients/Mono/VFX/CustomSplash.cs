@@ -12,13 +12,14 @@ namespace RotA.Mono.VFX
 		private float animTime = 0f;
 		private bool playing = true;
 		private Vector3 newScale;
-		public Vector3 startScale;
+		private Vector3 startScale;
 
 		public float duration = 5f;
 		public AnimationCurve surfScaleX;
 		public AnimationCurve surfScaleY;
 		public AnimationCurve surfScaleZ;
 		public AnimationCurve surfMaskCurve;
+		public float scale;
 
 		private void Update()
 		{
@@ -32,10 +33,10 @@ namespace RotA.Mono.VFX
 				}
 				if (gameObject != null)
 				{
-					gameObject.GetComponentInChildren<Renderer>().material.SetTextureOffset(ShaderPropertyID._MaskTex, new Vector2(surfMaskCurve.Evaluate(this.animTime), 0.5f));
-					newScale.x = startScale.x * surfScaleX.Evaluate(animTime);
-					newScale.y = startScale.y * surfScaleY.Evaluate(animTime);
-					newScale.z = startScale.z * surfScaleZ.Evaluate(animTime);
+					gameObject.GetComponentInChildren<Renderer>().material.SetTextureOffset(ShaderPropertyID._MaskTex, new Vector2(surfMaskCurve.Evaluate(animTime), 0.5f));
+					newScale.x = startScale.x * surfScaleX.Evaluate(animTime) * scale;
+					newScale.y = startScale.y * surfScaleY.Evaluate(animTime) * scale;
+					newScale.z = startScale.z * surfScaleZ.Evaluate(animTime) * scale;
 					transform.localScale = newScale;
 				}
 			}

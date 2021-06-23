@@ -154,6 +154,7 @@ namespace RotA.Mono
             customSplash.surfScaleX = vfxSplash.surfScaleX;
             customSplash.surfScaleY = vfxSplash.surfScaleY;
             customSplash.surfScaleZ = vfxSplash.surfScaleZ;
+            customSplash.scale = scale;
             newVfx.SetActive(true);
         }
     }
