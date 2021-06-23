@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using ArchitectsLibrary.Utility;
 using RotA.Prefabs.Creatures;
+using RotA.Mono.VFX;
 using System.Collections;
 using System.Collections.Generic;
 using ECCLibrary;
@@ -141,12 +142,18 @@ namespace RotA.Mono
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
             yield return task;
             GameObject exosuitPrefab = task.GetResult();
-            GameObject newVfx = Instantiate(exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>().surfacePrefab);
+            var vfxSplash = exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>();
+            GameObject newVfx = Instantiate(vfxSplash.surfacePrefab);
             newVfx.name = "SunbeamGargSplash";
             newVfx.transform.parent = transform;
             newVfx.transform.localScale = Vector3.one * scale;
             newVfx.transform.position = position;
             Destroy(newVfx.GetComponent<VFXDestroyAfterSeconds>());
+            var customSplash = newVfx.EnsureComponent<CustomSplash>();
+            customSplash.surfMaskCurve = vfxSplash.surfMaskCurve;
+            customSplash.surfScaleX = vfxSplash.surfScaleX;
+            customSplash.surfScaleY = vfxSplash.surfScaleY;
+            customSplash.surfScaleZ = vfxSplash.surfScaleZ;
             newVfx.SetActive(true);
         }
     }

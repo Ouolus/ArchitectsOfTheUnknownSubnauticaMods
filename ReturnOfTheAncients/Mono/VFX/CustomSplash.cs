@@ -14,7 +14,7 @@ namespace RotA.Mono.VFX
 		private Vector3 newScale;
 		public Vector3 startScale;
 
-		public float duration = 3f;
+		public float duration = 5f;
 		public AnimationCurve surfScaleX;
 		public AnimationCurve surfScaleY;
 		public AnimationCurve surfScaleZ;
