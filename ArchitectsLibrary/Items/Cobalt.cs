@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Items
     class Cobalt : ReskinSpawnable
     {
         Atlas.Sprite sprite;
-        protected override string ReferenceClassId => "7815b1b7-2830-418b-9b5d-19949b0ae9ec";
+        protected override string ReferenceClassId => "3c5bd4db-953d-4d23-92be-f5a3b76b2e25";
 
         public Cobalt() : base("Cobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
@@ -19,8 +19,8 @@ namespace ArchitectsLibrary.Items
         {
             prefab.EnsureComponent<ResourceTracker>().overrideTechType = TechType;
             var renderer = prefab.GetComponentInChildren<Renderer>();
-            renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Diffuse"));
-            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Spec"));
+            renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Diffuse"));
+            renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Spec"));
             renderer.material.SetFloat("_SpecInt", 1.5f);
             renderer.material.SetFloat("_Fresnel", 0.26f);
             renderer.material.SetFloat("_Shininess", 6f);

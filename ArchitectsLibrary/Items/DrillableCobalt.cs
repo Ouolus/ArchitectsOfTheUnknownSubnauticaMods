@@ -8,7 +8,7 @@
     
     class DrillableCobalt : ReskinSpawnable
     {
-        protected override string ReferenceClassId => "9c8f56e6-3380-42e4-a758-e8d733b5ddec";
+        protected override string ReferenceClassId => "a05fe1c9-ae0d-43db-a12c-865992808cb2";
 
         public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
@@ -24,8 +24,8 @@
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             foreach(Renderer renderer in renderers)
             {
-                renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Diffuse"));
-                renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltOre_Spec"));
+                renderer.material.SetTexture("_MainTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Diffuse"));
+                renderer.material.SetTexture("_SpecTex", Main.assetBundle.LoadAsset<Texture2D>("CobaltGold_Spec"));
                 renderer.material.SetFloat("_SpecInt", 1.5f);
                 renderer.material.SetFloat("_Fresnel", 0.26f);
                 renderer.material.SetFloat("_Shininess", 6f);
