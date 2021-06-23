@@ -39,7 +39,7 @@ namespace RotA.Mono
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
-            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 500f));
+            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 150f));
         }
 
         private void StartFadingOut()
@@ -117,8 +117,8 @@ namespace RotA.Mono
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 3f;
-            trail.maxSegmentOffset = 500f;
+            trail.segmentSnapSpeed = 0.075f / 4.5f;
+            trail.maxSegmentOffset = 700f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
             trail.pitchMultiplier = decreasing;
