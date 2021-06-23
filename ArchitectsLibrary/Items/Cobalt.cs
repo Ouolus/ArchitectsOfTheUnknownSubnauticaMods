@@ -24,7 +24,7 @@ namespace ArchitectsLibrary.Items
             renderer.material.SetFloat("_SpecInt", 3f);
             renderer.material.SetFloat("_Fresnel", 0.26f);
             renderer.material.SetFloat("_Shininess", 6f);
-            renderer.material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
+            renderer.material.SetColor("_SpecColor", new Color(2f, 1f, 1f));
         }
 
         protected override Atlas.Sprite GetItemSprite()
