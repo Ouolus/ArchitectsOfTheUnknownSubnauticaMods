@@ -28,6 +28,8 @@ namespace RotA.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(SpawnPrefab(Mod.blackHole.ClassID, new Vector3(centerLocalX, floorLocalY + 4.3f, 0f)));
 
+            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(centerLocalX, floorLocalY + 0.1f, 19f), new Vector3(0f, 37f, 0f)));
+
             //Outside
             yield return StartCoroutine(SpawnPrefabGlobally(bone_curly, new Vector3(-891.40f, -197.51f, -597.30f), Vector3.up, false));
             yield return StartCoroutine(SpawnPrefabGlobally(bone_generic1, new Vector3(-861.62f, -193.75f, -575.27f), new Vector3(6f, 0f, 9f), Vector3.one));
@@ -38,8 +40,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabGlobally(bone_reaperMandible, new Vector3(-809.74f, -190f, -587.91f), new Vector3(351.43f, 68.57f, 0f), Vector3.one));
             yield return StartCoroutine(SpawnPrefabGlobally(bone_reaperFullRibcage_normal, new Vector3(-874.98f, -193.72f, -591.03f), new Vector3(4.39f, 0.69f, 17.87f), Vector3.one));
             yield return StartCoroutine(SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one));
-
-            yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(centerLocalX, floorLocalY + 0.1f, 19f), new Vector3(0f, 37f, 0f)));
         }
 
         protected override float MainTerminalZOffset => 12f;
