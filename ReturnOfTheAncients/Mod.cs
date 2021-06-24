@@ -265,7 +265,7 @@ namespace RotA
             AchievementServices.RegisterAchievement("VisitVoidBase", "Structure over the Abyss", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Encountered the alien structure in the crater edge.", true);
             AchievementServices.RegisterAchievement("TouchBlackHole", "Do Not Touch", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Really...?", true);
             AchievementServices.RegisterAchievement("WarpFar", "Teleportation Master", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "Warp 2000 meters.", "Warped 2000 meters.", true, 2000);
-            AchievementServices.RegisterAchievement("DevSecretAchievement", "The Architects", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Found the Hallway of the Architects.", true);
+            AchievementServices.RegisterAchievement("DevSecretAchievement", "Unknown Architects", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Found the Hallway of the Architects.", true);
             #endregion
 
             #region Modules
