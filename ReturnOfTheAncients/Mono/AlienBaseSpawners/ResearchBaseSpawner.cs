@@ -8,6 +8,8 @@ namespace RotA.Mono.AlienBaseSpawners
     {
         protected override string MainTerminalClassId => Mod.guardianTerminal.ClassID;
 
+        protected override string TabletClassId => null;
+
         public override IEnumerator ConstructBase()
         {
             //Inside
