@@ -23,8 +23,9 @@ namespace RotA.Prefabs.AlienBase
         private bool overrideColor;
         private Color fxColor;
         private bool disableInteraction;
+        private string achievement;
 
-        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToAnalyze = TechType.None, TechType[] techToUnlock = null, float delay = 5f, string subtitles = null, bool hideSymbol = false, bool overrideColor = default, Color fxColor = default, bool disableInteraction = false)
+        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToAnalyze = TechType.None, TechType[] techToUnlock = null, float delay = 5f, string subtitles = null, bool hideSymbol = false, bool overrideColor = default, Color fxColor = default, bool disableInteraction = false, string achievement = default)
             : base(classId, "Data terminal", ".")
         {
             this.encyKey = encyKey;
@@ -38,6 +39,7 @@ namespace RotA.Prefabs.AlienBase
             this.overrideColor = overrideColor;
             this.fxColor = fxColor;
             this.disableInteraction = disableInteraction;
+            this.achievement = achievement;
             if (!string.IsNullOrEmpty(subtitles))
             {
                 subtitlesKey = classId + "Subtitles";
@@ -103,6 +105,10 @@ namespace RotA.Prefabs.AlienBase
             {
                 obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
             }
+            if (!string.IsNullOrEmpty(achievement))
+            {
+                obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
+            }
             EditFX(obj);
             return obj;
         }
@@ -154,6 +160,10 @@ namespace RotA.Prefabs.AlienBase
             if(techToAnalyze != TechType.None)
             {
                 obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
+            }
+            if (!string.IsNullOrEmpty(achievement))
+            {
+                obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
             }
             EditFX(obj);
             gameObject.Set(obj);
