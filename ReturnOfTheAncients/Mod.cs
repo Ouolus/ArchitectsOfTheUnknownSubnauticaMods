@@ -89,6 +89,7 @@ namespace RotA
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
+        public static DataTerminalPrefab redTabletHolder;
 
         public static OmegaCubePedestal buildableOmegaCubePedestal;
 
@@ -549,6 +550,8 @@ namespace RotA
             precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
             precursorMasterTechTerminal.Patch();
 
+            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: false, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
+            redTabletHolder.Patch();
             #endregion
 
             #region Teleporters
