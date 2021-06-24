@@ -19,8 +19,12 @@ namespace RotA.Prefabs.AlienBase
         public const string greenTerminalCID = "625d01c2-40b7-4c87-a1cc-493ad6101c34";
         public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
         public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
+        private bool hideSymbol;
+        private bool overrideColor;
+        private Color fxColor;
+        private bool disableInteraction;
 
-        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToAnalyze = TechType.None, TechType[] techToUnlock = null, float delay = 5f, string subtitles = null)
+        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToAnalyze = TechType.None, TechType[] techToUnlock = null, float delay = 5f, string subtitles = null, bool hideSymbol = false, bool overrideColor = default, Color fxColor = default, bool disableInteraction = false)
             : base(classId, "Data terminal", ".")
         {
             this.encyKey = encyKey;
@@ -30,6 +34,10 @@ namespace RotA.Prefabs.AlienBase
             this.techToUnlock = techToUnlock;
             this.techToAnalyze = techToAnalyze;
             this.delay = delay;
+            this.hideSymbol = hideSymbol;
+            this.overrideColor = overrideColor;
+            this.fxColor = fxColor;
+            this.disableInteraction = disableInteraction;
             if (!string.IsNullOrEmpty(subtitles))
             {
                 subtitlesKey = classId + "Subtitles";
@@ -64,6 +72,10 @@ namespace RotA.Prefabs.AlienBase
             {
                 storyHandTarget.goal = null;
             }
+            if (disableInteraction)
+            {
+                Object.DestroyImmediate(storyHandTarget);
+            }
             obj.SetActive(false);
             if (pingClassId != null && pingClassId.Length > 0)
             {
@@ -91,6 +103,7 @@ namespace RotA.Prefabs.AlienBase
             {
                 obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
             }
+            EditFX(obj);
             return obj;
         }
 #elif SN1_exp
@@ -108,7 +121,11 @@ namespace RotA.Prefabs.AlienBase
             }
             else
             {
-                storyHandTarget.goal = null;
+            storyHandTarget.goal = null;
+            }
+                        if (disableInteraction)
+            {
+                Object.DestroyImmediate(storyHandTarget);
             }
             obj.SetActive(false);
             if (pingClassId != null && pingClassId.Length > 0)
@@ -138,8 +155,26 @@ namespace RotA.Prefabs.AlienBase
             {
                 obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
             }
+            EditFX(obj);
             gameObject.Set(obj);
         }
 #endif
+
+        private void EditFX(GameObject prefab)
+        {
+            GameObject fx = prefab.transform.GetChild(2).gameObject;
+            if (hideSymbol)
+            {
+                fx.transform.GetChild(3).gameObject.SetActive(false);
+                fx.transform.GetChild(5).gameObject.SetActive(false);
+            }
+            if (overrideColor)
+            {
+                foreach (Renderer renderer in fx.GetComponentsInChildren<Renderer>())
+                {
+                    renderer.material.SetColor("_Color", fxColor);
+                }
+            }
+        }
     }
 }
