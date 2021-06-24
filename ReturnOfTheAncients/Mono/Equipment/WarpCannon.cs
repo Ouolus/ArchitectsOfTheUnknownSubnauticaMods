@@ -515,6 +515,7 @@ namespace RotA.Mono.Equipment
                 Vector3 oldPlayerPosition = Player.main.transform.position;
 
                 warpingBackToBase = true;
+                Player.main.cinematicModeActive = true;
 
                 yield return new WaitForSeconds(1f);
 
@@ -545,6 +546,7 @@ namespace RotA.Mono.Equipment
                 teleportScreenController.StopTeleport();
                 Player.main.teleportingLoopSound.Stop();
                 Player.main.SetPrecursorOutOfWater(false);
+                Player.main.cinematicModeActive = false;
                 warpingBackToBase = false;
             }
             else
