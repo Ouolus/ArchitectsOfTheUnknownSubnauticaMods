@@ -164,6 +164,7 @@ namespace ArchitectsLibrary.API
             var rb = obj.EnsureComponent<Rigidbody>();
             rb.mass = Mass;
             rb.isKinematic = true;
+            rb.useGravity = false;
 
             var wf = obj.EnsureComponent<WorldForces>();
             wf.useRigidbody = rb;
