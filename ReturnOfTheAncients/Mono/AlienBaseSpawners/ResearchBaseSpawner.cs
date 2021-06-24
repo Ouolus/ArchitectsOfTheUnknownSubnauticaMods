@@ -8,8 +8,6 @@ namespace RotA.Mono.AlienBaseSpawners
     {
         protected override string MainTerminalClassId => Mod.guardianTerminal.ClassID;
 
-        protected override string TabletClassId => supplies_redTablet;
-
         public override IEnumerator ConstructBase()
         {
             //Inside
@@ -29,6 +27,9 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.blackHole.ClassID, new Vector3(centerLocalX, floorLocalY + 4.3f, 0f)));
 
             yield return StartCoroutine(SpawnPrefab(CraftData.GetClassIdForTechType(AUHandler.PrecursorAlloyIngotTechType), new Vector3(centerLocalX, floorLocalY + 0.1f, 19f), new Vector3(0f, 37f, 0f)));
+
+            yield return StartCoroutine(SpawnPrefab(Mod.redTabletHolder.ClassID, new Vector3(centerLocalX, floorLocalY, 17)));
+            yield return StartCoroutine(SpawnPrefab(supplies_redTablet, new Vector3(centerLocalX, floorLocalY + 2.5f, 17.5f), new Vector3(90f, 0f, 0f), Vector3.one * 2f));
 
             //Outside
             yield return StartCoroutine(SpawnPrefabGlobally(bone_curly, new Vector3(-891.40f, -197.51f, -597.30f), Vector3.up, false));
