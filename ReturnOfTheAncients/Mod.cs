@@ -90,6 +90,7 @@ namespace RotA
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
+        public static DataTerminalPrefab devSecretTerminal;
 
         public static OmegaCubePedestal buildableOmegaCubePedestal;
 
@@ -264,6 +265,7 @@ namespace RotA
             AchievementServices.RegisterAchievement("VisitVoidBase", "Structure over the Abyss", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Encountered the alien structure in the crater edge.", true);
             AchievementServices.RegisterAchievement("TouchBlackHole", "Do Not Touch", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Really...?", true);
             AchievementServices.RegisterAchievement("WarpFar", "Teleportation Master", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "Warp 2000 meters.", "Warped 2000 meters.", true, 2000);
+            AchievementServices.RegisterAchievement("DevSecretAchievement", "The Architects", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Found the Hallway of the Architects.", true);
             #endregion
 
             #region Modules
@@ -552,6 +554,9 @@ namespace RotA
 
             redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
             redTabletHolder.Patch();
+
+            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 1f), achievement: "DevSecretAchievement");
+            devSecretTerminal.Patch();
             #endregion
 
             #region Teleporters
