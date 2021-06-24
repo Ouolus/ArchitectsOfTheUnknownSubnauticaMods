@@ -1,8 +1,7 @@
 ﻿using HarmonyLib;
-using UnityEngine;
-using RotA.Mono;
 using RotA.Mono.AlienTech;
 using RotA.Mono.MainMenu;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace RotA.Patches
@@ -12,7 +11,7 @@ namespace RotA.Patches
     {
         static Renderer _subTitleRenderer;
         internal static Renderer SubTitleRenderer => _subTitleRenderer;
-        
+
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
@@ -35,7 +34,7 @@ namespace RotA.Patches
 
             __instance.music = newMusic;
         }
-        
+
         [HarmonyPatch(typeof(uGUI_MainMenu))]
         [HarmonyPatch(nameof(uGUI_MainMenu.Awake))]
         [HarmonyPostfix]
@@ -85,7 +84,7 @@ namespace RotA.Patches
         {
             TryOverrideLoadingScreen(__instance);
         }
-        
+
         static void TryOverrideLoadingScreen(uGUI_SceneLoading sceneLoading)
         {
             if (Mod.config.OverrideLoadingScreen == false)

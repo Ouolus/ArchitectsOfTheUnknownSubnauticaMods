@@ -1,7 +1,7 @@
 ﻿using ArchitectsLibrary.API;
 using SMLHelper.V2.Crafting;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RotA.Prefabs
 {
@@ -12,7 +12,7 @@ namespace RotA.Prefabs
         }
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-        
+
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
@@ -43,7 +43,7 @@ namespace RotA.Prefabs
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new (Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
+            return new(Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
         }
 
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";

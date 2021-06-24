@@ -1,19 +1,16 @@
 ﻿using ArchitectsLibrary.API;
-using ArchitectsLibrary.Interfaces;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Interfaces;
 using RotA.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
 using UnityEngine;
-using System.Collections;
-using UWE;
 
 namespace RotA.Prefabs.Modules
 {
     public class ExosuitDashModule : VehicleUpgrade, IVehicleOnEquip
     {
-        public ExosuitDashModule() 
+        public ExosuitDashModule()
             : base("ExosuitDashModule", "Prawn Suit Ion Dash Module",
         "Allows the pilot to dash quickly in any direction, utilizing the Prawn Suit's built-in thrusters. Doesn't stack.")
         {

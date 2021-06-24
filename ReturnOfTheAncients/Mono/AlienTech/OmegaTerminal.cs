@@ -15,12 +15,12 @@ namespace RotA.Mono.AlienTech
                 {
                     SuccessInteraction();
                 }
-                else 
+                else
                 {
                     SuccessInteractionAgain();
                 }
             }
-            else 
+            else
             {
                 if (StoryGoalManager.main.OnGoalComplete(fabricator.interactFailGoal.key))
                 {

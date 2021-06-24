@@ -1,14 +1,14 @@
+using ECCLibrary;
+using HarmonyLib;
+using RotA.Mono;
+using Story;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using ECCLibrary;
-using HarmonyLib;
-using Story;
 using UnityEngine;
 using UWE;
-using RotA.Mono;
 using Logger = QModManager.Utility.Logger;
 
 namespace RotA.Patches
@@ -37,7 +37,7 @@ namespace RotA.Patches
                     break;
                 }
             }
-            
+
             if (found is false)
                 Logger.Log(Logger.Level.Error, "Cannot find StoryGoalCustomEventHandler.NotifyGoalComplete target location.", showOnScreen: true);
             else
@@ -70,7 +70,7 @@ namespace RotA.Patches
 
             GameObject sunbeamGargController = new GameObject("SunbeamGargController");
             sunbeamGargController.AddComponent<SunbeamGargController>();
-                    
+
         }
     }
 }

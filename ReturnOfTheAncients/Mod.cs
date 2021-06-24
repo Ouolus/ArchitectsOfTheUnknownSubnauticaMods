@@ -1,28 +1,28 @@
-﻿using QModManager.API.ModLoading;
-using ECCLibrary;
-using UnityEngine;
-using System.Reflection;
-using RotA.Prefabs;
-using RotA.Prefabs.Buildable;
-using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Crafting;
-using HarmonyLib;
-using System;
-using RotA.Patches;
-using RotA.Prefabs.AlienBase;
-using RotA.Mono.AlienBaseSpawners;
-using RotA.Prefabs.Modules;
-using System.Collections;
-using System.Collections.Generic;
-using UWE;
-using RotA.Prefabs.Equipment;
-using ArchitectsLibrary.API;
+﻿using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
+using ECCLibrary;
+using HarmonyLib;
+using QModManager.API.ModLoading;
+using RotA.Mono.AlienBaseSpawners;
+using RotA.Patches;
+using RotA.Prefabs;
+using RotA.Prefabs.AlienBase;
 using RotA.Prefabs.AlienBase.Teleporter;
+using RotA.Prefabs.Buildable;
 using RotA.Prefabs.Creatures;
+using RotA.Prefabs.Equipment;
 using RotA.Prefabs.Initializers;
+using RotA.Prefabs.Modules;
 using RotA.Prefabs.Placeable;
 using RotA.Prefabs.Signals;
+using SMLHelper.V2.Crafting;
+using SMLHelper.V2.Handlers;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
+using UWE;
 
 namespace RotA
 {
@@ -212,7 +212,7 @@ namespace RotA
 
             gargPoster = new GargPoster();
             gargPoster.Patch();
-            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType});
+            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
             buildableOmegaCubePedestal = new OmegaCubePedestal();
             buildableOmegaCubePedestal.Patch();
 
@@ -363,7 +363,7 @@ namespace RotA
             PatchEncy(ency_supplyCacheTerminal, modEncyPath_terminalInfo, "Alien Supply Cache", "This large structure appears to be designed to hold valuabe resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- The arch-like structure situated in the back of the cache, if not decorational, was likely used for quick transportation of supplies.", "Popup_Green", "SupplyCache_Ency");
 
             PatchEncy(ency_researchBaseTerminal, modEncyPath_terminalInfo, "Destructive Technology Research Base", "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.", "Popup_green", "ResearchBase_Ency");
-            
+
             PatchEncy(ency_kooshBaseTerminal, modEncyPath_terminalInfo, "Data Storage Facility", " ???", "Popup_green", "ResearchBase_Ency");
 
             PatchEncy(ency_ruinedGuardian, modEncyPath_analysis, "Mysterious Wreckage", "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.", "Guardian_Popup", "Guardian_Ency");
@@ -531,13 +531,13 @@ namespace RotA
             kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", ency_kooshBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             kooshBaseTerminal.Patch();
 
-            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: new[] {superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, electricalDefenseMk2.TechType}, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
+            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, electricalDefenseMk2.TechType }, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
 
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             voidBaseTerminal.Patch();
 
-            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID});
+            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID });
             cachePingsTerminal.Patch();
 
             spamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
@@ -548,7 +548,7 @@ namespace RotA
 
             precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
             precursorMasterTechTerminal.Patch();
-            
+
             #endregion
 
             #region Teleporters
@@ -627,7 +627,7 @@ namespace RotA
                 harmony.Patch(pingOriginal, pingPrefix);
             }
         }
-        
+
         public static void ApplyAlienUpgradeMaterials(Renderer renderer)
         {
             renderer.material.SetTexture("_MainTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));

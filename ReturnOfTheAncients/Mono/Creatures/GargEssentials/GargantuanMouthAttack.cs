@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ECCLibrary;
+﻿using ECCLibrary;
 using ECCLibrary.Internal;
 using RotA.Prefabs.Creatures;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RotA.Mono.Creatures.GargEssentials

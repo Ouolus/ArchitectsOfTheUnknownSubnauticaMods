@@ -1,6 +1,6 @@
 ﻿using RotA.Mono.Creatures.GargEssentials;
-using UnityEngine;
 using Story;
+using UnityEngine;
 
 namespace RotA.Mono
 {
@@ -26,7 +26,7 @@ namespace RotA.Mono
 
         void CheckDistance()
         {
-            if(Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
+            if (Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
             {
                 if (!GargantuanBehaviour.PlayerInPrecursorBase())
                 {

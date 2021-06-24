@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ArchitectsLibrary.API;
+﻿using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using SMLHelper.V2.Crafting;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RotA.Prefabs.Buildable

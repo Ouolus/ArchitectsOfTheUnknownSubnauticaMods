@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using ECCLibrary;
+﻿using ECCLibrary;
+using System.Collections;
 using UnityEngine;
 
 namespace RotA.Mono.Creatures.GargEssentials

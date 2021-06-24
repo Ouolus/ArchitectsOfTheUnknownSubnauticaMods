@@ -1,8 +1,6 @@
 ﻿using ECCLibrary;
-using ECCLibrary.Internal;
 using HarmonyLib;
 using UnityEngine;
-using System.Collections;
 
 namespace RotA.Patches
 {

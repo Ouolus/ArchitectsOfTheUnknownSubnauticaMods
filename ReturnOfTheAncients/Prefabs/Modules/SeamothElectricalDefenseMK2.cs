@@ -3,7 +3,6 @@ using ArchitectsLibrary.Interfaces;
 using RotA.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
 using UnityEngine;
 
 namespace RotA.Prefabs.Modules
@@ -22,19 +21,19 @@ namespace RotA.Prefabs.Modules
         }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.SeamothModule;
-        
+
         public override QuickSlotType QuickSlotType => QuickSlotType.SelectableChargeable;
-        
+
         public override TechType ModelTemplate => TechType.SeamothElectricalDefense;
-        
+
         public override float? MaxCharge => 30f;
-        
+
         public override float? EnergyCost => 10f;
 
         public override float CraftingTime => 7f;
 
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
-        
+
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
 
         public override bool UnlockedAtStart { get; } = false;
@@ -78,7 +77,7 @@ namespace RotA.Prefabs.Modules
         }
 
         #endregion
-        
+
         protected override TechData GetBlueprintRecipe()
         {
             return new()

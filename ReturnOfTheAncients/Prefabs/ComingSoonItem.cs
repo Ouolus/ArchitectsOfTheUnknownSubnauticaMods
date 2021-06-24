@@ -1,7 +1,7 @@
-﻿using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Assets;
-using UnityEngine;
+﻿using SMLHelper.V2.Assets;
+using SMLHelper.V2.Crafting;
 using System.Collections;
+using UnityEngine;
 
 namespace RotA.Prefabs
 {

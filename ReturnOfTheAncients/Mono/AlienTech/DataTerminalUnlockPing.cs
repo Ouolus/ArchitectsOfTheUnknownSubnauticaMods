@@ -11,7 +11,8 @@ namespace RotA.Mono.AlienTech
 
         public void OnStoryHandTarget()
         {
-            foreach (SignalPingDelayedInitialize spawnedPing in SignalPingDelayedInitialize.spawnedPings) {
+            foreach (SignalPingDelayedInitialize spawnedPing in SignalPingDelayedInitialize.spawnedPings)
+            {
                 {
                     if (spawnedPing == null)
                     {

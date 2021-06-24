@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using RotA.Mono.AlienTech;
+﻿using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
-using UWE;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -51,7 +49,7 @@ namespace RotA.Prefabs.AlienBase
         GameObject FixVFX(GameObject original)
         {
             GameObject newVfx = GameObject.Instantiate(original);
-            if(newVfx != null)
+            if (newVfx != null)
             {
                 DisablePS(newVfx);
                 newVfx.transform.GetChild(0).gameObject.SetActive(false);
@@ -73,7 +71,7 @@ namespace RotA.Prefabs.AlienBase
 
         private void MakeParticleSystemsLooping(GameObject obj)
         {
-            foreach(ParticleSystem ps in obj.GetComponentsInChildren<ParticleSystem>())
+            foreach (ParticleSystem ps in obj.GetComponentsInChildren<ParticleSystem>())
             {
                 var main = ps.main;
                 main.loop = true;

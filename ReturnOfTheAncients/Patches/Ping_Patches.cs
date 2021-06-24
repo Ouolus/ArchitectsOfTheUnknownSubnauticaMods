@@ -1,6 +1,4 @@
-﻿using ECCLibrary;
-using HarmonyLib;
-using RotA.Prefabs;
+﻿using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +7,7 @@ namespace RotA.Patches
     [HarmonyPatch]
     public static class Ping_Patches
     {
-        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "Precursor_Symbol05", "RuinedGuardian_Ping"};
+        public static readonly List<string> whitePings = new List<string>() { "Precursor_Symbol01", "Precursor_Symbol04", "Precursor_Symbol05", "RuinedGuardian_Ping" };
         static bool ShouldBeWhite(string textureName)
         {
             if (whitePings.Contains(textureName))

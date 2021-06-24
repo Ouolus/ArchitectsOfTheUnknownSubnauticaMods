@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using ArchitectsLibrary.Utility;
+﻿using ArchitectsLibrary.Utility;
 using System.Collections;
+using UnityEngine;
 
 namespace RotA.Mono.Modules
 {
@@ -39,12 +39,12 @@ namespace RotA.Mono.Modules
 
         void Update()
         {
-            if(Player.main.currentMountedVehicle == exosuit)
+            if (Player.main.currentMountedVehicle == exosuit)
             {
                 if (Input.GetKeyDown(Mod.config.PrawnSuitDashKey))
                 {
                     float thrustPowerToUse = Mathf.Min(exosuit.thrustPower, maxThrustConsumption);
-                    if(thrustPowerToUse >= 0.05f)
+                    if (thrustPowerToUse >= 0.05f)
                     {
                         if (!exosuit.ConsumeEnergy(energyConsumption))
                             return;

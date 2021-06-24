@@ -10,7 +10,7 @@ namespace RotA.Mono.Singletons
         {
             get
             {
-                if(main == null)
+                if (main == null)
                 {
                     main = new GameObject("SmoothWarp").AddComponent<PlayerSmoothWarpSingleton>();
                 }
@@ -41,7 +41,7 @@ namespace RotA.Mono.Singletons
             {
                 float percentDone = Mathf.Clamp01((Time.time - startTime) * speed);
                 Player.main.transform.position = Vector3.Lerp(startPos, endPos, percentDone);
-                if(percentDone >= 1f)
+                if (percentDone >= 1f)
                 {
                     EndSmoothWarp();
                 }

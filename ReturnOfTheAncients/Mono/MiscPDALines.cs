@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.Handlers;
+using Story;
 using UnityEngine;
 using UWE;
-using Story;
-using ArchitectsLibrary.Handlers;
-using ArchitectsLibrary.API;
 
 namespace RotA.Mono
 {
@@ -58,7 +53,7 @@ namespace RotA.Mono
 
         private void AddPickupGoal(TechType itemTechType)
         {
-            GoalManager.main.goals.Add(new Goal() { customGoalName = $"Pickup_{itemTechType.AsString()}", displayed = false, itemType = itemTechType, goalType = GoalType.Custom});
+            GoalManager.main.goals.Add(new Goal() { customGoalName = $"Pickup_{itemTechType.AsString()}", displayed = false, itemType = itemTechType, goalType = GoalType.Custom });
         }
 
         private void AddPickupGoal(string techTypeName)

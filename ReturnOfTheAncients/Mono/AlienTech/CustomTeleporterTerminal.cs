@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Story;
+﻿using Story;
+using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {

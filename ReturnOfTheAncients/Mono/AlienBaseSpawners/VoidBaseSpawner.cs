@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
@@ -19,7 +19,7 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return SpawnPrefab(Mod.voidDoor_white.ClassID, new Vector3(0f, platformY, 62f));
             yield return SpawnPrefab(Mod.voidDoor_blue.ClassID, new Vector3(0f, platformY, 62f));
             yield return SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, platformY, 62f));
-            yield return SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f+ platformY, 62f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1.30f));
+            yield return SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 3f + platformY, 62f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1.30f));
             //yield return SpawnPrefab(light_big_ceiling_animated, new Vector3(0f, 0f, 72f), Vector3.right * 180f, Vector3.one);
             yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 11, 62.5f), Vector3.zero, new Vector3(1f, 0.5f, 1f));
             yield return SpawnPrefab(light_volumetric_1, new Vector3(0f, 21, 62.5f), Vector3.zero, new Vector3(1f, 2f, 1f));

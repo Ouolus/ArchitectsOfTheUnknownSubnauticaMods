@@ -21,7 +21,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary, omegaTeleporter, customItemSettings);
             auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, omegaTeleporter);
         }
-        
+
         public void Patch()
         {
             primaryTeleporter.Patch();

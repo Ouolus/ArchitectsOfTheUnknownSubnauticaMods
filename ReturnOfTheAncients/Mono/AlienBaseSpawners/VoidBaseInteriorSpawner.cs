@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.Handlers;
 using System.Collections;
-using ArchitectsLibrary.Handlers;
+using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {

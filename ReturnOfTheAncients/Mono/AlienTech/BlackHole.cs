@@ -1,6 +1,6 @@
+using ArchitectsLibrary.API;
 using System.Collections;
 using UnityEngine;
-using ArchitectsLibrary.API;
 
 namespace RotA.Mono.AlienTech
 {
@@ -10,7 +10,7 @@ namespace RotA.Mono.AlienTech
         float _clickCooldown;
 
         public static bool solarSystemDestroyed;
-        
+
         public void OnHandHover(GUIHand hand)
         {
             HandReticle.main.SetIcon(HandReticle.IconType.HandDeny);
@@ -21,7 +21,7 @@ namespace RotA.Mono.AlienTech
         {
             if (Time.time < _clickCooldown)
                 return;
-            
+
             if (_attempts > 0)
             {
                 _attempts--;

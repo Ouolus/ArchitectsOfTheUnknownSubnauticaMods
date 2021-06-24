@@ -1,7 +1,4 @@
-﻿using ECCLibrary;
-using HarmonyLib;
-using RotA.Prefabs;
-using System.Collections.Generic;
+﻿using HarmonyLib;
 using UnityEngine;
 
 namespace RotA.Patches

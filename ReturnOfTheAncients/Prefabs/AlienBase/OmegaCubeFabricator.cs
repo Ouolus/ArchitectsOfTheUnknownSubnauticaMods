@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ArchitectsLibrary.Utility;
-using RotA.Mono;
+﻿using ArchitectsLibrary.Utility;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
-using UWE;  
+using UWE;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -84,7 +81,7 @@ namespace RotA.Prefabs.AlienBase
             GameObject prefab = GameObject.Instantiate(originalPrefab);
             prefab.name = "OmegaBeam";
             prefab.SetActive(false);
-            foreach(ParticleSystem ps in originalPrefab.GetComponentsInChildren<ParticleSystem>())
+            foreach (ParticleSystem ps in originalPrefab.GetComponentsInChildren<ParticleSystem>())
             {
                 var main = ps.main;
                 main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);

@@ -1,6 +1,5 @@
 ﻿using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
-using RotA.Prefabs.Modules;
 
 namespace RotA.Mono.Modules
 {
@@ -76,7 +75,7 @@ namespace RotA.Mono.Modules
 
         public bool GetCanZap(DamageInfo damageInfo, bool shouldSuperCharge)
         {
-            if(damageInfo == null)
+            if (damageInfo == null)
             {
                 //Why are we even checking??
                 return false;
@@ -101,7 +100,7 @@ namespace RotA.Mono.Modules
 
         public float GetEnergyUsage(bool superCharge)
         {
-            if(superCharge)
+            if (superCharge)
             {
                 return superchargeEnergyCost;
             }
@@ -115,7 +114,7 @@ namespace RotA.Mono.Modules
             {
                 return false;
             }
-            if(damageInfo.dealer == null)
+            if (damageInfo.dealer == null)
             {
                 return false;
             }

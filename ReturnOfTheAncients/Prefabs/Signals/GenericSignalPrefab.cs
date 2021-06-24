@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using RotA.Mono.AlienTech;
+﻿using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
@@ -43,7 +43,7 @@ namespace RotA.Prefabs.Signals
                 registeredPingTypes.Add(pingType);
                 LanguageHandler.SetLanguageLine(pingTypeName, displayName);
 
-                labelKey = string.Format("{0}_label", new object[] { pingTypeName});
+                labelKey = string.Format("{0}_label", new object[] { pingTypeName });
                 LanguageHandler.SetLanguageLine(labelKey, label);
             };
         }

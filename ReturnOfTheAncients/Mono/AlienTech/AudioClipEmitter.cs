@@ -1,8 +1,5 @@
 ﻿using ECCLibrary;
 using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RotA.Mono.AlienTech
@@ -30,7 +27,7 @@ namespace RotA.Mono.AlienTech
 
         IEnumerator Play()
         {
-            for(; ; )
+            for (; ; )
             {
                 AudioClip nextClip = clipPool.GetRandomClip();
                 audioSource.clip = nextClip;

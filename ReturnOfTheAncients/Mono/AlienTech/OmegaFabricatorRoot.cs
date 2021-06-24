@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ArchitectsLibrary.Utility;
+﻿using ArchitectsLibrary.Utility;
 using Story;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
@@ -188,7 +188,7 @@ namespace RotA.Mono.AlienTech
                 renderer.material.SetColor("_SquaresColor", new(0.5f, 0.5f, 0.5f));
                 renderer.material.SetFloat("_SquaresSpeed", 4f);
             }
-            foreach(Collider col in cube.GetComponentsInChildren<Collider>())
+            foreach (Collider col in cube.GetComponentsInChildren<Collider>())
             {
                 col.enabled = false;
             }

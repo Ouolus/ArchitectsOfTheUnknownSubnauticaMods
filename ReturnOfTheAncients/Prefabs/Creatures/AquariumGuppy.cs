@@ -27,7 +27,7 @@ namespace RotA.Prefabs.Creatures
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
-            
+
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)

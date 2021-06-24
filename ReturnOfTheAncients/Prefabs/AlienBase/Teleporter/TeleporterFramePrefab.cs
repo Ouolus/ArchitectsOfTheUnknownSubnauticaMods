@@ -1,8 +1,8 @@
 ﻿using ECCLibrary;
+using RotA.Mono;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using RotA.Mono;
 
 namespace RotA.Prefabs.AlienBase.Teleporter
 {

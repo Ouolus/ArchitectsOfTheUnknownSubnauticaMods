@@ -14,7 +14,7 @@ namespace RotA.Mono
 
         void CheckDistance()
         {
-            if(Vector3.Distance(MainCameraControl.main.transform.position, transform.position) > maxDistance)
+            if (Vector3.Distance(MainCameraControl.main.transform.position, transform.position) > maxDistance)
             {
                 Destroy(gameObject);
                 return;
@@ -22,7 +22,7 @@ namespace RotA.Mono
             if (destroyWhileInAlienBase)
             {
                 string biomeString = Player.main.GetBiomeString();
-                if(biomeString.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biomeString.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
+                if (biomeString.StartsWith("precursor", System.StringComparison.OrdinalIgnoreCase) || biomeString.StartsWith("prison", System.StringComparison.OrdinalIgnoreCase))
                 {
                     Destroy(gameObject);
                 }

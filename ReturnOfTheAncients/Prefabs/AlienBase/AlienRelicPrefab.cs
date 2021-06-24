@@ -1,9 +1,8 @@
-﻿using SMLHelper.V2.Assets;
+﻿using ArchitectsLibrary.Utility;
+using ECCLibrary;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using System.Collections;
-using ECCLibrary;
-using ArchitectsLibrary.Utility;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -74,7 +73,7 @@ namespace RotA.Prefabs.AlienBase
 
         void ValidateSoundAsset()
         {
-            if(relicSoundAsset == null)
+            if (relicSoundAsset == null)
             {
                 relicSoundAsset = ScriptableObject.CreateInstance<FMODAsset>();
                 relicSoundAsset.id = "{398345e3-b59f-4eb3-8fd0-f4e87f282968}";

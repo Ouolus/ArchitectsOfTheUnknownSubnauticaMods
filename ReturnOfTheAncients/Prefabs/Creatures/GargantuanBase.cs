@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ECCLibrary;
+﻿using ECCLibrary;
 using RotA.Mono.Creatures.CreatureActions;
 using RotA.Mono.Creatures.GargEssentials;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RotA.Prefabs.Creatures
@@ -119,7 +119,7 @@ namespace RotA.Prefabs.Creatures
             gargBehaviour.attachBoneName = AttachBoneName;
             gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
             gargBehaviour.grabFishMode = GrabFishMode;
-            
+
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
             mouthAttack.mouth = mouth;

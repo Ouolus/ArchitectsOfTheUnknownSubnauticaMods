@@ -1,11 +1,10 @@
-﻿using RotA.Mono.Modules;
+﻿using ECCLibrary;
+using RotA.Mono.Modules;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
-using SMLHelper.V2.Assets;
-using UnityEngine;
 using System.Collections;
-using ECCLibrary;
+using UnityEngine;
 
 namespace RotA.Prefabs.Modules
 {

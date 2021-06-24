@@ -1,10 +1,8 @@
-﻿using SMLHelper.V2.Assets;
-using RotA.Mono;
-using UnityEngine;
+﻿using RotA.Mono.AlienTech;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
+using UnityEngine;
 using UWE;
-using System.Collections;
-using RotA.Mono.AlienTech;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -91,7 +89,7 @@ namespace RotA.Prefabs.AlienBase
             {
                 obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = techToUnlock;
             }
-            if(techToAnalyze != TechType.None)
+            if (techToAnalyze != TechType.None)
             {
                 obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
             }

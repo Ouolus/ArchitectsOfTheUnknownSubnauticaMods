@@ -1,9 +1,5 @@
-﻿using ECCLibrary;
-using ECCLibrary.Internal;
-using HarmonyLib;
-using RotA.Prefabs;
+﻿using HarmonyLib;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UWE;
 
@@ -16,7 +12,7 @@ namespace RotA.Patches
         [HarmonyPrefix]
         public static void TryLaunchDecoy_Prefix(CyclopsDecoyManager __instance)
         {
-            if(__instance.decoyCount > 0)
+            if (__instance.decoyCount > 0)
             {
                 TechType firstDecoyTechType = TechType.None;
                 for (int i = __instance.decoyLoadingTube.decoyManager.decoyMax; i >= 1; i--)

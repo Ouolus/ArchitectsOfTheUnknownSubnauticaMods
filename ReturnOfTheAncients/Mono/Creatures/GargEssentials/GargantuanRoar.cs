@@ -1,6 +1,5 @@
 ﻿using ECCLibrary;
 using UnityEngine;
-using System.Collections;
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
@@ -44,7 +43,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 Destroy(this);
                 return;
             }
-            if(Time.time > timeRoarAgain)
+            if (Time.time > timeRoarAgain)
             {
                 PlayOnce(out float roarLength, RoarMode.Automatic);
             }

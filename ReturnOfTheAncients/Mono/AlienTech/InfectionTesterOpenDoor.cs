@@ -1,5 +1,5 @@
-﻿using System;
-using Story;
+﻿using Story;
+using System;
 using UnityEngine;
 
 namespace RotA.Mono.AlienTech

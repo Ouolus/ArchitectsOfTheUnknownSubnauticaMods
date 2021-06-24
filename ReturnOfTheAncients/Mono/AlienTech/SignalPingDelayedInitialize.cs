@@ -21,10 +21,10 @@ namespace RotA.Mono.AlienTech
         void Refresh()
         {
             var signal = GetComponent<SignalPing>();
-                signal.pos = position;
-                transform.position = position;
-                signal.descriptionKey = label;
-                signal.UpdateLabel();
+            signal.pos = position;
+            transform.position = position;
+            signal.descriptionKey = label;
+            signal.UpdateLabel();
             PingInstance ping = GetComponent<PingInstance>();
             if (ping)
             {

@@ -26,7 +26,7 @@ namespace RotA.Mono
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(spinefishShoalClassId);
             yield return request;
-            if(request.TryGetPrefab(out GameObject prefab))
+            if (request.TryGetPrefab(out GameObject prefab))
             {
                 shoalPrefab_Spinefish = GameObject.Instantiate(prefab);
                 shoalPrefab_Spinefish.SetActive(false);
@@ -97,7 +97,7 @@ namespace RotA.Mono
         }
         GameObject GetPrefab()
         {
-            if(Random.value > 0.1f)
+            if (Random.value > 0.1f)
             {
                 return shoalPrefab_Spinefish;
             }

@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using RotA.Mono.Singletons;
-using Story;
+﻿using RotA.Mono.Singletons;
 using RotA.Mono.VFX;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace RotA.Mono.Equipment
 {
@@ -70,7 +69,7 @@ namespace RotA.Mono.Equipment
             }
 
             if (!(Time.time > timeCanUseAgain)) return false;
-            
+
             return fireMode switch
             {
                 FireMode.Manipulate => FireManipulateMode(),
@@ -120,7 +119,7 @@ namespace RotA.Mono.Equipment
             }
             if (randomCreature == null)
             {
-                if(Random.value <= 0.5f)
+                if (Random.value <= 0.5f)
                 {
                     randomCreature = new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 2 };
                 }
@@ -152,9 +151,9 @@ namespace RotA.Mono.Equipment
             float random = Random.value;
             return random switch
             {
-                < 0.33f => new WarperData.WarpInCreature() {techType = TechType.Skyray, minNum = 2, maxNum = 3},
-                < 0.67f => new WarperData.WarpInCreature() {techType = TechType.CaveCrawler, minNum = 1, maxNum = 2},
-                _ => new WarperData.WarpInCreature() {techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1}
+                < 0.33f => new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 },
+                < 0.67f => new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 },
+                _ => new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 }
             };
         }
 
@@ -440,7 +439,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         void Update()
         {
-            if(fireMode == FireMode.Manipulate)
+            if (fireMode == FireMode.Manipulate)
             {
                 if (mySecondaryNode != null) //if both nodes exist, spin super fast
                 {
@@ -604,21 +603,21 @@ namespace RotA.Mono.Equipment
                 FireMode.Warp => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                     Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool,
                     ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)),
-                
+
                 FireMode.Manipulate when myPrimaryNode == null =>
                     ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                         Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool,
                         GameInput.Button.RightHand),
-                
+
                 FireMode.Manipulate when mySecondaryNode == null =>
                     ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                         Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool,
                         GameInput.Button.RightHand),
-                
+
                 FireMode.CreatureSpawn => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                     Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool,
                     GameInput.Button.RightHand),
-                
+
                 _ => base.GetCustomUseText()
             };
         }

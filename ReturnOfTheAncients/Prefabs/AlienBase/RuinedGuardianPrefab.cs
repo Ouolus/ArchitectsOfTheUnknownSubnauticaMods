@@ -48,9 +48,9 @@ namespace RotA.Prefabs.AlienBase
                 CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform));
                 prefab.transform.localScale = Vector3.one * 0.5f;
             }
-            
+
             yield return null;
-            
+
             gameObject.Set(prefab);
         }
 
@@ -58,7 +58,7 @@ namespace RotA.Prefabs.AlienBase
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(volumetricLight);
             yield return request;
-            
+
             if (request.TryGetPrefab(out GameObject volumetricPrefab))
             {
                 GameObject child = GameObject.Instantiate(volumetricPrefab, transform);

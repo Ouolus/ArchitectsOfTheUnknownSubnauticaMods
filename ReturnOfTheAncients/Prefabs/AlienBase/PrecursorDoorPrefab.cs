@@ -1,7 +1,5 @@
-﻿using System.Collections;
+﻿using ECCLibrary;
 using SMLHelper.V2.Assets;
-using ECCLibrary;
-using RotA.Mono;
 using UnityEngine;
 using UWE;
 
@@ -37,7 +35,7 @@ namespace RotA.Prefabs.AlienBase
             slotType = EntitySlot.Type.Large,
             techType = TechType
         };
-        
+
 #if SN1
         public override GameObject GetGameObject()
         {
@@ -68,7 +66,7 @@ namespace RotA.Prefabs.AlienBase
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
-                    if(firstChild.name == "pedestal")
+                    if (firstChild.name == "pedestal")
                     {
                         GameObject.DestroyImmediate(firstChild.gameObject);
                     }

@@ -1,10 +1,8 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.API;
 using ECCLibrary;
-using System.Collections.Generic;
-using System.Collections;
-using System;
 using Story;
-using ArchitectsLibrary.API;
+using System.Collections;
+using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {
@@ -48,7 +46,7 @@ namespace RotA.Mono.AlienTech
 
         private IEnumerator SetLightsActive(bool active)
         {
-            foreach(Transform child in lightsParent)
+            foreach (Transform child in lightsParent)
             {
                 child.gameObject.SetActive(active);
                 yield return new WaitForSeconds(0.2f);
@@ -59,7 +57,7 @@ namespace RotA.Mono.AlienTech
         {
             float originalBrightness = active ? 0f : 1f;
             float targetBrightness = active ? 1f : 0f;
-            for(int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 yield return new WaitForSeconds(0.2f);
                 SetMaterialBrightness(Mathf.Lerp(originalBrightness, targetBrightness, i / 10f));
@@ -98,7 +96,7 @@ namespace RotA.Mono.AlienTech
 
         public void OnEnable()
         {
-            if(tabletGlowPurple is null)
+            if (tabletGlowPurple is null)
             {
                 tabletGlowPurple = gameObject.SearchChild("TabletGlowPurple");
                 tabletGlowOrange = gameObject.SearchChild("TabletGlowOrange");
