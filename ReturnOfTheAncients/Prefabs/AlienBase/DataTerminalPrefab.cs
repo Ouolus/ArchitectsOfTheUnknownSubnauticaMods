@@ -19,7 +19,6 @@ namespace RotA.Prefabs.AlienBase
         private TechType[] techToUnlock;
         private TechType techToAnalyze;
         private string subtitlesKey;
-        private string subtitles;
         public const string greenTerminalCID = "625d01c2-40b7-4c87-a1cc-493ad6101c34";
         public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
         public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
@@ -34,7 +33,6 @@ namespace RotA.Prefabs.AlienBase
             this.techToUnlock = techToUnlock;
             this.techToAnalyze = techToAnalyze;
             this.delay = delay;
-            this.subtitles = subtitles;
             if (!string.IsNullOrEmpty(subtitles))
             {
                 subtitlesKey = classId + "Subtitles";
