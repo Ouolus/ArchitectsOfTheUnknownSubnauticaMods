@@ -550,7 +550,7 @@ namespace RotA
             precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
             precursorMasterTechTerminal.Patch();
 
-            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: false, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
+            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
             redTabletHolder.Patch();
             #endregion
 
