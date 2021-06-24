@@ -14,7 +14,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class EggPrefab : Spawnable
     {
-        private TechType _overridenTechType;
+        TechType _overridenTechType;
+        GameObject _processedPrefab;
         
         /// <summary>
         /// Initializes a new <see cref="EggPrefab"/>
@@ -142,9 +143,13 @@ namespace ArchitectsLibrary.API
 #if SN1
         public sealed override GameObject GetGameObject()
         {
+            if (_processedPrefab != null)
+            {
+                return _processedPrefab;
+            }
+            
             GameObject prefab = Model;
             var obj = GameObject.Instantiate(prefab);
-
 
             EarlyEnhancements?.Invoke(obj);
 
@@ -186,11 +191,18 @@ namespace ArchitectsLibrary.API
 
             LateEnhancements?.Invoke(obj);
 
+            _processedPrefab = obj;
             return obj;
         }
 #endif
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab != null)
+            {
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+        
             GameObject prefab = Model;
             var obj = GameObject.Instantiate(prefab);
 
@@ -239,7 +251,7 @@ namespace ArchitectsLibrary.API
 
             LateEnhancements?.Invoke(obj);
 
-            yield return null;
+            _processedPrefab = obj;
             gameObject.Set(obj);
         }
 
