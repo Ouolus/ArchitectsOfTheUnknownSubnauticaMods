@@ -12,7 +12,6 @@ namespace RotA.Prefabs.AlienBase
         private string terminalClassId;
         private string[] pingClassId;
         private string audioClipPrefix;
-        private Vector3 pingPosition;
         private float delay = 5f;
         private TechType[] techToUnlock;
         private TechType techToAnalyze;
@@ -74,7 +73,6 @@ namespace RotA.Prefabs.AlienBase
                     {
                         DataTerminalUnlockPing unlockPing = obj.AddComponent<DataTerminalUnlockPing>();
                         unlockPing.classId = str;
-                        unlockPing.pos = pingPosition;
                         unlockPing.pingTypeName = str;
                     }
                 }
