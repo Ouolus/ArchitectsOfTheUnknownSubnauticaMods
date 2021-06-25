@@ -152,6 +152,7 @@
     <Compile Include="Mono\AlienTech\AlienBasePlayerTrigger.cs" />
     <Compile Include="Mono\AlienTech\BlackHole.cs" />
     <Compile Include="Mono\AlienTech\CustomTeleporterTerminal.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalWarpCannon.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalAchievement.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalAnalyzeTech.cs" />
