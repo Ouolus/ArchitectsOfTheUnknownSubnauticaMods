@@ -506,7 +506,20 @@ namespace RotA
             #endregion
 
             #region Teleporters
-            
+            TeleporterNetwork voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 - 40f - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
+            voidPcfNetwork.Patch();
+
+            TeleporterNetwork voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
+            voidWeaponsNetwork.Patch();
+
+            TeleporterNetwork voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.4f, -1183.00f - 14f), 0f, false, true);
+            voidSupplyNetwork.Patch();
+
+            TeleporterNetwork secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false);
+            secretTeleporter.Patch();
+
+            TeleporterNetwork kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(0f, -500f, 0f), 0f, false, true, true, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { omegaCube.TechType }, "KooshBasePortalTerminal", "Insert omega cube"));
+            kooshBaseDevSecret.Patch();
             #endregion
 
             #region Alien bases
