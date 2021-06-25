@@ -217,7 +217,7 @@ namespace RotA
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
 
-            tuberSecretTerminal = new DataTerminalPrefab("TuberSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), giveWarpCannon: true, achievement: "TuberSecretAchievmeent");
+            tuberSecretTerminal = new DataTerminalPrefab("TuberSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), giveWarpCannon: true);
             tuberSecretTerminal.Patch();
             StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(tuberSecretTerminal.TechType, new Vector3(0, -5f, 1995), "TuberSecretTerminal", 50f));
         }
