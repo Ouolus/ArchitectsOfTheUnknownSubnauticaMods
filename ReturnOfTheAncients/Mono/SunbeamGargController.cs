@@ -154,7 +154,7 @@ namespace RotA.Mono
             customSplash.surfScaleY = vfxSplash.surfScaleY;
             customSplash.surfScaleZ = vfxSplash.surfScaleZ;
             customSplash.scale = scale;
-            customSplash.GetComponentInChildren<Renderer>().material = vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material;
+            customSplash.GetComponentInChildren<Renderer>().material = Object.Instantiate(vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material);
             newVfx.SetActive(true);
         }
     }
