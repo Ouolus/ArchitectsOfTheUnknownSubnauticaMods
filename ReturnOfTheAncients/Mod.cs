@@ -88,7 +88,6 @@ namespace RotA
         public static DataTerminalPrefab spamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
-        public static DataTerminalPrefab tuberSecretTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
         public static DataTerminalPrefab devSecretTerminal;
@@ -216,10 +215,6 @@ namespace RotA
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
-
-            tuberSecretTerminal = new DataTerminalPrefab("TuberSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), giveWarpCannon: true);
-            tuberSecretTerminal.Patch();
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(tuberSecretTerminal.TechType, new Vector3(0, -5f, 1995), "TuberSecretTerminal", 50f));
         }
         [QModPatch]
         public static void Patch()
@@ -261,7 +256,6 @@ namespace RotA
             AchievementServices.RegisterAchievement("TouchBlackHole", "Do Not Touch", assetBundle.LoadAsset<Sprite>("Popup_Green"), "This achievement is hidden.", "Really...?", true);
             AchievementServices.RegisterAchievement("WarpFar", "Teleportation Master", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "Warp 2000 meters.", "Warped 2000 meters.", true, 2000);
             AchievementServices.RegisterAchievement("DevSecretAchievement", "Unknown Architects", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "This achievement is hidden.", "Found the Hallway of the Architects.", true);
-            AchievementServices.RegisterAchievement("TuberSecretAchievmeent", "Handheld Warping Device", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "This achievement is hidden.", "Hello YouTube!", true);
             #endregion
 
             #region Modules
@@ -510,7 +504,7 @@ namespace RotA
             #endregion
 
             #region Teleporters
-
+            
             #endregion
 
             #region Alien bases
