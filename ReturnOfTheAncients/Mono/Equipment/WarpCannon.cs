@@ -57,6 +57,8 @@ namespace RotA.Mono.Equipment
 
         bool warpingBackToBase;
 
+        bool pressingButtonThisFrame;
+
         /// <summary>
         /// Controls what happens when you right click.
         /// </summary>
@@ -92,6 +94,11 @@ namespace RotA.Mono.Equipment
             var oceanLevel = Ocean.GetOceanLevel();
 #endif
             return y > oceanLevel;
+        }
+
+        void PlayPushAnimation()
+        {
+            pressingButtonThisFrame = true;
         }
 
         /// <summary>
@@ -499,6 +506,11 @@ namespace RotA.Mono.Equipment
             {
                 return true;
             }
+            if (pressingButtonThisFrame == true)
+            {
+                pressingButtonThisFrame = false;
+                return true;
+            }
             return base.GetUsedToolThisFrame();
         }
 
@@ -658,6 +670,7 @@ namespace RotA.Mono.Equipment
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
             animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
             Utils.PlayFMODAsset(switchModeSound, transform.position);
+            PlayPushAnimation();
             switch (fireMode)
             {
                 case FireMode.Warp:
