@@ -11,7 +11,7 @@ namespace RotA.Patches
         [HarmonyPostfix]
         public static void Awake_Patch(GotoConsoleCommand __instance)
         {
-            AddTeleportPosition(ref __instance, "secret_terminal", new Vector3(0, -5, 2000));
+            AddTeleportPosition(ref __instance, "secret_terminal", new Vector3(0, -15, 1995));
         }
 
         static void AddTeleportPosition(ref GotoConsoleCommand gotoCmd, string name, Vector3 pos)
