@@ -67,7 +67,7 @@ namespace RotA.Mono
             GameObject prefab = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
             prefab.transform.forward = Vector3.up;
-            prefab.transform.localScale = Vector3.one * 6f;
+            prefab.transform.localScale = Vector3.one * 5.5f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
