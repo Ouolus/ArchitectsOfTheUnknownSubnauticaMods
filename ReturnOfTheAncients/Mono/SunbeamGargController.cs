@@ -13,7 +13,7 @@ namespace RotA.Mono
         private Vector3 position = new Vector3(945f, -5000, 3000);
         private GameObject spawnedGarg;
         private float defaultFarplane;
-        private float farplaneTarget;
+        private float farplaneTarget = 20000f;
         private float timeStart;
         private FMODAsset splashSound;
 
@@ -26,6 +26,7 @@ namespace RotA.Mono
         }
         public void Start()
         {
+            return;
             splashSound = ScriptableObject.CreateInstance<FMODAsset>();
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
