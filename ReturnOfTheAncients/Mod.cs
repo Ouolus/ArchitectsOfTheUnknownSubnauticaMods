@@ -215,8 +215,6 @@ namespace RotA
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
-            buildableOmegaCubePedestal = new OmegaCubePedestal();
-            buildableOmegaCubePedestal.Patch();
         }
         [QModPatch]
         public static void Patch()
