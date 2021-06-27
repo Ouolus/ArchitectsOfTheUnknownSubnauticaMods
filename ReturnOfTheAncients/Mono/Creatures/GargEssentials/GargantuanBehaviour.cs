@@ -323,7 +323,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
             {
-                GetBloodEffectFromCreature(fish, 20f, 2f);
+                GetBloodEffectFromCreature(fish, 40f, 2f);
                 timeSpawnBloodAgain = Time.time + 1f;
             }
 
@@ -533,6 +533,11 @@ namespace RotA.Mono.Creatures.GargEssentials
                         {
                             timeSpawnBloodAgain = Time.time + 0.5f;
                             GameObject.Instantiate(cachedBloodPrefab, held.transform.position, Quaternion.identity).SetActive(true);
+                            Creature creatureComponent = CurrentHeldObject.GetComponent<Creature>();
+                            if (creatureComponent)
+                            {
+                                creatureComponent.flinch = 10f;
+                            }
                         }
                     }
                     return;
