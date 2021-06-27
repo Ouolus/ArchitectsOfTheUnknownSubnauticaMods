@@ -102,7 +102,7 @@
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
             GameObject model = GameObject.Instantiate(originalPrefab, buildablePrefab.transform, false);
-            if (this is not BuildableAlienRobot or BuildableWarper)
+            if (this is not (BuildableAlienRobot or BuildableWarper))
             {
                 var rigidBody = model.GetComponent<Rigidbody>();
                 if (rigidBody != null)
