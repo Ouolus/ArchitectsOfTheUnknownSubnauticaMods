@@ -490,7 +490,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             VFXDestroyAfterSeconds destroyAfterSeconds = cachedBloodPrefab.GetComponent<VFXDestroyAfterSeconds>();
             if (destroyAfterSeconds is not null)
             {
-                bloodDestroyTime = destroyAfterSeconds.lifeTime * lifetimeScale;
+                bloodDestroyTime = (destroyAfterSeconds.lifeTime + 5f) * lifetimeScale;
                 DestroyImmediate(destroyAfterSeconds);
             }
             else
