@@ -25,6 +25,8 @@ namespace RotA.Mono.Creatures.GargEssentials
         ECCAudio.AudioClipPool exosuitSounds;
         ECCAudio.AudioClipPool cyclopsSounds;
         LastTarget lastTarget;
+        float timeSpawnBloodAgain;
+        GameObject cachedBloodPrefab;
         public GargGrabFishMode grabFishMode;
 
         Collider[] subrootStoredColliders;
@@ -321,10 +323,8 @@ namespace RotA.Mono.Creatures.GargEssentials
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
             {
-                if (TryGetBloodEffectFromCreature(fish, 10f, 5f, out GameObject fx))
-                {
-                    GameObject.Instantiate(fx, fish.transform.position, Quaternion.identity).SetActive(true);
-                }
+                GetBloodEffectFromCreature(fish, 20f, 2f);
+                timeSpawnBloodAgain = Time.time + 1f;
             }
 
             Invoke("ReleaseVehicle", 5f);
@@ -452,9 +452,8 @@ namespace RotA.Mono.Creatures.GargEssentials
             }
         }
 
-        private bool TryGetBloodEffectFromCreature(GameObject creature, float startSizeScale, float lifetimeScale, out GameObject bloodFx)
+        private bool GetBloodEffectFromCreature(GameObject creature, float startSizeScale, float lifetimeScale)
         {
-            bloodFx = null;
             if (creature == null)
             {
                 return false;
@@ -473,15 +472,15 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 return false;
             }
-            bloodFx = Instantiate(prefab);
-            bloodFx.SetActive(false);
-            foreach (ParticleSystem ps in bloodFx.GetComponentsInChildren<ParticleSystem>())
+            cachedBloodPrefab = Instantiate(prefab);
+            cachedBloodPrefab.SetActive(false);
+            foreach (ParticleSystem ps in cachedBloodPrefab.GetComponentsInChildren<ParticleSystem>())
             {
                 var main = ps.main;
                 main.startLifetime = new ParticleSystem.MinMaxCurve(main.startLifetime.constant * lifetimeScale);
                 main.startSize = new ParticleSystem.MinMaxCurve(main.startSize.constant * startSizeScale);
             }
-            VFXDestroyAfterSeconds destroyAfterSeconds = bloodFx.GetComponent<VFXDestroyAfterSeconds>();
+            VFXDestroyAfterSeconds destroyAfterSeconds = cachedBloodPrefab.GetComponent<VFXDestroyAfterSeconds>();
             if (destroyAfterSeconds)
             {
                 destroyAfterSeconds.lifeTime *= lifetimeScale;
@@ -526,6 +525,15 @@ namespace RotA.Mono.Creatures.GargEssentials
                     else
                     {
                         held.transform.rotation = holdPoint.transform.rotation;
+                    }
+                    //blood vfx
+                    if (Time.time > timeSpawnBloodAgain && cachedBloodPrefab != null)
+                    {
+                        if (IsHoldingFish() && grabFishMode != GargGrabFishMode.PickupableOnlyAndSwalllow)
+                        {
+                            timeSpawnBloodAgain = Time.time + 0.5f;
+                            GameObject.Instantiate(cachedBloodPrefab, held.transform.position, Quaternion.identity).SetActive(true);
+                        }
                     }
                     return;
                 }
