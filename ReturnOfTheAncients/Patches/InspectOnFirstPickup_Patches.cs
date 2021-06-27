@@ -38,6 +38,10 @@ namespace RotA.Patches
             {
                 __instance.gameObject.transform.localScale = Vector3.one * 0.17f;
             }
+            if (techTag.type == TechType.PrecursorKey_Red)
+            {
+                __instance.gameObject.transform.localScale = Vector3.one;
+            }
         }
 
         [HarmonyPatch(typeof(InspectOnFirstPickup), nameof(InspectOnFirstPickup.OnInspectObjectDone))]
