@@ -327,6 +327,12 @@ namespace RotA.Mono.Creatures.GargEssentials
                 timeSpawnBloodAgain = Time.time + 1f;
             }
 
+            if (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow)
+            {
+                GetBloodEffectFromCreature(fish, 20f, 2f);
+                timeSpawnBloodAgain = Time.time + 1f;
+            }
+
             Invoke("ReleaseVehicle", 5f);
         }
         public static bool PlayerIsKillable()
@@ -410,7 +416,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 var creatureLm = heldFish.GetComponent<LiveMixin>();
                 if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow)
                 {
-                    float animationLength = (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) ? 0.5f : 1.5f;
+                    float animationLength = (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) ? 0.25f : 0.75f;
                     var swallowing = heldFish.AddComponent<BeingSuckedInWhole>();
                     swallowing.target = mouthAttack.throat.transform;
                     swallowing.animationLength = animationLength;
