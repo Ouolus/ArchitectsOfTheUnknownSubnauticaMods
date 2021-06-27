@@ -27,6 +27,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         LastTarget lastTarget;
         float timeSpawnBloodAgain;
         GameObject cachedBloodPrefab;
+        float bloodDestroyTime;
         public GargGrabFishMode grabFishMode;
 
         Collider[] subrootStoredColliders;
@@ -489,7 +490,11 @@ namespace RotA.Mono.Creatures.GargEssentials
             VFXDestroyAfterSeconds destroyAfterSeconds = cachedBloodPrefab.GetComponent<VFXDestroyAfterSeconds>();
             if (destroyAfterSeconds is not null)
             {
-                destroyAfterSeconds.lifeTime *= lifetimeScale;
+                bloodDestroyTime = destroyAfterSeconds.lifeTime * lifetimeScale;
+            }
+            else
+            {
+                bloodDestroyTime = 10f;
             }
             return true;
         }
@@ -538,7 +543,9 @@ namespace RotA.Mono.Creatures.GargEssentials
                         if (IsHoldingFish() && grabFishMode != GargGrabFishMode.PickupableOnlyAndSwalllow)
                         {
                             timeSpawnBloodAgain = Time.time + 0.5f;
-                            GameObject.Instantiate(cachedBloodPrefab, held.transform.position, Quaternion.identity).SetActive(true);
+                            GameObject blood = GameObject.Instantiate(cachedBloodPrefab, held.transform.position, Quaternion.identity);
+                            blood.SetActive(true);
+                            Destroy(blood, bloodDestroyTime);
                             Creature creatureComponent = CurrentHeldObject.GetComponent<Creature>();
                             if (creatureComponent)
                             {
