@@ -70,6 +70,7 @@ namespace ArchitectsLibrary
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
         static BuildableItemPedestal buildableItemPedestal;
+        static BuildableSpecimenCases buildableSpecimenCases;
         static BuildableAlienRobot buildableAlienRobot;
         static BuildableWarper buildableWarper;
         static BuildableInfoPanel buildableInfoPanel;
@@ -315,6 +316,9 @@ namespace ArchitectsLibrary
 
             buildableItemPedestal = new BuildableItemPedestal();
             buildableItemPedestal.Patch();
+
+            buildableSpecimenCases = new BuildableSpecimenCases();
+            buildableSpecimenCases.Patch();
 
             buildableDissectionTank = new BuildableDissectionTank();
             buildableDissectionTank.Patch();
