@@ -14,7 +14,7 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class VehicleUpgrade : Craftable
     {
-        internal Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
+        readonly Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
             (x) => (EquipmentType)Enum.Parse(typeof(EquipmentType), x.ToString());
         
         /// <summary>

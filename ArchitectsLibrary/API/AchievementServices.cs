@@ -13,15 +13,9 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public static class AchievementServices
     {
-        internal static Dictionary<string, Achievement> registeredAchievements = new Dictionary<string, Achievement>();
+        internal static Dictionary<string, Achievement> registeredAchievements = new();
 
-        private static FMODAsset UnlockSound
-        {
-            get
-            {
-                return uGUI_PopupNotification.main.soundEncyUnlock;
-            }
-        }
+        private static FMODAsset UnlockSound => uGUI_PopupNotification.main.soundEncyUnlock;
 
         private static string AchievementNotificationFormat
         {
@@ -39,21 +33,9 @@ namespace ArchitectsLibrary.API
             }
         }
 
-        private static Color32 AchievementNameColor
-        {
-            get
-            {
-                return new Color32(137, byte.MaxValue, 137, byte.MaxValue);
-            }
-        }
+        private static Color32 AchievementNameColor => new (137, byte.MaxValue, 137, byte.MaxValue);
 
-        private static Color32 AchievementDescriptionColor
-        {
-            get
-            {
-                return new Color32(119, 205, byte.MaxValue, byte.MaxValue);
-            }
-        }
+        private static Color32 AchievementDescriptionColor => new (119, 205, byte.MaxValue, byte.MaxValue);
 
         /// <summary>
         /// Registers an achievement into the game.
