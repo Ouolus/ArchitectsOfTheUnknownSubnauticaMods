@@ -319,6 +319,14 @@ namespace RotA.Mono.Creatures.GargEssentials
                 col.enabled = false;
             }
 
+            if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
+            {
+                if (TryGetBloodEffectFromCreature(fish, 10f, 5f, out GameObject fx))
+                {
+                    GameObject.Instantiate(fx, fish.transform.position, Quaternion.identity).SetActive(true);
+                }
+            }
+
             Invoke("ReleaseVehicle", 5f);
         }
         public static bool PlayerIsKillable()
