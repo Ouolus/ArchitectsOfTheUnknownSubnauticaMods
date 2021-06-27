@@ -24,6 +24,8 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
+            prefab.transform.GetChild(0).localEulerAngles = Vector3.up * 270f;
+
             DeleteChildComponentIfExists<PrefabPlaceholder>(prefab);
             DeleteChildComponentIfExists<PrefabPlaceholdersGroup>(prefab);
 
