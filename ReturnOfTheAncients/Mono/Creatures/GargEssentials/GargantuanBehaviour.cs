@@ -491,6 +491,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             if (destroyAfterSeconds is not null)
             {
                 bloodDestroyTime = destroyAfterSeconds.lifeTime * lifetimeScale;
+                DestroyImmediate(destroyAfterSeconds);
             }
             else
             {
