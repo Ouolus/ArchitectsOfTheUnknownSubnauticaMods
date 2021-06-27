@@ -487,7 +487,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 main.startSize = new ParticleSystem.MinMaxCurve(main.startSize.constant * startSizeScale);
             }
             VFXDestroyAfterSeconds destroyAfterSeconds = cachedBloodPrefab.GetComponent<VFXDestroyAfterSeconds>();
-            if (destroyAfterSeconds)
+            if (destroyAfterSeconds is not null)
             {
                 destroyAfterSeconds.lifeTime *= lifetimeScale;
             }
