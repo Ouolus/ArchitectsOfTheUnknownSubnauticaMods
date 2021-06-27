@@ -443,6 +443,44 @@ namespace RotA.Mono.Creatures.GargEssentials
                 }
             }
         }
+
+        private bool TryGetBloodEffectFromCreature(GameObject creature, float startSizeScale, float lifetimeScale, out GameObject bloodFx)
+        {
+            bloodFx = null;
+            if (creature == null)
+            {
+                return false;
+            }
+            LiveMixin lm = creature.GetComponent<LiveMixin>();
+            if (lm == null)
+            {
+                return false;
+            }
+            if (lm.data == null)
+            {
+                return false;
+            }
+            GameObject prefab = lm.data.damageEffect;
+            if (prefab == null)
+            {
+                return false;
+            }
+            bloodFx = Instantiate(prefab);
+            bloodFx.SetActive(false);
+            foreach (ParticleSystem ps in bloodFx.GetComponentsInChildren<ParticleSystem>())
+            {
+                var main = ps.main;
+                main.startLifetime = new ParticleSystem.MinMaxCurve(main.startLifetime.constant * lifetimeScale);
+                main.startSize = new ParticleSystem.MinMaxCurve(main.startSize.constant * startSizeScale);
+            }
+            VFXDestroyAfterSeconds destroyAfterSeconds = bloodFx.GetComponent<VFXDestroyAfterSeconds>();
+            if (destroyAfterSeconds)
+            {
+                destroyAfterSeconds.lifeTime *= lifetimeScale;
+            }
+            return true;
+        }
+
         public void Update()
         {
             if (currentlyGrabbing != GrabType.None && heldVehicle == null && heldSubroot == null && heldFish == null)
