@@ -67,7 +67,14 @@ namespace RotA.Patches
             {
                 if (i.techType == TechType.PrecursorKey_Purple)
                 {
-                    i.unlockTechTypes = new List<TechType>() { TechType.PrecursorKey_Purple };
+                    if (i.unlockTechTypes.Contains(TechType.PrecursorKey_Red))
+                    {
+                        i.unlockTechTypes.Remove(TechType.PrecursorKey_Red);
+                    }
+                    if (i.unlockTechTypes.Contains(TechType.PrecursorKey_White))
+                    {
+                        i.unlockTechTypes.Remove(TechType.PrecursorKey_White);
+                    }
                 }
             }
         }
