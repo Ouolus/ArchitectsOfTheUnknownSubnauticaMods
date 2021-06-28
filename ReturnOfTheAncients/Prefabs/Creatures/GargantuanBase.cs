@@ -114,11 +114,12 @@ namespace RotA.Prefabs.Creatures
 
             components.locomotion.maxAcceleration = 27f;
 
-            GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
-            gargBehaviour.creature = components.creature;
-            gargBehaviour.attachBoneName = AttachBoneName;
-            gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
-            gargBehaviour.grabFishMode = GrabFishMode;
+            prefab.EnsureComponent<GargantuanBehaviour>();
+            
+            GargantuanGrab gargantuanGrab = prefab.EnsureComponent<GargantuanGrab>();
+            gargantuanGrab.attachBoneName = AttachBoneName;
+            gargantuanGrab.vehicleDamagePerSecond = VehicleDamagePerSecond;
+            gargantuanGrab.grabFishMode = GrabFishMode;
 
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
