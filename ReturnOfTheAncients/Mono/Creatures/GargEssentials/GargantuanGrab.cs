@@ -9,7 +9,6 @@ namespace RotA.Mono.Creatures.GargEssentials
     {
         public float vehicleDamagePerSecond;
         public GargGrabFishMode grabFishMode;
-        public float timeCanAttackAgain;
         public string attachBoneName;
         
         public Vehicle HeldVehicle { get; private set; }
@@ -290,7 +289,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             float attackLength = 10f;
             Invoke(nameof(ReleaseVehicle), attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
-            timeCanAttackAgain = Time.time + attackLength + 1f;
+            behaviour.timeCanAttackAgain = Time.time + attackLength + 1f;
         }
 
         private void GrabVehicle(Vehicle vehicle, GrabType vehicleType)

@@ -34,7 +34,7 @@
             {
                 return;
             }
-            if (liveMixin.IsAlive() && Time.time > grab.timeCanAttackAgain) //If it can attack, continue
+            if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain) //If it can attack, continue
             {
                 Creature thisCreature = gameObject.GetComponent<Creature>();
                 if (thisCreature.Aggression.Value >= 0.9f && thisCreature.Hunger.Value >= 0.6f) //This creature must be super angry to do this
@@ -87,7 +87,7 @@
                             if (liveMixin.health - num <= 0f) // make sure that the nodamage cheat is not on
                             {
                                 StartCoroutine(PerformBiteAttack(target));
-                                grab.timeCanAttackAgain = Time.time + 4f;
+                                behaviour.timeCanAttackAgain = Time.time + 4f;
                                 attackSource.clip = biteClipPool.GetRandomClip();
                                 attackSource.Play();
                             }
@@ -132,7 +132,7 @@
         }
         public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
         {
-            grab.timeCanAttackAgain = Time.time + 4f;
+            behaviour.timeCanAttackAgain = Time.time + 4f;
         }
         private IEnumerator PerformBiteAttack(GameObject target) //A delayed attack, to let him chomp down first.
         {

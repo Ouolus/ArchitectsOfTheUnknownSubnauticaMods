@@ -51,7 +51,7 @@
         }
         public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
         {
-            if (liveMixin.IsAlive() && Time.time > grab.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
+            if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
                 Creature gargantuan = gameObject.GetComponent<Creature>();
                 GameObject target = GetTarget(collider);
@@ -89,7 +89,7 @@
                             {
                                 StartCoroutine(PerformBiteAttack(target, 1f));
                             }
-                            grab.timeCanAttackAgain = Time.time + 1f;
+                            behaviour.timeCanAttackAgain = Time.time + 1f;
                             return;
                         }
                         else
@@ -113,7 +113,7 @@
                             else
                             {
                                 StartCoroutine(PerformBiteAttack(target, baseDmg));
-                                grab.timeCanAttackAgain = Time.time + 2f;
+                                behaviour.timeCanAttackAgain = Time.time + 2f;
                                 return;
                             }
                         }
@@ -196,7 +196,7 @@
                     else if (canAttackPlayer || (!canAttackPlayer && !IsVehicle(target)))
                     {
                         StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
-                        grab.timeCanAttackAgain = Time.time + 2f;
+                        behaviour.timeCanAttackAgain = Time.time + 2f;
                         if (canAttackPlayer)
                         {
                             creature.Aggression.Value = 0f;
@@ -232,7 +232,7 @@
         }
         public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
         {
-            grab.timeCanAttackAgain = Time.time + 4f;
+            behaviour.timeCanAttackAgain = Time.time + 4f;
         }
         private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
@@ -266,7 +266,7 @@
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
-            grab.timeCanAttackAgain = Time.time + length;
+            behaviour.timeCanAttackAgain = Time.time + length;
             MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
             Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);

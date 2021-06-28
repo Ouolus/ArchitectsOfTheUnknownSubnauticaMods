@@ -11,6 +11,7 @@
         internal LastTarget lastTarget;
         internal float timeSpawnBloodAgain;
         internal float bloodDestroyTime;
+        internal float timeCanAttackAgain;
         
         Creature creature;
         GargantuanGrab grab;
@@ -99,7 +100,7 @@
             {
                 creature.Scared.Value = 1f;
                 creature.Aggression.Value = 0f;
-                grab.timeCanAttackAgain = Time.time + 5f;
+                timeCanAttackAgain = Time.time + 5f;
             }
             if (lastTarget != null) lastTarget.target = null;
         }
