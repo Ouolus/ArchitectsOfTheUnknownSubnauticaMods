@@ -42,12 +42,12 @@ namespace RotA
         static void PatchLanguage()
         {
             LanguageHandler.SetLanguageLine("EncyPath_Lifeforms/Fauna/Titans", "Titans");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_root), "Return of the Ancients");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_analysis), "Analysis");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_terminalInfo), "Information");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_tech), "Technology");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_relics), "Relics");
-            LanguageHandler.SetLanguageLine(string.Format("EncyPath_{0}", modEncyPath_gargantuan), "Gargantuan Leviathan");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_root}", "Return of the Ancients");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_analysis}", "Analysis");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_terminalInfo}", "Information");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_tech}", "Technology");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_relics}", "Relics");
+            LanguageHandler.SetLanguageLine($"EncyPath_{modEncyPath_gargantuan}", "Gargantuan Leviathan");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyWarpKey, "Teleport to base: {1}\nCurrent mode: Personal teleportation. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyCreatureKey, "Warp in creatures: {1}\nCurrent mode: Creature summon. Switch fire mode: {0}");
             LanguageHandler.SetLanguageLine(warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, "Create exit portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}");
