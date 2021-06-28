@@ -296,7 +296,7 @@ namespace ArchitectsLibrary
 
         static void FixDisplayCaseItems()
         {
-            TechType[] resourcesToFix = new TechType[] { TechType.UraniniteCrystal, TechType.Diamond, TechType.Copper, TechType.AluminumOxide, TechType.Kyanite, AUHandler.EmeraldTechType, AUHandler.RedBerylTechType, AUHandler.SapphireTechType, TechType.Silver };
+            TechType[] resourcesToFix = new TechType[] { TechType.UraniniteCrystal, TechType.Diamond, TechType.Copper, TechType.AluminumOxide, TechType.Kyanite, AUHandler.EmeraldTechType, AUHandler.RedBerylTechType, AUHandler.SapphireTechType, TechType.Silver, TechType.PrecursorIonCrystal, AUHandler.RedIonCubeTechType, AUHandler.ElectricubeTechType};
             FixArrayOfDisplayCaseItems(resourcesToFix, new Vector3(0f, -0.25f, 0f));
         }
 
