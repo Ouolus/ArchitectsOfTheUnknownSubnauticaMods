@@ -4,10 +4,11 @@ namespace RotA.Mono.VFX
 {
     public class CustomSplash : MonoBehaviour
     {
-        private float animTime = 0f;
-        private bool playing = true;
-        private Vector3 newScale;
-        private Vector3 startScale;
+        Renderer renderer;
+        float animTime;
+        bool playing = true;
+        Vector3 newScale;
+        Vector3 startScale;
 
         public float duration = 5f;
         public AnimationCurve surfScaleX;
@@ -18,27 +19,26 @@ namespace RotA.Mono.VFX
 
         void Start()
         {
+            renderer = gameObject.GetComponentInChildren<Renderer>();
             startScale = new Vector3(scale, scale, scale);
         }
-        private void Update()
+        void Update()
         {
-            if (playing)
+            if (!playing) 
+                return;
+            
+            animTime += Time.deltaTime / duration;
+            if (animTime > 0.99f)
             {
-                animTime += Time.deltaTime / duration;
-                if (animTime > 0.99f)
-                {
-                    playing = false;
-                    Destroy(gameObject);
-                }
-                if (gameObject != null)
-                {
-                    gameObject.GetComponentInChildren<Renderer>().material.SetTextureOffset(ShaderPropertyID._MaskTex, new Vector2(surfMaskCurve.Evaluate(animTime), 0.5f));
-                    newScale.x = startScale.x * surfScaleX.Evaluate(animTime);
-                    newScale.y = startScale.y * surfScaleY.Evaluate(animTime);
-                    newScale.z = startScale.z * surfScaleZ.Evaluate(animTime);
-                    transform.localScale = newScale;
-                }
+                playing = false;
+                Destroy(gameObject);
             }
+                
+            renderer.material.SetTextureOffset(ShaderPropertyID._MaskTex, new Vector2(surfMaskCurve.Evaluate(animTime), 0.5f));
+            newScale.x = startScale.x * surfScaleX.Evaluate(animTime);
+            newScale.y = startScale.y * surfScaleY.Evaluate(animTime);
+            newScale.z = startScale.z * surfScaleZ.Evaluate(animTime);
+            transform.localScale = newScale;
         }
     }
 }
