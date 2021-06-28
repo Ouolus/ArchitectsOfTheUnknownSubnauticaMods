@@ -103,6 +103,8 @@ namespace ArchitectsLibrary
             
             PatchMinerals();
 
+            FixDisplayCaseItems();
+
             achievementData = new AchievementData();
         }
 
@@ -290,6 +292,20 @@ namespace ArchitectsLibrary
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonBattery, PrecursorFabricatorTab.Devices);
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonPowerCell, PrecursorFabricatorTab.Devices);
+        }
+
+        static void FixDisplayCaseItems()
+        {
+            TechType[] resourcesToFix = new TechType[] { TechType.UraniniteCrystal, TechType.Diamond, TechType.Copper, TechType.AluminumOxide, TechType.Kyanite, AUHandler.EmeraldTechType, AUHandler.RedBerylTechType, AUHandler.SapphireTechType, TechType.Silver };
+            FixArrayOfDisplayCaseItems(resourcesToFix, new Vector3(0f, -0.25f, 0f));
+        }
+
+        static void FixArrayOfDisplayCaseItems(TechType[] techTypes, Vector3 newOffset)
+        {
+            for(int i = 0; i < techTypes.Length; i++)
+            {
+                DisplayCaseServices.SetOffset(techTypes[i], newOffset);
+            }
         }
 
         static void PatchBuildables()
