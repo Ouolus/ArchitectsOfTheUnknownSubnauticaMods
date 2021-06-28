@@ -30,13 +30,7 @@
     public static partial class Mod
     {
         public static AssetBundle assetBundle;
-
-        public static SeamothElectricalDefenseMK2 electricalDefenseMk2;
-        public static GameObject electricalDefensePrefab;
-        public static ExosuitZapModule exosuitZapModule;
-        public static ExosuitDashModule exosuitDashModule;
-        public static SuperDecoy superDecoy;
-
+        
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
         public static GargantuanBaby gargBabyPrefab;
@@ -44,14 +38,20 @@
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
 
-        public static GenericSignalPrefab signal_cragFieldBase;
-        public static GenericSignalPrefab signal_sparseReefBase;
-        public static GenericSignalPrefab signal_kooshZoneBase;
-        public static GenericSignalPrefab signal_ruinedGuardian;
-        public static GenericSignalPrefab signal_cache_bloodKelp;
-        public static GenericSignalPrefab signal_cache_sparseReef;
-        public static GenericSignalPrefab signal_cache_dunes;
-        public static GenericSignalPrefab signal_cache_lostRiver;
+        static SeamothElectricalDefenseMK2 electricalDefenseMk2;
+        static GameObject electricalDefensePrefab;
+        static ExosuitZapModule exosuitZapModule;
+        static ExosuitDashModule exosuitDashModule;
+        static SuperDecoy superDecoy;
+
+        static GenericSignalPrefab signal_cragFieldBase;
+        static GenericSignalPrefab signal_sparseReefBase;
+        static GenericSignalPrefab signal_kooshZoneBase;
+        static GenericSignalPrefab signal_ruinedGuardian;
+        static GenericSignalPrefab signal_cache_bloodKelp;
+        static GenericSignalPrefab signal_cache_sparseReef;
+        static GenericSignalPrefab signal_cache_dunes;
+        static GenericSignalPrefab signal_cache_lostRiver;
         
 
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;

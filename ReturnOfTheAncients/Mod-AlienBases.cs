@@ -26,13 +26,6 @@ namespace RotA
         public static BlackHolePrefab blackHole;
         public static OmegaCubeFabricator omegaCubeFabricator;
         
-        public static TabletTerminalPrefab purpleTabletTerminal;
-        public static TabletTerminalPrefab redTabletTerminal;
-        public static TabletTerminalPrefab whiteTabletTerminal;
-        public static TabletTerminalPrefab orangeTabletTerminal;
-        public static TabletTerminalPrefab blueTabletTerminal;
-        public static InfectionTesterTerminal infectionTesterTerminal;
-        
         public static VoidInteriorForcefield voidInteriorForcefield;
         public static PrecursorDoorPrefab voidDoor_red;
         public static PrecursorDoorPrefab voidDoor_white;
@@ -43,7 +36,14 @@ namespace RotA
         public static PrecursorDoorPrefab voidDoor_interior_right;
         public static PrecursorDoorPrefab voidDoor_interior_infectionTest;
         
-        public static RuinedGuardianPrefab prop_ruinedGuardian;
+        static TabletTerminalPrefab purpleTabletTerminal;
+        static TabletTerminalPrefab redTabletTerminal;
+        static TabletTerminalPrefab whiteTabletTerminal;
+        static TabletTerminalPrefab orangeTabletTerminal;
+        static TabletTerminalPrefab blueTabletTerminal;
+        static InfectionTesterTerminal infectionTesterTerminal;
+
+        static RuinedGuardianPrefab prop_ruinedGuardian;
         
         #region Alien Base Prefabs
         
