@@ -50,7 +50,7 @@ namespace ArchitectsLibrary.Buildables
             storageContainer.preventDeconstructionIfNotEmpty = true;
             var spawnPosition = new GameObject($"SpawnPosition{classId}");
             spawnPosition.transform.SetParent(prefab.transform);
-            spawnPosition.transform.localPosition = localPosition + new Vector3(0f, -0.5f, 0f);
+            spawnPosition.transform.localPosition = localPosition + new Vector3(0f, -0.25f, 0f);
             var displayCase = storageRoot.EnsureComponent<DisplayCaseDecoration>();
             displayCase.spawnPositions = new Transform[] { spawnPosition.transform };
             displayCase.displayCaseType = DisplayCaseType.SpecimenCase;

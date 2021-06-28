@@ -75,7 +75,7 @@ namespace ArchitectsLibrary.API
         {
             DisplayCaseType.RelicTank => overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f),
             DisplayCaseType.Pedestal => overrideItemScaleInPedestal.GetOrDefault(techType, 1f),
-            DisplayCaseType.SpecimenCase => overrideItemScaleInSpecimenCase.GetOrDefault(techType, 0.25f),
+            DisplayCaseType.SpecimenCase => overrideItemScaleInSpecimenCase.GetOrDefault(techType, 1f),
             _ => 1f
         };
     }
