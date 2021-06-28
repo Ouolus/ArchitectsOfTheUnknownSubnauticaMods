@@ -28,10 +28,10 @@ namespace ArchitectsLibrary.Buildables
             AddStorageRoot(prefab, new Vector3(-0.4f, 1.5f, 0.4f), "SpecimenCaseStorage2");
             AddStorageRoot(prefab, new Vector3(0.4f, 1.5f, -0.4f), "SpecimenCaseStorage3");
             AddStorageRoot(prefab, new Vector3(0.4f, 1.5f, 0.4f), "SpecimenCaseStorage4");
-            AddStorageRoot(prefab, new Vector3(-0.4f, 3f, -0.4f), "SpecimenCaseStorage5");
-            AddStorageRoot(prefab, new Vector3(-0.4f, 3f, 0.4f), "SpecimenCaseStorage6");
-            AddStorageRoot(prefab, new Vector3(0.4f, 3f, -0.4f), "SpecimenCaseStorage7");
-            AddStorageRoot(prefab, new Vector3(0.4f, 3f, 0.4f), "SpecimenCaseStorage8");
+            AddStorageRoot(prefab, new Vector3(-0.4f, 2.25f, -0.4f), "SpecimenCaseStorage5");
+            AddStorageRoot(prefab, new Vector3(-0.4f, 2.25f, 0.4f), "SpecimenCaseStorage6");
+            AddStorageRoot(prefab, new Vector3(0.4f, 2.25f, -0.4f), "SpecimenCaseStorage7");
+            AddStorageRoot(prefab, new Vector3(0.4f, 2.25f, 0.4f), "SpecimenCaseStorage8");
         }
 
         private void AddStorageRoot(GameObject prefab, Vector3 localPosition, string classId)
