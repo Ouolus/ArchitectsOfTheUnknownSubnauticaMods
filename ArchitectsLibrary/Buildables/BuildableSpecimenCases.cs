@@ -51,7 +51,7 @@ namespace ArchitectsLibrary.Buildables
             var spawnPosition = new GameObject($"SpawnPosition{classId}");
             spawnPosition.transform.SetParent(prefab.transform);
             spawnPosition.transform.localPosition = localPosition;
-            var displayCase = prefab.EnsureComponent<DisplayCaseDecoration>();
+            var displayCase = storageRoot.EnsureComponent<DisplayCaseDecoration>();
             displayCase.spawnPositions = new Transform[] { spawnPosition.transform };
             displayCase.displayCaseType = DisplayCaseType.RelicTank;
         }
