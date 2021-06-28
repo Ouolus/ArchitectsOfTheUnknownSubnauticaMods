@@ -7,6 +7,7 @@ namespace RotA.Prefabs.AlienBase
 {
     public class InfectionTesterTerminal : Spawnable
     {
+        GameObject _processedPrefab;
         const string baseClassId = "b1f54987-4652-4f62-a983-4bf3029f8c5b";
 
         public InfectionTesterTerminal(string classId)
@@ -25,6 +26,12 @@ namespace RotA.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             PrefabDatabase.TryGetPrefab(baseClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             PrecursorDisableGunTerminal disableGun = obj.GetComponentInChildren<PrecursorDisableGunTerminal>(true);
@@ -50,11 +57,21 @@ namespace RotA.Prefabs.AlienBase
             Object.DestroyImmediate(triggerArea_old);
             triggerArea.terminal = openDoor;
             obj.SetActive(false);
+
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             return obj;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(baseClassId);
             yield return request;
             request.TryGetPrefab(out GameObject prefab);
@@ -83,6 +100,8 @@ namespace RotA.Prefabs.AlienBase
             triggerArea.terminal = openDoor;
             obj.SetActive(false);
             
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             gameObject.Set(obj);
         }
 #endif

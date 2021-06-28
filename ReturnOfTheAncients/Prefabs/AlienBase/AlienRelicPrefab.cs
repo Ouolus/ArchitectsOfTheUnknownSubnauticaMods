@@ -9,9 +9,11 @@ namespace RotA.Prefabs.AlienBase
     public class AlienRelicPrefab : Spawnable
     {
         static FMODAsset relicSoundAsset;
-        private float scale;
-
-        GameObject model;
+        
+        GameObject _processedPrefab;
+        
+        readonly float scale;
+        readonly GameObject model;
         public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model, float scale) : base(classId, friendlyName, description)
         {
             this.model = model;
@@ -21,6 +23,12 @@ namespace RotA.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
@@ -41,11 +49,20 @@ namespace RotA.Prefabs.AlienBase
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
+
+            _processedPrefab = GameObject.Instantiate(obj);
             return obj;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
@@ -66,7 +83,9 @@ namespace RotA.Prefabs.AlienBase
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
-            yield return null;
+
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             gameObject.Set(obj);
         }
 #endif

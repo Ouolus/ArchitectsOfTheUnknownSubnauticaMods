@@ -44,8 +44,8 @@ namespace RotA.Prefabs.AlienBase
                 prefab.EnsureComponent<GuardianEyes>();
                 prefab.EnsureComponent<AudioClipEmitter>().clipPoolPrefix = "Creaking";
                 ECCHelpers.ApplySNShaders(prefab, new UBERMaterialProperties(5f, 1f, 1f));
-                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos1", ECCStringComparison.Equals).transform));
-                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform));
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos1").transform));
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2").transform));
                 prefab.transform.localScale = Vector3.one * 0.5f;
             }
 

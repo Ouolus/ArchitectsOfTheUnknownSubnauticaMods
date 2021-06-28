@@ -6,6 +6,8 @@ namespace RotA.Prefabs.AlienBase
 {
     public class BlackHolePrefab : Spawnable
     {
+        GameObject _processedPrefab;
+        
         public BlackHolePrefab() : base("ResearchBaseBlackHole", "Contained singularity", "...")
         {
         }
@@ -13,6 +15,12 @@ namespace RotA.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             GameObject seamothPrefab = CraftData.GetPrefabForTechType(TechType.Seamoth);
             GameObject prefab = FixVFX(seamothPrefab.GetComponent<SeaMoth>().torpedoTypes[0].prefab.GetComponent<SeamothTorpedo>().explosionPrefab.GetComponent<PrefabSpawn>().prefab);
             prefab.EnsureComponent<TechTag>().type = TechType;
@@ -24,11 +32,20 @@ namespace RotA.Prefabs.AlienBase
             containment.transform.SetParent(prefab.transform, false);
             containment.transform.localPosition = new Vector3(0f, -4.32f, 0f);
 
+            GameObject.Instantiate(_processedPrefab);
+            _processedPrefab.SetActive(false);
             return prefab;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
             yield return task;
             
@@ -42,6 +59,8 @@ namespace RotA.Prefabs.AlienBase
             containment.transform.SetParent(prefab.transform, false);
             containment.transform.localPosition = new Vector3(0f, -4.32f, 0f);
             
+            GameObject.Instantiate(_processedPrefab);
+            _processedPrefab.SetActive(false);
             gameObject.Set(prefab);
         }
 #endif
