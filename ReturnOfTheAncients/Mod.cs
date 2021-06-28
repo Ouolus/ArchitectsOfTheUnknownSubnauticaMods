@@ -128,6 +128,22 @@
             omegaCube.Patch();
             DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
             #endregion
+            
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
+
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
+            warpCannonTerminal.Patch();
+
+            gargPoster = new GargPoster();
+            gargPoster.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
+            buildableOmegaCubePedestal = new OmegaCubePedestal();
+            buildableOmegaCubePedestal.Patch();
+
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
 
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
@@ -148,7 +164,7 @@
             AchievementServices.RegisterAchievement("DevSecretAchievement", "Unknown Architects", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "This achievement is hidden.", "Found the Hallway of the Architects.", true);
             #endregion
             
-            PatchModules();
+            PatchCraftablesAndBuildables();
 
             PatchCreatures();
 
@@ -171,8 +187,9 @@
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, new string[] { "Personal", "Equipment" });
-            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, new string[] { "Personal", "Equipment" });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, "Personal", "Equipment");
+            CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, "Personal", "Equipment");
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -189,8 +206,8 @@
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
-                    new Ingredient(TechType.AluminumOxide, 2)
+                    new (TechType.PrecursorIonCrystal, 1),
+                    new (TechType.AluminumOxide, 2)
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, redTabletTD);
@@ -204,23 +221,6 @@
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
-
-            //This stuff uses Architects Library resources so it must be patched AFTER that library
-            warpCannon = new WarpCannonPrefab();
-            warpCannon.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
-            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
-
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
-            warpCannonTerminal.Patch();
-
-            gargPoster = new GargPoster();
-            gargPoster.Patch();
-            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
-            buildableOmegaCubePedestal = new OmegaCubePedestal();
-            buildableOmegaCubePedestal.Patch();
-
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
         }
 
         static void PatchCreatures()
@@ -270,8 +270,22 @@
             miscInitializers.Patch();
         }
 
-        static void PatchModules()
+        static void PatchCraftablesAndBuildables()
         {
+            warpCannon = new WarpCannonPrefab();
+            warpCannon.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
+            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
+
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
+            warpCannonTerminal.Patch();
+
+            gargPoster = new GargPoster();
+            gargPoster.Patch();
+            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
+            buildableOmegaCubePedestal = new OmegaCubePedestal();
+            buildableOmegaCubePedestal.Patch();
+
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
@@ -376,7 +390,5 @@
                 isFragment = false
             });
         }
-
-        private const string alienSpamEncyText = "This data terminal consists primarily of text in several unknown languages. Partially translated text is displayed below:\n\nTransfer of \u2580\u2596\u2517\u259b\u2584\u2596 failed. Sector Zero study of \u259c\u259a\u2523 \u259c\u259a\u2517\u2523\u2517\u252b\u2513\u250f\u2513 terminated for \u259b\u2584\u2596\u2505\u2517\u2596.\n\n\u2523\u2517\u250f\u259b\u2584\u2596\u259c\u250f\u2523 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523.\n\nVaccine progress: Awaiting termination.\n\nEmperor Apparatus status: Functioning.\n\n\u2523\u2517\u2596\u2503\u2580\u259a\u2597\u250f\u250f\u2513. \u2596\u251b\u2580\u2517\u259e\u2503\u250f\u2584 distress \u2580\u2596\u2517\u259b\u2596\u259c\u259a\u2523 data \u2505\u2596\u2517\u2501\u2596 \u2596\u2513\u252b\u259e\u2523 \u259a \u259b\u2584\u2505\u2517\u2596 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523 \u259a\u251b\u2598\u259e\u2501\u2596\u2505 \u259e\u2523\u2517\u2596\u2517\u2523.\n\n'Architects of the \u259a\u251b\u2598\u259e' status: missing. \u2501\u2596\u2505.\n\n\u2580\u2596\u2517\u259b\u259a\u2523 \u259c\u259a\u2517 \u259c\u259a.\n\nSpecimen of the Ancients terminated. Error: termination failed.";
     }
 }
