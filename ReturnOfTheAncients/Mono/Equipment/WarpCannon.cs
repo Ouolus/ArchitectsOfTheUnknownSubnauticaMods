@@ -502,11 +502,11 @@ namespace RotA.Mono.Equipment
 
         public override bool GetUsedToolThisFrame()
         {
-            if (warpingBackToBase == true)
+            if (warpingBackToBase)
             {
                 return true;
             }
-            if (pressingButtonThisFrame == true)
+            if (pressingButtonThisFrame)
             {
                 pressingButtonThisFrame = false;
                 return true;
@@ -884,8 +884,9 @@ namespace RotA.Mono.Equipment
         /// <param name="position"></param>
         void MovePlayerWhileInBase(Vector3 position)
         {
-            UpdateWarpXMetersAchievement(Vector3.Distance(Player.main.transform.position, position));
-            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
+            var playerPos = Player.main.transform.position;
+            UpdateWarpXMetersAchievement(Vector3.Distance(playerPos, position));
+            PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
 
         /// <summary>

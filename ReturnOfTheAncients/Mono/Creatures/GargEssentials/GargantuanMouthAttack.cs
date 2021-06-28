@@ -214,7 +214,8 @@
             for (int i = 0; i < num; i++)
             {
                 Collider collider = UWE.Utils.sharedHitBuffer[i].collider;
-                GameObject gameObject = (collider.attachedRigidbody != null) ? collider.attachedRigidbody.gameObject : collider.gameObject;
+                var attachedRigidbody = collider.attachedRigidbody;
+                GameObject gameObject = (attachedRigidbody != null) ? attachedRigidbody.gameObject : collider.gameObject;
                 if (!(gameObject == target) && !(gameObject == base.gameObject) && !(gameObject.GetComponent<Creature>() != null))
                 {
                     return false;
@@ -269,12 +270,13 @@
             behaviour.timeCanAttackAgain = Time.time + length;
             MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
-            Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
+            var position = transform.position;
+            Player.main.liveMixin.TakeDamage(5f, position, DamageType.Normal, gameObject);
             yield return new WaitForSeconds(length / 3f);
-            Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
+            Player.main.liveMixin.TakeDamage(5f, position, DamageType.Normal, gameObject);
             yield return new WaitForSeconds(length / 3f);
             playerDeathCinematic.enabled = false;
-            Player.main.liveMixin.TakeDamage(250f, transform.position, DamageType.Normal, gameObject);
+            Player.main.liveMixin.TakeDamage(250f, position, DamageType.Normal, gameObject);
         }
     }
 }
