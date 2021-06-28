@@ -236,6 +236,7 @@ namespace ArchitectsLibrary.MonoBehaviours
     enum DisplayCaseType
     {
         RelicTank,
-        Pedestal
+        Pedestal,
+        SpecimenCase
     }
 }

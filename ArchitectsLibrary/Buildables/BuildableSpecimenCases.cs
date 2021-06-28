@@ -53,7 +53,7 @@ namespace ArchitectsLibrary.Buildables
             spawnPosition.transform.localPosition = localPosition;
             var displayCase = storageRoot.EnsureComponent<DisplayCaseDecoration>();
             displayCase.spawnPositions = new Transform[] { spawnPosition.transform };
-            displayCase.displayCaseType = DisplayCaseType.RelicTank;
+            displayCase.displayCaseType = DisplayCaseType.SpecimenCase;
         }
     }
 }

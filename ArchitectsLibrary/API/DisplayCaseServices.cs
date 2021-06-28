@@ -13,6 +13,7 @@ namespace ArchitectsLibrary.API
         
         static readonly Dictionary<TechType, float> overrideItemScaleInRelicTank = new();
         static readonly Dictionary<TechType, float> overrideItemScaleInPedestal = new();
+        static readonly Dictionary<TechType, float> overrideItemScaleInSpecimenCase = new();
 
         /// <summary>
         /// Allows the passed TechType to be added into relic tanks and onto pedestals.
@@ -41,7 +42,7 @@ namespace ArchitectsLibrary.API
         }
 
         /// <summary>
-        /// Set the scale of <paramref name="techType"/> when put in a display case. Default scale is 1.25.
+        /// Set the scale of <paramref name="techType"/> when put in a display case. Default scale is 1.25f.
         /// </summary>
         /// <param name="techType"></param>
         /// <param name="newScale"></param>
@@ -60,10 +61,21 @@ namespace ArchitectsLibrary.API
             overrideItemScaleInPedestal[techType] = newScale;
         }
 
+        /// <summary>
+        /// Set the scale of <paramref name="techType"/> when put in a specimen case. Default scale is 0.25f.
+        /// </summary>
+        /// <param name="techType"></param>
+        /// <param name="newScale"></param>
+        public static void SetScaleInSpecimenCase(TechType techType, float newScale)
+        {
+            overrideItemScaleInSpecimenCase[techType] = newScale;
+        }
+
         internal static float GetScaleForItem(TechType techType, DisplayCaseType displayCaseType) => displayCaseType switch
         {
             DisplayCaseType.RelicTank => overrideItemScaleInRelicTank.GetOrDefault(techType, 1.25f),
             DisplayCaseType.Pedestal => overrideItemScaleInPedestal.GetOrDefault(techType, 1f),
+            DisplayCaseType.SpecimenCase => overrideItemScaleInSpecimenCase.GetOrDefault(techType, 0.25f),
             _ => 1f
         };
     }
