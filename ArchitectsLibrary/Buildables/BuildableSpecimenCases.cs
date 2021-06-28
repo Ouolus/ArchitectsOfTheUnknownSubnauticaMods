@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
-        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 1.7f, 0f) * 0.7f, Quaternion.identity, new Vector3(1.15f, 1.8f, 1.15f) * 0.7f) };
+        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 1.7f, 0f) * 0.7f, Quaternion.identity, new Vector3(1.15f, 1.69f, 1.15f) * 0.7f) };
 
         protected override string GetOriginalClassId => "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
 
@@ -38,9 +38,9 @@ namespace ArchitectsLibrary.Buildables
         {
             var storageRoot = new GameObject($"StorageRoot{classId}");
             storageRoot.transform.SetParent(prefab.transform);
-            storageRoot.transform.localPosition = localPosition;
+            storageRoot.transform.localPosition = localPosition + new Vector3(0f, -0.25f, 0f);
             BoxCollider collider = storageRoot.EnsureComponent<BoxCollider>();
-            collider.size = Vector3.one * 0.6f;
+            collider.size = new Vector3(1.1f, 0.4f, 1.1f);
             var storageContainer = storageRoot.EnsureComponent<StorageContainer>();
             storageContainer.height = 1;
             storageContainer.width = 1;
