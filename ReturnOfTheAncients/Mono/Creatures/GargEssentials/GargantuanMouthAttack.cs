@@ -17,7 +17,8 @@
         GargantuanBehaviour behaviour;
         GargantuanGrab grab;
         PlayerCinematicController playerDeathCinematic;
-        readonly List<Type> _leviathanTypes = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid) };
+        readonly List<Type> _adultGargGrabbable = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid), typeof(SeaTreader), typeof(Reefback) };
+        readonly List<Type> _juvenileGargGrabbable = new() { typeof(ReaperLeviathan), typeof(SeaTreader) };
 
         public GameObject throat;
         public bool canAttackPlayer = true;
@@ -155,15 +156,19 @@
                     if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
                     {
                         Creature otherCreature = target.GetComponent<Creature>();
-                        if (otherCreature is not null && otherCreature.liveMixin.IsAlive() && _leviathanTypes.Contains(otherCreature.GetType()))
+                        if (otherCreature is not null && otherCreature.liveMixin.IsAlive())
                         {
-                            gargantuan.Aggression.Value -= 0.6f;
-                            gargantuan.Hunger.Value = 0f;
-                            otherCreature.flinch = 1f;
-                            otherCreature.Scared.Value = 1f;
-                            grab.GrabFish(otherCreature.gameObject);
-                            Destroy(otherCreature.GetComponent<EcoTarget>());
-                            return;
+                            var otherCreatureType = otherCreature.GetType();
+                            if ((grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow && _adultGargGrabbable.Contains(otherCreatureType)) || (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow && _juvenileGargGrabbable.Contains(otherCreatureType)))
+                            {
+                                gargantuan.Aggression.Value -= 0.6f;
+                                gargantuan.Hunger.Value = 0f;
+                                otherCreature.flinch = 1f;
+                                otherCreature.Scared.Value = 1f;
+                                grab.GrabFish(otherCreature.gameObject);
+                                Destroy(otherCreature.GetComponent<EcoTarget>());
+                                return;
+                            }
                         }
                     }
                     else if (grabFishMode == GargGrabFishMode.PickupableOnlyAndSwalllow) //baby "play with food" animation
