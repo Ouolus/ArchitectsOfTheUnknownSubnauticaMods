@@ -15,6 +15,8 @@
     /// </summary>
     public abstract class GenericPrecursorDecoration : Buildable
     {
+        GameObject _processedPrefab;
+        
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -93,6 +95,12 @@
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab != null)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
@@ -151,11 +159,21 @@
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
 
+            _processedPrefab = GameObject.Instantiate(buildablePrefab);
+            _processedPrefab.SetActive(false);
+
             return buildablePrefab;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab != null)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+            
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             var request = PrefabDatabase.GetPrefabAsync(GetOriginalClassId);
@@ -200,6 +218,9 @@
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
             buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
 
+            _processedPrefab = GameObject.Instantiate(buildablePrefab);
+            _processedPrefab.SetActive(false);
+            
             gameObject.Set(buildablePrefab);
     }
 #endif
