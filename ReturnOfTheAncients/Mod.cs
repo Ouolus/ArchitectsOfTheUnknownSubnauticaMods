@@ -38,8 +38,8 @@
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
 
+        public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
-        static GameObject electricalDefensePrefab;
         static ExosuitZapModule exosuitZapModule;
         static ExosuitDashModule exosuitDashModule;
         static SuperDecoy superDecoy;
