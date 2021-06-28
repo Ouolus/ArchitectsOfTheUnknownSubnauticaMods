@@ -52,24 +52,6 @@
         static GenericSignalPrefab signal_cache_sparseReef;
         static GenericSignalPrefab signal_cache_dunes;
         static GenericSignalPrefab signal_cache_lostRiver;
-        
-
-        public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
-        public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
-        public static DataTerminalPrefab tertiaryOutpostTerminalLostRiver;
-        public static DataTerminalPrefab guardianTerminal;
-        public static DataTerminalPrefab researchBaseTerminal;
-        public static DataTerminalPrefab supplyCacheTerminal;
-        public static DataTerminalPrefab kooshBaseTerminal;
-        public static DataTerminalPrefab archElectricityTerminal;
-        public static DataTerminalPrefab voidBaseTerminal;
-        public static DataTerminalPrefab cachePingsTerminal;
-        public static DataTerminalPrefab spamTerminal;
-        public static DataTerminalPrefab eggRoomTerminal;
-        public static DataTerminalPrefab warpCannonTerminal;
-        public static DataTerminalPrefab precursorMasterTechTerminal;
-        public static DataTerminalPrefab redTabletHolder;
-        public static DataTerminalPrefab devSecretTerminal;
 
         public static OmegaCubePedestal buildableOmegaCubePedestal;
         
