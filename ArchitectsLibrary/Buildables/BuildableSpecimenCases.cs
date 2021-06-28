@@ -40,7 +40,7 @@ namespace ArchitectsLibrary.Buildables
             storageRoot.transform.SetParent(prefab.transform);
             storageRoot.transform.localPosition = localPosition;
             BoxCollider collider = storageRoot.EnsureComponent<BoxCollider>();
-            collider.size = Vector3.one * 1.2f;
+            collider.size = Vector3.one * 0.6f;
             var storageContainer = storageRoot.EnsureComponent<StorageContainer>();
             storageContainer.height = 1;
             storageContainer.width = 1;
