@@ -1,8 +1,9 @@
-﻿using ECCLibrary;
-using UnityEngine;
-
-namespace RotA.Mono.Creatures.GargEssentials
+﻿namespace RotA.Mono.Creatures.GargEssentials
 {
+    using ECCLibrary;
+    using UnityEngine;
+    using static GragantuanConditions;
+    
     public class GargantuanRoar : MonoBehaviour
     {
         public AudioSource audioSource;
@@ -51,7 +52,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
                 {
-                    if (GargantuanBehaviour.PlayerIsKillable())
+                    if (PlayerIsKillable())
                     {
                         audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
                         clipLoudness = 0f;
@@ -67,7 +68,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                     }
                 }
             }
-            if (roarDoesDamage && GargantuanBehaviour.PlayerIsKillable() && Time.time < timeStopDamaging)
+            if (roarDoesDamage && PlayerIsKillable() && Time.time < timeStopDamaging)
             {
                 DoDamage();
             }
@@ -114,7 +115,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             }
             else
             {
-                if (distance < closeRoarThreshold && GargantuanBehaviour.PlayerIsKillable())
+                if (distance < closeRoarThreshold && PlayerIsKillable())
                 {
                     return closeSounds.GetRandomClip();
                 }

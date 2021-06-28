@@ -174,12 +174,14 @@
     <Compile Include="Mono\Creatures\CreatureActions\GargantuanBabyAggression.cs" />
     <Compile Include="Mono\Creatures\CreatureActions\RunAwayWhenScared.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanBehaviour.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanGrab.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanMouthAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanConditions.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />

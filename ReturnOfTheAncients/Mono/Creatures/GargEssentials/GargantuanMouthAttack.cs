@@ -1,20 +1,21 @@
-﻿using ECCLibrary;
-using ECCLibrary.Internal;
-using RotA.Prefabs.Creatures;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace RotA.Mono.Creatures.GargEssentials
+﻿namespace RotA.Mono.Creatures.GargEssentials
 {
+    using ECCLibrary;
+    using ECCLibrary.Internal;
+    using Prefabs.Creatures;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using static GragantuanConditions;
+    
     public class GargantuanMouthAttack : MeleeAttack
     {
         AudioSource attackSource;
         ECCAudio.AudioClipPool biteClipPool;
         ECCAudio.AudioClipPool cinematicClipPool;
         GargantuanBehaviour behaviour;
-        GargantuanRoar roar;
+        GargantuanGrab grab;
         PlayerCinematicController playerDeathCinematic;
         readonly List<Type> _leviathanTypes = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid) };
 
@@ -27,6 +28,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         void Start()
         {
+            grab = GetComponent<GargantuanGrab>();
             attackSource = gameObject.AddComponent<AudioSource>();
             attackSource.minDistance = 10f;
             attackSource.maxDistance = 40f;
@@ -39,7 +41,6 @@ namespace RotA.Mono.Creatures.GargEssentials
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch = new OnTouch.OnTouchEvent();
             gameObject.SearchChild("Mouth").EnsureComponent<OnTouch>().onTouch.AddListener(OnTouch);
             behaviour = GetComponent<GargantuanBehaviour>();
-            roar = GetComponent<GargantuanRoar>();
 
             playerDeathCinematic = gameObject.AddComponent<PlayerCinematicController>();
             playerDeathCinematic.animatedTransform = gameObject.SearchChild(attachBoneName).transform;
@@ -50,7 +51,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         }
         public override void OnTouch(Collider collider) //A long method having to do with interaction with an object and the mouth.
         {
-            if (liveMixin.IsAlive() && Time.time > behaviour.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
+            if (liveMixin.IsAlive() && Time.time > grab.timeCanAttackAgain && !playerDeathCinematic.IsCinematicModeActive()) //If it can attack, continue
             {
                 Creature gargantuan = gameObject.GetComponent<Creature>();
                 GameObject target = GetTarget(collider);
@@ -58,13 +59,13 @@ namespace RotA.Mono.Creatures.GargEssentials
                 {
                     return;
                 }
-                if (!behaviour.IsHoldingVehicle())
+                if (!grab.IsHoldingVehicle())
                 {
                     LiveMixin targetLm = target.GetComponent<LiveMixin>();
                     Player player = target.GetComponent<Player>();
                     if (player != null) //start player attack logic
                     {
-                        if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !GargantuanBehaviour.PlayerIsKillable() || (gargantuan.Aggression.Value < 0.15f && canAttackPlayer))
+                        if (!player.CanBeAttacked() || !player.liveMixin.IsAlive() || player.cinematicModeActive || !PlayerIsKillable() || (gargantuan.Aggression.Value < 0.15f && canAttackPlayer))
                         {
                             return;
                         }
@@ -88,7 +89,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                             {
                                 StartCoroutine(PerformBiteAttack(target, 1f));
                             }
-                            behaviour.timeCanAttackAgain = Time.time + 1f;
+                            grab.timeCanAttackAgain = Time.time + 1f;
                             return;
                         }
                         else
@@ -112,25 +113,25 @@ namespace RotA.Mono.Creatures.GargEssentials
                             else
                             {
                                 StartCoroutine(PerformBiteAttack(target, baseDmg));
-                                behaviour.timeCanAttackAgain = Time.time + 2f;
+                                grab.timeCanAttackAgain = Time.time + 2f;
                                 return;
                             }
                         }
                     } //end player attack logic
-                    else if (canAttackPlayer && behaviour.GetCanGrabVehicle()) //start vehicle attack logic
+                    else if (canAttackPlayer && grab.GetCanGrabVehicle()) //start vehicle attack logic
                     {
                         //try to perform vehicle attack
                         SeaMoth seamoth = target.GetComponent<SeaMoth>();
                         if (seamoth && !seamoth.docked)
                         {
-                            behaviour.GrabGenericSub(seamoth);
+                            grab.GrabGenericSub(seamoth);
                             gargantuan.Aggression.Value -= 0.5f;
                             return;
                         }
                         Exosuit exosuit = target.GetComponent<Exosuit>();
                         if (exosuit && !exosuit.docked)
                         {
-                            behaviour.GrabExosuit(exosuit);
+                            grab.GrabExosuit(exosuit);
                             gargantuan.Aggression.Value -= 0.5f;
                             return;
                         }
@@ -139,7 +140,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                             SubRoot subRoot = target.GetComponent<SubRoot>();
                             if (subRoot && !subRoot.rb.isKinematic && subRoot.live is not null)
                             {
-                                behaviour.GrabLargeSub(subRoot);
+                                grab.GrabLargeSub(subRoot);
                                 behaviour.roar.DelayTimeOfNextRoar(8f);
                                 gargantuan.Aggression.Value -= 1f;
                                 return;
@@ -160,7 +161,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                             gargantuan.Hunger.Value = 0f;
                             otherCreature.flinch = 1f;
                             otherCreature.Scared.Value = 1f;
-                            behaviour.GrabFish(otherCreature.gameObject);
+                            grab.GrabFish(otherCreature.gameObject);
                             Destroy(otherCreature.GetComponent<EcoTarget>());
                             return;
                         }
@@ -172,7 +173,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                         {
                             gargantuan.Aggression.Value -= 0.6f;
                             gargantuan.Hunger.Value = 0f;
-                            behaviour.GrabFish(otherCreature.gameObject);
+                            grab.GrabFish(otherCreature.gameObject);
                             otherCreature.flinch = 1f;
                             otherCreature.Scared.Value = 1f;
                             otherCreature.liveMixin.TakeDamage(1f, otherCreature.transform.position);
@@ -184,7 +185,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                     {
                         return;
                     }
-                    if (behaviour.CanSwallowWhole(target, targetLm))
+                    if (CanSwallowWhole(target, targetLm))
                     {
                         creature.GetAnimator().SetTrigger("bite");
                         gargantuan.Hunger.Value -= 0.15f;
@@ -192,10 +193,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                         swallowing.target = throat.transform;
                         swallowing.animationLength = 1f;
                     }
-                    else if (canAttackPlayer || (!canAttackPlayer && !behaviour.IsVehicle(target)))
+                    else if (canAttackPlayer || (!canAttackPlayer && !IsVehicle(target)))
                     {
                         StartCoroutine(PerformBiteAttack(target, GetBiteDamage(target)));
-                        behaviour.timeCanAttackAgain = Time.time + 2f;
+                        grab.timeCanAttackAgain = Time.time + 2f;
                         if (canAttackPlayer)
                         {
                             creature.Aggression.Value = 0f;
@@ -231,7 +232,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         }
         public void OnVehicleReleased() //Called by gargantuan behavior. Gives a cooldown until the next bite.
         {
-            behaviour.timeCanAttackAgain = Time.time + 4f;
+            grab.timeCanAttackAgain = Time.time + 4f;
         }
         private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
@@ -265,7 +266,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             float length = 1.8f;
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
-            behaviour.timeCanAttackAgain = Time.time + length;
+            grab.timeCanAttackAgain = Time.time + length;
             MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
             Player.main.liveMixin.TakeDamage(5f, transform.position, DamageType.Normal, gameObject);
