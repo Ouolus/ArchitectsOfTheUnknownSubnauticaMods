@@ -18,7 +18,7 @@
         GargantuanGrab grab;
         PlayerCinematicController playerDeathCinematic;
         readonly List<Type> _adultGargGrabbable = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid), typeof(SeaTreader), typeof(Reefback) };
-        readonly List<Type> _juvenileGargGrabbable = new() { typeof(ReaperLeviathan), typeof(SeaTreader) };
+        readonly List<Type> _juvenileGargGrabbable = new() { typeof(ReaperLeviathan), typeof(SeaTreader), typeof(Shocker) };
 
         public GameObject throat;
         public bool canAttackPlayer = true;
