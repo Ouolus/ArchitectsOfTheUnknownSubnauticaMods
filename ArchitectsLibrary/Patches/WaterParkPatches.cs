@@ -16,7 +16,7 @@ namespace ArchitectsLibrary.Patches
 
         static bool CanDropItemInsidePrefix(Pickupable item, ref bool __result)
         {
-            var tt = item.GetTechType();
+            var tt = CraftData.GetTechType(item.gameObject);
             if (requiredAcuSize.TryGetValue(tt, out var maxHeight))
             {
                 var waterPark = Player.main.currentWaterPark;
