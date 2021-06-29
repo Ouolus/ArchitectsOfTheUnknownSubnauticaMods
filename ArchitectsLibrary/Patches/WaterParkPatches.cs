@@ -16,7 +16,8 @@ namespace ArchitectsLibrary.Patches
 
         static bool CanDropItemInsidePrefix(Pickupable item, ref bool __result)
         {
-            if (requiredAcuSize.TryGetValue(item.GetTechType(), out var maxHeight))
+            var tt = item.GetTechType();
+            if (requiredAcuSize.TryGetValue(tt, out var maxHeight))
             {
                 var waterPark = Player.main.currentWaterPark;
                 if (waterPark is not null && waterPark.height >= maxHeight)
@@ -24,7 +25,10 @@ namespace ArchitectsLibrary.Patches
                     __result = true;
                 }
                 else
+                {
+                    ErrorMessage.AddMessage($"Cannot drop {tt} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.");
                     __result = false;
+                }
 
                 return false;
             }
