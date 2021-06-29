@@ -262,11 +262,7 @@
         /// <param name="prefab"></param>
         protected static void DeleteChildComponentIfExists<T>(GameObject prefab) where T : Component
         {
-            T component = prefab.GetComponentInChildren<T>();
-            if (component)
-            {
-                Object.DestroyImmediate(component);
-            }
+            Object.DestroyImmediate(prefab.GetComponentInChildren<T>());
         }
 
         /// <summary>
