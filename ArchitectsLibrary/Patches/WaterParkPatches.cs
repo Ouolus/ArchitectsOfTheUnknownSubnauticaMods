@@ -22,8 +22,11 @@ namespace ArchitectsLibrary.Patches
                 if (waterPark is not null && waterPark.height >= maxHeight)
                 {
                     __result = true;
-                    return false;
                 }
+                else
+                    __result = false;
+
+                return false;
             }
 
             return true;
