@@ -1,5 +1,6 @@
 using System.Collections;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Patches;
 using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
@@ -54,6 +55,11 @@ namespace ArchitectsLibrary.API
 
                 if (MakeCreatureLayEggs)
                     AUHandler.SetCreatureEgg(HatchingCreature, this.TechType);
+
+                if (RequiredACUSize > 1)
+                {
+                    WaterParkPatches.requiredAcuSize[TechType] = RequiredACUSize;
+                }
             };
         }
         public delegate void GameObjectEnhancements(GameObject gameObject);
@@ -102,6 +108,12 @@ namespace ArchitectsLibrary.API
         /// Health of the egg. defaulted to 60.
         /// </summary>
         public virtual float MaxHealth => 60f;
+
+        /// <summary>
+        /// The total amount of ACU floors required for the egg to be dropped in the ACU.<br/>
+        /// defaulted to 1 and assigning this Property to "0" will be ignored.
+        /// </summary>
+        public virtual int RequiredACUSize => 1;
 
         /// <summary>
         /// makes the egg scannable via the Scanner Room.
