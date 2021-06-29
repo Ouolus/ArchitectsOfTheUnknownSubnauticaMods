@@ -39,6 +39,7 @@ namespace ArchitectsLibrary.Buildables
             var storageContainer = prefab.EnsureComponent<StorageContainer>();
             storageContainer.height = 1;
             storageContainer.width = 1;
+            storageContainer.modelSizeRadius = 4;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
             storageContainer.storageRoot.ClassId = "BuildableItemPedestalContainer";
