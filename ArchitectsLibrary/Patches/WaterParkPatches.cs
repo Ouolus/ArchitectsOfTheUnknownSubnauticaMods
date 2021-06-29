@@ -26,7 +26,9 @@ namespace ArchitectsLibrary.Patches
                 }
                 else
                 {
-                    ErrorMessage.AddMessage($"Cannot drop {tt} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.");
+                    var msg = $"Cannot drop {tt} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.";
+                    if (ErrorMessage.main.GetExistingMessage(msg) is null)
+                        ErrorMessage.AddMessage(msg);
                     __result = false;
                 }
 
