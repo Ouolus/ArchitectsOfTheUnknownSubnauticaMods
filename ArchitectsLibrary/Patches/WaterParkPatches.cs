@@ -14,9 +14,9 @@ namespace ArchitectsLibrary.Patches
             harmony.Patch(orig, new HarmonyMethod(prefix));
         }
 
-        static bool CanDropItemInsidePrefix(Pickupable pickupable, ref bool __result)
+        static bool CanDropItemInsidePrefix(Pickupable item, ref bool __result)
         {
-            if (requiredAcuSize.TryGetValue(pickupable.GetTechType(), out var maxHeight))
+            if (requiredAcuSize.TryGetValue(item.GetTechType(), out var maxHeight))
             {
                 var waterPark = Player.main.currentWaterPark;
                 if (waterPark is not null && waterPark.height >= maxHeight)
