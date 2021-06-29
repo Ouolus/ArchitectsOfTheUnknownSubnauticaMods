@@ -29,6 +29,11 @@ namespace RotA.Prefabs
             inspect.animParam = "holding_precursorioncrystal";
             inspect.inspectDuration = 4.1f;
             prefab.GetComponent<CreatureEgg>().explodeOnHatch = false;
+            foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.SetFloat("_Fresnel", 0.5f);
+                renderer.material.SetFloat("_SpecInt", 8f);
+            }
         }
     }
 }
