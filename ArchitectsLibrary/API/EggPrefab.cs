@@ -176,7 +176,7 @@ namespace ArchitectsLibrary.API
             skyApplier.renderers = obj.GetAllComponentsInChildren<Renderer>();
             skyApplier.enabled = true;
 
-            obj.EnsureComponent<Pickupable>();
+            obj.EnsureComponent<Pickupable>().overrideTechType = TechType;
 
             var rb = obj.EnsureComponent<Rigidbody>();
             rb.mass = Mass;
