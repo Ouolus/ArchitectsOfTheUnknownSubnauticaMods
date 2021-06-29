@@ -108,8 +108,7 @@
             if (this is not (BuildableAlienRobot or BuildableWarper))
             {
                 var rigidBody = model.GetComponent<Rigidbody>();
-                if (rigidBody != null)
-                    Object.DestroyImmediate(rigidBody);
+                Object.DestroyImmediate(rigidBody);
             }
 
             model.transform.localPosition = Vector3.zero;
