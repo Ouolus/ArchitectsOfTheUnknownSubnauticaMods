@@ -62,11 +62,11 @@ namespace RotA.Prefabs.Creatures
             prefab.AddComponent<GargantuanEncounterPDA>();
 
             var avoidObstacles = prefab.GetComponent<AvoidObstacles>();
-            avoidObstacles.avoidanceDistance = 50f;
+            avoidObstacles.avoidanceDistance = 100f;
             avoidObstacles.avoidanceIterations = 20;
             avoidObstacles.scanDistance = 20;
             avoidObstacles.scanInterval = 0.2f;
-            avoidObstacles.scanDistance = 50f;
+            avoidObstacles.scanDistance = 100f;
             avoidObstacles.scanRadius = 0; //this value should either be 0 or some random arbitrary number over 0. it's only used in a "greater than zero" check.
         }
 
