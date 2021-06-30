@@ -33,7 +33,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
             if (isWeirdBackEye)
             {
-                transform.localEulerAngles = new Vector3(145f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                transform.localEulerAngles = new Vector3(56f, transform.localEulerAngles.y, transform.localEulerAngles.z);
             }
             else if (isWeirdFrontEye)
             {
