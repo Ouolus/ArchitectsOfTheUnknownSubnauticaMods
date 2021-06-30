@@ -52,7 +52,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         Transform GetTarget()
         {
-            return MainCameraControl.main.transform;
+            return MainCamera.camera.transform;
         }
     }
 }
