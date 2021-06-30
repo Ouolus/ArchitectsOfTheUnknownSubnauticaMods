@@ -30,7 +30,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         Transform vehicleHoldPoint;
         float timeVehicleGrabbed;
         float timeVehicleReleased;
-        
+        float currentGrabRandom;
         
         void Start()
         {
@@ -49,7 +49,21 @@ namespace RotA.Mono.Creatures.GargEssentials
         {
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
             SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", IsHoldingFish());
+            bool ghostAnim = false;
+            bool deathRollAnim = false;
+            if (IsHoldingFish())
+            {
+                if (currentGrabRandom < 0.5f)
+                {
+                    ghostAnim = true;
+                }
+                else
+                {
+                    deathRollAnim = true;
+                }
+            }
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", ghostAnim);
+            SafeAnimator.SetBool(creature.GetAnimator(), "cin_deathroll", deathRollAnim);
 
             if (CurrentHeldObject == null)
                 return;
@@ -268,6 +282,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         void GrabSubRoot(SubRoot subRoot)
         {
+            currentGrabRandom = Random.value;
             heldSubroot = subRoot;
             currentlyGrabbing = GrabType.Cyclops;
             timeVehicleGrabbed = Time.time;
@@ -294,6 +309,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         private void GrabVehicle(Vehicle vehicle, GrabType vehicleType)
         {
+            currentGrabRandom = Random.value;
             vehicle.useRigidbody.isKinematic = true;
             vehicle.collisionModel.SetActive(false);
             HeldVehicle = vehicle;
@@ -342,6 +358,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         public void GrabFish(GameObject fish)
         {
+            currentGrabRandom = Random.value;
             fish.GetComponent<Rigidbody>().isKinematic = true;
             heldFish = fish;
             currentlyGrabbing = GrabType.Fish;
