@@ -25,7 +25,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 transform.localRotation = defaultLocalRotation;
             }
 
-            transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0f);
             transform.localScale = eyeOverrideScale;
         }
 

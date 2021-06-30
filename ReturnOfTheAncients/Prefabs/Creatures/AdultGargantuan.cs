@@ -44,7 +44,7 @@ namespace RotA.Prefabs.Creatures
 
         public override bool AdvancedCollisions => false;
 
-        public override bool HasEyeTracking => true;
+        public override bool HasEyeTracking => false;
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
