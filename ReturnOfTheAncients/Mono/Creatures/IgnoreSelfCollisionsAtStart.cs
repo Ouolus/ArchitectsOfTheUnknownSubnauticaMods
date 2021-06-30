@@ -20,6 +20,7 @@ namespace RotA.Mono.Creatures
                     }
                 }
             }
+            GetComponent<Rigidbody>().centerOfMass = Vector3.zero;
         }
     }
 }
