@@ -86,6 +86,7 @@ namespace RotA.Prefabs.Creatures
                         {
                             newCapsule.radius = 0.2f;
                         }
+                        collidersToIgnore.Add(newCapsule);
                     }
                     if (currentSpine.name.Contains("59"))
                     {
@@ -99,16 +100,7 @@ namespace RotA.Prefabs.Creatures
             }
             if (AdvancedCollisions == true)
             {
-                for (int i = 0; i < collidersToIgnore.Count; i++)
-                {
-                    for (int j = 0; j < collidersToIgnore.Count; j++)
-                    {
-                        if (collidersToIgnore[i] != collidersToIgnore[j])
-                        {
-                            Physics.IgnoreCollision(collidersToIgnore[i], collidersToIgnore[j]);
-                        }
-                    }
-                }
+                prefab.EnsureComponent<RotA.Mono.Creatures.IgnoreSelfCollisionsAtStart>().collidersToIgnoreEachOther = collidersToIgnore;
             }
             spines.Add(prefab.SearchChild("Tail", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail1", ECCStringComparison.Equals).transform);

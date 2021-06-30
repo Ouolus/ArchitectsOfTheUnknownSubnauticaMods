@@ -184,6 +184,7 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanConditions.cs" />
+    <Compile Include="Mono\Creatures\IgnoreSelfCollisionsAtStart.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
