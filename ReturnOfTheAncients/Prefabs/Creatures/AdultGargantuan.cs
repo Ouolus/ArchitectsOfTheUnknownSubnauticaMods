@@ -42,6 +42,8 @@ namespace RotA.Prefabs.Creatures
         public override string GetEncyTitle => "Gargantuan Leviathan";
         public override string GetEncyDesc => "Adult gargantuan text";
 
+        public override bool AdvancedCollisions => true;
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
@@ -67,7 +69,7 @@ namespace RotA.Prefabs.Creatures
             avoidObstacles.scanDistance = 20;
             avoidObstacles.scanInterval = 0.2f;
             avoidObstacles.scanDistance = 100f;
-            avoidObstacles.scanRadius = 0; //this value should either be 0 or some random arbitrary number over 0. it's only used in a "greater than zero" check.
+            avoidObstacles.scanRadius = 100f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
