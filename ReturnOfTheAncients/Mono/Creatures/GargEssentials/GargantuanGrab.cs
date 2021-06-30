@@ -13,6 +13,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         
         public Vehicle HeldVehicle { get; private set; }
 
+        private Animator gargAnimator;
         Creature creature;
         Collider[] subrootStoredColliders;
         GargantuanBehaviour behaviour;
@@ -43,12 +44,13 @@ namespace RotA.Mono.Creatures.GargEssentials
             exosuitSounds = ECCAudio.CreateClipPool("GargVehicleAttack");
             cyclopsSounds = ECCAudio.CreateClipPool("GargCyclopsAttack");
             mouthAttack = GetComponent<GargantuanMouthAttack>();
+            gargAnimator = creature.GetAnimator();
         }
 
         void Update()
         {
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_cyclops", IsHoldingLargeSub());
+            SafeAnimator.SetBool(gargAnimator, "cin_vehicle", IsHoldingGenericSub() || IsHoldingExosuit());
+            SafeAnimator.SetBool(gargAnimator, "cin_cyclops", IsHoldingLargeSub());
             bool ghostAnim = false;
             bool deathRollAnim = false;
             if (IsHoldingFish())
@@ -62,8 +64,8 @@ namespace RotA.Mono.Creatures.GargEssentials
                     deathRollAnim = true;
                 }
             }
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_ghostleviathanattack", ghostAnim);
-            SafeAnimator.SetBool(creature.GetAnimator(), "cin_deathroll", deathRollAnim);
+            SafeAnimator.SetBool(gargAnimator, "cin_ghostleviathanattack", ghostAnim);
+            SafeAnimator.SetBool(gargAnimator, "cin_deathroll", deathRollAnim);
 
             if (CurrentHeldObject == null)
                 return;
