@@ -56,7 +56,7 @@ namespace RotA.Prefabs.Creatures
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
 
-            components.creature.Hunger = new CreatureTrait(0f, -(1f / 60f));
+            components.creature.Hunger = new CreatureTrait(0f, -(1f / 45f));
         }
 
         public override bool UseSwimSounds => false;
