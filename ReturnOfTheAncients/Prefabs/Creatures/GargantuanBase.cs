@@ -218,6 +218,14 @@ namespace RotA.Prefabs.Creatures
             }
         }
 
+        public virtual bool AdvancedCollisions
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public virtual bool DoesScreenShake
         {
             get
