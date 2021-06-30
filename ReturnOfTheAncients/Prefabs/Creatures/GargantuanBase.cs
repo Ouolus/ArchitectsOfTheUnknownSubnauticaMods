@@ -182,12 +182,15 @@ namespace RotA.Prefabs.Creatures
                 prefab.AddComponent<GargantuanSwimAmbience>();
             }
 
-            prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+            if (HasEyeTracking)
+            {
+                prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+            }
 
             prefab.AddComponent<VFXSchoolFishRepulsor>();
 
@@ -200,6 +203,14 @@ namespace RotA.Prefabs.Creatures
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool HasEyeTracking
+        {
+            get
+            {
+                return false;
+            }
         }
 
         public virtual bool TentaclesHaveTrails
