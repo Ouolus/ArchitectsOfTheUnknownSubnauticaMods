@@ -27,6 +27,7 @@
     public static partial class Mod
     {
         public static AssetBundle assetBundle;
+        public static AssetBundle gargAssetBundle;
         
         public static GargantuanJuvenile gargJuvenilePrefab;
         public static GargantuanVoid gargVoidPrefab;
@@ -79,6 +80,7 @@
         internal static EcoTargetType superDecoyTargetType = (EcoTargetType)49013491;
 
         private const string assetBundleName = "projectancientsassets";
+        private const string gargAssetBundleName = "gargantuanassets";
         
         private const string alienSignalName = "Alien Signal";
 
@@ -101,6 +103,9 @@
         {
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
+
+            gargAssetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), gargAssetBundleName);
+            ECCAudio.RegisterClips(gargAssetBundle);
 
             #region Resources
             omegaCube = new OmegaCube();
