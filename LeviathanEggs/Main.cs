@@ -5,6 +5,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
 using System.IO;
 using System.Reflection;
+using ArchitectsLibrary.API;
 using LeviathanEggs.Prefabs;
 using UnityEngine;
 using static LootDistributionData;
@@ -69,14 +70,19 @@ namespace LeviathanEggs
             riverProwlerEgg.Patch();
             skyRayEgg.Patch();
 
-            
-            techTypesToAddEntry.ForEach(x => PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            PrecursorFabricatorService.SubscribeToFabricator(robotEgg.TechType, PrecursorFabricatorTab.Eggs);
+            PrecursorFabricatorService.SubscribeToFabricator(warperEgg.TechType, PrecursorFabricatorTab.Eggs);
+
+            for (int i = 0; i < techTypesToAddEntry.Count; i++)
             {
-                key = x,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            }));
+                PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+                {
+                    key = techTypesToAddEntry[i],
+                    encyclopedia = "UnknownEgg",
+                    scanTime = 2f,
+                    isFragment = false
+                });
+            }
 
             WaterParkCreatureParametersSettings();
 
