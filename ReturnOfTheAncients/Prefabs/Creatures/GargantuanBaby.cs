@@ -49,7 +49,10 @@ namespace RotA.Prefabs.Creatures
             GameObject target = prefab.SearchChild("CinematicTarget");
             target.AddComponent<GargBabyTarget>();
             babyComponent.cinematicTarget = target;
-            prefab.GetComponent<AvoidObstacles>().scanRadius = 5f;
+            var avoid = prefab.GetComponent<AvoidObstacles>();
+            avoid.scanRadius = 8f;
+            avoid.avoidanceDistance = 5f;
+            avoid.avoidanceDuration = 2f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
 
