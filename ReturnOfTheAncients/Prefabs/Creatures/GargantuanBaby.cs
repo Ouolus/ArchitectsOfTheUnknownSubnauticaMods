@@ -99,6 +99,8 @@ namespace RotA.Prefabs.Creatures
 
         public override float EyeFov => 0.6f;
 
+        public override float MaxVelocityForSpeedParameter => 20f;
+
         public override SmallVehicleAggressivenessSettings AggressivenessToSmallVehicles => new SmallVehicleAggressivenessSettings(0f, 0f);
     }
 }
