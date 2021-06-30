@@ -125,6 +125,7 @@
     <Compile Include="Configurations\Config.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\DroidWelder.cs" />
     <Compile Include="MonoBehaviours\GroundedChecker.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />

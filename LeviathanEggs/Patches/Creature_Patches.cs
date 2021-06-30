@@ -22,6 +22,9 @@ namespace LeviathanEggs.Patches
 
             switch (techType)
             {
+                case TechType.PrecursorDroid:
+                    __instance.actions.Add(__instance.gameObject.EnsureComponent<DroidWelder>());
+                    break;
                 case TechType.Jumper:
                 case TechType.CrabSquid:
                     __instance.gameObject.EnsureComponent<GroundedChecker>();
