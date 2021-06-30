@@ -25,7 +25,7 @@ namespace RotA.Prefabs.Creatures
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.gargAssetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.gargAssetBundle.LoadAsset<Texture2D>("Adult_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
 
