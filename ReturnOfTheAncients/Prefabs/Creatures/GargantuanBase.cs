@@ -137,16 +137,6 @@ namespace RotA.Prefabs.Creatures
             mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
             mouthAttack.grabFishMode = GrabFishMode;
 
-            /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
-            GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
-            tentacleAttack.mouth = tentacleTrigger;
-            tentacleAttack.canBeFed = false;
-            tentacleAttack.biteInterval = 2f;
-            tentacleAttack.lastTarget = components.lastTarget;
-            tentacleAttack.creature = components.creature;
-            tentacleAttack.liveMixin = components.liveMixin;
-            tentacleAttack.animator = components.creature.GetAnimator();*/
-
             if (AttackPlayer)
             {
                 AttackCyclops actionAtkCyclops = prefab.AddComponent<AttackCyclops>();
