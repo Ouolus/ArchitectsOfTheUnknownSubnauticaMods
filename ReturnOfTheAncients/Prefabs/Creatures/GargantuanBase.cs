@@ -54,13 +54,39 @@ namespace RotA.Prefabs.Creatures
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
+            //advanced collisions stuff
+            List<Collider> collidersToIgnore = new List<Collider>();
+            collidersToIgnore.Add(prefab.GetComponent<Collider>());
+            bool stopPlacingColliders = false;
+
             List<Transform> spines = new List<Transform>();
+
             GameObject currentSpine = prefab.SearchChild("Spine");
             while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
+                    if (currentSpine.name.Contains("11")) //dont add colliders after you've gone to the 11th spine
+                    {
+                        stopPlacingColliders = true;
+                    }
+                    if (AdvancedCollisions == true && stopPlacingColliders == false && currentSpine.name != "Spine") //dont add collider to first spine
+                    {
+                        var newCapsule = currentSpine.AddComponent<CapsuleCollider>();
+                        newCapsule.height = 0.85f;
+                        newCapsule.direction = 1;
+
+                        bool firstSpine = currentSpine.name.Contains("001");
+                        if (firstSpine)
+                        {
+                            newCapsule.radius = 0.14f; //first segment of the garg is a lot thinner than the rest, until it gradually tapers off about halfway
+                        }
+                        else
+                        {
+                            newCapsule.radius = 0.2f;
+                        }
+                    }
                     if (currentSpine.name.Contains("59"))
                     {
                         break;
@@ -68,6 +94,19 @@ namespace RotA.Prefabs.Creatures
                     else
                     {
                         spines.Add(currentSpine.transform);
+                    }
+                }
+            }
+            if (AdvancedCollisions == true)
+            {
+                for (int i = 0; i < collidersToIgnore.Count; i++)
+                {
+                    for (int j = 0; j < collidersToIgnore.Count; j++)
+                    {
+                        if (collidersToIgnore[i] != collidersToIgnore[j])
+                        {
+                            Physics.IgnoreCollision(collidersToIgnore[i], collidersToIgnore[j]);
+                        }
                     }
                 }
             }
