@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
 using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
@@ -16,7 +17,17 @@ namespace LeviathanEggs.Prefabs
         public override GameObject Model => LoadGameObject("SeaTreaderEgg.prefab");
         
         public override TechType HatchingCreature => TechType.SeaTreader;
-        
+
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn { get; } = new()
+        {
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.SeaTreaderPath_Path,
+                probability = 0.05f
+            }
+        };
+
         public override float HatchingTime => 5f;
         
         public override Sprite ItemSprite => LoadSprite("SeaTreaderEgg");
