@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
 using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
@@ -16,7 +17,29 @@ namespace LeviathanEggs.Prefabs
         public override GameObject Model => LoadGameObject("RiverProwlerEgg.prefab");
         
         public override TechType HatchingCreature => TechType.SpineEel;
-        
+
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn { get; } = new()
+        {
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.LostRiverJunction_Ground,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.LostRiverCorridor_Ground,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.LostRiverCorridor_LakeFloor,
+                probability = 0.01f
+            }
+        };
+
         public override float HatchingTime => 2f;
         
         public override Sprite ItemSprite => LoadSprite("ProwlerEgg");
