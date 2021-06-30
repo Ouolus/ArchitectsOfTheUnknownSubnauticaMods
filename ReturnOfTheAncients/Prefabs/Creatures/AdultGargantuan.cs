@@ -42,7 +42,7 @@ namespace RotA.Prefabs.Creatures
         public override string GetEncyTitle => "Gargantuan Leviathan";
         public override string GetEncyDesc => "Adult gargantuan text";
 
-        public override bool AdvancedCollisions => true;
+        public override bool AdvancedCollisions => false;
 
         public override bool HasEyeTracking => false;
 
