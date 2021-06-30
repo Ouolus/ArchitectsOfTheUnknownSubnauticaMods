@@ -51,12 +51,13 @@ namespace RotA.Prefabs.Creatures
             base.AddCustomBehaviour(components);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
+            Renderer insideRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             UpdateGargTransparentMaterial(renderer.materials[0]);
             UpdateGargTransparentMaterial(renderer.materials[1]);
             UpdateGargTransparentMaterial(renderer.materials[2]);
             UpdateGargSolidMaterial(renderer.materials[3]);
-            UpdateGargSkeletonMaterial(renderer.materials[4]);
-            UpdateGargGutsMaterial(renderer.materials[5]);
+            UpdateGargSkeletonMaterial(insideRenderer.materials[0]);
+            UpdateGargGutsMaterial(insideRenderer.materials[1]);
             UpdateGargEyeMaterial(eyeRenderer.materials[0]);
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
@@ -84,8 +85,10 @@ namespace RotA.Prefabs.Creatures
 
         public static void UpdateGargSolidMaterial(Material material)
         {
-            material.SetFloat("_Fresnel", 1);
+            material.SetFloat("_Fresnel", 0.9f);
             material.SetFloat("_SpecInt", 25);
+            material.SetFloat("_EmissionLM", 1f);
+            material.SetFloat("_EmissionLMNight", 1f);
         }
 
         public static void UpdateGargEyeMaterial(Material material)
