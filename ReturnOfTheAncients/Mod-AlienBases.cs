@@ -1,11 +1,8 @@
-
-
-using RotA.Prefabs.AlienBase.Teleporter;
-
 namespace RotA
 {
     using ArchitectsLibrary.Handlers;
     using Mono.AlienBaseSpawners;
+    using Prefabs.AlienBase.Teleporter;
     using Prefabs.Initializers;
     using Prefabs;
     using Prefabs.AlienBase;

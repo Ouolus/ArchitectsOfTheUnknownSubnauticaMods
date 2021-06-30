@@ -481,6 +481,11 @@ namespace RotA.Mono.Equipment
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
                 }
             }
+
+            // if the WarpCannon isn't in hand then dont use the warp home functionality.
+            if (usingPlayer is null)
+                return;
+            
             if (fireMode == FireMode.Warp)
             {
                 if (Time.time >= timeCanUseAgain && Input.GetKeyDown(Mod.config.WarpToBaseKey))
