@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
 using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
@@ -15,7 +16,29 @@ namespace LeviathanEggs.Prefabs
         public override GameObject Model => LoadGameObject("BloodCrawlerEgg.prefab");
         
         public override TechType HatchingCreature => TechType.Shuttlebug;
-        
+
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn { get; } = new()
+        {
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.BloodKelp_CaveFloor,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.BloodKelp_ShockerEggs,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.BloodKelp_TrenchFloor,
+                probability = 0.01f
+            }
+        };
+
         public override float HatchingTime => 2f;
         
         public override Sprite ItemSprite => LoadSprite("BloodCrawlerEgg");
