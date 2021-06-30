@@ -89,8 +89,8 @@ namespace RotA.Prefabs.Creatures
         {
             material.SetFloat("_Fresnel", 0.9f);
             material.SetFloat("_SpecInt", 25);
-            material.SetFloat("_EmissionLM", 1f);
-            material.SetFloat("_EmissionLMNight", 1f);
+            material.SetFloat("_EmissionLM", 0.1f);
+            material.SetFloat("_EmissionLMNight", 0.1f);
         }
 
         public static void UpdateGargEyeMaterial(Material material)
