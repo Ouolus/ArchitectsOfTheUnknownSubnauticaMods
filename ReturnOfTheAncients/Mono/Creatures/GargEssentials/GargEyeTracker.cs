@@ -24,11 +24,11 @@ namespace RotA.Mono.Creatures.GargEssentials
             if (target)
             {
                 Vector3 direction = (target.transform.position - transform.position).normalized;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-transform.up, direction), Time.deltaTime * 300f);
+                transform.rotation = Quaternion.LookRotation(-transform.up, direction);
             }
             else
             {
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, defaultLocalRotation, Time.deltaTime * 150f);
+                transform.localRotation = defaultLocalRotation;
             }
 
             if (isWeirdBackEye)
