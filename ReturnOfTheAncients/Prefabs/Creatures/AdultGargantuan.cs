@@ -87,8 +87,9 @@ namespace RotA.Prefabs.Creatures
 
         public static void UpdateGargSolidMaterial(Material material)
         {
-            material.SetFloat("_Fresnel", 0.9f);
-            material.SetFloat("_SpecInt", 25);
+            material.SetFloat("_Fresnel", 0.6f);
+            material.SetFloat("_Shininess", 8f);
+            material.SetFloat("_SpecInt", 75);
             material.SetFloat("_EmissionLM", 0.1f);
             material.SetFloat("_EmissionLMNight", 0.1f);
         }
