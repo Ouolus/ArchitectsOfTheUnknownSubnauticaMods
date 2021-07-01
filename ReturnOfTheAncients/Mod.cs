@@ -50,8 +50,6 @@
         static GenericSignalPrefab signal_cache_sparseReef;
         static GenericSignalPrefab signal_cache_dunes;
         static GenericSignalPrefab signal_cache_lostRiver;
-
-        public static OmegaCubePedestal buildableOmegaCubePedestal;
         
         public static OmegaCube omegaCube;
 
@@ -124,8 +122,6 @@
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
-            buildableOmegaCubePedestal = new OmegaCubePedestal();
-            buildableOmegaCubePedestal.Patch();
 
             CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
 
@@ -267,8 +263,6 @@
             gargPoster = new GargPoster();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
-            buildableOmegaCubePedestal = new OmegaCubePedestal();
-            buildableOmegaCubePedestal.Patch();
 
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
