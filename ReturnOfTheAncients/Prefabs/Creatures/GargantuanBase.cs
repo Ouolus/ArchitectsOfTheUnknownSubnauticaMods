@@ -109,7 +109,7 @@ namespace RotA.Prefabs.Creatures
             spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f, 0.05f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
@@ -413,9 +413,17 @@ namespace RotA.Prefabs.Creatures
             liveMixinData.maxHealth = 50000f;
         }
 
-        void FixRotationMultipliers(TrailManager tm, float min, float max)
+        void FixRotationMultipliers(TrailManager tm, float frame1, float frame2)
         {
-            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, min), new Keyframe(1f, max) });
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, frame1), new Keyframe(1f, frame2) });
+            tm.pitchMultiplier = curve;
+            tm.rollMultiplier = curve;
+            tm.yawMultiplier = curve;
+        }
+
+        void FixRotationMultipliers(TrailManager tm, float frame1, float frame2, float frame3)
+        {
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, frame1), new Keyframe(0.7f, frame2), new Keyframe(1f, frame3) });
             tm.pitchMultiplier = curve;
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
