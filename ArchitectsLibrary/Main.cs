@@ -81,6 +81,7 @@ namespace ArchitectsLibrary
         static BuildableLight5 buildableLight5;
         static BuildablePedestal buildablePedestal;
         static BuildablePedestalLarge buildablePedestalLarge;
+        static BuildableTable buildableTable;
 
         static internal AchievementData achievementData;
 
@@ -358,6 +359,9 @@ namespace ArchitectsLibrary
 
             buildableMicroscope = new BuildableMicroscope();
             buildableMicroscope.Patch();
+
+            buildableTable = new BuildableTable();
+            buildableTable.Patch();
 
             buildableColumnSmall = new BuildableColumnSmall();
             buildableColumnSmall.Patch();
