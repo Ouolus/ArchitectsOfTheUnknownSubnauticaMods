@@ -183,7 +183,7 @@ namespace ArchitectsLibrary
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
-            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
+            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.EnsureComponent<VFXFabricating>();
             vfxFabricating.localMinY = -0.25f;
             vfxFabricating.localMaxY = 0.44f;
             vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
