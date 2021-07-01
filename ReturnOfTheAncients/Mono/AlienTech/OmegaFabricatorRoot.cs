@@ -25,7 +25,7 @@ namespace RotA.Mono.AlienTech
 
         GameObject currentCube;
 
-        List<Material> cachedMaterials;
+        List<Material> cachedMaterials = new List<Material>();
 
         public VFXController vfxController;
 
@@ -145,6 +145,10 @@ namespace RotA.Mono.AlienTech
 
         void UpdateScanAmountMaterials()
         {
+            if (currentCube == null)
+            {
+                return;
+            }
             float value = currentCube.transform.position.y - 1.5f;
             float value2 = currentCube.transform.position.y + 5.5f;
             float num = 1f;
