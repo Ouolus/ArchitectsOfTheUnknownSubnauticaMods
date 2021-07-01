@@ -64,7 +64,7 @@ namespace RotA.Mono
 
         public GameObject GetSunbeamGargPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
+            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
             prefab.transform.forward = Vector3.up;
             prefab.transform.localScale = Vector3.one * 5.5f;
