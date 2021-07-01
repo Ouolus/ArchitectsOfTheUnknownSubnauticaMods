@@ -44,6 +44,7 @@
                 renderer.material.SetFloat("_SquaresSpeed", 15f);
             }
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 0f);
+            Main.IonCubeCraftModelFix(prefab);
         }
 
         protected override Atlas.Sprite GetItemSprite()

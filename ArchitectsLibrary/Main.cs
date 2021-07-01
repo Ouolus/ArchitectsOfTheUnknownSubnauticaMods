@@ -183,6 +183,11 @@ namespace ArchitectsLibrary
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
+            IonCubeCraftModelFix(prefab);
+        }
+
+        internal static void IonCubeCraftModelFix(GameObject prefab)
+        {
             var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.EnsureComponent<VFXFabricating>();
             vfxFabricating.localMinY = -0.25f;
             vfxFabricating.localMaxY = 0.44f;
