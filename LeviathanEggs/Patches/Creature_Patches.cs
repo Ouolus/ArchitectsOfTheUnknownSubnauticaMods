@@ -23,7 +23,23 @@ namespace LeviathanEggs.Patches
             switch (techType)
             {
                 case TechType.PrecursorDroid:
+                    var model = __instance.gameObject.transform.Find("models/Precursor_Driod").gameObject;
+                    var viewModel = GameObject.Instantiate(model, __instance.gameObject.transform);
+                    viewModel.name = "ViewModel";
+                    viewModel.SetActive(false);
+
+                    var fpModel = __instance.gameObject.EnsureComponent<FPModel>();
+                    fpModel.propModel = model;
+                    fpModel.viewModel = viewModel;
+                    
+                    var pickupable = __instance.gameObject.EnsureComponent<Pickupable>();
+                    pickupable.isPickupable = true;
+                    
                     __instance.actions.Add(__instance.gameObject.EnsureComponent<DroidWelder>());
+                    
+                    var droidDeploy = __instance.gameObject.EnsureComponent<DroidDeploy>();
+                    droidDeploy.pickupable = pickupable;
+                    droidDeploy.mainCollider = __instance.gameObject.GetComponent<Collider>();
                     break;
                 case TechType.Jumper:
                 case TechType.CrabSquid:
