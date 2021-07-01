@@ -31,7 +31,8 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(creature_rockgrub, 0.1f, Vector3.one * 3f, Vector3.one * 0.1f, new Vector3(0f, firstFloorY + 4f, -25)));
 
             yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 7.81f, -22.34f)));
-            yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 5f, -22.34f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 6f, -22.34f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 4f, -22.34f)));
             yield return StartCoroutine(SpawnPrefab(Mod.aquariumSkeleton.ClassID, new Vector3(0f, -2.5f, 0f)));
 
             //Aquarium room
