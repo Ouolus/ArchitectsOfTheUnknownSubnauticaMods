@@ -110,18 +110,6 @@
             omegaCube.Patch();
             DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
             #endregion
-            
-            warpCannon = new WarpCannonPrefab();
-            warpCannon.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
-            DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
-
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
-            warpCannonTerminal.Patch();
-
-            gargPoster = new GargPoster();
-            gargPoster.Patch();
-            KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
 
             CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
 
