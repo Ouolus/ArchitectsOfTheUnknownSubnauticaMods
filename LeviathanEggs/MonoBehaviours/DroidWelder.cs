@@ -1,10 +1,12 @@
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeviathanEggs.MonoBehaviours
 {
     class DroidWelder :  CreatureAction
     {
-        Leakable[] _leakables;
+        List<Leakable> _leakables;
         BaseRoot _base;
         WalkBehaviour _walkBehaviour;
         MeleeAttack _meleeAttack;
@@ -29,12 +31,12 @@ namespace LeviathanEggs.MonoBehaviours
             if (_weAreLeaking)
             {
                 if (_leakables[0]?.leakingLeakPoints.Count <= 0)
-                    _leakables.RemoveFast(0);
+                    _leakables.RemoveAt(0);
                 
-                if (_leakables.Length > 0)
+                if (_leakables.Count > 0)
                     return;
                 
-                _leakables = _base.flood.leakers.Clone() as Leakable[];
+                _leakables = _base.flood.leakers.ToList();
             }
         }
 
