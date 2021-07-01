@@ -83,6 +83,8 @@ namespace LeviathanEggs
                     isFragment = false
                 });
             }
+            
+            CraftDataHandler.SetEquipmentType(TechType.PrecursorDroid, EquipmentType.Hand);
 
             WaterParkCreatureParametersSettings();
 
