@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace LeviathanEggs.MonoBehaviours
 {
-    class DroidWelder :  CreatureAction
+    public class DroidWelder :  CreatureAction
     {
+        public float healPerSecond = 10f;
+        
         List<Leakable> _leakables;
         BaseRoot _base;
         WalkBehaviour _walkBehaviour;
@@ -82,7 +84,7 @@ namespace LeviathanEggs.MonoBehaviours
 
         public override void Perform(Creature creature, float deltaTime)
         {
-            if ((_weAreLeaking && Vector3.Distance(transform.position, _leakables[0].leakingLeakPoints[0].transform.position) < 2f && _leakables[0].live.AddHealth(2f) > 0f) || (_weldableTarget && Vector3.Distance(transform.position, _weldableTarget.transform.position) < 2f && _weldableTarget.AddHealth(2f) > 0f))
+            if ((_weAreLeaking && Vector3.Distance(transform.position, _leakables[0].leakingLeakPoints[0].transform.position) < 2f && _leakables[0].live.AddHealth(healPerSecond) > 0f) || (_weldableTarget && Vector3.Distance(transform.position, _weldableTarget.transform.position) < 2f && _weldableTarget.AddHealth(healPerSecond) > 0f))
             {
                 WeldingFx();
             }
