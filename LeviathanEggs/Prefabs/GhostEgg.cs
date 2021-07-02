@@ -48,8 +48,6 @@ namespace LeviathanEggs.Prefabs
                     shell = renderer.material;
                     break;
                 }
-                if (shell != null)
-                    break;
             }
             foreach (var renderer in aRenderer)
             {
@@ -58,8 +56,6 @@ namespace LeviathanEggs.Prefabs
                     embryo = renderer.material;
                     break;
                 }
-                if (embryo != null)
-                    break;
             }
             Renderer[] renderers = prefab.GetComponentsInChildren<Renderer>();
             Material[] materials = new Material[2] { shell, embryo };
