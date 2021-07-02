@@ -8,7 +8,7 @@ namespace LeviathanEggs.MonoBehaviours
     {
         public float healPerSecond = 10f;
         
-        List<Leakable> _leakables;
+        List<Leakable> _leakables = new();
         BaseRoot _base;
         WalkBehaviour _walkBehaviour;
         MeleeAttack _meleeAttack;
@@ -25,20 +25,30 @@ namespace LeviathanEggs.MonoBehaviours
 
         void Update()
         {
+            ErrorMessage.AddMessage("1");
             if (_base is null)
                 return;
 
+            ErrorMessage.AddMessage("2");
             _weAreLeaking = _base.IsLeaking();
+            
+            ErrorMessage.AddMessage("3");
+            UpdateLeakPoints();
 
+            ErrorMessage.AddMessage("4");
             if (_weAreLeaking)
             {
-                if (_leakables[0]?.leakingLeakPoints.Count <= 0)
+                ErrorMessage.AddMessage("5");
+                if (_leakables.Count > 0 && _leakables[0].leakingLeakPoints.Count <= 0)
                     _leakables.RemoveAt(0);
+                ErrorMessage.AddMessage("6");
                 
-                if (_leakables?.Count > 0)
+                if (_leakables.Count > 0)
                     return;
+                ErrorMessage.AddMessage("7");
                 
                 _leakables = _base.flood.leakers.ToList();
+                ErrorMessage.AddMessage("8");
             }
         }
 
@@ -54,7 +64,7 @@ namespace LeviathanEggs.MonoBehaviours
         void OnExamine()
         {
             _base = null;
-            _leakables = null;
+            _leakables.Clear();
             _weldableTarget = null;
             _weAreLeaking = false;
         }
@@ -84,7 +94,8 @@ namespace LeviathanEggs.MonoBehaviours
 
         public override void Perform(Creature creature, float deltaTime)
         {
-            if ((_weAreLeaking && Vector3.Distance(transform.position, _leakables[0].leakingLeakPoints[0].transform.position) < 2f && _leakables[0].live.AddHealth(healPerSecond) > 0f) || (_weldableTarget && Vector3.Distance(transform.position, _weldableTarget.transform.position) < 2f && _weldableTarget.AddHealth(healPerSecond) > 0f))
+            if ((_weAreLeaking && IsNearTarget(_leakables[0].leakingLeakPoints[0].transform.position) && _leakables[0].live.AddHealth(healPerSecond) > 0f) 
+                || (_weldableTarget && IsNearTarget(_weldableTarget.transform.position) && _weldableTarget.AddHealth(healPerSecond) > 0f))
             {
                 WeldingFx();
             }
@@ -93,7 +104,8 @@ namespace LeviathanEggs.MonoBehaviours
         public override void StopPerform(Creature creature)
         {
             _weldableTarget = null;
-            _timeToPerform = Time.time + 5f;
+            _leakables.Clear();
+            _timeToPerform = Time.time + 2f;
         }
 
         void OnCollisionEnter(Collision other)
@@ -112,6 +124,39 @@ namespace LeviathanEggs.MonoBehaviours
             var mouth = _meleeAttack.mouth.transform; 
             Instantiate(_meleeAttack.damageFX, mouth.position, mouth.rotation);
             Utils.PlayEnvSound(_meleeAttack.attackSound, mouth.position);
+        }
+
+        void UpdateLeakPoints()
+        {
+            if (_leakables is null)
+                return;
+            
+            if (_leakables.Count <= 0)
+                return;
+            
+            if (_weAreLeaking)
+                return;
+            
+            foreach (var leakable in _leakables)
+            {
+                for (int i = 0; i < leakable.leakingLeakPoints.Count; i++)
+                {
+                    var leakPoint = leakable.leakingLeakPoints[i];
+
+                    if (leakPoint != null)
+                    {
+                        leakPoint.Stop();
+                        leakPoint.StopSpray();
+                    }
+                }
+
+                leakable.leakingLeakPoints.Clear();
+            }
+        }
+
+        bool IsNearTarget(Vector3 targetPos)
+        {
+            return Vector3.Distance(transform.position, targetPos) < 2f;
         }
     }
 }
