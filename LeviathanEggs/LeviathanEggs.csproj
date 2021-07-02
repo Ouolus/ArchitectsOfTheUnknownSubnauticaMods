@@ -142,6 +142,7 @@
     <Compile Include="Prefabs\GhostRayEgg.cs" />
     <Compile Include="Prefabs\CrimsonRayEgg.cs" />
     <Compile Include="Prefabs\LavaLarvaEgg.cs" />
+    <Compile Include="Prefabs\LeviathanEgg.cs" />
     <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />

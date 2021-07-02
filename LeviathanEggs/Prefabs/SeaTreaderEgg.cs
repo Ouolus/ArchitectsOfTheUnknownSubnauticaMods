@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LeviathanEggs.Prefabs
 {
-    public class SeaTreaderEgg : EggPrefab
+    public class SeaTreaderEgg : LeviathanEgg
     {
         public SeaTreaderEgg()
             : base("SeaTreaderEgg", "Sea Treader Egg", "Sea Treaders hatch from these.")
@@ -27,13 +27,9 @@ namespace LeviathanEggs.Prefabs
                 probability = 0.05f
             }
         };
-
-        public override float HatchingTime => 5f;
         
         public override Sprite ItemSprite => LoadSprite("SeaTreaderEgg");
         
-        public override Vector2int SizeInInventory { get; } = new(3, 3);
-
         void LateEnhance(GameObject prefab)
         {
             var renderer = prefab.GetComponentInChildren<Renderer>();

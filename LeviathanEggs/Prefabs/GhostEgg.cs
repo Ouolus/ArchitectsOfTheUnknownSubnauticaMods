@@ -6,7 +6,7 @@ using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    class GhostEgg : EggPrefab
+    class GhostEgg : LeviathanEgg
     {
         public GhostEgg()
             : base("GhostEgg", "Ghost Leviathan Egg", "Ghosts hatch from these.")
@@ -17,22 +17,20 @@ namespace LeviathanEggs.Prefabs
         public override GameObject Model => LoadGameObject("GhostEgg.prefab");
         public override TechType HatchingCreature => TechType.GhostLeviathanJuvenile;
         public override Sprite ItemSprite => LoadSprite("GhostEgg");
-        public override float HatchingTime => 5f;
-        public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new ()
         {
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.TreeCove_LakeFloor,
                 count = 1,
-                probability = 0.2f,
+                probability = 0.02f,
             },
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.TreeCove_Ground,
                 count = 1,
-                probability = 0.4f
+                probability = 0.04f
             }
         };
 
@@ -73,27 +71,10 @@ namespace LeviathanEggs.Prefabs
                     renderer.materials = materials;
                 }
             }
-            if (renderers == null)
-            {
-                ErrorMessage.AddMessage("renderer is null");
-                Console.WriteLine("Renderer is null");
-            }
-            if (shell == null)
-            {
-                ErrorMessage.AddMessage("shell material is null");
-                Console.WriteLine("Shell material is null");
-            }
-            if (embryo == null)
-            {
-                ErrorMessage.AddMessage("embryo material is null");
-                Console.WriteLine("Embryo material is null");
-            }
 
             ghostEgg.SetActive(false);
 
             prefab.AddComponent<SpawnLocations>();
         }
-
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }
 }
