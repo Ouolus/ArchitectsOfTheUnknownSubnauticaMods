@@ -152,6 +152,7 @@
     <Compile Include="Buildables\BuildablePlatform.cs" />
     <Compile Include="Buildables\BuildableColumn.cs" />
     <Compile Include="Buildables\BuildableSpecimenCases.cs" />
+    <Compile Include="Buildables\BuildableTable.cs" />
     <Compile Include="Buildables\BuildableWarper.cs" />
     <Compile Include="Config\AchievementData.cs" />
     <Compile Include="CreatorKit\Mono\FilterableList.cs" />
