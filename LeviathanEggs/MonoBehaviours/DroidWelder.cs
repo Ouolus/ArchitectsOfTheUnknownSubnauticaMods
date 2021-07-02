@@ -33,7 +33,7 @@ namespace LeviathanEggs.MonoBehaviours
                 if (_leakables[0]?.leakingLeakPoints.Count <= 0)
                     _leakables.RemoveAt(0);
                 
-                if (_leakables.Count > 0)
+                if (_leakables?.Count > 0)
                     return;
                 
                 _leakables = _base.flood.leakers.ToList();
