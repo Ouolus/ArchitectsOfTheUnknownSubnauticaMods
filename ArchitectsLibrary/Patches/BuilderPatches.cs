@@ -12,12 +12,12 @@ namespace ArchitectsLibrary.Patches
     {
         internal static void Patch(Harmony harmony)
         {
-            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.CreateGhost));
-            var prefix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPrefix)));
-            harmony.Patch(orig, prefix);
+            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.Update));
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(UpdatePostfix)));
+            harmony.Patch(orig, postfix: postfix);
         }
 
-        static void CreateGhostPrefix()
+        static void UpdatePostfix()
         {
             if (Builder.prefab == null || Builder.ghostModel == null)
                 return;
