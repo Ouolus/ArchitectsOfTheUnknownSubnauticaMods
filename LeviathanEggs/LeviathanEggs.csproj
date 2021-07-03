@@ -125,6 +125,8 @@
     <Compile Include="Configurations\Config.cs" />
     <Compile Include="Helpers\AssetsBundleHelper.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\DroidDeploy.cs" />
+    <Compile Include="MonoBehaviours\DroidWelder.cs" />
     <Compile Include="MonoBehaviours\GroundedChecker.cs" />
     <Compile Include="MonoBehaviours\RobotEggPulsating.cs" />
     <Compile Include="MonoBehaviours\SpawnLocations.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Prefabs\GhostRayEgg.cs" />
     <Compile Include="Prefabs\CrimsonRayEgg.cs" />
     <Compile Include="Prefabs\LavaLarvaEgg.cs" />
+    <Compile Include="Prefabs\LeviathanEgg.cs" />
     <Compile Include="Prefabs\ReaperEgg.cs" />
     <Compile Include="Prefabs\RobotEgg.cs" />
     <Compile Include="Prefabs\SeaDragonEgg.cs" />
@@ -156,7 +159,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y
-xcopy "$(TargetDir)" "$(GameDir)\QMods\$(ProjectName)\" /q /s /y /i</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)mod_$(ConfigurationName).json" "$(OutDir)mod.json" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

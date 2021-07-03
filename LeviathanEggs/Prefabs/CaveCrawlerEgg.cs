@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LeviathanEggs.MonoBehaviours;
 using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
@@ -10,35 +11,54 @@ namespace LeviathanEggs.Prefabs
         public CaveCrawlerEgg()
             : base("CaveCrawlerEgg", "Cave Crawler Egg", "Cave Crawlers hatch from these.")
         {
-            LateEnhancements += InitializeObject;
+            LateEnhancements += prefab => prefab.AddComponent<SpawnLocations>();
         }
-        public override GameObject Model => LoadGameObject("RobotEgg.prefab");
-        public override TechType HatchingCreature => TechType.CaveCrawler;
-        public override float HatchingTime => 2f;
-        public override Sprite ItemSprite => LoadSprite("RobotEgg");
+        public override GameObject Model => LoadGameObject("CaveCrawlerEgg.prefab");
         
-        public void InitializeObject(GameObject prefab)
+        public override TechType HatchingCreature => TechType.CaveCrawler;
+
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn { get; } = new()
         {
-            Material material = new Material(Shader.Find("MarmosetUBER"))
+            new LootDistributionData.BiomeData
             {
-                mainTexture = LoadTexture2D("RobotEggDiffuse"),
-            };
-            material.EnableKeyword("MARMO_NORMALMAP");
-            material.EnableKeyword("MARMO_SPECMAP");
-            material.EnableKeyword("MARMO_EMISSION");
-
-            material.SetTexture(ShaderPropertyID._Illum, LoadTexture2D("RobotEggIllum"));
-            material.SetTexture(ShaderPropertyID._SpecTex, LoadTexture2D("RobotEggDiffuse"));
-            material.SetTexture(ShaderPropertyID._BumpMap, LoadTexture2D("RobotEggNormal"));
-
-            Renderer[] renderers = prefab.GetAllComponentsInChildren<Renderer>();
-            foreach (var rend in renderers)
+                count = 1,
+                biome = BiomeType.FloatingIslands_Shallows,
+                probability = 0.02f
+            },
+            new LootDistributionData.BiomeData
             {
-                rend.material = material;
-                rend.sharedMaterial = material;
+                count = 1,
+                biome = BiomeType.FloatingIslands_AbandonedBase_Outside,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.Mountains_IslandGrass,
+                probability = 0.01f,
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.Mountains_IslandSand,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.Dunes_CaveFloor,
+                probability = 0.01f
+            },
+            new LootDistributionData.BiomeData
+            {
+                count = 1,
+                biome = BiomeType.UnderwaterIslands_IslandCaveFloor,
+                probability = 0.01f
             }
+        };
 
-            prefab.AddComponent<SpawnLocations>();
-        }
+        public override float HatchingTime => 2f;
+        
+        public override Sprite ItemSprite => LoadSprite("CaveCrawlerEgg");
     }
 }

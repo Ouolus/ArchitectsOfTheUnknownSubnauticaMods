@@ -5,6 +5,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Utility;
 using System.IO;
 using System.Reflection;
+using ArchitectsLibrary.API;
 using LeviathanEggs.Prefabs;
 using UnityEngine;
 using static LootDistributionData;
@@ -69,14 +70,21 @@ namespace LeviathanEggs
             riverProwlerEgg.Patch();
             skyRayEgg.Patch();
 
-            
-            techTypesToAddEntry.ForEach(x => PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+            PrecursorFabricatorService.SubscribeToFabricator(robotEgg.TechType, PrecursorFabricatorTab.Eggs);
+            PrecursorFabricatorService.SubscribeToFabricator(warperEgg.TechType, PrecursorFabricatorTab.Eggs);
+
+            for (int i = 0; i < techTypesToAddEntry.Count; i++)
             {
-                key = x,
-                encyclopedia = "UnknownEgg",
-                scanTime = 2f,
-                isFragment = false
-            }));
+                PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
+                {
+                    key = techTypesToAddEntry[i],
+                    encyclopedia = "UnknownEgg",
+                    scanTime = 2f,
+                    isFragment = false
+                });
+            }
+            
+            CraftDataHandler.SetEquipmentType(TechType.PrecursorDroid, EquipmentType.Hand);
 
             WaterParkCreatureParametersSettings();
 
@@ -180,11 +188,13 @@ namespace LeviathanEggs
             CraftDataHandler.SetItemSize(TechType.PrecursorDroid, new Vector2int(2, 2));
             
             CraftDataHandler.SetItemSize(TechType.LavaLarva, new Vector2int(2, 2));
+            
+            CraftDataHandler.SetItemSize(TechType.Skyray, new Vector2int(2, 2));
 
             CraftDataHandler.SetItemSize(TechType.GhostRayRed, new Vector2int(3, 3));
             CraftDataHandler.SetItemSize(TechType.GhostRayBlue, new Vector2int(3, 3));
             
-            CraftDataHandler.SetItemSize(TechType.Shuttlebug, new Vector2int(2, 2));
+            CraftDataHandler.SetItemSize(TechType.Shuttlebug, new Vector2int(3, 3));
             CraftDataHandler.SetItemSize(TechType.CaveCrawler, new Vector2int(2, 2));
             
             CraftDataHandler.SetItemSize(TechType.Warper, new Vector2int(3, 3));
@@ -251,6 +261,7 @@ namespace LeviathanEggs
             WaterParkCreature.creatureEggs[TechType.CaveCrawler] = caveCrawlerEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.Warper] = warperEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.SpineEel] = riverProwlerEgg.TechType;
+            WaterParkCreature.creatureEggs[TechType.Skyray] = skyRayEgg.TechType;
             WaterParkCreature.creatureEggs[TechType.ReefbackBaby] = TechType.ReefbackEgg;
 
             WaterParkCreature.creatureEggs.Remove(TechType.Spadefish);

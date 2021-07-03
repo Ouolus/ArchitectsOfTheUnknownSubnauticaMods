@@ -5,7 +5,7 @@ using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    class SeaDragonEgg : EggPrefab
+    class SeaDragonEgg : LeviathanEgg
     {
         public SeaDragonEgg()
             :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons hatch from these.")
@@ -15,9 +15,7 @@ namespace LeviathanEggs.Prefabs
 
         public override GameObject Model => LoadGameObject("SeaDragonEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaDragon;
-        public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SeaDragonEgg");
-        public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
         public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
         {
@@ -68,6 +66,5 @@ namespace LeviathanEggs.Prefabs
 
             prefab.AddComponent<SpawnLocations>();
         }
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }
 }

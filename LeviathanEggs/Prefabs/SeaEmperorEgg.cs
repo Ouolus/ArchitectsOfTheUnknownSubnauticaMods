@@ -5,7 +5,7 @@ using ArchitectsLibrary.API;
 using static LeviathanEggs.Helpers.AssetsBundleHelper;
 namespace LeviathanEggs.Prefabs
 {
-    public class SeaEmperorEgg : EggPrefab
+    public class SeaEmperorEgg : LeviathanEgg
     {
         public SeaEmperorEgg()
             : base("SeaEmperorEgg", "Sea Emperor Egg", "Sea Emperors hatch from these.")
@@ -14,23 +14,21 @@ namespace LeviathanEggs.Prefabs
         }
         public override GameObject Model => LoadGameObject("SeaEmperorEgg.prefab");
         public override TechType HatchingCreature => TechType.SeaEmperorBaby;
-        public override float HatchingTime => 5f;
         public override Sprite ItemSprite => LoadSprite("SeaEmperorEgg");
-        public override bool AcidImmune => true;
         public override string AssetsFolder => Main.AssetsFolder;
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new ()
         {
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.PrisonAquarium_CaveFloor,
                 count = 1,
-                probability = 0.5f
+                probability = 0.01f
             },
             new LootDistributionData.BiomeData()
             {
                 biome = BiomeType.PrisonAquarium_Grass,
                 count = 1,
-                probability = 0.1f
+                probability = 0.01f
             },
         };
 
@@ -61,6 +59,5 @@ namespace LeviathanEggs.Prefabs
 
             prefab.AddComponent<SpawnLocations>();
         }
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
     }
 }
