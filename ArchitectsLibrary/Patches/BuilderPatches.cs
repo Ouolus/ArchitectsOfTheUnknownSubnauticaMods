@@ -35,6 +35,7 @@ namespace ArchitectsLibrary.Patches
                 
                 Builder.prefab.transform.localScale *= 0.99f;
                 Object.DestroyImmediate(Builder.ghostModel);
+                Builder.CreateGhost();
             }
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
@@ -44,11 +45,14 @@ namespace ArchitectsLibrary.Patches
                 
                 Builder.prefab.transform.localScale *= 1.01f;
                 Object.DestroyImmediate(Builder.ghostModel);
+                Builder.CreateGhost();
             }
             else if (Input.GetKeyDown(KeyCode.T))
             {
                 Builder.prefab.transform.localScale = Vector3.one;
                 Object.DestroyImmediate(Builder.ghostModel);
+                Builder.CreateGhost();
+
             }
         }
 
