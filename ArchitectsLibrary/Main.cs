@@ -15,7 +15,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
-using ArchitectsLibrary.Config;
+using ArchitectsLibrary.Configuration;
 
 namespace ArchitectsLibrary
 {
@@ -84,7 +84,8 @@ namespace ArchitectsLibrary
         static BuildablePedestalLarge buildablePedestalLarge;
         static BuildableTable buildableTable;
 
-        static internal AchievementData achievementData;
+        internal static AchievementData achievementData;
+        internal static Config Config;
 
         const string encyKey_emerald = "EmeraldEncy";
 

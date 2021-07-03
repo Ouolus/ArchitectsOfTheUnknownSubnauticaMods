@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SMLHelper.V2.Json;
 using SMLHelper.V2.Options.Attributes;
 
-namespace ArchitectsLibrary.Config
+namespace ArchitectsLibrary.Configuration
 {
     class AchievementData : ConfigFile
     {
