@@ -31,12 +31,18 @@ namespace ArchitectsLibrary.Patches
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
             {
+                if (Builder.ghostModelScale.x >= .2f)
+                    return;
+                
                 Builder.ghostModelScale *= 0.9f;
             }
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
             {
-                Builder.ghostModelScale *= 1.2f;
+                if (Builder.ghostModelScale.x >= 1.2f)
+                    return;
+                
+                Builder.ghostModelScale *= 1.01f;
             }
         }
 
