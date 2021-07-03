@@ -19,7 +19,7 @@ namespace RotA.Mono.Equipment
         readonly int param_fireFast = Animator.StringToHash("fire_fast");
 
         public float SpinSpeed
-        { 
+        {
             set => spinSpeedTarget = Mathf.Clamp(value, 0.05f, 2f);
         }
 
@@ -32,7 +32,7 @@ namespace RotA.Mono.Equipment
         {
             get
             {
-                if(batteryTarget <= 0.02f)
+                if (batteryTarget <= 0.02f)
                 {
                     return 0f;
                 }

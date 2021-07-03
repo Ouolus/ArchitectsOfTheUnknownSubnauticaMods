@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using SMLHelper.V2.Assets;
-using ECCLibrary;
-using RotA.Mono;
+﻿using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
@@ -27,7 +24,7 @@ namespace RotA.Prefabs.AlienBase
             slotType = EntitySlot.Type.Large,
             techType = this.TechType
         };
-        
+
 #if SN1
         public override GameObject GetGameObject()
         {

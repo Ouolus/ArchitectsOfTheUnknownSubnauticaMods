@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ECCLibrary;
+﻿using ECCLibrary;
 using RotA.Mono.Creatures.CreatureActions;
 using RotA.Mono.Creatures.GargEssentials;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RotA.Prefabs.Creatures
@@ -54,13 +54,40 @@ namespace RotA.Prefabs.Creatures
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
+            //advanced collisions stuff
+            List<Collider> collidersToIgnore = new List<Collider>();
+            collidersToIgnore.Add(prefab.GetComponent<Collider>());
+            bool stopPlacingColliders = false;
+
             List<Transform> spines = new List<Transform>();
+
             GameObject currentSpine = prefab.SearchChild("Spine");
             while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
                 if (currentSpine)
                 {
+                    if (currentSpine.name.Contains("11")) //dont add colliders after you've gone to the 11th spine
+                    {
+                        stopPlacingColliders = true;
+                    }
+                    if (AdvancedCollisions == true && stopPlacingColliders == false && currentSpine.name != "Spine") //dont add collider to first spine
+                    {
+                        var newCapsule = currentSpine.AddComponent<CapsuleCollider>();
+                        newCapsule.height = 0.85f;
+                        newCapsule.direction = 1;
+
+                        bool firstSpine = currentSpine.name.Contains("001");
+                        if (firstSpine)
+                        {
+                            newCapsule.radius = 0.14f; //first segment of the garg is a lot thinner than the rest, until it gradually tapers off about halfway
+                        }
+                        else
+                        {
+                            newCapsule.radius = 0.2f;
+                        }
+                        collidersToIgnore.Add(newCapsule);
+                    }
                     if (currentSpine.name.Contains("59"))
                     {
                         break;
@@ -71,6 +98,10 @@ namespace RotA.Prefabs.Creatures
                     }
                 }
             }
+            if (AdvancedCollisions == true)
+            {
+                prefab.EnsureComponent<RotA.Mono.Creatures.IgnoreSelfCollisionsAtStart>().collidersToIgnoreEachOther = collidersToIgnore;
+            }
             spines.Add(prefab.SearchChild("Tail", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail1", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail2", ECCStringComparison.Equals).transform);
@@ -78,7 +109,7 @@ namespace RotA.Prefabs.Creatures
             spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
-            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTrail(prefab.SearchChild("Spine"), spines.ToArray(), components, SpineBoneSnapSpeed, 40f), 0.26f, 0.26f, 0.05f);
 
             components.creature.Hunger = new CreatureTrait(0f, -0.07f);
 
@@ -114,12 +145,13 @@ namespace RotA.Prefabs.Creatures
 
             components.locomotion.maxAcceleration = 27f;
 
-            GargantuanBehaviour gargBehaviour = prefab.AddComponent<GargantuanBehaviour>();
-            gargBehaviour.creature = components.creature;
-            gargBehaviour.attachBoneName = AttachBoneName;
-            gargBehaviour.vehicleDamagePerSecond = VehicleDamagePerSecond;
-            gargBehaviour.grabFishMode = GrabFishMode;
+            prefab.EnsureComponent<GargantuanBehaviour>();
             
+            GargantuanGrab gargantuanGrab = prefab.EnsureComponent<GargantuanGrab>();
+            gargantuanGrab.attachBoneName = AttachBoneName;
+            gargantuanGrab.vehicleDamagePerSecond = VehicleDamagePerSecond;
+            gargantuanGrab.grabFishMode = GrabFishMode;
+
             GameObject mouth = prefab.SearchChild("Mouth");
             GargantuanMouthAttack mouthAttack = prefab.AddComponent<GargantuanMouthAttack>();
             mouthAttack.mouth = mouth;
@@ -135,16 +167,6 @@ namespace RotA.Prefabs.Creatures
             mouthAttack.attachBoneName = AttachBoneName;
             mouthAttack.canPerformCyclopsCinematic = CanPerformCyclopsCinematic;
             mouthAttack.grabFishMode = GrabFishMode;
-
-            /*GameObject tentacleTrigger = prefab.SearchChild("TentacleTrigger");
-            GargantuanTentacleAttack tentacleAttack = prefab.AddComponent<GargantuanTentacleAttack>();
-            tentacleAttack.mouth = tentacleTrigger;
-            tentacleAttack.canBeFed = false;
-            tentacleAttack.biteInterval = 2f;
-            tentacleAttack.lastTarget = components.lastTarget;
-            tentacleAttack.creature = components.creature;
-            tentacleAttack.liveMixin = components.liveMixin;
-            tentacleAttack.animator = components.creature.GetAnimator();*/
 
             if (AttackPlayer)
             {
@@ -174,18 +196,22 @@ namespace RotA.Prefabs.Creatures
                 roar.delayMax = RoarDelayMinMax.Item2;
                 roar.screenShake = DoesScreenShake;
                 roar.closeRoarThreshold = CloseRoarThreshold;
+                roar.roarDoesDamage = RoarDoesDamage;
             }
             if (UseSwimSounds)
             {
                 prefab.AddComponent<GargantuanSwimAmbience>();
             }
 
-            prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
-            prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+            if (HasEyeTracking)
+            {
+                prefab.SearchChild("BLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("BRE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("FLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("FRE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
+                prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
+            }
 
             prefab.AddComponent<VFXSchoolFishRepulsor>();
 
@@ -198,6 +224,14 @@ namespace RotA.Prefabs.Creatures
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool HasEyeTracking
+        {
+            get
+            {
+                return false;
+            }
         }
 
         public virtual bool TentaclesHaveTrails
@@ -213,6 +247,14 @@ namespace RotA.Prefabs.Creatures
             get
             {
                 return true;
+            }
+        }
+
+        public virtual bool AdvancedCollisions
+        {
+            get
+            {
+                return false;
             }
         }
 
@@ -260,6 +302,14 @@ namespace RotA.Prefabs.Creatures
         }
 
         public virtual bool CanPerformCyclopsCinematic
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public virtual bool RoarDoesDamage
         {
             get
             {
@@ -363,9 +413,17 @@ namespace RotA.Prefabs.Creatures
             liveMixinData.maxHealth = 50000f;
         }
 
-        void FixRotationMultipliers(TrailManager tm, float min, float max)
+        void FixRotationMultipliers(TrailManager tm, float frame1, float frame2)
         {
-            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, min), new Keyframe(1f, max) });
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, frame1), new Keyframe(1f, frame2) });
+            tm.pitchMultiplier = curve;
+            tm.rollMultiplier = curve;
+            tm.yawMultiplier = curve;
+        }
+
+        void FixRotationMultipliers(TrailManager tm, float frame1, float frame2, float frame3)
+        {
+            AnimationCurve curve = new AnimationCurve(new Keyframe[] { new Keyframe(0f, frame1), new Keyframe(0.7f, frame2), new Keyframe(1f, frame3) });
             tm.pitchMultiplier = curve;
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;

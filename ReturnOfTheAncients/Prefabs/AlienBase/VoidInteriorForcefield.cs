@@ -1,9 +1,7 @@
-﻿using SMLHelper.V2.Assets;
-using ECCLibrary;
-using RotA.Mono;
+﻿using ECCLibrary;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using System.Collections;
 
 namespace RotA.Prefabs.AlienBase
 {

@@ -1,4 +1,5 @@
 ﻿using ECCLibrary;
+using RotA.Mono;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -12,15 +13,15 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private Vector3 teleportPosition;
         private float teleportAngle;
         private bool disablePlatform;
-        private bool useAlternateColorScheme;
+        private bool omegaTeleporter;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool useAlternateColorScheme) : base(classId, "", "")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
-            this.useAlternateColorScheme = useAlternateColorScheme;
+            this.omegaTeleporter = omegaTeleporter;
         }
 
 #if SN1
@@ -34,7 +35,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
+            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);
@@ -42,16 +43,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
-            }
-            if (useAlternateColorScheme)
-            {
-                foreach(Renderer renderer in obj.GetComponentsInChildren<Renderer>())
-                {
-                    foreach(Material mat in renderer.materials)
-                    {
-                        mat.SetColor("_GlowColor", new Color(0.1f, 0.1f, 1f));
-                    }
-                }
             }
             return obj;
         }
@@ -68,7 +59,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             teleporter.teleporterIdentifier = teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.GetComponent<TechTag>().type = TechType.PrecursorTeleporter;
+            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);
@@ -76,16 +67,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(0).gameObject.SetActive(false);
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
-            }
-            if (useAlternateColorScheme)
-            {
-                foreach (Renderer renderer in obj.GetComponentsInChildren<Renderer>())
-                {
-                    foreach (Material mat in renderer.materials)
-                    {
-                        mat.SetColor("_GlowColor", new Color(0.1f, 0.1f, 1f));
-                    }
-                }
             }
             gameObject.Set(obj);
         }

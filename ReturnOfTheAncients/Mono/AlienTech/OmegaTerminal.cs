@@ -1,4 +1,5 @@
 ﻿using Story;
+using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {
@@ -14,12 +15,12 @@ namespace RotA.Mono.AlienTech
                 {
                     SuccessInteraction();
                 }
-                else 
+                else
                 {
                     SuccessInteractionAgain();
                 }
             }
-            else 
+            else
             {
                 if (StoryGoalManager.main.OnGoalComplete(fabricator.interactFailGoal.key))
                 {
@@ -34,7 +35,7 @@ namespace RotA.Mono.AlienTech
 
         public void FailInteraction()
         {
-            ErrorMessage.AddMessage("Project \"Omega\" formula incomplete. Further research required.");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFail"), "OmegaFabricatorFailVoiceline", "Project \"Omega\" formula incomplete. Further research required.");
         }
 
         public void FailInteractionAgain()
@@ -44,7 +45,7 @@ namespace RotA.Mono.AlienTech
 
         public void SuccessInteraction()
         {
-            ErrorMessage.AddMessage("Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized. Beginning fabrication process...");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorSuccess"), "OmegaFabricatorSuccessVoiceline", "Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized.");
             fabricator.AttemptToGenerateCube();
         }
 
@@ -52,7 +53,7 @@ namespace RotA.Mono.AlienTech
         {
             if (fabricator.CanGenerateCube())
             {
-                ErrorMessage.AddMessage("Beginning fabrication process...");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFabricate"), "OmegaFabricatorSuccessAgainVoiceline", "Beginning fabrication process...");
                 fabricator.AttemptToGenerateCube();
             }
         }

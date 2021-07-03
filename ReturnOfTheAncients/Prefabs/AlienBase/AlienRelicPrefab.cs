@@ -1,18 +1,19 @@
-﻿using SMLHelper.V2.Assets;
+﻿using ArchitectsLibrary.Utility;
+using ECCLibrary;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
-using System.Collections;
-using ECCLibrary;
-using ArchitectsLibrary.Utility;
 
 namespace RotA.Prefabs.AlienBase
 {
     public class AlienRelicPrefab : Spawnable
     {
         static FMODAsset relicSoundAsset;
-        private float scale;
-
-        GameObject model;
+        
+        GameObject _processedPrefab;
+        
+        readonly float scale;
+        readonly GameObject model;
         public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model, float scale) : base(classId, friendlyName, description)
         {
             this.model = model;
@@ -22,6 +23,12 @@ namespace RotA.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
@@ -38,14 +45,24 @@ namespace RotA.Prefabs.AlienBase
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
+            MaterialUtils.FixIonCubeMaterials(obj, 1f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
+
+            _processedPrefab = GameObject.Instantiate(obj);
             return obj;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+
             ValidateSoundAsset();
             GameObject obj = new();
             obj.SetActive(false);
@@ -62,17 +79,20 @@ namespace RotA.Prefabs.AlienBase
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
+            MaterialUtils.FixIonCubeMaterials(obj, 1f);
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
-            yield return null;
+
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             gameObject.Set(obj);
         }
 #endif
 
         void ValidateSoundAsset()
         {
-            if(relicSoundAsset == null)
+            if (relicSoundAsset == null)
             {
                 relicSoundAsset = ScriptableObject.CreateInstance<FMODAsset>();
                 relicSoundAsset.id = "{398345e3-b59f-4eb3-8fd0-f4e87f282968}";

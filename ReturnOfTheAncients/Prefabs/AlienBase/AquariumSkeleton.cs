@@ -11,9 +11,9 @@ namespace RotA.Prefabs.AlienBase
 
         public override void CustomizePrefab()
         {
-            foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
             {
-                foreach(Material material in renderer.materials)
+                foreach (Material material in renderer.materials)
                 {
                     if (renderer.gameObject.name == "Cylinder")
                     {

@@ -25,29 +25,42 @@ namespace RotA.Prefabs.Creatures
 
         public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Adult_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.gargAssetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.gargAssetBundle.LoadAsset<Texture2D>("Adult_Ency"));
 
         public override AttackLastTargetSettings AttackSettings => new AttackLastTargetSettings(0.4f, 45f, 25f, 30f, 17f, 30f);
+
+        public override float MaxVelocityForSpeedParameter => 30f;
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(120f, 30f, 120f), 8f, 10f, 0.1f);
 
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(1f, false, 30f);
 
+        public override float TurnSpeed => 0.15f;
+
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
+
+        public override bool RoarDoesDamage => true;
 
         public override string GetEncyTitle => "Gargantuan Leviathan";
         public override string GetEncyDesc => "Adult gargantuan text";
+
+        public override bool AdvancedCollisions => false;
+
+        public override bool HasEyeTracking => false;
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
+            Renderer insideRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             UpdateGargTransparentMaterial(renderer.materials[0]);
             UpdateGargTransparentMaterial(renderer.materials[1]);
             UpdateGargTransparentMaterial(renderer.materials[2]);
             UpdateGargSolidMaterial(renderer.materials[3]);
-            UpdateGargSkeletonMaterial(renderer.materials[4]);
-            UpdateGargGutsMaterial(renderer.materials[5]);
+            UpdateGargSkeletonMaterial(insideRenderer.materials[0]);
+            UpdateGargGutsMaterial(insideRenderer.materials[1]);
+            UpdateGargEyeMaterial(eyeRenderer.materials[0]);
             var gargPresence = prefab.AddComponent<GargantuanSwimAmbience>();
             gargPresence.swimSoundPrefix = "GargPresence";
             gargPresence.delay = 54f;
@@ -56,6 +69,14 @@ namespace RotA.Prefabs.Creatures
             prefab.GetComponent<StayAtLeashPosition>().swimVelocity = 20f;
 
             prefab.AddComponent<GargantuanEncounterPDA>();
+
+            var avoidObstacles = prefab.GetComponent<AvoidObstacles>();
+            avoidObstacles.avoidanceDistance = 100f;
+            avoidObstacles.avoidanceIterations = 20;
+            avoidObstacles.scanDistance = 20;
+            avoidObstacles.scanInterval = 0.2f;
+            avoidObstacles.scanDistance = 100f;
+            avoidObstacles.scanRadius = 100f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
@@ -66,8 +87,18 @@ namespace RotA.Prefabs.Creatures
 
         public static void UpdateGargSolidMaterial(Material material)
         {
-            material.SetFloat("_Fresnel", 1);
-            material.SetFloat("_SpecInt", 25);
+            material.SetFloat("_Fresnel", 0.6f);
+            material.SetFloat("_Shininess", 8f);
+            material.SetFloat("_SpecInt", 75);
+            material.SetFloat("_EmissionLM", 0.1f);
+            material.SetFloat("_EmissionLMNight", 0.1f);
+        }
+
+        public static void UpdateGargEyeMaterial(Material material)
+        {
+            material.SetFloat("_SpecInt", 15f);
+            material.SetFloat("_GlowStrength", 1.2f);
+            material.SetFloat("_GlowStrengthNight", 1.2f);
         }
 
         public static void UpdateGargSkeletonMaterial(Material material)

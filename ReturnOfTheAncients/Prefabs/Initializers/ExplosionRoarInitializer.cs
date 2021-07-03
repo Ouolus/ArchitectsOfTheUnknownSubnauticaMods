@@ -20,8 +20,11 @@ namespace RotA.Prefabs.Initializers
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {
-            classId = ClassID, cellLevel = LargeWorldEntity.CellLevel.Global, localScale = Vector3.one,
-            slotType = EntitySlot.Type.Creature, techType = this.TechType
+            classId = ClassID,
+            cellLevel = LargeWorldEntity.CellLevel.Global,
+            localScale = Vector3.one,
+            slotType = EntitySlot.Type.Creature,
+            techType = this.TechType
         };
 
         public override GameObject GetGameObject()
@@ -33,6 +36,6 @@ namespace RotA.Prefabs.Initializers
             obj.SetActive(true);
             return obj;
         }
-        
+
     }
 }

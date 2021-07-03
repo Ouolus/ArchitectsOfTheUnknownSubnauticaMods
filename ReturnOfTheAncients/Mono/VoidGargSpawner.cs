@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections;
-using RotA.Mono.Creatures;
+﻿using RotA.Mono.Creatures;
 using RotA.Mono.Singletons;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace RotA.Mono
@@ -56,7 +56,7 @@ namespace RotA.Mono
             coroutinePlaying = true;
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(adultPrefab);
             yield return task;
-            
+
             var obj = task.GetResult();
             Vector3 gargSpawnPoint = GetGargSpawnPoint(Player.main.transform.position);
             GameObject newGargantuan = Instantiate(obj, gargSpawnPoint, Quaternion.LookRotation(Vector3.up));

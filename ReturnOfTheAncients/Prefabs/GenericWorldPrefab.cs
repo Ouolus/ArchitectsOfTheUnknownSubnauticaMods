@@ -1,8 +1,8 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.Utility;
+using ECCLibrary;
 using SMLHelper.V2.Assets;
-using UnityEngine;
-using ArchitectsLibrary.Utility;
 using System.Collections;
+using UnityEngine;
 
 namespace RotA.Prefabs
 {
@@ -32,7 +32,7 @@ namespace RotA.Prefabs
 
         public override GameObject GetGameObject()
         {
-            if(prefab == null)
+            if (prefab == null)
             {
                 prefab = GameObject.Instantiate(model);
                 prefab.SetActive(false);
@@ -46,7 +46,7 @@ namespace RotA.Prefabs
                     MaterialUtils.ApplyPrecursorMaterials(prefab, materialProperties.SpecularInt);
                 }
                 CustomizePrefab();
-                foreach(Collider col in prefab.GetComponentsInChildren<Collider>())
+                foreach (Collider col in prefab.GetComponentsInChildren<Collider>())
                 {
                     col.gameObject.EnsureComponent<ConstructionObstacle>();
                 }
@@ -57,7 +57,7 @@ namespace RotA.Prefabs
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             gameObject.Set(GetGameObject());
-            yield break; 
+            yield break;
         }
     }
 }

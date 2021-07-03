@@ -32,7 +32,6 @@ namespace RotA.Prefabs.Initializers
         {
             GameObject obj = new GameObject("AdultGargSpawner");
             obj.EnsureComponent<VoidGargSpawner>();
-            obj.EnsureComponent<VoidShoalSpawner>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);

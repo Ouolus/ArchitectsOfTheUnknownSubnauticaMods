@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ECCLibrary;
 using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using ECCLibrary;
 
 namespace RotA.Mono.AlienTech
 {
@@ -38,7 +34,7 @@ namespace RotA.Mono.AlienTech
                 material.SetFloat("_GlowStrength", intensity);
                 SetLightsIntensity(intensity);
                 yield return new WaitForSeconds(Random.Range(minFlickerSpeed, maxFlickerSpeed));
-                if(Random.value < 0.1f)
+                if (Random.value < 0.1f)
                 {
                     yield return new WaitForSeconds(0.5f + Random.value);
                 }

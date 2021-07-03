@@ -25,7 +25,7 @@ namespace RotA.Mono.Modules
 
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => fxElectSpheres is not null);
+            yield return new WaitUntil(() => fxElectSpheres != null);
             yield return null;
 
             var fxElects = (GameObject[])fxElectSpheres.Clone();
@@ -53,7 +53,7 @@ namespace RotA.Mono.Modules
             }
 
             float radius;
-            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            if (attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
             {
                 radius = _radiusArchElec + charge * _chargeRadiusArchElec;
             }
@@ -62,7 +62,7 @@ namespace RotA.Mono.Modules
                 radius = _radiusElec + charge * _chargeRadiusElec;
             }
             float originalDamage;
-            if(attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
+            if (attackType == AttackType.ArchitectElectricity || attackType == AttackType.Both)
             {
                 originalDamage = _damageArchElec + charge * _chargeDamageArchElec;
             }
@@ -92,7 +92,7 @@ namespace RotA.Mono.Modules
             {
                 var collider = UWE.Utils.sharedColliderBuffer[i];
                 var obj = UWE.Utils.GetEntityRoot(collider.gameObject);
-                if (obj is null)
+                if (obj == null)
                     obj = collider.gameObject;
 
                 var creature = obj.GetComponent<Creature>();
@@ -101,19 +101,19 @@ namespace RotA.Mono.Modules
 
                 if (creature is not null && liveMixin is not null)
                 {
-                    if(attackType == AttackType.ArchitectElectricity)
+                    if (attackType == AttackType.ArchitectElectricity)
                     {
                         liveMixin.TakeDamage(originalDamage, transform.position, Mod.architectElect, gameObject);
                         foreach (var archZap in architectElectricityZaps)
                         {
                             archZap.OnDamagedByArchElectricity();
-                        }                        
+                        }
                     }
-                    else if(attackType == AttackType.SmallElectricity)
+                    else if (attackType == AttackType.SmallElectricity)
                     {
                         liveMixin.TakeDamage(originalDamage, transform.position, DamageType.Electrical, gameObject);
                     }
-                    else if(attackType == AttackType.Both)
+                    else if (attackType == AttackType.Both)
                     {
                         liveMixin.TakeDamage(originalDamage / 2f, transform.position, Mod.architectElect, gameObject);
                         liveMixin.TakeDamage(originalDamage / 2f, transform.position, DamageType.Electrical, gameObject);
@@ -129,12 +129,12 @@ namespace RotA.Mono.Modules
 
         private void EnsureDefenseSounds()
         {
-            if(normalDefenseSound == null)
+            if (normalDefenseSound == null)
             {
                 normalDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
                 normalDefenseSound.path = "event:/sub/seamoth/pulse";
             }
-            if(architectElectricityDefenseSound == null)
+            if (architectElectricityDefenseSound == null)
             {
                 architectElectricityDefenseSound = ScriptableObject.CreateInstance<FMODAsset>();
                 architectElectricityDefenseSound.path = "event:/sub/base/nuclear_reactor_death";

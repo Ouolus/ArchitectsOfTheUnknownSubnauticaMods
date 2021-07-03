@@ -1,23 +1,23 @@
 ﻿using ArchitectsLibrary.API;
 using SMLHelper.V2.Crafting;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RotA.Prefabs
 {
     public class OmegaCube : ReskinSpawnable
     {
-        public OmegaCube() : base("OmegaCube", "Omega Cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
+        public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
         }
 
         public override TechGroup GroupForPDA => TechGroup.Resources;
-        
+
         public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            foreach (var renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach (var renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.material.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                 renderer.material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
@@ -43,7 +43,7 @@ namespace RotA.Prefabs
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new (Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
+            return new(Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
         }
 
         protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";

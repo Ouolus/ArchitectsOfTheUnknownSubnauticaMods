@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using ArchitectsLibrary.Utility;
-using RotA.Mono;
+﻿using ArchitectsLibrary.Utility;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
-using UWE;  
+using UWE;
 
 namespace RotA.Prefabs.AlienBase
 {
     public class OmegaCubeFabricator : Spawnable
     {
+        GameObject _processedPrefab;
+        
         public OmegaCubeFabricator() : base("OmegaCubeFabricator", "Fabricator Device", "Fabricates omega cubes.")
         {
         }
 
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             //prefab essentials
             GameObject model = Mod.assetBundle.LoadAsset<GameObject>("OmegaCubeFabricator");
             GameObject prefab = GameObject.Instantiate(model);
@@ -68,6 +73,9 @@ namespace RotA.Prefabs.AlienBase
             //component connections
             fabricatorRootComponent.terminal = terminalComponent;
             terminalComponent.fabricator = fabricatorRootComponent;
+
+            _processedPrefab = GameObject.Instantiate(prefab);
+            _processedPrefab.SetActive(false);
             return prefab;
         }
 
@@ -84,7 +92,7 @@ namespace RotA.Prefabs.AlienBase
             GameObject prefab = GameObject.Instantiate(originalPrefab);
             prefab.name = "OmegaBeam";
             prefab.SetActive(false);
-            foreach(ParticleSystem ps in originalPrefab.GetComponentsInChildren<ParticleSystem>())
+            foreach (ParticleSystem ps in originalPrefab.GetComponentsInChildren<ParticleSystem>())
             {
                 var main = ps.main;
                 main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);

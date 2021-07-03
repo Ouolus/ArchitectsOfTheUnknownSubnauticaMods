@@ -1,5 +1,6 @@
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.API;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
@@ -9,6 +10,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             base.Start();
 			spawnAnimationDelay = 4f;
+			AchievementServices.CompleteAchievement("BuildPrecursorFabricator");
         }
 
         public override void Craft(TechType techType, float duration)
@@ -55,9 +57,9 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             base.OnCraftingBegin(techType, duration);
 			_progressDelayScalar = 4f / duration;
-        }
+		}
 
-        public override void LateUpdate()
+		public override void LateUpdate()
 		{
 			if(ghost != null)
             {

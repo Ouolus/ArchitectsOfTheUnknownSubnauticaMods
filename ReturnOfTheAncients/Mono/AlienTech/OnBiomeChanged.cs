@@ -62,7 +62,7 @@ namespace RotA.Mono.AlienTech
 
         private void CheckBiome()
         {
-            if(!CanCallEnterMethod && !CanCallExitMethod)
+            if (!CanCallEnterMethod && !CanCallExitMethod)
             {
                 return;
             }
@@ -70,7 +70,7 @@ namespace RotA.Mono.AlienTech
             bool nowInBiome = false;
             foreach (string targetBiome in TargetBiomes)
             {
-                if(string.Equals(playerBiome, targetBiome, System.StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(playerBiome, targetBiome, System.StringComparison.OrdinalIgnoreCase))
                 {
                     nowInBiome = true;
                 }

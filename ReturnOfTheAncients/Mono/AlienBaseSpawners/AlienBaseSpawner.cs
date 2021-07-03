@@ -1,6 +1,6 @@
 ﻿using ECCLibrary;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
@@ -22,6 +22,7 @@ namespace RotA.Mono.AlienBaseSpawners
         public const string light_volumetric_2 = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
         public const string light_verybig_novolumetrics = "5631b64f-d0f0-47f5-b7ac-f23215432070";
         public const string light_strip_animated = "88cad316-cebe-4ead-aae2-1ab31cae0de6";
+        public const string light_strip_animated_long = "86cde4b3-0b29-4d03-b20c-de303a005298";
         public const string starfish = "d571d3dc-6229-430e-a513-0dcafc2c41f3";
         public const string structure_outpost_1 = "c5512e00-9959-4f57-98ae-9a9962976eaa";
         public const string structure_outpost_2 = "$542aaa41-26df-4dba-b2bc-3fa3aa84b777";
@@ -134,6 +135,7 @@ namespace RotA.Mono.AlienBaseSpawners
         /// Faces up by default.
         /// </summary>
         public const string vfx_entrance = "8b5e6a02-533c-44cb-9f34-d2773aa82dc4";
+        public const string hugeExteriorCube = "b9df161b-529f-422c-8a9f-f3a7a25e57df>";
 
         public const string alterra_abandonedbase2 = "a1e2f322-7080-48ca-8eaf-a05afff8585d";
         public const string alterra_abandonedbase1 = "8f20a08c-c981-4fad-a57b-2de2106b8abf";

@@ -1,7 +1,5 @@
-﻿using System.Collections;
+﻿using ECCLibrary;
 using SMLHelper.V2.Assets;
-using ECCLibrary;
-using RotA.Mono;
 using UnityEngine;
 using UWE;
 
@@ -9,6 +7,7 @@ namespace RotA.Prefabs.AlienBase
 {
     public class PrecursorDoorPrefab : Spawnable
     {
+        GameObject _processedPrefab;
         string terminalClassId;
         bool overrideTerminalPosition;
         Vector3 terminalPosition;
@@ -37,10 +36,16 @@ namespace RotA.Prefabs.AlienBase
             slotType = EntitySlot.Type.Large,
             techType = TechType
         };
-        
+
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+            
             PrefabDatabase.TryGetPrefab(rootClassId, out GameObject prefab);
             GameObject obj = GameObject.Instantiate(prefab);
             GameObject terminalPrefabPlaceholder = obj.SearchChild("KeyTerminal(Placeholder)", ECCStringComparison.Contains);
@@ -68,7 +73,7 @@ namespace RotA.Prefabs.AlienBase
                 Transform firstChild = obj.transform.GetChild(0);
                 if (firstChild != null)
                 {
-                    if(firstChild.name == "pedestal")
+                    if (firstChild.name == "pedestal")
                     {
                         GameObject.DestroyImmediate(firstChild.gameObject);
                     }
@@ -79,11 +84,21 @@ namespace RotA.Prefabs.AlienBase
                 obj.SearchChild("BeachEntry(Placeholder)", ECCStringComparison.Contains).GetComponent<PrefabPlaceholder>().prefabClassId = Mod.voidInteriorForcefield.ClassID;
             }
             obj.SetActive(false);
+            
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             return obj;
         }
-#elif SN1_exp
+#else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(rootClassId);
             yield return request;
             request.TryGetPrefab(out GameObject prefab);
@@ -126,6 +141,8 @@ namespace RotA.Prefabs.AlienBase
             }
             obj.SetActive(false);
             
+            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab.SetActive(false);
             gameObject.Set(obj);
         }
 #endif

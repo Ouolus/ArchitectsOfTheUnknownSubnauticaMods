@@ -16,7 +16,7 @@ namespace RotA.Prefabs.AlienBase
         {
             OnFinishedPatching = () =>
             {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(367.1f, -341f, -1747f),
+                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(365.86f, -330.00f, -1735.00f),
                     "DestroyedGuardian", 200f));
             };
         }
@@ -44,12 +44,13 @@ namespace RotA.Prefabs.AlienBase
                 prefab.EnsureComponent<GuardianEyes>();
                 prefab.EnsureComponent<AudioClipEmitter>().clipPoolPrefix = "Creaking";
                 ECCHelpers.ApplySNShaders(prefab, new UBERMaterialProperties(5f, 1f, 1f));
-                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos1", ECCStringComparison.Equals).transform));
-                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2", ECCStringComparison.Equals).transform));
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos1").transform));
+                CoroutineHost.StartCoroutine(AddVolumetricLight(prefab.SearchChild("LightPos2").transform));
+                prefab.transform.localScale = Vector3.one * 0.5f;
             }
-            
+
             yield return null;
-            
+
             gameObject.Set(prefab);
         }
 
@@ -57,7 +58,7 @@ namespace RotA.Prefabs.AlienBase
         {
             IPrefabRequest request = PrefabDatabase.GetPrefabAsync(volumetricLight);
             yield return request;
-            
+
             if (request.TryGetPrefab(out GameObject volumetricPrefab))
             {
                 GameObject child = GameObject.Instantiate(volumetricPrefab, transform);

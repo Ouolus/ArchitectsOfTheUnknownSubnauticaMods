@@ -136,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Mod-AlienBases.cs" />
+    <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
@@ -151,6 +153,8 @@
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />
     <Compile Include="Mono\AlienTech\AlienBasePlayerTrigger.cs" />
     <Compile Include="Mono\AlienTech\BlackHole.cs" />
+    <Compile Include="Mono\AlienTech\CustomTeleporterTerminal.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalAchievement.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalAnalyzeTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
@@ -160,6 +164,7 @@
     <Compile Include="Mono\AlienTech\OmegaFabricatorRoot.cs" />
     <Compile Include="Mono\AlienTech\OmegaTerminal.cs" />
     <Compile Include="Mono\AlienTech\OnBiomeChanged.cs" />
+    <Compile Include="Mono\AlienTech\SignalPingVoiceLine.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
     <Compile Include="Mono\Commands\SecretCommand.cs" />
@@ -171,25 +176,33 @@
     <Compile Include="Mono\Creatures\CreatureActions\GargantuanBabyAggression.cs" />
     <Compile Include="Mono\Creatures\CreatureActions\RunAwayWhenScared.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanBehaviour.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanGrab.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanMouthAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanConditions.cs" />
+    <Compile Include="Mono\Creatures\IgnoreSelfCollisionsAtStart.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
-    <Compile Include="Mono\PrecursorIllumControl.cs" />
+    <Compile Include="Mono\MiscPDALines.cs" />
+    <Compile Include="Mono\Modules\DashOnKeyPress.cs" />
+    <Compile Include="Mono\VFX\CustomSplash.cs" />
+    <Compile Include="Mono\VFX\PrecursorIllumControl.cs" />
     <Compile Include="Mono\GargantuanEncounterPDA.cs" />
     <Compile Include="Mono\MainMenu\MainMenuGarg.cs" />
     <Compile Include="Mono\MainMenu\MainMenuAtmosphereUpdater.cs" />
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
     <Compile Include="Mono\Modules\IOnArchitectElectricityZap.cs" />
     <Compile Include="Mono\Modules\ZapOnDamage.cs" />
+    <Compile Include="Mono\SetTechTypeOnStart.cs" />
     <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
+    <Compile Include="Mono\SunbeamGargController.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\VoidShoalSpawner.cs" />
@@ -235,7 +248,9 @@
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
+    <Compile Include="Prefabs\Initializers\MiscInitializers.cs" />
     <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
+    <Compile Include="Prefabs\Modules\ExosuitDashModule.cs" />
     <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />

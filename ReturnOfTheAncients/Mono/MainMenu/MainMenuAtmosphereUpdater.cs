@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using ECCLibrary;
+﻿using ECCLibrary;
+using System.Collections;
 using UnityEngine;
 
 namespace RotA.Mono.MainMenu
@@ -31,7 +31,7 @@ namespace RotA.Mono.MainMenu
         {
             yield return new WaitForSeconds(1f);
             PlayRoar();
-            for(; ; )
+            for (; ; )
             {
                 yield return new WaitForSeconds(Random.Range(22f, 44f));
                 PlayRoar();
@@ -54,11 +54,11 @@ namespace RotA.Mono.MainMenu
         {
             if (AlienTech.BlackHole.solarSystemDestroyed)
             {
-                if(currentWaterSurface is null)
+                if (currentWaterSurface is null)
                 {
                     currentWaterSurface = Object.FindObjectOfType<WaterSurface>();
                 }
-                if(currentWaterSurface is not null)
+                if (currentWaterSurface is not null)
                 {
                     currentWaterSurface.transform.position = new Vector3(0f, -1000f, 0f);
                 }

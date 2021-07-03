@@ -15,6 +15,8 @@
     /// </summary>
     public abstract class GenericPrecursorDecoration : Buildable
     {
+        GameObject _processedPrefab;
+        
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -23,6 +25,7 @@
         /// <param name="description"></param>
         public GenericPrecursorDecoration(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {
+            OnFinishedPatching += () => Main.DecorationTechs.Add(TechType);
         }
 
         /// <summary>
@@ -93,15 +96,20 @@
 #if SN1
         public override GameObject GetGameObject()
         {
+            if (_processedPrefab != null)
+            {
+                _processedPrefab.SetActive(true);
+                return _processedPrefab;
+            }
+
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             PrefabDatabase.TryGetPrefab(GetOriginalClassId, out GameObject originalPrefab);
             GameObject model = GameObject.Instantiate(originalPrefab, buildablePrefab.transform, false);
-            if (this is not BuildableAlienRobot or BuildableWarper)
+            if (this is not (BuildableAlienRobot or BuildableWarper))
             {
                 var rigidBody = model.GetComponent<Rigidbody>();
-                if (rigidBody != null)
-                    Object.DestroyImmediate(rigidBody);
+                Object.DestroyImmediate(rigidBody);
             }
 
             model.transform.localPosition = Vector3.zero;
@@ -148,14 +156,25 @@
                     Object.DestroyImmediate(rigidbody);
                 }
             }
+
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
+
+            _processedPrefab = GameObject.Instantiate(buildablePrefab);
+            _processedPrefab.SetActive(false);
 
             return buildablePrefab;
         }
 #else
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab != null)
+            {
+                _processedPrefab.SetActive(true);
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+            
             GameObject buildablePrefab = new GameObject(ClassID);
             buildablePrefab.SetActive(false);
             var request = PrefabDatabase.GetPrefabAsync(GetOriginalClassId);
@@ -200,6 +219,9 @@
             sky.renderers = buildablePrefab.GetComponentsInChildren<Renderer>(true);
             buildablePrefab.EnsureComponent<PlaceableOnConstructableFix>();
 
+            _processedPrefab = GameObject.Instantiate(buildablePrefab);
+            _processedPrefab.SetActive(false);
+            
             gameObject.Set(buildablePrefab);
     }
 #endif
@@ -241,11 +263,7 @@
         /// <param name="prefab"></param>
         protected static void DeleteChildComponentIfExists<T>(GameObject prefab) where T : Component
         {
-            T component = prefab.GetComponentInChildren<T>();
-            if (component)
-            {
-                Object.DestroyImmediate(component);
-            }
+            Object.DestroyImmediate(prefab.GetComponentInChildren<T>());
         }
 
         /// <summary>

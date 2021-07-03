@@ -24,6 +24,8 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
+            prefab.transform.GetChild(0).localEulerAngles = Vector3.up * 270f;
+
             DeleteChildComponentIfExists<PrefabPlaceholder>(prefab);
             DeleteChildComponentIfExists<PrefabPlaceholdersGroup>(prefab);
 
@@ -35,8 +37,9 @@ namespace ArchitectsLibrary.Buildables
             spawnPosition.transform.localEulerAngles = Vector3.zero;
 
             var storageContainer = prefab.EnsureComponent<StorageContainer>();
-            storageContainer.height = 2;
-            storageContainer.width = 2;
+            storageContainer.height = 1;
+            storageContainer.width = 1;
+            storageContainer.modelSizeRadius = 4;
             storageContainer.prefabRoot = prefab;
             storageContainer.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
             storageContainer.storageRoot.ClassId = "BuildableItemPedestalContainer";

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.Handlers;
 using System.Collections;
-using ArchitectsLibrary.Handlers;
+using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
@@ -31,6 +31,8 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabsArray(creature_rockgrub, 0.1f, Vector3.one * 3f, Vector3.one * 0.1f, new Vector3(0f, firstFloorY + 4f, -25)));
 
             yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 7.81f, -22.34f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 6f, -22.34f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.aquariumGuppy.ClassID, new Vector3(0f, 4f, -22.34f)));
             yield return StartCoroutine(SpawnPrefab(Mod.aquariumSkeleton.ClassID, new Vector3(0f, -2.5f, 0f)));
 
             //Aquarium room
@@ -39,6 +41,11 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
             yield return StartCoroutine(SpawnPrefab(Mod.warpCannonTerminal.ClassID, new Vector3(0f, 0f, -36), new Vector3(0f, 0, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystalPyramid, new Vector3(0f, 0f, 0.4f), new Vector3(0f, 45f, 0f))); //Ion cube in front of aquarium
+
+            yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(21f, 4.2f, -44.7f), new Vector3(0f, -45f, 19f)));
+            yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(-21f, 4.2f, -44.7f), new Vector3(0f, -135f, 19f)));
+            yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(30.5f, 13.1f, -24), new Vector3(0f, 90f, 159f)));
+            yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(-30.5f, 13.1f, -24), new Vector3(0f, 90f, 159f)));
 
             //Upper aquarium room
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(25.62f, secondFloorY, 2.72f), new Vector3(0f, -135f, 0f), Vector3.one * 1.2f));//Second floor doorway on left
@@ -153,12 +160,12 @@ namespace RotA.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
+            yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0.1f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
 
             yield return StartCoroutine(SpawnPrefab(Mod.omegaCubeFabricator.ClassID, new Vector3(-36, 0, 14)));
 
             //Top
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 35f, 0f), Vector3.up * 45f));
+            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 35f, 0f), Vector3.zero));
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using ECCLibrary;
-using HarmonyLib;
-using RotA.Prefabs;
-using System.Collections.Generic;
+﻿using HarmonyLib;
 using UnityEngine;
 
 namespace RotA.Patches
@@ -39,7 +36,11 @@ namespace RotA.Patches
             }
             if (techTag.type == Mod.gargEgg.TechType)
             {
-                __instance.gameObject.transform.localScale = Vector3.one * 0.17f;
+                __instance.gameObject.transform.localScale = Vector3.one * 0.25f / 1.2f;
+            }
+            if (techTag.type == TechType.PrecursorKey_Red)
+            {
+                __instance.gameObject.transform.localScale = Vector3.one;
             }
         }
 
