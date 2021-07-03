@@ -1,0 +1,20 @@
+{
+  "Id": "CreatureEggs",
+  "DisplayName": "Creature Eggs",
+  "Author": "ArchitectsOfTheUnknown",
+  "Version": "1.0.0",
+  "Dependencies": [
+    "SMLHelper",
+    "ArchitectsLibrary"
+  ],
+  "VersionDependencies": {
+    "SMLHelper": "2.9"
+  },
+  "LoadAfter": [ "ImprovedAlienContainment", "UnobtaniumBatteries" ],
+  "Game": "Subnautica",
+  "NexusId": {
+    "Subnautica": "661"
+  },
+  "AssemblyName": "CreatureEggs.dll",
+  "Enable": true
+}
