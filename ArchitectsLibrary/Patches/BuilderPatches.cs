@@ -34,21 +34,26 @@ namespace ArchitectsLibrary.Patches
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
             {
-                if (Builder.ghostModelScale.x <= .2f)
+                if (Builder.prefab.transform.localScale.x <= .2f)
                     return;
                 
-                Builder.ghostModelScale *= 0.99f;
+                Builder.prefab.transform.localScale *= 0.99f;
+                Object.DestroyImmediate(Builder.ghostModel);
             }
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
             {
-                if (Builder.ghostModelScale.x >= 1.2f)
+                if (Builder.prefab.transform.localScale.x >= 1.2f)
                     return;
                 
-                Builder.ghostModelScale *= 1.01f;
+                Builder.prefab.transform.localScale *= 1.01f;
+                Object.DestroyImmediate(Builder.ghostModel);
             }
             else if (Input.GetKeyDown(KeyCode.T))
-                Builder.ghostModelScale = Vector3.one;
+            {
+                Builder.prefab.transform.localScale = Vector3.one;
+                Object.DestroyImmediate(Builder.ghostModel);
+            }
         }
 
         static IEnumerable<CodeInstruction> TryPlaceTranspiler(IEnumerable<CodeInstruction> instructions)
@@ -114,10 +119,7 @@ namespace ArchitectsLibrary.Patches
 
         static void SetScale(GameObject obj)
         {
-            var constructable = obj.GetComponentInParent<Constructable>();
             
-            if (constructable)
-                constructable.model.transform.localScale = Builder.ghostModelScale;
         }
 
         static void ValidateHintMessage()
