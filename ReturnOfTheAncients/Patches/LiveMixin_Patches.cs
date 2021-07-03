@@ -1,10 +1,9 @@
+using HarmonyLib;
+using RotA.Mono.Creatures.GargEssentials;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using HarmonyLib;
-using RotA.Mono;
-using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
 
@@ -22,8 +21,8 @@ namespace RotA.Patches
             if (garg is not null)
                 __instance.invincible = true;
         }
-        
-        
+
+
         [HarmonyPatch(nameof(LiveMixin.Kill))]
         [HarmonyPrefix]
         static bool Kill_Prefix(LiveMixin __instance)
@@ -33,7 +32,7 @@ namespace RotA.Patches
 
             return true;
         }
-        
+
         [HarmonyPatch(nameof(LiveMixin.TakeDamage))]
         [HarmonyTranspiler]
         static IEnumerable<CodeInstruction> TakeDamage_Transpiler(IEnumerable<CodeInstruction> instructions)

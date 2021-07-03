@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using ArchitectsLibrary.API;
 using ECCLibrary;
-using System.Collections.Generic;
-using System.Collections;
-using System;
 using Story;
+using System.Collections;
+using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {
@@ -47,7 +46,7 @@ namespace RotA.Mono.AlienTech
 
         private IEnumerator SetLightsActive(bool active)
         {
-            foreach(Transform child in lightsParent)
+            foreach (Transform child in lightsParent)
             {
                 child.gameObject.SetActive(active);
                 yield return new WaitForSeconds(0.2f);
@@ -58,7 +57,7 @@ namespace RotA.Mono.AlienTech
         {
             float originalBrightness = active ? 0f : 1f;
             float targetBrightness = active ? 1f : 0f;
-            for(int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 yield return new WaitForSeconds(0.2f);
                 SetMaterialBrightness(Mathf.Lerp(originalBrightness, targetBrightness, i / 10f));
@@ -83,7 +82,7 @@ namespace RotA.Mono.AlienTech
             interiorMaterials[1] = gameObject.SearchChild("EntryFloor").GetComponent<Renderer>().sharedMaterials[1];
             interiorMaterials[2] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[0];
             interiorMaterials[3] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[1];
-            interiorMaterials[4] = gameObject.SearchChild("VoidBaseInterior").GetComponent<Renderer>().sharedMaterials[0];
+            interiorMaterials[4] = gameObject.SearchChild("VoidbaseFrame").GetComponent<Renderer>().sharedMaterials[0];
             //interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
@@ -97,7 +96,7 @@ namespace RotA.Mono.AlienTech
 
         public void OnEnable()
         {
-            if(tabletGlowPurple is null)
+            if (tabletGlowPurple is null)
             {
                 tabletGlowPurple = gameObject.SearchChild("TabletGlowPurple");
                 tabletGlowOrange = gameObject.SearchChild("TabletGlowOrange");
@@ -131,7 +130,8 @@ namespace RotA.Mono.AlienTech
         {
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting leviathan-class lifeforms beyond this doorway. Approach with caution.");
+                AchievementServices.CompleteAchievement("VisitVoidBase");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.");
             }
         }
 

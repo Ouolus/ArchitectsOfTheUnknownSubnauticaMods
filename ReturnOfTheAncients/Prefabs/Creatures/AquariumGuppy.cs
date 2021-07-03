@@ -15,9 +15,9 @@ namespace RotA.Prefabs.Creatures
 
         public override SwimRandomData SwimRandomSettings => new SwimRandomData(true, new Vector3(7f, 7f, 7f), 3f, 1f, 0.1f);
 
-        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 10f);
+        public override StayAtLeashData StayAtLeashSettings => new StayAtLeashData(0.2f, 5f);
 
-        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.3f, false, 2f);
+        public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(0.3f, false, 3f);
 
         public override EcoTargetType EcoTargetType => EcoTargetType.None;
 
@@ -27,7 +27,7 @@ namespace RotA.Prefabs.Creatures
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
-            
+
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)

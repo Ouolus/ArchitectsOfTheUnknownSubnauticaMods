@@ -1,12 +1,12 @@
-﻿using SMLHelper.V2.Assets;
+﻿using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
+using RotA.Mono.Equipment;
+using RotA.Mono.VFX;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
-using ArchitectsLibrary.Handlers;
-using ArchitectsLibrary.Utility;
-using UnityEngine;
-using System.Collections;
-using RotA.Mono.Equipment;
 using System.Linq;
+using UnityEngine;
 
 namespace RotA.Prefabs.Equipment
 {
@@ -84,7 +84,7 @@ namespace RotA.Prefabs.Equipment
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
 
                 MaterialUtils.ApplySNShaders(prefab);
-                foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+                foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
                 {
                     UpdateWarpCannonRenderer(renderer);
                 }
@@ -109,6 +109,8 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
+                warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.switchModeSound.path = "event:/tools/beacon/draw";
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
@@ -143,7 +145,7 @@ namespace RotA.Prefabs.Equipment
                 var batteryModels = new List<EnergyMixin.BatteryModels>();
 
                 // required to check for the normal battery too so Custom Batteries will successfully add the custom batteries.
-                var defaultTechTypes = new[] {TechType.Battery, TechType.PrecursorIonBattery};
+                var defaultTechTypes = new[] { TechType.Battery, TechType.PrecursorIonBattery };
 
                 foreach (var techType in defaultTechTypes)
                 {
@@ -181,7 +183,7 @@ namespace RotA.Prefabs.Equipment
                 var skyApplier = prefab.AddComponent<SkyApplier>();
                 skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
-                var illumControl = prefab.SearchChild("ViewModel").AddComponent<Mono.PrecursorIllumControl>();
+                var illumControl = prefab.SearchChild("ViewModel").AddComponent<PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low").GetComponent<Renderer>());
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.001").GetComponent<Renderer>());
@@ -193,10 +195,10 @@ namespace RotA.Prefabs.Equipment
                 illumControl.light = illumControl.gameObject.SearchChild("Light").EnsureComponent<Light>();
                 illumControl.light.intensity = 0.5f;
                 warpCannon.illumControl = illumControl;
-                
+
                 _cachedPrefab = prefab;
             }
-            
+
             return _cachedPrefab;
         }
 #else
@@ -244,6 +246,8 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
+                warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
+                warpCannon.switchModeSound.path = "event:/tools/beacon/draw";
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
@@ -319,7 +323,7 @@ namespace RotA.Prefabs.Equipment
                 var skyApplier = prefab.AddComponent<SkyApplier>();
                 skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
 
-                var illumControl = prefab.SearchChild("ViewModel").AddComponent<Mono.PrecursorIllumControl>();
+                var illumControl = prefab.SearchChild("ViewModel").AddComponent<PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low").GetComponent<Renderer>());
                 illumControl.renderers.Add(illumControl.gameObject.SearchChild("p_rotor_low.001").GetComponent<Renderer>());
@@ -345,12 +349,12 @@ namespace RotA.Prefabs.Equipment
             so.warpInCreaturesData = new List<WarperData.WarpInData>(original.warpInCreaturesData);
 
             var lostRiverCreatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.SpineEel, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature { techType = TechType.Mesmer, minNum = 2, maxNum = 3 } };
-            AddBiomeToWarperData(so, "LostRiver", new WarperData.WarpInData() { creatures = lostRiverCreatures});
-            AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures});
-            AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures});
+            AddBiomeToWarperData(so, "LostRiver", new WarperData.WarpInData() { creatures = lostRiverCreatures });
+            AddBiomeToWarperData(so, "LostRiver_BonesField", new WarperData.WarpInData() { creatures = lostRiverCreatures });
+            AddBiomeToWarperData(so, "LostRiver_BonesField_Corridor", new WarperData.WarpInData() { creatures = lostRiverCreatures });
             AddBiomeToWarperData(so, "JellyshroomCaves", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Crabsnake, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Oculus, minNum = 2, maxNum = 3 } } });
             ReplaceBiomeInWarperData(so, "safeShallows", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Gasopod, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.RabbitRay, minNum = 4, maxNum = 6 }, new WarperData.WarpInCreature() { techType = TechType.Stalker, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.Bladderfish, minNum = 2, maxNum = 3 }, new WarperData.WarpInCreature() { techType = TechType.Peeper, minNum = 3, maxNum = 4 } } });
-            ReplaceBiomeInWarperData(so, "kelpForest", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Stalker, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Mesmer, minNum = 4, maxNum = 6 }, new WarperData.WarpInCreature() { techType = TechType.Hoverfish, minNum = 2, maxNum = 3}, new WarperData.WarpInCreature() { techType = TechType.Boomerang, minNum = 2, maxNum = 3 } } });
+            ReplaceBiomeInWarperData(so, "kelpForest", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Stalker, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Mesmer, minNum = 4, maxNum = 6 }, new WarperData.WarpInCreature() { techType = TechType.Hoverfish, minNum = 2, maxNum = 3 }, new WarperData.WarpInCreature() { techType = TechType.Boomerang, minNum = 2, maxNum = 3 } } });
             AddBiomeToWarperData(so, "void", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.GhostLeviathan, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = Mod.gargJuvenilePrefab.TechType, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.GhostRayBlue, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Warper, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 1 } } });
             ReplaceBiomeInWarperData(so, "mountains", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.Biter, minNum = 3, maxNum = 4 }, new WarperData.WarpInCreature() { techType = TechType.ReaperLeviathan, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Warper, minNum = 1, maxNum = 1 } } });
             ReplaceBiomeInWarperData(so, "dunes", new WarperData.WarpInData() { creatures = new List<WarperData.WarpInCreature>() { new WarperData.WarpInCreature() { techType = TechType.ReaperLeviathan, minNum = 1, maxNum = 1 }, new WarperData.WarpInCreature() { techType = TechType.Sandshark, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Stalker, minNum = 1, maxNum = 2 }, new WarperData.WarpInCreature() { techType = TechType.Warper, minNum = 1, maxNum = 1 } } });
@@ -366,7 +370,7 @@ namespace RotA.Prefabs.Equipment
 
         static void ReplaceBiomeInWarperData(WarperData warperData, string biomeName, WarperData.WarpInData creaturesData)
         {
-            for(int i = 0; i < warperData.warpInCreaturesData.Count; i++)
+            for (int i = 0; i < warperData.warpInCreaturesData.Count; i++)
             {
                 if (warperData.warpInCreaturesData[i].biomeName == biomeName)
                 {
@@ -383,15 +387,6 @@ namespace RotA.Prefabs.Equipment
             if (destroyAfterSeconds)
             {
                 Object.DestroyImmediate(destroyAfterSeconds);
-            }
-            foreach(ParticleSystem ps in returnObj.GetComponentsInChildren<ParticleSystem>(true))
-            {
-                var main = ps.main;
-                main.loop = true;
-                /*main.duration = 2.5f;
-                main.startLifetime = 3f;
-                main.startDelay = 0f;
-                main.maxParticles = main.maxParticles * 3;*/
             }
             return returnObj;
         }

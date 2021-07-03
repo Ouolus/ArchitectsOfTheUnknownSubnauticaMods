@@ -9,7 +9,7 @@ namespace RotA.Mono.Creatures.CreatureActions
 
         public override float Evaluate(Creature creature)
         {
-            if(creature.Scared.Value > 0.9f)
+            if (creature.Scared.Value > 0.9f)
             {
                 return priority;
             }
@@ -30,4 +30,3 @@ namespace RotA.Mono.Creatures.CreatureActions
         }
     }
 }
- 

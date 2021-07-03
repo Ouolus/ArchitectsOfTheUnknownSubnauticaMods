@@ -1,5 +1,4 @@
 ﻿using SMLHelper.V2.Assets;
-using System.Collections;
 using UnityEngine;
 using UWE;
 
@@ -22,7 +21,7 @@ namespace RotA.Prefabs.AlienBase
 #if SN1
         public override GameObject GetGameObject()
         {
-            if(cachedPrefab == null)
+            if (cachedPrefab == null)
             {
                 PrefabDatabase.TryGetPrefab(baseClassId, out GameObject prefab);
                 cachedPrefab = GameObject.Instantiate(prefab);

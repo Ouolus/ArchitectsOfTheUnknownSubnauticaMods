@@ -1,6 +1,6 @@
 ﻿using ECCLibrary;
-using UnityEngine;
 using RotA.Mono.AlienTech;
+using UnityEngine;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -14,9 +14,9 @@ namespace RotA.Prefabs.AlienBase
         public override void CustomizePrefab()
         {
             prefab.EnsureComponent<VoidBaseReveal>();
-            foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
-                foreach(Material mat in renderer.materials)
+                foreach (Material mat in renderer.materials)
                 {
                     if (!mat.name.ToLower().Contains("transparent") && !mat.name.ToLower().Contains("glass") && !mat.name.ToLower().Contains("tiles") && !mat.name.ToLower().Contains("maze"))
                     {

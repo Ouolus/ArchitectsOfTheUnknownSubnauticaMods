@@ -1,19 +1,21 @@
-﻿using System.Collections;
-using ECCLibrary;
-using UnityEngine;
-
-namespace RotA.Mono.Creatures.GargEssentials
+﻿namespace RotA.Mono.Creatures.GargEssentials
 {
+    using ECCLibrary;
+    using System.Collections;
+    using UnityEngine;
+    
     public class GargantuanTentacleAttack : MeleeAttack
     {
-        private AudioSource attackSource;
-        private ECCAudio.AudioClipPool biteClipPool;
-        private GargantuanBehaviour behaviour;
-        private TrailManager leftTentacleTrail;
-        private TrailManager rightTentacleTrail;
+        GargantuanGrab grab;
+        AudioSource attackSource;
+        ECCAudio.AudioClipPool biteClipPool;
+        GargantuanBehaviour behaviour;
+        TrailManager leftTentacleTrail;
+        TrailManager rightTentacleTrail;
 
         void Start()
         {
+            grab = GetComponent<GargantuanGrab>();
             attackSource = gameObject.AddComponent<AudioSource>();
             attackSource.minDistance = 10f;
             attackSource.maxDistance = 40f;
@@ -42,7 +44,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                     {
                         return;
                     }
-                    if (!behaviour.IsHoldingVehicle())
+                    if (!grab.IsHoldingVehicle())
                     {
                         Player player = target.GetComponent<Player>();
                         if (player != null)
@@ -52,19 +54,19 @@ namespace RotA.Mono.Creatures.GargEssentials
                                 return;
                             }
                         }
-                        else if (behaviour.GetCanGrabVehicle())
+                        else if (grab.GetCanGrabVehicle())
                         {
                             SeaMoth component4 = target.GetComponent<SeaMoth>();
                             if (component4 && !component4.docked)
                             {
-                                behaviour.GrabGenericSub(component4);
+                                grab.GrabGenericSub(component4);
                                 thisCreature.Aggression.Value -= 0.25f;
                                 return;
                             }
                             Exosuit component5 = target.GetComponent<Exosuit>();
                             if (component5 && !component5.docked)
                             {
-                                behaviour.GrabExosuit(component5);
+                                grab.GrabExosuit(component5);
                                 thisCreature.Aggression.Value -= 0.25f;
                                 return;
                             }

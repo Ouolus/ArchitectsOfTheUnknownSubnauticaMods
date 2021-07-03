@@ -1,23 +1,24 @@
 ﻿using ArchitectsLibrary.API;
-using ArchitectsLibrary.Interfaces;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Interfaces;
 using RotA.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
 using UnityEngine;
-using System.Collections;
-using UWE;
 
 namespace RotA.Prefabs.Modules
 {
     public class ExosuitZapModule : VehicleUpgrade, IVehicleOnEquip
     {
         public ExosuitZapModule()
-    : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
+            : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
         "When taking damage, it generates a small electrical pulse designed to ward off aggressive fauna. Generates an ionic energy pulse if necessary. Doesn't stack.")
         {
-
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("AlienUpgrade_Popup"));
+            };
         }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.ExosuitModule;
@@ -34,7 +35,7 @@ namespace RotA.Prefabs.Modules
 
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
 
-        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
+        public override bool UnlockedAtStart { get; } = false;
 
         #region Interface Implementation
 

@@ -1,12 +1,8 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace RotA.Mono
+namespace RotA.Mono.VFX
 {
     public class PrecursorIllumControl : MonoBehaviour
     {
@@ -75,11 +71,11 @@ namespace RotA.Mono
         void Update()
         {
             colorNow = Color.Lerp(colorBefore, targetColor, (Time.time - timeColorShifted) / shiftLength);
-            foreach(Renderer renderer in renderers)
+            foreach (Renderer renderer in renderers)
             {
                 renderer.material.SetColor("_GlowColor", colorNow);
             }
-            if(light is not null)
+            if (light is not null)
             {
                 light.color = colorNow;
             }

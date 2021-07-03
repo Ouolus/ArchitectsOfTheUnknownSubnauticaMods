@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using RotA.Mono.Singletons;
+using RotA.Mono.VFX;
 using System.Collections;
-using RotA.Mono.Singletons;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace RotA.Mono.Equipment
 {
@@ -11,6 +12,7 @@ namespace RotA.Mono.Equipment
         public WarpCannonAnimations animations;
         public FMODAsset portalOpenSound;
         public FMODAsset portalCloseSound;
+        public FMODAsset switchModeSound;
         public FMOD_StudioEventEmitter chargeLoop;
         public WarperData warperCreatureData;
         float timeCanUseAgain;
@@ -53,6 +55,10 @@ namespace RotA.Mono.Equipment
 
         List<IPropulsionCannonAmmo> iammoCache = new(); //IDK why this exists but the propulsion cannon does it
 
+        bool warpingBackToBase;
+
+        bool pressingButtonThisFrame;
+
         /// <summary>
         /// Controls what happens when you right click.
         /// </summary>
@@ -65,7 +71,7 @@ namespace RotA.Mono.Equipment
             }
 
             if (!(Time.time > timeCanUseAgain)) return false;
-            
+
             return fireMode switch
             {
                 FireMode.Manipulate => FireManipulateMode(),
@@ -88,6 +94,11 @@ namespace RotA.Mono.Equipment
             var oceanLevel = Ocean.GetOceanLevel();
 #endif
             return y > oceanLevel;
+        }
+
+        void PlayPushAnimation()
+        {
+            pressingButtonThisFrame = true;
         }
 
         /// <summary>
@@ -115,7 +126,7 @@ namespace RotA.Mono.Equipment
             }
             if (randomCreature == null)
             {
-                if(Random.value <= 0.5f)
+                if (Random.value <= 0.5f)
                 {
                     randomCreature = new WarperData.WarpInCreature() { techType = TechType.BoneShark, minNum = 1, maxNum = 2 };
                 }
@@ -147,9 +158,9 @@ namespace RotA.Mono.Equipment
             float random = Random.value;
             return random switch
             {
-                < 0.33f => new WarperData.WarpInCreature() {techType = TechType.Skyray, minNum = 2, maxNum = 3},
-                < 0.67f => new WarperData.WarpInCreature() {techType = TechType.CaveCrawler, minNum = 1, maxNum = 2},
-                _ => new WarperData.WarpInCreature() {techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1}
+                < 0.33f => new WarperData.WarpInCreature() { techType = TechType.Skyray, minNum = 2, maxNum = 3 },
+                < 0.67f => new WarperData.WarpInCreature() { techType = TechType.CaveCrawler, minNum = 1, maxNum = 2 },
+                _ => new WarperData.WarpInCreature() { techType = TechType.PrecursorDroid, minNum = 1, maxNum = 1 }
             };
         }
 
@@ -182,7 +193,7 @@ namespace RotA.Mono.Equipment
                     creature.friend = Player.main.gameObject;
                 }
             }
-            bool inBase = Player.main.IsInSub();
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             if (inBase)
             {
                 //skyray fixes
@@ -234,7 +245,7 @@ namespace RotA.Mono.Equipment
                     creature.friend = Player.main.gameObject;
                 }
             }
-            bool inBase = Player.main.IsInSub();
+            bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             if (inBase)
             {
                 //skyray fixes
@@ -294,7 +305,7 @@ namespace RotA.Mono.Equipment
             GameObject warpVfx = Instantiate(primaryNodeVfxPrefab, primaryNodePosition, Quaternion.identity);
             warpVfx.SetActive(true);
             Destroy(warpVfx, 3f);
-            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 3f, -1, QueryTriggerInteraction.Ignore);
+            var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(secondaryNodePosition, 6f, -1, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < hitColliders; i++)
             {
                 var collider = UWE.Utils.sharedColliderBuffer[i];
@@ -435,7 +446,7 @@ namespace RotA.Mono.Equipment
         /// </summary>
         void Update()
         {
-            if(fireMode == FireMode.Manipulate)
+            if (fireMode == FireMode.Manipulate)
             {
                 if (mySecondaryNode != null) //if both nodes exist, spin super fast
                 {
@@ -470,6 +481,11 @@ namespace RotA.Mono.Equipment
                     illumControl.SetTargetColor(PrecursorIllumControl.PrecursorColor.Green, 1f);
                 }
             }
+
+            // if the WarpCannon isn't in hand then dont use the warp home functionality.
+            if (usingPlayer is null)
+                return;
+            
             if (fireMode == FireMode.Warp)
             {
                 if (Time.time >= timeCanUseAgain && Input.GetKeyDown(Mod.config.WarpToBaseKey))
@@ -478,7 +494,7 @@ namespace RotA.Mono.Equipment
                     {
                         timeWarpHomeKeyLastPressed = -1f; //Reset the time of you pressing the warp home key
                         timeCanUseAgain = Time.time + 3f;
-                        WarpToLastVisitedBase();
+                        StartCoroutine(WarpToLastVisitedBase());
                     }
                     else
                     {
@@ -489,13 +505,39 @@ namespace RotA.Mono.Equipment
             }
         }
 
-        public void WarpToLastVisitedBase()
+        public override bool GetUsedToolThisFrame()
         {
-            if (GetBatteryPercent() >= 0.50f)
+            if (warpingBackToBase)
             {
-                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.5f);
+                return true;
+            }
+            if (pressingButtonThisFrame)
+            {
+                pressingButtonThisFrame = false;
+                return true;
+            }
+            return base.GetUsedToolThisFrame();
+        }
+
+        public IEnumerator WarpToLastVisitedBase()
+        {
+            if (GetBatteryPercent() >= 0.40f)
+            {
+                energyMixin.ConsumeEnergy(energyMixin.capacity * 0.4f);
                 animations.SetOverrideSpinSpeed(10f, 2f);
+                var teleportScreenController = MainCamera.camera.GetComponent<TeleportScreenFXController>();
+                teleportScreenController.StartTeleport();
+                Player.main.teleportingLoopSound.Play();
+
+                Vector3 oldPlayerPosition = Player.main.transform.position;
+
+                warpingBackToBase = true;
+                Player.main.cinematicModeActive = true;
+
+                yield return new WaitForSeconds(1f);
+
                 var lastValidSub = Player.main.lastValidSub;
+                bool teleportedToRespawnPoint = false;
                 if (lastValidSub is not null && Player.main.CheckSubValid(lastValidSub))
                 {
                     var respawnPoint = lastValidSub.gameObject.GetComponentInChildren<RespawnPoint>();
@@ -503,18 +545,30 @@ namespace RotA.Mono.Equipment
                     {
                         Player.main.SetPosition(respawnPoint.GetSpawnPosition());
                         Player.main.SetCurrentSub(lastValidSub);
-                        return;
+                        teleportedToRespawnPoint = true;
                     }
                 }
-                EscapePod.main.RespawnPlayer();
-                Player.main.SetCurrentSub(null);
+                if (!teleportedToRespawnPoint)
+                {
+                    EscapePod.main.RespawnPlayer();
+                    Player.main.SetCurrentSub(null);
+                }
                 Vector3 playerPosition = Player.main.transform.position;
+                UpdateWarpXMetersAchievement(Vector3.Distance(oldPlayerPosition, playerPosition));
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
+
+                yield return new WaitForSeconds(1.5f);
+
+                teleportScreenController.StopTeleport();
+                Player.main.teleportingLoopSound.Stop();
+                Player.main.SetPrecursorOutOfWater(false);
+                Player.main.cinematicModeActive = false;
+                warpingBackToBase = false;
             }
             else
             {
-                ErrorMessage.AddMessage("You must have 50% or more battery charge to perform this action.");
+                ErrorMessage.AddMessage("You must have 40% or more battery charge to perform this action.");
             }
         }
 
@@ -568,21 +622,21 @@ namespace RotA.Mono.Equipment
                 FireMode.Warp => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                     Mod.warpCannonSwitchFireModeCurrentlyWarpKey, GameInput.Button.AltTool,
                     ArchitectsLibrary.Utility.LanguageUtils.FormatKeyCode(Mod.config.WarpToBaseKey)),
-                
+
                 FireMode.Manipulate when myPrimaryNode == null =>
                     ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                         Mod.warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey, GameInput.Button.AltTool,
                         GameInput.Button.RightHand),
-                
+
                 FireMode.Manipulate when mySecondaryNode == null =>
                     ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                         Mod.warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey, GameInput.Button.AltTool,
                         GameInput.Button.RightHand),
-                
+
                 FireMode.CreatureSpawn => ArchitectsLibrary.Utility.LanguageUtils.GetMultipleButtonFormat(
                     Mod.warpCannonSwitchFireModeCurrentlyCreatureKey, GameInput.Button.AltTool,
                     GameInput.Button.RightHand),
-                
+
                 _ => base.GetCustomUseText()
             };
         }
@@ -620,6 +674,8 @@ namespace RotA.Mono.Equipment
             }
             illumControl.Pulse(PrecursorIllumControl.PrecursorColor.Pink, PrecursorIllumControl.PrecursorColor.Green, 0.2f, 0.1f, 0.3f);
             animations.SetSpinSpeedWithoutAcceleration(0.5f, false);
+            Utils.PlayFMODAsset(switchModeSound, transform.position);
+            PlayPushAnimation();
             switch (fireMode)
             {
                 case FireMode.Warp:
@@ -833,7 +889,9 @@ namespace RotA.Mono.Equipment
         /// <param name="position"></param>
         void MovePlayerWhileInBase(Vector3 position)
         {
-            PlayerSmoothWarpSingleton.StartSmoothWarp(Player.main.transform.position, position, warpSpeed);
+            var playerPos = Player.main.transform.position;
+            UpdateWarpXMetersAchievement(Vector3.Distance(playerPos, position));
+            PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
 
         /// <summary>
@@ -846,6 +904,7 @@ namespace RotA.Mono.Equipment
             var camRotation = MainCamera.camera.transform.rotation;
             Instantiate(warpInPrefab, playerPos, camRotation);
             Instantiate(warpOutPrefab, position, camRotation);
+            UpdateWarpXMetersAchievement(Vector3.Distance(playerPos, position));
             //Player.main.transform.position = position;
             PlayerSmoothWarpSingleton.StartSmoothWarp(playerPos, position, warpSpeed);
         }
@@ -863,6 +922,11 @@ namespace RotA.Mono.Equipment
             landingPosition = playerTransform.position + (new Vector3(mainCameraForward.x, 0f, mainCameraForward.z) * distance);
             var hitColliders = UWE.Utils.OverlapSphereIntoSharedBuffer(landingPosition + new Vector3(0f, 0f, 0f), surveyRadius, -1, QueryTriggerInteraction.Ignore);
             return hitColliders == 0;
+        }
+
+        void UpdateWarpXMetersAchievement(float amount)
+        {
+            ArchitectsLibrary.API.AchievementServices.ChangeAchievementCompletion("WarpFar", Mathf.RoundToInt(amount));
         }
 
         public override string animToolName => "propulsioncannon";

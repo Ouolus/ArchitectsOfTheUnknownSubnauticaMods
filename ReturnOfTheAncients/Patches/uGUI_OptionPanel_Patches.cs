@@ -3,7 +3,7 @@ namespace RotA.Patches
     using HarmonyLib;
     using UnityEngine;
     using static MainMenu_Patches;
-    
+
     [HarmonyPatch(typeof(uGUI_OptionsPanel))]
     class uGUI_OptionPanel_Patches
     {

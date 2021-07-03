@@ -16,7 +16,7 @@ namespace RotA.Prefabs.Creatures
         public override LargeWorldEntity.CellLevel CellLevel => LargeWorldEntity.CellLevel.Global;
         public override EcoTargetType EcoTargetType => EcoTargetType.CuteFish;
 
-        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, Mod.modEncyPath_gargantuan, Mod.assetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.assetBundle.LoadAsset<Texture2D>("Baby_Ency"));
+        public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, Mod.modEncyPath_gargantuan, Mod.gargAssetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.gargAssetBundle.LoadAsset<Texture2D>("Baby_Ency"));
 
         public override string GetEncyTitle => "Gargantuan Leviathan Baby";
         public override string GetEncyDesc => "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.";
@@ -49,11 +49,14 @@ namespace RotA.Prefabs.Creatures
             GameObject target = prefab.SearchChild("CinematicTarget");
             target.AddComponent<GargBabyTarget>();
             babyComponent.cinematicTarget = target;
-            prefab.GetComponent<AvoidObstacles>().scanRadius = 5f;
+            var avoid = prefab.GetComponent<AvoidObstacles>();
+            avoid.scanRadius = 8f;
+            avoid.avoidanceDistance = 5f;
+            avoid.avoidanceDuration = 2f;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
 
-            components.creature.Hunger = new CreatureTrait(0f, -(1f / 60f));
+            components.creature.Hunger = new CreatureTrait(0f, -(1f / 45f));
         }
 
         public override bool UseSwimSounds => false;
@@ -98,6 +101,8 @@ namespace RotA.Prefabs.Creatures
         public override GargGrabFishMode GrabFishMode => GargGrabFishMode.PickupableOnlyAndSwalllow;
 
         public override float EyeFov => 0.6f;
+
+        public override float MaxVelocityForSpeedParameter => 20f;
 
         public override SmallVehicleAggressivenessSettings AggressivenessToSmallVehicles => new SmallVehicleAggressivenessSettings(0f, 0f);
     }

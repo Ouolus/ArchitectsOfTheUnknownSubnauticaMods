@@ -18,7 +18,7 @@ namespace RotA.Mono.Commands
 
         void Update()
         {
-            if(Time.time > timePlayAgain)
+            if (Time.time > timePlayAgain)
             {
                 AudioClip nextClip = clipPool.GetRandomClip();
                 PlayAudio(nextClip);

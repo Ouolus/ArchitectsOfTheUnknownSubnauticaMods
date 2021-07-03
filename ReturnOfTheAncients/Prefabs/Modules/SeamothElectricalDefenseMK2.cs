@@ -3,7 +3,6 @@ using ArchitectsLibrary.Interfaces;
 using RotA.Mono.Modules;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
 using UnityEngine;
 
 namespace RotA.Prefabs.Modules
@@ -13,25 +12,31 @@ namespace RotA.Prefabs.Modules
         public SeamothElectricalDefenseMK2()
             : base("SeamothElectricalDefenseMK2", "Seamoth Ion Perimeter Defense System",
                 "Generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.")
-        {}
+        {
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("AlienUpgrade_Popup"));
+            };
+        }
 
         public override ModuleEquipmentType EquipmentType => ModuleEquipmentType.SeamothModule;
-        
+
         public override QuickSlotType QuickSlotType => QuickSlotType.SelectableChargeable;
-        
+
         public override TechType ModelTemplate => TechType.SeamothElectricalDefense;
-        
+
         public override float? MaxCharge => 30f;
-        
+
         public override float? EnergyCost => 10f;
 
         public override float CraftingTime => 7f;
 
         public override TechCategory CategoryForPDA => TechCategory.VehicleUpgrades;
-        
+
         public override TechGroup GroupForPDA => TechGroup.VehicleUpgrades;
-        
-        public override TechType RequiredForUnlock => Mod.architectElectricityMasterTech;
+
+        public override bool UnlockedAtStart { get; } = false;
 
         #region Interface Implementation
 
@@ -43,16 +48,14 @@ namespace RotA.Prefabs.Modules
             obj.name = "ElectricalDefenseMK2";
 
             var ed = obj.GetComponent<ElectricalDefense>() ?? obj.GetComponentInParent<ElectricalDefense>();
-            if (ed is not null)
-            {
-                Object.Destroy(ed);
-            }
 
             var edMk2 = obj.EnsureComponent<ElectricalDefenseMK2>();
             if (edMk2 is not null)
             {
-                edMk2.fxElectSpheres = seaMoth.seamothElectricalDefensePrefab.GetComponent<ElectricalDefense>().fxElecSpheres;
+                edMk2.fxElectSpheres = ed.fxElecSpheres;
             }
+
+            Object.DestroyImmediate(ed);
 
             float charge = seaMoth.quickSlotCharge[slotID];
             float slotCharge = seaMoth.GetSlotCharge(slotID);
@@ -69,10 +72,12 @@ namespace RotA.Prefabs.Modules
                 electricalDefense.chargeScalar = slotCharge;
                 electricalDefense.attackType = ElectricalDefenseMK2.AttackType.Both;
             }
+
+            obj.SetActive(true);
         }
 
         #endregion
-        
+
         protected override TechData GetBlueprintRecipe()
         {
             return new()

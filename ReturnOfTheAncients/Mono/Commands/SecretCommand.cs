@@ -13,7 +13,7 @@ namespace RotA.Mono.Commands
         private void OnConsoleCommand_togglecinematic(NotificationCenter.Notification n)
         {
             GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
-            foreach(GameObject go in gameObjects)
+            foreach (GameObject go in gameObjects)
             {
                 if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid(Clone)", ECCLibrary.ECCStringComparison.Equals))
                 {

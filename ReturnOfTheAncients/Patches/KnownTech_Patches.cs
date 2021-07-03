@@ -1,10 +1,7 @@
-﻿using ECCLibrary;
-using ECCLibrary.Internal;
-using HarmonyLib;
-using RotA.Prefabs;
+﻿using HarmonyLib;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
-using UnityEngine;
 
 namespace RotA.Patches
 {
@@ -35,13 +32,9 @@ namespace RotA.Patches
             {
                 if (i.unlockSound != null && i.techType == TechType.BloodOil)
                     _unlockSound = i.unlockSound;
-
-                if (i.techType == TechType.PrecursorKey_Purple)
-                {
-                    i.unlockTechTypes.Clear();
-                }
-
             }
+
+            UWE.CoroutineHost.StartCoroutine(RemovePurpleTabletAnalysisDelayed());
 
             var analysisTech = KnownTech.analysisTech.ToHashSet();
 
@@ -62,6 +55,28 @@ namespace RotA.Patches
                 unlockSound = _unlockSound,
                 unlockTechTypes = new List<TechType>() { techTypeToAnalyze },
             });
+        }
+
+        static IEnumerator RemovePurpleTabletAnalysisDelayed()
+        {
+            //wait 3 frames just in case
+            yield return null;
+            yield return null;
+            yield return null;
+            foreach (var i in KnownTech.analysisTech)
+            {
+                if (i.techType == TechType.PrecursorKey_Purple)
+                {
+                    if (i.unlockTechTypes.Contains(TechType.PrecursorKey_Red))
+                    {
+                        i.unlockTechTypes.Remove(TechType.PrecursorKey_Red);
+                    }
+                    if (i.unlockTechTypes.Contains(TechType.PrecursorKey_White))
+                    {
+                        i.unlockTechTypes.Remove(TechType.PrecursorKey_White);
+                    }
+                }
+            }
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using ECCLibrary;
-using UnityEngine;
-
-namespace RotA.Mono.Creatures.GargEssentials
+﻿namespace RotA.Mono.Creatures.GargEssentials
 {
+    using ECCLibrary;
+    using UnityEngine;
+    using static GragantuanConditions;
+    
     public class GargantuanRoar : MonoBehaviour
     {
         public AudioSource audioSource;
@@ -18,12 +19,17 @@ namespace RotA.Mono.Creatures.GargEssentials
         public float minDistance = 50f;
         public float maxDistance = 600f;
         public bool screenShake;
+        public bool roarDoesDamage;
 
         float timeRoarAgain = 0f;
         float timeUpdateShakeAgain = 0f;
 
         private float[] clipSampleData = new float[1024];
         private float clipLoudness = 0f;
+
+        private float maxDamageDistance = 200f;
+        private float roarMaxDamagePerSecond = 6f;
+        private float timeStopDamaging = 0f;
 
         private void Start()
         {
@@ -38,7 +44,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 Destroy(this);
                 return;
             }
-            if(Time.time > timeRoarAgain)
+            if (Time.time > timeRoarAgain)
             {
                 PlayOnce(out float roarLength, RoarMode.Automatic);
             }
@@ -46,7 +52,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
                 {
-                    if (GargantuanBehaviour.PlayerIsKillable())
+                    if (PlayerIsKillable())
                     {
                         audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
                         clipLoudness = 0f;
@@ -62,6 +68,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                     }
                 }
             }
+            if (roarDoesDamage && PlayerIsKillable() && Time.time < timeStopDamaging)
+            {
+                DoDamage();
+            }
         }
 
         public void PlayOnce(out float roarLength, RoarMode roarMode)
@@ -75,6 +85,22 @@ namespace RotA.Mono.Creatures.GargEssentials
             creature.GetAnimator().SetTrigger("roar");
             float timeToWait = roarLength + Random.Range(delayMin, delayMax);
             timeRoarAgain = Time.time + timeToWait;
+            timeStopDamaging = Time.time + 6f;
+        }
+
+        void DoDamage()
+        {
+            float distance = Vector3.Distance(Player.main.transform.position, transform.position);
+            if (distance < maxDamageDistance)
+            {
+                float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
+                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * roarMaxDamagePerSecond, transform.position, DamageType.Cold, gameObject);
+            }
+        }
+
+        public void DelayTimeOfNextRoar(float length)
+        {
+            timeRoarAgain = Mathf.Max(timeRoarAgain + length, timeRoarAgain);
         }
 
         private AudioClip GetAudioClip(float distance, RoarMode roarMode)
@@ -89,7 +115,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             }
             else
             {
-                if (distance < closeRoarThreshold && GargantuanBehaviour.PlayerIsKillable())
+                if (distance < closeRoarThreshold && PlayerIsKillable())
                 {
                     return closeSounds.GetRandomClip();
                 }

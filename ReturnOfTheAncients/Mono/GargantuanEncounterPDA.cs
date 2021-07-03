@@ -1,6 +1,6 @@
 ﻿using RotA.Mono.Creatures.GargEssentials;
-using UnityEngine;
 using Story;
+using UnityEngine;
 
 namespace RotA.Mono
 {
@@ -9,10 +9,10 @@ namespace RotA.Mono
     /// </summary>
     public class GargantuanEncounterPDA : MonoBehaviour
     {
-        private StoryGoal goal = new StoryGoal("GargantuanEncounter", Story.GoalType.Story, 0f);
+        StoryGoal goal = new StoryGoal("GargantuanEncounter", Story.GoalType.Story, 0f);
         public float maxDistance = 125f;
 
-        private void Start()
+        void Start()
         {
             if (StoryGoalManager.main.IsGoalComplete(goal.key))
             {
@@ -26,9 +26,9 @@ namespace RotA.Mono
 
         void CheckDistance()
         {
-            if(Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
+            if (Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
             {
-                if (!GargantuanBehaviour.PlayerInPrecursorBase())
+                if (!GragantuanConditions.PlayerInPrecursorBase())
                 {
                     if (StoryGoalManager.main.OnGoalComplete(goal.key))
                     {
