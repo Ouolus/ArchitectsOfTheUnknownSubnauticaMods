@@ -39,7 +39,7 @@ namespace ArchitectsLibrary.Patches
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
             {
-                if (Builder.ghostModelScale.x >= .2f)
+                if (Builder.ghostModelScale.x <= .2f)
                     return;
                 
                 Builder.ghostModelScale *= 0.9f;
