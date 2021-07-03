@@ -98,9 +98,9 @@ namespace ArchitectsLibrary.Utility
                 }
             }
         }
-        
+
         /// <summary>
-        /// Applies the Necessary Precursor Materials to the passed <see cref="GameObject"/>.
+        /// Applies the Necessary Precursor Materials to the passed <see cref="GameObject"/>. Automatically replaces any materials that contains the string "IonShader" with an ion cube material and any material that contains the string "transparent" with a precursor glass material.
         /// </summary>
         /// <param name="prefab">the <see cref="GameObject"/> to apply the Materials to.</param>
         /// <param name="specint">Specular Strength.</param>
@@ -117,14 +117,14 @@ namespace ArchitectsLibrary.Utility
                 for (int i = 0; i < renderer.materials.Length; i++)
                 {
                     Material material = renderer.materials[i];
-                    if (material.name.Contains("IonShader"))
+                    if (material.name.ToLower().Contains("ionshader"))
                     {
                         Material[] sharedMats = renderer.materials;
                         sharedMats[i] = IonCubeMaterial;
                         renderer.materials = sharedMats;
                         continue;
                     }
-                    if (material.name.Contains("Transparent"))
+                    if (material.name.ToLower().Contains("transparent"))
                     {
                         Material[] sharedMats = renderer.materials;
                         sharedMats[i] = PrecursorGlassMaterial;
@@ -134,6 +134,29 @@ namespace ArchitectsLibrary.Utility
                     material.SetColor("_SpecColor", GetSpecularColorForEnum(specularColor));
                     material.SetFloat("_SpecInt", specint);
                     material.SetFloat("_Fresnel", fresnelStrength);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Fixes any dark shading on any ion cube materials on or in the children of <paramref name="prefab"/> by updating the fakeSSS vector on the shader.
+        /// </summary>
+        /// <param name="prefab">The object to apply these changes to (includes children as well)</param>
+        /// <param name="brightness">The brightness of the ion cube material.</param>
+        public static void FixIonCubeMaterials(GameObject prefab, float brightness)
+        {
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                if (renderer is ParticleSystemRenderer)
+                {
+                    continue;
+                }
+                for (int i = 0; i < renderer.materials.Length; i++)
+                {
+                    if (renderer.materials[i].name.ToLower().Contains("precursor_crystal_cube"))
+                    {
+                        renderer.materials[i].SetVector("_FakeSSSparams", new Vector4(brightness, 0f, 0f, 0f));
+                    }
                 }
             }
         }

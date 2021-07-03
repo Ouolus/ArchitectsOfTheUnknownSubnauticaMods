@@ -15,6 +15,7 @@ using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
+using ArchitectsLibrary.Configuration;
 
 namespace ArchitectsLibrary
 {
@@ -24,6 +25,7 @@ namespace ArchitectsLibrary
     [QModCore]
     public static class Main
     {
+        internal static List<TechType> DecorationTechs = new();
         internal static List<PrecursorFabricatorEntry> PrecursorFabricatorEntriesToAdd = new();
         
         internal static AssetBundle assetBundle;
@@ -69,23 +71,45 @@ namespace ArchitectsLibrary
         static BuildableRelicTank buildableRelicTank;
         static BuildableLargeRelicTank buildableLargeRelicTank;
         static BuildableItemPedestal buildableItemPedestal;
+        static BuildableSpecimenCases buildableSpecimenCases;
         static BuildableAlienRobot buildableAlienRobot;
         static BuildableWarper buildableWarper;
         static BuildableInfoPanel buildableInfoPanel;
         static BuildableMicroscope buildableMicroscope;
         static BuildableSonicDeterrent buildableSonicDeterrent;
-        static BuildableIonCubePedestal buildableIonCubePedestal;
-        static BuildableElectricubePedestal buildableElectricubePedestal;
-        static BuildableRedIonCubePedestal buildableRedIonCubePedestal;
         static BuildableColumnSmall buildableColumnSmall;
         static BuildableLight4 buildableLight4;
         static BuildableLight5 buildableLight5;
         static BuildablePedestal buildablePedestal;
         static BuildablePedestalLarge buildablePedestalLarge;
+        static BuildableTable buildableTable;
+
+        internal static AchievementData achievementData;
+        internal static Config Config { get; } = new();
 
         const string encyKey_emerald = "EmeraldEncy";
 
         private const string ionCubePickupSound = "event:/loot/pickup_precursorioncrystal";
+
+        /// <summary>
+        /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
+        /// </summary>
+        [Obsolete("Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.", true)]
+        [QModPrePatch]
+        public static void PreLoad()
+        {
+            fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
+            assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
+            
+            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
+            AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
+            
+            PatchMinerals();
+
+            FixDisplayCaseItems();
+
+            achievementData = new AchievementData();
+        }
 
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
@@ -100,15 +124,18 @@ namespace ArchitectsLibrary
 
             MaterialUtils.LoadMaterials();
 
-            fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
-            assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
-            
             background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
             UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
 
             PatchItems();
+            
+            PatchBuildables();
+
+            achievementData.Load();
+
+            PatchAchievements();
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
@@ -117,22 +144,11 @@ namespace ArchitectsLibrary
             //CreatorKit.SNCreatorKit.Entry();
             //MainMenuMusicPatches.Patch(harmony);
             CraftingMenuPatches.Patch(harmony);
+            WaterParkPatches.Patch(harmony);
+            BuilderPatches.Patch(harmony);
 
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
-        }
-
-        static IEnumerator FixIonCubeCraftingCoroutine()
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
-            var prefab = task.GetResult();
-            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.AddComponent<VFXFabricating>();
-            vfxFabricating.localMinY = -0.25f;
-            vfxFabricating.localMaxY = 0.44f;
-            vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
-            vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
-            vfxFabricating.scaleFactor = 1.5f;
         }
 
         /// <summary>
@@ -164,15 +180,33 @@ namespace ArchitectsLibrary
 
             KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType, redIonCube.TechType });
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
-
-            PatchBuildables();
+        }
+        
+        static IEnumerator FixIonCubeCraftingCoroutine()
+        {
+            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
+            yield return task;
+            var prefab = task.GetResult();
+            IonCubeCraftModelFix(prefab);
         }
 
-        static void PatchItems()
+        internal static void IonCubeCraftModelFix(GameObject prefab)
         {
-            alienTechnologyMasterTech = TechTypeHandler.AddTechType("AlienMasterTech", "Alien Technology", "Advanced technology used by an advanced race.", false);
-            AUHandler.AlienTechnologyMasterTech = alienTechnologyMasterTech;
+            var vfxFabricating = prefab.GetComponentInChildren<MeshRenderer>(true).gameObject.EnsureComponent<VFXFabricating>();
+            vfxFabricating.localMinY = -0.25f;
+            vfxFabricating.localMaxY = 0.44f;
+            vfxFabricating.posOffset = new Vector3(0f, -0.04f, 0.1f);
+            vfxFabricating.eulerOffset = new Vector3(270f, 0f, 0f);
+            vfxFabricating.scaleFactor = 1.5f;
+        }
 
+        static void PatchAchievements()
+        {
+            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "Architect", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "This achievement is locked.", "Constructed a Precursor Fabricator.", true, 1);
+        }
+
+        static void PatchMinerals()
+        {
             emerald = new Emerald();
             emerald.Patch();
             AUHandler.EmeraldTechType = emerald.TechType;
@@ -254,7 +288,10 @@ namespace ArchitectsLibrary
             PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType, PrecursorFabricatorTab.Materials);
             AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
             CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
+        }
 
+        static void PatchItems()
+        {
             aotuPoster = new AotuPoster();
             aotuPoster.Patch();
 
@@ -265,6 +302,22 @@ namespace ArchitectsLibrary
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonBattery, PrecursorFabricatorTab.Devices);
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonPowerCell, PrecursorFabricatorTab.Devices);
+        }
+
+        static void FixDisplayCaseItems()
+        {
+            TechType[] resourcesToFix = new TechType[] { TechType.UraniniteCrystal, TechType.Diamond, TechType.Copper, TechType.AluminumOxide, TechType.Kyanite, AUHandler.EmeraldTechType, AUHandler.RedBerylTechType, AUHandler.SapphireTechType, TechType.Silver, TechType.PrecursorIonCrystal, AUHandler.RedIonCubeTechType, AUHandler.ElectricubeTechType, TechType.Gold};
+            FixArrayOfDisplayCaseItems(resourcesToFix, new Vector3(0f, -0.25f, 0f));
+            DisplayCaseServices.SetScaleInSpecimenCase(AUHandler.EmeraldTechType, 0.4f);
+            DisplayCaseServices.SetScaleInSpecimenCase(TechType.Kyanite, 0.4f);
+        }
+
+        static void FixArrayOfDisplayCaseItems(TechType[] techTypes, Vector3 newOffset)
+        {
+            for(int i = 0; i < techTypes.Length; i++)
+            {
+                DisplayCaseServices.SetOffset(techTypes[i], newOffset);
+            }
         }
 
         static void PatchBuildables()
@@ -292,6 +345,9 @@ namespace ArchitectsLibrary
             buildableItemPedestal = new BuildableItemPedestal();
             buildableItemPedestal.Patch();
 
+            buildableSpecimenCases = new BuildableSpecimenCases();
+            buildableSpecimenCases.Patch();
+
             buildableDissectionTank = new BuildableDissectionTank();
             buildableDissectionTank.Patch();
 
@@ -307,14 +363,8 @@ namespace ArchitectsLibrary
             buildableMicroscope = new BuildableMicroscope();
             buildableMicroscope.Patch();
 
-            buildableIonCubePedestal = new BuildableIonCubePedestal("BuildableIonCubePedestal", "Ion Cube Pedestal", "A platform containing an Ion Cube. Placeable inside and outside.");
-            buildableIonCubePedestal.Patch();
-
-            buildableRedIonCubePedestal = new BuildableRedIonCubePedestal("BuildableRedIonCubePedestal", "Power Cube Pedestal", "A platform containing a Power Cube. Placeable inside and outside.");
-            buildableRedIonCubePedestal.Patch();
-
-            buildableElectricubePedestal = new BuildableElectricubePedestal("BuildableElectricubePedestal", "Electricube Pedestal", "A platform containing an Electricube. Placeable inside and outside.");
-            buildableElectricubePedestal.Patch();
+            buildableTable = new BuildableTable();
+            buildableTable.Patch();
 
             buildableColumnSmall = new BuildableColumnSmall();
             buildableColumnSmall.Patch();

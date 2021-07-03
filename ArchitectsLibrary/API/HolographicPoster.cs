@@ -95,6 +95,11 @@ namespace ArchitectsLibrary.API
                 cachedPrefab.EnsureComponent<VFXSurface>().surfaceType = VFXSurfaceTypes.metal;
                 cachedPrefab.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Near;
                 cachedPrefab.EnsureComponent<SkyApplier>().renderers = cachedPrefab.GetComponentsInChildren<Renderer>();
+                var rb = cachedPrefab.EnsureComponent<Rigidbody>();
+                rb.mass = 5f;
+                rb.useGravity = false;
+                rb.isKinematic = true;
+                cachedPrefab.EnsureComponent<WorldForces>();
                 ConstructableBounds bounds = cachedPrefab.AddComponent<ConstructableBounds>();
                 bounds.bounds = new OrientedBounds(new Vector3(0f, -0.03f, 0.1f), Quaternion.identity, new Vector3(0.6f, 0.8f, 0f));
                 var fpModel = cachedPrefab.AddComponent<FPModel>();

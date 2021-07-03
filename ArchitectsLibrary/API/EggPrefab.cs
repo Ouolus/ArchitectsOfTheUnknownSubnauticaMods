@@ -1,5 +1,6 @@
 using System.Collections;
 using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Patches;
 using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
@@ -14,7 +15,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class EggPrefab : Spawnable
     {
-        private TechType _overridenTechType;
+        TechType _overridenTechType;
+        GameObject _processedPrefab;
         
         /// <summary>
         /// Initializes a new <see cref="EggPrefab"/>
@@ -53,6 +55,11 @@ namespace ArchitectsLibrary.API
 
                 if (MakeCreatureLayEggs)
                     AUHandler.SetCreatureEgg(HatchingCreature, this.TechType);
+
+                if (RequiredACUSize > 1)
+                {
+                    WaterParkPatches.requiredAcuSize[TechType] = RequiredACUSize;
+                }
             };
         }
         public delegate void GameObjectEnhancements(GameObject gameObject);
@@ -103,6 +110,12 @@ namespace ArchitectsLibrary.API
         public virtual float MaxHealth => 60f;
 
         /// <summary>
+        /// The total amount of ACU floors required for the egg to be dropped in the ACU.<br/>
+        /// defaulted to 1 and assigning this Property to "0" will be ignored.
+        /// </summary>
+        public virtual int RequiredACUSize => 1;
+
+        /// <summary>
         /// makes the egg scannable via the Scanner Room.
         /// </summary>
         public virtual bool MakeObjectScannable => true;
@@ -142,9 +155,13 @@ namespace ArchitectsLibrary.API
 #if SN1
         public sealed override GameObject GetGameObject()
         {
+            if (_processedPrefab != null)
+            {
+                return _processedPrefab;
+            }
+            
             GameObject prefab = Model;
             var obj = GameObject.Instantiate(prefab);
-
 
             EarlyEnhancements?.Invoke(obj);
 
@@ -164,6 +181,7 @@ namespace ArchitectsLibrary.API
             var rb = obj.EnsureComponent<Rigidbody>();
             rb.mass = Mass;
             rb.isKinematic = true;
+            rb.useGravity = false;
 
             var wf = obj.EnsureComponent<WorldForces>();
             wf.useRigidbody = rb;
@@ -185,11 +203,18 @@ namespace ArchitectsLibrary.API
 
             LateEnhancements?.Invoke(obj);
 
+            _processedPrefab = obj;
             return obj;
         }
 #endif
         public sealed override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
+            if (_processedPrefab != null)
+            {
+                gameObject.Set(_processedPrefab);
+                yield break;
+            }
+        
             GameObject prefab = Model;
             var obj = GameObject.Instantiate(prefab);
 
@@ -238,7 +263,7 @@ namespace ArchitectsLibrary.API
 
             LateEnhancements?.Invoke(obj);
 
-            yield return null;
+            _processedPrefab = obj;
             gameObject.Set(obj);
         }
 

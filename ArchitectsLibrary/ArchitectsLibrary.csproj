@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AchievementServices.cs" />
     <Compile Include="API\BuildableIonCubePedestal.cs" />
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\GenericPrecursorDecoration.cs" />
@@ -150,7 +151,11 @@
     <Compile Include="Buildables\BuildableLight1.cs" />
     <Compile Include="Buildables\BuildablePlatform.cs" />
     <Compile Include="Buildables\BuildableColumn.cs" />
+    <Compile Include="Buildables\BuildableSpecimenCases.cs" />
+    <Compile Include="Buildables\BuildableTable.cs" />
     <Compile Include="Buildables\BuildableWarper.cs" />
+    <Compile Include="Configuration\AchievementData.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="CreatorKit\Mono\FilterableList.cs" />
     <Compile Include="CreatorKit\Mono\FilterableListItem.cs" />
     <Compile Include="CreatorKit\Mono\GenericButton.cs" />
@@ -208,9 +213,11 @@
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
+    <Compile Include="Patches\BuilderPatches.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
+    <Compile Include="Patches\WaterParkPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GeneralExtensions.cs" />
     <Compile Include="Utility\HashDictionary.cs" />

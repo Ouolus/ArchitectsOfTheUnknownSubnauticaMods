@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.API;
+using UnityEngine;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
@@ -106,6 +107,10 @@ namespace ArchitectsLibrary.MonoBehaviours
             AUHandler.ElectricubeTechType,
             AUHandler.RedIonCubeTechType,
             AUHandler.PrecursorAlloyIngotTechType,
+            AUHandler.CobaltTechType,
+            AUHandler.CobaltIngotTechType,
+            AUHandler.AlienCompositeGlassTechType,
+            AUHandler.ReinforcedGlassTechType
         };
 
         GameObject[] _spawnedObjs;
@@ -178,8 +183,9 @@ namespace ArchitectsLibrary.MonoBehaviours
             Destroy(spawnedObj.GetComponent<Rigidbody>());
             Destroy(spawnedObj.GetComponent<WorldForces>());
             if (displayCaseType == DisplayCaseType.RelicTank) spawnedObj.EnsureComponent<SpinInRelicCase>();
-            spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(obj.GetComponent<Pickupable>().GetTechType(), displayCaseType);
-            spawnedObj.transform.localPosition = Vector3.zero;
+            TechType techType = obj.GetComponent<Pickupable>().GetTechType();
+            spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(techType, displayCaseType);
+            spawnedObj.transform.localPosition = DisplayCaseServices.GetOffsetForItem(techType);
             spawnedObj.transform.localEulerAngles = Vector3.zero;
             spawnedObj.SetActive(true);
         }
@@ -232,6 +238,7 @@ namespace ArchitectsLibrary.MonoBehaviours
     enum DisplayCaseType
     {
         RelicTank,
-        Pedestal
+        Pedestal,
+        SpecimenCase
     }
 }
