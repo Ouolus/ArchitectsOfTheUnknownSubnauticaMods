@@ -28,13 +28,8 @@ namespace ArchitectsLibrary.Patches
             
             if (!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
-            
-            var msg1 = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
-            var msg2 = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
-            var resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
-            ErrorMessage.AddMessage(msg1);
-            ErrorMessage.AddMessage(msg2);
-            ErrorMessage.AddMessage(resetMsg);
+
+            ValidateHintMessage();
 
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
@@ -120,6 +115,23 @@ namespace ArchitectsLibrary.Patches
         static void SetScale(GameObject obj)
         {
             obj.transform.localScale = Builder.ghostModelScale;
+        }
+
+        static void ValidateHintMessage()
+        {
+            var incrementMessage = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
+            var decrementMessage = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
+            var resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+            var txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
+
+            var msg = ErrorMessage.main.GetExistingMessage(txt);
+            if (msg != null && msg.timeEnd < Time.time + 2)
+            {
+                msg.timeEnd += Time.deltaTime;
+                return;
+            }
+            
+            ErrorMessage.AddMessage(txt);
         }
     }
 }
