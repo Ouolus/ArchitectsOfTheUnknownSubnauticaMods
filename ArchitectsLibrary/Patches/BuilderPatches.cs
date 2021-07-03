@@ -125,9 +125,11 @@ namespace ArchitectsLibrary.Patches
             var txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
 
             var msg = ErrorMessage.main.GetExistingMessage(txt);
-            if (msg != null && msg.timeEnd < Time.time + 2)
+            if (msg != null)
             {
-                msg.timeEnd += Time.deltaTime;
+                if (msg.timeEnd < Time.time + 2)
+                    msg.timeEnd += Time.deltaTime;
+                
                 return;
             }
             
