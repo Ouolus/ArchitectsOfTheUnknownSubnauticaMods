@@ -25,30 +25,22 @@ namespace LeviathanEggs.MonoBehaviours
 
         void Update()
         {
-            ErrorMessage.AddMessage("1");
             if (_base is null)
                 return;
 
-            ErrorMessage.AddMessage("2");
             _weAreLeaking = _base.IsLeaking();
             
-            ErrorMessage.AddMessage("3");
             UpdateLeakPoints();
 
-            ErrorMessage.AddMessage("4");
             if (_weAreLeaking)
             {
-                ErrorMessage.AddMessage("5");
                 if (_leakables.Count > 0 && _leakables[0].leakingLeakPoints.Count <= 0)
                     _leakables.RemoveAt(0);
-                ErrorMessage.AddMessage("6");
                 
                 if (_leakables.Count > 0)
                     return;
-                ErrorMessage.AddMessage("7");
                 
                 _leakables = _base.flood.leakers.ToList();
-                ErrorMessage.AddMessage("8");
             }
         }
 
