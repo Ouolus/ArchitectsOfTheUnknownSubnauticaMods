@@ -43,7 +43,7 @@ namespace ArchitectsLibrary.Patches
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
             {
-                if (Builder.prefab.transform.localScale.x >= 1.2f)
+                if (Builder.prefab.transform.localScale.x >= 1.3f)
                     return;
                 
                 Builder.prefab.transform.localScale *= 1.01f;
