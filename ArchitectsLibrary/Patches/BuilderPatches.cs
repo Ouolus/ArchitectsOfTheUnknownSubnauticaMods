@@ -92,7 +92,7 @@ namespace ArchitectsLibrary.Patches
                  *
                  * so since we want to insert our SetScale() method after the 'transform.rotation = Builder.placeRotation;' we're gonna target it.
                  * 
-                 * the 'ldloc.2' is the 'Transform transform = gameObject.transform' local variable, so we need to pass it as an argument for the SetScale() so it can modify
+                 * the 'ldloc.2' is the 'GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(Builder.prefab);' local variable, so we need to pass it as an argument for the SetScale() so it can modify
                  * the scale.
                  */
                 if (codes[i].opcode == OpCodes.Callvirt && Equals(codes[i].operand, rotationSet) && codes[i + 1].opcode == OpCodes.Ldloc_2)
