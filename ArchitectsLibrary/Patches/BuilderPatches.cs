@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using ArchitectsLibrary.Utility;
 using HarmonyLib;
 using UnityEngine;
 using Logger = QModManager.Utility.Logger;
@@ -27,6 +28,13 @@ namespace ArchitectsLibrary.Patches
             
             if (!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
+            
+            var msg1 = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
+            var msg2 = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
+            var resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+            ErrorMessage.AddMessage(msg1);
+            ErrorMessage.AddMessage(msg2);
+            ErrorMessage.AddMessage(resetMsg);
 
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
@@ -46,8 +54,6 @@ namespace ArchitectsLibrary.Patches
             }
             else if (Input.GetKeyDown(KeyCode.T))
                 Builder.ghostModelScale = Vector3.one;
-            
-            
         }
 
         static IEnumerable<CodeInstruction> TryPlaceTranspiler(IEnumerable<CodeInstruction> instructions)
