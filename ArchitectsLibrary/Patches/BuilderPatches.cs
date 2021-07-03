@@ -34,7 +34,7 @@ namespace ArchitectsLibrary.Patches
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
             {
-                if (Builder.prefab.transform.localScale.x <= .2f)
+                if (Builder.prefab.transform.localScale.x <= .4f)
                     return;
                 
                 Builder.prefab.transform.localScale *= 0.99f;
