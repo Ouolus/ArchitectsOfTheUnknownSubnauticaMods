@@ -85,7 +85,7 @@ namespace ArchitectsLibrary
         static BuildableTable buildableTable;
 
         internal static AchievementData achievementData;
-        internal static Config Config;
+        internal static Config Config { get; } = new();
 
         const string encyKey_emerald = "EmeraldEncy";
 
