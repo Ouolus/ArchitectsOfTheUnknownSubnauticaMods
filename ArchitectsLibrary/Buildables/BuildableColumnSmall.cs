@@ -19,7 +19,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
-            prefab.transform.localScale = Vector3.one * 0.37f;
+            prefab.transform.GetChild(0).localScale = Vector3.one * 0.37f;
         }
 
         protected override string GetSpriteName => "Column";
