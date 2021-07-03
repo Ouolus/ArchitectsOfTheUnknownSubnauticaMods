@@ -37,7 +37,7 @@ namespace ArchitectsLibrary.Patches
                 if (Builder.ghostModelScale.x <= .2f)
                     return;
                 
-                Builder.ghostModelScale *= 0.9f;
+                Builder.ghostModelScale *= 0.99f;
             }
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
