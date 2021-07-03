@@ -21,7 +21,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
-            prefab.transform.GetChild(0).localScale = Vector3.one * 0.6f;
+            prefab.transform.localScale = Vector3.one * 0.6f;
         }
     }
 }

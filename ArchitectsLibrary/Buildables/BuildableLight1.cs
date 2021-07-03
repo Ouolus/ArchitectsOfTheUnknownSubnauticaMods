@@ -19,7 +19,7 @@ namespace ArchitectsLibrary.Buildables
         protected override void EditPrefab(GameObject prefab)
         {
             prefab.transform.GetChild(0).transform.eulerAngles = new Vector3(180f, 0f, 0f);
-            prefab.transform.GetChild(0).transform.localScale = Vector3.one * 0.9f;
+            prefab.transform.localScale = Vector3.one * 0.9f;
             prefab.GetComponentInChildren<SphereCollider>().radius = 6f / 0.9f;
         }
 

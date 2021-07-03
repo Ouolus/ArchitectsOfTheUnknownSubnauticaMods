@@ -19,7 +19,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
-            prefab.transform.GetChild(0).transform.localScale = Vector3.one * 0.4f;
+            prefab.transform.localScale = Vector3.one * 0.4f;
         }
 
         protected override string GetSpriteName => "Infoframe";

@@ -22,7 +22,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override void EditPrefab(GameObject prefab)
         {
-            prefab.transform.GetChild(0).localScale = Vector3.one * 0.7f;
+            prefab.transform.localScale = Vector3.one * 0.7f;
 
             AddStorageRoot(prefab, new Vector3(-0.4f, 1.5f, -0.4f), "SpecimenCaseStorage1");
             AddStorageRoot(prefab, new Vector3(-0.4f, 1.5f, 0.4f), "SpecimenCaseStorage2");
