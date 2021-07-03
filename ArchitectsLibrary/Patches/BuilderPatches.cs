@@ -44,6 +44,10 @@ namespace ArchitectsLibrary.Patches
                 
                 Builder.ghostModelScale *= 1.01f;
             }
+            else if (Input.GetKeyDown(KeyCode.T))
+                Builder.ghostModelScale = Vector3.one;
+            
+            
         }
 
         static IEnumerable<CodeInstruction> TryPlaceTranspiler(IEnumerable<CodeInstruction> instructions)
