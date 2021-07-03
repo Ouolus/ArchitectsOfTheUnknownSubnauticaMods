@@ -114,7 +114,10 @@ namespace ArchitectsLibrary.Patches
 
         static void SetScale(GameObject obj)
         {
-            obj.transform.localScale = Builder.ghostModelScale;
+            var constructable = obj.GetComponentInParent<Constructable>();
+            
+            if (constructable)
+                constructable.model.transform.localScale = Builder.ghostModelScale;
         }
 
         static void ValidateHintMessage()
