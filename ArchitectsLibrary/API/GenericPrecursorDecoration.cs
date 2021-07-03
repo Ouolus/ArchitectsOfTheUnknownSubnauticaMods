@@ -25,6 +25,7 @@
         /// <param name="description"></param>
         public GenericPrecursorDecoration(string classId, string friendlyName, string description) : base(classId, friendlyName, description)
         {
+            OnFinishedPatching += () => Main.DecorationTechs.Add(TechType);
         }
 
         /// <summary>
@@ -155,6 +156,7 @@
                     Object.DestroyImmediate(rigidbody);
                 }
             }
+
             EditPrefab(buildablePrefab);
             buildablePrefab.SetActive(true);
 

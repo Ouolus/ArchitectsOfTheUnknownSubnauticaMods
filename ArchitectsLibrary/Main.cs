@@ -25,6 +25,7 @@ namespace ArchitectsLibrary
     [QModCore]
     public static class Main
     {
+        internal static List<TechType> DecorationTechs = new();
         internal static List<PrecursorFabricatorEntry> PrecursorFabricatorEntriesToAdd = new();
         
         internal static AssetBundle assetBundle;
@@ -143,6 +144,7 @@ namespace ArchitectsLibrary
             //MainMenuMusicPatches.Patch(harmony);
             CraftingMenuPatches.Patch(harmony);
             WaterParkPatches.Patch(harmony);
+            BuilderPatches.Patch(harmony);
 
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
