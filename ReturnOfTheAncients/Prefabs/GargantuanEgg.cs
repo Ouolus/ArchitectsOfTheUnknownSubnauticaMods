@@ -18,7 +18,7 @@ namespace RotA.Prefabs
         public override float MaxHealth => 100f;
         public override float Mass => 500f;
         public override bool MakeObjectScannable => true;
-        public override Vector2int SizeInInventory => new Vector2int(3, 3);
+        public override Vector2int SizeInInventory => new Vector2int(5, 5);
         public override int RequiredACUSize => 3;
 
         public void InitializeObject(GameObject prefab)
