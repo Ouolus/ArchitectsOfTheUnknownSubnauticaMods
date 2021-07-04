@@ -220,6 +220,7 @@
     <Compile Include="Patches\WaterParkPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GeneralExtensions.cs" />
+    <Compile Include="Utility\GlobalExtensions.cs" />
     <Compile Include="Utility\HashDictionary.cs" />
     <Compile Include="Utility\ItemUtils.cs" />
     <Compile Include="Utility\LanguageUtils.cs" />
