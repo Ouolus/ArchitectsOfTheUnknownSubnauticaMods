@@ -16,6 +16,11 @@ namespace ArchitectsLibrary.Patches
             var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(UpdatePostfix)));
             harmony.Patch(orig, postfix: postfix);
         }
+        
+        static readonly string incrementMessage = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
+        static readonly string decrementMessage = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
+        static readonly string resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+        static readonly string txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
 
         static void UpdatePostfix()
         {
@@ -25,7 +30,7 @@ namespace ArchitectsLibrary.Patches
             if (!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
 
-            ValidateHintMessage();
+            ErrorMessage.main.AddHint(txt);
 
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
@@ -54,25 +59,6 @@ namespace ArchitectsLibrary.Patches
                 Builder.CreateGhost();
 
             }
-        }
-
-        static void ValidateHintMessage()
-        {
-            var incrementMessage = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
-            var decrementMessage = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
-            var resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
-            var txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
-
-            var msg = ErrorMessage.main.GetExistingMessage(txt);
-            if (msg != null)
-            {
-                if (msg.timeEnd < Time.time + 2)
-                    msg.timeEnd += Time.deltaTime;
-                
-                return;
-            }
-            
-            ErrorMessage.AddMessage(txt);
         }
     }
 }
