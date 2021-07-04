@@ -976,130 +976,130 @@ event:/sub_module/workbench/build_long_loop
 event:/sub_module/workbench/close
 event:/sub_module/workbench/open
 event:/sub_module/workbench/working
-event:/tools/airbladder/airbladder_deflate
-event:/tools/airbladder/airbladder_deflate_surface
-event:/tools/airbladder/airbladder_hold_loop
-event:/tools/airbladder/airbladder_inflate
-event:/tools/airbladder/airbladder_pickup
-event:/tools/battery_die
-event:/tools/battery_insert
-event:/tools/beacon/beacon_loop
-event:/tools/beacon/draw
-event:/tools/builder/complete
-event:/tools/builder/deploy
-event:/tools/builder/first_use
-event:/tools/builder/loop
-event:/tools/builder/place
-event:/tools/builder/remove
-event:/tools/constructor/bot_1_hover
-event:/tools/constructor/bot_2_hover
-event:/tools/constructor/bot_3_hover
-event:/tools/constructor/bot_4_hover
-event:/tools/constructor/bots_build
-event:/tools/constructor/bots_confirm
-event:/tools/constructor/bots_fly_infront
-event:/tools/constructor/bots_out
-event:/tools/constructor/constructor_climb
-event:/tools/constructor/constructor_deploy_end
-event:/tools/constructor/constructor_deploy_start
-event:/tools/constructor/deploy
-event:/tools/constructor/spawn
-event:/tools/constructor/sub_splash
-event:/tools/diamondblade/deploy
-event:/tools/diamondblade/hit
-event:/tools/diamondblade/swing
-event:/tools/divereel/breadcrum
-event:/tools/divereel/deploy
-event:/tools/divereel/node_loop
-event:/tools/divereel/reeling
-event:/tools/divereel/reload
-event:/tools/divereel/reset_path
-event:/tools/divereel/set_anchor
-event:/tools/divereel/unravel
-event:/tools/dolls/jack
-event:/tools/dolls/mark
-event:/tools/extinguisher/deploy
-event:/tools/extinguisher/first use
-event:/tools/extinguisher/shoot
-event:/tools/extinguisher/use_loop
-event:/tools/flare/deploy
-event:/tools/flare/first_use
-event:/tools/flare/on_loop
-event:/tools/flare/throw
-event:/tools/flashlight/deploy
-event:/tools/flashlight/fist_use
-event:/tools/flashlight/turn_off
-event:/tools/flashlight/turn_on
-event:/tools/floating_locker/close
-event:/tools/floating_locker/deploy
-event:/tools/floating_locker/open
-event:/tools/gravcannon/deploy
-event:/tools/gravcannon/fail
-event:/tools/gravcannon/fire
-event:/tools/gravcannon/first_use
-event:/tools/gravcannon/grab_loop
-event:/tools/gravcannon/ready
-event:/tools/gravcannon/reload
-event:/tools/gravcannon/repulse
-event:/tools/gravsphere/draw
-event:/tools/gravsphere/explode
-event:/tools/gravsphere/loop
-event:/tools/gravsphere/loop_actual
-event:/tools/knife/deploy
-event:/tools/knife/first_use
-event:/tools/knife/heat_hit
-event:/tools/knife/heat_idle
-event:/tools/knife/hit
-event:/tools/knife/swing
-event:/tools/knife/swing_surface
-event:/tools/lasercutter/cut_end
-event:/tools/lasercutter/cut_loop
-event:/tools/lasercutter/deploy
-event:/tools/lasercutter/door_cut
-event:/tools/lasercutter/first_use
-event:/tools/lights/pick_up
-event:/tools/lights/place
-event:/tools/pda/close
-event:/tools/pda/drop_item
-event:/tools/pda/equip_gear
-event:/tools/pda/first_use
-event:/tools/pda/new_biome
-event:/tools/pda/open
-event:/tools/pda/select
-event:/tools/pda/unequip_gear
-event:/tools/pipes/bubbles_loop
-event:/tools/pipes/motor_loop
-event:/tools/scan
-event:/tools/scanner/draw
-event:/tools/scanner/first_use
-event:/tools/scanner/new_blueprint
-event:/tools/scanner/new_encyclopediea
-event:/tools/scanner/new_PDA_data
-event:/tools/scanner/scan_complete
-event:/tools/scanner/scan_loop
-event:/tools/stasis_gun/charge
-event:/tools/stasis_gun/deploy
-event:/tools/stasis_gun/fire
-event:/tools/stasis_gun/first_use
-event:/tools/stasis_gun/holding_loop
-event:/tools/stasis_gun/sphere_activate
-event:/tools/stasis_gun/sphere_deactivate
-event:/tools/stasis_gun/sphere_enter
-event:/tools/swimcharge
-event:/tools/teraformer/cut_loop
-event:/tools/teraformer/cut_ready
-event:/tools/teraformer/draw
-event:/tools/teraformer/place_loop
-event:/tools/transfuser/deploy
-event:/tools/transfuser/fail
-event:/tools/transfuser/inject_serum
-event:/tools/transfuser/take_sample
-event:/tools/use_loot
-event:/tools/welder/deploy
-event:/tools/welder/first_use
-event:/tools/welder/weld_end
-event:/tools/welder/weld_loop
             */
-            }
+            public const string AirbladderDeflate = "event:/tools/airbladder/airbladder_deflate";
+            public const string AirbladerDeflateSurface = "event:/tools/airbladder/airbladder_deflate_surface";
+            public const string AirbladderHoldLoop = "event:/tools/airbladder/airbladder_hold_loop";
+            public const string AirbladderInflate = "event:/tools/airbladder/airbladder_inflate";
+            public const string AirbladderPickup = "event:/tools/airbladder/airbladder_pickup";
+            public const string BatteryDie = "event:/tools/battery_die";
+            public const string BatteryInsert = "event:/tools/battery_insert";
+            public const string BeaconLoop = "event:/tools/beacon/beacon_loop";
+            public const string BeaconDraw = "event:/tools/beacon/draw";
+            public const string BuilderComplete = "event:/tools/builder/complete";
+            public const string BuilderDeploy = "event:/tools/builder/deploy";
+            public const string BuilderFirstUse = "event:/tools/builder/first_use";
+            public const string BuilderConstructLoop = "event:/tools/builder/loop";
+            public const string BuilderPlace = "event:/tools/builder/place";
+            public const string BuilderRemove = "event:/tools/builder/remove";
+            public const string MobileVehicleBayBotHover1 = "event:/tools/constructor/bot_1_hover";
+            public const string MobileVehicleBayBotHover2 = "event:/tools/constructor/bot_2_hover";
+            public const string MobileVehicleBayBotHover3 = "event:/tools/constructor/bot_3_hover";
+            public const string MobileVehicleBayBotHover4 = "event:/tools/constructor/bot_4_hover";
+            public const string MobileVehicleBayBotsBuild = "event:/tools/constructor/bots_build";
+            public const string MobileVehicleBayBotsConfirm = "event:/tools/constructor/bots_confirm";
+            public const string MobileVehicleBayBotsFlyInfront = "event:/tools/constructor/bots_fly_infront";
+            public const string MobileVehicleBayBotsOut = "event:/tools/constructor/bots_out";
+            public const string MobileVehicleBayClimb = "event:/tools/constructor/constructor_climb";
+            public const string MobileVehicleBayDeployEnd = "event:/tools/constructor/constructor_deploy_end";
+            public const string MobileVehicleBayDeployStart = "event:/tools/constructor/constructor_deploy_start";
+            public const string MobileVehicleBayDeploy = "event:/tools/constructor/deploy";
+            public const string MobileVehicleBaySpawnSub = "event:/tools/constructor/spawn";
+            public const string MobileVehicleBaySubSplash = "event:/tools/constructor/sub_splash";
+            public const string DiamondBladeDeploy = "event:/tools/diamondblade/deploy";
+            public const string DiamondBladeHit = "event:/tools/diamondblade/hit";
+            public const string DiamondBladeSwing = "event:/tools/diamondblade/swing";
+            public const string PathFinderBreadcrum = "event:/tools/divereel/breadcrum";
+            public const string PathFinderDeploy = "event:/tools/divereel/deploy";
+            public const string PathFinderNodeLoop = "event:/tools/divereel/node_loop";
+            public const string PathFinderReeling = "event:/tools/divereel/reeling";
+            public const string PathFinderReload = "event:/tools/divereel/reload";
+            public const string PathFinderResetPath = "event:/tools/divereel/reset_path";
+            public const string PathFinderSetAnchor = "event:/tools/divereel/set_anchor";
+            public const string PathFinderUnravel = "event:/tools/divereel/unravel";
+            public const string JackDoll = "event:/tools/dolls/jack";
+            public const string MarkDoll = "event:/tools/dolls/mark";
+            public const string FireExtinguisherDeploy = "event:/tools/extinguisher/deploy";
+            public const string FireExtinguisherFirstUse = "event:/tools/extinguisher/first use";
+            public const string FireExtinguisherShoot = "event:/tools/extinguisher/shoot";
+            public const string FireExtinguisherUseLoop = "event:/tools/extinguisher/use_loop";
+            public const string FlareDeploy = "event:/tools/flare/deploy";
+            public const string FlareFirstUse = "event:/tools/flare/first_use";
+            public const string FlareOnLoop = "event:/tools/flare/on_loop";
+            public const string FlareThrow = "event:/tools/flare/throw";
+            public const string FlashlightDeploy = "event:/tools/flashlight/deploy";
+            public const string FlashlightFirstUse = "event:/tools/flashlight/fist_use";
+            public const string FlashlightTurnOff = "event:/tools/flashlight/turn_off";
+            public const string FlashlightTurnOn = "event:/tools/flashlight/turn_on";
+            public const string WaterproofLockerClose = "event:/tools/floating_locker/close";
+            public const string WaterproofLockerDeploy = "event:/tools/floating_locker/deploy";
+            public const string WaterproofLockerOpen = "event:/tools/floating_locker/open";
+            public const string PropulsionCannonDeploy = "event:/tools/gravcannon/deploy";
+            public const string PropulsionCannonFail = "event:/tools/gravcannon/fail";
+            public const string PropulsionCannonFire = "event:/tools/gravcannon/fire";
+            public const string PropulsionCannonFirstUse = "event:/tools/gravcannon/first_use";
+            public const string PropulsionCannonGrabLoop = "event:/tools/gravcannon/grab_loop";
+            public const string PropulsionCannonReadyToGrab = "event:/tools/gravcannon/ready";
+            public const string PropulsionCannonReloadUnused = "event:/tools/gravcannon/reload";
+            public const string RepulsionCannonRepulse = "event:/tools/gravcannon/repulse";
+            public const string GravTrapDraw = "event:/tools/gravsphere/draw";
+            public const string GravTrapExplode = "event:/tools/gravsphere/explode";
+            public const string GravTrapLoopUnused = "event:/tools/gravsphere/loop";
+            public const string GravTrapLoop = "event:/tools/gravsphere/loop_actual";
+            public const string KnifeDeploy = "event:/tools/knife/deploy";
+            public const string KnifeFirstUse = "event:/tools/knife/first_use";
+            public const string ThermobladeHit = "event:/tools/knife/heat_hit";
+            public const string ThermobladeIdle = "event:/tools/knife/heat_idle";
+            public const string KnifeHit = "event:/tools/knife/hit";
+            public const string KnifeSwing = "event:/tools/knife/swing";
+            public const string KnifeSwingAboveWater = "event:/tools/knife/swing_surface";
+            public const string LaserCutterCutEnd = "event:/tools/lasercutter/cut_end";
+            public const string LaserCutterCutLoop = "event:/tools/lasercutter/cut_loop";
+            public const string LaserCutterDeploy = "event:/tools/lasercutter/deploy";
+            public const string LaserCutterCutDoor = "event:/tools/lasercutter/door_cut";
+            public const string LaserCutterFirstUse = "event:/tools/lasercutter/first_use";
+            public const string LightStickPickup = "event:/tools/lights/pick_up";
+            public const string LightStickPlace = "event:/tools/lights/place";
+            public const string PdaClose = "event:/tools/pda/close";
+            public const string PdaDropItem = "event:/tools/pda/drop_item";
+            public const string PDAEquipGear = "event:/tools/pda/equip_gear";
+            public const string PDAIntroFirstUse = "event:/tools/pda/first_use";
+            public const string PDAEpicNotification = "event:/tools/pda/new_biome";
+            public const string PDAOpen = "event:/tools/pda/open";
+            public const string PDASelectButotn = "event:/tools/pda/select";
+            public const string PDAUneqipGear = "event:/tools/pda/unequip_gear";
+            public const string PipesBubbleLoop = "event:/tools/pipes/bubbles_loop";
+            public const string FloatingAirPumpMotorLoop = "event:/tools/pipes/motor_loop";
+            public const string ScanUnused = "event:/tools/scan";
+            public const string ScannerDraw = "event:/tools/scanner/draw";
+            public const string ScannerFirstUse = "event:/tools/scanner/first_use";
+            public const string ScannerNewBlueprintNotification = "event:/tools/scanner/new_blueprint";
+            public const string ScannerNewDatabankEntryNotification = "event:/tools/scanner/new_encyclopediea";
+            public const string ScannerIntegratingNewPDADataVoiceLine = "event:/tools/scanner/new_PDA_data";
+            public const string ScannerScanCompleteNotification = "event:/tools/scanner/scan_complete";
+            public const string ScannerScanningLoop = "event:/tools/scanner/scan_loop";
+            public const string StasisRifleCharge = "event:/tools/stasis_gun/charge";
+            public const string StasisRifleDeploy = "event:/tools/stasis_gun/deploy";
+            public const string StasisRifleFire = "event:/tools/stasis_gun/fire";
+            public const string StasisRifleFirstUse = "event:/tools/stasis_gun/first_use";
+            public const string StasisRifleHoldingLoopUnused = "event:/tools/stasis_gun/holding_loop";
+            public const string StasisRifleSphereActivate = "event:/tools/stasis_gun/sphere_activate";
+            public const string StasisRifleSphereDeactivate = "event:/tools/stasis_gun/sphere_deactivate";
+            public const string StasisRifleSphereEnter = "event:/tools/stasis_gun/sphere_enter";
+            public const string SwimchargeFinsCharge = "event:/tools/swimcharge";
+            public const string TerraformerMineLoop = "event:/tools/teraformer/cut_loop";
+            public const string TerraformerMineMode = "event:/tools/teraformer/cut_ready";
+            public const string TerraformerDraw = "event:/tools/teraformer/draw";
+            public const string TerraformerPlaceLoop = "event:/tools/teraformer/place_loop";
+            public const string TerraformerDeploy = "event:/tools/transfuser/deploy";
+            public const string TransfuserFail = "event:/tools/transfuser/fail";
+            public const string TransfuserInjectSerum = "event:/tools/transfuser/inject_serum";
+            public const string TransfuserTakeSample = "event:/tools/transfuser/take_sample";
+            public const string GenericToolBeepSound = "event:/tools/use_loot";
+            public const string RepairToolDeploy = "event:/tools/welder/deploy";
+            public const string RepairToolFirstUse = "event:/tools/welder/first_use";
+            public const string RepairToolWeldEnd = "event:/tools/welder/weld_end";
+            public const string RepairToolWeldLoop = "event:/tools/welder/weld_loop";
+        }
     }
 }
