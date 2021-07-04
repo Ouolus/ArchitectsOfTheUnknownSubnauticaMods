@@ -71,7 +71,6 @@ namespace ArchitectsLibrary.Patches
                 Builder.prefab.transform.localScale = Vector3.one;
                 Object.DestroyImmediate(Builder.ghostModel);
                 initialized = true;
-
             }
         }
 
