@@ -109,6 +109,7 @@
             omegaCube = new OmegaCube();
             omegaCube.Patch();
             DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
+            DisplayCaseServices.SetOffset(omegaCube.TechType, new Vector3(0f, -0.25f, 0f));
             #endregion
 
             CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
