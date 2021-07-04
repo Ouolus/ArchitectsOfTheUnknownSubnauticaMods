@@ -1,4 +1,5 @@
 ﻿using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Utility;
 using RotA.Mono.Equipment;
 using RotA.Mono.VFX;
@@ -97,20 +98,17 @@ namespace RotA.Prefabs.Equipment
                 vfxFabricating.eulerOffset = new Vector3(0f, 90f, 0f);
 
                 var chargeSound = prefab.AddComponent<FMOD_StudioEventEmitter>();
-                chargeSound.path = "event:/tools/stasis_gun/charge";
+                chargeSound.path = SNAudioEvents.Paths.StasisRifleCharge;
 
                 WarpCannonAnimations animationController = prefab.EnsureComponent<WarpCannonAnimations>();
                 animationController.animator = prefab.GetComponentInChildren<Animator>(true);
 
                 var warpCannon = prefab.AddComponent<WarpCannon>();
-                warpCannon.portalOpenSound = ScriptableObject.CreateInstance<FMODAsset>();
-                warpCannon.portalOpenSound.path = "event:/creature/warper/portal_open";
-                warpCannon.portalCloseSound = ScriptableObject.CreateInstance<FMODAsset>();
-                warpCannon.portalCloseSound.path = "event:/creature/warper/portal_close";
+                warpCannon.portalOpenSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+                warpCannon.portalCloseSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalClose);
                 warpCannon.drawSound = ScriptableObject.CreateInstance<FMODAsset>();
                 warpCannon.drawSound.path = "event:/player/key terminal_close";
-                warpCannon.switchModeSound = ScriptableObject.CreateInstance<FMODAsset>();
-                warpCannon.switchModeSound.path = "event:/tools/beacon/draw";
+                warpCannon.switchModeSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.BeaconDraw);
                 warpCannon.animations = animationController;
                 warpCannon.leftHandIKTarget = prefab.SearchChild("Attach_Left").transform;
                 warpCannon.ikAimRightArm = true;
