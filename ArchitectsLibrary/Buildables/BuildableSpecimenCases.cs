@@ -18,7 +18,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override bool ExteriorOnly => false;
 
-        protected override string GetSpriteName => "RelicCaseLarge";
+        protected override string GetSpriteName => "SpecimenCase";
 
         protected override void EditPrefab(GameObject prefab)
         {
