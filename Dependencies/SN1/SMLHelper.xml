@@ -1293,6 +1293,19 @@
             <param name="spawnPosition">Position to spawn into.</param>
             <param name="rotation">Rotation to spawn at.</param>
         </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(System.Object)">
+            <summary>
+            Checks if the passed object is equal to the current object
+            </summary>
+            <param name="obj">passed object</param>
+            <returns>true if equal; otherwise false.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
         <member name="T:SMLHelper.V2.Handlers.CustomSoundHandler">
             <summary>
             A handler class for adding and overriding Sounds.
@@ -4453,6 +4466,66 @@
             <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>
             </summary>
             <param name="objectType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Json.Converters.QuaternionConverter">
+            <summary>
+            A Quaternion json converter that simplifies the Vector3 to only x,y,z serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.QuaternionConverter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.QuaternionConverter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.QuaternionConverter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Json.Converters.Vector3Converter">
+            <summary>
+            A Vector3 json converter that simplifies the Vector3 to only x,y,z serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3Converter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3Converter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3Converter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
             <returns></returns>
         </member>
         <member name="T:SMLHelper.V2.Json.Converters.KeyCodeConverter">
