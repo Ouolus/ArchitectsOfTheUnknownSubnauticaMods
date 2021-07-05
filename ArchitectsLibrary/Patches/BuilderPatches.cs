@@ -12,9 +12,10 @@ namespace ArchitectsLibrary.Patches
     {
         internal static void Patch(Harmony harmony)
         {
-            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.Update));
-            var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(UpdatePostfix)));
-            harmony.Patch(orig, postfix: postfix);
+            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.CreateGhost));
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPostfix)));
+            var prefix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPrefix)));
+            harmony.Patch(orig, prefix, postfix);
 
             var orig2 = AccessTools.Method(typeof(Builder), nameof(Builder.TryPlace));
             var postfix2 = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(TryPlacePostfix)));
@@ -23,10 +24,6 @@ namespace ArchitectsLibrary.Patches
             var orig3 = AccessTools.Method(typeof(Builder), nameof(Builder.End));
             var postfix3 = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(EndPostfix)));
             harmony.Patch(orig3, postfix: postfix3);
-
-            var orig4 = AccessTools.Method(typeof(Builder), nameof(Builder.CreateGhost));
-            var postfix4 = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPostfix)));
-            harmony.Patch(orig4, postfix: postfix4);
         }
         
         static string IncrementMessage => $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
@@ -36,7 +33,7 @@ namespace ArchitectsLibrary.Patches
 
         static bool initialized;
 
-        static void UpdatePostfix()
+        static void CreateGhostPrefix()
         {
             if (Builder.prefab == null || Builder.ghostModel == null)
                 return;
@@ -73,11 +70,7 @@ namespace ArchitectsLibrary.Patches
                 initialized = true;
             }
         }
-
-        static void TryPlacePostfix() => initialized = false;
-
-        static void EndPostfix() => initialized = false;
-
+        
         static void CreateGhostPostfix(ref bool __result)
         {
             if(!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
@@ -86,5 +79,9 @@ namespace ArchitectsLibrary.Patches
             if(__result && initialized)
                 __result = false;
         }
+
+        static void TryPlacePostfix() => initialized = false;
+
+        static void EndPostfix() => initialized = false;
     }
 }
