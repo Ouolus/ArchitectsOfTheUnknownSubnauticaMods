@@ -12,13 +12,14 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 3050f);
+        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 3100f);
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
         private float timeStart;
         private FMODAsset splashSound;
+        private bool initialized = false;
 
         private bool setTimeScaleLateUpdate = false;
         private float targetTimeScale;
@@ -37,6 +38,7 @@ namespace RotA.Mono
             {
                 yield return new WaitForSeconds(3f);
             }
+            initialized = true;
             splashSound = ScriptableObject.CreateInstance<FMODAsset>();
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
@@ -74,15 +76,14 @@ namespace RotA.Mono
         {
             yield return new WaitForSeconds(5.3f);
             setTimeScaleLateUpdate = true;
-            targetTimeScale = 0.1f;
+            targetTimeScale = 0.05f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
             yield return new WaitForSecondsRealtime(4f);
+            yield return IngameMenu.main.SaveGameAsync();
             setTimeScaleLateUpdate = false;
             Time.timeScale = 1f;
-            yield return new WaitForSeconds(0.5f);
-            yield return IngameMenu.main.SaveGameAsync();
             CutToCredits();
         }
 
@@ -110,6 +111,10 @@ namespace RotA.Mono
 
         void LateUpdate()
         {
+            if (!initialized)
+            {
+                return;
+            }
             SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
             if (setTimeScaleLateUpdate)
             {
