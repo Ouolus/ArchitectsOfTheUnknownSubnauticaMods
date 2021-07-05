@@ -5,17 +5,22 @@ using RotA.Prefabs.Creatures;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(945f, -5000, 3000);
+        private Vector3 position = new Vector3(945f, 0f, 3000);
+        private Vector3 positionInSpecialCutscene = new Vector3(945f, 0f, 3000);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
         private float timeStart;
         private FMODAsset splashSound;
+
+        private bool setTimeScaleLateUpdate = false;
+        private float targetTimeScale;
 
         private float FarplaneDistance
         {
@@ -26,18 +31,49 @@ namespace RotA.Mono
         }
         public void Start()
         {
+            bool doSecretCutscene = ShouldDoSecretCutscene();
+            ErrorMessage.AddMessage("Sunbeam garg controller start");
             splashSound = ScriptableObject.CreateInstance<FMODAsset>();
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
             farplaneTarget = 20000f;
             GameObject prefab = GetSunbeamGargPrefab();
-            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
+            Vector3 spawnPos = doSecretCutscene ? positionInSpecialCutscene : position;
+            spawnedGarg = GameObject.Instantiate(prefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
+            if (doSecretCutscene)
+            {
+                StartCoroutine(WellBeRightBack());
+            }
+        }
+
+        private bool ShouldDoSecretCutscene()
+        {
+            return true;
+        }
+
+        private IEnumerator WellBeRightBack()
+        {
+            yield return new WaitForSeconds(7f);
+            setTimeScaleLateUpdate = true;
+            targetTimeScale = 0.1f;
+            AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.PlayOneShot(secretSound);
+            yield return new WaitForSecondsRealtime(4f);
+            Time.timeScale = 1f;
+            setTimeScaleLateUpdate = false;
+            CutToCredits();
+        }
+
+        private void CutToCredits()
+        {
+            SceneManager.LoadSceneAsync("EndCreditsSceneCleaner", LoadSceneMode.Single);
         }
 
         private void StartFadingOut()
@@ -60,6 +96,10 @@ namespace RotA.Mono
         void LateUpdate()
         {
             SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
+            if (setTimeScaleLateUpdate)
+            {
+                Time.timeScale = targetTimeScale;
+            }
         }
 
         public GameObject GetSunbeamGargPrefab()
@@ -70,12 +110,15 @@ namespace RotA.Mono
             prefab.transform.localScale = Vector3.one * 5.5f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
+            Renderer insidesRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[1]);
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[2]);
             AdultGargantuan.UpdateGargSolidMaterial(renderer.materials[3]);
-            AdultGargantuan.UpdateGargSkeletonMaterial(renderer.materials[4]);
-            AdultGargantuan.UpdateGargGutsMaterial(renderer.materials[5]);
+            AdultGargantuan.UpdateGargEyeMaterial(eyeRenderer.materials[0]);
+            AdultGargantuan.UpdateGargSkeletonMaterial(insidesRenderer.materials[0]);
+            AdultGargantuan.UpdateGargGutsMaterial(insidesRenderer.materials[1]);
             BehaviourLOD lod = prefab.EnsureComponent<BehaviourLOD>();
             lod.veryCloseThreshold = 5000f;
             lod.closeThreshold = 7500f;
