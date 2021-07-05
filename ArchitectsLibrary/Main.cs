@@ -135,6 +135,7 @@ namespace ArchitectsLibrary
             PatchBuildables();
 
             achievementData.Load();
+            Config.Load();
 
             PatchAchievements();
 
