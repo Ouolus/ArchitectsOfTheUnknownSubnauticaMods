@@ -29,10 +29,10 @@ namespace ArchitectsLibrary.Patches
             harmony.Patch(orig4, postfix: postfix4);
         }
         
-        static readonly string incrementMessage = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
-        static readonly string decrementMessage = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
-        static readonly string resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
-        static readonly string txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
+        static string IncrementMessage => $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
+        static string DecrementMessage => $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
+        static string ResetMsg => $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+        static string Txt => $"{IncrementMessage}\n{DecrementMessage}\n{ResetMsg}";
 
         static bool initialized;
 
@@ -44,7 +44,7 @@ namespace ArchitectsLibrary.Patches
             if (!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
 
-            ErrorMessage.main.AddHint(txt);
+            ErrorMessage.main.AddHint(Txt);
 
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
