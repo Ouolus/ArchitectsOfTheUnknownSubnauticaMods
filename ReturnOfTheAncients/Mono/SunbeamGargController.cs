@@ -12,7 +12,7 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 3000f);
+        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 3050f);
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
@@ -30,10 +30,13 @@ namespace RotA.Mono
                 return SNCameraRoot.main.mainCamera.farClipPlane;
             }
         }
-        public void Start()
+        public IEnumerator Start()
         {
             bool doSecretCutscene = ShouldDoSecretCutscene();
-            ErrorMessage.AddMessage("Sunbeam garg controller start");
+            if (doSecretCutscene)
+            {
+                yield return new WaitForSeconds(3f);
+            }
             splashSound = ScriptableObject.CreateInstance<FMODAsset>();
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
