@@ -55,7 +55,7 @@ namespace CreatureEggs
             Config = OptionsPanelHandler.RegisterModOptions<Config>();
             IngameMenuHandler.RegisterOnSaveEvent(Config.Save);
 
-            seaEmperorEgg.Patch(); 
+            seaEmperorEgg.Patch();
             seaDragonEgg.Patch();
             ghostEgg.Patch();
             robotEgg.Patch();
@@ -73,23 +73,23 @@ namespace CreatureEggs
             PrecursorFabricatorService.SubscribeToFabricator(robotEgg.TechType, PrecursorFabricatorTab.Eggs);
             PrecursorFabricatorService.SubscribeToFabricator(warperEgg.TechType, PrecursorFabricatorTab.Eggs);
 
-            for (int i = 0; i < techTypesToAddEntry.Count; i++)
-            {
-                PDAHandler.AddCustomScannerEntry(new PDAScanner.EntryData()
-                {
-                    key = techTypesToAddEntry[i],
-                    encyclopedia = "UnknownEgg",
-                    scanTime = 2f,
-                    isFragment = false
-                });
-            }
-            
+            KnownTech.onAnalyze += OnEggAnalyze;
+
             CraftDataHandler.SetEquipmentType(TechType.PrecursorDroid, EquipmentType.Hand);
 
             WaterParkCreatureParametersSettings();
 
             Harmony.CreateAndPatchAll(myAssembly, $"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
         }
+
+        static void OnEggAnalyze(KnownTech.AnalysisTech analysis, bool verbose)
+        {
+            if (techTypesToAddEntry.Contains(analysis.techType))
+            {
+                PDAEncyclopedia.Add("UnknownEgg", verbose);
+            }
+        }
+
         static void WaterParkCreatureParametersSettings()
         {
             #region TechTypeNames
