@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ECCLibrary;
 using RotA.Mono;
 using SMLHelper.V2.Assets;
@@ -11,12 +12,12 @@ namespace RotA.Prefabs.Initializers
         public ExplosionRoarInitializer()
             : base("KAJWGHDKJAGWKDGAIWUEYOAW", ".", ".")
         {
-            OnFinishedPatching = () =>
-            {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, new Vector3(1775f, 0f, 536f),
-                    "GargantuanRoarAfterExplosion", 20000f));
-            };
         }
+
+        public override List<SpawnLocation> CoordinatedSpawns => new()
+        {
+            new SpawnLocation(new Vector3(1775f, 0f, 536f))
+        };
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {

@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using System.Collections.Generic;
+using ECCLibrary;
 using RotA.Mono;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -11,11 +12,6 @@ namespace RotA.Prefabs.Initializers
         public MiscInitializers()
             : base("MiscRotAInitializers", ".", ".")
         {
-            OnFinishedPatching = () =>
-            {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(0f, 0f, 0f),
-                    "MiscRotAInitializers", 20000f));
-            };
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -25,6 +21,11 @@ namespace RotA.Prefabs.Initializers
             localScale = Vector3.one,
             slotType = EntitySlot.Type.Creature,
             techType = this.TechType
+        };
+
+        public override List<SpawnLocation> CoordinatedSpawns => new()
+        {
+            new SpawnLocation(new Vector3(0f, 0f, 0f))
         };
 
         public override GameObject GetGameObject()
