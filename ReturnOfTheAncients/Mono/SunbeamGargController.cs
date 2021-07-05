@@ -12,7 +12,8 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(945f, 0f, 3000);
+        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 2900f);
+        private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
@@ -54,20 +55,31 @@ namespace RotA.Mono
 
         private bool ShouldDoSecretCutscene()
         {
+            if (Player.main == null)
+            {
+                return false;
+            }
+            Vector3 playerPos = Player.main.transform.position;
+            if (Vector3.Distance(playerPos, secretCutsceneBounds.position) > secretCutsceneBounds.radius)
+            {
+                return false;
+            }
             return true;
         }
 
         private IEnumerator WellBeRightBack()
         {
-            yield return new WaitForSeconds(7f);
+            yield return new WaitForSeconds(5f);
             setTimeScaleLateUpdate = true;
             targetTimeScale = 0.1f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
             yield return new WaitForSecondsRealtime(4f);
-            Time.timeScale = 1f;
             setTimeScaleLateUpdate = false;
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(0.5f);
+            yield return IngameMenu.main.SaveGameAsync();
             CutToCredits();
         }
 
