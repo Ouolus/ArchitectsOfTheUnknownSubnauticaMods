@@ -12,7 +12,7 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 2900f);
+        private Vector3 positionInSpecialCutscene = new Vector3(450f, 0f, 3000f);
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
@@ -69,7 +69,7 @@ namespace RotA.Mono
 
         private IEnumerator WellBeRightBack()
         {
-            yield return new WaitForSeconds(5.4f);
+            yield return new WaitForSeconds(5.3f);
             setTimeScaleLateUpdate = true;
             targetTimeScale = 0.1f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
