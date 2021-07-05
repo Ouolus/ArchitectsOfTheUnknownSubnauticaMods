@@ -82,7 +82,7 @@ namespace RotA.Mono
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
             GameObject imgObj = CreateMemeOverlay();
-            yield return new WaitForSecondsRealtime(4f);
+            yield return new WaitForSecondsRealtime(2.8f);
             Destroy(imgObj);
             yield return IngameMenu.main.SaveGameAsync();
             setTimeScaleLateUpdate = false;
