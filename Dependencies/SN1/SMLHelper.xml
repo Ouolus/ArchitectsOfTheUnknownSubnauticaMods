@@ -413,6 +413,13 @@
             Used for the <see cref="T:TechTag" /> and <see cref="T:Constructable" /> components whenever applicable.
             Can also be set later in the constructor if it is not yet provided.</param>
         </member>
+        <member name="M:SMLHelper.V2.Assets.ModPrefab.ProcessPrefab(UnityEngine.GameObject)">
+            <summary>
+            Caches the prefab, then sets its TechType and ClassID to a default set of values applicable to most mods.<br/>
+            FOR ADVANCED MODDING ONLY. Do not override unless you know exactly what you are doing.
+            </summary>
+            <param name="go"></param>
+        </member>
         <member name="M:SMLHelper.V2.Assets.ModPrefab.GetGameObject">
             <summary>
             Gets the prefab game object. Set up your prefab components here.
@@ -646,9 +653,23 @@
             By default this will be 1x1. Override to change the size.
             </summary>
         </member>
+        <member name="T:SMLHelper.V2.Assets.Spawnable.SpawnLocation">
+            <summary>
+            A lightweight class used to specify the position of a Coordinated Spawn and optionally set its rotation.
+            </summary>
+            <param name="position"></param>
+            <param name="eulerAngles"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Assets.Spawnable.SpawnLocation.#ctor(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            A lightweight class used to specify the position of a Coordinated Spawn and optionally set its rotation.
+            </summary>
+            <param name="position"></param>
+            <param name="eulerAngles"></param>
+        </member>
         <member name="P:SMLHelper.V2.Assets.Spawnable.CoordinatedSpawns">
             <summary>
-            Returns the list of <see cref="T:UnityEngine.Vector3"/>s that specify the prefab's Coordinated Spawns.<br/>
+            Returns the list of <see cref="T:SMLHelper.V2.Assets.Spawnable.SpawnLocation"/>s that specify the prefab's Coordinated Spawns.<br/>
             By default this will be null.
             </summary>
         </member>
@@ -1188,6 +1209,13 @@
             </summary>
             <param name="spawnInfos">The SpawnInfos to spawn.</param>
         </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.SMLHelper#V2#Interfaces#ICoordinatedSpawnHandler#RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.Dictionary{UnityEngine.Vector3,UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns with rotations for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesAndRotationsToSpawnTo">the coordinates(Key) and the rotations(Value) the <see cref="T:TechType"/> should spawn to</param>
+        </member>
         <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(SMLHelper.V2.Handlers.SpawnInfo)">
             <summary>
             Registers a Coordinated Spawn
@@ -1206,6 +1234,13 @@
             </summary>
             <param name="techTypeToSpawn">The TechType to spawn</param>
             <param name="coordinatesToSpawnTo">the coordinates the <see cref="T:TechType"/> should spawn to</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler.RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.Dictionary{UnityEngine.Vector3,UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns with rotations for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesAndRotationsToSpawnTo">the coordinates(Key) and the rotations(Value) the <see cref="T:TechType"/> should spawn to</param>
         </member>
         <member name="T:SMLHelper.V2.Handlers.SpawnInfo">
             <summary>
@@ -1241,6 +1276,94 @@
             <param name="classId">ClassID to spawn.</param>
             <param name="spawnPosition">Position to spawn into.</param>
             <param name="rotation">Rotation to spawn at.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(TechType,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="techType">TechType to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+            <param name="rotation">Rotation to spawn at.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(System.String,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Initializes a new <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.
+            </summary>
+            <param name="classId">ClassID to spawn.</param>
+            <param name="spawnPosition">Position to spawn into.</param>
+            <param name="rotation">Rotation to spawn at.</param>
+        </member>
+        <member name="T:SMLHelper.V2.Handlers.CustomSoundHandler">
+            <summary>
+            A handler class for adding and overriding Sounds.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.CustomSoundHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#RegisterCustomSound(System.String,System.String,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound by file path. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="filePath">The file path on disk of the sound file to load</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound that has been loaded using AudioUtils. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="sound">The pre loaded sound</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. <see cref="T:SMLHelper.V2.Utility.SoundChannel"/></param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#TryPlayCustomSound(System.String)">
+            <summary>
+            Try to find and play a custom <see cref="T:FMOD.Sound"/> that has been registered.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#TryGetCustomSound(System.String,FMOD.Sound@)">
+            <summary>
+            Try to get a registered custom <see cref="T:FMOD.Sound"/>.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+            <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
+            <returns>Returns true or false depending on if the id was found</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.RegisterCustomSound(System.String,System.String,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound by file path. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="filePath">The file path on disk of the sound file to load</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound that has been loaded using AudioUtils. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="sound">The pre loaded sound</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. <see cref="T:SMLHelper.V2.Utility.SoundChannel"/></param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.TryPlayCustomSound(System.String)">
+            <summary>
+            Try to find and play a custom <see cref="T:FMOD.Sound"/> that has been registered.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.TryGetCustomSound(System.String,FMOD.Sound@)">
+            <summary>
+            Try to get a registered custom <see cref="T:FMOD.Sound"/>.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+            <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
+            <returns>Returns true or false depending on if the id was found</returns>
         </member>
         <member name="T:SMLHelper.V2.Handlers.PingHandler">
             <summary>
@@ -3043,6 +3166,49 @@
             <param name="techTypeToSpawn">The TechType to spawn</param>
             <param name="coordinatesToSpawnTo">the coordinates the <see cref="T:TechType"/> should spawn to</param>
         </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICoordinatedSpawnHandler.RegisterCoordinatedSpawnsForOneTechType(TechType,System.Collections.Generic.Dictionary{UnityEngine.Vector3,UnityEngine.Vector3})">
+            <summary>
+            Registers Multiple Coordinated spawns with rotations for one single passed TechType
+            </summary>
+            <param name="techTypeToSpawn">The TechType to spawn</param>
+            <param name="coordinatesAndRotationsToSpawnTo">the coordinates(Key) and the rotations(Value) the <see cref="T:TechType"/> should spawn to</param>
+        </member>
+        <member name="T:SMLHelper.V2.Interfaces.ICustomSoundHandler">
+            <summary>
+            A handler class for adding and overriding Sounds.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.RegisterCustomSound(System.String,System.String,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound by file path. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="filePath">The file path on disk of the sound file to load</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a Custom sound that has been loaded using AudioUtils. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="sound">The pre loaded sound</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. <see cref="T:SMLHelper.V2.Utility.SoundChannel"/></param>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.TryPlayCustomSound(System.String)">
+            <summary>
+            Try to find and play a custom <see cref="T:FMOD.Sound"/> that has been registered.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.TryGetCustomSound(System.String,FMOD.Sound@)">
+            <summary>
+            Try to get a registered custom <see cref="T:FMOD.Sound"/>.
+            </summary>
+            <param name="id">The Id of the custom sound</param>
+            <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
+            <returns>Returns true or false depending on if the id was found</returns>
+        </member>
         <member name="T:SMLHelper.V2.Interfaces.IModOptionAttribute">
             <summary>
             Defines properties for <see cref="T:SMLHelper.V2.Options.Attributes.ModOptionAttribute"/> derivatives to implement for the purpose of holding
@@ -4628,6 +4794,11 @@
         <member name="P:SMLHelper.V2.Handler.BackgroundTypeHandler">
             <summary>
             A handler for everything related to creating new BackgroundTypes.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handler.SoundHandler">
+            <summary>
+            A handler related to Custom Sounds
             </summary>
         </member>
         <member name="T:SMLHelper.V2.Initializer">
