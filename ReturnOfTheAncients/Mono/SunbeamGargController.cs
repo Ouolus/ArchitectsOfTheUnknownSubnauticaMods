@@ -234,10 +234,10 @@ namespace RotA.Mono
             img.raycastTarget = false;
             var rect = imageObj.EnsureComponent<RectTransform>();
             rect.SetParent(canvas.transform);
-            rect.anchoredPosition = new Vector2(-800f, 0f);
-            rect.localPosition = new Vector3(-800f, 0f, 0f);
+            rect.anchoredPosition = new Vector2(-600f, 0f);
+            rect.localPosition = new Vector3(-600f, 0f, 0f);
             rect.sizeDelta = new Vector2(336f, 494f);
-            rect.localScale = Vector3.one * 3f;
+            rect.localScale = Vector3.one * 1.4f;
             rect.localEulerAngles = Vector3.zero;
             return imageObj;
         }
