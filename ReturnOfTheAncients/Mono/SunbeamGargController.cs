@@ -77,7 +77,7 @@ namespace RotA.Mono
         {
             yield return new WaitForSeconds(5.3f);
             setTimeScaleLateUpdate = true;
-            targetTimeScale = 0.05f;
+            targetTimeScale = 0.01f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
