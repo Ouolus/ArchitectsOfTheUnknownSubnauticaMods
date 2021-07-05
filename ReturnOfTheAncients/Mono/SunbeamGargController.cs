@@ -70,7 +70,7 @@ namespace RotA.Mono
             {
                 return false;
             }
-            return 0.10f < Random.value;
+            return 0.10f > Random.value;
         }
 
         private IEnumerator WellBeRightBack()
