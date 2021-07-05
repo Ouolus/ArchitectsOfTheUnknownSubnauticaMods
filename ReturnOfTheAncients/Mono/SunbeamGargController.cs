@@ -5,6 +5,7 @@ using RotA.Prefabs.Creatures;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace RotA.Mono
@@ -80,7 +81,9 @@ namespace RotA.Mono
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
+            GameObject imgObj = CreateMemeOverlay();
             yield return new WaitForSecondsRealtime(4f);
+            Destroy(imgObj);
             yield return IngameMenu.main.SaveGameAsync();
             setTimeScaleLateUpdate = false;
             Time.timeScale = 1f;
@@ -219,6 +222,23 @@ namespace RotA.Mono
             customSplash.scale = scale;
             customSplash.GetComponentInChildren<Renderer>().material = Object.Instantiate(vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material);
             newVfx.SetActive(true);
+        }
+
+        private GameObject CreateMemeOverlay()
+        {
+            Canvas canvas = uGUI.main.screenCanvas;
+            GameObject imageObj = new GameObject("WellBeRightBack");
+            imageObj.layer = 5;
+            Image img = imageObj.EnsureComponent<Image>();
+            img.sprite = Mod.gargAssetBundle.LoadAsset<Sprite>("WellBeRightBack");
+            img.raycastTarget = false;
+            var rect = imageObj.EnsureComponent<RectTransform>();
+            rect.SetParent(canvas.transform);
+            rect.anchoredPosition = new Vector2(-800f, 0f);
+            rect.localPosition = new Vector3(-800f, 0f, 0f);
+            rect.localScale = Vector3.one;
+            rect.localEulerAngles = Vector3.zero;
+            return imageObj;
         }
     }
 }
