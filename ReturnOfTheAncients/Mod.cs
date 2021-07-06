@@ -109,6 +109,7 @@
             omegaCube = new OmegaCube();
             omegaCube.Patch();
             DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
+            DisplayCaseServices.SetOffset(omegaCube.TechType, new Vector3(0f, -0.25f, 0f));
             #endregion
 
             CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
@@ -214,13 +215,13 @@
 
         static void InitSpawns()
         {
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1245, -40, -716), "GargBehindAurora", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1450, -100, 180), "GargBehindAurora2", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1386, -117, 346), "GargDunesMid", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1244, -117, 989), "GargDunesMidUpper", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1122, -117, 1420), "GargDunesUpper", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(-1370, -60, -29f), "GargDunesLower", 400f));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(gargJuvenilePrefab, new Vector3(1430, -300, 1547), "MountainsGarg", 400f));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1245, -40, -716)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1450, -100, 180)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1386, -117, 346)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1244, -117, 989)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1122, -117, 1420)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1370, -60, -29f)));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1430, -300, 1547)));
         }
 
         static void PatchInitializers()

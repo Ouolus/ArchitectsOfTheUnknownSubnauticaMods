@@ -5,17 +5,25 @@ using RotA.Prefabs.Creatures;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace RotA.Mono
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(945f, -5000, 3000);
+        private Vector3 position = new Vector3(945f, 0f, 3000);
+        private Vector3 positionInSpecialCutscene = new Vector3(420f, 0f, 3100f);
+        private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
         private float timeStart;
         private FMODAsset splashSound;
+        private bool initialized = false;
+
+        private bool setTimeScaleLateUpdate = false;
+        private float targetTimeScale;
 
         private float FarplaneDistance
         {
@@ -24,20 +32,67 @@ namespace RotA.Mono
                 return SNCameraRoot.main.mainCamera.farClipPlane;
             }
         }
-        public void Start()
+        public IEnumerator Start()
         {
+            bool doSecretCutscene = ShouldDoSecretCutscene();
+            if (doSecretCutscene)
+            {
+                yield return new WaitForSeconds(3f);
+            }
+            initialized = true;
             splashSound = ScriptableObject.CreateInstance<FMODAsset>();
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
             farplaneTarget = 20000f;
             GameObject prefab = GetSunbeamGargPrefab();
-            spawnedGarg = GameObject.Instantiate(prefab, position, Quaternion.Euler(Vector3.up * 180f));
+            Vector3 spawnPos = doSecretCutscene ? positionInSpecialCutscene : position;
+            spawnedGarg = GameObject.Instantiate(prefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
+            if (doSecretCutscene)
+            {
+                StartCoroutine(WellBeRightBack());
+            }
+        }
+
+        private bool ShouldDoSecretCutscene()
+        {
+            if (Player.main == null)
+            {
+                return false;
+            }
+            Vector3 playerPos = Player.main.transform.position;
+            if (Vector3.Distance(playerPos, secretCutsceneBounds.position) > secretCutsceneBounds.radius)
+            {
+                return false;
+            }
+            return 0.10f > Random.value;
+        }
+
+        private IEnumerator WellBeRightBack()
+        {
+            yield return new WaitForSeconds(5.45f);
+            setTimeScaleLateUpdate = true;
+            targetTimeScale = 0.01f;
+            AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.PlayOneShot(secretSound);
+            GameObject imgObj = CreateMemeOverlay();
+            yield return new WaitForSecondsRealtime(2.8f);
+            Destroy(imgObj);
+            yield return IngameMenu.main.SaveGameAsync();
+            setTimeScaleLateUpdate = false;
+            Time.timeScale = 1f;
+            CutToCredits();
+        }
+
+        private void CutToCredits()
+        {
+            SceneManager.LoadSceneAsync("EndCreditsSceneCleaner", LoadSceneMode.Single);
         }
 
         private void StartFadingOut()
@@ -59,7 +114,15 @@ namespace RotA.Mono
 
         void LateUpdate()
         {
+            if (!initialized)
+            {
+                return;
+            }
             SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
+            if (setTimeScaleLateUpdate)
+            {
+                Time.timeScale = targetTimeScale;
+            }
         }
 
         public GameObject GetSunbeamGargPrefab()
@@ -70,12 +133,15 @@ namespace RotA.Mono
             prefab.transform.localScale = Vector3.one * 5.5f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
+            Renderer insidesRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[1]);
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[2]);
             AdultGargantuan.UpdateGargSolidMaterial(renderer.materials[3]);
-            AdultGargantuan.UpdateGargSkeletonMaterial(renderer.materials[4]);
-            AdultGargantuan.UpdateGargGutsMaterial(renderer.materials[5]);
+            AdultGargantuan.UpdateGargEyeMaterial(eyeRenderer.materials[0]);
+            AdultGargantuan.UpdateGargSkeletonMaterial(insidesRenderer.materials[0]);
+            AdultGargantuan.UpdateGargGutsMaterial(insidesRenderer.materials[1]);
             BehaviourLOD lod = prefab.EnsureComponent<BehaviourLOD>();
             lod.veryCloseThreshold = 5000f;
             lod.closeThreshold = 7500f;
@@ -156,6 +222,24 @@ namespace RotA.Mono
             customSplash.scale = scale;
             customSplash.GetComponentInChildren<Renderer>().material = Object.Instantiate(vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material);
             newVfx.SetActive(true);
+        }
+
+        private GameObject CreateMemeOverlay()
+        {
+            Canvas canvas = uGUI.main.screenCanvas;
+            GameObject imageObj = new GameObject("WellBeRightBack");
+            imageObj.layer = 5;
+            Image img = imageObj.EnsureComponent<Image>();
+            img.sprite = Mod.gargAssetBundle.LoadAsset<Sprite>("WellBeRightBack");
+            img.raycastTarget = false;
+            var rect = imageObj.EnsureComponent<RectTransform>();
+            rect.SetParent(canvas.transform);
+            rect.anchoredPosition = new Vector2(-600f, 0f);
+            rect.localPosition = new Vector3(-600f, 0f, 0f);
+            rect.sizeDelta = new Vector2(336f, 494f);
+            rect.localScale = Vector3.one * 1.4f;
+            rect.localEulerAngles = Vector3.zero;
+            return imageObj;
         }
     }
 }

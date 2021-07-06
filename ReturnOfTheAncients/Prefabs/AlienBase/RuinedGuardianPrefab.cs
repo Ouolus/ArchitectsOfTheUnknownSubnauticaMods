@@ -2,6 +2,8 @@
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using System.Collections;
+using System.Collections.Generic;
+using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
 
@@ -14,11 +16,6 @@ namespace RotA.Prefabs.AlienBase
 
         public RuinedGuardianPrefab() : base("RuinedGuardian", "Mysterious wreckage", "")
         {
-            OnFinishedPatching = () =>
-            {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(TechType, new Vector3(365.86f, -330.00f, -1735.00f),
-                    "DestroyedGuardian", 200f));
-            };
         }
 
 
@@ -29,6 +26,11 @@ namespace RotA.Prefabs.AlienBase
             localScale = Vector3.one,
             slotType = EntitySlot.Type.Large,
             techType = this.TechType
+        };
+
+        public override List<SpawnLocation> CoordinatedSpawns => new()
+        {
+            new SpawnLocation(new Vector3(365.86f, -330.00f, -1735.00f))
         };
 
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
