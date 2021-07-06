@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(true, true, true, true, true, true, true, placeDefaultDistance: 2f, placeMinDistance: 2f, placeMaxDistance: 10f);
 
-        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 1.7f, 0f) * 0.7f, Quaternion.identity, new Vector3(1.15f, 1.69f, 1.15f) * 0.7f) };
+        protected override OrientedBounds[] GetBounds => new OrientedBounds[] { new OrientedBounds(new Vector3(0f, 1.7f, 0f) * 0.7f, Quaternion.identity, new Vector3(1.15f, 1.6f, 1.15f) * 0.7f) };
 
         protected override string GetOriginalClassId => "da8f10dd-e181-4f28-bf98-9b6de4a9976a";
 
