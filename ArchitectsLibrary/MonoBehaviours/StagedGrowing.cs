@@ -106,6 +106,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 gameObject.SemiInActive();
                 
                 nextStageObject.SetActive(true);
+                yield return null; // wait for a frame so the stupid Creature component run its awake method
                 nextStageObject.transform.localScale = Vector3.one * nextStageStartSize;
                 nextStageObject.EnsureComponent<StagedGrowing>();
                 Destroy(gameObject);
