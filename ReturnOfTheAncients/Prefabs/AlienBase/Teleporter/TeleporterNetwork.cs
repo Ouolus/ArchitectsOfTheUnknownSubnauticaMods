@@ -1,4 +1,5 @@
 ﻿using ECCLibrary;
+using SMLHelper.V2.Handlers;
 using UnityEngine;
 
 namespace RotA.Prefabs.AlienBase.Teleporter
@@ -26,8 +27,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         {
             primaryTeleporter.Patch();
             auxiliaryTeleporter.Patch();
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(primaryTeleporter.ClassID, masterCoords, string.Format("{0}Primary", classIdRoot), 50f, Vector3.up * masterAngle));
-            StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(auxiliaryTeleporter.ClassID, auxiliaryCoords, string.Format("{0}Auxiliary", classIdRoot), 50f, Vector3.up * auxiliaryAngle));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(primaryTeleporter.ClassID, masterCoords));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(auxiliaryTeleporter.ClassID, auxiliaryCoords));
         }
 
         Vector3 GetPlayerSpawnPosition(Vector3 coords, float angle)

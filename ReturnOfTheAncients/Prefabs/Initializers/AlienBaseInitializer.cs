@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using System.Collections.Generic;
+using ECCLibrary;
 using RotA.Mono.AlienBaseSpawners;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -10,17 +11,19 @@ namespace RotA.Prefabs.Initializers
     {
 
         private LargeWorldEntity.CellLevel cellLevel;
+        Vector3 position;
 
         public AlienBaseInitializer(string classId, Vector3 coords, float distanceToLoad = 200f, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Medium)
             : base(classId, ".", ".")
         {
             this.cellLevel = cellLevel;
-            OnFinishedPatching = () =>
-            {
-                StaticCreatureSpawns.RegisterStaticSpawn(new StaticSpawn(this.TechType, coords,
-                    classId, distanceToLoad));
-            };
+            position = coords;
         }
+
+        public override List<SpawnLocation> CoordinatedSpawns => new()
+        {
+            new SpawnLocation(position)
+        };
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
         {

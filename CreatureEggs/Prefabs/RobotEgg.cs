@@ -10,7 +10,7 @@ namespace CreatureEggs.Prefabs
         public RobotEgg()
             :base("RobotEgg", "Alien Robot Egg", "Alien Robots are deployed from these.")
         {
-            EarlyEnhancements += InitializeObject;
+            LateEnhancements += InitializeObject;
         }
         public override OverrideTechType MakeATechTypeToOverride =>
             new OverrideTechType("RobotEggUndiscovered", "Unknown Alien Artifact", "Unknown Alien technology that appears to store some kind of device.");
