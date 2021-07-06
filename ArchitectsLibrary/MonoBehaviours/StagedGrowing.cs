@@ -104,24 +104,7 @@ namespace ArchitectsLibrary.MonoBehaviours
                 GameObject nextStageObject = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation, Vector3.one * nextStageStartSize, false);
 
                 gameObject.SemiInActive();
-
-                // TODO: fix Staged Growth for the ACU creatures or get rid of it completely.
-                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
-                {
-                    gameObject.SetActive(false);
-                    WaterParkCreature parkCreature = nextStageObject.EnsureComponent<WaterParkCreature>();
-                    Pickupable pickupable = nextStageObject.EnsureComponent<Pickupable>();
-                    WaterParkCreatureParameters waterParkCreatureParameters = WaterParkCreature.GetParameters(nextStageTechType);
-                    WaterPark waterPark = waterParkCreature.currentWaterPark;
-                    parkCreature.age = 0f;
-                    parkCreature.parameters = waterParkCreatureParameters;
-                    parkCreature.pickupable = pickupable;
-                    pickupable.isPickupable = true;
-                    pickupable.timeDropped = Time.time;
-                    waterPark.RemoveItem(waterParkCreature);
-                    waterPark.AddItem(parkCreature);
-                }*/
-                //nextStageObject.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                
                 nextStageObject.SetActive(true);
                 nextStageObject.transform.localScale = Vector3.one * nextStageStartSize;
                 nextStageObject.EnsureComponent<StagedGrowing>();
@@ -129,13 +112,8 @@ namespace ArchitectsLibrary.MonoBehaviours
             }
             else
             {
-                /*if (gameObject.TryGetComponent(out WaterParkCreature waterParkCreature) && waterParkCreature.IsInsideWaterPark())
-                    gameObject.EnsureComponent<Pickupable>().isPickupable = true;*/
-
                 Destroy(this);
             }
-
-            yield break;
         }
     }
 }
