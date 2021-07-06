@@ -8,10 +8,10 @@ namespace ArchitectsLibrary.Configuration
         LoadOn = MenuAttribute.LoadEvents.MenuOpened | MenuAttribute.LoadEvents.MenuRegistered)]
     class Config : ConfigFile
     {
-        [Keybind(Tooltip = "The button to decrement the size of the Precursor decoration objects")]
+        [Keybind("Decrement Size Button", Tooltip = "The button to decrement the size of the Precursor decoration objects")]
         public KeyCode DecrementSize = KeyCode.Comma;
 
-        [Keybind(Tooltip = "The button to increment the size of the Precursor decoration objects")]
+        [Keybind("Increment Size Button", Tooltip = "The button to increment the size of the Precursor decoration objects")]
         public KeyCode IncrementSize = KeyCode.Period;
     }
 }

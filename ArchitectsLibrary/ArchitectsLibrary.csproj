@@ -129,6 +129,7 @@
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\DisplayCaseServices.cs" />
     <Compile Include="API\ReskinSpawnable.cs" />
+    <Compile Include="API\SNAudioEvents.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Patches\WaterParkPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GeneralExtensions.cs" />
+    <Compile Include="Utility\GlobalExtensions.cs" />
     <Compile Include="Utility\HashDictionary.cs" />
     <Compile Include="Utility\ItemUtils.cs" />
     <Compile Include="Utility\LanguageUtils.cs" />

@@ -17,7 +17,7 @@ namespace ArchitectsLibrary.Buildables
 
         protected override bool ExteriorOnly => false;
 
-        protected override string GetSpriteName => "Pedestal";
+        protected override string GetSpriteName => "PrecursorTable";
 
         protected override void EditPrefab(GameObject prefab)
         {

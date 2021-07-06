@@ -12,12 +12,28 @@ namespace ArchitectsLibrary.Patches
     {
         internal static void Patch(Harmony harmony)
         {
-            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.Update));
-            var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(UpdatePostfix)));
-            harmony.Patch(orig, postfix: postfix);
-        }
+            var orig = AccessTools.Method(typeof(Builder), nameof(Builder.CreateGhost));
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPostfix)));
+            var prefix = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(CreateGhostPrefix)));
+            harmony.Patch(orig, prefix, postfix);
 
-        static void UpdatePostfix()
+            var orig2 = AccessTools.Method(typeof(Builder), nameof(Builder.TryPlace));
+            var postfix2 = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(TryPlacePostfix)));
+            harmony.Patch(orig2, postfix: postfix2);
+
+            var orig3 = AccessTools.Method(typeof(Builder), nameof(Builder.End));
+            var postfix3 = new HarmonyMethod(AccessTools.Method(typeof(BuilderPatches), nameof(EndPostfix)));
+            harmony.Patch(orig3, postfix: postfix3);
+        }
+        
+        static string IncrementMessage => $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
+        static string DecrementMessage => $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
+        static string ResetMsg => $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+        static string Txt => $"{IncrementMessage}\n{DecrementMessage}\n{ResetMsg}";
+
+        static bool initialized;
+
+        static void CreateGhostPrefix()
         {
             if (Builder.prefab == null || Builder.ghostModel == null)
                 return;
@@ -25,7 +41,7 @@ namespace ArchitectsLibrary.Patches
             if (!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
 
-            ValidateHintMessage();
+            ErrorMessage.main.AddHint(Txt);
 
             if (Input.GetKeyDown(Main.Config.DecrementSize) ||
                 Input.GetKey(Main.Config.DecrementSize))
@@ -35,7 +51,7 @@ namespace ArchitectsLibrary.Patches
                 
                 Builder.prefab.transform.localScale *= 0.99f;
                 Object.DestroyImmediate(Builder.ghostModel);
-                Builder.CreateGhost();
+                initialized = true;
             }
             else if (Input.GetKeyDown(Main.Config.IncrementSize) ||
                      Input.GetKey(Main.Config.IncrementSize))
@@ -45,34 +61,27 @@ namespace ArchitectsLibrary.Patches
                 
                 Builder.prefab.transform.localScale *= 1.01f;
                 Object.DestroyImmediate(Builder.ghostModel);
-                Builder.CreateGhost();
+                initialized = true;
             }
             else if (Input.GetKeyDown(KeyCode.T))
             {
                 Builder.prefab.transform.localScale = Vector3.one;
                 Object.DestroyImmediate(Builder.ghostModel);
-                Builder.CreateGhost();
-
+                initialized = true;
             }
         }
-
-        static void ValidateHintMessage()
+        
+        static void CreateGhostPostfix(ref bool __result)
         {
-            var incrementMessage = $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
-            var decrementMessage = $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
-            var resetMsg = $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
-            var txt = $"{incrementMessage}\n{decrementMessage}\n{resetMsg}";
-
-            var msg = ErrorMessage.main.GetExistingMessage(txt);
-            if (msg != null)
-            {
-                if (msg.timeEnd < Time.time + 2)
-                    msg.timeEnd += Time.deltaTime;
-                
+            if(!Main.DecorationTechs.Contains(CraftData.GetTechType(Builder.prefab)))
                 return;
-            }
-            
-            ErrorMessage.AddMessage(txt);
+
+            if(__result && initialized)
+                __result = false;
         }
+
+        static void TryPlacePostfix() => initialized = false;
+
+        static void EndPostfix() => initialized = false;
     }
 }

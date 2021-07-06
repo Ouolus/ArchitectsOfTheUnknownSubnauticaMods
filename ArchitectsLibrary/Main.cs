@@ -85,7 +85,7 @@ namespace ArchitectsLibrary
         static BuildableTable buildableTable;
 
         internal static AchievementData achievementData;
-        internal static Config Config { get; } = new();
+        internal static Config Config { get; private set; }
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -109,6 +109,7 @@ namespace ArchitectsLibrary
             FixDisplayCaseItems();
 
             achievementData = new AchievementData();
+            Config = new Config();
         }
 
         /// <summary>
@@ -134,6 +135,7 @@ namespace ArchitectsLibrary
             PatchBuildables();
 
             achievementData.Load();
+            Config.Load();
 
             PatchAchievements();
 

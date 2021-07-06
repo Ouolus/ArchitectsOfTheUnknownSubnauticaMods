@@ -27,14 +27,7 @@ namespace ArchitectsLibrary.Patches
                 }
                 else
                 {
-                    var text = $"Cannot drop {Language.main.Get(tt)} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.";
-                    var msg = ErrorMessage.main.GetExistingMessage(text);
-                    if (msg is null)
-                        ErrorMessage.AddMessage(text);
-                    else if (msg.timeEnd < Time.time + 2)
-                        msg.timeEnd += Time.deltaTime;
-                    
-
+                    ErrorMessage.main.AddHint($"Cannot drop {Language.main.Get(tt)} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.");
                     __result = false;
                 }
 
