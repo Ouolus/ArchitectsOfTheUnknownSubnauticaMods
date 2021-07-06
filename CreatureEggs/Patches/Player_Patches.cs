@@ -9,13 +9,15 @@ namespace CreatureEggs.Patches
     {
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Player.Awake))]
-        static void Postfix()
+        static void Postfix(Player __instance)
         {
             foreach (var techType in Main.TechTypesToTweak)
-                CoroutineHost.StartCoroutine(TweakCreatures(techType));
+                __instance.StartCoroutine(TweakCreatures(techType));
         }
         static IEnumerator TweakCreatures(TechType techType)
         {
+            yield return new WaitForSeconds(2f);
+
             CoroutineTask<GameObject> task = CraftData.GetPrefabForTechTypeAsync(techType, false);
             yield return task;
 
@@ -56,8 +58,6 @@ namespace CreatureEggs.Patches
                 aquariumFish.model = obj;
                 obj.SetActive(false);
             }
-
-            yield break;
         }
     }
 }

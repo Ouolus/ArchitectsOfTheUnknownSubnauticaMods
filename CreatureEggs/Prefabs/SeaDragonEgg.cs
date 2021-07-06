@@ -10,7 +10,7 @@ namespace CreatureEggs.Prefabs
         public SeaDragonEgg()
             :base("SeaDragonEgg", "Sea Dragon Egg", "Sea Dragons hatch from these.")
         {
-            EarlyEnhancements += InitializeObject;
+            LateEnhancements += InitializeObject;
         }
 
         public override GameObject Model => LoadGameObject("SeaDragonEgg.prefab");
