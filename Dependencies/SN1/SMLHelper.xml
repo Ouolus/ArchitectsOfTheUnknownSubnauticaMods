@@ -1244,7 +1244,7 @@
         </member>
         <member name="T:SMLHelper.V2.Handlers.SpawnInfo">
             <summary>
-            a basic class that provides enough info for the <see cref="T:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler"/> System to function.
+            A basic struct that provides enough info for the <see cref="T:SMLHelper.V2.Handlers.CoordinatedSpawnsHandler"/> System to function.
             </summary>
         </member>
         <member name="M:SMLHelper.V2.Handlers.SpawnInfo.#ctor(TechType,UnityEngine.Vector3)">
@@ -1295,16 +1295,57 @@
         </member>
         <member name="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(System.Object)">
             <summary>
-            Checks if the passed object is equal to the current object
+            Indicates whether this instance and a specified object are equal.
             </summary>
-            <param name="obj">passed object</param>
-            <returns>true if equal; otherwise false.</returns>
+            <remarks>
+            It is worth noting that we use Unity's <see cref="M:UnityEngine.Vector3.op_Equality(UnityEngine.Vector3,UnityEngine.Vector3)"/> and <see cref="M:UnityEngine.Quaternion.op_Equality(UnityEngine.Quaternion,UnityEngine.Quaternion)"/>
+            operator comparisons for comparing the <see cref="P:SMLHelper.V2.Handlers.SpawnInfo.SpawnPosition"/> and <see cref="P:SMLHelper.V2.Handlers.SpawnInfo.Rotation"/> properties of each instance, 
+            to allow for an approximate comparison of these values.
+            </remarks>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><see langword="true"/> if <paramref name="obj"/> is a <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> and represents the same
+            value as this instance; otherwise, <see langword="false"/>.</returns>
+            <seealso cref="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(SMLHelper.V2.Handlers.SpawnInfo)"/>
         </member>
         <member name="M:SMLHelper.V2.Handlers.SpawnInfo.GetHashCode">
             <summary>
-            Serves as the default hash function.
+            A custom hash code algorithm that takes into account the values of each property of the <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> instance,
+            and attempts to reduce diagonal collisions.
             </summary>
-            <returns>A hash code for the current object.</returns>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Indicates whether the current <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> is equal to another.
+            </summary>
+            <remarks>
+            It is worth noting that we use Unity's <see cref="M:UnityEngine.Vector3.op_Equality(UnityEngine.Vector3,UnityEngine.Vector3)"/> and <see cref="M:UnityEngine.Quaternion.op_Equality(UnityEngine.Quaternion,UnityEngine.Quaternion)"/>
+            operator comparisons for comparing the <see cref="P:SMLHelper.V2.Handlers.SpawnInfo.SpawnPosition"/> and <see cref="P:SMLHelper.V2.Handlers.SpawnInfo.Rotation"/> properties of each instance, 
+            to allow for an approximate comparison of these values.
+            </remarks>
+            <param name="other">The other <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/>.</param>
+            <returns><see langword="true"/> if the current <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> is equal to the <paramref name="other"/> parameter;
+            otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.op_Equality(SMLHelper.V2.Handlers.SpawnInfo,SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Indicates whether two <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> instances are equal.
+            </summary>
+            <param name="a">The first instance to compare.</param>
+            <param name="b">The second instance to compare.</param>
+            <returns><see langword="true"/> if the <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> instances are equal; otherwise, <see langword="false"/>.</returns>
+            <seealso cref="M:SMLHelper.V2.Handlers.SpawnInfo.op_Inequality(SMLHelper.V2.Handlers.SpawnInfo,SMLHelper.V2.Handlers.SpawnInfo)"/>
+            <seealso cref="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(SMLHelper.V2.Handlers.SpawnInfo)"/>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.SpawnInfo.op_Inequality(SMLHelper.V2.Handlers.SpawnInfo,SMLHelper.V2.Handlers.SpawnInfo)">
+            <summary>
+            Indicates whether two <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> instances are not equal.
+            </summary>
+            <param name="a">The first instance to compare.</param>
+            <param name="b">The second instance to compare.</param>
+            <returns><see langword="true"/> if the <see cref="T:SMLHelper.V2.Handlers.SpawnInfo"/> instances are not equal; otherwise, <see langword="false"/>.</returns>
+            <seealso cref="M:SMLHelper.V2.Handlers.SpawnInfo.op_Equality(SMLHelper.V2.Handlers.SpawnInfo,SMLHelper.V2.Handlers.SpawnInfo)"/>
+            <seealso cref="M:SMLHelper.V2.Handlers.SpawnInfo.Equals(SMLHelper.V2.Handlers.SpawnInfo)"/>
         </member>
         <member name="T:SMLHelper.V2.Handlers.CustomSoundHandler">
             <summary>
