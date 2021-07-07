@@ -256,18 +256,23 @@
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(electricalDefenseMk2.TechType);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(exosuitZapModule.TechType);
 
             superDecoy = new();
             superDecoy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+            DisplayCaseServices.WhitelistTechType(superDecoy.TechType);
+            DisplayCaseServices.SetScaleInRelicTank(superDecoy.TechType, 0.7f);
 
             exosuitDashModule = new();
             exosuitDashModule.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(exosuitDashModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(exosuitDashModule.TechType);
         }
 
         static void PatchSignals()
