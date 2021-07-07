@@ -315,6 +315,11 @@ namespace ArchitectsLibrary
             DisplayCaseServices.SetOffset(TechType.StasisRifle, Vector3.up * -0.25f);
             DisplayCaseServices.SetRotationInRelicTank(TechType.StasisRifle, new Vector3(-90f, 0f, 0f));
             DisplayCaseServices.SetRotationInRelicTank(TechType.LaserCutter, new Vector3(-90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Purple, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Orange, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Blue, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_White, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Red, new Vector3(90f, 0f, 0f));
             DisplayCaseServices.SetScaleInRelicTank(TechType.WiringKit, 0.8f);
             DisplayCaseServices.SetScaleInRelicTank(TechType.AdvancedWiringKit, 0.8f);
         }
