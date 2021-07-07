@@ -312,6 +312,8 @@ namespace ArchitectsLibrary
             FixArrayOfDisplayCaseItems(resourcesToFix, new Vector3(0f, -0.25f, 0f));
             DisplayCaseServices.SetScaleInSpecimenCase(AUHandler.EmeraldTechType, 0.4f);
             DisplayCaseServices.SetScaleInSpecimenCase(TechType.Kyanite, 0.4f);
+            DisplayCaseServices.SetOffset(TechType.StasisRifle, Vector3.up * -0.25f);
+            DisplayCaseServices.SetRotationInRelicTank(TechType.StasisRifle, new Vector3(-90f, 0f, 0f));
         }
 
         static void FixArrayOfDisplayCaseItems(TechType[] techTypes, Vector3 newOffset)

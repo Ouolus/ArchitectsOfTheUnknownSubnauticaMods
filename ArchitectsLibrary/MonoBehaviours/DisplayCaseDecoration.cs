@@ -186,7 +186,7 @@ namespace ArchitectsLibrary.MonoBehaviours
             TechType techType = obj.GetComponent<Pickupable>().GetTechType();
             spawnedObj.transform.localScale = Vector3.one * DisplayCaseServices.GetScaleForItem(techType, displayCaseType);
             if (displayCaseType != DisplayCaseType.Pedestal) spawnedObj.transform.localPosition = DisplayCaseServices.GetOffsetForItem(techType);
-            spawnedObj.transform.localEulerAngles = Vector3.zero;
+            spawnedObj.transform.localEulerAngles = DisplayCaseServices.GetRotationForItem(techType, displayCaseType);
             spawnedObj.SetActive(true);
         }
 
