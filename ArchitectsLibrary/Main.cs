@@ -109,7 +109,7 @@ namespace ArchitectsLibrary
             FixDisplayCaseItems();
 
             achievementData = new AchievementData();
-            Config = new Config();
+            Config = OptionsPanelHandler.RegisterModOptions<Config>();
         }
 
         /// <summary>
@@ -135,7 +135,6 @@ namespace ArchitectsLibrary
             PatchBuildables();
 
             achievementData.Load();
-            Config.Load();
 
             PatchAchievements();
 
