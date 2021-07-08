@@ -14,18 +14,19 @@ namespace RotA.Mono
         private const float spawnOutDistance = 100f;
         private const float spawnYLevel = -400;
         private const float leashYOffset = 300f;
+        private Player player;
 
         bool coroutinePlaying = false;
 
         private void Start()
         {
+            player = Player.main;
             InvokeRepeating("UpdateSpawn", 1f, 4f);
             adultPrefab = Mod.gargVoidPrefab.TechType;
         }
 
         private void UpdateSpawn()
         {
-            Player player = Player.main;
             if (player)
             {
                 bool playerInVoidNow = IsVoidBiome(player.GetBiomeString());
@@ -42,7 +43,7 @@ namespace RotA.Mono
 
         private void Update()
         {
-            if (playerWasInVoid && Time.time > timeToSpawnGarg)
+            if (Time.time > timeToSpawnGarg && playerWasInVoid && IsVoidBiome(player.GetBiomeString()))
             {
                 if (!VoidGargSingleton.AdultGargExists && !coroutinePlaying)
                 {
