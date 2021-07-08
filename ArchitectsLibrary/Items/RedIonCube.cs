@@ -46,8 +46,7 @@
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 0f);
             Main.IonCubeCraftModelFix(prefab);
             
-            var battery = prefab.EnsureComponent<Battery>();
-            battery._capacity = 3000000;
+            prefab.EnsureComponent<Battery>()._capacity = 3000000;
         }
 
         protected override Atlas.Sprite GetItemSprite()

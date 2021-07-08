@@ -188,8 +188,7 @@ namespace ArchitectsLibrary
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
-            var battery = prefab.EnsureComponent<Battery>();
-            battery._capacity = 1000000;
+            prefab.EnsureComponent<Battery>()._capacity = 1000000;
             IonCubeCraftModelFix(prefab);
         }
 
