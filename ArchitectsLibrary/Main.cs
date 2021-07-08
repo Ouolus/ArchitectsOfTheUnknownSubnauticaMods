@@ -128,8 +128,6 @@ namespace ArchitectsLibrary
             background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
-            UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
-
             PatchItems();
             
             PatchBuildables();
@@ -147,6 +145,7 @@ namespace ArchitectsLibrary
             CraftingMenuPatches.Patch(harmony);
             WaterParkPatches.Patch(harmony);
             BuilderPatches.Patch(harmony);
+            PlayerPatches.Patch(harmony);
 
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
@@ -181,15 +180,6 @@ namespace ArchitectsLibrary
 
             KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType, redIonCube.TechType });
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
-        }
-        
-        static IEnumerator FixIonCubeCraftingCoroutine()
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
-            var prefab = task.GetResult();
-            prefab.EnsureComponent<Battery>()._capacity = 1000000;
-            IonCubeCraftModelFix(prefab);
         }
 
         internal static void IonCubeCraftModelFix(GameObject prefab)
