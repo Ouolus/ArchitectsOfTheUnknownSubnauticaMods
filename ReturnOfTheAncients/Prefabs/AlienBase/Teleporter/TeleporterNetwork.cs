@@ -27,8 +27,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         {
             primaryTeleporter.Patch();
             auxiliaryTeleporter.Patch();
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(primaryTeleporter.ClassID, masterCoords));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(auxiliaryTeleporter.ClassID, auxiliaryCoords));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(primaryTeleporter.ClassID, masterCoords, Quaternion.Euler(new Vector3(0f, masterAngle))));
+            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new(auxiliaryTeleporter.ClassID, auxiliaryCoords, Quaternion.Euler(new Vector3(0f, auxiliaryAngle))));
         }
 
         Vector3 GetPlayerSpawnPosition(Vector3 coords, float angle)
