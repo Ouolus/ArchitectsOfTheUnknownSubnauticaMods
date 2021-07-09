@@ -17,7 +17,7 @@ namespace RotA
         public static PrecursorDoorPrefab whiteTabletDoor;
         
         public static GenericWorldPrefab secondaryBaseModel;
-        public static GenericWorldPrefab voidBaseModel;
+        public static VoidBaseModel voidBaseModel;
         public static GenericWorldPrefab guardianTailfinModel;
         public static AquariumSkeleton aquariumSkeleton;
         public static BlackHolePrefab blackHole;
