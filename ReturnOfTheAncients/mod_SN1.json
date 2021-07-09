@@ -9,7 +9,7 @@
     "ECCLibrary"
   ],
   "VersionDependencies": {
-    "SMLHelper": "2.9",
+    "SMLHelper": "2.10.0",
     "ECCLibrary": "1.1.1"
   },
   "LoadAfter": [
