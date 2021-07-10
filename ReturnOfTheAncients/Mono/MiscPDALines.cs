@@ -27,7 +27,7 @@ namespace RotA.Mono
                     OnIonCubePickedUp();
                     return;
                 case "Pickup_GargantuanEggUndiscovered":
-                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("GargEggPickup"), "GargantuanEggPickupVoiceline", "This egg is unusually large, and likely contains a leviathan class lifeform within. Take caution in handling it.");
+                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("GargEggPickup"), "GargantuanEggPickupVoiceline", "This egg is unusually large, and likely hosts the embryo of a leviathan class lifeform within.");
                     return;
 
             }
