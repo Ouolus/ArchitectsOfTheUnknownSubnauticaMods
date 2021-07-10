@@ -40,7 +40,13 @@ namespace RotA
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
         public static DataTerminalPrefab devSecretTerminal;
+        public static DataTerminalPrefab devTerminalAlan;
+        public static DataTerminalPrefab devTerminalHipnox;
+        public static DataTerminalPrefab devTerminalLee23;
         public static DataTerminalPrefab devTerminalMetious;
+        public static DataTerminalPrefab devTerminalN8crafter;
+        public static DataTerminalPrefab devTerminalSlendyPlayz;
+        public static DataTerminalPrefab devTerminalTori;
 
         public static VoidInteriorForcefield voidInteriorForcefield;
         public static PrecursorDoorPrefab voidDoor_red;
@@ -257,12 +263,34 @@ namespace RotA
             redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
             redTabletHolder.Patch();
 
-            Color devSecretTerminalColor = new Color(1f, 0f, 0.75f);
-            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: devSecretTerminalColor, achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
+            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
             devSecretTerminal.Patch();
 
-            devTerminalMetious = new DataTerminalPrefab("DevSecretMetious", null, terminalClassId: DataTerminalPrefab.greenTerminalCID, overrideColor: true, fxColor: devSecretTerminalColor, audioClipPrefix: "PDAMetious", subtitles: "Metious");
+            devTerminalAlan = GetDevNameTerminal("DevSecretAlan", "PDAAlan", "Al-An");
+            devTerminalAlan.Patch();
+
+            devTerminalHipnox = GetDevNameTerminal("DevSecretHipnox", "PDAHipnox", "Hipnox");
+            devTerminalHipnox.Patch();
+
+            devTerminalLee23 = GetDevNameTerminal("DevSecretLee23", "PDALee23", "Lee23");
+            devTerminalLee23.Patch();
+
+            devTerminalMetious = GetDevNameTerminal("DevSecretMetious", "PDAMetious", "Metious");
             devTerminalMetious.Patch();
+
+            devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter", "N8Crafter");
+            devTerminalN8crafter.Patch();
+
+            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "Slendy Playz");
+            devTerminalSlendyPlayz.Patch();
+
+            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi");
+            devTerminalTori.Patch();
+        }
+
+        static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, string name)
+        {
+            return new DataTerminalPrefab(classId, null, terminalClassId: DataTerminalPrefab.greenTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), audioClipPrefix: audioFile, subtitles: name);
         }
 
         #endregion
