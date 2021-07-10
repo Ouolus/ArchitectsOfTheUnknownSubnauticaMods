@@ -203,6 +203,9 @@ namespace RotA
 
             var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
+
+            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), 350f, LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
+            secretBase.Patch();
         }
 
         #endregion

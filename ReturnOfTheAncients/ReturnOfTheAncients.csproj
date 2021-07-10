@@ -140,6 +140,7 @@
     <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecretBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryContainmentFacility.cs" />
     <Compile Include="Mono\AlienBaseSpawners\KooshBaseSpawner.cs" />
