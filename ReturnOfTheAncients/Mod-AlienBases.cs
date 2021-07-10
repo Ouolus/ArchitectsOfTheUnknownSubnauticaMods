@@ -17,6 +17,7 @@ namespace RotA
         public static PrecursorDoorPrefab whiteTabletDoor;
         
         public static GenericWorldPrefab secondaryBaseModel;
+        public static GenericWorldPrefab secretBaseModel;
         public static VoidBaseModel voidBaseModel;
         public static GenericWorldPrefab guardianTailfinModel;
         public static AquariumSkeleton aquariumSkeleton;
@@ -126,6 +127,9 @@ namespace RotA
             secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
+
+            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", "Alien Structure", "A large alien structure. (Lee23 7/9/2021 6:59 PM EST)", assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
+            secretBaseModel.Patch();
 
             voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
