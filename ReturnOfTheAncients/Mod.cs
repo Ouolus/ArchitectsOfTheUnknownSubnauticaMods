@@ -283,7 +283,7 @@
             signal_sparseReefBase = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Discover koosh zone base text.", Mod.assetBundle.LoadAsset<AudioClip>("GuardianEncounter"), 2f)); //purple tablet icon
+            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Biological signal interference detected. True signal source is likely to be somewhere in the area.", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
             signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
