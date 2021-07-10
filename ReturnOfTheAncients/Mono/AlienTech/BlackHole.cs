@@ -37,8 +37,10 @@ namespace RotA.Mono.AlienTech
 
         IEnumerator Crash()
         {
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole5"), "BlackHoleInteract5", "Error.... error... error");
             IngameMenu.main.mainPanel.SetActive(false);
             AchievementServices.CompleteAchievement("TouchBlackHole");
+            yield return new WaitForSeconds(0.5f);
             yield return IngameMenu.main.SaveGameAsync();
             ErrorMessage.AddMessage("Save file corrupted.");
             GameObject whiteout = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect"));
