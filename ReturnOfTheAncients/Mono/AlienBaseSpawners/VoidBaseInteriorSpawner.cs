@@ -138,13 +138,15 @@ namespace RotA.Mono.AlienBaseSpawners
 
             yield return StartCoroutine(GenerateCable(new Vector3(345f, -382f, -1875f - 20f), Vector3.up, new Vector3(345f, -382f + 15f, -1875f - 20f), Vector3.up, Vector3.zero, 0f));
 
-            //Left lower room
+            //Left lower room (with relics)
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(18, 0f, 24), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(26, 0f, 32), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(40, 0f, 27), new Vector3(0f, -135f, 0f)));
-            yield return SpawnRelicInCase(new Vector3(33.78f, 0f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
-            yield return SpawnRelicInCase(new Vector3(26.22f, 0f, 18.9f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, new Vector3(33.78f, -0.5f, 11.34f), new Vector3(0f, 45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, new Vector3(26.22f, -0.5f, 18.9f), new Vector3(0f, 45f, 0f)));
+            yield return SpawnRelicInCase(new Vector3(33.78f, 0.5f, 11.34f), Mod.builderRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
+            yield return SpawnRelicInCase(new Vector3(26.22f, 0.5f, 18.9f), Mod.bladeRelic.ClassID, new Vector3(0f, 1.35f, 0f), new Vector3(0f, -135f, 0f));
 
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
