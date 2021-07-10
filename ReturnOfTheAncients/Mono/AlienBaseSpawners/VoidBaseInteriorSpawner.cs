@@ -40,7 +40,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_doorwaySmall, new Vector3(-25.62f, firstFloorY, 2.72f), new Vector3(0f, 135f, 0f), Vector3.one * 1.2f)); //Right doorway on bottom floor
             yield return StartCoroutine(SpawnPrefab(Mod.voidBaseTerminal.ClassID, new Vector3(0f, 0f, -8), new Vector3(0f, -180, 0f)));
             yield return StartCoroutine(SpawnPrefab(Mod.warpCannonTerminal.ClassID, new Vector3(0f, 0f, -36), new Vector3(0f, 0, 0f)));
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystalPyramid, new Vector3(0f, 0f, 0.4f), new Vector3(0f, 45f, 0f))); //Ion cube in front of aquarium
 
             yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(21f, 4.2f, -44.7f), new Vector3(0f, -45f, 19f)));
             yield return StartCoroutine(SpawnPrefab(light_strip_animated_long, new Vector3(-21f, 4.2f, -44.7f), new Vector3(0f, -135f, 19f)));
