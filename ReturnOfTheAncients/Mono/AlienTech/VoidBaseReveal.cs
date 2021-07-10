@@ -183,8 +183,8 @@ namespace RotA.Mono.AlienTech
         private void SetGlowActive(GameObject glowObj, bool active, Color color = default)
         {
             var renderer = glowObj.GetComponentInChildren<Renderer>();
-            renderer.material.SetFloat("_GlowStrength", 2f);
-            renderer.material.SetFloat("_GlowStrengthNight", 2f);
+            renderer.material.SetFloat("_GlowStrength", 4f);
+            renderer.material.SetFloat("_GlowStrengthNight", 4f);
             if (active)
             {
                 renderer.material.SetColor("_GlowColor", color);
