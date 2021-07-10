@@ -40,6 +40,7 @@ namespace RotA
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
         public static DataTerminalPrefab devSecretTerminal;
+        public static DataTerminalPrefab devTerminalMetious;
 
         public static VoidInteriorForcefield voidInteriorForcefield;
         public static PrecursorDoorPrefab voidDoor_red;
@@ -256,8 +257,12 @@ namespace RotA
             redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
             redTabletHolder.Patch();
 
-            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(1f, 0f, 0.75f), achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
+            Color devSecretTerminalColor = new Color(1f, 0f, 0.75f);
+            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: devSecretTerminalColor, achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
             devSecretTerminal.Patch();
+
+            devTerminalMetious = new DataTerminalPrefab("DevSecretMetious", null, terminalClassId: DataTerminalPrefab.greenTerminalCID, overrideColor: true, fxColor: devSecretTerminalColor, audioClipPrefix: "PDAMetious", subtitles: "Metious");
+            devTerminalMetious.Patch();
         }
 
         #endregion
