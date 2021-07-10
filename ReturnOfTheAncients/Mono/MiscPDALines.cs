@@ -37,7 +37,7 @@ namespace RotA.Mono
         {
             if (StoryGoalManager.main.OnGoalComplete(colorfulIonCubeStoryGoal.key))
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("IonCubePickup"), "ColorIonCubePickupVoiceline", "The various types of energy cubes are essential in most alien technology, but require large quantities of power to create. Despite their colorful appearance, please understand they are not edible.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("IonCubePickup"), "ColorIonCubePickupVoiceline", "The various Ion Cubes are essential in the fabrication of alien technology, but require rare resources and large quantities of energy to fabricate. Despite their colorful appearance and vague resemblance to candy, eating them is ill-advised.");
             }
         }
 
