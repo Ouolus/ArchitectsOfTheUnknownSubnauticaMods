@@ -22,12 +22,16 @@
                         var materials = __instance.GetComponentInChildren<Renderer>().materials;
                         for (int i = 0; i < materials.Length; i++)
                         {
-                            var name = $"Leviathan_01_0{i}";
-                            materials[i].SetTexture("_EmissionMap", LoadTexture2D($"{name}_illum"));
-                            materials[i].EnableKeyword($"_EMISSION");
+                            materials[i].EnableKeyword("_EMISSION");
                         }
                         
                         MaterialUtils.ApplySNShaders(__instance.gameObject);
+
+                        for (int i = 0; i < materials.Length; i++)
+                        {
+                            var name = $"Leviathan_01_0{i + 1}";
+                            materials[i].SetTexture(ShaderPropertyID._Illum, LoadTexture2D($"{name}_illum"));
+                        }
                         
                         SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
                         if (seb != null)
