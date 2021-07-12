@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using ArchitectsLibrary.Utility;
+using HarmonyLib;
 using UnityEngine;
 using CreatureEggs.MonoBehaviours;
 namespace CreatureEggs.Patches
@@ -17,6 +18,8 @@ namespace CreatureEggs.Patches
             {
                 case TechType.SeaEmperorBaby:
                     {
+                        MaterialUtils.ApplySNShaders(__instance.gameObject);
+                        
                         SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
                         if (seb != null)
                         {
@@ -79,7 +82,6 @@ namespace CreatureEggs.Patches
                 skyApplier.emissiveFromPower = false;
                 skyApplier.hideFlags = HideFlags.None;
                 skyApplier.enabled = true;
-                skyApplier.RefreshDirtySky();
             }
         }
     }

@@ -169,7 +169,6 @@ namespace CreatureEggs.Patches
                 skyApplier.emissiveFromPower = false;
                 skyApplier.hideFlags = HideFlags.None;
                 skyApplier.enabled = true;
-                skyApplier.RefreshDirtySky();
             }
 
             if (Main.TechTypesToMakePickupable.Contains(techType))
