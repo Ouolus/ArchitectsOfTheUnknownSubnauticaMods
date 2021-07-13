@@ -15,8 +15,8 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(363, -318, -1723)));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(357, -312, -1715)));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(356, -322, -1729)));
-            yield return StartCoroutine(SpawnPrefabGlobally(hugeExteriorCube, new Vector3(403, -316, -1722), Vector3.zero, Vector3.one * 274));
-            yield return StartCoroutine(SpawnPrefabGlobally(hugeExteriorCube, new Vector3(329, -336, -1721), Vector3.zero, new Vector3(21.34f, 19.66f, 85.20f)));
+            yield return StartCoroutine(SpawnPrefabGlobally(hugeExteriorCube, new Vector3(403, -316, -1722), Vector3.one, Vector3.one * 274));
+            yield return StartCoroutine(SpawnPrefabGlobally(hugeExteriorCube, new Vector3(329, -336, -1721), Vector3.one, new Vector3(21.34f, 19.66f, 85.20f)));
         }
     }
 }
