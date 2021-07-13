@@ -34,7 +34,7 @@
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
-            foreach(var renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach(var renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 renderer.material.SetColor("_Color", new Color(0.5f, 0f, 1f) * 0.7f);
                 renderer.material.SetColor("_SpecColor", new Color(0f, 0f, 0.9f));
