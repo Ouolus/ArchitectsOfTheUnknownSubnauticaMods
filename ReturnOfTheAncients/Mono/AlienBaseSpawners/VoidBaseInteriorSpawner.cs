@@ -164,9 +164,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_purpleTablet, new Vector3(-44.97f, 0.1f, 0.22f), Vector3.up * -68f)); //Purple tablet sitting on ground
 
             yield return StartCoroutine(SpawnPrefab(Mod.omegaCubeFabricator.ClassID, new Vector3(-36, 0, 14)));
-
-            //Top
-            yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(0f, 35f, 0f), Vector3.zero));
         }
     }
 }
