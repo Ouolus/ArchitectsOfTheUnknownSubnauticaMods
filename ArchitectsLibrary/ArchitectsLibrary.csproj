@@ -198,6 +198,7 @@
     <Compile Include="Items\Electricube.cs" />
     <Compile Include="Items\Morganite.cs" />
     <Compile Include="Items\OmegaCube.cs" />
+    <Compile Include="Items\PrecursorIonCube.cs" />
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
     <Compile Include="MonoBehaviours\DisplayCaseDecoration.cs" />
+    <Compile Include="MonoBehaviours\PrecursorIonStorage.cs" />
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
     <Compile Include="MonoBehaviours\SpinInRelicCase.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
