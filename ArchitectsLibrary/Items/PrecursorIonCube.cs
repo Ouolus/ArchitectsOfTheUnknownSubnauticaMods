@@ -22,6 +22,8 @@ namespace ArchitectsLibrary.Items
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
             prefab.EnsureComponent<PrecursorIonStorage>()._capacity = Capacity;
+            Main.IonCubeCraftModelFix(prefab);
+            prefab.GetComponent<InspectOnFirstPickup>().animParam = "holding_precursorioncrystal";
         }
     }
 }

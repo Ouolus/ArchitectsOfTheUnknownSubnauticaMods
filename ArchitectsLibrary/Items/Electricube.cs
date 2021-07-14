@@ -38,8 +38,6 @@
                 renderer.material.SetFloat("_SquaresSpeed", 5f);
             }
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 1f);
-            Main.IonCubeCraftModelFix(prefab);
-            prefab.GetComponent<InspectOnFirstPickup>().animParam = "holding_precursorioncrystal";
             
             base.ApplyChangesToPrefab(prefab);
         }
