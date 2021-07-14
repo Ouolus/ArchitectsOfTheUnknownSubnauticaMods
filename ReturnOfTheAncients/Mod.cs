@@ -1,5 +1,6 @@
 ﻿namespace RotA
 {
+    using ArchitectsLibrary.Handlers;
     using ArchitectsLibrary.API;
     using ECCLibrary;
     using HarmonyLib;
@@ -51,8 +52,6 @@
         static GenericSignalPrefab signal_cache_dunes;
         static GenericSignalPrefab signal_cache_lostRiver;
         
-        public static OmegaCube omegaCube;
-
         public static AtmosphereVolumePrefab precursorAtmosphereVolume;
 
         public static AlienRelicPrefab ingotRelic;
@@ -105,14 +104,7 @@
             gargAssetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), gargAssetBundleName);
             ECCAudio.RegisterClips(gargAssetBundle);
 
-            #region Resources
-            omegaCube = new OmegaCube();
-            omegaCube.Patch();
-            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
-            DisplayCaseServices.SetOffset(omegaCube.TechType, new Vector3(0f, -0.25f, 0f));
-            #endregion
-
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(AUHandler.OmegaCubeTechType, 1) } });
 
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
@@ -156,7 +148,7 @@
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(AUHandler.OmegaCubeTechType, 1) } });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, "Personal", "Equipment");
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, "Personal", "Equipment");
 
