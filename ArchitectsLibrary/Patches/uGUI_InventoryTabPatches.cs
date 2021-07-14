@@ -19,7 +19,6 @@ namespace ArchitectsLibrary.Patches
             {
                 var sb = new StringBuilder();
                 sb.AppendLine(TooltipFactory.InventoryItem(item));
-                sb.AppendLine();
                 TooltipFactory.WriteDescription(sb, Language.main.Get(TooltipFactory.techTypeTooltipStrings.Get(item.item.GetTechType())));
                 __result = sb.ToString();
                 return false;
