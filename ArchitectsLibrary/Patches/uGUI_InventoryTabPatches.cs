@@ -15,13 +15,12 @@ namespace ArchitectsLibrary.Patches
 
         static bool GetToolTipPrefix(InventoryItem item, ref string __result)
         {
-            if (item.item.gameObject.TryGetComponent(out PrecursorIonStorage ionStorage))
+            if (item.item.gameObject.TryGetComponent(out PrecursorIonStorage _))
             {
-                TooltipFactory.Initialize();
                 var sb = new StringBuilder();
-                TooltipFactory.WriteDescription(sb, Language.main.Get(TooltipFactory.techTypeTooltipStrings.Get(item.item.GetTechType())));
-                sb.AppendLine();
                 sb.AppendLine(TooltipFactory.InventoryItem(item));
+                sb.AppendLine();
+                TooltipFactory.WriteDescription(sb, Language.main.Get(TooltipFactory.techTypeTooltipStrings.Get(item.item.GetTechType())));
                 __result = sb.ToString();
                 return false;
             }
