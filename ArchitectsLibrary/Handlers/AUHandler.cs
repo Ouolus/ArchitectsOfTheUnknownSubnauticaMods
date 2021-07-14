@@ -67,6 +67,11 @@ namespace ArchitectsLibrary.Handlers
         /// Gets the <see cref="DrillableMorganite"/>'s TechType so you can spawn it up in your Mod.
         /// </summary>
         public static TechType DrillableMorganiteTechType { get; internal set; }
+        
+        /// <summary>
+        /// Gets the <see cref="OmegaCube"/>'s TechType so you can spawn it up in your Mod.
+        /// </summary>
+        public static TechType OmegaCubeTechType { get; internal set; }
 
         /// <summary>
         /// Gets the <see cref="Electricube"/>'s TechType so you can spawn it up in your Mod.

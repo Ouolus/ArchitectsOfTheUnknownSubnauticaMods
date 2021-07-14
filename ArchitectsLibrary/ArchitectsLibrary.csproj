@@ -197,6 +197,7 @@
     <Compile Include="Items\DrillableEmerald.cs" />
     <Compile Include="Items\Electricube.cs" />
     <Compile Include="Items\Morganite.cs" />
+    <Compile Include="Items\OmegaCube.cs" />
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />

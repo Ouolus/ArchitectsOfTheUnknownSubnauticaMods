@@ -55,6 +55,7 @@ namespace ArchitectsLibrary
         static AotuPoster aotuPoster;
         static Morganite morganite;
         static DrillableMorganite drillableMorganite;
+        static OmegaCube omegaCube;
         static Electricube electricube;
         static RedIonCube redIonCube;
         static Cobalt cobalt;
@@ -264,6 +265,12 @@ namespace ArchitectsLibrary
             CraftData.pickupSoundList.Add(electricube.TechType, ionCubePickupSound);
             PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
 
+            omegaCube = new OmegaCube();
+            omegaCube.Patch();
+            AUHandler.OmegaCubeTechType = omegaCube.TechType;
+            CraftData.pickupSoundList.Add(omegaCube.TechType, ionCubePickupSound);
+            PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials); 
+            
             redIonCube = new RedIonCube();
             redIonCube.Patch();
             AUHandler.RedIonCubeTechType = redIonCube.TechType;
