@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Items
     using API;
     using UnityEngine;
     
-    class OmegaCube : ReskinSpawnable
+    class OmegaCube : PrecursorIonCube
     {
         public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
@@ -16,9 +16,7 @@ namespace ArchitectsLibrary.Items
             };
         }
 
-        public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+        protected override int Capacity => 4000000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
@@ -30,9 +28,9 @@ namespace ArchitectsLibrary.Items
                 renderer.material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
             }
             prefab.GetComponentInChildren<Light>().color = new Color(0.8f, 1f, 1f);
+            
+            base.ApplyChangesToPrefab(prefab);
         }
-
-        public override float CraftingTime => 30f;
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -50,7 +48,5 @@ namespace ArchitectsLibrary.Items
         {
             return new(Main.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
         }
-
-        protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
     }
 }
