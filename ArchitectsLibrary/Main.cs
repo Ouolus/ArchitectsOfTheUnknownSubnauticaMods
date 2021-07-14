@@ -147,6 +147,7 @@ namespace ArchitectsLibrary
             WaterParkPatches.Patch(harmony);
             BuilderPatches.Patch(harmony);
             PlayerPatches.Patch(harmony);
+            uGUI_InventoryTabPatches.Patch(harmony);
 
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
