@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Items
     using API;
     using UnityEngine;
     
-    public class OmegaCube : ReskinSpawnable
+    class OmegaCube : ReskinSpawnable
     {
         public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
