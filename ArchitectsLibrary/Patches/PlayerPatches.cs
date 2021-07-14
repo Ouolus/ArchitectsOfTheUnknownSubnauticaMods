@@ -1,4 +1,5 @@
 using System.Collections;
+using ArchitectsLibrary.MonoBehaviours;
 using HarmonyLib;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace ArchitectsLibrary.Patches
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
-            prefab.EnsureComponent<Battery>()._capacity = 1000000;
+            prefab.EnsureComponent<PrecursorIonStorage>()._capacity = 1000000;
             Main.IonCubeCraftModelFix(prefab);
         }
     }
