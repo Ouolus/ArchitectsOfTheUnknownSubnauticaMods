@@ -6,17 +6,11 @@
     using API;
     using Handlers;
     
-    class Electricube : ReskinSpawnable
+    class Electricube : PrecursorIonCube
     {
         public Electricube() : base("Electricube", "Electricube", "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.")
         {
         }
-
-        protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
-
-        public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -30,7 +24,7 @@
             };
         }
 
-        public override float CraftingTime => 30f;
+        protected override int Capacity => 2000000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
@@ -46,8 +40,8 @@
             prefab.GetComponentInChildren<Light>().color = new Color(1f, 0f, 1f);
             Main.IonCubeCraftModelFix(prefab);
             prefab.GetComponent<InspectOnFirstPickup>().animParam = "holding_precursorioncrystal";
-
-            prefab.EnsureComponent<Battery>()._capacity = 2000000;
+            
+            base.ApplyChangesToPrefab(prefab);
         }
 
         protected override Atlas.Sprite GetItemSprite()
