@@ -111,8 +111,9 @@
       <HintPath>$(DepDir)\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\Dependencies\SN1\UnityEngine.TextRenderingModule.dll</HintPath>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(DepDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+	  <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
