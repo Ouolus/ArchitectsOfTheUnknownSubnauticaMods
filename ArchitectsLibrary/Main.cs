@@ -16,6 +16,7 @@ using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
 using ArchitectsLibrary.Configuration;
+using SMLHelper.V2.Utility;
 
 namespace ArchitectsLibrary
 {
@@ -87,6 +88,9 @@ namespace ArchitectsLibrary
 
         internal static AchievementData achievementData;
         internal static Config Config { get; private set; }
+        
+        internal static TechGroup DecorationGroup { get; private set; }
+        internal static TechCategory DecorationCategory { get; private set; }
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -121,7 +125,14 @@ namespace ArchitectsLibrary
         public static void Load()
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
+
+            DecorationGroup = TechGroupHandler.Main.AddTechGroup("AlienDecoration", "Alien Decorations");
+            DecorationCategory = TechCategoryHandler.Main.AddTechCategory("AlienDecoration", "Alien Decorations");
+
+            TechCategoryHandler.Main.TryRegisterTechCategoryToTechGroup(DecorationGroup, DecorationCategory);
             
+            SpriteHandler.RegisterSprite(SpriteManager.Group.Tab, "groupAlienDecoration", assetBundle.LoadAsset<Sprite>("AotU"));
+
             DictionaryInit.PatchAllDictionaries();
 
             MaterialUtils.LoadMaterials();
@@ -132,6 +143,8 @@ namespace ArchitectsLibrary
             PatchItems();
             
             PatchBuildables();
+
+            DecorationTechs.ForEach(x => CraftDataHandler.AddToGroup(DecorationGroup, DecorationCategory, x));
 
             achievementData.Load();
 
