@@ -148,7 +148,7 @@ namespace ArchitectsLibrary
             BuilderPatches.Patch(harmony);
             PlayerPatches.Patch(harmony);
             uGUI_InventoryTabPatches.Patch(harmony);
-
+            uGUI_BuilderMenuPatches.Patch(harmony);
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
@@ -294,6 +294,8 @@ namespace ArchitectsLibrary
         {
             aotuPoster = new AotuPoster();
             aotuPoster.Patch();
+            
+            new CustomBuilder().Patch();
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
