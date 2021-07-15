@@ -91,6 +91,7 @@ namespace ArchitectsLibrary
         
         internal static TechGroup DecorationGroup { get; private set; }
         internal static TechCategory DecorationCategory { get; private set; }
+        internal static CraftData.BackgroundType AlienBackground { get; private set; }
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -140,11 +141,17 @@ namespace ArchitectsLibrary
             background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
+            AlienBackground = BackgroundTypeHandler.AddBackgroundType("AlienBackground", background);
+
             PatchItems();
             
             PatchBuildables();
 
-            DecorationTechs.ForEach(x => CraftDataHandler.AddToGroup(DecorationGroup, DecorationCategory, x));
+            DecorationTechs.ForEach(x =>
+            {
+                CraftDataHandler.AddToGroup(DecorationGroup, DecorationCategory, x);
+                CraftDataHandler.SetBackgroundType(x, AlienBackground);
+            });
 
             achievementData.Load();
 
