@@ -1,3 +1,6 @@
+using System.IO;
+using SMLHelper.V2.Utility;
+
 namespace ArchitectsLibrary.MonoBehaviours
 {
     using System.Collections.Generic;
@@ -9,8 +12,8 @@ namespace ArchitectsLibrary.MonoBehaviours
     {
         public override string animToolName => TechType.Builder.AsString(true);
 
-        List<TechGroup> IBuilderGroups.AllowedTechGroups => new() {TechGroup.Miscellaneous, TechGroup.InteriorModules};
+        List<TechGroup> IBuilderGroups.AllowedTechGroups => new() {Main.DecorationGroup};
 
-        Sprite IBuilderGroups.BackgroundImage => null;
+        Sprite IBuilderGroups.BackgroundImage => Main.assetBundle.LoadAsset<Sprite>("BuilderMenuBackground");
     }
 }
