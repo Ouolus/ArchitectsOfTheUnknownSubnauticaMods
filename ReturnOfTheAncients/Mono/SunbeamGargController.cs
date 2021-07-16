@@ -13,7 +13,8 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(420f, 0f, 3100f);
+        public Vector3 positionInSpecialCutscene = new Vector3(420f, 0f, 3100f);
+        public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
@@ -49,6 +50,7 @@ namespace RotA.Mono
             spawnedGarg = GameObject.Instantiate(prefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
+            spawnedGarg.GetComponentInChildren<Animator>().SetBool("mouth_open", true);
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
             Invoke(nameof(Splash), 10f);
@@ -61,6 +63,10 @@ namespace RotA.Mono
 
         private bool ShouldDoSecretCutscene()
         {
+            if (forceSpecialCutscene)
+            {
+                return true;
+            }
             if (Player.main == null)
             {
                 return false;
