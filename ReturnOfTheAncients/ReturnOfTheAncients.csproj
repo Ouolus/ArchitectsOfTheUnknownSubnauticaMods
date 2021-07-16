@@ -182,6 +182,7 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargEyeFixer.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanConditions.cs" />
