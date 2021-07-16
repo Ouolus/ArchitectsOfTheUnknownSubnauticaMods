@@ -81,7 +81,7 @@ namespace RotA.Mono
 
         private IEnumerator WellBeRightBack()
         {
-            yield return new WaitForSeconds(5.45f);
+            yield return new WaitForSeconds(5.49f);
             setTimeScaleLateUpdate = true;
             targetTimeScale = 0.001f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
