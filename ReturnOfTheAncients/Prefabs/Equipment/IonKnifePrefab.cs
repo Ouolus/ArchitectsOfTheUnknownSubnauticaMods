@@ -40,7 +40,7 @@ namespace RotA.Prefabs.Equipment
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Icon"));
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("IonKnife_Icon"));
         }
 
         public override GameObject GetGameObject()
