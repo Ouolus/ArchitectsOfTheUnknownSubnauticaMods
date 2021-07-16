@@ -108,7 +108,7 @@ namespace ArchitectsLibrary.Utility
         /// <param name="fresnelStrength">The strength of the fresnel (higher values cause the object to only glow around the edges).</param>
         public static void ApplyPrecursorMaterials(GameObject prefab, float specint, PrecursorSpecularColor specularColor = PrecursorSpecularColor.Green, float fresnelStrength = 0.4f)
         {
-            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 if(renderer is ParticleSystemRenderer)
                 {
@@ -145,7 +145,7 @@ namespace ArchitectsLibrary.Utility
         /// <param name="brightness">The brightness of the ion cube material.</param>
         public static void FixIonCubeMaterials(GameObject prefab, float brightness)
         {
-            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 if (renderer is ParticleSystemRenderer)
                 {
