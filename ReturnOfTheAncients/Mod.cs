@@ -62,6 +62,7 @@
         public static GargPoster gargPoster;
 
         public static WarpCannonPrefab warpCannon;
+        public static IonKnifePrefab ionKnife;
 
         public static TechType architectElectricityMasterTech;
         public static TechType warpMasterTech;
@@ -237,6 +238,11 @@
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
+
+            ionKnife = new IonKnifePrefab();
+            ionKnife.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(ionKnife.TechType, PrecursorFabricatorTab.Equipment);
+            DisplayCaseServices.WhitelistTechType(ionKnife.TechType);
 
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
             warpCannonTerminal.Patch();

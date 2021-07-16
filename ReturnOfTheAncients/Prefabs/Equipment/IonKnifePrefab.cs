@@ -1,0 +1,79 @@
+﻿using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.API;
+using ArchitectsLibrary.Utility;
+using RotA.Mono.Equipment;
+using RotA.Mono.VFX;
+using SMLHelper.V2.Assets;
+using SMLHelper.V2.Crafting;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace RotA.Prefabs.Equipment
+{
+    public class IonKnifePrefab : Equipable
+    {
+        GameObject _cachedPrefab;
+        public IonKnifePrefab() : base("IonKnife", "Ion Knife", "Ion knife that makes me go yes.")
+        {
+        }
+
+        List<TechType> compatibleTech => new List<TechType>() { TechType.PrecursorIonCrystal, AUHandler.OmegaCubeTechType, AUHandler.ElectricubeTechType, AUHandler.RedIonCubeTechType };
+
+        public override EquipmentType EquipmentType => EquipmentType.Hand;
+
+        public override bool UnlockedAtStart => false;
+
+        public override TechCategory CategoryForPDA => TechCategory.Tools;
+        public override TechGroup GroupForPDA => TechGroup.Personal;
+
+        public override float CraftingTime => 10f;
+
+        public override Vector2int SizeInInventory => new Vector2int(1, 1);
+
+        protected override TechData GetBlueprintRecipe()
+        {
+            return new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.Knife, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) } };
+        }
+
+        public override TechType RequiredForUnlock => Mod.warpMasterTech;
+
+        protected override Atlas.Sprite GetItemSprite()
+        {
+            return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("WarpCannon_Icon"));
+        }
+
+        public override GameObject GetGameObject()
+        {
+            if (_cachedPrefab == null)
+            {
+                GameObject model = Mod.assetBundle.LoadAsset<GameObject>("IonKnife_Prefab");
+                GameObject prefab = GameObject.Instantiate(model);
+                prefab.SetActive(false);
+                prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
+                prefab.EnsureComponent<TechTag>().type = TechType;
+                prefab.EnsureComponent<Pickupable>();
+                var rb = prefab.EnsureComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.mass = 8f;
+                prefab.EnsureComponent<WorldForces>();
+                var fpModel = prefab.EnsureComponent<FPModel>();
+                fpModel.propModel = prefab.SearchChild("WorldModel");
+                fpModel.viewModel = prefab.SearchChild("ViewModel");
+
+                MaterialUtils.ApplySNShaders(prefab);
+                MaterialUtils.ApplyPrecursorMaterials(prefab, 6f);
+
+                var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
+                vfxFabricating.localMinY = -0.42f;
+                vfxFabricating.localMaxY = 0.05f;
+                vfxFabricating.scaleFactor = 1f;
+                vfxFabricating.posOffset = new Vector3(0f, 0.15f, 0f);
+                vfxFabricating.eulerOffset = new Vector3(90f, 0f, 0f);
+
+                _cachedPrefab = prefab;
+            }
+            return _cachedPrefab;
+        }
+    }
+}
