@@ -67,10 +67,10 @@ namespace RotA.Prefabs.Equipment
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = -0.42f;
-                vfxFabricating.localMaxY = 0.05f;
-                vfxFabricating.scaleFactor = 1f;
-                vfxFabricating.posOffset = new Vector3(0f, 0.15f, 0f);
-                vfxFabricating.eulerOffset = new Vector3(90f, 0f, 0f);
+                vfxFabricating.localMaxY = 0.6f;
+                vfxFabricating.scaleFactor = 2f;
+                vfxFabricating.posOffset = new Vector3(0f, 0.01f, 0f);
+                vfxFabricating.eulerOffset = new Vector3(90f, 90f, 0f);
 
                 _cachedPrefab = prefab;
             }
