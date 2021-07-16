@@ -63,6 +63,7 @@ namespace RotA.Prefabs.Equipment
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 6f);
+                MaterialUtils.FixIonCubeMaterials(prefab, 1f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
                 vfxFabricating.localMinY = -0.42f;
