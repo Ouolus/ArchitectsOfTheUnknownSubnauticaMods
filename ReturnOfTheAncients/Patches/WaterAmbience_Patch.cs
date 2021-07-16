@@ -9,6 +9,8 @@ namespace RotA.Patches
     {
         private const string voidBiomeName = "void";
 
+        private static int voidBiomeIndex = -1;
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(WaterAmbience), nameof(WaterAmbience.Start))]
         public static void WaterAmbience_Start_Postfix(WaterAmbience __instance)
@@ -47,12 +49,9 @@ namespace RotA.Patches
         [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.GetBiomeIndex))]
         public static void WaterBiomeManager_GetBiomeIndex_Postfix(WaterBiomeManager __instance, string name, ref int __result)
         {
-            if (string.IsNullOrEmpty(name))
+            if (__result == -1)
             {
-                if (__instance.biomeLookup.TryGetValue(voidBiomeName, out int voidBiomeIndex))
-                {
-                    __result = voidBiomeIndex;
-                }
+                __result = voidBiomeIndex;
             }
         }
 
@@ -73,8 +72,8 @@ namespace RotA.Patches
                 };
                 waterBiomeManager.biomeSkies.Add(sky);
                 waterBiomeManager.biomeSettings.Add(biomeSettings);
-                int indexForNew = waterBiomeManager.biomeSettings.Count - 1;
-                waterBiomeManager.biomeLookup.Add(biomeName, indexForNew);
+                voidBiomeIndex = waterBiomeManager.biomeSettings.Count - 1;
+                waterBiomeManager.biomeLookup.Add(biomeName, voidBiomeIndex);
             }
         }
     }
