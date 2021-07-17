@@ -125,7 +125,14 @@ namespace RotA.Mono.Equipment
 
         public void TryPlayStrongHitSound(LiveMixin lm)
         {
-
+            if (lm != null)
+            {
+                var surface = lm.GetComponent<VFXSurface>();
+                if (surface != null && surface.surfaceType == VFXSurfaceTypes.organic)
+                {
+                    Utils.PlayFMODAsset(strongHitFishSound, transform);
+                }
+            }
         }
 
         #region Event Initializations 
