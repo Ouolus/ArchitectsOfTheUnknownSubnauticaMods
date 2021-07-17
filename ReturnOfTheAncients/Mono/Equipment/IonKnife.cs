@@ -18,16 +18,17 @@ namespace RotA.Mono.Equipment
         
         public VFXEventTypes VfxEventType { get; set; }
         
-        public string IdleSoundPath
+        public string SwitchSoundPath
         {
             set
             {
-                emitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
-                if (emitter.playing) emitter.Stop();
-                emitter.SetAsset(SNAudioEvents.GetFmodAsset(value));
+                switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
+                if (switchModeEmitter.playing) switchModeEmitter.Stop();
+                switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(value));
                 if (!string.IsNullOrEmpty(value))
                 {
-                    emitter.Play();
+                    switchModeEmitter.Play();
+                    timeStopSwitchMode = Time.time + 2f;
                 }
             }
         }
@@ -47,7 +48,9 @@ namespace RotA.Mono.Equipment
 
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
-        private FMOD_CustomLoopingEmitter emitter;
+        private FMOD_CustomLoopingEmitter switchModeEmitter;
+
+        private float timeStopSwitchMode;
 
         public override string animToolName => TechType.Knife.AsString(true);
 
@@ -120,6 +123,14 @@ namespace RotA.Mono.Equipment
             }
         }
 
+        void Update()
+        {
+            if (Time.time > timeStopSwitchMode && switchModeEmitter != null && switchModeEmitter.playing)
+            {
+                switchModeEmitter.Stop();
+            }
+        }
+
         public override bool OnRightHandDown()
         {
             return !energyMixin.IsDepleted();
@@ -156,7 +167,7 @@ namespace RotA.Mono.Equipment
                 }
                 else
                 {
-                    IdleSoundPath = string.Empty;
+                    SwitchSoundPath = string.Empty;
                 }
             }
         }

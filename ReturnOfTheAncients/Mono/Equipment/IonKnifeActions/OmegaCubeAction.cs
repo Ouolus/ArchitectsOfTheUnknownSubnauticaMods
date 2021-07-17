@@ -10,7 +10,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.Damage = 80f;
             ionKnife.AttackDistance = 1.8f;
             ionKnife.DamageType = DamageType.Electrical;
-            ionKnife.IdleSoundPath = "event:/env/damage/cold_loop";
+            ionKnife.SwitchSoundPath = "event:/env/damage/cold_loop";
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
             // Omega pew pew
         }
