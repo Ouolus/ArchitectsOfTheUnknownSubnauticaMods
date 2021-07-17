@@ -57,7 +57,7 @@ namespace RotA.Prefabs.Equipment
                 prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<Pickupable>();
-                prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>(true);
+                prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetAllComponentsInChildren<Renderer>();
                 var rb = prefab.EnsureComponent<Rigidbody>();
                 rb.useGravity = false;
                 rb.mass = 8f;

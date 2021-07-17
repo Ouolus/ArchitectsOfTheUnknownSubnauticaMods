@@ -929,7 +929,7 @@ namespace RotA.Mono.Equipment
             ArchitectsLibrary.API.AchievementServices.ChangeAchievementCompletion("WarpFar", Mathf.RoundToInt(amount));
         }
 
-        public override string animToolName => "propulsioncannon";
+        public override string animToolName => TechType.PropulsionCannon.AsString(true);
 
         public enum FireMode
         {

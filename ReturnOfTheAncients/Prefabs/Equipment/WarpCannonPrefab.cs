@@ -85,7 +85,7 @@ namespace RotA.Prefabs.Equipment
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
 
                 MaterialUtils.ApplySNShaders(prefab);
-                foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+                foreach (Renderer renderer in prefab.GetAllComponentsInChildren<Renderer>())
                 {
                     UpdateWarpCannonRenderer(renderer);
                 }
@@ -179,7 +179,7 @@ namespace RotA.Prefabs.Equipment
                 energyMixin.batteryModels = batteryModels.ToArray();
 
                 var skyApplier = prefab.AddComponent<SkyApplier>();
-                skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
+                skyApplier.renderers = prefab.GetAllComponentsInChildren<Renderer>();
 
                 var illumControl = prefab.SearchChild("ViewModel").AddComponent<PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
@@ -219,7 +219,7 @@ namespace RotA.Prefabs.Equipment
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
 
                 MaterialUtils.ApplySNShaders(prefab);
-                foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+                foreach(Renderer renderer in prefab.GetAllComponentsInChildren<Renderer>())
                 {
                     UpdateWarpCannonRenderer(renderer);
                 }
@@ -319,7 +319,7 @@ namespace RotA.Prefabs.Equipment
                 energyMixin.batteryModels = batteryModels.ToArray();
 
                 var skyApplier = prefab.AddComponent<SkyApplier>();
-                skyApplier.renderers = prefab.GetComponentsInChildren<Renderer>(true);
+                skyApplier.renderers = prefab.GetAllComponentsInChildren<Renderer>();
 
                 var illumControl = prefab.SearchChild("ViewModel").AddComponent<PrecursorIllumControl>();
                 illumControl.renderers = new List<Renderer>();
