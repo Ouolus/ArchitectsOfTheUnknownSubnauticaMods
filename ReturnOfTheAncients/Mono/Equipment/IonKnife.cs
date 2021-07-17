@@ -45,7 +45,7 @@ namespace RotA.Mono.Equipment
             }
             if (obj)
             {
-                var lm = obj.FindAncestor<LiveMixin>();
+                var lm = obj.GetComponentInParent<LiveMixin>();
                 if (Knife.IsValidTarget(lm))
                 {
                     if (lm)
