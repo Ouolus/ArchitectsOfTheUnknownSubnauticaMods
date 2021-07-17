@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Interfaces\IIonKnifeAction.cs" />
     <Compile Include="Mod-AlienBases.cs" />
     <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
@@ -190,6 +191,10 @@
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
     <Compile Include="Mono\Equipment\IonKnife.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\ElectricubeAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\OmegaCubeAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\PrecursorIonCrystalAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\RedIonCubeAction.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
     <Compile Include="Mono\MiscPDALines.cs" />
@@ -269,7 +274,6 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
