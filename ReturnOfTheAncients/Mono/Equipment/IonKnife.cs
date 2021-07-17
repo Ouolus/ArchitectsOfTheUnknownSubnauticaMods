@@ -20,6 +20,20 @@ namespace RotA.Mono.Equipment
         
         public FMODAsset AttackSound { get; set; }
 
+        public string IdleSoundPath
+        {
+            set
+            {
+                emitter = gameObject.EnsureComponent<FMOD_StudioEventEmitter>();
+                emitter.Stop(true);
+                emitter.path = value;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    emitter.StartEvent();
+                }
+            }
+        }
+
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
 
@@ -30,6 +44,8 @@ namespace RotA.Mono.Equipment
         private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
         private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
+
+        private FMOD_StudioEventEmitter emitter;
 
         public override string animToolName => TechType.Knife.AsString(true);
 

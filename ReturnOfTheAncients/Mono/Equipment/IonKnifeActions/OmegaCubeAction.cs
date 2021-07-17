@@ -7,6 +7,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         public void Initialize(IonKnife ionKnife)
         {
+            ionKnife.Damage = 80f;
+            ionKnife.AttackDistance = 1.8f;
+            ionKnife.DamageType = DamageType.Electrical;
+            ionKnife.IdleSoundPath = "event:/env/damage/cold_loop";
             // Omega pew pew
         }
 

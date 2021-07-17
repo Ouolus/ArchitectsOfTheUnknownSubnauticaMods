@@ -7,6 +7,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         public void Initialize(IonKnife ionKnife)
         {
+            ionKnife.Damage = 25f;
+            ionKnife.AttackDistance = 1.2f;
+            ionKnife.DamageType = DamageType.Normal;
+            ionKnife.IdleSoundPath = "event:/loot/prec_crystal_loop";
             // pew pew
         }
 

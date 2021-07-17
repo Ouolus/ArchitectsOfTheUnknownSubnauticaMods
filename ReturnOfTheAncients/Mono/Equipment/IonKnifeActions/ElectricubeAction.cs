@@ -7,6 +7,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         public void Initialize(IonKnife ionKnife)
         {
+            ionKnife.Damage = 25f;
+            ionKnife.AttackDistance = 1.2f;
+            ionKnife.DamageType = DamageType.Electrical;
+            ionKnife.IdleSoundPath = "event:/env/green_artifact_loop";
             // Electrical pew pew
         }
 
