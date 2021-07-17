@@ -10,7 +10,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             // Electrical pew pew
         }
 
-        public void OnHit(IonKnife ionKnife, GameObject hitObj)
+        public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
             
         }

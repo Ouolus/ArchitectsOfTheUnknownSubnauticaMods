@@ -5,8 +5,17 @@ namespace RotA.Interfaces
 {
     public interface IIonKnifeAction
     {
+        /// <summary>
+        /// Called the moment the action is set as the current action.
+        /// </summary>
+        /// <param name="ionKnife">Ion knife instance.</param>
         void Initialize(IonKnife ionKnife);
 
-        void OnHit(IonKnife ionKnife, GameObject hitObj);
+        /// <summary>
+        /// Called when the knife hits an object.
+        /// </summary>
+        /// <param name="ionKnife">Ion Knife instance.</param>
+        /// <param name="hitLiveMixin">the hit LiveMixin component.</param>
+        void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin);
     }
 }
