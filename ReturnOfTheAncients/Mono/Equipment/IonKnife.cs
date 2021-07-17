@@ -9,12 +9,94 @@ namespace RotA.Mono.Equipment
     [RequireComponent(typeof(EnergyMixin))]
     public class IonKnife : PlayerTool
     {
+        public DamageType DamageType { get; set; }
+        
+        public float Damage { get; set; }
+        
+        public float AttackDistance { get; set; }
+        
+        public FMODAsset AttackSound { get; set; }
+        
+        public VFXEventTypes VfxEventType { get; set; }
+
+        public FMODAsset UnderWaterMissSound { get; set; }
+        
+        public FMODAsset SurfaceMissSound { get; set; }
+        
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
         
         IIonKnifeAction _currentAction;
         
         public override string animToolName => TechType.Knife.AsString(true);
+
+        public override void OnToolUseAnim(GUIHand guiHand)
+        {
+            var position = default(Vector3);
+            GameObject obj = null;
+            UWE.Utils.TraceFPSTargetPosition(Player.main.gameObject, AttackDistance, ref obj, ref position);
+            if (obj == null)
+            {
+                var volumeUser = Player.main.gameObject.GetComponent<InteractionVolumeUser>();
+                if (volumeUser != null && volumeUser.GetMostRecent() != null)
+                {
+                    obj = volumeUser.GetMostRecent().gameObject;
+                }
+            }
+            if (obj)
+            {
+                var lm = obj.FindAncestor<LiveMixin>();
+                if (Knife.IsValidTarget(lm))
+                {
+                    if (lm)
+                    {
+                        bool wasAlive = lm.IsAlive();
+                        lm.TakeDamage(Damage, position, DamageType);
+                        GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
+                    }
+                    Utils.PlayFMODAsset(AttackSound, transform);
+                    var vfxSurface = obj.GetComponent<VFXSurface>();
+                    var euler = MainCameraControl.main.transform.eulerAngles + new Vector3(300f, 90f, 0f);
+                    VFXSurfaceTypeManager.main.Play(vfxSurface, VfxEventType, position, Quaternion.Euler(euler), Player.main.transform);
+                }
+                else
+                {
+                    obj = null;
+                }
+            }
+            if (obj == null && guiHand.GetActiveTarget() == null)
+            {
+                if (Player.main.IsUnderwater())
+                {
+                    Utils.PlayFMODAsset(UnderWaterMissSound, transform);
+                    return;
+                }
+                Utils.PlayFMODAsset(SurfaceMissSound, transform);
+            }
+        }
+        
+        void GiveResourceOnDamage(GameObject target, bool isAlive, bool wasAlive)
+        {
+            var tt = CraftData.GetTechType(target);
+            HarvestType harvestTypeFromTech = CraftData.GetHarvestTypeFromTech(tt);
+            if (tt == TechType.Creepvine)
+            {
+                GoalManager.main.OnCustomGoalEvent("Cut_Creepvine");
+            }
+            if (harvestTypeFromTech == HarvestType.DamageAlive && wasAlive || harvestTypeFromTech == HarvestType.DamageDead && !isAlive)
+            {
+                int cutBonus = 1;
+                if (harvestTypeFromTech == HarvestType.DamageAlive && !isAlive)
+                {
+                    cutBonus += CraftData.GetHarvestFinalCutBonus(tt);
+                }
+                TechType harvestOutputData = CraftData.GetHarvestOutputData(tt);
+                if (harvestOutputData != TechType.None)
+                {
+                    CraftData.AddToInventory(harvestOutputData, cutBonus, false, false);
+                }
+            }
+        }
 
         public override bool OnRightHandDown()
         {
