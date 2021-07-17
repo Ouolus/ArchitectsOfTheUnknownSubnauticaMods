@@ -68,7 +68,7 @@ namespace RotA.Prefabs.Equipment
                 MaterialUtils.FixIonCubeMaterials(prefab, 1f);
 
                 var vfxFabricating = prefab.SearchChild("CraftModel").AddComponent<VFXFabricating>();
-                vfxFabricating.localMinY = -0.42f;
+                vfxFabricating.localMinY = -0.6f;
                 vfxFabricating.localMaxY = 0.6f;
                 vfxFabricating.scaleFactor = 2f;
                 vfxFabricating.posOffset = new Vector3(0f, 0.01f, 0f);
