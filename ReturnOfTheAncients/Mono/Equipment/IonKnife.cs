@@ -31,6 +31,8 @@ namespace RotA.Mono.Equipment
 
         private FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
 
+        private FMODAsset strongHitFishSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
+
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
@@ -119,6 +121,11 @@ namespace RotA.Mono.Equipment
         public override bool OnRightHandDown()
         {
             return !energyMixin.IsDepleted();
+        }
+
+        public void TryPlayStrongHitSound(LiveMixin lm)
+        {
+
         }
 
         #region Event Initializations 

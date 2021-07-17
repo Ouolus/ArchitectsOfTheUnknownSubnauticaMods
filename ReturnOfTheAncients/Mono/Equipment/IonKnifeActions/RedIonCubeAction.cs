@@ -17,7 +17,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
-            
+            ionKnife.TryPlayStrongHitSound(hitLiveMixin);
         }
     }
 }
