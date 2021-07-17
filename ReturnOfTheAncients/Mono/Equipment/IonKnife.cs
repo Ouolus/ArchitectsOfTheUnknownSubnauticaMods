@@ -139,6 +139,7 @@ namespace RotA.Mono.Equipment
             energyMixin.onPoweredChanged -= OnPoweredChanged;
             energyMixin.batterySlot.onAddItem -= OnBatteryAdded;
             energyMixin.batterySlot.onRemoveItem -= OnBatteryRemoved;
+            OnPoweredChanged(false);
         }
 
         void OnPoweredChanged(bool powered)

@@ -87,7 +87,7 @@ namespace RotA.Prefabs.Equipment
                 tool.bladeObject = fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").gameObject;
                 tool.ikAimRightArm = true;
                 tool.mainCollider = prefab.GetComponent<Collider>();
-                tool.drawSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
+                tool.drawSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.KnifeDeploy);
 
                 var storageRoot = new GameObject("StorageRoot");
                 storageRoot.transform.parent = prefab.transform;
