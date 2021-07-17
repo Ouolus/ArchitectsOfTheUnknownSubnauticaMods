@@ -12,6 +12,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = DamageType.Normal;
             ionKnife.PlaySwitchSound("event:/loot/prec_crystal_loop");
             ionKnife.VfxEventType = VFXEventTypes.knife;
+            ionKnife.ResourceBonus = 0;
             // pew pew
         }
 

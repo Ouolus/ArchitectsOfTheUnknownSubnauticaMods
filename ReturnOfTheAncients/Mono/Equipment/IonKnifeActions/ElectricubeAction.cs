@@ -12,6 +12,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = DamageType.Electrical;
             ionKnife.PlaySwitchSound("event:/env/green_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
+            ionKnife.ResourceBonus = 1;
             // Electrical pew pew
         }
 

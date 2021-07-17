@@ -12,6 +12,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = DamageType.Heat;
             ionKnife.PlaySwitchSound("event:/env/pink_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.heatBlade;
+            ionKnife.ResourceBonus = 1;
             // Red pew pew
         }
 
