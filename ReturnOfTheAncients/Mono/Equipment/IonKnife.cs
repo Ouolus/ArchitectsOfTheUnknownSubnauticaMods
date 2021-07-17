@@ -53,6 +53,7 @@ namespace RotA.Mono.Equipment
                         bool wasAlive = lm.IsAlive();
                         lm.TakeDamage(Damage, position, DamageType);
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
+                        _currentAction.OnHit(this, lm);
                     }
                     Utils.PlayFMODAsset(AttackSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
@@ -146,6 +147,8 @@ namespace RotA.Mono.Equipment
                 _currentAction = new RedIonCubeAction();
             else if (tt == AUHandler.OmegaCubeTechType)
                 _currentAction = new OmegaCubeAction();
+            
+            _currentAction?.Initialize(this);
         }
     }
 }
