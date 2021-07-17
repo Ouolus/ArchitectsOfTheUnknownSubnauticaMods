@@ -27,9 +27,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         }
         public void Initialize(IonKnife ionKnife)
         {
-            ionKnife.Damage = 25f;
+            ionKnife.Damage = new[] { 25f };
             ionKnife.AttackDistance = 1.2f;
-            ionKnife.DamageType = DamageType.Electrical;
+            ionKnife.DamageType = new[] { DamageType.Electrical };
             ionKnife.PlaySwitchSound("event:/env/green_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
             ionKnife.ResourceBonus = 1;

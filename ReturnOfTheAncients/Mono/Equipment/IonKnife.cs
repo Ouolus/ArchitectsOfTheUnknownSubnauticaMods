@@ -10,9 +10,9 @@ namespace RotA.Mono.Equipment
     [RequireComponent(typeof(EnergyMixin))]
     public class IonKnife : PlayerTool
     {
-        public DamageType DamageType { get; set; }
+        public DamageType[] DamageType { get; set; }
 
-        public float Damage { get; set; }
+        public float[] Damage { get; set; }
 
         public float AttackDistance { get; set; }
 
@@ -64,7 +64,10 @@ namespace RotA.Mono.Equipment
                     if (lm)
                     {
                         bool wasAlive = lm.IsAlive();
-                        lm.TakeDamage(Damage, position, DamageType);
+                        for (int i = 0; i < Damage.Length; i++)
+                        {
+                            lm.TakeDamage(Damage[i], position, DamageType[i]);
+                        }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
                         _currentAction.OnHit(this, lm);
                     }
