@@ -159,14 +159,16 @@ namespace RotA.Mono.Equipment
 
         public void PlaySwitchSound(string soundPath, float length = 2f)
         {
+            if (string.IsNullOrEmpty(soundPath))
+            {
+                switchModeEmitter.Stop();
+                return;
+            }
             switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
             if (switchModeEmitter.playing) switchModeEmitter.Stop();
             switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(soundPath));
-            if (!string.IsNullOrEmpty(soundPath))
-            {
-                switchModeEmitter.Play();
-                timeStopSwitchMode = Time.time + length;
-            }
+            switchModeEmitter.Play();
+            timeStopSwitchMode = Time.time + length;
         }
 
         void OnBatteryRemoved(InventoryItem _)
