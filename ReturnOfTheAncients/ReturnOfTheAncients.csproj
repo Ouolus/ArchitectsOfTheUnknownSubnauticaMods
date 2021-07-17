@@ -189,6 +189,7 @@
     <Compile Include="Mono\Creatures\IgnoreSelfCollisionsAtStart.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\Equipment\IonKnife.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
     <Compile Include="Mono\MiscPDALines.cs" />

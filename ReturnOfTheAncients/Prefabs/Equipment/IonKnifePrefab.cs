@@ -1,10 +1,12 @@
-﻿using ArchitectsLibrary.Handlers;
+﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
 using UnityEngine;
 using SMLHelper.V2.Handlers;
+using RotA.Mono.Equipment;
 
 namespace RotA.Prefabs.Equipment
 {
@@ -74,6 +76,11 @@ namespace RotA.Prefabs.Equipment
                 vfxFabricating.scaleFactor = 2f;
                 vfxFabricating.posOffset = new Vector3(0f, 0.01f, 0f);
                 vfxFabricating.eulerOffset = new Vector3(90f, 90f, 0f);
+
+                var tool = prefab.AddComponent<IonKnife>();
+                tool.ikAimRightArm = true;
+                tool.mainCollider = prefab.GetComponent<Collider>();
+                tool.drawSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperSwipe);
 
                 _cachedPrefab = prefab;
             }
