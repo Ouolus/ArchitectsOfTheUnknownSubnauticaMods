@@ -10,7 +10,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.Damage = 60f;
             ionKnife.AttackDistance = 1.8f;
             ionKnife.DamageType = DamageType.Heat;
-            ionKnife.SwitchSoundPath = "event:/env/pink_artifact_loop";
+            ionKnife.PlaySwitchSound("event:/env/pink_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.heatBlade;
             // Red pew pew
         }

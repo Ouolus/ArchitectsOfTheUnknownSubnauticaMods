@@ -17,21 +17,6 @@ namespace RotA.Mono.Equipment
         public float AttackDistance { get; set; }
         
         public VFXEventTypes VfxEventType { get; set; }
-        
-        public string SwitchSoundPath
-        {
-            set
-            {
-                switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
-                if (switchModeEmitter.playing) switchModeEmitter.Stop();
-                switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(value));
-                if (!string.IsNullOrEmpty(value))
-                {
-                    switchModeEmitter.Play();
-                    timeStopSwitchMode = Time.time + 2f;
-                }
-            }
-        }
 
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
@@ -167,8 +152,20 @@ namespace RotA.Mono.Equipment
                 }
                 else
                 {
-                    SwitchSoundPath = string.Empty;
+                    PlaySwitchSound(null);
                 }
+            }
+        }
+
+        public void PlaySwitchSound(string soundPath, float length = 2f)
+        {
+            switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
+            if (switchModeEmitter.playing) switchModeEmitter.Stop();
+            switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(soundPath));
+            if (!string.IsNullOrEmpty(soundPath))
+            {
+                switchModeEmitter.Play();
+                timeStopSwitchMode = Time.time + length;
             }
         }
 
