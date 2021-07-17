@@ -105,7 +105,7 @@
             gargAssetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), gargAssetBundleName);
             ECCAudio.RegisterClips(gargAssetBundle);
 
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(AUHandler.OmegaCubeTechType, 1) } });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new() { craftAmount = 1, Ingredients = new List<Ingredient>() { new(TechType.PlasteelIngot, 1), new(TechType.Sulphur, 4), new(TechType.Kyanite, 4), new(TechType.PrecursorIonPowerCell, 1), new(AUHandler.OmegaCubeTechType, 1) } });
 
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
@@ -168,8 +168,8 @@
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new (TechType.PrecursorIonCrystal, 1),
-                    new (TechType.AluminumOxide, 2)
+                    new(TechType.PrecursorIonCrystal, 1),
+                    new(TechType.AluminumOxide, 2)
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, redTabletTD);
@@ -178,8 +178,8 @@
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
-                    new Ingredient(TechType.Silver, 2)
+                    new(TechType.PrecursorIonCrystal, 1),
+                    new(TechType.Silver, 2)
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
@@ -234,12 +234,12 @@
 
         static void PatchCraftablesAndBuildables()
         {
-            warpCannon = new WarpCannonPrefab();
+            warpCannon = new();
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
 
-            ionKnife = new IonKnifePrefab();
+            ionKnife = new();
             ionKnife.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(ionKnife.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(ionKnife.TechType);
@@ -247,7 +247,7 @@
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
             warpCannonTerminal.Patch();
 
-            gargPoster = new GargPoster();
+            gargPoster = new();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
 
@@ -275,28 +275,28 @@
 
         static void PatchSignals()
         {
-            signal_cragFieldBase = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
+            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
             signal_cragFieldBase.Patch();
 
-            signal_sparseReefBase = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
+            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Biological signal interference detected. True signal source is likely to be somewhere in the area.", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
+            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Biological signal interference detected. True signal source is likely to be somewhere in the area.", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
-            signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
+            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
             signal_ruinedGuardian.Patch();
 
-            signal_cache_bloodKelp = new GenericSignalPrefab("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
+            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
             signal_cache_bloodKelp.Patch();
 
-            signal_cache_sparseReef = new GenericSignalPrefab("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
+            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
             signal_cache_sparseReef.Patch();
 
-            signal_cache_dunes = new GenericSignalPrefab("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
+            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
             signal_cache_dunes.Patch();
 
-            signal_cache_lostRiver = new GenericSignalPrefab("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
+            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
             signal_cache_lostRiver.Patch();
         }
 
@@ -321,9 +321,9 @@
 
         public static void ApplyAlienUpgradeMaterials(Renderer renderer)
         {
-            renderer.material.SetTexture("_MainTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
-            renderer.material.SetTexture("_SpecTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
-            renderer.material.SetTexture("_Illum", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
+            renderer.material.SetTexture("_MainTex", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
+            renderer.material.SetTexture("_SpecTex", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
+            renderer.material.SetTexture("_Illum", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
         }
 
         static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
