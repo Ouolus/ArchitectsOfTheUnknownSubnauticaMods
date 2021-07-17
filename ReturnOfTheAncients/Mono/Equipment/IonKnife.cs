@@ -11,18 +11,18 @@ namespace RotA.Mono.Equipment
     public class IonKnife : PlayerTool
     {
         public DamageType DamageType { get; set; }
-        
+
         public float Damage { get; set; }
-        
+
         public float AttackDistance { get; set; }
-        
+
         public VFXEventTypes VfxEventType { get; set; }
 
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
 
         public int ResourceBonus { get; set; }
-        
+
         IIonKnifeAction _currentAction;
 
         private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
@@ -31,7 +31,7 @@ namespace RotA.Mono.Equipment
 
         private FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
 
-        private FMODAsset strongHitFishSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
+        public FMODAsset StrongHitFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
 
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
@@ -123,16 +123,13 @@ namespace RotA.Mono.Equipment
             return !energyMixin.IsDepleted();
         }
 
-        public void TryPlayStrongHitSound(LiveMixin lm)
+        public bool IsCreature(LiveMixin lm)
         {
             if (lm != null)
             {
-                var surface = lm.GetComponent<VFXSurface>();
-                if (surface != null && surface.surfaceType == VFXSurfaceTypes.organic)
-                {
-                    Utils.PlayFMODAsset(strongHitFishSound, transform);
-                }
+                return lm.GetComponent<Creature>() != null;
             }
+            return false;
         }
 
         #region Event Initializations 
