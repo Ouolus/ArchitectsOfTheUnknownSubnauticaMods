@@ -14,7 +14,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         private void Awake()
         {
-
+            StartCoroutine(GetPrefabs());
         }
 
         IEnumerator GetPrefabs()
