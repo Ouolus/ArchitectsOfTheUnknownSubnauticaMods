@@ -131,6 +131,11 @@ namespace RotA.Mono.Equipment
             energyMixin.onPoweredChanged += OnPoweredChanged;
             energyMixin.batterySlot.onAddItem += OnBatteryAdded;
             energyMixin.batterySlot.onRemoveItem += OnBatteryRemoved;
+            var currentBattery = energyMixin.batterySlot.storedItem;
+            if (currentBattery != null && currentBattery.item != null)
+            {
+                SetIonCubeType(currentBattery.item.GetTechType());
+            }
         }
 
         void OnDisable()
@@ -166,7 +171,11 @@ namespace RotA.Mono.Equipment
         void OnBatteryAdded(InventoryItem item)
         {
             var tt = item.item.GetTechType();
+            SetIonCubeType(tt);
+        }
 
+        private void SetIonCubeType(TechType tt)
+        {
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
                 _currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
@@ -176,8 +185,10 @@ namespace RotA.Mono.Equipment
                 _currentAction = gameObject.EnsureComponent<RedIonCubeAction>();
             else if (tt == AUHandler.OmegaCubeTechType)
                 _currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
-            
+
             _currentAction?.Initialize(this);
+
+            OnPoweredChanged(_currentAction != null);
         }
     }
 }
