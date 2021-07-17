@@ -33,6 +33,8 @@ namespace RotA.Mono.Equipment
 
         public FMODAsset StrongHitFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
 
+        public FMODAsset WarpFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;

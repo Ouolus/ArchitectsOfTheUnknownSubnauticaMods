@@ -22,14 +22,14 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             {
                 if (Random.value <= 0.25f)
                 {
-                    WarpRandom(hitLiveMixin);
+                    WarpRandom(ionKnife, hitLiveMixin);
                 }
             }
         }
 
-        private void WarpRandom(LiveMixin lm)
+        private void WarpRandom(IonKnife ionKnife, LiveMixin lm)
         {
-
+            Utils.PlayFMODAsset(ionKnife.WarpFishSound, transform);
         }
     }
 }
