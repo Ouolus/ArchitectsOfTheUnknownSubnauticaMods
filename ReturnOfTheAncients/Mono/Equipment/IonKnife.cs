@@ -24,7 +24,7 @@ namespace RotA.Mono.Equipment
             {
                 emitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
                 if (emitter.playing) emitter.Stop();
-                emitter.asset = SNAudioEvents.GetFmodAsset(value);
+                emitter.SetAsset(SNAudioEvents.GetFmodAsset(value));
                 if (!string.IsNullOrEmpty(value))
                 {
                     emitter.Play();
@@ -148,6 +148,10 @@ namespace RotA.Mono.Equipment
                 if (powered == true)
                 {
                     Utils.PlayFMODAsset(bladeSpawnSound, transform);
+                }
+                else
+                {
+                    IdleSoundPath = string.Empty;
                 }
             }
         }
