@@ -22,7 +22,7 @@ namespace RotA.Mono.Equipment
         {
             set
             {
-                emitter = gameObject.EnsureComponent<FMOD_CustomEmitter>();
+                emitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
                 if (emitter.playing) emitter.Stop();
                 emitter.asset = SNAudioEvents.GetFmodAsset(value);
                 if (!string.IsNullOrEmpty(value))
@@ -47,7 +47,7 @@ namespace RotA.Mono.Equipment
 
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
-        private FMOD_CustomEmitter emitter;
+        private FMOD_CustomLoopingEmitter emitter;
 
         public override string animToolName => TechType.Knife.AsString(true);
 
