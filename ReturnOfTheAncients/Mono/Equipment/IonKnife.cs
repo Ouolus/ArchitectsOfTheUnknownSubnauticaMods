@@ -25,8 +25,9 @@ namespace RotA.Mono.Equipment
             set
             {
                 emitter = gameObject.EnsureComponent<FMOD_StudioEventEmitter>();
-                emitter.Stop(true);
+                if (emitter.GetIsPlaying()) emitter.Stop(true);
                 emitter.path = value;
+                emitter.asset = SNAudioEvents.GetFmodAsset(value);
                 if (!string.IsNullOrEmpty(value))
                 {
                     emitter.StartEvent();

@@ -11,6 +11,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.AttackDistance = 1.2f;
             ionKnife.DamageType = DamageType.Normal;
             ionKnife.IdleSoundPath = "event:/loot/prec_crystal_loop";
+            ionKnife.VfxEventType = VFXEventTypes.knife;
             // pew pew
         }
 
