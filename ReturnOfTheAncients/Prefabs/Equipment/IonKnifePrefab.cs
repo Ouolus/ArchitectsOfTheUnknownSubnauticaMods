@@ -88,6 +88,15 @@ namespace RotA.Prefabs.Equipment
                 tool.mainCollider = prefab.GetComponent<Collider>();
                 tool.drawSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
+                var storageRoot = new GameObject("StorageRoot");
+                storageRoot.transform.parent = prefab.transform;
+
+                var energyMixin = prefab.GetComponent<EnergyMixin>();
+                energyMixin.compatibleBatteries = compatibleTech;
+                energyMixin.defaultBattery = TechType.PrecursorIonCrystal;
+                energyMixin.storageRoot = storageRoot.EnsureComponent<ChildObjectIdentifier>();
+                energyMixin.storageRoot.classId = "IonBladeStorageRoot";
+
                 _cachedPrefab = prefab;
             }
             return _cachedPrefab;
