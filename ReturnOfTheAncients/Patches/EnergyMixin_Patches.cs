@@ -1,4 +1,3 @@
-using System;
 using HarmonyLib;
 
 namespace RotA.Patches
@@ -12,7 +11,7 @@ namespace RotA.Patches
             var tt = CraftData.GetTechType(__instance.gameObject);
             if (tt == Mod.ionKnife.TechType)
             {
-                __result = String.Empty;
+                __result = string.Empty;
                 return false;
             }
 
