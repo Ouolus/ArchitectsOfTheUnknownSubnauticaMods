@@ -86,7 +86,7 @@ namespace RotA.Prefabs.Equipment
                 var tool = prefab.AddComponent<IonKnife>();
                 tool.ikAimRightArm = true;
                 tool.mainCollider = prefab.GetComponent<Collider>();
-                tool.drawSound = SNAudioEvents.GetFmodAsset("event:/player/cube terminal_open");
+                tool.drawSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
                 _cachedPrefab = prefab;
             }
