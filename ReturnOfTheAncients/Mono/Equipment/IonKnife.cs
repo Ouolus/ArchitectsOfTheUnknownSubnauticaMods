@@ -16,6 +16,11 @@ namespace RotA.Mono.Equipment
         
         public override string animToolName => TechType.Knife.AsString(true);
 
+        public override bool OnRightHandDown()
+        {
+            return !energyMixin.IsDepleted();
+        }
+
         #region Event Initializations 
         void OnEnable()
         {
