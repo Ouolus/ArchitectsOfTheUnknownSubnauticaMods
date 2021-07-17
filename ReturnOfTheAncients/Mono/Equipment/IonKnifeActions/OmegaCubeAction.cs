@@ -7,9 +7,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         public void Initialize(IonKnife ionKnife)
         {
-            ionKnife.Damage = new[] { 40f, 120f };
+            ionKnife.Damage = new[] { 40f, 60f, 60f };
             ionKnife.AttackDistance = 1.8f;
-            ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Electrical };
+            ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Normal, DamageType.Electrical };
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
             ionKnife.ResourceBonus = 2;
