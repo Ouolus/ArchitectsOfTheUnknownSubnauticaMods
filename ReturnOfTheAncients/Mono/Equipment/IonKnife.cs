@@ -1,4 +1,5 @@
 ﻿using System;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using RotA.Interfaces;
 using RotA.Mono.Equipment.IonKnifeActions;
@@ -19,15 +20,17 @@ namespace RotA.Mono.Equipment
         
         public FMODAsset AttackSound { get; set; }
 
-        public FMODAsset UnderWaterMissSound { get; set; }
-        
-        public FMODAsset SurfaceMissSound { get; set; }
-
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
+
+        public int ResourceBonus { get; set; }
         
         IIonKnifeAction _currentAction;
-        
+
+        private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
+
+        private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
+
         public override string animToolName => TechType.Knife.AsString(true);
 
         public override void OnToolUseAnim(GUIHand guiHand)
@@ -69,10 +72,10 @@ namespace RotA.Mono.Equipment
             {
                 if (Player.main.IsUnderwater())
                 {
-                    Utils.PlayFMODAsset(UnderWaterMissSound, transform);
+                    Utils.PlayFMODAsset(underWaterMissSound, transform);
                     return;
                 }
-                Utils.PlayFMODAsset(SurfaceMissSound, transform);
+                Utils.PlayFMODAsset(surfaceMissSound, transform);
             }
         }
         
@@ -86,7 +89,7 @@ namespace RotA.Mono.Equipment
             }
             if (harvestTypeFromTech == HarvestType.DamageAlive && wasAlive || harvestTypeFromTech == HarvestType.DamageDead && !isAlive)
             {
-                int cutBonus = 1;
+                int cutBonus = 1 + ResourceBonus;
                 if (harvestTypeFromTech == HarvestType.DamageAlive && !isAlive)
                 {
                     cutBonus += CraftData.GetHarvestFinalCutBonus(tt);
