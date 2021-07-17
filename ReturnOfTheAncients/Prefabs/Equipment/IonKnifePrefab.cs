@@ -65,6 +65,12 @@ namespace RotA.Prefabs.Equipment
                 var fpModel = prefab.EnsureComponent<FPModel>();
                 fpModel.propModel = prefab.SearchChild("WorldModel");
                 fpModel.viewModel = prefab.SearchChild("ViewModel");
+                
+                //fix position in hand
+                var viewModelChild = fpModel.viewModel.transform.GetChild(0);
+                viewModelChild.transform.localPosition = new Vector3(0.01f, 0.04f, 0f);
+                viewModelChild.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                viewModelChild.transform.localEulerAngles = new Vector3(0, 160, 0);
 
                 MaterialUtils.ApplySNShaders(prefab);
                 MaterialUtils.ApplyPrecursorMaterials(prefab, 6f);
