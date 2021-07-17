@@ -1,13 +1,10 @@
 ﻿using ArchitectsLibrary.Handlers;
-using ArchitectsLibrary.API;
 using ArchitectsLibrary.Utility;
-using RotA.Mono.Equipment;
-using RotA.Mono.VFX;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using SMLHelper.V2.Handlers;
 
 namespace RotA.Prefabs.Equipment
 {
@@ -16,6 +13,11 @@ namespace RotA.Prefabs.Equipment
         GameObject _cachedPrefab;
         public IonKnifePrefab() : base("IonKnife", "Ion Knife", "Ion knife that makes me go yes.")
         {
+            OnFinishedPatching += () =>
+            {
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("AlienUpgrade_Popup"));
+            };
         }
 
         List<TechType> compatibleTech => new List<TechType>() { TechType.PrecursorIonCrystal, AUHandler.OmegaCubeTechType, AUHandler.ElectricubeTechType, AUHandler.RedIonCubeTechType };
