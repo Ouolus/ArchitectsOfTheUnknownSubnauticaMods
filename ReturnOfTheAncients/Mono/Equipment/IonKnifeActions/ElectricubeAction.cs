@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RotA.Mono.Equipment.IonKnifeActions
 {
-    public class ElectricubeAction : IIonKnifeAction
+    public class ElectricubeAction : MonoBehaviour, IIonKnifeAction
     {
         public void Initialize(IonKnife ionKnife)
         {

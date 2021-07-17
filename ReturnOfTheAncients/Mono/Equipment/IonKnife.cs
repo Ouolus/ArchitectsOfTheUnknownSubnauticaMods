@@ -15,14 +15,14 @@ namespace RotA.Mono.Equipment
         
         public float AttackDistance { get; set; }
         
-        public FMODAsset AttackSound { get; set; }
-        
         public VFXEventTypes VfxEventType { get; set; }
+        
+        public FMODAsset AttackSound { get; set; }
 
         public FMODAsset UnderWaterMissSound { get; set; }
         
         public FMODAsset SurfaceMissSound { get; set; }
-        
+
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
         
@@ -140,13 +140,13 @@ namespace RotA.Mono.Equipment
 
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
-                _currentAction = new PrecursorIonCrystalAction();
+                _currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
             else if (tt == AUHandler.ElectricubeTechType)
-                _currentAction = new ElectricubeAction();
+                _currentAction = gameObject.EnsureComponent<ElectricubeAction>();
             else if (tt == AUHandler.RedIonCubeTechType)
-                _currentAction = new RedIonCubeAction();
+                _currentAction = gameObject.EnsureComponent<RedIonCubeAction>();
             else if (tt == AUHandler.OmegaCubeTechType)
-                _currentAction = new OmegaCubeAction();
+                _currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
             
             _currentAction?.Initialize(this);
         }
