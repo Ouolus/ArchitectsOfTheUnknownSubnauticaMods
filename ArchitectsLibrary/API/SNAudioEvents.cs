@@ -1066,7 +1066,7 @@ event:/sub_module/workbench/working
             public const string PDAIntroFirstUse = "event:/tools/pda/first_use";
             public const string PDAEpicNotification = "event:/tools/pda/new_biome";
             public const string PDAOpen = "event:/tools/pda/open";
-            public const string PDASelectButotn = "event:/tools/pda/select";
+            public const string PDASelectButton = "event:/tools/pda/select";
             public const string PDAUneqipGear = "event:/tools/pda/unequip_gear";
             public const string PipesBubbleLoop = "event:/tools/pipes/bubbles_loop";
             public const string FloatingAirPumpMotorLoop = "event:/tools/pipes/motor_loop";
