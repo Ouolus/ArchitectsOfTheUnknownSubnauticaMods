@@ -38,9 +38,9 @@ namespace RotA.Mono.Equipment
 
         void OnPoweredChanged(bool powered)
         {
-            if (!powered)
+            if (bladeObject.activeSelf != powered)
             {
-                bladeObject.SetActive(false);
+                bladeObject.SetActive(powered);
             }
         }
 
