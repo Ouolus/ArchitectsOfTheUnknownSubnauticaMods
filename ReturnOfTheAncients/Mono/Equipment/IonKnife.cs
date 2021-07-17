@@ -18,8 +18,6 @@ namespace RotA.Mono.Equipment
         
         public VFXEventTypes VfxEventType { get; set; }
         
-        public FMODAsset AttackSound { get; set; }
-
         public string IdleSoundPath
         {
             set
@@ -45,6 +43,8 @@ namespace RotA.Mono.Equipment
         private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
         private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
+
+        private FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
 
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
@@ -77,7 +77,7 @@ namespace RotA.Mono.Equipment
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
                         _currentAction.OnHit(this, lm);
                     }
-                    Utils.PlayFMODAsset(AttackSound, transform);
+                    Utils.PlayFMODAsset(hitSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
                     var euler = MainCameraControl.main.transform.eulerAngles + new Vector3(300f, 90f, 0f);
                     VFXSurfaceTypeManager.main.Play(vfxSurface, VfxEventType, position, Quaternion.Euler(euler), Player.main.transform);
