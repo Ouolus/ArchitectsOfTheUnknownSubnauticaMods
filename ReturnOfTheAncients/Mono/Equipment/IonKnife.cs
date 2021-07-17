@@ -46,6 +46,8 @@ namespace RotA.Mono.Equipment
 
         private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
 
+        private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
+
         private FMOD_StudioEventEmitter emitter;
 
         public override string animToolName => TechType.Knife.AsString(true);
@@ -144,6 +146,10 @@ namespace RotA.Mono.Equipment
             if (bladeObject.activeSelf != powered)
             {
                 bladeObject.SetActive(powered);
+                if (powered == true)
+                {
+                    Utils.PlayFMODAsset(bladeSpawnSound, transform);
+                }
             }
         }
 
