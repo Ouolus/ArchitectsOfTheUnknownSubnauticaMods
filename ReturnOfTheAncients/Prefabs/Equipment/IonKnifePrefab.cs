@@ -37,7 +37,7 @@ namespace RotA.Prefabs.Equipment
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.Knife, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1) } };
+            return new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.Knife, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1), new Ingredient(TechType.PrecursorIonCrystal, 1) } };
         }
 
         public override TechType RequiredForUnlock => Mod.warpMasterTech;
