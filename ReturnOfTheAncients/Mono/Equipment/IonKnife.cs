@@ -211,8 +211,6 @@ namespace RotA.Mono.Equipment
                 currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
 
             currentAction?.Initialize(this);
-
-            OnPoweredChanged(currentAction != null);
         }
     }
 }
