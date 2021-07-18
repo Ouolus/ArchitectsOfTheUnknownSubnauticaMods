@@ -137,6 +137,10 @@ namespace RotA.Mono.Equipment
             {
                 switchModeEmitter.Stop();
             }
+            if (currentAction != null && isDrawn)
+            {
+                currentAction.OnUpdate(this);
+            }
         }
 
         public override bool OnRightHandDown()
@@ -239,10 +243,6 @@ namespace RotA.Mono.Equipment
 
         void SetIonCubeType(TechType tt)
         {
-            if (currentAction != null)
-            {
-                currentAction.EndAction(this);
-            }
             currentAction = null;
 
             // add more if needed

@@ -5,11 +5,6 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : MonoBehaviour, IIonKnifeAction
     {
-        public void EndAction(IonKnife ionKnife)
-        {
-
-        }
-
         public void Initialize(IonKnife ionKnife)
         {
             ionKnife.Damage = new[] { 40f, 60f, 60f };
@@ -31,6 +26,11 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, transform);
             }
+        }
+
+        public void OnUpdate(IonKnife ionKnife)
+        {
+
         }
     }
 }

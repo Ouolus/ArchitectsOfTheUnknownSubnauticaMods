@@ -11,15 +11,16 @@ namespace RotA.Interfaces
         void Initialize(IonKnife ionKnife);
 
         /// <summary>
-        /// Called the moment this action is replaced by another.
-        /// </summary>
-        void EndAction(IonKnife ionKnife);
-
-        /// <summary>
         /// Called when the knife hits an object.
         /// </summary>
         /// <param name="ionKnife">Ion Knife instance.</param>
         /// <param name="hitLiveMixin">the hit LiveMixin component.</param>
         void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin);
+
+        /// <summary>
+        /// Called every frame when the knife is ACTIVE only
+        /// </summary>
+        /// <param name="ionKnife"></param>
+        void OnUpdate(IonKnife ionKnife);
     }
 }
