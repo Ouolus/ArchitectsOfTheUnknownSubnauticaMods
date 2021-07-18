@@ -53,6 +53,9 @@ namespace RotA.Mono.Equipment
         public override void Awake()
         {
             bladeRenderers = bladeObject.GetComponentsInChildren<Renderer>();
+            pointLight = gameObject.EnsureComponent<Light>();
+            pointLight.type = LightType.Point;
+            pointLight.enabled = false;
             base.Awake();
         }
 
@@ -176,11 +179,10 @@ namespace RotA.Mono.Equipment
 
         public void SetLightAppearance(Color color, float range, float intensity = 1f)
         {
-            pointLight = gameObject.EnsureComponent<Light>();
-            pointLight.type = LightType.Point;
             pointLight.intensity = intensity;
             pointLight.color = color;
             pointLight.range = range;
+            pointLight.enabled = true;
         }
 
         #region Event Initializations 
@@ -214,20 +216,18 @@ namespace RotA.Mono.Equipment
             if (powered)
             {
                 Utils.PlayFMODAsset(bladeSpawnSound, transform);
+                pointLight.enabled = true;
             }
             else
             {
                 PlaySwitchSound(null);
+                pointLight.enabled = false;
             }
         }
 
         void OnBatteryRemoved(InventoryItem _)
         {
-            if (currentAction != null)
-            {
-                currentAction.EndAction(this);
-            }
-            currentAction = null;
+            SetIonCubeType(TechType.None);
         }
 
         void OnBatteryAdded(InventoryItem item)
