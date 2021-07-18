@@ -18,22 +18,22 @@ namespace RotA.Mono.Equipment
 
         public VFXEventTypes VfxEventType { get; set; }
 
+        public int ResourceBonus { get; set; }
+        
+        public FMODAsset StrongHitFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
+        
+        public FMODAsset WarpFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+        
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
-
-        public int ResourceBonus { get; set; }
-
-        IIonKnifeAction _currentAction;
+        
+        private IIonKnifeAction currentAction;
 
         private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
         private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
 
         private FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
-
-        public FMODAsset StrongHitFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
-
-        public FMODAsset WarpFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
 
         private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
@@ -69,7 +69,7 @@ namespace RotA.Mono.Equipment
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        _currentAction.OnHit(this, lm);
+                        currentAction.OnHit(this, lm);
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
@@ -190,32 +190,31 @@ namespace RotA.Mono.Equipment
 
         void OnBatteryRemoved(InventoryItem _)
         {
-            _currentAction = null;
+            currentAction = null;
         }
-        #endregion
-        
-        // also an event initializer but it's useful to keep it unregioned :)
+
         void OnBatteryAdded(InventoryItem item)
         {
             var tt = item.item.GetTechType();
             SetIonCubeType(tt);
         }
+        #endregion
 
-        private void SetIonCubeType(TechType tt)
+        void SetIonCubeType(TechType tt)
         {
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
-                _currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
+                currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
             else if (tt == AUHandler.ElectricubeTechType)
-                _currentAction = gameObject.EnsureComponent<ElectricubeAction>();
+                currentAction = gameObject.EnsureComponent<ElectricubeAction>();
             else if (tt == AUHandler.RedIonCubeTechType)
-                _currentAction = gameObject.EnsureComponent<RedIonCubeAction>();
+                currentAction = gameObject.EnsureComponent<RedIonCubeAction>();
             else if (tt == AUHandler.OmegaCubeTechType)
-                _currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
+                currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
 
-            _currentAction?.Initialize(this);
+            currentAction?.Initialize(this);
 
-            OnPoweredChanged(_currentAction != null);
+            OnPoweredChanged(currentAction != null);
         }
     }
 }
