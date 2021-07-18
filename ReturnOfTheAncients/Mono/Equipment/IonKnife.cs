@@ -223,7 +223,7 @@ namespace RotA.Mono.Equipment
 
         void OnBatteryRemoved(InventoryItem _)
         {
-            if (currentAction is Object obj && obj != null)
+            if (currentAction != null)
             {
                 currentAction.EndAction(this);
             }
@@ -239,7 +239,7 @@ namespace RotA.Mono.Equipment
 
         void SetIonCubeType(TechType tt)
         {
-            if (currentAction is Object obj && obj != null)
+            if (currentAction != null)
             {
                 currentAction.EndAction(this);
             }
