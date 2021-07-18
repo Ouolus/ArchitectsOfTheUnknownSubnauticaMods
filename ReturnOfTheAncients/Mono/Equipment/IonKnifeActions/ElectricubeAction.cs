@@ -9,8 +9,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         private GameObject warpOutPrefab;
         private GameObject warpInPrefab;
-        private float maxWarpDistance = 20f;
-        private float maxDistanceFromTerrain = 2f;
+        private const float kMaxWarpDistance = 20f;
+        private const float kMaxDistanceFromTerrain = 2f;
 
         private void Awake()
         {
@@ -52,22 +52,22 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
             Ray ray = new Ray(lm.transform.position, Random.onUnitSphere);
             Vector3 warpPosition;
-            if (UWE.Utils.TraceForTerrain(ray, maxWarpDistance, out RaycastHit info))
+            if (UWE.Utils.TraceForTerrain(ray, kMaxWarpDistance, out RaycastHit info))
             {
-                warpPosition = info.point - (ray.direction * maxDistanceFromTerrain);
+                warpPosition = info.point - (ray.direction * kMaxDistanceFromTerrain);
             }
             else
             {
-                warpPosition = ray.origin + ray.GetPoint(maxWarpDistance - maxDistanceFromTerrain);
+                warpPosition = ray.origin + ray.GetPoint(kMaxWarpDistance - kMaxDistanceFromTerrain);
             }
 
             lm.transform.position = warpPosition;
 
-            var vfx = GameObject.Instantiate(warpOutPrefab);
+            var vfx = Instantiate(warpOutPrefab);
             vfx.transform.position = lm.transform.position;
             vfx.SetActive(true);
 
-            var vfx2 = GameObject.Instantiate(warpInPrefab);
+            var vfx2 = Instantiate(warpInPrefab);
             vfx2.transform.position = warpPosition;
             vfx2.SetActive(true);
         }

@@ -158,17 +158,17 @@ namespace RotA.Mono.Equipment
 
         void OnPoweredChanged(bool powered)
         {
-            if (bladeObject.activeSelf != powered)
+            if (bladeObject.activeSelf == powered) 
+                return;
+            
+            bladeObject.SetActive(powered);
+            if (powered)
             {
-                bladeObject.SetActive(powered);
-                if (powered)
-                {
-                    Utils.PlayFMODAsset(bladeSpawnSound, transform);
-                }
-                else
-                {
-                    PlaySwitchSound(null);
-                }
+                Utils.PlayFMODAsset(bladeSpawnSound, transform);
+            }
+            else
+            {
+                PlaySwitchSound(null);
             }
         }
 

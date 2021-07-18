@@ -1,5 +1,4 @@
 using RotA.Mono.Equipment;
-using UnityEngine;
 
 namespace RotA.Interfaces
 {
