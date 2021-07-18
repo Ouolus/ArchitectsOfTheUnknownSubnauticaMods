@@ -191,13 +191,10 @@ namespace RotA.Mono.Equipment
             energyMixin.onPoweredChanged += OnPoweredChanged;
             energyMixin.batterySlot.onAddItem += OnBatteryAdded;
             energyMixin.batterySlot.onRemoveItem += OnBatteryRemoved;
-            if (isInUse)
+            var currentBattery = energyMixin.batterySlot.storedItem;
+            if (currentBattery != null && currentBattery.item != null)
             {
-                var currentBattery = energyMixin.batterySlot.storedItem;
-                if (currentBattery != null && currentBattery.item != null)
-                {
-                    SetIonCubeType(currentBattery.item.GetTechType());
-                }
+                SetIonCubeType(currentBattery.item.GetTechType());
             }
             OnPoweredChanged(currentAction is not null);
         }
