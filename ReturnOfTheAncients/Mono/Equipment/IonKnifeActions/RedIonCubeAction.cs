@@ -35,7 +35,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (IonKnife.IsCreature(hitLiveMixin))
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, transform);
-                Player.main.liveMixin.AddHealth(7f);
+                Player.main.liveMixin.AddHealth(8f);
             }
         }
     }
