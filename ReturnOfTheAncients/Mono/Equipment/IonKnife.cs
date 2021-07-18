@@ -223,6 +223,10 @@ namespace RotA.Mono.Equipment
 
         void OnBatteryRemoved(InventoryItem _)
         {
+            if (currentAction is Object obj && obj != null)
+            {
+                currentAction.EndAction(this);
+            }
             currentAction = null;
         }
 
@@ -235,10 +239,11 @@ namespace RotA.Mono.Equipment
 
         void SetIonCubeType(TechType tt)
         {
-            if (currentAction is Object obj && obj != null) //checking if interfaces are null is weird
+            if (currentAction is Object obj && obj != null)
             {
                 currentAction.EndAction(this);
             }
+            currentAction = null;
 
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
