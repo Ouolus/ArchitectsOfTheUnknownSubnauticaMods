@@ -64,8 +64,6 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 warpPosition = ray.origin + ray.GetPoint(kMaxWarpDistance - kMaxDistanceFromTerrain);
             }
 
-            lm.transform.position = warpPosition;
-
             var vfx = Instantiate(warpOutPrefab);
             vfx.transform.position = lm.transform.position;
             vfx.SetActive(true);
@@ -73,6 +71,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             var vfx2 = Instantiate(warpInPrefab);
             vfx2.transform.position = warpPosition;
             vfx2.SetActive(true);
+
+            lm.transform.position = warpPosition;
         }
     }
 }
