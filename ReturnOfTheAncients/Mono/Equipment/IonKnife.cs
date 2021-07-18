@@ -146,6 +146,7 @@ namespace RotA.Mono.Equipment
             {
                 SetIonCubeType(currentBattery.item.GetTechType());
             }
+            OnPoweredChanged(currentAction is not null);
         }
 
         void OnDisable()
