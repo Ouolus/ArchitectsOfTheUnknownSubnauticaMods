@@ -13,7 +13,7 @@ namespace RotA.Prefabs.Equipment
     public class IonKnifePrefab : Equipable
     {
         GameObject _cachedPrefab;
-        public IonKnifePrefab() : base("IonKnife", "Ion Knife", "Ion knife that makes me go yes.")
+        public IonKnifePrefab() : base("IonKnife", "Ion Knife", "An upgrade to the standard Survival Knife, utilizing alien technology. Different variants of ion cubes can be fitted into the device, which all have varying effects on the device's function.")
         {
             OnFinishedPatching += () =>
             {
