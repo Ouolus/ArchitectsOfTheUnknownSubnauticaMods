@@ -20,22 +20,22 @@ namespace RotA.Mono.Equipment
 
         public int ResourceBonus { get; set; }
         
-        public FMODAsset StrongHitFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
+        public FMODAsset StrongHitFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
         
-        public FMODAsset WarpFishSound { get; private set; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+        public FMODAsset WarpFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
         
         // the blade object to disable when the knife is depleted
         public GameObject bladeObject;
         
         private IIonKnifeAction currentAction;
 
-        private FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
+        private readonly FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
-        private FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
+        private readonly FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
 
-        private FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
+        private readonly FMODAsset hitSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/heat_hit");
 
-        private FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
+        private readonly FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
