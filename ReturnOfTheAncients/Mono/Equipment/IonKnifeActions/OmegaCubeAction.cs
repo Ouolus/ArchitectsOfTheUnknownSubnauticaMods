@@ -13,7 +13,6 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
             ionKnife.ResourceBonus = 2;
-            // Omega pew pew
         }
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
