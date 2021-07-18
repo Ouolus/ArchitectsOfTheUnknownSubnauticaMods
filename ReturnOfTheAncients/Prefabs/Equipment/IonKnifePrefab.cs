@@ -40,8 +40,6 @@ namespace RotA.Prefabs.Equipment
             return new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.Knife, 1), new Ingredient(AUHandler.PrecursorAlloyIngotTechType, 1), new Ingredient(TechType.PrecursorIonCrystal, 1) } };
         }
 
-        public override TechType RequiredForUnlock => Mod.warpMasterTech;
-
         protected override Atlas.Sprite GetItemSprite()
         {
             return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("IonKnife_Icon"));
