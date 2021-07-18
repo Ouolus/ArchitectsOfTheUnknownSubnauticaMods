@@ -13,6 +13,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.PlaySwitchSound("event:/loot/prec_crystal_loop");
             ionKnife.VfxEventType = VFXEventTypes.knife;
             ionKnife.ResourceBonus = 0;
+
+            ionKnife.SetMaterialColors(new Color(.20f, .55f, .14f), new Color(.55f, .92f, .48f),
+                new Color(.39f, 1f, .20f), new Color(.28f, .96f, .16f));
         }
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
