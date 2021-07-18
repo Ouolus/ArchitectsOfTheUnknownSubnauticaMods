@@ -235,6 +235,11 @@ namespace RotA.Mono.Equipment
 
         void SetIonCubeType(TechType tt)
         {
+            if (currentAction is Object obj && obj != null) //checking if interfaces are null is weird
+            {
+                currentAction.EndAction(this);
+            }
+
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
                 currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();

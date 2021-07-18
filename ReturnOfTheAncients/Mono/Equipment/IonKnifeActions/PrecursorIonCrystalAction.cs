@@ -5,6 +5,11 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class PrecursorIonCrystalAction : MonoBehaviour, IIonKnifeAction
     {
+        public void EndAction(IonKnife ionKnife)
+        {
+
+        }
+
         public void Initialize(IonKnife ionKnife)
         {
             ionKnife.Damage = new[] { 25f, 25f };

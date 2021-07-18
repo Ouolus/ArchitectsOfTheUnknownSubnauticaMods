@@ -76,5 +76,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
             lm.transform.position = warpPosition;
         }
+
+        public void EndAction(IonKnife ionKnife)
+        {
+
+        }
     }
 }
