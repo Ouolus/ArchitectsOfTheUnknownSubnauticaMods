@@ -42,7 +42,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {
-                if (Random.value <= 0.25f)
+                if (Random.value <= 0.4f)
                 {
                     WarpRandom(ionKnife, hitLiveMixin);
                 }
