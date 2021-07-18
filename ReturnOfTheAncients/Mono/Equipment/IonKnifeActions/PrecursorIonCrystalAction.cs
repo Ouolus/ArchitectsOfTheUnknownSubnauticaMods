@@ -7,9 +7,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         public void Initialize(IonKnife ionKnife)
         {
-            ionKnife.Damage = new[] { 25f };
+            ionKnife.Damage = new[] { 25f, 25f };
             ionKnife.AttackDistance = 1.2f;
-            ionKnife.DamageType = new[] { DamageType.Normal };
+            ionKnife.DamageType = new[] { DamageType.Normal, DamageType.Electrical };
             ionKnife.PlaySwitchSound("event:/loot/prec_crystal_loop");
             ionKnife.VfxEventType = VFXEventTypes.knife;
             ionKnife.ResourceBonus = 0;
