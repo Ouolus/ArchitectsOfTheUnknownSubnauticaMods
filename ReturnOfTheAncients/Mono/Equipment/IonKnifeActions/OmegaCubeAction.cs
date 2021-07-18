@@ -17,7 +17,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
-            if (ionKnife.IsCreature(hitLiveMixin))
+            if (IonKnife.IsCreature(hitLiveMixin))
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, transform);
             }

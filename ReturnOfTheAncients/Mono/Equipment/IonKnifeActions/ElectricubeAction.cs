@@ -37,7 +37,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
-            if (ionKnife.IsCreature(hitLiveMixin))
+            if (IonKnife.IsCreature(hitLiveMixin))
             {
                 if (Random.value <= 0.25f)
                 {

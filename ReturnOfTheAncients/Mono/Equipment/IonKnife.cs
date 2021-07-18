@@ -1,5 +1,4 @@
-﻿using System;
-using ArchitectsLibrary.API;
+﻿using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using RotA.Interfaces;
 using RotA.Mono.Equipment.IonKnifeActions;
@@ -128,13 +127,12 @@ namespace RotA.Mono.Equipment
             return !energyMixin.IsDepleted();
         }
 
-        public bool IsCreature(LiveMixin lm)
+        public static bool IsCreature(LiveMixin lm)
         {
-            if (lm != null)
-            {
-                return lm.GetComponent<Creature>() != null;
-            }
-            return false;
+            if (!lm)
+                return false;
+            
+            return lm.GetComponent<Creature>() != null;
         }
 
         #region Event Initializations 
@@ -163,7 +161,7 @@ namespace RotA.Mono.Equipment
             if (bladeObject.activeSelf != powered)
             {
                 bladeObject.SetActive(powered);
-                if (powered == true)
+                if (powered)
                 {
                     Utils.PlayFMODAsset(bladeSpawnSound, transform);
                 }
