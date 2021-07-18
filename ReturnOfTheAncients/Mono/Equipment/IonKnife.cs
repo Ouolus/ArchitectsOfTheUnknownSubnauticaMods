@@ -174,6 +174,15 @@ namespace RotA.Mono.Equipment
             timeStopSwitchMode = Time.time + length;
         }
 
+        public void SetLightAppearance(Color color, float range, float intensity = 1f)
+        {
+            pointLight = gameObject.EnsureComponent<Light>();
+            pointLight.type = LightType.Point;
+            pointLight.intensity = intensity;
+            pointLight.color = color;
+            pointLight.range = range;
+        }
+
         #region Event Initializations 
         void OnEnable()
         {

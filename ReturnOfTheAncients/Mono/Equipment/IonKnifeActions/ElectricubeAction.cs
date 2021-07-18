@@ -36,6 +36,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             
             ionKnife.SetMaterialColors(new Color(.5f, 0f, 1f) * .7f, new Color(0f, 0f, .9f),
                 new Color(1f, 0f ,1f), new Color(0.5f, 0f, 0.5f));
+
+            ionKnife.SetLightAppearance(new Color(.5f, 0f, 1f), 6f);
         }
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
