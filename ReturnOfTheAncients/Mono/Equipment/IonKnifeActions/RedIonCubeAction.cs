@@ -35,7 +35,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (dmgPlayer && Time.time > timeDmgPlayerAgain)
             {
                 Player.main.liveMixin.TakeDamage(1f, transform.position, DamageType.Heat, gameObject);
-                timeDmgPlayerAgain = Time.time + 0.5f;
+                timeDmgPlayerAgain = Time.time + 1f;
             }
         }
 
