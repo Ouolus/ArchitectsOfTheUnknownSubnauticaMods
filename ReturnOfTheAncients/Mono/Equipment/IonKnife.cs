@@ -31,6 +31,8 @@ namespace RotA.Mono.Equipment
         private Renderer[] bladeRenderers;
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
+
+        private Light pointLight;
         
         private readonly FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
@@ -158,6 +160,20 @@ namespace RotA.Mono.Equipment
             return lm.GetComponent<Creature>() != null;
         }
 
+        public void PlaySwitchSound(string soundPath, float length = 2f)
+        {
+            if (string.IsNullOrEmpty(soundPath))
+            {
+                switchModeEmitter.Stop();
+                return;
+            }
+            switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
+            if (switchModeEmitter.playing) switchModeEmitter.Stop();
+            switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(soundPath));
+            switchModeEmitter.Play();
+            timeStopSwitchMode = Time.time + length;
+        }
+
         #region Event Initializations 
         void OnEnable()
         {
@@ -194,20 +210,6 @@ namespace RotA.Mono.Equipment
             {
                 PlaySwitchSound(null);
             }
-        }
-
-        public void PlaySwitchSound(string soundPath, float length = 2f)
-        {
-            if (string.IsNullOrEmpty(soundPath))
-            {
-                switchModeEmitter.Stop();
-                return;
-            }
-            switchModeEmitter = gameObject.EnsureComponent<FMOD_CustomLoopingEmitter>();
-            if (switchModeEmitter.playing) switchModeEmitter.Stop();
-            switchModeEmitter.SetAsset(SNAudioEvents.GetFmodAsset(soundPath));
-            switchModeEmitter.Play();
-            timeStopSwitchMode = Time.time + length;
         }
 
         void OnBatteryRemoved(InventoryItem _)
