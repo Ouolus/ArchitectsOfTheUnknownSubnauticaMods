@@ -28,6 +28,10 @@ namespace RotA.Mono.Equipment
         
         private IIonKnifeAction currentAction;
 
+        private Renderer[] bladeRenderers;
+
+        private FMOD_CustomLoopingEmitter switchModeEmitter;
+        
         private readonly FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
 
         private readonly FMODAsset surfaceMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing_surface");
@@ -36,11 +40,19 @@ namespace RotA.Mono.Equipment
 
         private readonly FMODAsset bladeSpawnSound = SNAudioEvents.GetFmodAsset("event:/env/prec_light_on_2");
 
-        private FMOD_CustomLoopingEmitter switchModeEmitter;
-
         private float timeStopSwitchMode;
+        
+        private static readonly int _detailsColor = Shader.PropertyToID("_DetailsColor");
+
+        private static readonly int _squaresColor = Shader.PropertyToID("_SquaresColor");
 
         public override string animToolName => TechType.Knife.AsString(true);
+
+        public override void Awake()
+        {
+            bladeRenderers = bladeObject.GetComponentsInChildren<Renderer>();
+            base.Awake();
+        }
 
         public override void OnToolUseAnim(GUIHand guiHand)
         {
@@ -125,6 +137,17 @@ namespace RotA.Mono.Equipment
         public override bool OnRightHandDown()
         {
             return !energyMixin.IsDepleted();
+        }
+
+        public void SetMaterialColors(Color color, Color specColor, Color detailsColor, Color squareColor)
+        {
+            foreach (var renderer in bladeRenderers)
+            {
+                renderer.material.SetColor(ShaderPropertyID._Color, color);
+                renderer.material.SetColor(ShaderPropertyID._SpecColor, specColor);
+                renderer.material.SetColor(_detailsColor, detailsColor);
+                renderer.material.SetColor(_squaresColor, squareColor);
+            }
         }
 
         public static bool IsCreature(LiveMixin lm)
