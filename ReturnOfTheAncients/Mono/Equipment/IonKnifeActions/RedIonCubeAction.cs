@@ -5,6 +5,15 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class RedIonCubeAction : MonoBehaviour, IIonKnifeAction
     {
+        bool dmgPlayer = false;
+
+        float timeDmgPlayerAgain;
+
+        public void EndAction(IonKnife ionKnife)
+        {
+            dmgPlayer = false;
+        }
+
         public void Initialize(IonKnife ionKnife)
         {
             ionKnife.Damage = new[] { 40f, 40f };
@@ -17,6 +26,17 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.SetMaterialColors(new Color(1f, 0.2f, 0f), new Color(1f, 0.2f, 0f), 
                 Color.red, new Color(0.5f, 0.5f, 0.5f));
             ionKnife.SetLightAppearance(new Color(1f, 0.2f, 0f), 8f);
+
+            dmgPlayer = true;
+        }
+
+        void Update()
+        {
+            if (dmgPlayer && Time.time > timeDmgPlayerAgain)
+            {
+                Player.main.liveMixin.TakeDamage(1f, transform.position, DamageType.Heat, gameObject);
+                timeDmgPlayerAgain = Time.time + 0.5f;
+            }
         }
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
