@@ -12,7 +12,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Normal, DamageType.Electrical };
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
-            ionKnife.ResourceBonus = 2;
+            ionKnife.ResourceBonus = 3;
 
             ionKnife.SetMaterialColors(new Color(.3f, .3f, .3f), Color.white,
                 new Color(1f, 2f, 1.25f), new Color(.5f, .5f, .5f));
