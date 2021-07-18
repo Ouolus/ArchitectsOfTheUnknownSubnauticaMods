@@ -28,7 +28,8 @@ namespace RotA.Mono.Equipment
         
         private IIonKnifeAction currentAction;
 
-        private Renderer[] bladeRenderers;
+        //blade renderers to be colored when a different ion cube type is selected
+        public Renderer[] bladeRenderers;
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
@@ -52,7 +53,6 @@ namespace RotA.Mono.Equipment
 
         public override void Awake()
         {
-            bladeRenderers = bladeObject.GetComponentsInChildren<Renderer>();
             pointLight = gameObject.EnsureComponent<Light>();
             pointLight.type = LightType.Point;
             pointLight.enabled = false;

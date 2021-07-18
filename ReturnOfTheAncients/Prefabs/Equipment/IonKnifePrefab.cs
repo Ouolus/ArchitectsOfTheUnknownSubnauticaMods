@@ -83,6 +83,7 @@ namespace RotA.Prefabs.Equipment
 
                 var tool = prefab.AddComponent<IonKnife>();
                 tool.bladeObject = fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").gameObject;
+                tool.bladeRenderers = new[] { fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").GetComponent<MeshRenderer>(), fpModel.propModel.transform.Find("IonKnifeV2/IonBlade-edge").GetComponent<MeshRenderer>() };
                 tool.ikAimRightArm = true;
                 tool.mainCollider = prefab.GetComponent<Collider>();
                 tool.drawSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.KnifeDeploy);
