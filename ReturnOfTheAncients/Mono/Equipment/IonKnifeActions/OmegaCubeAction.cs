@@ -13,6 +13,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
             ionKnife.ResourceBonus = 2;
+
+            ionKnife.SetMaterialColors(new Color(.3f, .3f, .3f), Color.white,
+                new Color(1f, 2f, 1.25f), new Color(.5f, .5f, .5f));
         }
 
         public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
