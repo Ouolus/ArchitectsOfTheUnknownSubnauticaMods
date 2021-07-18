@@ -226,6 +226,7 @@
     <Compile Include="Patches\Ping_Patches.cs" />
     <Compile Include="Patches\InspectOnFirstPickup_Patches.cs" />
     <Compile Include="Patches\StoryGoalCustomEventHandler_Patches.cs" />
+    <Compile Include="Patches\uGUI_ItemSelector_Patches.cs" />
     <Compile Include="Patches\uGUI_OptionPanel_Patches.cs" />
     <Compile Include="Patches\uSkyManager_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
