@@ -82,8 +82,8 @@ namespace RotA.Prefabs.Equipment
                 vfxFabricating.eulerOffset = new Vector3(90f, 90f, 0f);
 
                 var tool = prefab.AddComponent<IonKnife>();
-                tool.bladeObject = fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").gameObject;
-                tool.bladeRenderers = new[] { fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").GetComponent<MeshRenderer>(), fpModel.propModel.transform.Find("IonBlade-edge").GetComponent<MeshRenderer>() };
+                tool.bladeObjects = new[] { fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").gameObject, fpModel.propModel.transform.Find("IonBlade-edge").gameObject };
+                tool.bladeRenderers = new[] { fpModel.viewModel.transform.Find("IonKnifeV2/IonBlade-edge").GetComponent<Renderer>(), fpModel.propModel.transform.Find("IonBlade-edge").GetComponent<Renderer>() };
                 tool.ikAimRightArm = true;
                 tool.mainCollider = prefab.GetComponent<Collider>();
                 tool.drawSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.KnifeDeploy);

@@ -23,13 +23,14 @@ namespace RotA.Mono.Equipment
         
         public FMODAsset WarpFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
         
-        // the blade object to disable when the knife is depleted
-        public GameObject bladeObject;
+        // the blade objects to disable when the knife is depleted
+        public GameObject[] bladeObjects;
+        
+        // the blade renderers to be colored when a different ion cube type is selected
+        public Renderer[] bladeRenderers;
         
         private IIonKnifeAction currentAction;
 
-        // blade renderers to be colored when a different ion cube type is selected
-        public Renderer[] bladeRenderers;
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
@@ -213,10 +214,11 @@ namespace RotA.Mono.Equipment
 
         void OnPoweredChanged(bool powered)
         {
-            if (bladeObject.activeSelf == powered) 
+            if (bladeObjects[0].activeSelf == powered) 
                 return;
             
-            bladeObject.SetActive(powered);
+            SetBladeState(powered);
+            
             if (powered)
             {
                 Utils.PlayFMODAsset(bladeSpawnSound, transform);
@@ -254,6 +256,14 @@ namespace RotA.Mono.Equipment
                 currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
 
             OnInitialize();
+        }
+
+        void SetBladeState(bool state)
+        {
+            for (int i = 0; i < bladeObjects.Length; i++)
+            {
+                bladeObjects[i].SetActive(state);
+            }
         }
 
         void OnInitialize()
