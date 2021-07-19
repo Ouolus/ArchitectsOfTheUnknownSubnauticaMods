@@ -30,8 +30,7 @@ namespace RotA.Mono.Equipment
         public Renderer[] bladeRenderers;
         
         private IIonKnifeAction currentAction;
-
-
+        
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
         private Light pointLight;
