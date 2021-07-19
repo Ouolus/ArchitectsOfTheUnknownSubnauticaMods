@@ -28,7 +28,7 @@ namespace RotA.Mono.Equipment
         
         private IIonKnifeAction currentAction;
 
-        //blade renderers to be colored when a different ion cube type is selected
+        // blade renderers to be colored when a different ion cube type is selected
         public Renderer[] bladeRenderers;
 
         private FMOD_CustomLoopingEmitter switchModeEmitter;
