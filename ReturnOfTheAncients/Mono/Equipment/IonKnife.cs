@@ -53,10 +53,10 @@ namespace RotA.Mono.Equipment
 
         public override void Awake()
         {
+            base.Awake();
             pointLight = gameObject.EnsureComponent<Light>();
             pointLight.type = LightType.Point;
             pointLight.enabled = false;
-            base.Awake();
         }
 
         public override void OnToolUseAnim(GUIHand guiHand)
@@ -85,7 +85,7 @@ namespace RotA.Mono.Equipment
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        currentAction.OnHit(this, lm);
+                        OnHit(lm);
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
@@ -137,9 +137,9 @@ namespace RotA.Mono.Equipment
             {
                 switchModeEmitter.Stop();
             }
-            if (currentAction != null && isDrawn)
+            if (isDrawn)
             {
-                currentAction.OnUpdate(this);
+                OnUpdate();
             }
         }
 
@@ -231,7 +231,7 @@ namespace RotA.Mono.Equipment
 
         void OnBatteryRemoved(InventoryItem _)
         {
-            SetIonCubeType(TechType.None);
+            currentAction = null;
         }
 
         void OnBatteryAdded(InventoryItem item)
@@ -243,8 +243,6 @@ namespace RotA.Mono.Equipment
 
         void SetIonCubeType(TechType tt)
         {
-            currentAction = null;
-
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
                 currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
@@ -255,7 +253,25 @@ namespace RotA.Mono.Equipment
             else if (tt == AUHandler.OmegaCubeTechType)
                 currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
 
-            currentAction?.Initialize(this);
+            OnInitialize();
+        }
+
+        void OnInitialize()
+        {
+            if (currentAction != null)
+                currentAction.Initialize(this);
+        }
+
+        void OnUpdate()
+        {
+            if (currentAction != null)
+                currentAction.OnUpdate(this);
+        }
+
+        void OnHit(LiveMixin lm)
+        {
+            if (currentAction != null)
+                currentAction.OnHit(this, lm);
         }
     }
 }
