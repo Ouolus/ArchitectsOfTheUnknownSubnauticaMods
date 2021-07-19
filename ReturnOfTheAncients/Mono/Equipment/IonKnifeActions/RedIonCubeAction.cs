@@ -9,7 +9,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void Initialize(IonKnife ionKnife)
         {
-            ionKnife.Damage = new[] { 40f, 40f };
+            ionKnife.Damage = new[] { 40f, 80f };
             ionKnife.AttackDistance = 1.8f;
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Normal };
             ionKnife.PlaySwitchSound("event:/env/pink_artifact_loop");
