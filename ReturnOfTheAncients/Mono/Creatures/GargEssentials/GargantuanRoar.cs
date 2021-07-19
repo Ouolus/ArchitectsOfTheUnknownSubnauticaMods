@@ -90,11 +90,12 @@
 
         void DoDamage()
         {
+            return;
             float distance = Vector3.Distance(Player.main.transform.position, transform.position);
             if (distance < maxDamageDistance)
             {
                 float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
-                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * roarMaxDamagePerSecond, transform.position, DamageType.Cold, gameObject);
+                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * roarMaxDamagePerSecond, transform.position, DamageType.Normal, gameObject);
             }
         }
 
