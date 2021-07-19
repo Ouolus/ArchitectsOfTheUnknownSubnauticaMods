@@ -1,3 +1,4 @@
+using ArchitectsLibrary.API;
 using RotA.Interfaces;
 using UnityEngine;
 using System.Collections;
@@ -11,6 +12,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         private GameObject warpInPrefab;
         private const float kMaxWarpDistance = 20f;
         private const float kMaxDistanceFromTerrain = 2f;
+
+        private FMODAsset electricSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.AmpeelShock);
 
         private void Awake()
         {
@@ -47,6 +50,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 if (Random.value <= 0.4f)
                 {
                     WarpRandom(ionKnife, hitLiveMixin);
+                }
+                else
+                {
+                    Utils.PlayFMODAsset(electricSound, transform);
                 }
             }
         }
