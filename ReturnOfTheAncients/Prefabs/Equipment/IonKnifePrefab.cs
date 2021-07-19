@@ -18,7 +18,7 @@ namespace RotA.Prefabs.Equipment
             OnFinishedPatching += () =>
             {
                 KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
-                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("AlienUpgrade_Popup"));
+                    UnlockSprite: Mod.assetBundle.LoadAsset<Sprite>("IonKnife_Popup"));
             };
         }
 
