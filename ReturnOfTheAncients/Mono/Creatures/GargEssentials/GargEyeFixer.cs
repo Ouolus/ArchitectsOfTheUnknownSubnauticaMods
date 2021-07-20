@@ -9,7 +9,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 {
     public class GargEyeFixer : MonoBehaviour
     {
-        private Vector3 overrideScale = new Vector3(0.95f, 0.95f, 0.95f);
+        private Vector3 overrideScale = new Vector3(0.9f, 0.9f, 0.9f);
 
         void LateUpdate()
         {
