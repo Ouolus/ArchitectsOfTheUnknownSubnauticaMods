@@ -108,7 +108,8 @@ namespace RotA.Prefabs.Creatures
 
         public static void UpdateGargEyeMaterial(Material material)
         {
-            material.SetFloat("_SpecInt", 15f);
+            material.SetFloat("_Shininess", 6.5f);
+            material.SetFloat("_SpecInt", 50f);
             material.SetFloat("_GlowStrength", 0.70f);
             material.SetFloat("_GlowStrengthNight", 0.70f);
         }
