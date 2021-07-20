@@ -85,8 +85,8 @@ namespace RotA.Prefabs.Creatures
                 if (renderer.gameObject.name == "GargEyeGloss")
                 {
                     renderer.material.SetFloat("_Fresnel", 0f);
-                    renderer.material.SetFloat("_Shininess", 6f);
-                    renderer.material.SetFloat("_SpecInt", 10f);
+                    renderer.material.SetFloat("_Shininess", 8f);
+                    renderer.material.SetFloat("_SpecInt", 50f);
                 }
             }
         }
