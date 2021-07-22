@@ -22,6 +22,7 @@ namespace RotA.Mono
         private float timeStart;
         private FMODAsset splashSound;
         private bool initialized = false;
+        private Rigidbody wreckRb;
 
         private bool setTimeScaleLateUpdate = false;
         private float targetTimeScale;
@@ -45,9 +46,9 @@ namespace RotA.Mono
             splashSound.path = "event:/tools/constructor/sub_splash";
             defaultFarplane = FarplaneDistance;
             farplaneTarget = 20000f;
-            GameObject prefab = GetSunbeamGargPrefab();
+            GameObject gargPrefab = GetSunbeamGargPrefab();
             Vector3 spawnPos = doSecretCutscene ? positionInSpecialCutscene : position;
-            spawnedGarg = GameObject.Instantiate(prefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
+            spawnedGarg = GameObject.Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
             spawnedGarg.GetComponentInChildren<Animator>().SetBool("mouth_open", true);
@@ -59,6 +60,27 @@ namespace RotA.Mono
             {
                 StartCoroutine(WellBeRightBack());
             }
+            else
+            {
+                Invoke(nameof(SpawnWreckPrefab), 3f);
+            }
+        }
+
+        private void SpawnWreckPrefab()
+        {
+            GameObject prefab = GetSunbeamWreckPrefab();
+            var spawned = GameObject.Instantiate(prefab);
+            wreckRb = prefab.EnsureComponent<Rigidbody>();
+            spawned.SetActive(true);
+        }
+
+        public GameObject GetSunbeamWreckPrefab()
+        {
+            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
+            prefab.SetActive(false);
+            prefab.transform.localScale = Vector3.one;
+            MaterialUtils.ApplySNShaders(prefab);
+            return prefab;
         }
 
         private bool ShouldDoSecretCutscene()
