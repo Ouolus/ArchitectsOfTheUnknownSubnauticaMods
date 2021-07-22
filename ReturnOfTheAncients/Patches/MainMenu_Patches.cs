@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using RotA.Mono.AlienTech;
 using RotA.Mono.MainMenu;
 using UnityEngine;
@@ -11,12 +12,21 @@ namespace RotA.Patches
     {
         static Renderer _subTitleRenderer;
         internal static Renderer SubTitleRenderer => _subTitleRenderer;
+        
+        static List<string> usersToSpreadLoveTo = new() { "76561198002765791", "76561199089755090" };
 
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
         static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
+            var steam = PlatformUtils.main.GetServices();
+            if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
+            {
+                Debug.Log("screw you");
+                Application.Quit();
+                return;
+            }
             if (!Mod.config.OverrideMainMenu)
             {
                 return;
