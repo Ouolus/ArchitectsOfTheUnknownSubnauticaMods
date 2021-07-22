@@ -76,7 +76,7 @@ namespace RotA.Mono
 
         public GameObject GetSunbeamWreckPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
+            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamWreck_Prefab"));
             prefab.SetActive(false);
             prefab.transform.localScale = Vector3.one;
             MaterialUtils.ApplySNShaders(prefab);
