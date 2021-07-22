@@ -26,6 +26,7 @@ namespace RotA.Patches
                 QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error,
                     "Cannot load the mod due to steam not being initialized");
                 Application.Quit();
+                return;
             }
             
             if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
