@@ -15,7 +15,7 @@ namespace RotA.Mono.VFX
 
         float belowWaterGravity = 50;
 
-        Vector3 initialForce = new Vector3(-100f, 120f, -1000f);
+        Vector3 initialForce = new Vector3(-100f, 120f, -600f);
 
         float waterSurfaceLevel = 50f;
 
@@ -47,7 +47,7 @@ namespace RotA.Mono.VFX
                 velocity = new Vector3(0f, velocity.y, 0f);
             }
 
-            transform.Translate(velocity * Time.deltaTime);
+            transform.Translate(velocity * Time.deltaTime, Space.World);
         }
 
         void TouchWater()
