@@ -71,6 +71,7 @@ namespace RotA.Mono
             GameObject prefab = GetSunbeamWreckPrefab();
             var spawned = GameObject.Instantiate(prefab);
             wreckRb = prefab.EnsureComponent<Rigidbody>();
+            spawned.transform.position = new Vector3(1120, 4213, 4717);
             spawned.SetActive(true);
         }
 
