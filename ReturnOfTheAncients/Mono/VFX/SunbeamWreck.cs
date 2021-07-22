@@ -15,7 +15,7 @@ namespace RotA.Mono.VFX
 
         float belowWaterGravity = 50;
 
-        Vector3 initialForce = new Vector3(30f, 0f, -100);
+        Vector3 initialForce = new Vector3(-100f, 0f, -300f);
 
         float waterSurfaceLevel = 50f;
 
