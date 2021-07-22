@@ -22,7 +22,7 @@ namespace RotA.Mono
         private float timeStart;
         private FMODAsset splashSound;
         private bool initialized = false;
-        private Rigidbody wreckRb;
+        private SunbeamWreck wreck;
 
         private bool setTimeScaleLateUpdate = false;
         private float targetTimeScale;
@@ -70,9 +70,10 @@ namespace RotA.Mono
         {
             GameObject prefab = GetSunbeamWreckPrefab();
             var spawned = GameObject.Instantiate(prefab);
-            wreckRb = spawned.EnsureComponent<Rigidbody>();
+            wreck = spawned.EnsureComponent<SunbeamWreck>();
             spawned.transform.position = new Vector3(1120, 4213, 4717);
             spawned.transform.localScale = new Vector3(50f, 50f, 50f);
+            spawned.transform.localEulerAngles = new Vector3(0, 180, 0);
             spawned.SetActive(true);
         }
 
