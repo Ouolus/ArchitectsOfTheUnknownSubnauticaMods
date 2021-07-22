@@ -72,7 +72,7 @@ namespace RotA.Mono
             var spawned = GameObject.Instantiate(prefab);
             wreck = spawned.EnsureComponent<SunbeamWreck>();
             spawned.transform.position = new Vector3(1120, 4213, 4717);
-            spawned.transform.localScale = new Vector3(50f, 50f, 50f);
+            spawned.transform.localScale = new Vector3(25f, 25f, 25f);
             spawned.transform.localEulerAngles = new Vector3(0, 180, 0);
             spawned.SetActive(true);
         }
