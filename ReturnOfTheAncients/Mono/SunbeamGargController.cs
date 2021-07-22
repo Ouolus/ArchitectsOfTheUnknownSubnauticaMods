@@ -62,7 +62,7 @@ namespace RotA.Mono
             }
             else
             {
-                Invoke(nameof(SpawnWreckPrefab), 6.5f);
+                Invoke(nameof(SpawnWreckPrefab), 7.2f);
             }
         }
 
