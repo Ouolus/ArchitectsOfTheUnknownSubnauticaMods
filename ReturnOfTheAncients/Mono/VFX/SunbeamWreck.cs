@@ -11,9 +11,9 @@ namespace RotA.Mono.VFX
     {
         Vector3 velocity;
 
-        float aboveWaterGravity = -150;
+        float aboveWaterGravity = -300;
 
-        float belowWaterGravity = 150;
+        float belowWaterGravity = 500;
 
         Vector3 initialForce = new Vector3(30f, 0f, -100);
 
