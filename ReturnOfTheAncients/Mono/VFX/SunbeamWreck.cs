@@ -47,10 +47,6 @@ namespace RotA.Mono.VFX
                 velocity = new Vector3(0f, velocity.y, 0f);
             }
 
-            if (!hasTouchedWater)
-            {
-                TouchWater();
-            }
             transform.Translate(velocity * Time.deltaTime);
         }
 
