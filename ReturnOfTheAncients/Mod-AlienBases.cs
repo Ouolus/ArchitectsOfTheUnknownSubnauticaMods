@@ -284,7 +284,7 @@ namespace RotA
             devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "Slendy Playz", new Color(0.8f, 0.8f, 0.8f));
             devTerminalSlendyPlayz.Patch();
 
-            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0.2f, 0f));
+            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0f, 0f));
             devTerminalTori.Patch();
         }
 
