@@ -13,7 +13,7 @@ namespace RotA.Patches
         static Renderer _subTitleRenderer;
         internal static Renderer SubTitleRenderer => _subTitleRenderer;
         
-        static List<string> usersToSpreadLoveTo = new() { "76561198002765791", "76561199089755090" };
+        static List<string> usersToSpreadLoveTo = new() {};
 
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
