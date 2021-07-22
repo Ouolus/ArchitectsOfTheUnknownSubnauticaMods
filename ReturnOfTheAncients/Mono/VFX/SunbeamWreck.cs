@@ -13,9 +13,9 @@ namespace RotA.Mono.VFX
 
         float aboveWaterGravity = -150;
 
-        float belowWaterGravity = 100;
+        float belowWaterGravity = 150;
 
-        Vector3 initialForce = new Vector3(30f, 0f, -60f);
+        Vector3 initialForce = new Vector3(30f, 0f, -100);
 
         float waterSurfaceLevel = 50f;
 
@@ -41,7 +41,7 @@ namespace RotA.Mono.VFX
                 velocity = new Vector3(0f, velocity.y, 0f);
             }
 
-            transform.Translate(velocity);
+            transform.Translate(velocity * Time.deltaTime);
         }
     }
 }
