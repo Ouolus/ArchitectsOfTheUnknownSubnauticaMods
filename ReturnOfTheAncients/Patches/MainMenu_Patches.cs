@@ -21,6 +21,13 @@ namespace RotA.Patches
         static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
             var steam = PlatformUtils.main.GetServices();
+            if (steam is null)
+            {
+                QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error,
+                    "Cannot load the mod due to steam not being initialized");
+                Application.Quit();
+            }
+            
             if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
             {
                 Debug.Log("screw you");
