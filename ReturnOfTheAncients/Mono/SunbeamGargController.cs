@@ -54,7 +54,7 @@ namespace RotA.Mono
             spawnedGarg.GetComponentInChildren<Animator>().SetBool("mouth_open", true);
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
-            Invoke(nameof(Splash), 10f);
+            //Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
             if (doSecretCutscene)
             {
@@ -70,8 +70,9 @@ namespace RotA.Mono
         {
             GameObject prefab = GetSunbeamWreckPrefab();
             var spawned = GameObject.Instantiate(prefab);
-            wreckRb = prefab.EnsureComponent<Rigidbody>();
+            wreckRb = spawned.EnsureComponent<Rigidbody>();
             spawned.transform.position = new Vector3(1120, 4213, 4717);
+            spawned.transform.localScale = new Vector3(50f, 50f, 50f);
             spawned.SetActive(true);
         }
 
