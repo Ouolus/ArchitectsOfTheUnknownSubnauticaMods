@@ -101,7 +101,7 @@
         [QModPatch]
         public static void Patch()
         {
-            var steam = PlatformUtils.main.GetServices();
+            var steam = PlatformUtils.GetServices();
             if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
             {
                 Debug.Log("screw you");
