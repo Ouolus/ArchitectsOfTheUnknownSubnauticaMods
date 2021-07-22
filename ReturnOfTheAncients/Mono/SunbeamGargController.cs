@@ -13,7 +13,7 @@ namespace RotA.Mono
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 position = new Vector3(945f, 0f, 3000);
-        public Vector3 positionInSpecialCutscene = new Vector3(420f, 0f, 3100f);
+        public Vector3 positionInSpecialCutscene = new Vector3(374, 50, 3100f);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
