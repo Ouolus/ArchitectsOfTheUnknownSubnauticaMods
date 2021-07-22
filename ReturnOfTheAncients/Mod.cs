@@ -96,19 +96,9 @@
         public static string omegaTerminalInteract = "OmegaTerminalInteract";
         public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
         
-        static List<string> usersToSpreadLoveTo = new() { "76561198002765791", "76561199089755090" };
-        
         [QModPatch]
         public static void Patch()
         {
-            var steam = PlatformUtils.GetServices();
-            if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
-            {
-                Debug.Log("screw you");
-                Application.Quit();
-                return;
-            }
-        
             assetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), assetBundleName);
             ECCAudio.RegisterClips(assetBundle);
 
