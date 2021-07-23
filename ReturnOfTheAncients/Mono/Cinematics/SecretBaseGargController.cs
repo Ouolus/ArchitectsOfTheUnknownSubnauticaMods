@@ -21,9 +21,20 @@ namespace RotA.Mono.Cinematics
         {
             PlayCreakSFX();
             yield return new WaitForSeconds(3f);
-            SpawnGarg();
-            yield return new WaitForSeconds(33f);
+            SpawnGarg(); //garg animation lasts 33 seconds roughly
+            yield return new WaitForSeconds(10f);
+            PlayDistantRoarSFX();
+            yield return new WaitForSeconds(10f);
             Floodlights();
+        }
+
+        void PlayDistantRoarSFX()
+        {
+            AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
+            source.volume = ECCHelpers.GetECCVolume();
+            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("garg_for_anth_distant-004");
+            source.Play();
+            Destroy(source.gameObject, 21f);
         }
 
         void PlayCreakSFX()
@@ -38,7 +49,7 @@ namespace RotA.Mono.Cinematics
         void SpawnGarg()
         {
             currentGarg = SpawnGargPrefab();
-            currentGarg.transform.position = new Vector3(1488, -1990f, -70f);
+            currentGarg.transform.position = new Vector3(1470, -2000f, -80f);
             currentGarg.transform.eulerAngles = new Vector3(0, 90, 0);
             growlAudio = currentGarg.SearchChild("Head").AddComponent<AudioSource>();
             growlAudio.volume = ECCHelpers.GetECCVolume();
@@ -52,8 +63,8 @@ namespace RotA.Mono.Cinematics
         void Floodlights()
         {
             Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), Player.main.transform.position);
-            SpawnLight(new Vector3(1500f, -1980f, -59f));
-            SpawnLight(new Vector3(1500f, -2010f, -59f));
+            SpawnLight(new Vector3(1500f, -1980f, -60f));
+            SpawnLight(new Vector3(1500f, -2010f, -60f));
         }
 
         void SpawnLight(Vector3 pos)
@@ -66,7 +77,7 @@ namespace RotA.Mono.Cinematics
             l.range = 60f;
             l.type = LightType.Point;
             l.shadows = LightShadows.Hard;
-            Destroy(lightObj, 8f);
+            Destroy(lightObj, 60f);
         }
 
         public GameObject SpawnGargPrefab()
@@ -74,6 +85,7 @@ namespace RotA.Mono.Cinematics
             GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SecretBaseGarg_Prefab"));
             prefab.SetActive(false);
             prefab.transform.localScale = Vector3.one;
+            prefab.transform.GetChild(0).localScale = new Vector3(2f, 2f, 2f);
             MaterialUtils.ApplySNShaders(prefab);
             foreach(var renderer in prefab.GetComponentsInChildren<Renderer>())
             {
@@ -81,8 +93,6 @@ namespace RotA.Mono.Cinematics
                 {
                     foreach (Material material in renderer.materials)
                     {
-                        material.SetFloat("_GlowStrength", 0f);
-                        material.SetFloat("_GlowStrengthNight", 0f);
                         material.SetFloat("_SpecInt", 0f);
                     }
                 }
