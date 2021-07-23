@@ -18,9 +18,20 @@ namespace RotA.Mono.Cinematics
 
         IEnumerator Start()
         {
+            PlayCreakSFX();
+            yield return new WaitForSeconds(3f);
             SpawnGarg();
             yield return new WaitForSeconds(31f);
             StartCoroutine(Floodlights());
+        }
+
+        void PlayCreakSFX()
+        {
+            AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
+            source.volume = ECCHelpers.GetECCVolume();
+            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("Creaking1");
+            source.Play();
+            Destroy(source.gameObject, 11f);
         }
 
         void SpawnGarg()
@@ -43,7 +54,7 @@ namespace RotA.Mono.Cinematics
             GameObject lightObj = new GameObject();
             lightObj.transform.position = new Vector3(1500f, -2000f, -50f);
             var l = lightObj.AddComponent<Light>();
-            l.color = Color.white;
+            l.color = Color.green;
             l.intensity = 2f;
             l.range = 40f;
             l.type = LightType.Point;
@@ -57,6 +68,17 @@ namespace RotA.Mono.Cinematics
             prefab.SetActive(false);
             prefab.transform.localScale = Vector3.one;
             MaterialUtils.ApplySNShaders(prefab);
+            foreach(var renderer in prefab.GetComponentsInChildren<Renderer>())
+            {
+                if (renderer.gameObject.name != "Gargantuan.002")
+                {
+                    foreach (Material material in renderer.materials)
+                    {
+                        material.SetFloat("_GlowStrength", 0f);
+                        material.SetFloat("_GlowStrengthNight", 0f);
+                    }
+                }
+            }
             BehaviourLOD lod = prefab.EnsureComponent<BehaviourLOD>();
             lod.veryCloseThreshold = 5000f;
             lod.closeThreshold = 7500f;
