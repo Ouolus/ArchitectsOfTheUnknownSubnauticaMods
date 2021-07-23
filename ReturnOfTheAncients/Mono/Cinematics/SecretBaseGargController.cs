@@ -23,7 +23,7 @@ namespace RotA.Mono.Cinematics
             yield return new WaitForSeconds(3f);
             SpawnGarg();
             yield return new WaitForSeconds(28f);
-            StartCoroutine(Floodlights());
+            Floodlights();
         }
 
         void PlayCreakSFX()
@@ -38,7 +38,7 @@ namespace RotA.Mono.Cinematics
         void SpawnGarg()
         {
             currentGarg = SpawnGargPrefab();
-            currentGarg.transform.position = new Vector3(1488, -1990f, -80f);
+            currentGarg.transform.position = new Vector3(1488, -1990f, -70f);
             currentGarg.transform.eulerAngles = new Vector3(0, 90, 0);
             growlAudio = currentGarg.SearchChild("Head").AddComponent<AudioSource>();
             growlAudio.volume = ECCHelpers.GetECCVolume();
@@ -49,10 +49,9 @@ namespace RotA.Mono.Cinematics
             growlAudio.Play();
         }
 
-        IEnumerator Floodlights()
+        void Floodlights()
         {
             Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), Player.main.transform.position);
-            yield return new WaitForSeconds(5f);
             SpawnLight(new Vector3(1500f, -1980f, -59f));
             SpawnLight(new Vector3(1500f, -2010f, -59f));
         }
@@ -67,7 +66,7 @@ namespace RotA.Mono.Cinematics
             l.range = 60f;
             l.type = LightType.Point;
             l.shadows = LightShadows.Hard;
-            Destroy(lightObj, 5f);
+            Destroy(lightObj, 8f);
         }
 
         public GameObject SpawnGargPrefab()
