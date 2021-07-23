@@ -22,7 +22,7 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX();
             yield return new WaitForSeconds(3f);
             SpawnGarg();
-            yield return new WaitForSeconds(28f);
+            yield return new WaitForSeconds(30f);
             Floodlights();
         }
 
