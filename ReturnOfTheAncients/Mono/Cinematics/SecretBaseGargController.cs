@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,23 +7,45 @@ using UnityEngine;
 using RotA.Prefabs.Creatures;
 using ECCLibrary;
 using ArchitectsLibrary.Utility;
+using ArchitectsLibrary.API;
     
 namespace RotA.Mono.Cinematics
 {
     public class SecretBaseGargController : MonoBehaviour
     {
         GameObject currentGarg;
+        AudioSource growlAudio;
 
-        void Start()
+        IEnumerator Start()
         {
             SpawnGarg();
+            yield return new WaitForSeconds(31f);
+            StartCoroutine(Floodlights());
         }
 
         void SpawnGarg()
         {
             currentGarg = SpawnGargPrefab();
-            currentGarg.transform.position = new Vector3(1500f, -2000f, 0f);
-            currentGarg.transform.eulerAngles = Vector3.zero;
+            currentGarg.transform.position = new Vector3(1488, -2000f, -80f);
+            currentGarg.transform.eulerAngles = new Vector3(0, 90, 0);
+            growlAudio = currentGarg.SearchChild("Head").AddComponent<AudioSource>();
+            growlAudio.volume = ECCHelpers.GetECCVolume();
+            growlAudio.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargPresence");
+            growlAudio.Play();
+        }
+
+        IEnumerator Floodlights()
+        {
+            SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on");
+            GameObject lightObj = new GameObject();
+            lightObj.transform.position = new Vector3(1500f, -2000f, -50f);
+            var l = lightObj.AddComponent<Light>();
+            l.color = Color.white;
+            l.intensity = 2f;
+            l.range = 40f;
+            l.type = LightType.Point;
+            yield return new WaitForSeconds(5f);
+            Destroy(lightObj);
         }
 
         public GameObject SpawnGargPrefab()
