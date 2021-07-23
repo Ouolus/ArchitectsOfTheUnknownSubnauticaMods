@@ -31,12 +31,14 @@ namespace RotA.Mono.Cinematics
             growlAudio = currentGarg.SearchChild("Head").AddComponent<AudioSource>();
             growlAudio.volume = ECCHelpers.GetECCVolume();
             growlAudio.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargPresence");
+            growlAudio.spatialBlend = 1f;
+            growlAudio.maxDistance = 100f;
             growlAudio.Play();
         }
 
         IEnumerator Floodlights()
         {
-            SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on");
+            Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), transform.position);
             GameObject lightObj = new GameObject();
             lightObj.transform.position = new Vector3(1500f, -2000f, -50f);
             var l = lightObj.AddComponent<Light>();
