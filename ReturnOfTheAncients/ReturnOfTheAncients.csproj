@@ -169,6 +169,7 @@
     <Compile Include="Mono\AlienTech\SignalPingVoiceLine.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
+    <Compile Include="Mono\Cinematics\SecretBaseGargController.cs" />
     <Compile Include="Mono\Commands\SecretCommand.cs" />
     <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
     <Compile Include="Mono\Commands\TrollVoice.cs" />
