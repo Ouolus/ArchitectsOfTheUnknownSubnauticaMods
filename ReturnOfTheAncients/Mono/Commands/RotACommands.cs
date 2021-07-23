@@ -10,11 +10,17 @@ namespace RotA.Mono.Commands
         {
             DevConsole.RegisterConsoleCommand(this, "togglecinematic", false, true);
             DevConsole.RegisterConsoleCommand(this, "sunbeamgarg", false, true);
+            DevConsole.RegisterConsoleCommand(this, "secretbasecutscene", false, true);
         }
 
         private void OnConsoleCommand_sunbeamgarg(NotificationCenter.Notification n)
         {
             new GameObject("SunbeamGargController").AddComponent<SunbeamGargController>();
+        }
+
+        private void OnConsoleCommand_secretbasecutscene(NotificationCenter.Notification n)
+        {
+            new GameObject("SecretBaseGargController").AddComponent<SecretBaseGargController>();
         }
 
         private void OnConsoleCommand_togglecinematic(NotificationCenter.Notification n)
