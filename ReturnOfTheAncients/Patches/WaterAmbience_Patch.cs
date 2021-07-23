@@ -42,12 +42,12 @@ namespace RotA.Patches
                 temperature = 5f,
                 scattering = 0.25f
             };
-            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[6]);
+            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[22]);
         }
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.GetBiomeIndex))]
-        public static void WaterBiomeManager_GetBiomeIndex_Postfix(WaterBiomeManager __instance, string name, ref int __result)
+        public static void WaterBiomeManager_GetBiomeIndex_Postfix(ref int __result)
         {
             if (__result == -1)
             {
