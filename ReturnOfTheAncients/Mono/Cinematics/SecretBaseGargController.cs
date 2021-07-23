@@ -37,7 +37,7 @@ namespace RotA.Mono.Cinematics
         void SpawnGarg()
         {
             currentGarg = SpawnGargPrefab();
-            currentGarg.transform.position = new Vector3(1488, -2000f, -80f);
+            currentGarg.transform.position = new Vector3(1488, -1990f, -80f);
             currentGarg.transform.eulerAngles = new Vector3(0, 90, 0);
             growlAudio = currentGarg.SearchChild("Head").AddComponent<AudioSource>();
             growlAudio.volume = ECCHelpers.GetECCVolume();
@@ -51,15 +51,22 @@ namespace RotA.Mono.Cinematics
         IEnumerator Floodlights()
         {
             Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), transform.position);
+            yield return new WaitForSeconds(5f);
+            SpawnLight(new Vector3(1500f, -1980f, -59f));
+            SpawnLight(new Vector3(1500f, -2010f, -59f));
+        }
+
+        void SpawnLight(Vector3 pos)
+        {
             GameObject lightObj = new GameObject();
-            lightObj.transform.position = new Vector3(1500f, -2000f, -50f);
+            lightObj.transform.position = new Vector3(1500f, -1980f, -55f);
             var l = lightObj.AddComponent<Light>();
             l.color = Color.green;
             l.intensity = 2f;
-            l.range = 40f;
+            l.range = 60f;
             l.type = LightType.Point;
-            yield return new WaitForSeconds(5f);
-            Destroy(lightObj);
+            l.shadows = LightShadows.Hard;
+            Destroy(lightObj, 5f);
         }
 
         public GameObject SpawnGargPrefab()
@@ -76,6 +83,7 @@ namespace RotA.Mono.Cinematics
                     {
                         material.SetFloat("_GlowStrength", 0f);
                         material.SetFloat("_GlowStrengthNight", 0f);
+                        material.SetFloat("_SpecInt", 0f);
                     }
                 }
             }
