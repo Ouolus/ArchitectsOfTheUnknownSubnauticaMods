@@ -12,12 +12,25 @@ namespace RotA.Mono.Cinematics
 {
     public class SecretBaseGargController : MonoBehaviour
     {
-        public GameObject GetGargPrefab()
+        GameObject currentGarg;
+
+        void Start()
+        {
+            SpawnGarg();
+        }
+
+        void SpawnGarg()
+        {
+            currentGarg = SpawnGargPrefab();
+            currentGarg.transform.position = new Vector3(1500f, -2000f, 0f);
+            currentGarg.transform.eulerAngles = Vector3.zero;
+        }
+
+        public GameObject SpawnGargPrefab()
         {
             GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SecretBaseGarg_Prefab"));
             prefab.SetActive(false);
-            prefab.transform.forward = Vector3.up;
-            prefab.transform.localScale = Vector3.one * 5.5f;
+            prefab.transform.localScale = Vector3.one;
             MaterialUtils.ApplySNShaders(prefab);
             BehaviourLOD lod = prefab.EnsureComponent<BehaviourLOD>();
             lod.veryCloseThreshold = 5000f;
@@ -48,6 +61,7 @@ namespace RotA.Mono.Cinematics
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
             FixRotationMultipliers(CreateTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
+            prefab.SetActive(true);
             return prefab;
         }
 
