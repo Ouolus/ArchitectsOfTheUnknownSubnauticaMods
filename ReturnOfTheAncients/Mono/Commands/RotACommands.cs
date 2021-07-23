@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RotA.Mono.Commands
 {
-    public class SecretCommand : MonoBehaviour
+    public class RotACommands : MonoBehaviour
     {
         void Start()
         {

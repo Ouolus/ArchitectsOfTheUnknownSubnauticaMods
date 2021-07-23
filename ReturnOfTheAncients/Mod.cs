@@ -225,7 +225,7 @@
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
 
-            var gargSecretCommand = new SecretCommandInitializer();
+            var gargSecretCommand = new CommandInitializer();
             gargSecretCommand.Patch();
 
             var miscInitializers = new MiscInitializers();

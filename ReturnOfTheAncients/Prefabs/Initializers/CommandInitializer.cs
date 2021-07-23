@@ -7,10 +7,10 @@ using UWE;
 
 namespace RotA.Prefabs.Initializers
 {
-    public class SecretCommandInitializer : Spawnable
+    public class CommandInitializer : Spawnable
     {
-        public SecretCommandInitializer()
-    : base("GargSecretCommandInitializer", ".", ".")
+        public CommandInitializer()
+    : base("RotACommandInitializer", ".", ".")
         {
         }
 
@@ -20,7 +20,7 @@ namespace RotA.Prefabs.Initializers
             cellLevel = LargeWorldEntity.CellLevel.Global,
             localScale = Vector3.one,
             slotType = EntitySlot.Type.Creature,
-            techType = this.TechType
+            techType = TechType
         };
 
         public override List<SpawnLocation> CoordinatedSpawns => new()
@@ -31,7 +31,7 @@ namespace RotA.Prefabs.Initializers
         public override GameObject GetGameObject()
         {
             GameObject obj = new GameObject();
-            obj.EnsureComponent<SecretCommand>();
+            obj.EnsureComponent<RotACommands>();
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             obj.SetActive(true);
