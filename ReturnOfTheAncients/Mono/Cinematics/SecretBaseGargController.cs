@@ -19,12 +19,12 @@ namespace RotA.Mono.Cinematics
 
         IEnumerator Start()
         {
-            PlayCreakSFX();
+            PlayCreakSFX("Creaking1");
             yield return new WaitForSeconds(3f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
-            yield return new WaitForSeconds(5f);
-            PlayDistantRoarSFX();
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(8f);
+            PlayCreakSFX("Creaking3");
+            yield return new WaitForSeconds(12f);
             Floodlights();
             yield return new WaitForSeconds(13f);
             PlayCloseRoarSFX();
@@ -39,20 +39,12 @@ namespace RotA.Mono.Cinematics
             Destroy(source.gameObject, 21f);
         }
 
-        void PlayDistantRoarSFX()
-        {
-            AudioSource source = new GameObject("RoarSource").AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume() * 0.5f;
-            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("garg_for_anth_distant-004");
-            source.Play();
-            Destroy(source.gameObject, 21f);
-        }
 
-        void PlayCreakSFX()
+        void PlayCreakSFX(string clipName)
         {
             AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume();
-            source.clip = Mod.assetBundle.LoadAsset<AudioClip>("Creaking1");
+            source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
             source.Play();
             Destroy(source.gameObject, 11f);
         }
@@ -109,9 +101,9 @@ namespace RotA.Mono.Cinematics
                 }
             }
             BehaviourLOD lod = prefab.EnsureComponent<BehaviourLOD>();
-            lod.veryCloseThreshold = 5000f;
-            lod.closeThreshold = 7500f;
-            lod.farThreshold = 10000f;
+            lod.veryCloseThreshold = 9999997;
+            lod.closeThreshold = 9999998;
+            lod.farThreshold = 9999999;
             List<Transform> spines = new List<Transform>();
             GameObject currentSpine = prefab.SearchChild("Spine");
             while (currentSpine != null)
@@ -155,7 +147,7 @@ namespace RotA.Mono.Cinematics
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 4.5f;
+            trail.segmentSnapSpeed = 0.075f / 2f;
             trail.maxSegmentOffset = 700f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
