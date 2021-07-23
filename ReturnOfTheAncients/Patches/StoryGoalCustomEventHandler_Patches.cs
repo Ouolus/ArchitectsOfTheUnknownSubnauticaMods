@@ -1,6 +1,6 @@
 using ECCLibrary;
 using HarmonyLib;
-using RotA.Mono;
+using RotA.Mono.Cinematics;
 using Story;
 using System.Collections;
 using System.Collections.Generic;

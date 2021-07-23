@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace RotA.Mono
+namespace RotA.Mono.Cinematics
 {
     public class SunbeamGargController : MonoBehaviour
     {
