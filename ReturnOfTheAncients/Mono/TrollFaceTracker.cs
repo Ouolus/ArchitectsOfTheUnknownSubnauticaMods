@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RotA.Mono.Commands
+namespace RotA.Mono
 {
     public class TrollFaceTracker : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using ECCLibrary;
 using UnityEngine;
 
-namespace RotA.Mono.Commands
+namespace RotA.Mono
 {
     public class TrollVoice : MonoBehaviour
     {

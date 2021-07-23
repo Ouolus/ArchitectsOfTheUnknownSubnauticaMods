@@ -1,29 +1,29 @@
-﻿using RotA.Mono.Creatures.GargEssentials;
-using RotA.Mono.Cinematics;
-using UnityEngine;
-
-namespace RotA.Mono.Commands
+namespace RotA.Commands
 {
-    public class RotACommands : MonoBehaviour
+    using Mono;
+    using Mono.Creatures.GargEssentials;
+    using Mono.Cinematics;
+    using SMLHelper.V2.Commands;
+    using UnityEngine;
+    
+    public static class RotACommands
     {
-        void Start()
-        {
-            DevConsole.RegisterConsoleCommand(this, "togglecinematic", false, true);
-            DevConsole.RegisterConsoleCommand(this, "sunbeamgarg", false, true);
-            DevConsole.RegisterConsoleCommand(this, "secretbasecutscene", false, true);
-        }
-
-        private void OnConsoleCommand_sunbeamgarg(NotificationCenter.Notification n)
+        // commands must be public and static
+        
+        [ConsoleCommand("sunbeamgarg")]
+        public static void SunbeamGarg()
         {
             new GameObject("SunbeamGargController").AddComponent<SunbeamGargController>();
         }
 
-        private void OnConsoleCommand_secretbasecutscene(NotificationCenter.Notification n)
+        [ConsoleCommand("secretbasecutscene")]
+        public static void SecretBaseCutscene()
         {
             new GameObject("SecretBaseGargController").AddComponent<SecretBaseGargController>();
         }
 
-        private void OnConsoleCommand_togglecinematic(NotificationCenter.Notification n)
+        [ConsoleCommand("togglecinematic")]
+        public static void ToggleCinematic()
         {
             GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
             foreach (GameObject go in gameObjects)
@@ -58,7 +58,6 @@ namespace RotA.Mono.Commands
                     go.name = "GargantuanVoid(Clone)";
                     go.GetComponent<TrollVoice>().enabled = false;
                     trollFace.GetComponent<TrollFaceTracker>().enabled = false;
-                    continue;
                 }
             }
         }

@@ -1,10 +1,14 @@
 ﻿namespace RotA
 {
+    using System.Runtime.InteropServices;
+    using FMOD;
+    using FMODUnity;
     using ArchitectsLibrary.Handlers;
     using ArchitectsLibrary.API;
     using ECCLibrary;
     using HarmonyLib;
     using QModManager.API.ModLoading;
+    using Commands;
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
@@ -23,6 +27,7 @@
     using System.Reflection;
     using UnityEngine;
     using UWE;
+    using Debug = UnityEngine.Debug;
     
     [QModCore]
     public static partial class Mod
@@ -110,7 +115,15 @@
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
             #endregion
+
+            var sound = CreateSoundFromAudioClip(assetBundle.LoadAsset<AudioClip>("PDAExplosionRoar"));
+
+            if (sound.HasValue)
+                CustomSoundHandler.RegisterCustomSound("explosionSoundTest", sound.Value);
             
+            ConsoleCommandsHandler.Main.RegisterConsoleCommand("soundtest", typeof(Mod), nameof(SoundTest));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(RotACommands));
+
             PatchLanguage();
 
             #region Tech
@@ -224,9 +237,6 @@
 
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
-
-            var gargSecretCommand = new CommandInitializer();
-            gargSecretCommand.Patch();
 
             var miscInitializers = new MiscInitializers();
             miscInitializers.Patch();
@@ -359,6 +369,77 @@
                 scanTime = scanTime,
                 isFragment = false
             });
+        }
+        
+        static Sound? CreateSoundFromAudioClip(AudioClip audioClip)
+        {
+            var samplesSize = audioClip.samples * audioClip.channels;
+            var samples = new float[samplesSize];
+            audioClip.GetData(samples, 0);
+
+            var bytesLength = (uint) (samplesSize * sizeof(float));
+
+            var soundInfo = new CREATESOUNDEXINFO
+            {
+                cbsize = Marshal.SizeOf(typeof(CREATESOUNDEXINFO)),
+                length = bytesLength,
+                format = SOUND_FORMAT.PCMFLOAT,
+                defaultfrequency = audioClip.frequency,
+                numchannels = audioClip.channels
+            };
+
+            Sound sound;
+            var result = RuntimeManager.LowlevelSystem.createSound("", MODE.OPENUSER, ref soundInfo, out sound);
+            if (result == RESULT.OK)
+            {
+                IntPtr ptr1, ptr2;
+                uint len1, len2;
+                result = sound.@lock(0, bytesLength, out ptr1, out ptr2, out len1, out len2);
+                if (result == RESULT.OK)
+                {
+                    var samplesLength = (int) (len1 / sizeof(float));
+                    Marshal.Copy(samples, 0, ptr1, samplesLength);
+                    if (len2 > 0)
+                    {
+                        Marshal.Copy(samples, samplesLength, ptr2, (int) (len2 / sizeof(float)));
+                    }
+
+                    result = sound.unlock(ptr1, ptr2, len1, len2);
+                    if (result == RESULT.OK)
+                    {
+                        result = sound.setMode(MODE.LOOP_OFF);
+                        if (result == RESULT.OK)
+                        {
+                            Debug.Log("Successfully loaded fmod sound!");
+                            return sound;
+                        }
+                        else
+                        {
+                            Debug.LogError("Failed to set mode to loop for fmod sound with error: " + result);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("Failed to unlock fmod sound with error: " + result);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Failed to lock fmod sound with error: " + result);
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to load fmod sound with error: " + result);
+            }
+
+            return null;
+        }
+
+        static void SoundTest()
+        {
+            
+            FMODUWE.PlayOneShot("explosionSoundTest", Player.main.transform.position);
         }
     }
 }
