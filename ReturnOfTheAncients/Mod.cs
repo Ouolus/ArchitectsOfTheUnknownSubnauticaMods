@@ -8,6 +8,7 @@
     using ECCLibrary;
     using HarmonyLib;
     using QModManager.API.ModLoading;
+    using Commands;
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
@@ -121,6 +122,7 @@
                 CustomSoundHandler.RegisterCustomSound("explosionSoundTest", sound.Value);
             
             ConsoleCommandsHandler.Main.RegisterConsoleCommand("soundtest", typeof(Mod), nameof(SoundTest));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(RotACommands));
 
             PatchLanguage();
 
@@ -235,9 +237,6 @@
 
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
-
-            var gargSecretCommand = new CommandInitializer();
-            gargSecretCommand.Patch();
 
             var miscInitializers = new MiscInitializers();
             miscInitializers.Patch();
