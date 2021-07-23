@@ -7,6 +7,7 @@ using UnityEngine;
 using RotA.Prefabs.Creatures;
 using ECCLibrary;
 using ArchitectsLibrary.Utility;
+using RotA.Mono.Creatures.GargEssentials;
 using ArchitectsLibrary.API;
     
 namespace RotA.Mono.Cinematics
@@ -21,7 +22,7 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX();
             yield return new WaitForSeconds(3f);
             SpawnGarg();
-            yield return new WaitForSeconds(31f);
+            yield return new WaitForSeconds(28f);
             StartCoroutine(Floodlights());
         }
 
@@ -29,7 +30,7 @@ namespace RotA.Mono.Cinematics
         {
             AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume();
-            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("Creaking1");
+            source.clip = Mod.assetBundle.LoadAsset<AudioClip>("Creaking1");
             source.Play();
             Destroy(source.gameObject, 11f);
         }
@@ -50,7 +51,7 @@ namespace RotA.Mono.Cinematics
 
         IEnumerator Floodlights()
         {
-            Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), transform.position);
+            Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), Player.main.transform.position);
             yield return new WaitForSeconds(5f);
             SpawnLight(new Vector3(1500f, -1980f, -59f));
             SpawnLight(new Vector3(1500f, -2010f, -59f));
@@ -59,9 +60,9 @@ namespace RotA.Mono.Cinematics
         void SpawnLight(Vector3 pos)
         {
             GameObject lightObj = new GameObject();
-            lightObj.transform.position = new Vector3(1500f, -1980f, -55f);
+            lightObj.transform.position = pos;
             var l = lightObj.AddComponent<Light>();
-            l.color = Color.green;
+            l.color = new Color(0.54f, 1f, 0.54f);
             l.intensity = 2f;
             l.range = 60f;
             l.type = LightType.Point;
@@ -115,6 +116,12 @@ namespace RotA.Mono.Cinematics
             spines.Add(prefab.SearchChild("Tail4", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail5", ECCStringComparison.Equals).transform);
             spines.Add(prefab.SearchChild("Tail6", ECCStringComparison.Equals).transform);
+            prefab.SearchChild("BLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("BRE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("MLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("MRE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("FLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("FRE").AddComponent<GargEyeFixer>();
             FixRotationMultipliers(CreateTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
             prefab.SetActive(true);
             return prefab;
