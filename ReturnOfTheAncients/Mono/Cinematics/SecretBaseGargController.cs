@@ -32,6 +32,7 @@ namespace RotA.Mono.Cinematics
             growlAudio.volume = ECCHelpers.GetECCVolume();
             growlAudio.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargPresence");
             growlAudio.spatialBlend = 1f;
+            growlAudio.minDistance = 10f;
             growlAudio.maxDistance = 100f;
             growlAudio.Play();
         }
