@@ -22,16 +22,27 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX();
             yield return new WaitForSeconds(3f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(5f);
             PlayDistantRoarSFX();
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(15f);
             Floodlights();
+            yield return new WaitForSeconds(13f);
+            PlayCloseRoarSFX();
+        }
+
+        void PlayCloseRoarSFX()
+        {
+            AudioSource source = new GameObject("RoarSource").AddComponent<AudioSource>();
+            source.volume = ECCHelpers.GetECCVolume() * 0.5f;
+            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargSecretBaseRoar");
+            source.Play();
+            Destroy(source.gameObject, 21f);
         }
 
         void PlayDistantRoarSFX()
         {
-            AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume();
+            AudioSource source = new GameObject("RoarSource").AddComponent<AudioSource>();
+            source.volume = ECCHelpers.GetECCVolume() * 0.5f;
             source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("garg_for_anth_distant-004");
             source.Play();
             Destroy(source.gameObject, 21f);
