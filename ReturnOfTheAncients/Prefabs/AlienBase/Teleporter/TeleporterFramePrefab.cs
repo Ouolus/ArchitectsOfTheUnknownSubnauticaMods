@@ -14,14 +14,16 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private float teleportAngle;
         private bool disablePlatform;
         private bool omegaTeleporter;
+        private bool oneWay;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter) : base(classId, "", "")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, bool oneWay) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
             this.omegaTeleporter = omegaTeleporter;
+            this.oneWay = oneWay;
         }
 
 #if SN1
@@ -32,7 +34,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
             obj.SetActive(false);
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
-            teleporter.teleporterIdentifier = teleporterId;
+            teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
             obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
@@ -56,7 +58,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
             obj.SetActive(false);
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
-            teleporter.teleporterIdentifier = teleporterId;
+            teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
             obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;

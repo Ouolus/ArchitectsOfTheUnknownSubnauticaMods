@@ -36,6 +36,7 @@ namespace RotA.Mono.Cinematics
             source.volume = ECCHelpers.GetECCVolume() * 0.5f;
             source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargSecretBaseRoar");
             source.Play();
+            MainCameraControl.main.ShakeCamera(4f, 5f, MainCameraControl.ShakeMode.Sqrt);
             Destroy(source.gameObject, 21f);
         }
 
