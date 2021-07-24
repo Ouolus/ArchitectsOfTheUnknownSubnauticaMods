@@ -98,8 +98,10 @@
         {
             if (_processedPrefab != null)
             {
-                _processedPrefab.SetActive(true);
-                return _processedPrefab;
+                var go = Object.Instantiate(_processedPrefab);
+                go.SetActive(true);
+                
+                return go;
             }
 
             GameObject buildablePrefab = new GameObject(ClassID);
