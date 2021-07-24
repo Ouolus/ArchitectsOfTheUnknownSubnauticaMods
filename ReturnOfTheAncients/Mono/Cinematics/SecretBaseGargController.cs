@@ -25,9 +25,10 @@ namespace RotA.Mono.Cinematics
             yield return new WaitForSeconds(8f);
             PlayCreakSFX("Creaking3");
             yield return new WaitForSeconds(12f);
-            Floodlights();
+            Floodlights(0.3f);
             yield return new WaitForSeconds(13f);
             PlayCloseRoarSFX();
+            Floodlights(2f);
         }
 
         void PlayCloseRoarSFX()
@@ -59,25 +60,25 @@ namespace RotA.Mono.Cinematics
             growlAudio.volume = ECCHelpers.GetECCVolume();
             growlAudio.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargPresence");
             growlAudio.spatialBlend = 1f;
-            growlAudio.minDistance = 10f;
-            growlAudio.maxDistance = 100f;
+            growlAudio.minDistance = 70f;
+            growlAudio.maxDistance = 200f;
             growlAudio.Play();
         }
 
-        void Floodlights()
+        void Floodlights(float intensity)
         {
             Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/sub/cyclops/floodlights_on"), Player.main.transform.position);
-            SpawnLight(new Vector3(1500f, -1980f, -60f));
-            SpawnLight(new Vector3(1500f, -2010f, -60f));
+            SpawnLight(new Vector3(1500f, -1980f, -60f), intensity);
+            SpawnLight(new Vector3(1500f, -2010f, -60f), intensity);
         }
 
-        void SpawnLight(Vector3 pos)
+        void SpawnLight(Vector3 pos, float intensity)
         {
             GameObject lightObj = new GameObject();
             lightObj.transform.position = pos;
             var l = lightObj.AddComponent<Light>();
             l.color = new Color(0.54f, 1f, 0.54f);
-            l.intensity = 2f;
+            l.intensity = intensity;
             l.range = 60f;
             l.type = LightType.Point;
             l.shadows = LightShadows.Hard;
