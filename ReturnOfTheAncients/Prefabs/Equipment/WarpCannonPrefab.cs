@@ -340,6 +340,11 @@ namespace RotA.Prefabs.Equipment
         }
 #endif
 
+        protected override void ProcessPrefab(GameObject go)
+        {
+
+        }
+
         static WarperData GetWarpCannonCreatureSpawnData(WarperData original)
         {
             WarperData so = ScriptableObject.CreateInstance<WarperData>();
