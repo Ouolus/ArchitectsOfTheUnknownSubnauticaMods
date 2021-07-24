@@ -42,7 +42,7 @@ namespace RotA.Patches
                 temperature = 5f,
                 scattering = 0.25f
             };
-            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[22]);
+            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[2]);
         }
 
         [HarmonyPostfix]
