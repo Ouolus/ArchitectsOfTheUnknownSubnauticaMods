@@ -17,7 +17,11 @@ namespace RotA.Mono.Cinematics
     {
         GameObject currentGarg;
         AudioSource growlAudio;
+        Canvas blackoutCanvas;
         Image blackoutImage;
+
+        float timeBlackoutStartFade;
+        bool blackoutFadingOut;
 
         IEnumerator Start()
         {
@@ -37,6 +41,8 @@ namespace RotA.Mono.Cinematics
             PlayCloseRoarSFX();
             yield return new WaitForSeconds(2f);
             StartBlackOutEffect();
+            yield return new WaitForSeconds(5f);
+            StopBlackOutEffect();
         }
 
         void SwimAwaySFX()
@@ -70,19 +76,36 @@ namespace RotA.Mono.Cinematics
         void StartBlackOutEffect()
         {
             var canvasObj = new GameObject("CanvasObj");
-            Canvas canvas = canvasObj.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 99999;
+            blackoutCanvas = canvasObj.AddComponent<Canvas>();
+            blackoutCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            blackoutCanvas.sortingOrder = 32766;
+            blackoutCanvas.gameObject.layer = 5;    
             var blObj = new GameObject("Blackout");
+            blObj.transform.parent = blackoutCanvas.transform;
             blackoutImage = blObj.AddComponent<Image>();
             blackoutImage.color = Color.black;
             var rt = blObj.EnsureComponent<RectTransform>();
-            rt.sizeDelta = Vector2.one;
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            Destroy(currentGarg, 1f);
+        }
+        
+        void StopBlackOutEffect()
+        {
+            timeBlackoutStartFade = Time.time;
+            blackoutFadingOut = true;
         }
 
         void Update()
         {
-
+            if (blackoutImage != null && blackoutFadingOut)
+            {
+                blackoutImage.color = new Color(0f, 0f, 0f, 1f - (Time.time - timeBlackoutStartFade));
+                if (Time.time > timeBlackoutStartFade + 1f)
+                {
+                    Destroy(blackoutCanvas.gameObject);
+                }
+            }
         }
 
         void SpawnGarg()
