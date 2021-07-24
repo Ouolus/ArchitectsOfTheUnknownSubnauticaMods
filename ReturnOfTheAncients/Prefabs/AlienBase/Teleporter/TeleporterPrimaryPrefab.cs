@@ -13,7 +13,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
         public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, CustomItemSettings customItemSettings = default) : base(classId, "", "")
         {
-            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, omegaTeleporter, false);
+            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, omegaTeleporter, null);
             frame.Patch();
             this.customItemSettings = customItemSettings;
         }

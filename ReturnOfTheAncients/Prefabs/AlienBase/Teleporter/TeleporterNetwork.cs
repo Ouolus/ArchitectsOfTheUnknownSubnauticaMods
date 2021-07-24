@@ -13,7 +13,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         public float masterAngle, auxiliaryAngle;
         public bool oneWay;
 
-        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false, bool omegaTeleporter = false, TeleporterPrimaryPrefab.CustomItemSettings customItemSettings = default, bool oneWay = false)
+        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false, bool omegaTeleporter = false, TeleporterPrimaryPrefab.CustomItemSettings customItemSettings = default, string auxiliaryOverrideId = null)
         {
             this.classIdRoot = classIdRoot;
             this.masterCoords = masterCoords;
@@ -21,7 +21,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             this.masterAngle = masterAngle;
             this.auxiliaryAngle = auxiliaryAngle;
             primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary, omegaTeleporter, customItemSettings);
-            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, omegaTeleporter, oneWay);
+            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, omegaTeleporter, auxiliaryOverrideId);
         }
 
         public void Patch()

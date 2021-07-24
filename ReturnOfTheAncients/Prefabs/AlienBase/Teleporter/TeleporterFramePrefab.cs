@@ -14,16 +14,16 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private float teleportAngle;
         private bool disablePlatform;
         private bool omegaTeleporter;
-        private bool oneWay;
+        private string overrideId;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, bool oneWay) : base(classId, "", "")
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, string overrideId) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
             this.omegaTeleporter = omegaTeleporter;
-            this.oneWay = oneWay;
+            this.overrideId = overrideId;
         }
 
 #if SN1
@@ -35,7 +35,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             obj.SetActive(false);
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
-            teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
+            teleporter.teleporterIdentifier = string.IsNullOrEmpty(overrideId) ? teleporterId : overrideId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
             if (disablePlatform)
@@ -59,7 +59,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             obj.SetActive(false);
             obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
-            teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
+            teleporter.teleporterIdentifier = string.IsNullOrEmpty(overrideId) ? teleporterId : overrideId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
             if (disablePlatform)
