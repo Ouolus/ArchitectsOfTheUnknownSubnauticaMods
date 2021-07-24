@@ -33,11 +33,11 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             GameObject obj = GameObject.Instantiate(prefab);
 
             obj.SetActive(false);
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
             teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);
@@ -57,11 +57,11 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             GameObject obj = GameObject.Instantiate(prefab);
 
             obj.SetActive(false);
+            obj.EnsureComponent<PrefabIdentifier>().ClassId = ClassID;
             var teleporter = obj.GetComponent<PrecursorTeleporter>();
             teleporter.teleporterIdentifier = oneWay ? "SuperSecretTeleportId" : teleporterId;
             teleporter.warpToPos = teleportPosition;
             teleporter.warpToAngle = teleportAngle;
-            obj.EnsureComponent<SetTechTypeOnStart>().type = TechType.PrecursorTeleporter;
             if (disablePlatform)
             {
                 obj.SearchChild("Meshes").transform.GetChild(4).gameObject.SetActive(false);
@@ -82,5 +82,10 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             slotType = EntitySlot.Type.Large,
             techType = TechType.PrecursorTeleporter
         };
+
+        protected override void ProcessPrefab(GameObject go)
+        {
+            
+        }
     }
 }
