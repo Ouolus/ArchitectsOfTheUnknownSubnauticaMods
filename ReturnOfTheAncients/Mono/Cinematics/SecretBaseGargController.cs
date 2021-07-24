@@ -9,6 +9,7 @@ using ECCLibrary;
 using ArchitectsLibrary.Utility;
 using RotA.Mono.Creatures.GargEssentials;
 using ArchitectsLibrary.API;
+using UnityEngine.UI;
     
 namespace RotA.Mono.Cinematics
 {
@@ -16,6 +17,7 @@ namespace RotA.Mono.Cinematics
     {
         GameObject currentGarg;
         AudioSource growlAudio;
+        Image blackoutImage;
 
         IEnumerator Start()
         {
@@ -24,14 +26,27 @@ namespace RotA.Mono.Cinematics
             SpawnGarg(); //garg animation lasts 33 seconds roughly
             yield return new WaitForSeconds(8f);
             PlayCreakSFX("Creaking3");
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(2f);
+            SwimAwaySFX();
+            yield return new WaitForSeconds(8f);
             PlayCreakSFX("Creaking4");
             yield return new WaitForSeconds(12f);
             PlayCreakSFX("Creaking5");
             Floodlights(2f);
             yield return new WaitForSeconds(2f);
             PlayCloseRoarSFX();
+            yield return new WaitForSeconds(2f);
+            StartBlackOutEffect();
         }
+
+        void SwimAwaySFX()
+        {
+            AudioSource source = new GameObject("SwimAwaySound").AddComponent<AudioSource>();
+            source.volume = ECCHelpers.GetECCVolume();
+            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargSecretBaseSwimAway");
+            source.Play();
+            Destroy(source.gameObject, 4f);
+    }
 
         void PlayCloseRoarSFX()
         {
@@ -43,7 +58,6 @@ namespace RotA.Mono.Cinematics
             Destroy(source.gameObject, 21f);
         }
 
-
         void PlayCreakSFX(string clipName)
         {
             AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
@@ -51,6 +65,24 @@ namespace RotA.Mono.Cinematics
             source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
             source.Play();
             Destroy(source.gameObject, 11f);
+        }
+
+        void StartBlackOutEffect()
+        {
+            var canvasObj = new GameObject("CanvasObj");
+            Canvas canvas = canvasObj.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 99999;
+            var blObj = new GameObject("Blackout");
+            blackoutImage = blObj.AddComponent<Image>();
+            blackoutImage.color = Color.black;
+            var rt = blObj.EnsureComponent<RectTransform>();
+            rt.sizeDelta = Vector2.one;
+        }
+
+        void Update()
+        {
+
         }
 
         void SpawnGarg()
@@ -87,6 +119,7 @@ namespace RotA.Mono.Cinematics
             Destroy(lightObj, 60f);
         }
 
+        #region Ugly garg code
         public GameObject SpawnGargPrefab()
         {
             GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SecretBaseGarg_Prefab"));
@@ -198,5 +231,6 @@ namespace RotA.Mono.Cinematics
             tm.rollMultiplier = curve;
             tm.yawMultiplier = curve;
         }
+        #endregion
     }
 }
