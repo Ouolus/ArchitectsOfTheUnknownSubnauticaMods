@@ -29,7 +29,7 @@ namespace RotA.Mono.Cinematics
             yield return new WaitForSeconds(12f);
             PlayCreakSFX("Creaking5");
             Floodlights(2f);
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(2f);
             PlayCloseRoarSFX();
         }
 
@@ -138,12 +138,40 @@ namespace RotA.Mono.Cinematics
             prefab.SearchChild("MRE").AddComponent<GargEyeFixer>();
             prefab.SearchChild("FLE").AddComponent<GargEyeFixer>();
             prefab.SearchChild("FRE").AddComponent<GargEyeFixer>();
-            FixRotationMultipliers(CreateTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("BLT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("BRT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("TLT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("TRT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("MLT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("MRT"), lod), 0.25f, 0.26f);
+            FixRotationMultipliers(CreateBodyTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
             prefab.SetActive(true);
             return prefab;
         }
 
-        TrailManager CreateTrail(GameObject prefab, GameObject trailRoot, Transform[] trails, BehaviourLOD lod)
+        TrailManager CreateTentacleTrail(GameObject prefab, GameObject trailRoot, BehaviourLOD lod)
+        {
+            trailRoot.gameObject.SetActive(false);
+            TrailManager trail = trailRoot.AddComponent<TrailManager>();
+            List<Transform> trails = new List<Transform>(trailRoot.GetComponentsInChildren<Transform>());
+            trails.Remove(trailRoot.transform);
+            trail.trails = trails.ToArray();
+            trail.rootTransform = prefab.transform;
+            trail.rootSegment = trail.transform;
+            trail.levelOfDetail = lod;
+            trail.segmentSnapSpeed = 8f;
+            trail.maxSegmentOffset = 10f;
+            trail.allowDisableOnScreen = false;
+            AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
+            trail.pitchMultiplier = decreasing;
+            trail.rollMultiplier = decreasing;
+            trail.yawMultiplier = decreasing;
+            trail.Initialize();
+            trailRoot.gameObject.SetActive(true);
+            return trail;
+        }
+
+        TrailManager CreateBodyTrail(GameObject prefab, GameObject trailRoot, Transform[] trails, BehaviourLOD lod)
         {
             trailRoot.gameObject.SetActive(false);
             TrailManager trail = trailRoot.AddComponent<TrailManager>();
