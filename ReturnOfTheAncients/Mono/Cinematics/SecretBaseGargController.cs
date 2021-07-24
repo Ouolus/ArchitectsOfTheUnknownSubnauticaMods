@@ -43,6 +43,14 @@ namespace RotA.Mono.Cinematics
             StartBlackOutEffect();
             yield return new WaitForSeconds(5f);
             StopBlackOutEffect();
+            yield return new WaitForSeconds(1f);
+            ActivateTeleporter();
+        }
+
+        void ActivateTeleporter()
+        {
+            TeleporterManager.ActivateTeleporter("SecretBaseAuxiliary");
+            Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/env/power_teleporter"));
         }
 
         void SwimAwaySFX()
