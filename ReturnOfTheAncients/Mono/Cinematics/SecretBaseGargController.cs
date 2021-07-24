@@ -26,10 +26,11 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX("Creaking3");
             yield return new WaitForSeconds(10f);
             PlayCreakSFX("Creaking4");
-            yield return new WaitForSeconds(16f);
-            PlayCloseRoarSFX();
+            yield return new WaitForSeconds(12f);
             PlayCreakSFX("Creaking5");
             Floodlights(2f);
+            yield return new WaitForSeconds(4f);
+            PlayCloseRoarSFX();
         }
 
         void PlayCloseRoarSFX()
