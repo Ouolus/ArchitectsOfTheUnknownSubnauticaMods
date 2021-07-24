@@ -124,8 +124,7 @@ namespace RotA.Prefabs.Equipment
                 warpCannon.warpOutPrefabDestroyAutomatically = warper.warpOutEffectPrefab;
                 if (warperCreatureData == null)
                 {
-                    WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0]
-                        .ammoPrefab.GetComponent<WarpBall>().warperData;
+                    WarperData originalData = warperPrefab.GetComponent<RangedAttackLastTarget>().attackTypes[0].ammoPrefab.GetComponent<WarpBall>().warperData;
                     warperCreatureData = GetWarpCannonCreatureSpawnData(originalData);
                 }
 
