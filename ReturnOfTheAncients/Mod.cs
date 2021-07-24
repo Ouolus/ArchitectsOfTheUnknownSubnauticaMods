@@ -407,7 +407,7 @@
                     result = sound.unlock(ptr1, ptr2, len1, len2);
                     if (result == RESULT.OK)
                     {
-                        result = sound.setMode(MODE.LOOP_OFF);
+                        result = sound.setMode(MODE.DEFAULT);
                         if (result == RESULT.OK)
                         {
                             Debug.Log("Successfully loaded fmod sound!");
