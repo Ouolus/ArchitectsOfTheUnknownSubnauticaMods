@@ -75,7 +75,7 @@ namespace RotA.Mono.Cinematics
         void PlayCreakSFX(string clipName)
         {
             AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume();
+            source.volume = ECCHelpers.GetECCVolume() * 0.6f;
             source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
             source.Play();
             Destroy(source.gameObject, 11f);
