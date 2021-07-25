@@ -79,6 +79,8 @@ namespace RotA.Mono.Cinematics
             source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
             source.Play();
             Destroy(source.gameObject, 11f);
+
+            MainCameraControl.main.ShakeCamera(1.2f, 8f, MainCameraControl.ShakeMode.Linear);
         }
 
         void StartBlackOutEffect()
