@@ -183,6 +183,8 @@ namespace RotA.Mono.Cinematics
                     foreach (Material material in renderer.materials)
                     {
                         material.SetFloat("_SpecInt", 0f);
+                        material.SetFloat("_GlowStrength", 0f);
+                        material.SetFloat("_GlowStrengthNight", 0f);
                     }
                 }
             }
@@ -227,6 +229,7 @@ namespace RotA.Mono.Cinematics
             FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("MLT"), lod), 0.25f, 0.26f);
             FixRotationMultipliers(CreateTentacleTrail(prefab, prefab.SearchChild("MRT"), lod), 0.25f, 0.26f);
             FixRotationMultipliers(CreateBodyTrail(prefab, prefab.SearchChild("Spine"), spines.ToArray(), lod), 0.26f, 0.26f);
+            prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
             prefab.SetActive(true);
             return prefab;
         }
