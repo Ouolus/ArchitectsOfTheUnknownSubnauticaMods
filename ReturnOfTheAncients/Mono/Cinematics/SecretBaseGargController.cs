@@ -25,20 +25,20 @@ namespace RotA.Mono.Cinematics
 
         IEnumerator Start()
         {
-            PlayCreakSFX("Creaking1");
+            PlayCreakSFX("Creaking1", 4f);
             yield return new WaitForSeconds(4f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
             yield return new WaitForSeconds(4f);
             //PlayOpenEyeSFX();
             yield return new WaitForSeconds(4f);
-            PlayCreakSFX("Creaking3");
+            PlayCreakSFX("Creaking3", 4f);
             yield return new WaitForSeconds(3f);
             SwimAwaySFX();
             yield return new WaitForSeconds(7f);
-            PlayCreakSFX("Creaking4");
+            PlayCreakSFX("Creaking4", 8f);
             yield return new WaitForSeconds(11f);
             Floodlights(2f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             PlayCloseRoarSFX();
             yield return new WaitForSeconds(2f);
             StartBlackOutEffect();
@@ -86,7 +86,7 @@ namespace RotA.Mono.Cinematics
             Destroy(source.gameObject, 5f);
         }
 
-        void PlayCreakSFX(string clipName)
+        void PlayCreakSFX(string clipName, float screenShakeDuration)
         {
             AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume() * 0.6f;
@@ -94,7 +94,7 @@ namespace RotA.Mono.Cinematics
             source.Play();
             Destroy(source.gameObject, 11f);
 
-            MainCameraControl.main.ShakeCamera(1.2f, 8f, MainCameraControl.ShakeMode.Linear);
+            MainCameraControl.main.ShakeCamera(1f, screenShakeDuration, MainCameraControl.ShakeMode.Linear, 0.3f);
         }
 
         void StartBlackOutEffect()
