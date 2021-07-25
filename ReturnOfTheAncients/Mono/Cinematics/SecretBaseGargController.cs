@@ -34,10 +34,10 @@ namespace RotA.Mono.Cinematics
             SwimAwaySFX();
             yield return new WaitForSeconds(7f);
             PlayCreakSFX("Creaking4");
-            yield return new WaitForSeconds(12f);
+            yield return new WaitForSeconds(11f);
             PlayCreakSFX("Creaking5");
             Floodlights(2f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             PlayCloseRoarSFX();
             yield return new WaitForSeconds(2f);
             StartBlackOutEffect();
