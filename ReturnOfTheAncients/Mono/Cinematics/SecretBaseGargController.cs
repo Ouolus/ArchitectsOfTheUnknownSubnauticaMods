@@ -28,9 +28,9 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX("Creaking1");
             yield return new WaitForSeconds(4f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
-            yield return new WaitForSeconds(7f);
-            PlayOpenEyeSFX();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(4f);
+            //PlayOpenEyeSFX();
+            yield return new WaitForSeconds(4f);
             PlayCreakSFX("Creaking3");
             yield return new WaitForSeconds(3f);
             SwimAwaySFX();
