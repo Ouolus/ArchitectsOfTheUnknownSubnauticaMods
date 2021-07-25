@@ -25,22 +25,24 @@ namespace RotA.Mono.Cinematics
 
         IEnumerator Start()
         {
-            PlayCreakSFX("Creaking1", 4f);
+            PlayCreakFX("Creaking1", 5f);
             yield return new WaitForSeconds(4f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
             yield return new WaitForSeconds(4f);
+            PlayCreakFX(null, 3f);
             //PlayOpenEyeSFX();
             yield return new WaitForSeconds(4f);
-            PlayCreakSFX("Creaking3", 4f);
+            PlayCreakFX("Creaking3", 4f);
             yield return new WaitForSeconds(3f);
             SwimAwaySFX();
             yield return new WaitForSeconds(7f);
-            PlayCreakSFX("Creaking4", 8f);
+            PlayCreakFX("Creaking4", 8f);
             yield return new WaitForSeconds(11f);
             Floodlights(2f);
+            PlayCreakFX(null, 0.5f, 3f, 1f);
             yield return new WaitForSeconds(3f);
             PlayCloseRoarSFX();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             StartBlackOutEffect();
             yield return new WaitForSeconds(5f);
             StopBlackOutEffect();
@@ -86,15 +88,17 @@ namespace RotA.Mono.Cinematics
             Destroy(source.gameObject, 5f);
         }
 
-        void PlayCreakSFX(string clipName, float screenShakeDuration)
+        void PlayCreakFX(string clipName, float screenShakeDuration, float shakeIntensity = 2f, float shakeFrequency = 0.3f)
         {
-            AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
-            source.volume = ECCHelpers.GetECCVolume() * 0.6f;
-            source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
-            source.Play();
-            Destroy(source.gameObject, 11f);
-
-            MainCameraControl.main.ShakeCamera(1f, screenShakeDuration, MainCameraControl.ShakeMode.Linear, 0.3f);
+            if (!string.IsNullOrEmpty(clipName))
+            {
+                AudioSource source = new GameObject("CreakSource").AddComponent<AudioSource>();
+                source.volume = ECCHelpers.GetECCVolume() * 0.6f;
+                source.clip = Mod.assetBundle.LoadAsset<AudioClip>(clipName);
+                source.Play();
+                Destroy(source.gameObject, 11f);
+            }
+            MainCameraControl.main.ShakeCamera(shakeIntensity, screenShakeDuration, MainCameraControl.ShakeMode.Linear, shakeFrequency);
         }
 
         void StartBlackOutEffect()
