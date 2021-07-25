@@ -28,7 +28,9 @@ namespace RotA.Mono.Cinematics
             PlayCreakSFX("Creaking1");
             yield return new WaitForSeconds(4f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(7f);
+            PlayOpenEyeSFX();
+            yield return new WaitForSeconds(1f);
             PlayCreakSFX("Creaking3");
             yield return new WaitForSeconds(3f);
             SwimAwaySFX();
@@ -69,6 +71,19 @@ namespace RotA.Mono.Cinematics
             source.Play();
             MainCameraControl.main.ShakeCamera(4f, 5f, MainCameraControl.ShakeMode.Sqrt);
             Destroy(source.gameObject, 21f);
+        }
+
+        void PlayOpenEyeSFX()
+        {
+            AudioSource source = new GameObject("OpenEyeSource").AddComponent<AudioSource>();
+            source.transform.position = new Vector3(1500, -2000, -60f);
+            source.volume = ECCHelpers.GetECCVolume() * 0.7f;
+            source.clip = Mod.gargAssetBundle.LoadAsset<AudioClip>("GargEyeOpen");
+            source.spatialBlend = 1f;
+            source.minDistance = 30f;
+            source.maxDistance = 100f;
+            source.Play();
+            Destroy(source.gameObject, 5f);
         }
 
         void PlayCreakSFX(string clipName)
