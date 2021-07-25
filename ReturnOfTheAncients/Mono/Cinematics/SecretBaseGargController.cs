@@ -187,8 +187,6 @@ namespace RotA.Mono.Cinematics
                     foreach (Material material in renderer.materials)
                     {
                         material.SetFloat("_SpecInt", 0f);
-                        material.SetFloat("_GlowStrength", 0f);
-                        material.SetFloat("_GlowStrengthNight", 0f);
                     }
                 }
             }
