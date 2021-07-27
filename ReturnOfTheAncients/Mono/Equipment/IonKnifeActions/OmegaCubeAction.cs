@@ -5,7 +5,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : IIonKnifeAction
     {
-        float hitForce = 4000f;
+        float hitForce = 65f;
         float useMassPercent = 0.6f; //percent of how much the knife's knockback is affected by the creature's mass. a higher value means it knocks bigger creatures such as leviathans less far.
 
         public void Initialize(IonKnife ionKnife)
