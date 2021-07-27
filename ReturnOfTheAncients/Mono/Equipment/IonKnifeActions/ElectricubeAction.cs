@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace RotA.Mono.Equipment.IonKnifeActions
 {
-    public class ElectricubeAction : MonoBehaviour, IIonKnifeAction
+    public class ElectricubeAction : IIonKnifeAction
     {
         private GameObject warpOutPrefab;
         private GameObject warpInPrefab;
@@ -15,13 +15,13 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         private FMODAsset electricSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.AmpeelShock);
 
-        private void Awake()
-        {
-            StartCoroutine(GetPrefabs());
-        }
-
         IEnumerator GetPrefabs()
         {
+            if (warpOutPrefab != null && warpInPrefab != null)
+            {
+               yield break;
+            }
+
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.Warper);
             yield return task;
             var prefab = task.GetResult();
@@ -30,6 +30,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         }
         public void Initialize(IonKnife ionKnife)
         {
+            ionKnife.StartCoroutine(GetPrefabs());
             ionKnife.Damage = new[] { 30f };
             ionKnife.AttackDistance = 1.2f;
             ionKnife.DamageType = new[] { DamageType.Electrical };

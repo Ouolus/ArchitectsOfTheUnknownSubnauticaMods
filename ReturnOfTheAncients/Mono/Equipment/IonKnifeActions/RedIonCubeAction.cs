@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RotA.Mono.Equipment.IonKnifeActions
 {
-    public class RedIonCubeAction : MonoBehaviour, IIonKnifeAction
+    public class RedIonCubeAction : IIonKnifeAction
     {
         float timeDmgPlayerAgain;
 

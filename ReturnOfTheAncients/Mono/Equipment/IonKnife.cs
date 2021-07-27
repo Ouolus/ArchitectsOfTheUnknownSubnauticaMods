@@ -30,6 +30,14 @@ namespace RotA.Mono.Equipment
         public Renderer[] bladeRenderers;
         
         private IIonKnifeAction currentAction;
+		
+        private ElectricubeAction electricubeAction = new();
+		
+        private OmegaCubeAction omegaCubeAction = new();
+		
+        private PrecursorIonCrystalAction precursorIonCrystalAction = new();
+		
+        private RedIonCubeAction redIonCubeAction = new();
         
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
@@ -246,13 +254,13 @@ namespace RotA.Mono.Equipment
         {
             // add more if needed
             if (tt == TechType.PrecursorIonCrystal)
-                currentAction = gameObject.EnsureComponent<PrecursorIonCrystalAction>();
+                currentAction = precursorIonCrystalAction;
             else if (tt == AUHandler.ElectricubeTechType)
-                currentAction = gameObject.EnsureComponent<ElectricubeAction>();
+                currentAction = electricubeAction;
             else if (tt == AUHandler.RedIonCubeTechType)
-                currentAction = gameObject.EnsureComponent<RedIonCubeAction>();
+                currentAction = redIonCubeAction;
             else if (tt == AUHandler.OmegaCubeTechType)
-                currentAction = gameObject.EnsureComponent<OmegaCubeAction>();
+                currentAction = omegaCubeAction;
 
             OnInitialize();
         }
