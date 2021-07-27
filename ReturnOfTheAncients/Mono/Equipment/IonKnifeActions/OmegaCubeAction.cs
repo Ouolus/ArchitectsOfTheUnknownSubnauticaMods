@@ -5,7 +5,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : IIonKnifeAction
     {
-        float hitForce = 5000f;
+        float hitForce = 4000f;
+        float useMassPercent = 0.6f;
 
         public void Initialize(IonKnife ionKnife)
         {
@@ -32,7 +33,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (hitRb != null)
             {
                 Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
-                hitRb.AddForce(playerDirection * hitForce, ForceMode.Impulse);
+                hitRb.AddForce(playerDirection * hitForce * useMassPercent, ForceMode.Impulse);
+                hitRb.AddForce(playerDirection * hitForce * (1f - useMassPercent), ForceMode.VelocityChange);
             }
         }
 
