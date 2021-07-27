@@ -25,7 +25,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         {
             if (Time.time > timeDmgPlayerAgain)
             {
-                Player.main.liveMixin.TakeDamage(1f, transform.position, DamageType.Heat, gameObject);
+                Player.main.liveMixin.TakeDamage(1f, ionKnife.transform.position, DamageType.Heat, ionKnife.gameObject);
                 timeDmgPlayerAgain = Time.time + 1f;
             }
         }
@@ -34,7 +34,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {
-                Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, transform);
+                Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, ionKnife.transform);
                 Player.main.liveMixin.AddHealth(8f);
             }
         }

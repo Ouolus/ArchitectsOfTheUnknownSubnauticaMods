@@ -54,14 +54,14 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 }
                 else
                 {
-                    Utils.PlayFMODAsset(electricSound, transform);
+                    Utils.PlayFMODAsset(electricSound, ionKnife.transform);
                 }
             }
         }
 
         private void WarpRandom(IonKnife ionKnife, LiveMixin lm)
         {
-            Utils.PlayFMODAsset(ionKnife.WarpFishSound, transform);
+            Utils.PlayFMODAsset(ionKnife.WarpFishSound, ionKnife.transform);
 
             Ray ray = new Ray(lm.transform.position, Random.onUnitSphere);
             Vector3 warpPosition;
@@ -74,11 +74,11 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 warpPosition = ray.origin + ray.GetPoint(kMaxWarpDistance - kMaxDistanceFromTerrain);
             }
 
-            var vfx = Instantiate(warpOutPrefab);
+            var vfx = GameObject.Instantiate(warpOutPrefab);
             vfx.transform.position = lm.transform.position;
             vfx.SetActive(true);
 
-            var vfx2 = Instantiate(warpInPrefab);
+            var vfx2 = GameObject.Instantiate(warpInPrefab);
             vfx2.transform.position = warpPosition;
             vfx2.SetActive(true);
 
