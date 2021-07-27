@@ -2,7 +2,6 @@ using System.Collections;
 using ArchitectsLibrary.MonoBehaviours;
 using HarmonyLib;
 using UnityEngine;
-using UWE;
 
 namespace ArchitectsLibrary.Patches
 {
@@ -10,19 +9,18 @@ namespace ArchitectsLibrary.Patches
     {
         internal static void Patch(Harmony harmony)
         {
-            var orig = AccessTools.Method(typeof(PrefabDatabase), nameof(PrefabDatabase.LoadPrefabDatabase));
+            var orig = AccessTools.Method(typeof(CraftData), nameof(CraftData.PreparePrefabIDCache));
             var postfix = new HarmonyMethod(AccessTools.Method(typeof(CraftDataPatches), nameof(PreparePrefabIDCachePostfix)));
             harmony.Patch(orig, postfix: postfix);
         }
 
         static void PreparePrefabIDCachePostfix()
         {
-            CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
+            UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
         }
-
+        
         static IEnumerator FixIonCubeCraftingCoroutine()
         {
-            yield return null;
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
