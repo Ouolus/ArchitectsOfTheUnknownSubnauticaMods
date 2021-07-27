@@ -5,6 +5,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : IIonKnifeAction
     {
+        float hitForce = 500f;
+
         public void Initialize(IonKnife ionKnife)
         {
             ionKnife.Damage = new[] { 40f, 60f, 40f };
@@ -25,6 +27,12 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (IonKnife.IsCreature(hitLiveMixin))
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, ionKnife.transform);
+            }
+            Rigidbody hitRb = hitLiveMixin.GetComponent<Rigidbody>();
+            if (hitRb != null)
+            {
+                Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
+                hitRb.AddForce(playerDirection * hitForce, ForceMode.Impulse);
             }
         }
 
