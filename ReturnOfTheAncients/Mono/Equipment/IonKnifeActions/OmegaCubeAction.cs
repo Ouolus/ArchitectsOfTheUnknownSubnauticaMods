@@ -5,7 +5,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : IIonKnifeAction
     {
-        float hitForce = 500f;
+        float hitForce = 5000f;
 
         public void Initialize(IonKnife ionKnife)
         {
