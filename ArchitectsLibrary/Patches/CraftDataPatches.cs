@@ -5,25 +5,22 @@ using UnityEngine;
 
 namespace ArchitectsLibrary.Patches
 {
-    internal class PlayerPatches
+    internal class CraftDataPatches
     {
         internal static void Patch(Harmony harmony)
         {
-            var orig = AccessTools.Method(typeof(Player), nameof(Player.Awake));
-            var postfix = new HarmonyMethod(AccessTools.Method(typeof(PlayerPatches), nameof(AwakePostfix)));
+            var orig = AccessTools.Method(typeof(CraftData), nameof(CraftData.PreparePrefabIDCache));
+            var postfix = new HarmonyMethod(AccessTools.Method(typeof(CraftDataPatches), nameof(PreparePrefabIDCachePostfix)));
             harmony.Patch(orig, postfix: postfix);
         }
 
-        static void AwakePostfix(Player __instance)
+        static void PreparePrefabIDCachePostfix()
         {
-            __instance.StartCoroutine(FixIonCubeCraftingCoroutine());
+            UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
         }
         
         static IEnumerator FixIonCubeCraftingCoroutine()
         {
-            yield return new WaitUntil(() => CraftData.cacheInitialized);
-            yield return null;
-            
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
             var prefab = task.GetResult();
