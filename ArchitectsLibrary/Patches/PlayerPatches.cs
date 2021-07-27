@@ -21,7 +21,7 @@ namespace ArchitectsLibrary.Patches
         
         static IEnumerator FixIonCubeCraftingCoroutine()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(() => CraftData.cacheInitialized);
             
             var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
             yield return task;
