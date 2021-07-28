@@ -12,58 +12,42 @@ namespace RotA.Mono.Cinematics
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(945f, 0f, 3000);
-        public Vector3 positionInSpecialCutscene = new Vector3(374, 50, 3100f);
+        private Vector3 gargsSpawnPosition = new Vector3(945f, 0f, 3000);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
         private float timeStart;
-        private FMODAsset splashSound;
         private bool initialized = false;
         private SunbeamWreck wreck;
 
         private bool setTimeScaleLateUpdate = false;
         private float targetTimeScale;
 
-        private float FarplaneDistance
+        private float CurrentFarplaneDistance
         {
             get
             {
                 return SNCameraRoot.main.mainCamera.farClipPlane;
             }
         }
-        public IEnumerator Start()
+
+        private void Start()
         {
-            bool doSecretCutscene = ShouldDoSecretCutscene();
-            if (doSecretCutscene)
-            {
-                yield return new WaitForSeconds(3f);
-            }
             initialized = true;
-            splashSound = ScriptableObject.CreateInstance<FMODAsset>();
-            splashSound.path = "event:/tools/constructor/sub_splash";
-            defaultFarplane = FarplaneDistance;
+            defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
             GameObject gargPrefab = GetSunbeamGargPrefab();
-            Vector3 spawnPos = doSecretCutscene ? positionInSpecialCutscene : position;
+            Vector3 spawnPos = gargsSpawnPosition;
             spawnedGarg = GameObject.Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
             spawnedGarg.GetComponentInChildren<Animator>().SetBool("mouth_open", true);
             Invoke(nameof(StartFadingOut), 20f);
             Invoke(nameof(EndCinematic), 30f);
-            //Invoke(nameof(Splash), 10f);
             timeStart = Time.time;
-            if (doSecretCutscene)
-            {
-                StartCoroutine(WellBeRightBack());
-            }
-            else
-            {
-                Invoke(nameof(SpawnWreckPrefab), 7.4f);
-            }
+            Invoke(nameof(SpawnWreckPrefab), 7.4f);
         }
 
         private void SpawnWreckPrefab()
@@ -83,24 +67,6 @@ namespace RotA.Mono.Cinematics
             prefab.SetActive(false);
             MaterialUtils.ApplySNShaders(prefab);
             return prefab;
-        }
-
-        private bool ShouldDoSecretCutscene()
-        {
-            if (forceSpecialCutscene)
-            {
-                return true;
-            }
-            if (Player.main == null)
-            {
-                return false;
-            }
-            Vector3 playerPos = Player.main.transform.position;
-            if (Vector3.Distance(playerPos, secretCutsceneBounds.position) > secretCutsceneBounds.radius)
-            {
-                return false;
-            }
-            return 0.10f > Random.value;
         }
 
         private IEnumerator WellBeRightBack()
@@ -136,25 +102,20 @@ namespace RotA.Mono.Cinematics
             Destroy(gameObject);
         }
 
-        private void Splash()
-        {
-            Utils.PlayFMODAsset(splashSound, new Vector3(411f, 0f, 1213f), 6000f);
-            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 75f));
-        }
-
         void LateUpdate()
         {
             if (!initialized)
             {
                 return;
             }
-            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
+            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(CurrentFarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
             if (setTimeScaleLateUpdate)
             {
                 Time.timeScale = targetTimeScale;
             }
         }
 
+        #region Messy prefab stuff
         public GameObject GetSunbeamGargPrefab()
         {
             GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
@@ -232,28 +193,6 @@ namespace RotA.Mono.Cinematics
             tm.yawMultiplier = curve;
         }
 
-        private IEnumerator PlaySplashVfx(Vector3 position, float scale)
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
-            yield return task;
-            GameObject exosuitPrefab = task.GetResult();
-            var vfxSplash = exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>();
-            GameObject newVfx = Instantiate(vfxSplash.surfacePrefab);
-            newVfx.name = "SunbeamGargSplash";
-            newVfx.transform.parent = transform;
-            newVfx.transform.localScale = Vector3.one * scale;
-            newVfx.transform.position = position;
-            Destroy(newVfx.GetComponent<VFXDestroyAfterSeconds>());
-            var customSplash = newVfx.EnsureComponent<CustomSplash>();
-            customSplash.surfMaskCurve = vfxSplash.surfMaskCurve;
-            customSplash.surfScaleX = vfxSplash.surfScaleX;
-            customSplash.surfScaleY = vfxSplash.surfScaleY;
-            customSplash.surfScaleZ = vfxSplash.surfScaleZ;
-            customSplash.scale = scale;
-            customSplash.GetComponentInChildren<Renderer>().material = Object.Instantiate(vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material);
-            newVfx.SetActive(true);
-        }
-
         private GameObject CreateMemeOverlay()
         {
             Canvas canvas = uGUI.main.screenCanvas;
@@ -271,5 +210,6 @@ namespace RotA.Mono.Cinematics
             rect.localEulerAngles = Vector3.zero;
             return imageObj;
         }
+        #endregion
     }
 }
