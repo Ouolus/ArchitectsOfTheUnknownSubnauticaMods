@@ -20,16 +20,16 @@ namespace RotA.Patches
         [HarmonyPrefix]
         static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
-            var steam = PlatformUtils.main.GetServices();
-            if (steam is null)
+            var currentPlatform = PlatformUtils.main.GetServices();
+            if (currentPlatform is null)
             {
                 QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error,
-                    "Cannot load the mod due to steam not being initialized");
+                    "Cannot load Return of the Ancients due to the current platform not being initialized");
                 Application.Quit();
                 return;
             }
             
-            if (usersToSpreadLoveTo.Contains(steam.GetUserId()))
+            if (usersToSpreadLoveTo.Contains(currentPlatform.GetUserId()))
             {
                 Debug.Log("screw you");
                 Application.Quit();
