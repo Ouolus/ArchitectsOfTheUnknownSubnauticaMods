@@ -72,7 +72,7 @@ namespace RotA.Mono.Cinematics
             var spawned = GameObject.Instantiate(prefab);
             wreck = spawned.EnsureComponent<SunbeamWreck>();
             spawned.transform.position = new Vector3(1107, 3843, 4369);
-            spawned.transform.localScale = new Vector3(25f, 25f, 25f);
+            spawned.transform.localScale = new Vector3(20f, 20f, 20f);
             spawned.transform.localEulerAngles = new Vector3(0, 180, 0);
             spawned.SetActive(true);
         }
@@ -81,7 +81,6 @@ namespace RotA.Mono.Cinematics
         {
             GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamWreck_Prefab"));
             prefab.SetActive(false);
-            prefab.transform.localScale = Vector3.one;
             MaterialUtils.ApplySNShaders(prefab);
             return prefab;
         }
