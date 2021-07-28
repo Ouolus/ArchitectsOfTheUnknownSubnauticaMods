@@ -12,7 +12,7 @@ namespace RotA.Mono.Cinematics
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 gargsSpawnPosition = new Vector3(945f, 0f, 3000);
+        private Vector3 gargsSpawnPosition = new Vector3(945f, 400f, 3000);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -39,6 +39,7 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 10f);
+            Invoke(nameof(ExplodeSunbeamWreck), 10f);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
         }
@@ -61,6 +62,12 @@ namespace RotA.Mono.Cinematics
             spawned.transform.localScale = new Vector3(20f, 20f, 20f);
             spawned.transform.localEulerAngles = new Vector3(0, 180, 0);
             spawned.SetActive(true);
+        }
+
+        private void ExplodeSunbeamWreck()
+        {
+            Destroy(wreck.gameObject);
+            ErrorMessage.AddMessage("BOOOOOOOM!!!!!");
         }
 
         public GameObject GetSunbeamWreckPrefab()
