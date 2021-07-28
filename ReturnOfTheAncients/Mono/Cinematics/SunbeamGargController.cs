@@ -43,8 +43,7 @@ namespace RotA.Mono.Cinematics
             spawnedGarg = GameObject.Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
-            spawnedGarg.GetComponentInChildren<Animator>().SetBool("mouth_open", true);
-            Invoke(nameof(StartFadingOut), 20f);
+            Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
             timeStart = Time.time;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
