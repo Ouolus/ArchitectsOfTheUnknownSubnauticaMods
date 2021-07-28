@@ -12,7 +12,7 @@ namespace RotA.Mono.Cinematics
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 gargsSpawnPosition = new Vector3(945f, 400f, 3000);
+        private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -39,7 +39,7 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 7);
-            Invoke(nameof(ExplodeSunbeamWreck), 20);
+            Invoke(nameof(ExplodeSunbeamWreck), 15);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
         }
@@ -131,7 +131,7 @@ namespace RotA.Mono.Cinematics
             GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
             prefab.transform.forward = Vector3.forward;
-            prefab.transform.localScale = Vector3.one * 5.5f;
+            prefab.transform.localScale = Vector3.one * 9f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
