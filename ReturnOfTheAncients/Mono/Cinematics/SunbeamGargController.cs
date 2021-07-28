@@ -38,15 +38,20 @@ namespace RotA.Mono.Cinematics
             initialized = true;
             defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
+            Invoke(nameof(SpawnGarg), 15f);
+            Invoke(nameof(StartFadingOut), 25f);
+            Invoke(nameof(EndCinematic), 30f);
+            timeStart = Time.time;
+            Invoke(nameof(SpawnWreckPrefab), 7.4f);
+        }
+
+        private void SpawnGarg()
+        {
             GameObject gargPrefab = GetSunbeamGargPrefab();
             Vector3 spawnPos = gargsSpawnPosition;
             spawnedGarg = Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
-            Invoke(nameof(StartFadingOut), 25f);
-            Invoke(nameof(EndCinematic), 30f);
-            timeStart = Time.time;
-            Invoke(nameof(SpawnWreckPrefab), 7.4f);
         }
 
         private void SpawnWreckPrefab()
@@ -120,7 +125,7 @@ namespace RotA.Mono.Cinematics
         {
             GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
-            prefab.transform.forward = Vector3.up;
+            prefab.transform.forward = Vector3.forward;
             prefab.transform.localScale = Vector3.one * 5.5f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
