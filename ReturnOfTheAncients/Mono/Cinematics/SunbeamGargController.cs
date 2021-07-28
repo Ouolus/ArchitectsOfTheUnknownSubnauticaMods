@@ -62,7 +62,7 @@ namespace RotA.Mono.Cinematics
             }
             else
             {
-                Invoke(nameof(SpawnWreckPrefab), 7.2f);
+                Invoke(nameof(SpawnWreckPrefab), 7.4f);
             }
         }
 
