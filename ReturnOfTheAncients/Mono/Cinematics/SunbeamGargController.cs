@@ -38,8 +38,8 @@ namespace RotA.Mono.Cinematics
             defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
-            Invoke(nameof(SpawnGarg), 10f);
-            Invoke(nameof(ExplodeSunbeamWreck), 10f);
+            Invoke(nameof(SpawnGarg), 7);
+            Invoke(nameof(ExplodeSunbeamWreck), 15);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
         }
