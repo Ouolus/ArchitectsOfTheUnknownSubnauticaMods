@@ -40,7 +40,7 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             GameObject gargPrefab = GetSunbeamGargPrefab();
             Vector3 spawnPos = gargsSpawnPosition;
-            spawnedGarg = GameObject.Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
+            spawnedGarg = Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
             Invoke(nameof(StartFadingOut), 25f);
@@ -52,7 +52,7 @@ namespace RotA.Mono.Cinematics
         private void SpawnWreckPrefab()
         {
             GameObject prefab = GetSunbeamWreckPrefab();
-            var spawned = GameObject.Instantiate(prefab);
+            var spawned = Instantiate(prefab);
             wreck = spawned.EnsureComponent<SunbeamWreck>();
             spawned.transform.position = new Vector3(1107, 3843, 4369);
             spawned.transform.localScale = new Vector3(20f, 20f, 20f);
@@ -62,12 +62,13 @@ namespace RotA.Mono.Cinematics
 
         public GameObject GetSunbeamWreckPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamWreck_Prefab"));
+            GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamWreck_Prefab"));
             prefab.SetActive(false);
             MaterialUtils.ApplySNShaders(prefab);
             return prefab;
         }
 
+        //cut joke cutscene, unused now but I'll leave it here
         private IEnumerator WellBeRightBack()
         {
             yield return new WaitForSeconds(5.49f);
@@ -117,7 +118,7 @@ namespace RotA.Mono.Cinematics
         #region Messy prefab stuff
         public GameObject GetSunbeamGargPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
+            GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
             prefab.transform.forward = Vector3.up;
             prefab.transform.localScale = Vector3.one * 5.5f;
