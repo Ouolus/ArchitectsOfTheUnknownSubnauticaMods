@@ -18,7 +18,6 @@ namespace RotA.Mono.Cinematics
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
-        private float timeStart;
         private bool initialized = false;
         private SunbeamWreck wreck;
 
@@ -38,11 +37,10 @@ namespace RotA.Mono.Cinematics
             initialized = true;
             defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
-            Invoke(nameof(SpawnGarg), 15f);
+            Invoke(nameof(SpawnWreckPrefab), 7.4f);
+            Invoke(nameof(SpawnGarg), 10f);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
-            timeStart = Time.time;
-            Invoke(nameof(SpawnWreckPrefab), 7.4f);
         }
 
         private void SpawnGarg()
