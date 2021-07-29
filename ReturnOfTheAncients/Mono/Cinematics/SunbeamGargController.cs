@@ -8,76 +8,124 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace RotA.Mono
+namespace RotA.Mono.Cinematics
 {
     public class SunbeamGargController : MonoBehaviour
     {
-        private Vector3 position = new Vector3(945f, 0f, 3000);
-        private Vector3 positionInSpecialCutscene = new Vector3(420f, 0f, 3100f);
+        private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
+        private Vector3 explosionSpawnPosition = new Vector3(630, 958, 3601);
+        public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
         private float defaultFarplane;
         private float farplaneTarget;
-        private float timeStart;
-        private FMODAsset splashSound;
         private bool initialized = false;
+        private SunbeamWreck wreck;
 
         private bool setTimeScaleLateUpdate = false;
         private float targetTimeScale;
 
-        private float FarplaneDistance
+        private float CurrentFarplaneDistance
         {
             get
             {
                 return SNCameraRoot.main.mainCamera.farClipPlane;
             }
         }
-        public IEnumerator Start()
+
+        private void Start()
         {
-            bool doSecretCutscene = ShouldDoSecretCutscene();
-            if (doSecretCutscene)
-            {
-                yield return new WaitForSeconds(3f);
-            }
             initialized = true;
-            splashSound = ScriptableObject.CreateInstance<FMODAsset>();
-            splashSound.path = "event:/tools/constructor/sub_splash";
-            defaultFarplane = FarplaneDistance;
+            defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
-            GameObject prefab = GetSunbeamGargPrefab();
-            Vector3 spawnPos = doSecretCutscene ? positionInSpecialCutscene : position;
-            spawnedGarg = GameObject.Instantiate(prefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
+            Invoke(nameof(SpawnWreckPrefab), 7.4f);
+            Invoke(nameof(SpawnGarg), 6.9f);
+            Invoke(nameof(PlayRoarSound), 4f);
+            Invoke(nameof(PlayXLPDVfx), 13.1f);
+            Invoke(nameof(DestroySunbeamWreck), 15);
+            Invoke(nameof(StartFadingOut), 25f);
+            Invoke(nameof(EndCinematic), 30f);
+        }
+
+        void PlayRoarSound()
+        {
+            var gameObject = new GameObject("SunbeamRoarEvent");
+            gameObject.transform.position = new Vector3(1162, 0f, 4333);
+            var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
+            var audioSource = gameObject.EnsureComponent<AudioSource>();
+            audioSource.volume = ECCHelpers.GetECCVolume();
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance = 2500f;
+            audioSource.maxDistance = 20000f;
+            audioSource.clip = clip;
+            audioSource.Play();
+            MainCameraControl.main.ShakeCamera(0.25f, 5f, MainCameraControl.ShakeMode.Sqrt);
+            Destroy(gameObject, 10);
+        }
+
+        private void SpawnGarg()
+        {
+            GameObject gargPrefab = GetSunbeamGargPrefab();
+            Vector3 spawnPos = gargsSpawnPosition;
+            spawnedGarg = Instantiate(gargPrefab, spawnPos, Quaternion.Euler(Vector3.up * 180f));
             spawnedGarg.SetActive(true);
             spawnedGarg.transform.parent = transform;
-            Invoke(nameof(StartFadingOut), 20f);
-            Invoke(nameof(EndCinematic), 30f);
-            Invoke(nameof(Splash), 10f);
-            timeStart = Time.time;
-            if (doSecretCutscene)
-            {
-                StartCoroutine(WellBeRightBack());
-            }
         }
 
-        private bool ShouldDoSecretCutscene()
+        private void SpawnWreckPrefab()
         {
-            if (Player.main == null)
-            {
-                return false;
-            }
-            Vector3 playerPos = Player.main.transform.position;
-            if (Vector3.Distance(playerPos, secretCutsceneBounds.position) > secretCutsceneBounds.radius)
-            {
-                return false;
-            }
-            return 0.10f > Random.value;
+            GameObject prefab = GetSunbeamWreckPrefab();
+            var spawned = Instantiate(prefab);
+            wreck = spawned.EnsureComponent<SunbeamWreck>();
+            spawned.transform.position = new Vector3(1107, 3843, 4369);
+            spawned.transform.localScale = new Vector3(20f, 20f, 20f);
+            spawned.transform.localEulerAngles = new Vector3(0, 180, 0);
+            spawned.SetActive(true);
         }
 
+        private void PlayXLPDVfx()
+        {
+            if (TryGetExplosionVFX(out GameObject prefab))
+            {
+                GameObject vfx = Instantiate(prefab, explosionSpawnPosition, Quaternion.identity);
+                vfx.transform.GetChild(12).gameObject.SetActive(false);
+                vfx.transform.GetChild(13).gameObject.SetActive(false);
+                vfx.SetActive(true);
+                vfx.GetComponent<ParticleSystem>().Play();
+            }
+        }
+
+        private void DestroySunbeamWreck()
+        {
+            Destroy(wreck.gameObject);
+        }
+
+        private bool TryGetExplosionVFX(out GameObject obj)
+        {
+            VFXSunbeam sunbeamVfx = VFXSunbeam.main;
+            if (sunbeamVfx == null)
+            {
+                obj = null;
+                return false;
+            }
+            obj = sunbeamVfx.explosionPrefab;
+            return true;
+        }
+
+        public GameObject GetSunbeamWreckPrefab()
+        {
+            GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamWreck_Prefab"));
+            prefab.SetActive(false);
+            MaterialUtils.ApplySNShaders(prefab);
+            return prefab;
+        }
+
+        //cut joke cutscene, unused now but I'll leave it here
         private IEnumerator WellBeRightBack()
         {
-            yield return new WaitForSeconds(5.45f);
+            yield return new WaitForSeconds(5.49f);
             setTimeScaleLateUpdate = true;
-            targetTimeScale = 0.01f;
+            targetTimeScale = 0.001f;
             AudioClip secretSound = ECCAudio.LoadAudioClip("GargSunbeamSecretSFX");
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.PlayOneShot(secretSound);
@@ -106,31 +154,26 @@ namespace RotA.Mono
             Destroy(gameObject);
         }
 
-        private void Splash()
-        {
-            Utils.PlayFMODAsset(splashSound, new Vector3(411f, 0f, 1213f), 6000f);
-            StartCoroutine(PlaySplashVfx(new Vector3(position.x, 0f, position.z), 75f));
-        }
-
         void LateUpdate()
         {
             if (!initialized)
             {
                 return;
             }
-            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(FarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
+            SNCameraRoot.main.SetFarPlaneDistance(Mathf.MoveTowards(CurrentFarplaneDistance, farplaneTarget, Time.deltaTime * 4000f));
             if (setTimeScaleLateUpdate)
             {
                 Time.timeScale = targetTimeScale;
             }
         }
 
+        #region Messy prefab stuff
         public GameObject GetSunbeamGargPrefab()
         {
-            GameObject prefab = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
+            GameObject prefab = Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("SunbeamGarg_Prefab"));
             prefab.SetActive(false);
-            prefab.transform.forward = Vector3.up;
-            prefab.transform.localScale = Vector3.one * 5.5f;
+            prefab.transform.forward = Vector3.forward;
+            prefab.transform.localScale = Vector3.one * 9f;
             MaterialUtils.ApplySNShaders(prefab);
             Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
@@ -202,28 +245,6 @@ namespace RotA.Mono
             tm.yawMultiplier = curve;
         }
 
-        private IEnumerator PlaySplashVfx(Vector3 position, float scale)
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.Exosuit);
-            yield return task;
-            GameObject exosuitPrefab = task.GetResult();
-            var vfxSplash = exosuitPrefab.GetComponent<VFXConstructing>().surfaceSplashFX.GetComponent<VFXSplash>();
-            GameObject newVfx = Instantiate(vfxSplash.surfacePrefab);
-            newVfx.name = "SunbeamGargSplash";
-            newVfx.transform.parent = transform;
-            newVfx.transform.localScale = Vector3.one * scale;
-            newVfx.transform.position = position;
-            Destroy(newVfx.GetComponent<VFXDestroyAfterSeconds>());
-            var customSplash = newVfx.EnsureComponent<CustomSplash>();
-            customSplash.surfMaskCurve = vfxSplash.surfMaskCurve;
-            customSplash.surfScaleX = vfxSplash.surfScaleX;
-            customSplash.surfScaleY = vfxSplash.surfScaleY;
-            customSplash.surfScaleZ = vfxSplash.surfScaleZ;
-            customSplash.scale = scale;
-            customSplash.GetComponentInChildren<Renderer>().material = Object.Instantiate(vfxSplash.surfacePrefab.GetComponentInChildren<Renderer>().material);
-            newVfx.SetActive(true);
-        }
-
         private GameObject CreateMemeOverlay()
         {
             Canvas canvas = uGUI.main.screenCanvas;
@@ -241,5 +262,6 @@ namespace RotA.Mono
             rect.localEulerAngles = Vector3.zero;
             return imageObj;
         }
+        #endregion
     }
 }

@@ -7,10 +7,8 @@ namespace RotA.Mono
     public class VoidShoalSpawner : MonoBehaviour
     {
         GameObject shoalPrefab_Spinefish;
-        GameObject shoalPrefab_Hoopfish;
         VFXSchoolFishManager shoalManager;
         private const string spinefishShoalClassId = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
-        private const string hoopfishShoalClassId = "08cb3290-504b-4191-97ee-6af1588af5c0";
         private const int shoalCap = 20;
         private bool canSpawn = false;
 
@@ -47,33 +45,6 @@ namespace RotA.Mono
             {
                 ECCLibrary.Internal.ECCLog.AddMessage("Failed to grab spinefish shoal prefab");
             }
-            IPrefabRequest request2 = PrefabDatabase.GetPrefabAsync(hoopfishShoalClassId);
-            yield return request2;
-            if (request2.TryGetPrefab(out GameObject prefab2))
-            {
-                shoalPrefab_Hoopfish = GameObject.Instantiate(prefab2);
-                shoalPrefab_Hoopfish.SetActive(false);
-                shoalPrefab_Hoopfish.name = "Spinefish_Void_School";
-                Renderer renderer = shoalPrefab_Hoopfish.GetComponentInChildren<Renderer>();
-                Material material = renderer.material;
-                material.SetColor("_GlowColor", new Color(1f, 0f, 1f));
-                material.SetColor("_Color", new Color(1.00f, 0f, 0f));
-                material.SetFloat("_GlowStrength", 3f);
-                material.SetFloat("_GlowStrengthNight", 3f);
-                material.SetFloat("_EmissionLM", 0.5f);
-                material.SetFloat("_EmissionLMNight", 0.5f);
-                material.SetFloat("_SpecInt", 1f);
-                renderer.material = material;
-                renderer.transform.localScale = Vector3.one * 1.50f;
-                GameObject.Destroy(shoalPrefab_Hoopfish.GetComponent<LargeWorldEntity>());
-                GameObject.Destroy(shoalPrefab_Hoopfish.GetComponent<PrefabIdentifier>());
-                GameObject.Destroy(shoalPrefab_Hoopfish.GetComponent<Collider>());
-                shoalPrefab_Hoopfish.AddComponent<DestroyWhenFarAway>();
-            }
-            else
-            {
-                ECCLibrary.Internal.ECCLog.AddMessage("Failed to grab hoopfish shoal prefab");
-            }
         }
 
         void UpdateCanSpawn()
@@ -97,14 +68,7 @@ namespace RotA.Mono
         }
         GameObject GetPrefab()
         {
-            if (Random.value > 0.1f)
-            {
-                return shoalPrefab_Spinefish;
-            }
-            else
-            {
-                return shoalPrefab_Hoopfish;
-            }
+            return shoalPrefab_Spinefish;
         }
 
         int GetAllShoalsInWorld()

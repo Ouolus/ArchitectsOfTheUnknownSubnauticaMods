@@ -135,11 +135,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RotACommands.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Interfaces\IIonKnifeAction.cs" />
     <Compile Include="Mod-AlienBases.cs" />
     <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\SecretBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryContainmentFacility.cs" />
     <Compile Include="Mono\AlienBaseSpawners\KooshBaseSpawner.cs" />
@@ -167,9 +170,7 @@
     <Compile Include="Mono\AlienTech\SignalPingVoiceLine.cs" />
     <Compile Include="Mono\AlienTech\StoryHandTargetPlayAudioClip.cs" />
     <Compile Include="Mono\AlienTech\VoidBaseReveal.cs" />
-    <Compile Include="Mono\Commands\SecretCommand.cs" />
-    <Compile Include="Mono\Commands\TrollFaceTracker.cs" />
-    <Compile Include="Mono\Commands\TrollVoice.cs" />
+    <Compile Include="Mono\Cinematics\SecretBaseGargController.cs" />
     <Compile Include="Mono\Creatures\Baby\GargantuanBabyGrowthManager.cs" />
     <Compile Include="Mono\Creatures\Baby\GargantuanBabyTeleport.cs" />
     <Compile Include="Mono\Creatures\Baby\GargBabyTarget.cs" />
@@ -181,16 +182,24 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargEyeFixer.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeTracker.cs" />
     <Compile Include="Mono\AlienTech\SignalPingDelayedInitialize.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanConditions.cs" />
     <Compile Include="Mono\Creatures\IgnoreSelfCollisionsAtStart.cs" />
     <Compile Include="Mono\Creatures\SetLeashPositionDelayed.cs" />
     <Compile Include="Mono\DestroyWhenFarAway.cs" />
+    <Compile Include="Mono\Equipment\IonKnife.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\ElectricubeAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\OmegaCubeAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\PrecursorIonCrystalAction.cs" />
+    <Compile Include="Mono\Equipment\IonKnifeActions\RedIonCubeAction.cs" />
     <Compile Include="Mono\Equipment\WarpCannon.cs" />
     <Compile Include="Mono\Equipment\WarpCannonAnimations.cs" />
     <Compile Include="Mono\MiscPDALines.cs" />
     <Compile Include="Mono\Modules\DashOnKeyPress.cs" />
+    <Compile Include="Mono\TrollFaceTracker.cs" />
+    <Compile Include="Mono\TrollVoice.cs" />
     <Compile Include="Mono\VFX\CustomSplash.cs" />
     <Compile Include="Mono\VFX\PrecursorIllumControl.cs" />
     <Compile Include="Mono\GargantuanEncounterPDA.cs" />
@@ -202,7 +211,8 @@
     <Compile Include="Mono\SetTechTypeOnStart.cs" />
     <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
-    <Compile Include="Mono\SunbeamGargController.cs" />
+    <Compile Include="Mono\Cinematics\SunbeamGargController.cs" />
+    <Compile Include="Mono\VFX\SunbeamWreck.cs" />
     <Compile Include="Mono\VoidGargSpawner.cs" />
     <Compile Include="Mono\ExplosionRoar.cs" />
     <Compile Include="Mono\VoidShoalSpawner.cs" />
@@ -245,16 +255,15 @@
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
+    <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
     <Compile Include="Prefabs\GenericWorldPrefab.cs" />
     <Compile Include="Prefabs\Initializers\MiscInitializers.cs" />
-    <Compile Include="Prefabs\Initializers\SecretCommandInitializer.cs" />
     <Compile Include="Prefabs\Modules\ExosuitDashModule.cs" />
     <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
-    <Compile Include="Prefabs\OmegaCube.cs" />
     <Compile Include="Prefabs\Placeable\GargPoster.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
@@ -266,7 +275,9 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mono\Commands" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>

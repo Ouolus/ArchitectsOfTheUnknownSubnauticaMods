@@ -14,7 +14,7 @@ namespace RotA.Prefabs.Buildable
 
         protected override TechData GetBlueprintRecipe()
         {
-            return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1), new Ingredient(Mod.omegaCube.TechType, 1) });
+            return new TechData(new List<Ingredient>() { new Ingredient(AUHandler.AlienCompositeGlassTechType, 1), new Ingredient(AUHandler.OmegaCubeTechType, 1) });
         }
 
         protected override Atlas.Sprite GetItemSprite()
@@ -22,6 +22,6 @@ namespace RotA.Prefabs.Buildable
             return new Atlas.Sprite(Mod.assetBundle.LoadAsset<Sprite>("OmegaCubePedestal"));
         }
 
-        protected override string IonCubeClassId => Mod.omegaCube.ClassID;
+        protected override string IonCubeClassId => CraftData.GetClassIdForTechType(AUHandler.OmegaCubeTechType);
     }
 }

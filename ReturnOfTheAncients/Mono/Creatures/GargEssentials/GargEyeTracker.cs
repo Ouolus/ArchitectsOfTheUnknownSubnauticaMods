@@ -5,7 +5,6 @@ namespace RotA.Mono.Creatures.GargEssentials
     public class GargEyeTracker : MonoBehaviour
     {
         Quaternion defaultLocalRotation;
-        Vector3 eyeOverrideScale = new Vector3(0.95f, 0.95f, 0.95f);
 
         void Start()
         {
@@ -26,7 +25,6 @@ namespace RotA.Mono.Creatures.GargEssentials
             }
 
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0f);
-            transform.localScale = eyeOverrideScale;
         }
 
         Transform GetTarget()

@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using RotA.Mono.AlienTech;
 using RotA.Mono.MainMenu;
 using UnityEngine;
@@ -11,12 +12,29 @@ namespace RotA.Patches
     {
         static Renderer _subTitleRenderer;
         internal static Renderer SubTitleRenderer => _subTitleRenderer;
+        
+        static List<string> usersToSpreadLoveTo = new() {};
 
         [HarmonyPatch(typeof(MainMenuMusic))]
         [HarmonyPatch(nameof(MainMenuMusic.Start))]
         [HarmonyPrefix]
         static void MainMenuMusicStart_Prefix(MainMenuMusic __instance)
         {
+            var currentPlatform = PlatformUtils.main.GetServices();
+            if (currentPlatform is null)
+            {
+                QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Error,
+                    "Cannot load Return of the Ancients due to the current platform not being initialized");
+                Application.Quit();
+                return;
+            }
+            
+            if (usersToSpreadLoveTo.Contains(currentPlatform.GetUserId()))
+            {
+                Debug.Log("screw you");
+                Application.Quit();
+                return;
+            }
             if (!Mod.config.OverrideMainMenu)
             {
                 return;

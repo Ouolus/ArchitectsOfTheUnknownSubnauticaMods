@@ -40,6 +40,10 @@ namespace RotA.Prefabs
                 prefab.EnsureComponent<PrefabIdentifier>().classId = ClassID;
                 prefab.EnsureComponent<TechTag>().type = TechType;
                 prefab.EnsureComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
+                var rb = prefab.EnsureComponent<Rigidbody>();
+                rb.mass = 10000f;
+                rb.isKinematic = true;
+                prefab.EnsureComponent<ImmuneToPropulsioncannon>();
                 ECCHelpers.ApplySNShaders(prefab, materialProperties);
                 if (applyPrecursorMaterial)
                 {

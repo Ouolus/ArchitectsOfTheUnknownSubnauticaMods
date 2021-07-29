@@ -7,6 +7,10 @@ namespace RotA.Patches
     [HarmonyPatch]
     class VoidAmbience_Patches
     {
+        private const string voidBiomeName = "void";
+
+        private static int voidBiomeIndex = -1;
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(WaterAmbience), nameof(WaterAmbience.Start))]
         public static void WaterAmbience_Start_Postfix(WaterAmbience __instance)
@@ -14,12 +18,12 @@ namespace RotA.Patches
             GameObject ambienceParent = __instance.gameObject.SearchChild("background");
             GameObject voidAmbience = GameObject.Instantiate(ambienceParent.SearchChild("arcticAmbience"), ambienceParent.transform);
             voidAmbience.name = "voidAmbience";
-            voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = "void";
+            voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = voidBiomeName;
 
             GameObject musicParent = __instance.gameObject.SearchChild("music");
             GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("dunes"), musicParent.transform);
             referenceMusic.name = "voidAmbience";
-            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = "void";
+            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = voidBiomeName;
         }
 
         [HarmonyPostfix]
@@ -32,13 +36,23 @@ namespace RotA.Patches
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
-                murkiness = 0.7f,
-                startDistance = 100f,
+                murkiness = 0.8f,
+                startDistance = 130f,
                 scatteringColor = new Color(0f, 0.2f, 0.02f),
                 temperature = 5f,
                 scattering = 0.25f
             };
-            PatchBiomeFog(__instance, "void", voidWaterscapeSettings, __instance.biomeSkies[0]);
+            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[2]);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.GetBiomeIndex))]
+        public static void WaterBiomeManager_GetBiomeIndex_Postfix(ref int __result)
+        {
+            if (__result == -1)
+            {
+                __result = voidBiomeIndex;
+            }
         }
 
         static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings, mset.Sky sky)
@@ -58,8 +72,8 @@ namespace RotA.Patches
                 };
                 waterBiomeManager.biomeSkies.Add(sky);
                 waterBiomeManager.biomeSettings.Add(biomeSettings);
-                int indexForNew = waterBiomeManager.biomeSettings.Count - 1;
-                waterBiomeManager.biomeLookup.Add(biomeName, indexForNew);
+                voidBiomeIndex = waterBiomeManager.biomeSettings.Count - 1;
+                waterBiomeManager.biomeLookup.Add(biomeName, voidBiomeIndex);
             }
         }
     }
