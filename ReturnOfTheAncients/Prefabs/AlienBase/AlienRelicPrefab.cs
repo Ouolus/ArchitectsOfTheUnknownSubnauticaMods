@@ -52,14 +52,14 @@ namespace RotA.Prefabs.AlienBase
             {
                 foreach (var renderer in obj.GetComponentsInChildren<Renderer>(true))
                 {
-                    foreach(var material in renderer.materials)
+                    for (int i = 0; i < renderer.materials.Length; i++)
                     {
-                        if (material.name.ToLower().Contains("ionshader"))
+                        if (renderer.materials[i].name.ToLower().Contains("precursor_crystal_cube"))
                         {
-                            material.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
-                            material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
-                            material.SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
-                            material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
+                            renderer.materials[i].SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
+                            renderer.materials[i].SetColor("_SpecColor", new Color(1f, 1f, 1f));
+                            renderer.materials[i].SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
+                            renderer.materials[i].SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
                         }
                     }
                 }
@@ -98,18 +98,18 @@ namespace RotA.Prefabs.AlienBase
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
             MaterialUtils.FixIonCubeMaterials(obj, 1f);
-            if (useOmegaCubeMaterial)
+                        if (useOmegaCubeMaterial)
             {
                 foreach (var renderer in obj.GetComponentsInChildren<Renderer>(true))
                 {
-                    foreach(var material in renderer.materials)
+                    for (int i = 0; i < renderer.materials.Length; i++)
                     {
-                        if (material.name.ToLower().Contains("ionshader"))
+                        if (renderer.materials[i].name.ToLower().Contains("precursor_crystal_cube"))
                         {
-                            material.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
-                            material.SetColor("_SpecColor", new Color(1f, 1f, 1f));
-                            material.SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
-                            material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
+                            renderer.materials[i].SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
+                            renderer.materials[i].SetColor("_SpecColor", new Color(1f, 1f, 1f));
+                            renderer.materials[i].SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
+                            renderer.materials[i].SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
                         }
                     }
                 }
