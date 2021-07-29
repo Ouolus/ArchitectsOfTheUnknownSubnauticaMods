@@ -13,7 +13,7 @@ namespace RotA.Mono.Cinematics
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
-        private Vector3 explosionSpawnPosition = new Vector3(630, 958, 3601);
+        private Vector3 explosionSpawnPosition = new Vector3(670, 1000, 3601);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -41,7 +41,7 @@ namespace RotA.Mono.Cinematics
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 6.9f);
             Invoke(nameof(PlayRoarSound), 4f);
-            Invoke(nameof(PlayXLPDVfx), 13.1f);
+            Invoke(nameof(PlayXLPDVfx), 12.7f);
             Invoke(nameof(DestroySunbeamWreck), 15);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
@@ -225,7 +225,7 @@ namespace RotA.Mono.Cinematics
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 4.5f;
+            trail.segmentSnapSpeed = 0.075f / 10f;
             trail.maxSegmentOffset = 700f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
