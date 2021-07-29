@@ -166,7 +166,6 @@ namespace ArchitectsLibrary
             CraftingMenuPatches.Patch(harmony);
             WaterParkPatches.Patch(harmony);
             BuilderPatches.Patch(harmony);
-            //PlayerPatches.Patch(harmony);
             uGUI_InventoryTabPatches.Patch(harmony);
             uGUI_BuilderMenuPatches.Patch(harmony);
             uGUI_ItemSelectorPatches.Patch(harmony);
