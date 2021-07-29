@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Items
     class PrecursorIonCrystal : ModPrefab
     {
         public PrecursorIonCrystal()
-            : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "PrecursorIonCrystalRotA", TechType.PrecursorIonCrystal)
+            : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "PrecursorIonCrystalAL", TechType.PrecursorIonCrystal)
         {}
 
 #if SN1
