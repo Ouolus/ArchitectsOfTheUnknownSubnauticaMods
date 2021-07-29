@@ -2,20 +2,21 @@ using System.Collections;
 using ArchitectsLibrary.MonoBehaviours;
 using SMLHelper.V2.Assets;
 using UnityEngine;
+using UWE;
 
 namespace ArchitectsLibrary.Items
 {
     class PrecursorIonCrystal : ModPrefab
     {
         public PrecursorIonCrystal()
-            : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "WorldEntities/Natural/PrecursorIonCrystal", TechType.PrecursorIonCrystal)
+            : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "PrecursorIonCrystalRotA", TechType.PrecursorIonCrystal)
         {}
 
 #if SN1
         public override GameObject GetGameObject()
         {
-            var prefab = CraftData.InstantiateFromPrefab(TechType.PrecursorIonCrystal);
-            
+            var prefab = Object.Instantiate(Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal"));
+
             prefab.EnsureComponent<PrecursorIonStorage>()._capacity = 1000000;
             Main.IonCubeCraftModelFix(prefab);
             
@@ -24,10 +25,12 @@ namespace ArchitectsLibrary.Items
 #endif
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
+            var task = PrefabDatabase.GetPrefabForFilenameAsyncImpl("WorldEntities/Natural/PrecursorIonCrystal");
             yield return task;
 
-            var prefab = Object.Instantiate(task.GetResult());
+            task.TryGetPrefab(out var obj);
+
+            var prefab = Object.Instantiate(obj);
             prefab.EnsureComponent<PrecursorIonStorage>()._capacity = 1000000;
             Main.IonCubeCraftModelFix(prefab);
             
