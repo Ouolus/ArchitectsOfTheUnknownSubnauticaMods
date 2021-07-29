@@ -226,7 +226,7 @@ namespace RotA.Mono.Cinematics
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
             trail.segmentSnapSpeed = 0.075f / 10f;
-            trail.maxSegmentOffset = 700f;
+            trail.maxSegmentOffset = 600f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
             trail.pitchMultiplier = decreasing;
