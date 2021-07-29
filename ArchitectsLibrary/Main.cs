@@ -166,7 +166,7 @@ namespace ArchitectsLibrary
             CraftingMenuPatches.Patch(harmony);
             WaterParkPatches.Patch(harmony);
             BuilderPatches.Patch(harmony);
-            PlayerPatches.Patch(harmony);
+            //PlayerPatches.Patch(harmony);
             uGUI_InventoryTabPatches.Patch(harmony);
             uGUI_BuilderMenuPatches.Patch(harmony);
             uGUI_ItemSelectorPatches.Patch(harmony);
@@ -317,6 +317,9 @@ namespace ArchitectsLibrary
             aotuPoster.Patch();
             
             new CustomBuilder().Patch();
+
+            var pic = new PrecursorIonCrystal();
+            PrefabHandler.RegisterPrefab(pic);
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
