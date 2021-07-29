@@ -1461,6 +1461,16 @@
             <param name="moddedPingType">The PingType enum value. Defaults to <see cref="F:PingType.None"/> when the PingType was not found.</param>
             <returns><c>True</c> if the PingType was found; Otherwise <c>false</c></returns>
         </member>
+        <member name="T:SMLHelper.V2.Handlers.SaveDataHandler">
+            <summary>
+            A handler class for registering your <see cref="T:SMLHelper.V2.Json.SaveDataCache"/>.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Handlers.SaveDataHandler.Main">
+            <summary>
+            Main entry point for all calls to this handler.
+            </summary>
+        </member>
         <member name="T:SMLHelper.V2.Handlers.SurvivalHandler">
             <summary>
             a common handler for uses specified to the Survival component
@@ -2243,6 +2253,12 @@
             </summary>
             <param name="onSaveAction">The method to invoke.</param>
         </member>
+        <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOnLoadEvent(System.Action)">
+            <summary>
+            Registers a simple <see cref="T:System.Action"/> method to invoke whenever the player loads a saved game via the in game menu.
+            </summary>
+            <param name="onLoadAction">The method to invoke.</param>
+        </member>
         <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOnQuitEvent(System.Action)">
             <summary>
             Registers a simple <see cref="T:System.Action"/> method to invoke whenever the player quits the game via the in game menu.
@@ -2256,6 +2272,13 @@
             </summary>
             <param name="onSaveAction">The method invoked.</param>
         </member>
+        <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.UnregisterOnLoadEvent(System.Action)">
+            <summary>
+            Removes a method previously added through <see cref="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOnLoadEvent(System.Action)"/> so it is no longer invoked when loading the game.<para/>
+            If you plan on using this, do not register an anonymous method.
+            </summary>
+            <param name="onLoadAction">The method invoked.</param>
+        </member>
         <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.UnregisterOnQuitEvent(System.Action)">
             <summary>
             Removes a method previously added through <see cref="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOnSaveEvent(System.Action)"/> so it is no longer invoked when quitting the game.<para/>
@@ -2268,6 +2291,12 @@
             Registers a simple <see cref="T:System.Action"/> method to invoke the <c>first time</c> the player saves the game via the in game menu.
             </summary>
             <param name="onSaveAction">The method to invoke. This action will not be invoked a second time.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOneTimeUseOnLoadEvent(System.Action)">
+            <summary>
+            Registers a simple <see cref="T:System.Action"/> method to invoke the <c>first time</c> the player loads a saved game via the in game menu.
+            </summary>
+            <param name="onLoadAction">The method to invoke. This action will not be invoked a second time.</param>
         </member>
         <member name="M:SMLHelper.V2.Handlers.IngameMenuHandler.RegisterOneTimeUseOnQuitEvent(System.Action)">
             <summary>
@@ -3395,6 +3424,19 @@
             <param name="moddedPingType">The PingType enum value. Defaults to <see cref="F:PingType.None"/> when the PingType was not found.</param>
             <returns><c>True</c> if the PingType was found; Otherwise <c>false</c></returns>
         </member>
+        <member name="T:SMLHelper.V2.Interfaces.ISaveDataHandler">
+            <summary>
+            A handler class for registering your <see cref="T:SMLHelper.V2.Json.SaveDataCache"/>.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ISaveDataHandler.RegisterSaveDataCache``1">
+            <summary>
+            Registers your <see cref="T:SMLHelper.V2.Json.SaveDataCache"/> to be automatically loaded and saved whenever the game is.
+            </summary>
+            <typeparam name="T">A class derived from <see cref="T:SMLHelper.V2.Json.SaveDataCache"/> to hold your save data.</typeparam>
+            <returns>An instance of the <typeparamref name="T"/> : <see cref="T:SMLHelper.V2.Json.SaveDataCache"/> with values loaded
+            from the json file on disk whenever a save slot is loaded.</returns>
+        </member>
         <member name="T:SMLHelper.V2.Interfaces.ISurvivalHandler">
             <summary>
             a handler for common uses to the Survival component
@@ -3814,6 +3856,12 @@
             </summary>
             <param name="onSaveAction">The method to invoke.</param>
         </member>
+        <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOnLoadEvent(System.Action)">
+            <summary>
+            Registers a simple <see cref="T:System.Action"/> method to invoke whenever the player loads a saved game via the in game menu.
+            </summary>
+            <param name="onLoadAction">The method to invoke.</param>
+        </member>
         <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOnQuitEvent(System.Action)">
             <summary>
             Registers a simple <see cref="T:System.Action"/> method to invoke whenever the player quits the game via the in game menu.
@@ -3827,6 +3875,13 @@
             </summary>
             <param name="onSaveAction">The method invoked.</param>
         </member>
+        <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.UnregisterOnLoadEvent(System.Action)">
+            <summary>
+            Removes a method previously added through <see cref="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOnLoadEvent(System.Action)"/> so it is no longer invoked when loading the game.<para/>
+            If you plan on using this, do not register an anonymous method.
+            </summary>
+            <param name="onLoadAction">The method invoked.</param>
+        </member>
         <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.UnregisterOnQuitEvent(System.Action)">
             <summary>
             Removes a method previously added through <see cref="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOnQuitEvent(System.Action)"/> so it is no longer invoked when quiting the game.<para/>
@@ -3839,6 +3894,12 @@
             Registers a simple <see cref="T:System.Action"/> method to invoke the <c>first time</c> the player saves the game via the in game menu.
             </summary>
             <param name="onSaveAction">The method to invoke. This action will not be invoked a second time.</param>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOneTimeUseOnLoadEvent(System.Action)">
+            <summary>
+            Registers a simple <see cref="T:System.Action"/> method to invoke the <c>first time</c> the player loads a saved game via the in game menu.
+            </summary>
+            <param name="onLoadAction">The method to invoke. This action will not be invoked a second time.</param>
         </member>
         <member name="M:SMLHelper.V2.Interfaces.IIngameMenuHandler.RegisterOneTimeUseOnQuitEvent(System.Action)">
             <summary>
@@ -4414,6 +4475,22 @@
             <param name="s">The text to display</param>
             <param name="seconds">The duration to hold before fading</param>
         </member>
+        <member name="T:SMLHelper.V2.Json.Attributes.FileNameAttribute">
+            <summary>
+            Attribute used to specify a file name for use with a <see cref="T:SMLHelper.V2.Json.JsonFile"/>.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.Attributes.FileNameAttribute.FileName">
+            <summary>
+            The filename.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Attributes.FileNameAttribute.#ctor(System.String)">
+            <summary>
+            Used to specify the file name for a <see cref="T:SMLHelper.V2.Json.JsonFile"/>.
+            </summary>
+            <param name="fileName"></param>
+        </member>
         <member name="T:SMLHelper.V2.Json.ConfigFileAttribute">
             <summary>
             Attribute used to specify the filename and subfolder for a <see cref="T:SMLHelper.V2.Json.ConfigFile"/>.
@@ -4451,6 +4528,22 @@
             When used alongside the <see cref="M:SMLHelper.V2.Json.ConfigFile.#ctor(System.String,System.String)"/> constructor, this attribute is ignored.
             </remarks>
             <param name="filename">The filename to use for the <see cref="T:SMLHelper.V2.Json.ConfigFile"/>.</param>
+        </member>
+        <member name="T:SMLHelper.V2.Json.ConfigFileEventArgs">
+            <summary>
+            Contains basic information for a <see cref="T:SMLHelper.V2.Json.ConfigFile"/> event.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.ConfigFileEventArgs.Instance">
+            <summary>
+            The instance of the <see cref="T:SMLHelper.V2.Json.ConfigFile"/> this event pertains to.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.ConfigFileEventArgs.#ctor(SMLHelper.V2.Json.ConfigFile)">
+            <summary>
+            Instantiates a new <see cref="T:SMLHelper.V2.Json.ConfigFileEventArgs"/>.
+            </summary>
+            <param name="instance">The <see cref="T:SMLHelper.V2.Json.ConfigFile"/> instance the event pertains to.</param>
         </member>
         <member name="T:SMLHelper.V2.Json.Converters.FloatConverter">
             <summary>
@@ -4676,6 +4769,150 @@
             <seealso cref="M:SMLHelper.V2.Json.Interfaces.IJsonFile.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
             <seealso cref="M:SMLHelper.V2.Json.Interfaces.IJsonFile.Save"/>
         </member>
+        <member name="T:SMLHelper.V2.Json.JsonFile">
+            <summary>
+            A simple abstract implementation of <see cref="T:SMLHelper.V2.Json.Interfaces.IJsonFile"/>.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.JsonFile.JsonFilePath">
+            <summary>
+            The file path at which the JSON file is accessible for reading and writing.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.JsonFile.AlwaysIncludedJsonConverters">
+            <summary>
+            The <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>s that should always be used when reading/writing JSON data.
+            </summary>
+            <seealso cref="F:SMLHelper.V2.Json.JsonFile.alwaysIncludedJsonConverters"/>
+        </member>
+        <member name="F:SMLHelper.V2.Json.JsonFile.OnStartedLoading">
+            <summary>
+            An event that is invoked whenever the <see cref="T:SMLHelper.V2.Json.JsonFile"/> is about to load data from disk.
+            </summary>
+        </member>
+        <member name="F:SMLHelper.V2.Json.JsonFile.OnFinishedLoading">
+            <summary>
+            An event that is invoked whenever the <see cref="T:SMLHelper.V2.Json.JsonFile"/> has finished loading data from disk.
+            </summary>
+        </member>
+        <member name="F:SMLHelper.V2.Json.JsonFile.OnStartedSaving">
+            <summary>
+            An event that is invoked whenever the <see cref="T:SMLHelper.V2.Json.JsonFile"/> is about to save data to disk.
+            </summary>
+        </member>
+        <member name="F:SMLHelper.V2.Json.JsonFile.OnFinishedSaving">
+            <summary>
+            An event that is invoked whenever the <see cref="T:SMLHelper.V2.Json.JsonFile"/> has finished saving data to disk.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.JsonFile.Load(System.Boolean)">
+            <summary>
+            Loads the JSON properties from the file on disk into the <see cref="T:SMLHelper.V2.Json.JsonFile"/>.
+            </summary>
+            <param name="createFileIfNotExist">Whether a new JSON file should be created with default values if it does not
+            already exist.</param>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.Save"/>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
+        </member>
+        <member name="M:SMLHelper.V2.Json.JsonFile.Save">
+            <summary>
+            Saves the current fields and properties of the <see cref="T:SMLHelper.V2.Json.JsonFile"/> as JSON properties to the file on disk.
+            </summary>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.Load(System.Boolean)"/>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])"/>
+        </member>
+        <member name="M:SMLHelper.V2.Json.JsonFile.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            Loads the JSON properties from the file on disk into the <see cref="T:SMLHelper.V2.Json.JsonFile"/>.
+            </summary>
+            <param name="createFileIfNotExist">Whether a new JSON file should be created with default values if it does not
+            already exist.</param>
+            <param name="jsonConverters">Optional <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>s to be used for serialization.
+            The <see cref="P:SMLHelper.V2.Json.JsonFile.AlwaysIncludedJsonConverters"/> will always be used, regardless of whether you pass them.</param>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.Load(System.Boolean)"/>
+        </member>
+        <member name="M:SMLHelper.V2.Json.JsonFile.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            Saves the current fields and properties of the <see cref="T:SMLHelper.V2.Json.JsonFile"/> as JSON properties to the file on disk.
+            </summary>
+            <param name="jsonConverters">Optional <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>s to be used for deserialization.
+            The <see cref="P:SMLHelper.V2.Json.JsonFile.AlwaysIncludedJsonConverters"/> will always be used, regardless of whether you pass them.</param>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <seealso cref="M:SMLHelper.V2.Json.JsonFile.Save"/>
+        </member>
+        <member name="T:SMLHelper.V2.Json.JsonFileEventArgs">
+            <summary>
+            Contains basic information for a <see cref="T:SMLHelper.V2.Json.JsonFile"/> event.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.JsonFileEventArgs.Instance">
+            <summary>
+            The instance of the <see cref="T:SMLHelper.V2.Json.JsonFile"/> this event pertains to.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.JsonFileEventArgs.#ctor(SMLHelper.V2.Json.JsonFile)">
+            <summary>
+            Instantiates a new <see cref="T:SMLHelper.V2.Json.JsonFileEventArgs"/>.
+            </summary>
+            <param name="instance">The <see cref="T:SMLHelper.V2.Json.JsonFile"/> instance the event pertains to.</param>
+        </member>
+        <member name="T:SMLHelper.V2.Json.SaveDataCache">
+            <summary>
+            An abstract implementation of <see cref="T:SMLHelper.V2.Json.Interfaces.IJsonFile"/> intended for use with caching per-save data.
+            </summary>
+        </member>
+        <member name="P:SMLHelper.V2.Json.SaveDataCache.JsonFilePath">
+            <summary>
+            The file path at which the JSON file is accessible for reading and writing.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.SaveDataCache.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:SMLHelper.V2.Json.SaveDataCache"/>, parsing the file name from <see cref="T:SMLHelper.V2.Json.Attributes.FileNameAttribute"/>
+            if declared, or with default values otherwise.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.SaveDataCache.Load(System.Boolean)">
+            <summary>
+            Loads the JSON properties from the file on disk into the <see cref="T:SMLHelper.V2.Json.SaveDataCache"/>.
+            </summary>
+            <param name="createFileIfNotExist">Whether a new JSON file should be created with default values if it does not
+            already exist.</param>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.Save"/>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <exception cref="T:System.InvalidOperationException">Thrown when the player is not in-game.</exception>
+        </member>
+        <member name="M:SMLHelper.V2.Json.SaveDataCache.Save">
+            <summary>
+            Saves the current fields and properties of the <see cref="T:SMLHelper.V2.Json.SaveDataCache"/> as JSON properties to the file on disk.
+            </summary>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.Load(System.Boolean)"/>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <exception cref="T:System.InvalidOperationException">Thrown when the player is not in-game.</exception>
+        </member>
+        <member name="M:SMLHelper.V2.Json.SaveDataCache.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            Loads the JSON properties from the file on disk into the <see cref="T:SMLHelper.V2.Json.SaveDataCache"/>.
+            </summary>
+            <param name="createFileIfNotExist">Whether a new JSON file should be created with default values if it does not
+            already exist.</param>
+            <param name="jsonConverters">Optional <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>s to be used for serialization.
+            The <see cref="P:SMLHelper.V2.Json.JsonFile.AlwaysIncludedJsonConverters"/> will always be used, regardless of whether you pass them.</param>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.Load(System.Boolean)"/>
+            <exception cref="T:System.InvalidOperationException">Thrown when the player is not in-game.</exception>
+        </member>
+        <member name="M:SMLHelper.V2.Json.SaveDataCache.SaveWithConverters(Oculus.Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            Saves the current fields and properties of the <see cref="T:SMLHelper.V2.Json.SaveDataCache"/> as JSON properties to the file on disk.
+            </summary>
+            <param name="jsonConverters">Optional <see cref="T:Oculus.Newtonsoft.Json.JsonConverter"/>s to be used for deserialization.
+            The <see cref="P:SMLHelper.V2.Json.JsonFile.AlwaysIncludedJsonConverters"/> will always be used, regardless of whether you pass them.</param>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
+            <seealso cref="M:SMLHelper.V2.Json.SaveDataCache.Save"/>
+            <exception cref="T:System.InvalidOperationException">Thrown when the player is not in-game.</exception>
+        </member>
         <member name="T:SMLHelper.V2.Json.ConfigFile">
             <summary>
             A simple implementation of <see cref="T:SMLHelper.V2.Json.Interfaces.IJsonFile"/> for use with config files.
@@ -4773,22 +5010,6 @@
             The <see cref="P:SMLHelper.V2.Json.ConfigFile.AlwaysIncludedJsonConverters"/> will always be used, regardless of whether you pass them.</param>
             <seealso cref="M:SMLHelper.V2.Json.ConfigFile.LoadWithConverters(System.Boolean,Oculus.Newtonsoft.Json.JsonConverter[])"/>
             <seealso cref="M:SMLHelper.V2.Json.ConfigFile.Save"/>
-        </member>
-        <member name="T:SMLHelper.V2.Json.ConfigFileEventArgs">
-            <summary>
-            Contains basic information for a <see cref="T:SMLHelper.V2.Json.ConfigFile"/> event.
-            </summary>
-        </member>
-        <member name="P:SMLHelper.V2.Json.ConfigFileEventArgs.Instance">
-            <summary>
-            The instance of the <see cref="T:SMLHelper.V2.Json.ConfigFile"/> this event pertains to.
-            </summary>
-        </member>
-        <member name="M:SMLHelper.V2.Json.ConfigFileEventArgs.#ctor(SMLHelper.V2.Json.ConfigFile)">
-            <summary>
-            Instantiates a new <see cref="T:SMLHelper.V2.Json.ConfigFileEventArgs"/>.
-            </summary>
-            <param name="instance">The <see cref="T:SMLHelper.V2.Json.ConfigFile"/> instance the event pertains to.</param>
         </member>
         <member name="T:SMLHelper.V2.Handler">
             <summary>
@@ -6119,7 +6340,7 @@
             <summary>
             Sets the value in the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/>, optionally saving the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/> to disk if the
             <see cref="F:SMLHelper.V2.Options.Attributes.MenuAttribute.SaveEvents.ChangeValue"/> flag is set, before passing off to
-            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
+            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
             to invoke any methods specified with an <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>.
             </summary>
             <param name="sender">The sender of the original choice changed event.</param>
@@ -6129,7 +6350,7 @@
             <summary>
             Sets the value in the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/>, optionally saving the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/> to disk if the
             <see cref="F:SMLHelper.V2.Options.Attributes.MenuAttribute.SaveEvents.ChangeValue"/> flag is set, before passing off to
-            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
+            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
             to invoke any methods specified with an <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>.
             </summary>
             <param name="sender">The sender of the original keybind changed event.</param>
@@ -6139,7 +6360,7 @@
             <summary>
             Sets the value in the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/>, optionally saving the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/> to disk if the
             <see cref="F:SMLHelper.V2.Options.Attributes.MenuAttribute.SaveEvents.ChangeValue"/> flag is set, before passing off to
-            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
+            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
             to invoke any methods specified with an <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>.
             </summary>
             <param name="sender">The sender of the original slider changed event.</param>
@@ -6149,7 +6370,7 @@
             <summary>
             Sets the value in the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/>, optionally saving the <see cref="P:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.Config"/> to disk if the
             <see cref="F:SMLHelper.V2.Options.Attributes.MenuAttribute.SaveEvents.ChangeValue"/> flag is set, before passing off to
-            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
+            <see cref="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)"/>
             to invoke any methods specified with an <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>.
             </summary>
             <param name="sender">The sender of the original toggle changed event.</param>
@@ -6164,7 +6385,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object)">
+        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object)">
             <summary>
             Invokes the relevant method(s) specified with the <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>(s)
             and passes parameters when a value is changed when loaded from disk.
@@ -6172,7 +6393,7 @@
             <param name="modOptionMetadata">The metadata for the mod option.</param>
             <param name="sender">The sender of the event.</param>
         </member>
-        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)">
+        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeOnChangeEvents``1(SMLHelper.V2.Options.Attributes.ModOptionAttributeMetadata{`0},System.Object,``0)">
             <summary>
             Invokes the relevant method(s) specified with <see cref="T:SMLHelper.V2.Options.Attributes.OnChangeAttribute"/>(s)
             and passes parameters when a value is changed.
@@ -6182,7 +6403,7 @@
             <param name="sender">The sender of the event.</param>
             <param name="e">The event args from the OnChange event.</param>
         </member>
-        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.invokeEvent``1(SMLHelper.V2.Options.Attributes.MemberInfoMetadata{`0},System.Object,``0)">
+        <member name="M:SMLHelper.V2.Options.Attributes.ConfigFileMetadata`1.InvokeEvent``1(SMLHelper.V2.Options.Attributes.MemberInfoMetadata{`0},System.Object,``0)">
             <summary>
             Invoke the relevant method specified by a <see cref="T:SMLHelper.V2.Options.Attributes.ModOptionEventAttribute"/>
             and passes relevant parameters.
