@@ -97,7 +97,7 @@ namespace RotA
 
             PatchEncy(ency_precrifle, modEncyPath_relics, "Alien Rifle Variant", "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.", "PrecRifle_Popup", "PrecRifle_Ency");
 
-            PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. A lack of luminosity, which is almost always found in alien technology, suggests it is no longer powered.");
+            PatchEncy(ency_precblade, modEncyPath_relics, "Alien Knife", "An alien knife with obvious applications. The material that composes the blade cannot be identified. It has some resemblance to an Ion Cube, but is a different color and appears to contain several times as much energy. Further research required.");
 
             PatchEncy(ency_precbuilder, modEncyPath_relics, "Alien Construction Tool", "An ancient construction tool that appears uncannily similar to the Alterra Habitat Builder.\n\nThis device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis on site suggests this was the last structure it has ever built.", "PrecursorBuilder_Popup", "PrecursorBuilder_Ency");
 
