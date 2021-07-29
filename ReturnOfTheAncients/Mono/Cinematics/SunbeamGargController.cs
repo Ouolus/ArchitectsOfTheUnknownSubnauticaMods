@@ -13,7 +13,7 @@ namespace RotA.Mono.Cinematics
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
-        private Vector3 explosionSpawnPosition = new Vector3(670, 1000, 3601);
+        private Vector3 explosionSpawnPosition = new Vector3(750, 1700, 3600);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -46,8 +46,8 @@ namespace RotA.Mono.Cinematics
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 6.9f);
             Invoke(nameof(PlayRoarSound), 4f);
-            Invoke(nameof(PlayXLPDVfx), 12.7f);
-            Invoke(nameof(DestroySunbeamWreck), 15);
+            Invoke(nameof(PlayXLPDVfx), 14f);
+            Invoke(nameof(DestroySunbeamWreck), 16.3f);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
         }
