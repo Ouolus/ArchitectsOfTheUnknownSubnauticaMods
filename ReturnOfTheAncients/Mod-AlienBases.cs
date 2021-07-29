@@ -34,7 +34,7 @@ namespace RotA
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
-        public static DataTerminalPrefab spamTerminal;
+        public static DataTerminalPrefab voidbaseSpamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
@@ -221,6 +221,7 @@ namespace RotA
 
         static void PatchAlienTerminals()
         {
+            #region Outposts
             tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", ency_tertiaryOutpostTerminalGrassy, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalGrassy.Patch();
 
@@ -229,7 +230,9 @@ namespace RotA
 
             tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", ency_tertiaryOutpostTerminalLostRiver, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalLostRiver.Patch();
+            #endregion
 
+            #region Cache bases
             guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminalDistress", DataTerminalPrefab.blueTerminalCID, delay: 6f, subtitles: "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.");
             guardianTerminal.Patch();
 
@@ -245,24 +248,28 @@ namespace RotA
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType }, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal.Patch();
 
+            precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            precursorMasterTechTerminal.Patch();
+
+            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
+            redTabletHolder.Patch();
+            #endregion
+
+            #region Voidbase
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             voidBaseTerminal.Patch();
 
             cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID });
             cachePingsTerminal.Patch();
 
-            spamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
-            spamTerminal.Patch();
+            voidbaseSpamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            voidbaseSpamTerminal.Patch();
 
             eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", ency_eggRoom, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
             eggRoomTerminal.Patch();
+            #endregion
 
-            precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
-            precursorMasterTechTerminal.Patch();
-
-            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
-            redTabletHolder.Patch();
-
+            #region Secret base
             devSecretTerminal = new SecretBaseTerminal("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(0.65f, 0f, 0.75f), achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
             devSecretTerminal.Patch();
 
@@ -286,6 +293,7 @@ namespace RotA
 
             devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0f, 0f));
             devTerminalTori.Patch();
+            #endregion
         }
 
         static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, string name, Color color)
