@@ -275,9 +275,6 @@
   <ItemGroup>
     <Content Include="mod_SN1.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mono\Commands" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
