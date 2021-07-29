@@ -66,8 +66,25 @@ namespace RotA.Mono.Cinematics
 
         private void ExplodeSunbeamWreck()
         {
+            if (TryGetExplosionVFX(out GameObject prefab))
+            {
+                GameObject vfx = Instantiate(prefab, wreck.transform.position, Quaternion.identity);
+                vfx.SetActive(true);
+                vfx.GetComponent<ParticleSystem>().Play();
+            }
             Destroy(wreck.gameObject);
-            ErrorMessage.AddMessage("BOOOOOOOM!!!!!");
+        }
+
+        private bool TryGetExplosionVFX(out GameObject obj)
+        {
+            VFXSunbeam sunbeamVfx = VFXSunbeam.main;
+            if (sunbeamVfx == null)
+            {
+                obj = null;
+                return false;
+            }
+            obj = sunbeamVfx.explosionPrefab;
+            return true;
         }
 
         public GameObject GetSunbeamWreckPrefab()
