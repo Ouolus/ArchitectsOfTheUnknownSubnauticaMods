@@ -39,7 +39,8 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 7);
-            Invoke(nameof(ExplodeSunbeamWreck), 15);
+            Invoke(nameof(PlayXLPDVfx), 12.5f);
+            Invoke(nameof(DestroySunbeamWreck), 15);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
         }
@@ -64,7 +65,7 @@ namespace RotA.Mono.Cinematics
             spawned.SetActive(true);
         }
 
-        private void ExplodeSunbeamWreck()
+        private void PlayXLPDVfx()
         {
             if (TryGetExplosionVFX(out GameObject prefab))
             {
@@ -72,6 +73,10 @@ namespace RotA.Mono.Cinematics
                 vfx.SetActive(true);
                 vfx.GetComponent<ParticleSystem>().Play();
             }
+        }
+
+        private void DestroySunbeamWreck()
+        {
             Destroy(wreck.gameObject);
         }
 
