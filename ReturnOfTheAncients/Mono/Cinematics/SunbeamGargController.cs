@@ -33,6 +33,11 @@ namespace RotA.Mono.Cinematics
             }
         }
 
+        public static void PlayCinematic()
+        {
+            new GameObject("SunbeamGargController").AddComponent<SunbeamGargController>();
+        }
+
         private void Start()
         {
             initialized = true;

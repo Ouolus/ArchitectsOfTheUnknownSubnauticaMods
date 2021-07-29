@@ -23,6 +23,11 @@ namespace RotA.Mono.Cinematics
         float timeBlackoutStartFade;
         bool blackoutFadingOut;
 
+        public static void PlayCinematic()
+        {
+            new GameObject("SecretBaseGargController").AddComponent<SecretBaseGargController>();
+        }
+
         IEnumerator Start()
         {
             PlayCreakFX("Creaking1", 5f);

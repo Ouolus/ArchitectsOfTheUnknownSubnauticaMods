@@ -19,13 +19,13 @@ namespace RotA.Commands
         [ConsoleCommand("sunbeamgarg")]
         public static void SunbeamGarg()
         {
-            new GameObject("SunbeamGargController").AddComponent<SunbeamGargController>();
+            SunbeamGargController.PlayCinematic();
         }
 
         [ConsoleCommand("secretbasecutscene")]
         public static void SecretBaseCutscene()
         {
-            new GameObject("SecretBaseGargController").AddComponent<SecretBaseGargController>();
+            SecretBaseGargController.PlayCinematic();
         }
 
         [ConsoleCommand("togglecinematic")]
