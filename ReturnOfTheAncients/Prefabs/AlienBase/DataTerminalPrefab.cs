@@ -118,6 +118,7 @@ namespace RotA.Prefabs.AlienBase
                 obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
             }
             EditFX(obj);
+            CustomizePrefab(obj)
             _processedPrefab = GameObject.Instantiate(obj);
             _processedPrefab.SetActive(false);
             return obj;
@@ -183,12 +184,18 @@ namespace RotA.Prefabs.AlienBase
                 obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
             }
             EditFX(obj);
+            MakeChangesToPrefab(obj);
 
             _processedPrefab = GameObject.Instantiate(obj);
             _processedPrefab.SetActive(false);
             gameObject.Set(obj);
         }
 #endif
+
+        protected virtual void CustomizePrefab(GameObject prefab)
+        {
+
+        }
 
         private void EditFX(GameObject prefab)
         {
