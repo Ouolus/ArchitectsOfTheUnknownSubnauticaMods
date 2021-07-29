@@ -10,6 +10,12 @@ namespace RotA.Commands
     {
         // commands must be public and static
         
+        [ConsoleCommand("rotacommands")]
+        public static void RotACommandsList()
+        {
+            ErrorMessage.AddMessage("RotA commands list:\nsecretbasecutscene\nsunbeamgarg\ntogglecinematic");
+        }
+
         [ConsoleCommand("sunbeamgarg")]
         public static void SunbeamGarg()
         {
