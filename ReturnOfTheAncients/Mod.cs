@@ -12,7 +12,6 @@
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
-    using Prefabs.Buildable;
     using Prefabs.Creatures;
     using Prefabs.Equipment;
     using Prefabs.Initializers;
