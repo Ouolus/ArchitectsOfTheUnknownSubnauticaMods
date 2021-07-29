@@ -15,15 +15,7 @@ namespace RotA.Patches
         [HarmonyPatch(typeof(WaterAmbience), nameof(WaterAmbience.Start))]
         public static void WaterAmbience_Start_Postfix(WaterAmbience __instance)
         {
-            GameObject ambienceParent = __instance.gameObject.SearchChild("background");
-            GameObject voidAmbience = GameObject.Instantiate(ambienceParent.SearchChild("arcticAmbience"), ambienceParent.transform);
-            voidAmbience.name = "voidAmbience";
-            voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = voidBiomeName;
-
-            GameObject musicParent = __instance.gameObject.SearchChild("music");
-            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild("dunes"), musicParent.transform);
-            referenceMusic.name = "voidAmbience";
-            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = voidBiomeName;
+            PatchBiomeSounds(__instance.gameObject, voidBiomeName, "arcticAmbience", "dunes");
         }
 
         [HarmonyPostfix]
@@ -57,6 +49,19 @@ namespace RotA.Patches
             {
                 __result = voidBiomeIndex;
             }
+        }
+
+        static void PatchBiomeSounds(GameObject waterAmbienceParent, string biomeName, string ambienceReference, string musicReference)
+        {
+            GameObject ambienceParent = waterAmbienceParent.SearchChild("background");
+            GameObject voidAmbience = GameObject.Instantiate(ambienceParent.SearchChild(ambienceReference), ambienceParent.transform);
+            voidAmbience.name = $"{biomeName}Ambience";
+            voidAmbience.GetComponent<FMODGameParams>().onlyInBiome = biomeName;
+
+            GameObject musicParent = waterAmbienceParent.SearchChild("music");
+            GameObject referenceMusic = GameObject.Instantiate(musicParent.SearchChild(musicReference), musicParent.transform);
+            referenceMusic.name = $"{biomeName}Ambience";
+            referenceMusic.GetComponent<FMODGameParams>().onlyInBiome = biomeName;
         }
 
         static void PatchBiomeFog(WaterBiomeManager waterBiomeManager, string biomeName, WaterscapeVolume.Settings waterScapeSettings, mset.Sky sky)
