@@ -35,6 +35,8 @@ namespace RotA.Prefabs.Creatures
 
         public override AvoidObstaclesData AvoidObstaclesSettings => new AvoidObstaclesData(1f, false, 30f);
 
+        public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(20000, 40000, 100000);
+
         public override float TurnSpeed => 0.15f;
 
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
@@ -51,13 +53,13 @@ namespace RotA.Prefabs.Creatures
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
-            Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer mainRenderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
             Renderer insideRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
-            UpdateGargTransparentMaterial(renderer.materials[0]);
-            UpdateGargTransparentMaterial(renderer.materials[1]);
-            UpdateGargTransparentMaterial(renderer.materials[2]);
-            UpdateGargSolidMaterial(renderer.materials[3]);
+            UpdateGargTransparentMaterial(mainRenderer.materials[0]);
+            UpdateGargTransparentMaterial(mainRenderer.materials[1]);
+            UpdateGargTransparentMaterial(mainRenderer.materials[2]);
+            UpdateGargSolidMaterial(mainRenderer.materials[3]);
             UpdateGargSkeletonMaterial(insideRenderer.materials[0]);
             UpdateGargGutsMaterial(insideRenderer.materials[1]);
             UpdateGargEyeMaterial(eyeRenderer.materials[0]);
@@ -77,6 +79,16 @@ namespace RotA.Prefabs.Creatures
             avoidObstacles.scanInterval = 0.2f;
             avoidObstacles.scanDistance = 100f;
             avoidObstacles.scanRadius = 100f;
+
+            foreach(Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+            {
+                if (renderer.gameObject.name == "GargEyeGloss")
+                {
+                    renderer.material.SetFloat("_Fresnel", 0.69f);
+                    renderer.material.SetFloat("_Shininess", 6.14f);
+                    renderer.material.SetFloat("_SpecInt", 30f);
+                }
+            }
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
@@ -97,8 +109,8 @@ namespace RotA.Prefabs.Creatures
         public static void UpdateGargEyeMaterial(Material material)
         {
             material.SetFloat("_SpecInt", 15f);
-            material.SetFloat("_GlowStrength", 1.2f);
-            material.SetFloat("_GlowStrengthNight", 1.2f);
+            material.SetFloat("_GlowStrength", 0.70f);
+            material.SetFloat("_GlowStrengthNight", 0.70f);
         }
 
         public static void UpdateGargSkeletonMaterial(Material material)

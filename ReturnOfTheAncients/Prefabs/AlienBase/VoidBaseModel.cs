@@ -14,7 +14,7 @@ namespace RotA.Prefabs.AlienBase
         public override void CustomizePrefab()
         {
             prefab.EnsureComponent<VoidBaseReveal>();
-            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+            /*foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
             {
                 foreach (Material mat in renderer.materials)
                 {
@@ -23,7 +23,7 @@ namespace RotA.Prefabs.AlienBase
                         mat.SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
                     }
                 }
-            }
+            }*/
             var deter = prefab.EnsureComponent<ArchitectsLibrary.MonoBehaviours.SonicDeterrentDeterCreatures>();
             deter.aggressiveFishDeterRadius = 175f;
             deter.maxDeterRadius = 175f;

@@ -1,9 +1,14 @@
 ﻿namespace RotA
 {
+    using System.Runtime.InteropServices;
+    using FMOD;
+    using FMODUnity;
+    using ArchitectsLibrary.Handlers;
     using ArchitectsLibrary.API;
     using ECCLibrary;
     using HarmonyLib;
     using QModManager.API.ModLoading;
+    using Commands;
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
@@ -22,6 +27,7 @@
     using System.Reflection;
     using UnityEngine;
     using UWE;
+    using Debug = UnityEngine.Debug;
     
     [QModCore]
     public static partial class Mod
@@ -51,8 +57,6 @@
         static GenericSignalPrefab signal_cache_dunes;
         static GenericSignalPrefab signal_cache_lostRiver;
         
-        public static OmegaCube omegaCube;
-
         public static AtmosphereVolumePrefab precursorAtmosphereVolume;
 
         public static AlienRelicPrefab ingotRelic;
@@ -63,6 +67,7 @@
         public static GargPoster gargPoster;
 
         public static WarpCannonPrefab warpCannon;
+        public static IonKnifePrefab ionKnife;
 
         public static TechType architectElectricityMasterTech;
         public static TechType warpMasterTech;
@@ -95,7 +100,7 @@
         public static string omegaTerminalHoverText = "OmegaTerminalHoverText";
         public static string omegaTerminalInteract = "OmegaTerminalInteract";
         public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
-        
+
         [QModPatch]
         public static void Patch()
         {
@@ -105,19 +110,20 @@
             gargAssetBundle = ECCHelpers.LoadAssetBundleFromAssetsFolder(Assembly.GetExecutingAssembly(), gargAssetBundleName);
             ECCAudio.RegisterClips(gargAssetBundle);
 
-            #region Resources
-            omegaCube = new OmegaCube();
-            omegaCube.Patch();
-            DisplayCaseServices.WhitelistTechType(omegaCube.TechType);
-            DisplayCaseServices.SetOffset(omegaCube.TechType, new Vector3(0f, -0.25f, 0f));
-            #endregion
-
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new() { craftAmount = 1, Ingredients = new List<Ingredient>() { new(TechType.PlasteelIngot, 1), new(TechType.Sulphur, 4), new(TechType.Kyanite, 4), new(TechType.PrecursorIonPowerCell, 1), new(AUHandler.OmegaCubeTechType, 1) } });
 
             #region Static asset references
             CoroutineHost.StartCoroutine(LoadElectricalDefensePrefab());
             #endregion
+
+            var sound = CreateSoundFromAudioClip(assetBundle.LoadAsset<AudioClip>("PDAExplosionRoar"));
+
+            if (sound.HasValue)
+                CustomSoundHandler.RegisterCustomSound("explosionSoundTest", sound.Value);
             
+            ConsoleCommandsHandler.Main.RegisterConsoleCommand("soundtest", typeof(Mod), nameof(SoundTest));
+            ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(RotACommands));
+
             PatchLanguage();
 
             #region Tech
@@ -156,7 +162,7 @@
             CraftDataHandler.SetItemSize(TechType.PrecursorKey_White, new Vector2int(1, 1));
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_Red);
             CraftDataHandler.AddToGroup(TechGroup.Personal, TechCategory.Equipment, TechType.PrecursorKey_White);
-            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(omegaCube.TechType, 1) } });
+            CraftDataHandler.SetTechData(TechType.RocketStage2, new TechData() { craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(TechType.PlasteelIngot, 1), new Ingredient(TechType.Sulphur, 4), new Ingredient(TechType.Kyanite, 4), new Ingredient(TechType.PrecursorIonPowerCell, 1), new Ingredient(AUHandler.OmegaCubeTechType, 1) } });
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_White, "Personal", "Equipment");
             CraftTreeHandler.AddCraftingNode(CraftTree.Type.Fabricator, TechType.PrecursorKey_Red, "Personal", "Equipment");
 
@@ -175,8 +181,8 @@
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new (TechType.PrecursorIonCrystal, 1),
-                    new (TechType.AluminumOxide, 2)
+                    new(TechType.PrecursorIonCrystal, 1),
+                    new(TechType.AluminumOxide, 2)
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_Red, redTabletTD);
@@ -185,8 +191,8 @@
                 craftAmount = 1,
                 Ingredients = new List<Ingredient>
                 {
-                    new Ingredient(TechType.PrecursorIonCrystal, 1),
-                    new Ingredient(TechType.Silver, 2)
+                    new(TechType.PrecursorIonCrystal, 1),
+                    new(TechType.Silver, 2)
                 }
             };
             CraftDataHandler.SetTechData(TechType.PrecursorKey_White, whiteTabletTD);
@@ -232,68 +238,75 @@
             var adultGargSpawner = new AdultGargSpawnerInitializer();
             adultGargSpawner.Patch();
 
-            var gargSecretCommand = new SecretCommandInitializer();
-            gargSecretCommand.Patch();
-
             var miscInitializers = new MiscInitializers();
             miscInitializers.Patch();
         }
 
         static void PatchCraftablesAndBuildables()
         {
-            warpCannon = new WarpCannonPrefab();
+            warpCannon = new();
             warpCannon.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(warpCannon.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(warpCannon.TechType);
 
+            ionKnife = new();
+            ionKnife.Patch();
+            PrecursorFabricatorService.SubscribeToFabricator(ionKnife.TechType, PrecursorFabricatorTab.Equipment);
+            DisplayCaseServices.WhitelistTechType(ionKnife.TechType);
+
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
             warpCannonTerminal.Patch();
 
-            gargPoster = new GargPoster();
+            gargPoster = new();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
 
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(electricalDefenseMk2.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(electricalDefenseMk2.TechType);
 
             exosuitZapModule = new();
             exosuitZapModule.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(exosuitZapModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(exosuitZapModule.TechType);
 
             superDecoy = new();
             superDecoy.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(superDecoy.TechType, PrecursorFabricatorTab.Devices);
+            DisplayCaseServices.WhitelistTechType(superDecoy.TechType);
+            DisplayCaseServices.SetScaleInRelicTank(superDecoy.TechType, 0.7f);
 
             exosuitDashModule = new();
             exosuitDashModule.Patch();
             PrecursorFabricatorService.SubscribeToFabricator(exosuitDashModule.TechType, PrecursorFabricatorTab.UpgradeModules);
+            DisplayCaseServices.WhitelistTechType(exosuitDashModule.TechType);
         }
 
         static void PatchSignals()
         {
-            signal_cragFieldBase = new GenericSignalPrefab("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
+            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
             signal_cragFieldBase.Patch();
 
-            signal_sparseReefBase = new GenericSignalPrefab("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
+            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new GenericSignalPrefab("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Discover koosh zone base text.", Mod.assetBundle.LoadAsset<AudioClip>("GuardianEncounter"), 2f)); //purple tablet icon
+            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Biological signal interference detected. True signal source is likely to be somewhere in the area.", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
-            signal_ruinedGuardian = new GenericSignalPrefab("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("GuardianEncounter"), 3f));
+            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
             signal_ruinedGuardian.Patch();
 
-            signal_cache_bloodKelp = new GenericSignalPrefab("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
+            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
             signal_cache_bloodKelp.Patch();
 
-            signal_cache_sparseReef = new GenericSignalPrefab("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
+            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
             signal_cache_sparseReef.Patch();
 
-            signal_cache_dunes = new GenericSignalPrefab("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
+            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
             signal_cache_dunes.Patch();
 
-            signal_cache_lostRiver = new GenericSignalPrefab("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
+            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
             signal_cache_lostRiver.Patch();
         }
 
@@ -318,9 +331,9 @@
 
         public static void ApplyAlienUpgradeMaterials(Renderer renderer)
         {
-            renderer.material.SetTexture("_MainTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
-            renderer.material.SetTexture("_SpecTex", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
-            renderer.material.SetTexture("_Illum", Mod.assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
+            renderer.material.SetTexture("_MainTex", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_diffuse"));
+            renderer.material.SetTexture("_SpecTex", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_spec"));
+            renderer.material.SetTexture("_Illum", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
         }
 
         static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
@@ -356,6 +369,77 @@
                 scanTime = scanTime,
                 isFragment = false
             });
+        }
+        
+        static Sound? CreateSoundFromAudioClip(AudioClip audioClip)
+        {
+            var samplesSize = audioClip.samples * audioClip.channels;
+            var samples = new float[samplesSize];
+            audioClip.GetData(samples, 0);
+
+            var bytesLength = (uint) (samplesSize * sizeof(float));
+
+            var soundInfo = new CREATESOUNDEXINFO
+            {
+                cbsize = Marshal.SizeOf(typeof(CREATESOUNDEXINFO)),
+                length = bytesLength,
+                format = SOUND_FORMAT.PCMFLOAT,
+                defaultfrequency = audioClip.frequency,
+                numchannels = audioClip.channels
+            };
+
+            Sound sound;
+            var result = RuntimeManager.LowlevelSystem.createSound("", MODE.OPENUSER, ref soundInfo, out sound);
+            if (result == RESULT.OK)
+            {
+                IntPtr ptr1, ptr2;
+                uint len1, len2;
+                result = sound.@lock(0, bytesLength, out ptr1, out ptr2, out len1, out len2);
+                if (result == RESULT.OK)
+                {
+                    var samplesLength = (int) (len1 / sizeof(float));
+                    Marshal.Copy(samples, 0, ptr1, samplesLength);
+                    if (len2 > 0)
+                    {
+                        Marshal.Copy(samples, samplesLength, ptr2, (int) (len2 / sizeof(float)));
+                    }
+
+                    result = sound.unlock(ptr1, ptr2, len1, len2);
+                    if (result == RESULT.OK)
+                    {
+                        result = sound.setMode(MODE.DEFAULT);
+                        if (result == RESULT.OK)
+                        {
+                            Debug.Log("Successfully loaded fmod sound!");
+                            return sound;
+                        }
+                        else
+                        {
+                            Debug.LogError("Failed to set mode to loop for fmod sound with error: " + result);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("Failed to unlock fmod sound with error: " + result);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Failed to lock fmod sound with error: " + result);
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to load fmod sound with error: " + result);
+            }
+
+            return null;
+        }
+
+        static void SoundTest()
+        {
+            
+            FMODUWE.PlayOneShot("explosionSoundTest", Player.main.transform.position);
         }
     }
 }

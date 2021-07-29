@@ -1,19 +1,22 @@
-﻿using ArchitectsLibrary.API;
-using SMLHelper.V2.Crafting;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace RotA.Prefabs
+namespace ArchitectsLibrary.Items 
 {
-    public class OmegaCube : ReskinSpawnable
+    using SMLHelper.V2.Crafting;
+    using System.Collections.Generic;
+    using API;
+    using UnityEngine;
+    
+    class OmegaCube : PrecursorIonCube
     {
         public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
         {
+            OnFinishedPatching += () =>
+            {
+                DisplayCaseServices.WhitelistTechType(TechType);
+                DisplayCaseServices.SetOffset(TechType, new Vector3(0f, -0.25f, 0f));
+            };
         }
 
-        public override TechGroup GroupForPDA => TechGroup.Resources;
-
-        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+        protected override int Capacity => 4000000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
@@ -25,9 +28,9 @@ namespace RotA.Prefabs
                 renderer.material.SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
             }
             prefab.GetComponentInChildren<Light>().color = new Color(0.8f, 1f, 1f);
+            
+            base.ApplyChangesToPrefab(prefab);
         }
-
-        public override float CraftingTime => 30f;
 
         protected override TechData GetBlueprintRecipe()
         {
@@ -43,9 +46,7 @@ namespace RotA.Prefabs
 
         protected override Atlas.Sprite GetItemSprite()
         {
-            return new(Mod.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
+            return new(Main.assetBundle.LoadAsset<Sprite>("OmegaCube_Icon"));
         }
-
-        protected override string ReferenceClassId => "38ebd2e5-9dcc-4d7a-ada4-86a22e01191a";
     }
 }

@@ -212,6 +212,12 @@ namespace RotA.Prefabs.Creatures
                 prefab.SearchChild("MLE").AddComponent<GargEyeTracker>();
                 prefab.SearchChild("MRE").AddComponent<GargEyeTracker>();
             }
+            prefab.SearchChild("BLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("BRE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("FLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("FRE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("MLE").AddComponent<GargEyeFixer>();
+            prefab.SearchChild("MRE").AddComponent<GargEyeFixer>();
 
             prefab.AddComponent<VFXSchoolFishRepulsor>();
 

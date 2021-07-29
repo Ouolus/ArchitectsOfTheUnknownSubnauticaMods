@@ -77,13 +77,22 @@ namespace RotA.Mono.AlienTech
         protected override void Setup()
         {
             lightsParent = gameObject.SearchChild("Lights").transform;
-            interiorMaterials = new Material[5];
-            interiorMaterials[0] = gameObject.SearchChild("EntryFloor").GetComponent<Renderer>().sharedMaterials[0];
-            interiorMaterials[1] = gameObject.SearchChild("EntryFloor").GetComponent<Renderer>().sharedMaterials[1];
-            interiorMaterials[2] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[0];
-            interiorMaterials[3] = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>().sharedMaterials[1];
-            interiorMaterials[4] = gameObject.SearchChild("VoidbaseFrame").GetComponent<Renderer>().sharedMaterials[0];
-            //interiorMaterials[1] = gameObject.SearchChild("VoidBase-UpperMaze.004").GetComponent<Renderer>().sharedMaterials[3];
+            interiorMaterials = new Material[13];
+            Renderer muralRenderer = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>();
+            Renderer interiorRenderer = gameObject.SearchChild("VoidBaseV2Interior").GetComponent<Renderer>();
+            interiorMaterials[0] = muralRenderer.sharedMaterials[0];
+            interiorMaterials[1] = muralRenderer.sharedMaterials[1];
+            interiorMaterials[2] = interiorRenderer.sharedMaterials[0];
+            interiorMaterials[3] = interiorRenderer.sharedMaterials[1];
+            interiorMaterials[4] = interiorRenderer.sharedMaterials[2];
+            interiorMaterials[5] = interiorRenderer.sharedMaterials[3];
+            interiorMaterials[6] = interiorRenderer.sharedMaterials[4];
+            interiorMaterials[7] = interiorRenderer.sharedMaterials[5];
+            interiorMaterials[8] = interiorRenderer.sharedMaterials[6];
+            interiorMaterials[9] = interiorRenderer.sharedMaterials[7];
+            interiorMaterials[10] = interiorRenderer.sharedMaterials[8];
+            interiorMaterials[11] = interiorRenderer.sharedMaterials[9];
+            interiorMaterials[12] = interiorRenderer.sharedMaterials[10];
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
@@ -174,8 +183,8 @@ namespace RotA.Mono.AlienTech
         private void SetGlowActive(GameObject glowObj, bool active, Color color = default)
         {
             var renderer = glowObj.GetComponentInChildren<Renderer>();
-            renderer.material.SetFloat("_GlowStrength", 2f);
-            renderer.material.SetFloat("_GlowStrengthNight", 2f);
+            renderer.material.SetFloat("_GlowStrength", 4f);
+            renderer.material.SetFloat("_GlowStrengthNight", 4f);
             if (active)
             {
                 renderer.material.SetColor("_GlowColor", color);

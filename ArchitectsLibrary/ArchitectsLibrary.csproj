@@ -111,6 +111,10 @@
       <HintPath>$(DepDir)\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(DepDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+	  <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
       <Private>false</Private>
@@ -180,8 +184,10 @@
     <Compile Include="CreatorKit\Utility\Utils.cs" />
     <Compile Include="CreatorKit\SNCreatorKit.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
+    <Compile Include="Handlers\BuilderManager.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="DictionaryInit.cs" />
+    <Compile Include="Interfaces\IBuilderGroups.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleOnce.cs" />
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
@@ -190,6 +196,7 @@
     <Compile Include="Items\AotuPoster.cs" />
     <Compile Include="Items\CobaltIngot.cs" />
     <Compile Include="Items\Cobalt.cs" />
+    <Compile Include="Items\CustomBuilder.cs" />
     <Compile Include="Items\DrillableCobalt.cs" />
     <Compile Include="Items\DrillableRedBeryl.cs" />
     <Compile Include="Items\DrillableMorganite.cs" />
@@ -197,6 +204,9 @@
     <Compile Include="Items\DrillableEmerald.cs" />
     <Compile Include="Items\Electricube.cs" />
     <Compile Include="Items\Morganite.cs" />
+    <Compile Include="Items\OmegaCube.cs" />
+    <Compile Include="Items\PrecursorIonCrystal.cs" />
+    <Compile Include="Items\PrecursorIonCube.cs" />
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
     <Compile Include="Items\ReinforcedGlass.cs" />
@@ -205,18 +215,23 @@
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MonoBehaviours\CustomBuilderTool.cs" />
     <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />
     <Compile Include="MonoBehaviours\PosterFlicker.cs" />
     <Compile Include="MonoBehaviours\PrecursorFabricator.cs" />
     <Compile Include="MonoBehaviours\DisplayCaseDecoration.cs" />
+    <Compile Include="MonoBehaviours\PrecursorIonStorage.cs" />
     <Compile Include="MonoBehaviours\SonicDeterrentDeterCreatures.cs" />
     <Compile Include="MonoBehaviours\SpinInRelicCase.cs" />
     <Compile Include="MonoBehaviours\VehicleOnToggleRepeating.cs" />
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
     <Compile Include="Patches\BuilderPatches.cs" />
+    <Compile Include="Patches\uGUI_BuilderMenuPatches.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
+    <Compile Include="Patches\uGUI_InventoryTabPatches.cs" />
+    <Compile Include="Patches\uGUI_ItemSelectorPatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
     <Compile Include="Patches\WaterParkPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

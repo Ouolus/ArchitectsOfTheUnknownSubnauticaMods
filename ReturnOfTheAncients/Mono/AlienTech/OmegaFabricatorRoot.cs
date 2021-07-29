@@ -2,6 +2,7 @@
 using Story;
 using System.Collections;
 using System.Collections.Generic;
+using ArchitectsLibrary.Handlers;
 using UnityEngine;
 using UWE;
 
@@ -181,7 +182,7 @@ namespace RotA.Mono.AlienTech
             cube.TryDestroyChildComponents<ResourceTracker>();
             cube.TryDestroyChildComponents<TechTag>();
             cube.transform.localPosition = Vector3.zero;
-            cube.GetComponentInChildren<Drillable>().resources = new Drillable.ResourceType[] { new() { techType = Mod.omegaCube.TechType, chance = 1f } };
+            cube.GetComponentInChildren<Drillable>().resources = new Drillable.ResourceType[] { new() { techType = AUHandler.OmegaCubeTechType, chance = 1f } };
             cube.GetComponentInChildren<Light>().color = Color.white;
             cube.GetComponentInChildren<Light>().color = Color.white;
             foreach (Renderer renderer in cube.GetComponentsInChildren<Renderer>())

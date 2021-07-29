@@ -16,6 +16,7 @@ using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
 using ArchitectsLibrary.Configuration;
+using SMLHelper.V2.Utility;
 
 namespace ArchitectsLibrary
 {
@@ -55,6 +56,7 @@ namespace ArchitectsLibrary
         static AotuPoster aotuPoster;
         static Morganite morganite;
         static DrillableMorganite drillableMorganite;
+        static OmegaCube omegaCube;
         static Electricube electricube;
         static RedIonCube redIonCube;
         static Cobalt cobalt;
@@ -86,6 +88,10 @@ namespace ArchitectsLibrary
 
         internal static AchievementData achievementData;
         internal static Config Config { get; private set; }
+        
+        internal static TechGroup DecorationGroup { get; private set; }
+        internal static TechCategory DecorationCategory { get; private set; }
+        internal static CraftData.BackgroundType AlienBackground { get; private set; }
 
         const string encyKey_emerald = "EmeraldEncy";
 
@@ -109,7 +115,7 @@ namespace ArchitectsLibrary
             FixDisplayCaseItems();
 
             achievementData = new AchievementData();
-            Config = new Config();
+            Config = OptionsPanelHandler.RegisterModOptions<Config>();
         }
 
         /// <summary>
@@ -120,7 +126,14 @@ namespace ArchitectsLibrary
         public static void Load()
         {
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary started Patching.");
+
+            DecorationGroup = TechGroupHandler.Main.AddTechGroup("AlienDecoration", "Alien Decorations");
+            DecorationCategory = TechCategoryHandler.Main.AddTechCategory("AlienDecoration", "Alien Decorations");
+
+            TechCategoryHandler.Main.TryRegisterTechCategoryToTechGroup(DecorationGroup, DecorationCategory);
             
+            SpriteHandler.RegisterSprite(SpriteManager.Group.Tab, "groupAlienDecoration", assetBundle.LoadAsset<Sprite>("AotU"));
+
             DictionaryInit.PatchAllDictionaries();
 
             MaterialUtils.LoadMaterials();
@@ -128,14 +141,19 @@ namespace ArchitectsLibrary
             background = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("Background"));
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
-            UWE.CoroutineHost.StartCoroutine(FixIonCubeCraftingCoroutine());
+            AlienBackground = BackgroundTypeHandler.AddBackgroundType("AlienBackground", background);
 
             PatchItems();
             
             PatchBuildables();
 
+            DecorationTechs.ForEach(x =>
+            {
+                CraftDataHandler.AddToGroup(DecorationGroup, DecorationCategory, x);
+                CraftDataHandler.SetBackgroundType(x, AlienBackground);
+            });
+
             achievementData.Load();
-            Config.Load();
 
             PatchAchievements();
 
@@ -148,7 +166,9 @@ namespace ArchitectsLibrary
             CraftingMenuPatches.Patch(harmony);
             WaterParkPatches.Patch(harmony);
             BuilderPatches.Patch(harmony);
-
+            uGUI_InventoryTabPatches.Patch(harmony);
+            uGUI_BuilderMenuPatches.Patch(harmony);
+            uGUI_ItemSelectorPatches.Patch(harmony);
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");
         }
@@ -182,14 +202,6 @@ namespace ArchitectsLibrary
 
             KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType, redIonCube.TechType });
             KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
-        }
-        
-        static IEnumerator FixIonCubeCraftingCoroutine()
-        {
-            var task = CraftData.GetPrefabForTechTypeAsync(TechType.PrecursorIonCrystal);
-            yield return task;
-            var prefab = task.GetResult();
-            IonCubeCraftModelFix(prefab);
         }
 
         internal static void IonCubeCraftModelFix(GameObject prefab)
@@ -274,6 +286,12 @@ namespace ArchitectsLibrary
             CraftData.pickupSoundList.Add(electricube.TechType, ionCubePickupSound);
             PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
 
+            omegaCube = new OmegaCube();
+            omegaCube.Patch();
+            AUHandler.OmegaCubeTechType = omegaCube.TechType;
+            CraftData.pickupSoundList.Add(omegaCube.TechType, ionCubePickupSound);
+            PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials); 
+            
             redIonCube = new RedIonCube();
             redIonCube.Patch();
             AUHandler.RedIonCubeTechType = redIonCube.TechType;
@@ -296,6 +314,11 @@ namespace ArchitectsLibrary
         {
             aotuPoster = new AotuPoster();
             aotuPoster.Patch();
+            
+            new CustomBuilder().Patch();
+
+            var pic = new PrecursorIonCrystal();
+            PrefabHandler.RegisterPrefab(pic);
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
@@ -312,6 +335,16 @@ namespace ArchitectsLibrary
             FixArrayOfDisplayCaseItems(resourcesToFix, new Vector3(0f, -0.25f, 0f));
             DisplayCaseServices.SetScaleInSpecimenCase(AUHandler.EmeraldTechType, 0.4f);
             DisplayCaseServices.SetScaleInSpecimenCase(TechType.Kyanite, 0.4f);
+            DisplayCaseServices.SetOffset(TechType.StasisRifle, Vector3.up * -0.25f);
+            DisplayCaseServices.SetRotationInRelicTank(TechType.StasisRifle, new Vector3(-90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.LaserCutter, new Vector3(-90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Purple, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Orange, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Blue, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_White, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetRotationInRelicTank(TechType.PrecursorKey_Red, new Vector3(90f, 0f, 0f));
+            DisplayCaseServices.SetScaleInRelicTank(TechType.WiringKit, 0.8f);
+            DisplayCaseServices.SetScaleInRelicTank(TechType.AdvancedWiringKit, 0.8f);
         }
 
         static void FixArrayOfDisplayCaseItems(TechType[] techTypes, Vector3 newOffset)

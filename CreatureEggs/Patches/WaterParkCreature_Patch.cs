@@ -1,8 +1,10 @@
-﻿using HarmonyLib;
-using UnityEngine;
-using CreatureEggs.MonoBehaviours;
-namespace CreatureEggs.Patches
+﻿namespace CreatureEggs.Patches
 {
+    using ArchitectsLibrary.Utility;
+    using HarmonyLib;
+    using UnityEngine;
+    using static Helpers.AssetsBundleHelper;
+    
     [HarmonyPatch(typeof(WaterParkCreature))]
     class WaterParkCreature_Patch
     {
@@ -16,7 +18,21 @@ namespace CreatureEggs.Patches
             switch (techType)
             {
                 case TechType.SeaEmperorBaby:
-                    {
+                {
+                        var materials = __instance.GetComponentInChildren<Renderer>().materials;
+                        for (int i = 0; i < materials.Length; i++)
+                        {
+                            materials[i].EnableKeyword("_EMISSION");
+                        }
+                        
+                        MaterialUtils.ApplySNShaders(__instance.gameObject);
+
+                        for (int i = 0; i < materials.Length; i++)
+                        {
+                            var name = $"Leviathan_01_0{i + 1}";
+                            materials[i].SetTexture(ShaderPropertyID._Illum, LoadTexture2D($"{name}_illum"));
+                        }
+                        
                         SeaEmperorBaby seb = __instance.gameObject.GetComponent<SeaEmperorBaby>();
                         if (seb != null)
                         {
