@@ -13,6 +13,7 @@ namespace RotA.Mono.Cinematics
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
+        private Vector3 explosionSpawnPosition = new Vector3(630, 958, 3601);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -69,7 +70,7 @@ namespace RotA.Mono.Cinematics
         {
             if (TryGetExplosionVFX(out GameObject prefab))
             {
-                GameObject vfx = Instantiate(prefab, wreck.transform.position, Quaternion.identity);
+                GameObject vfx = Instantiate(prefab, explosionSpawnPosition, Quaternion.identity);
                 vfx.SetActive(true);
                 vfx.GetComponent<ParticleSystem>().Play();
             }
