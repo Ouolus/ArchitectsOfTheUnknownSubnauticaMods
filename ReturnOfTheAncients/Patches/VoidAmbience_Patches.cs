@@ -30,6 +30,10 @@ namespace RotA.Patches
         [HarmonyPatch(typeof(WaterBiomeManager), nameof(WaterBiomeManager.Start))]
         public static void WaterBiomeManager_Start_Postfix(WaterBiomeManager __instance)
         {
+            if (__instance.biomeSkies.Count < 3) //a check to see if the main menu water biome manager is loaded, rather than the main one. if we don't end the method here, the game will throw an exception.
+            {
+                return;
+            }
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
                 absorption = new Vector3(7f, 6f, 6f) / 2f,
