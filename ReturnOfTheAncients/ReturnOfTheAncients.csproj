@@ -230,7 +230,7 @@
     <Compile Include="Patches\uGUI_OptionPanel_Patches.cs" />
     <Compile Include="Patches\uSkyManager_Patches.cs" />
     <Compile Include="Patches\VoidGhostLeviathansSpawner_Patches.cs" />
-    <Compile Include="Patches\WaterAmbience_Patch.cs" />
+    <Compile Include="Patches\VoidAmbience_Patch.cs" />
     <Compile Include="Prefabs\AlienBase\AlienRelicPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
