@@ -118,7 +118,7 @@ namespace RotA.Prefabs.AlienBase
                 obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
             }
             EditFX(obj);
-            CustomizePrefab(obj)
+            CustomizePrefab(obj);
             _processedPrefab = GameObject.Instantiate(obj);
             _processedPrefab.SetActive(false);
             return obj;
