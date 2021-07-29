@@ -16,6 +16,7 @@ namespace ArchitectsLibrary.API
         static readonly Dictionary<TechType, float> overrideItemScaleInPedestal = new();
         static readonly Dictionary<TechType, float> overrideItemScaleInSpecimenCase = new();
         static readonly Dictionary<TechType, Vector3> overrideItemOffset = new();
+        static readonly Dictionary<TechType, Vector3> overrideRelicTankRotations = new();
 
         /// <summary>
         /// Allows the passed TechType to be added into relic tanks and onto pedestals.
@@ -41,6 +42,16 @@ namespace ArchitectsLibrary.API
             {
                 WhitelistedTechTypes.Remove(techType);
             }
+        }
+
+        /// <summary>
+        /// Sets the euler rotation of <paramref name="techType"/> when put in a small or large display case (does not affect the small specimen cases). Default rotation is <see cref="Vector3.zero"/>.
+        /// </summary>
+        /// <param name="techType">Tech type to set the rotation of</param>
+        /// <param name="newRotation">The new rotation in euler angles. The Y rotation will be overriden automatically because the object spins.</param>
+        public static void SetRotationInRelicTank(TechType techType, Vector3 newRotation)
+        {
+            overrideRelicTankRotations[techType] = newRotation;
         }
 
         /// <summary>
@@ -92,5 +103,14 @@ namespace ArchitectsLibrary.API
         };
 
         internal static Vector3 GetOffsetForItem(TechType techType) => overrideItemOffset.GetOrDefault(techType, Vector3.zero);
+
+        internal static Vector3 GetRotationForItem(TechType techType, DisplayCaseType displayCaseType)
+        {
+            if (displayCaseType == DisplayCaseType.RelicTank)
+            {
+                return overrideRelicTankRotations.GetOrDefault(techType, Vector3.zero);
+            }
+            return Vector3.zero;
+        }
     }
 }
