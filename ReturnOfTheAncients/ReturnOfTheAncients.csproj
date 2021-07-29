@@ -208,7 +208,6 @@
     <Compile Include="Mono\Modules\ElectricalDefenseMK2.cs" />
     <Compile Include="Mono\Modules\IOnArchitectElectricityZap.cs" />
     <Compile Include="Mono\Modules\ZapOnDamage.cs" />
-    <Compile Include="Mono\SetTechTypeOnStart.cs" />
     <Compile Include="Mono\Singletons\PlayerSmoothWarpSingleton.cs" />
     <Compile Include="Mono\Singletons\VoidGargSingleton.cs" />
     <Compile Include="Mono\Cinematics\SunbeamGargController.cs" />
@@ -246,7 +245,6 @@
     <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterPrimaryPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\VoidBaseModel.cs" />
     <Compile Include="Prefabs\AlienBase\VoidInteriorForcefield.cs" />
-    <Compile Include="Prefabs\Buildable\OmegaCubePedestal.cs" />
     <Compile Include="Prefabs\ComingSoonItem.cs" />
     <Compile Include="Prefabs\Creatures\AdultGargantuan.cs" />
     <Compile Include="Prefabs\Creatures\AquariumGuppy.cs" />
