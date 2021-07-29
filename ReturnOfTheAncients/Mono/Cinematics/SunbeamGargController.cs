@@ -40,10 +40,27 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 7);
-            Invoke(nameof(PlayXLPDVfx), 12.5f);
+            Invoke(nameof(PlayRoarSound), 7);
+            Invoke(nameof(PlayXLPDVfx), 13.1f);
             Invoke(nameof(DestroySunbeamWreck), 15);
             Invoke(nameof(StartFadingOut), 25f);
             Invoke(nameof(EndCinematic), 30f);
+        }
+
+        void PlayRoarSound()
+        {
+            var gameObject = new GameObject("SunbeamRoarEvent");
+            gameObject.transform.position = new Vector3(1162, 0f, 4333);
+            var clip = ECCAudio.LoadAudioClip("garg_for_anth_distant-009");
+            var audioSource = gameObject.EnsureComponent<AudioSource>();
+            audioSource.volume = ECCHelpers.GetECCVolume();
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance = 2500f;
+            audioSource.maxDistance = 20000f;
+            audioSource.clip = clip;
+            audioSource.Play();
+            MainCameraControl.main.ShakeCamera(0.25f, 5f, MainCameraControl.ShakeMode.Sqrt);
+            Destroy(gameObject, 10);
         }
 
         private void SpawnGarg()
@@ -71,6 +88,8 @@ namespace RotA.Mono.Cinematics
             if (TryGetExplosionVFX(out GameObject prefab))
             {
                 GameObject vfx = Instantiate(prefab, explosionSpawnPosition, Quaternion.identity);
+                vfx.transform.GetChild(12).gameObject.SetActive(false);
+                vfx.transform.GetChild(13).gameObject.SetActive(false);
                 vfx.SetActive(true);
                 vfx.GetComponent<ParticleSystem>().Play();
             }
