@@ -154,7 +154,7 @@ namespace RotA
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
 
-            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f);
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
 
