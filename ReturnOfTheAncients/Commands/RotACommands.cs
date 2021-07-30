@@ -13,7 +13,13 @@ namespace RotA.Commands
         [ConsoleCommand("rotacommands")]
         public static void RotACommandsList()
         {
-            ErrorMessage.AddMessage("RotA commands list:\nsecretbasecutscene\nsunbeamgarg\ntogglecinematic");
+            ErrorMessage.AddMessage("RotA commands list:\nclonegarg\nrotacommands\nsecretbasecutscene\nsunbeamgarg\ntogglecinematic");
+        }
+
+        [ConsoleCommand("secretbasecutscene")]
+        public static void SecretBaseCutscene()
+        {
+            SecretBaseGargController.PlayCinematic();
         }
 
         [ConsoleCommand("sunbeamgarg")]
@@ -22,10 +28,18 @@ namespace RotA.Commands
             SunbeamGargController.PlayCinematic();
         }
 
-        [ConsoleCommand("secretbasecutscene")]
-        public static void SecretBaseCutscene()
+        //the commands below are just for fun
+
+        [ConsoleCommand("clonegarg")]
+        public static void CloneGarg()
         {
-            SecretBaseGargController.PlayCinematic();
+            GargantuanBehaviour[] gargs = Object.FindObjectsOfType<GargantuanBehaviour>();
+            foreach (var garg in gargs)
+            {
+                var obj = Object.Instantiate(garg.gameObject, garg.transform.position, garg.transform.rotation);
+                obj.transform.localScale = garg.transform.localScale * 0.5f;
+                Object.Destroy(garg.gameObject);
+            }
         }
 
         [ConsoleCommand("togglecinematic")]
