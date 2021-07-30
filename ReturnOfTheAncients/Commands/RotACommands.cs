@@ -10,6 +10,16 @@ namespace RotA.Commands
     {
         // commands must be public and static
         
+        public static void GargDebug()
+        {
+            GargantuanBehaviour[] gargs = Object.FindObjectsOfType<GargantuanBehaviour>();
+            foreach (var garg in gargs)
+            {
+                Rigidbody rb = garg.GetComponent<Rigidbody>();
+                rb.isKinematic = !rb.isKinematic;
+            }
+
+        }
         [ConsoleCommand("rotacommands")]
         public static void RotACommandsList()
         {
