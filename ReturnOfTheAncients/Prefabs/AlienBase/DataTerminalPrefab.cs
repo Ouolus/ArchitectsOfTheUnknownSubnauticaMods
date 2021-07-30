@@ -67,12 +67,14 @@ namespace RotA.Prefabs.AlienBase
         {
             if (_processedPrefab)
             {
-                _processedPrefab.SetActive(true);
-                return _processedPrefab;
+                var go = Object.Instantiate(_processedPrefab);
+                go.SetActive(true);
+                
+                return go;
             }
             
             PrefabDatabase.TryGetPrefab(terminalClassId, out GameObject prefab);
-            GameObject obj = GameObject.Instantiate(prefab);
+            GameObject obj = Object.Instantiate(prefab);
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
             if (!string.IsNullOrEmpty(encyKey))
             {
@@ -87,7 +89,7 @@ namespace RotA.Prefabs.AlienBase
                 Object.DestroyImmediate(storyHandTarget);
             }
             obj.SetActive(false);
-            if (pingClassId != null && pingClassId.Length > 0)
+            if (pingClassId is {Length: > 0})
             {
                 foreach (string str in pingClassId)
                 {
@@ -119,7 +121,7 @@ namespace RotA.Prefabs.AlienBase
             }
             EditFX(obj);
             CustomizePrefab(obj);
-            _processedPrefab = GameObject.Instantiate(obj);
+            _processedPrefab = Object.Instantiate(obj);
             _processedPrefab.SetActive(false);
             return obj;
         }
@@ -128,8 +130,10 @@ namespace RotA.Prefabs.AlienBase
         {
             if (_processedPrefab)
             {
-                _processedPrefab.SetActive(true);
-                gameObject.Set(_processedPrefab);
+                var go = Object.Instantiate(_processedPrefab);
+                go.SetActive(true);
+
+                gameObject.Set(go);
                 yield break;
             }
 
@@ -152,7 +156,7 @@ namespace RotA.Prefabs.AlienBase
                 Object.DestroyImmediate(storyHandTarget);
             }
             obj.SetActive(false);
-            if (pingClassId != null && pingClassId.Length > 0)
+            if (pingClassId is {Length: > 0})
             {
                 foreach (string str in pingClassId)
                 {
