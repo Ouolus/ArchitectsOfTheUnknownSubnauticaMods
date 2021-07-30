@@ -14,6 +14,7 @@
     <OutputPath>$(SolutionDir)..\Qmods\$(Configuration)\$(AssemblyName)\</OutputPath>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BZ|AnyCPU'">
     <DefineConstants>BZ;BELOWZERO</DefineConstants>
@@ -137,6 +138,9 @@
   <ItemGroup>
     <Compile Include="Commands\RotACommands.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ILoveCSharp.cs" />
+    <Compile Include="Interfaces\IDataTerminal.cs" />
+    <Compile Include="Interfaces\IDataTerminalBuilder.cs" />
     <Compile Include="Interfaces\IIonKnifeAction.cs" />
     <Compile Include="Mod-AlienBases.cs" />
     <Compile Include="Mod-Languages.cs" />
@@ -235,7 +239,9 @@
     <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\BlackHolePrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminalRecords.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\OmegaCubeFabricator.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
@@ -255,6 +261,7 @@
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
+    <Compile Include="Prefabs\DataTerminalBuilder.cs" />
     <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />
