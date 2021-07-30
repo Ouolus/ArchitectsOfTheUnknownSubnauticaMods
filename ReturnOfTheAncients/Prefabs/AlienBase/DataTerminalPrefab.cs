@@ -1,8 +1,11 @@
-﻿using RotA.Mono.AlienTech;
+﻿using System;
+using RotA.Interfaces;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
+using Object = UnityEngine.Object;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -12,44 +15,20 @@ namespace RotA.Prefabs.AlienBase
         public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
         public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
         
-        string encyKey;
-        string terminalClassId;
-        string[] pingClassId;
-        string audioClipPrefix;
-        float delay = 5f;
-        TechType[] techToUnlock;
-        TechType techToAnalyze;
         string subtitlesKey;
-        bool hideSymbol;
-        bool overrideColor;
-        Color fxColor;
-        bool disableInteraction;
-        string achievement;
+        
         GameObject _processedPrefab;
 
-        public DataTerminalPrefab(string classId, string encyKey, string[] pingClassId = default, string audioClipPrefix = "DataTerminal1", string terminalClassId = blueTerminalCID, TechType techToAnalyze = TechType.None, TechType[] techToUnlock = null, float delay = 5f, string subtitles = null, bool hideSymbol = false, bool overrideColor = default, Color fxColor = default, bool disableInteraction = false, string achievement = default)
+        DataTerminal _dataTerminal;
+
+        public DataTerminalPrefab(string classId, DataTerminal dataTerminal)
             : base(classId, "Data terminal", ".")
         {
-            this.encyKey = encyKey;
-            this.terminalClassId = terminalClassId;
-            this.pingClassId = pingClassId;
-            this.audioClipPrefix = audioClipPrefix;
-            this.techToUnlock = techToUnlock;
-            this.techToAnalyze = techToAnalyze;
-            this.delay = delay;
-            this.hideSymbol = hideSymbol;
-            this.overrideColor = overrideColor;
-            this.fxColor = fxColor;
-            this.disableInteraction = disableInteraction;
-            this.achievement = achievement;
-            if (!string.IsNullOrEmpty(subtitles))
+            _dataTerminal = dataTerminal;
+            if (!string.IsNullOrEmpty(_dataTerminal.AudioSettings.Subtitles))
             {
                 subtitlesKey = classId + "Subtitles";
-                LanguageHandler.SetLanguageLine(subtitlesKey, subtitles);
-            }
-            else
-            {
-                subtitlesKey = string.Empty;
+                LanguageHandler.SetLanguageLine(subtitlesKey, _dataTerminal.AudioSettings.Subtitles);
             }
         }
 
@@ -73,25 +52,21 @@ namespace RotA.Prefabs.AlienBase
                 return go;
             }
             
-            PrefabDatabase.TryGetPrefab(terminalClassId, out GameObject prefab);
+            PrefabDatabase.TryGetPrefab(_dataTerminal.TerminalClassId, out GameObject prefab);
             GameObject obj = Object.Instantiate(prefab);
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
-            if (!string.IsNullOrEmpty(encyKey))
+            if (!string.IsNullOrEmpty(_dataTerminal.StoryGoalSettings.EncyKey))
             {
-                storyHandTarget.goal = new Story.StoryGoal(encyKey, Story.GoalType.Encyclopedia, delay);
+                storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
             }
             else
-            {
-                storyHandTarget.goal = null;
-            }
-            if (disableInteraction)
             {
                 Object.DestroyImmediate(storyHandTarget);
             }
             obj.SetActive(false);
-            if (pingClassId is {Length: > 0})
+            if (_dataTerminal.PingClassIds is {Length: > 0})
             {
-                foreach (string str in pingClassId)
+                foreach (string str in _dataTerminal.PingClassIds)
                 {
                     if (!string.IsNullOrEmpty(str))
                     {
@@ -101,23 +76,23 @@ namespace RotA.Prefabs.AlienBase
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(audioClipPrefix))
+            if (!string.IsNullOrEmpty(_dataTerminal.AudioSettings.AudioPrefix))
             {
                 var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
-                playAudio.clipPrefix = audioClipPrefix;
+                playAudio.clipPrefix = _dataTerminal.AudioSettings.AudioPrefix;
                 playAudio.subtitlesKey = subtitlesKey;
             }
-            if (techToUnlock != null)
+            if (_dataTerminal.Unlockables.TechTypesToUnlock is {Length: > 0})
             {
-                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = techToUnlock;
+                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = _dataTerminal.Unlockables.TechTypesToUnlock;
             }
-            if (techToAnalyze != TechType.None)
+            if (_dataTerminal.Unlockables.TechTypeToAnalyze != TechType.None)
             {
-                obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = techToAnalyze;
+                obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = _dataTerminal.Unlockables.TechTypeToAnalyze;
             }
-            if (!string.IsNullOrEmpty(achievement))
+            if (!string.IsNullOrEmpty(_dataTerminal.AchievementId))
             {
-                obj.EnsureComponent<DataTerminalAchievement>().achievement = achievement;
+                obj.EnsureComponent<DataTerminalAchievement>().achievement = _dataTerminal.AchievementId;
             }
             EditFX(obj);
             CustomizePrefab(obj);
@@ -204,16 +179,18 @@ namespace RotA.Prefabs.AlienBase
         private void EditFX(GameObject prefab)
         {
             GameObject fx = prefab.transform.GetChild(2).gameObject;
-            if (hideSymbol)
+            if (_dataTerminal.FxSettings.HideSymbol)
             {
                 fx.transform.GetChild(3).gameObject.SetActive(false);
                 fx.transform.GetChild(5).gameObject.SetActive(false);
             }
-            if (overrideColor)
+
+            var fxColor = _dataTerminal.FxSettings.FxColor;
+            if (fxColor.HasValue)
             {
                 foreach (Renderer renderer in fx.GetComponentsInChildren<Renderer>())
                 {
-                    renderer.material.SetColor("_Color", fxColor);
+                    renderer.material.SetColor("_Color", fxColor.Value);
                 }
             }
         }
