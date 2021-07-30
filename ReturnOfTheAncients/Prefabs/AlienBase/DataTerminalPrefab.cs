@@ -57,7 +57,7 @@ namespace RotA.Prefabs.AlienBase
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
             if (!string.IsNullOrEmpty(_dataTerminal.StoryGoalSettings.EncyKey))
             {
-                storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
+                storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings?.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
             }
             else
             {
@@ -76,19 +76,19 @@ namespace RotA.Prefabs.AlienBase
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(_dataTerminal.AudioSettings.AudioPrefix))
+            if (!string.IsNullOrEmpty(_dataTerminal.AudioSettings?.AudioPrefix))
             {
                 var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
-                playAudio.clipPrefix = _dataTerminal.AudioSettings.AudioPrefix;
+                playAudio.clipPrefix = _dataTerminal.AudioSettings?.AudioPrefix;
                 playAudio.subtitlesKey = subtitlesKey;
             }
-            if (_dataTerminal.Unlockables.TechTypesToUnlock is {Length: > 0})
+            if (_dataTerminal.Unlockables?.TechTypesToUnlock is {Length: > 0})
             {
-                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = _dataTerminal.Unlockables.TechTypesToUnlock;
+                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = _dataTerminal.Unlockables?.TechTypesToUnlock;
             }
-            if (_dataTerminal.Unlockables.TechTypeToAnalyze != TechType.None)
+            if (_dataTerminal.Unlockables?.TechTypeToAnalyze != TechType.None)
             {
-                obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = _dataTerminal.Unlockables.TechTypeToAnalyze;
+                obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = _dataTerminal.Unlockables?.TechTypeToAnalyze ?? TechType.None;
             }
             if (!string.IsNullOrEmpty(_dataTerminal.AchievementId))
             {
