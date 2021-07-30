@@ -195,7 +195,7 @@ namespace RotA.Mono.Cinematics
             lod.closeThreshold = 7500f;
             lod.farThreshold = 10000f;
             List<Transform> spines = new List<Transform>();
-            GameObject currentSpine = prefab.SearchChild("Spine");
+            GameObject currentSpine = prefab.SearchChild("Spine.005");
             while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
