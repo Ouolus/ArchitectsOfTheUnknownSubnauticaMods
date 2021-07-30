@@ -158,6 +158,7 @@
     <Compile Include="Mono\AlienTech\BlackHole.cs" />
     <Compile Include="Mono\AlienTech\CustomTeleporterTerminal.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalAchievement.cs" />
+    <Compile Include="Mono\AlienTech\DataTerminalSecretCutscene.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalAnalyzeTech.cs" />
     <Compile Include="Mono\AlienTech\DataTerminalUnlockPing.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\OmegaCubeFabricator.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\SecretBaseTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterFramePrefab.cs" />
