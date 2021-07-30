@@ -8,6 +8,9 @@ we are also using [Assembly Publicizer](https://github.com/MrPurple6411/Bepinex-
 you will need to copy the genarated publicized `Assembly-CSharp_publicized.dll` and `Assembly-CSharp-firstpass_publicized.dll` to the `Dependencies` folder.
 
 ---
+- here is a list of useful links related to the mod:
+  - our wiki: https://aotu.fandom.com/wiki/Architects_of_the_Unknown_Wiki
+  - our discord server: https://discord.gg/7nH8AKCCxQ
 - any further Questions regarding to the repo, Contact us on Discord.
   - Metious: `Metious#3682`
   - Lee23: `32Eel#3756`
