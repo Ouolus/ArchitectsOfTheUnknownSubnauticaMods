@@ -24,7 +24,7 @@ namespace RotA
         public static BlackHolePrefab blackHole;
         public static OmegaCubeFabricator omegaCubeFabricator;
 
-        public static DataTerminalBuilder terminalBuilder;
+        public static DataTerminalBuilder terminalBuilder = new();
         
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
