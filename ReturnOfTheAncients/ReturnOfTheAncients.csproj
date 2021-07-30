@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="Commands\RotACommands.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ILoveCSharp.cs" />
     <Compile Include="Interfaces\IDataTerminal.cs" />
     <Compile Include="Interfaces\IDataTerminalBuilder.cs" />
     <Compile Include="Interfaces\IIonKnifeAction.cs" />
