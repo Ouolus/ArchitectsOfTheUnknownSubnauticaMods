@@ -34,10 +34,16 @@ namespace RotA.Commands
         public static void CloneGarg()
         {
             GargantuanBehaviour[] gargs = Object.FindObjectsOfType<GargantuanBehaviour>();
+            int children = 2;
             foreach (var garg in gargs)
             {
-                var obj = Object.Instantiate(garg.gameObject, garg.transform.position, garg.transform.rotation);
-                obj.transform.localScale = garg.transform.localScale * 0.5f;
+                for (int i = 0; i < children; i++)
+                {
+                    var obj = Object.Instantiate(garg.gameObject, garg.transform.position, garg.transform.rotation);
+                    float newScale = garg.transform.localScale.x / children;
+                    obj.GetComponent<Creature>().sizeDistribution = new AnimationCurve(new Keyframe[] { new Keyframe(0f, newScale), new Keyframe(1f, newScale) });
+                    obj.transform.localScale = Vector3.one * newScale;
+                }
                 Object.Destroy(garg.gameObject);
             }
         }
