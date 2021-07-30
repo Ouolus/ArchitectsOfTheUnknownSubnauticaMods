@@ -55,7 +55,7 @@ namespace RotA.Prefabs.AlienBase
             PrefabDatabase.TryGetPrefab(_dataTerminal.TerminalClassId, out GameObject prefab);
             GameObject obj = Object.Instantiate(prefab);
             StoryHandTarget storyHandTarget = obj.GetComponent<StoryHandTarget>();
-            if (!string.IsNullOrEmpty(_dataTerminal.StoryGoalSettings.EncyKey))
+            if (!string.IsNullOrEmpty(_dataTerminal.StoryGoalSettings?.EncyKey))
             {
                 storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings?.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
             }
