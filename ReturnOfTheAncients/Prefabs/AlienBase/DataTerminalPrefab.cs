@@ -179,14 +179,14 @@ namespace RotA.Prefabs.AlienBase
         private void EditFX(GameObject prefab)
         {
             GameObject fx = prefab.transform.GetChild(2).gameObject;
-            if (_dataTerminal.FxSettings.HideSymbol)
+            if (_dataTerminal.FxSettings?.HideSymbol ?? false)
             {
                 fx.transform.GetChild(3).gameObject.SetActive(false);
                 fx.transform.GetChild(5).gameObject.SetActive(false);
             }
 
-            var fxColor = _dataTerminal.FxSettings.FxColor;
-            if (fxColor.HasValue)
+            var fxColor = _dataTerminal.FxSettings?.FxColor;
+            if (fxColor != null)
             {
                 foreach (Renderer renderer in fx.GetComponentsInChildren<Renderer>())
                 {
