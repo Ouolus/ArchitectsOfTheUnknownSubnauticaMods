@@ -7,8 +7,11 @@ namespace RotA.Interfaces
     public interface IDataTerminal
     {
         RAudioSettings AudioSettings { get; set; }
+        
         RFxSettings FxSettings { get; set; }
+        
         RStoryGoalSettings StoryGoalSettings { get; set; }
+        
         RUnlockables Unlockables { get; set; }
 
         string[] PingClassIds { get; set; }
@@ -16,5 +19,7 @@ namespace RotA.Interfaces
         string AchievementId { get; set; }
 
         string TerminalClassId { get; set; }
+        
+        bool Interactable { get; set; }
     }
 }

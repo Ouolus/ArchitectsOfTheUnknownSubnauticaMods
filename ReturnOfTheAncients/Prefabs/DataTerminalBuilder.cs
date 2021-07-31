@@ -48,6 +48,11 @@ namespace RotA.Prefabs
             _dataTerminal.TerminalClassId = terminalClassId;
         }
 
+        public void SetupInteractable(bool interactable)
+        {
+            _dataTerminal.Interactable = interactable;
+        }
+
         public DataTerminal GetTerminal()
         {
             var dataTerminal = _dataTerminal;
@@ -64,6 +69,7 @@ namespace RotA.Prefabs
             SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             SetupPingClassIds(null);
             SetupStoryGoal(null);
+            SetupInteractable(true);
         }
     }
 }

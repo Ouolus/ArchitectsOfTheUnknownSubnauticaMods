@@ -15,5 +15,7 @@ namespace RotA.Prefabs.AlienBase
         public string AchievementId { get; set; }
         
         public string TerminalClassId { get; set; }
+        
+        public bool Interactable { get; set; }
     }
 }

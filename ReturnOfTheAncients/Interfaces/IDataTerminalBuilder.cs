@@ -43,13 +43,19 @@ namespace RotA.Interfaces
         /// </summary>
         /// <param name="techTypesToUnlock"></param>
         /// <param name="techTypeToAnalyze"></param>
-        void SetupUnlockables(TechType[] techTypesToUnlock, TechType techTypeToAnalyze);
+        void SetupUnlockables(TechType[] techTypesToUnlock, TechType techTypeToAnalyze, float delay);
         
         /// <summary>
         /// Template Data Terminal ClassID
         /// </summary>
         /// <param name="templateTerminalClassId"></param>
         void SetupTemplateTerminal(string templateTerminalClassId);
+
+        /// <summary>
+        /// Setup whether or not the DataTerminal should be interactable (whether should have <see cref="StoryHandTarget"/> or not.)
+        /// </summary>
+        /// <param name="interactable"></param>
+        void SetupInteractable(bool interactable);
 
         /// <summary>
         /// Gets the current built terminal
