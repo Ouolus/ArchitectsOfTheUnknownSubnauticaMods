@@ -266,9 +266,8 @@ namespace RotA
             kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", terminalBuilder.GetTerminal());
             kooshBaseTerminal.Patch();
 
-            terminalBuilder.SetupStoryGoal("", 4.6f); // delay is useless here but just for saving
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
-            terminalBuilder.SetupUnlockables(new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType });
+            terminalBuilder.SetupUnlockables(new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType }, delay: 4.6f);
             terminalBuilder.SetupAudio("DataTerminalIonicPulse", "Synthesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", terminalBuilder.GetTerminal());
             archElectricityTerminal.Patch();
@@ -279,6 +278,7 @@ namespace RotA
             precursorMasterTechTerminal.Patch();
 
             terminalBuilder.SetupFX(new Color(1f, 0.5f, 0.5f), true);
+            terminalBuilder.SetupInteractable(false);
             redTabletHolder = new DataTerminalPrefab("RedTabletHolder", terminalBuilder.GetTerminal());
             redTabletHolder.Patch();
             #endregion
