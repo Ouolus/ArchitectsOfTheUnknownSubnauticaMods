@@ -6,8 +6,6 @@ namespace RotA.Prefabs
 {
     public class DataTerminalBuilder : IDataTerminalBuilder
     {
-        string[] _emptystrings = new string[0];
-        
         DataTerminal _dataTerminal;
 
         public DataTerminalBuilder()
@@ -64,8 +62,8 @@ namespace RotA.Prefabs
             _dataTerminal = new DataTerminal();
             SetupTemplateTerminal(DataTerminalPrefab.blueTerminalCID);
             SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
-            SetupPingClassIds(_emptystrings);
-            SetupStoryGoal("");
+            SetupPingClassIds(null);
+            SetupStoryGoal(null);
         }
     }
 }
