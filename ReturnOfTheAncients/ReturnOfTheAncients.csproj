@@ -14,7 +14,7 @@
     <OutputPath>$(SolutionDir)..\Qmods\$(Configuration)\$(AssemblyName)\</OutputPath>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BZ|AnyCPU'">
     <DefineConstants>BZ;BELOWZERO</DefineConstants>
