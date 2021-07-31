@@ -1,11 +1,8 @@
-﻿using System;
-using RotA.Interfaces;
-using RotA.Mono.AlienTech;
+﻿using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
-using Object = UnityEngine.Object;
 
 namespace RotA.Prefabs.AlienBase
 {
@@ -59,11 +56,28 @@ namespace RotA.Prefabs.AlienBase
             {
                 storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings?.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
             }
-            else
+            
+            if (_dataTerminal.Unlockables != null)
+            {
+                if (_dataTerminal.Unlockables.TechTypesToUnlock is {Length: > 0})
+                {
+                    var unlockTech = obj.EnsureComponent<DataTerminalUnlockTech>();
+                    unlockTech.techsToUnlock  = _dataTerminal.Unlockables.TechTypesToUnlock;
+                    unlockTech.delay = _dataTerminal.Unlockables.Delay;
+                }
+                if (_dataTerminal.Unlockables.TechTypeToAnalyze != TechType.None)
+                {
+                    var analyzeTech = obj.EnsureComponent<DataTerminalAnalyzeTech>();
+                    analyzeTech.techToUnlock = _dataTerminal.Unlockables.TechTypeToAnalyze;
+                    analyzeTech.delay = _dataTerminal.Unlockables.Delay;
+                }
+            }
+            
+            if (!_dataTerminal.Interactable)
             {
                 Object.DestroyImmediate(storyHandTarget);
             }
-            obj.SetActive(false);
+            
             if (_dataTerminal.PingClassIds is {Length: > 0})
             {
                 foreach (string str in _dataTerminal.PingClassIds)
@@ -81,14 +95,6 @@ namespace RotA.Prefabs.AlienBase
                 var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
                 playAudio.clipPrefix = _dataTerminal.AudioSettings?.AudioPrefix;
                 playAudio.subtitlesKey = subtitlesKey;
-            }
-            if (_dataTerminal.Unlockables?.TechTypesToUnlock is {Length: > 0})
-            {
-                obj.EnsureComponent<DataTerminalUnlockTech>().techsToUnlock = _dataTerminal.Unlockables?.TechTypesToUnlock;
-            }
-            if (_dataTerminal.Unlockables?.TechTypeToAnalyze != TechType.None)
-            {
-                obj.AddComponent<DataTerminalAnalyzeTech>().techToUnlock = _dataTerminal.Unlockables?.TechTypeToAnalyze ?? TechType.None;
             }
             if (!string.IsNullOrEmpty(_dataTerminal.AchievementId))
             {

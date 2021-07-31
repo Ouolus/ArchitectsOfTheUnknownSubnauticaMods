@@ -6,9 +6,16 @@ namespace RotA.Mono.AlienTech
     {
         public TechType techToUnlock;
 
+        public float delay;
+
         public void OnStoryHandTarget()
         {
-            KnownTech.Analyze(techToUnlock, true);
+            Invoke(nameof(Analyze), delay);
+        }
+
+        void Analyze()
+        {
+            KnownTech.Analyze(techToUnlock);
         }
     }
 }

@@ -38,9 +38,9 @@ namespace RotA.Prefabs
             _dataTerminal.StoryGoalSettings = new RStoryGoalSettings(encyKey, delay);
         }
 
-        public void SetupUnlockables(TechType[] techTypesToUnlock = null, TechType techTypeToAnalyze = TechType.None)
+        public void SetupUnlockables(TechType[] techTypesToUnlock = null, TechType techTypeToAnalyze = TechType.None, float delay = 0)
         {
-            _dataTerminal.Unlockables = new RUnlockables(techTypesToUnlock, techTypeToAnalyze);
+            _dataTerminal.Unlockables = new RUnlockables(techTypesToUnlock, techTypeToAnalyze, delay);
         }
 
         public void SetupTemplateTerminal(string terminalClassId)

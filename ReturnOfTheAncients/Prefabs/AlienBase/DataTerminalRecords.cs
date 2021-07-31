@@ -8,5 +8,5 @@ namespace RotA.Prefabs.AlienBase
 
     public record RStoryGoalSettings(string EncyKey, float Delay);
 
-    public record RUnlockables(TechType[] TechTypesToUnlock, TechType TechTypeToAnalyze);
+    public record RUnlockables(TechType[] TechTypesToUnlock, TechType TechTypeToAnalyze, float Delay);
 }
