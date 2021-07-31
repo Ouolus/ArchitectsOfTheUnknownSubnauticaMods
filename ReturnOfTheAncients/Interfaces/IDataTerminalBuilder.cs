@@ -16,7 +16,7 @@ namespace RotA.Interfaces
         /// Setup PingType classIDs
         /// </summary>
         /// <param name="pingClassIds"></param>
-        void SetupPingClassIds(string[]? pingClassIds);
+        void SetupPingClassIds(string[] pingClassIds);
                 
         /// <summary>
         /// Setup Achievement id
