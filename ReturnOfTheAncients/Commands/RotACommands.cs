@@ -34,10 +34,10 @@ namespace RotA.Commands
 
                 foreach (var method in typeof(RotACommands).GetMethods())
                 {
-                    if (method.GetCustomAttribute<ConsoleCommandAttribute>(false) is var consoleCommand)
-                    {
+                    var consoleCommand = method.GetCustomAttribute<ConsoleCommandAttribute>(false);
+                    
+                    if (consoleCommand != null)
                         _commandList.AppendLine(consoleCommand.Command);
-                    }
                 }
             }
             ErrorMessage.AddMessage($"RotA commands list: {_commandList}");
