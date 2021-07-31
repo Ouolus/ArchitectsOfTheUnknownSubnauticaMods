@@ -3,11 +3,15 @@ namespace RotA.Commands
     using Mono;
     using Mono.Creatures.GargEssentials;
     using Mono.Cinematics;
+    using System.Reflection;
+    using System.Text;
     using SMLHelper.V2.Commands;
     using UnityEngine;
     
     public static class RotACommands
     {
+        private static StringBuilder _commandList;
+        
         // commands must be public and static
         
         public static void GargDebug()
@@ -23,7 +27,19 @@ namespace RotA.Commands
         [ConsoleCommand("rotacommands")]
         public static void RotACommandsList()
         {
-            ErrorMessage.AddMessage("RotA commands list:\nclonegarg\nrotacommands\nsecretbasecutscene\nsunbeamgarg\ntogglecinematic");
+            if (_commandList is null)
+            {
+                _commandList = new StringBuilder();
+
+                foreach (var method in typeof(RotACommands).GetMethods())
+                {
+                    if (method.GetCustomAttribute<ConsoleCommandAttribute>(false) is var consoleCommand)
+                    {
+                        _commandList.AppendLine(consoleCommand.Command);
+                    }
+                }
+            }
+            ErrorMessage.AddMessage($"RotA commands list: {_commandList}");
         }
 
         [ConsoleCommand("secretbasecutscene")]
