@@ -13,17 +13,25 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private Vector3 teleportPosition;
         private float teleportAngle;
         private bool disablePlatform;
-        private bool omegaTeleporter;
         private string overrideId;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, string overrideId) : base(classId, "", "")
+        private Color color;
+        private bool shouldOverrideColor;
+
+
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, string overrideId) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
-            this.omegaTeleporter = omegaTeleporter;
             this.overrideId = overrideId;
+        }
+
+        public void SetColor(Color color)
+        {
+            this.color = color;
+            shouldOverrideColor = true;
         }
 
 #if SN1
