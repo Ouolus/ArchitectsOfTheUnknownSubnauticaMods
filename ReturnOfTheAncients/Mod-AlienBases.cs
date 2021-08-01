@@ -333,7 +333,7 @@ namespace RotA
             devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter", "N8Crafter", Color.cyan);
             devTerminalN8crafter.Patch();
 
-            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "Slendy Playz", new Color(0.8f, 0.8f, 0.8f));
+            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "SlendyPlayz", new Color(0.8f, 0.8f, 0.8f));
             devTerminalSlendyPlayz.Patch();
 
             devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0f, 0f));
