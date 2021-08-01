@@ -93,7 +93,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
         protected override void ProcessPrefab(GameObject go)
         {
-            
+            go.name = ClassID;
+            //dont override techtype
         }
     }
 }
