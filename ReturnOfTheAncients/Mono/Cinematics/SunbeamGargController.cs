@@ -48,8 +48,8 @@ namespace RotA.Mono.Cinematics
             Invoke(nameof(PlayRoarSound), 4f);
             Invoke(nameof(PlayXLPDVfx), 14f);
             Invoke(nameof(DestroySunbeamWreck), 16.3f);
-            Invoke(nameof(StartFadingOut), 25f);
-            Invoke(nameof(EndCinematic), 30f);
+            Invoke(nameof(StartFadingOut), 55f);
+            Invoke(nameof(EndCinematic), 60f);
         }
 
         void PlayRoarSound()
