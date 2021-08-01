@@ -204,11 +204,11 @@ namespace RotA
             var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
             kooshBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
-            eggBase.Patch();
+            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1920), 300f, LargeWorldEntity.CellLevel.Far); //Void
+            voidBase.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 - 40f), 90, LargeWorldEntity.CellLevel.Medium); //Void
-            eggBaseInterior.Patch();
+            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1920), 90, LargeWorldEntity.CellLevel.Medium); //Void
+            voidBaseInterior.Patch();
 
             var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
