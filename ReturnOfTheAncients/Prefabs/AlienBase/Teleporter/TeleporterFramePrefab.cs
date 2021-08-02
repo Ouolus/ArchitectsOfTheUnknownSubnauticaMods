@@ -78,7 +78,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
             var rt = obj.AddComponent<RotaTeleporter>();
-            rt.shouldOverrideColor = shouldOverrideColor;
             rt.fxColor = fxColor;
             gameObject.Set(obj);
         }
