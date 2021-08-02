@@ -368,7 +368,7 @@ namespace RotA
             secretTeleporter.Patch();
 
             var kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(1500f, -2000f, 0f), 180f, false, false, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { AUHandler.OmegaCubeTechType }, "KooshBasePortalTerminal", "Insert omega cube"), "SecretBaseAuxiliary");
-            kooshBaseDevSecret.SetNetworkColor(new Color(4, 4, 16));
+            kooshBaseDevSecret.SetNetworkColor(new Color(4, 4, 11));
             kooshBaseDevSecret.Patch();
         }
 
