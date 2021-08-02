@@ -44,7 +44,7 @@ namespace RotA.Mono.Cinematics
             defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
-            Invoke(nameof(SpawnGarg), 6.9f);
+            Invoke(nameof(SpawnGarg), 6.9f); // nice
             Invoke(nameof(PlayRoarSound), 4f);
             Invoke(nameof(PlayXLPDVfx), 14f);
             Invoke(nameof(DestroySunbeamWreck), 16.3f);
@@ -137,7 +137,7 @@ namespace RotA.Mono.Cinematics
             GameObject imgObj = CreateMemeOverlay();
             yield return new WaitForSecondsRealtime(2.8f);
             Destroy(imgObj);
-            yield return IngameMenu.main.SaveGameAsync();
+            IngameMenu.main.SaveGame();
             setTimeScaleLateUpdate = false;
             Time.timeScale = 1f;
             CutToCredits();
