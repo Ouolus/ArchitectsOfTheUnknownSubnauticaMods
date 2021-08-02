@@ -1,5 +1,5 @@
 ﻿using ECCLibrary;
-using RotA.Mono;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -15,7 +15,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private bool disablePlatform;
         private string overrideId;
 
-        private Color color;
+        private Color fxColor;
         private bool shouldOverrideColor;
 
 
@@ -30,7 +30,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
         public void SetColor(Color color)
         {
-            this.color = color;
+            this.fxColor = color;
             shouldOverrideColor = true;
         }
 
@@ -54,6 +54,12 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
+            if (shouldOverrideColor)
+            {
+                teleporter.portalFxPrefab = Object.Instantiate(teleporter.portalFxPrefab);
+                teleporter.portalFxPrefab.SetActive(false);
+            }
+            obj.AddComponent<RotaTeleporter>();
             return obj;
         }
 #elif SN1_exp
@@ -78,6 +84,12 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
+            if (shouldOverrideColor)
+            {
+                teleporter.portalFxPrefab = Object.Instantiate(teleporter.portalFxPrefab);
+                teleporter.portalFxPrefab.SetActive(false);
+            }
+            obj.AddComponent<RotaTeleporter>();
             gameObject.Set(obj);
         }
 #endif
