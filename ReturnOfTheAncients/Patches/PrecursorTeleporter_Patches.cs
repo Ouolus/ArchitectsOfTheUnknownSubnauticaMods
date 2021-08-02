@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RotA.Mono.AlienTech;
+using UnityEngine;
 
 namespace RotA.Patches
 {
@@ -10,11 +11,15 @@ namespace RotA.Patches
         [HarmonyPostfix]
         public static void Start_Postfix(PrecursorTeleporter __instance)
         {
-            if (__instance.gameObject.GetComponent<RotaTeleporter>() != null)
+            var rt = __instance.gameObject.GetComponent<RotaTeleporter>();
+            if (rt != null)
             {
-                if (__instance.portalFxControl != null)
+                if (rt.shouldOverrideColor)
                 {
-                    __instance.portalFxControl.gameObject.SetActive(true);
+                    if (__instance.portalFxControl != null)
+                    {
+                        __instance.portalFxControl.GetComponentInChildren<Renderer>(true).material.SetColor("_ColorStrength", rt.fxColor);
+                    }
                 }
             }
         }

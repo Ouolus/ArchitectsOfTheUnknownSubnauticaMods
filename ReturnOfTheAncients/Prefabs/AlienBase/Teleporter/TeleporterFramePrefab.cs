@@ -54,12 +54,9 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
-            if (shouldOverrideColor)
-            {
-                teleporter.portalFxPrefab = Object.Instantiate(teleporter.portalFxPrefab);
-                teleporter.portalFxPrefab.SetActive(false);
-            }
-            obj.AddComponent<RotaTeleporter>();
+            var rt = obj.AddComponent<RotaTeleporter>();
+            rt.shouldOverrideColor = shouldOverrideColor;
+            rt.fxColor = fxColor;
             return obj;
         }
 #elif SN1_exp
@@ -84,12 +81,9 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
-            if (shouldOverrideColor)
-            {
-                teleporter.portalFxPrefab = Object.Instantiate(teleporter.portalFxPrefab);
-                teleporter.portalFxPrefab.SetActive(false);
-            }
-            obj.AddComponent<RotaTeleporter>();
+            var rt = obj.AddComponent<RotaTeleporter>();
+            rt.shouldOverrideColor = shouldOverrideColor;
+            rt.fxColor = fxColor;
             gameObject.Set(obj);
         }
 #endif
