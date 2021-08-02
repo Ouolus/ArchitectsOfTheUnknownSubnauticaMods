@@ -56,6 +56,10 @@ namespace RotA.Prefabs.AlienBase
             {
                 storyHandTarget.goal = new Story.StoryGoal(_dataTerminal.StoryGoalSettings?.EncyKey, Story.GoalType.Encyclopedia, _dataTerminal.StoryGoalSettings.Delay);
             }
+            else
+            {
+                storyHandTarget.goal = new Story.StoryGoal(null, Story.GoalType.Story, 0f);
+            }
             
             if (_dataTerminal.Unlockables != null)
             {
