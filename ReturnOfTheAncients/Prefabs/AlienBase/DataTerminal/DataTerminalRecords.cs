@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RotA.Prefabs.AlienBase
+namespace RotA.Prefabs.AlienBase.DataTerminal
 {
     public record RAudioSettings(string AudioPrefix, string Subtitles);
 

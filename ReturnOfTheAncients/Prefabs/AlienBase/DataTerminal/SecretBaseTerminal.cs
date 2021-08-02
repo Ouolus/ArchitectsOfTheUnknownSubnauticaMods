@@ -1,7 +1,7 @@
 ﻿using RotA.Mono.AlienTech;
 using UnityEngine;
 
-namespace RotA.Prefabs.AlienBase
+namespace RotA.Prefabs.AlienBase.DataTerminal
 {
     public class SecretBaseTerminal : DataTerminalPrefab
     {

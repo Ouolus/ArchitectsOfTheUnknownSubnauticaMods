@@ -12,6 +12,7 @@
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
+    using Prefabs.AlienBase.DataTerminal;
     using Prefabs.Creatures;
     using Prefabs.Equipment;
     using Prefabs.Initializers;

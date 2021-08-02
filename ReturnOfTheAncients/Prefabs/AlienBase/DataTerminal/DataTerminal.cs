@@ -1,5 +1,4 @@
-
-namespace RotA.Prefabs.AlienBase
+namespace RotA.Prefabs.AlienBase.DataTerminal
 {
     using Interfaces;
     

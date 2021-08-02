@@ -6,6 +6,7 @@ namespace RotA
     using Prefabs.Initializers;
     using Prefabs;
     using Prefabs.AlienBase;
+    using Prefabs.AlienBase.DataTerminal;
     using ECCLibrary;
     using UnityEngine;
     

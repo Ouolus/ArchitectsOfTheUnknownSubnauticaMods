@@ -241,13 +241,14 @@
     <Compile Include="Prefabs\AlienBase\AquariumSkeleton.cs" />
     <Compile Include="Prefabs\AlienBase\AtmosphereVolumePrefab.cs" />
     <Compile Include="Prefabs\AlienBase\BlackHolePrefab.cs" />
-    <Compile Include="Prefabs\AlienBase\DataTerminal.cs" />
-    <Compile Include="Prefabs\AlienBase\DataTerminalPrefab.cs" />
-    <Compile Include="Prefabs\AlienBase\DataTerminalRecords.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal\DataTerminal.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal\DataTerminalBuilder.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal\DataTerminalPrefab.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal\DataTerminalRecords.cs" />
+    <Compile Include="Prefabs\AlienBase\DataTerminal\SecretBaseTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\InfectionTesterTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\OmegaCubeFabricator.cs" />
     <Compile Include="Prefabs\AlienBase\RuinedGuardianPrefab.cs" />
-    <Compile Include="Prefabs\AlienBase\SecretBaseTerminal.cs" />
     <Compile Include="Prefabs\AlienBase\TabletTerminalPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\PrecursorDoorPrefab.cs" />
     <Compile Include="Prefabs\AlienBase\Teleporter\TeleporterFramePrefab.cs" />
@@ -263,7 +264,6 @@
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
-    <Compile Include="Prefabs\DataTerminalBuilder.cs" />
     <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
     <Compile Include="Prefabs\GargantuanEgg.cs" />

@@ -1,11 +1,11 @@
-﻿using RotA.Mono.AlienTech;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Handlers;
-using UnityEngine;
-using UWE;
-
-namespace RotA.Prefabs.AlienBase
+﻿namespace RotA.Prefabs.AlienBase.DataTerminal
 {
+    using Mono.AlienTech;
+    using SMLHelper.V2.Assets;
+    using SMLHelper.V2.Handlers;
+    using UnityEngine;
+    using UWE;
+    
     public class DataTerminalPrefab : Spawnable
     {
         public const string greenTerminalCID = "625d01c2-40b7-4c87-a1cc-493ad6101c34";

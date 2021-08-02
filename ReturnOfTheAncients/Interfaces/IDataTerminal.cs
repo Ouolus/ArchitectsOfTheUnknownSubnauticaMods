@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace RotA.Interfaces
 {
-    using Prefabs.AlienBase;
+    using Prefabs.AlienBase.DataTerminal;
     
     public interface IDataTerminal
     {
