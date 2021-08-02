@@ -15,10 +15,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private bool disablePlatform;
         private string overrideId;
 
-        private Color fxColor;
-        private bool shouldOverrideColor;
-
-
+        private Color? fxColor;
+        
         public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, string overrideId) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
@@ -30,8 +28,7 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
         public void SetColor(Color color)
         {
-            this.fxColor = color;
-            shouldOverrideColor = true;
+            fxColor = color;
         }
 
 #if SN1
@@ -55,7 +52,6 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
             var rt = obj.AddComponent<RotaTeleporter>();
-            rt.shouldOverrideColor = shouldOverrideColor;
             rt.fxColor = fxColor;
             return obj;
         }

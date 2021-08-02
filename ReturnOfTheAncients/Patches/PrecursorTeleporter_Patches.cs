@@ -14,11 +14,11 @@ namespace RotA.Patches
             var rt = __instance.gameObject.GetComponent<RotaTeleporter>();
             if (rt != null)
             {
-                if (rt.shouldOverrideColor)
+                if (rt.fxColor != null)
                 {
                     if (__instance.portalFxControl != null)
                     {
-                        __instance.portalFxControl.GetComponentInChildren<Renderer>(true).material.SetColor("_ColorStrength", rt.fxColor);
+                        __instance.portalFxControl.GetComponentInChildren<Renderer>(true).material.SetColor("_ColorStrength", rt.fxColor.Value);
                     }
                 }
             }
