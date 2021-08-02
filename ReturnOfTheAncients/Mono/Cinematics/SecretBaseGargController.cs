@@ -33,13 +33,15 @@ namespace RotA.Mono.Cinematics
             PlayCreakFX("Creaking1", 5f);
             yield return new WaitForSeconds(4f);
             SpawnGarg(); //garg animation lasts 33 seconds roughly
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(1f);
+            SwimSFX();
+            yield return new WaitForSeconds(3f);
             PlayCreakFX(null, 6f, 0.4f);
-            //PlayOpenEyeSFX();
+            //PlayOpenEyeSFX(); eyeball sounds are too gross
             yield return new WaitForSeconds(4f);
             PlayCreakFX("Creaking3", 4f);
             yield return new WaitForSeconds(3f);
-            SwimAwaySFX();
+            SwimSFX();
             yield return new WaitForSeconds(7f);
             PlayCreakFX("Creaking4", 8f);
             yield return new WaitForSeconds(11f);
@@ -60,7 +62,7 @@ namespace RotA.Mono.Cinematics
             Utils.PlayFMODAsset(SNAudioEvents.GetFmodAsset("event:/env/power_teleporter"));
         }
 
-        void SwimAwaySFX()
+        void SwimSFX()
         {
             AudioSource source = new GameObject("SwimAwaySound").AddComponent<AudioSource>();
             source.volume = ECCHelpers.GetECCVolume();

@@ -45,7 +45,7 @@ namespace RotA.Mono.Cinematics
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
             Invoke(nameof(SpawnGarg), 6.9f); // nice
-            Invoke(nameof(PlayRoarSound), 4f);
+            Invoke(nameof(PlayRoarSound), 7f);
             Invoke(nameof(PlayXLPDVfx), 14f);
             Invoke(nameof(DestroySunbeamWreck), 16.3f);
             Invoke(nameof(StartFadingOut), 55f);
