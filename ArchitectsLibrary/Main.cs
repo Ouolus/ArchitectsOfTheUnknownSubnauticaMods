@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Items;
+using ArchitectsLibrary.Items.VanillaPrefabPatching;
 using ArchitectsLibrary.Patches;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.Utility;

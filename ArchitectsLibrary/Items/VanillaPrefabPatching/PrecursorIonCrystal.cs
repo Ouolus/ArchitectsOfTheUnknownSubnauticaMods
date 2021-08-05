@@ -4,9 +4,9 @@ using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.VanillaPrefabPatching
 {
-    class PrecursorIonCrystal : ModPrefab
+    class PrecursorIonCrystal : PrefabPatching
     {
         public PrecursorIonCrystal()
             : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "PrecursorIonCrystalAL", TechType.PrecursorIonCrystal)
@@ -25,7 +25,7 @@ namespace ArchitectsLibrary.Items
 #endif
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
-            var task = PrefabDatabase.GetPrefabForFilenameAsyncImpl("WorldEntities/Natural/PrecursorIonCrystal");
+            var task = PrefabDatabase.GetPrefabForFilenameAsync("WorldEntities/Natural/PrecursorIonCrystal");
             yield return task;
 
             task.TryGetPrefab(out var obj);
