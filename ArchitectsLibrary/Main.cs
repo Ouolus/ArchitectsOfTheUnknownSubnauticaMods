@@ -17,6 +17,7 @@ using SMLHelper.V2.Crafting;
 using UnityEngine;
 using ArchitectsLibrary.Buildables;
 using ArchitectsLibrary.Configuration;
+using SMLHelper.V2.Assets;
 using SMLHelper.V2.Utility;
 
 namespace ArchitectsLibrary
@@ -44,6 +45,8 @@ namespace ArchitectsLibrary
         const string fabBundleName = "fabricatorassets";
 
         internal static PrecursorFabricator PrecursorFabricator;
+
+        static List<PrefabPatching> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
         static TechType alienTechnologyMasterTech;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;
@@ -318,8 +321,7 @@ namespace ArchitectsLibrary
             
             new CustomBuilder().Patch();
 
-            var pic = new PrecursorIonCrystal();
-            PrefabHandler.RegisterPrefab(pic);
+            prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });

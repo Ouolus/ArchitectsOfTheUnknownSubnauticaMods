@@ -205,7 +205,6 @@
     <Compile Include="Items\Electricube.cs" />
     <Compile Include="Items\Morganite.cs" />
     <Compile Include="Items\OmegaCube.cs" />
-    <Compile Include="Items\PrecursorIonCrystal.cs" />
     <Compile Include="Items\PrecursorIonCube.cs" />
     <Compile Include="Items\RedBeryl.cs" />
     <Compile Include="Items\RedIonCube.cs" />
@@ -214,6 +213,10 @@
     <Compile Include="Items\Emerald.cs" />
     <Compile Include="Items\PrecursorAlloyIngot.cs" />
     <Compile Include="Buildables\PrecursorFabricator.cs" />
+    <Compile Include="Items\VanillaPrefabPatching\PrecursorIonBattery.cs" />
+    <Compile Include="Items\VanillaPrefabPatching\PrecursorIonCrystal.cs" />
+    <Compile Include="Items\VanillaPrefabPatching\PrecursorIonPowerCell.cs" />
+    <Compile Include="Items\VanillaPrefabPatching\PrefabPatching.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MonoBehaviours\CustomBuilderTool.cs" />
     <Compile Include="MonoBehaviours\PlaceableOnConstructableFix.cs" />
