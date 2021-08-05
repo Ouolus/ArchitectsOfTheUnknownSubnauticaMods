@@ -308,9 +308,9 @@ namespace RotA.Mono.AlienBaseSpawners
         /// <param name="terrainAttachForward"></param>
         /// <param name="offsetDirection"></param>
         /// <param name="quadraticMagnitude"></param>
-        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
+        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f, bool hasBase = true, bool hasClaw = true)
         {
-            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale);
+            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale, hasBase, hasClaw);
             foreach (CableSegment segment in segments)
             {
                 yield return SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
@@ -318,11 +318,17 @@ namespace RotA.Mono.AlienBaseSpawners
         }
 
         const float midCableSpacing = 1.05f;
-        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale)
+        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale, bool hasBase, bool hasClaw)
         {
             List<CableSegment> segments = new List<CableSegment>();
-            segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
-            segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
+            if (hasBase)
+            {
+                segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
+            }
+            if (hasClaw)
+            {
+                segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
+            }
             int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / (midCableSpacing * scale));
             for (int i = 0; i < maxSegments; i++)
             {
