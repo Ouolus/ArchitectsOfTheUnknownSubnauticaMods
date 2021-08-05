@@ -7,7 +7,7 @@ namespace RotA.Mono.AlienBaseSpawners
     {
         public override IEnumerator ConstructBase()
         {
-            yield return StartCoroutine(GenerateCable(new Vector3(354, -384, -1768), Vector3.up, new Vector3(356, -348, -1756), new Vector3(-0.2f, 0, 1), Vector3.back, 10f)); //when you're facing the guardian from the void, this is the one on the left
+            yield return StartCoroutine(GenerateCable(new Vector3(354, -430, -1768), Vector3.up, new Vector3(356, -348, -1756), new Vector3(-0.2f, 0, 1), Vector3.back, 10f, 3f)); //when you're facing the guardian from the void, this is the one on the left
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(378, -352, -1750)));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(370, -338, -1746)));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_greenLight, new Vector3(384, -332, -1736.5f)));
