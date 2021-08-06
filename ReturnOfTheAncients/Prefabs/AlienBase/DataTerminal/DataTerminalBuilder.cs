@@ -66,7 +66,7 @@ namespace RotA.Prefabs.AlienBase.DataTerminal
         {
             _dataTerminal = new DataTerminal();
             SetupTemplateTerminal(DataTerminalPrefab.blueTerminalCID);
-            SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            SetupAudio(null, null);
             SetupPingClassIds(null);
             SetupStoryGoal(null);
             SetupInteractable(true);
