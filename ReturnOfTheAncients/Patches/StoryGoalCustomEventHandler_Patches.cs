@@ -48,7 +48,7 @@ namespace RotA.Patches
 
         static void BeginRoar()
         {
-            CoroutineHost.StartCoroutine(SunbeamGargEventCoroutine());
+            //CoroutineHost.StartCoroutine(SunbeamGargEventCoroutine());
         }
 
         static IEnumerator SunbeamGargEventCoroutine()

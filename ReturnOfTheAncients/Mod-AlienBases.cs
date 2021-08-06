@@ -187,35 +187,6 @@ namespace RotA
 
         static void PatchAlienBases()
         {
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
-            outpostAInitializer.Patch();
-
-            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
-            outpostBInitializer.Patch();
-
-            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
-            guardianCablesInitializer.Patch();
-
-            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183)); //Crag field
-            supplyCacheBase.Patch();
-
-            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
-            researchBase.Patch();
-
-            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
-            kooshBase.Patch();
-
-            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1920), 300f, LargeWorldEntity.CellLevel.Far); //Void
-            voidBase.Patch();
-
-            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1920), 90, LargeWorldEntity.CellLevel.Medium); //Void
-            voidBaseInterior.Patch();
-
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
-            secondaryContainmentFacility.Patch();
-
-            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), 350f, LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
-            secretBase.Patch();
         }
 
         #endregion
@@ -362,21 +333,7 @@ namespace RotA
 
         static void PatchTeleporters()
         {
-            var voidPcfNetwork = new TeleporterNetwork("VoidBasePCF", new Vector3(373, -400 + 18f - 0.5f, -1880 - 40f - 55f), 0f, new Vector3(321.88f, -1438.50f, -393.03f), 240f, true, false);
-            voidPcfNetwork.Patch();
-
-            var voidWeaponsNetwork = new TeleporterNetwork("VoidBaseWeaponsBase", new Vector3(373 - 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-857.80f, -189.89f - 0.4f, -641.00f - 14f), 0f, false, true);
-            voidWeaponsNetwork.Patch();
-
-            var voidSupplyNetwork = new TeleporterNetwork("VoidBaseSupplyCache", new Vector3(373 + 50f, -400, -1880 - 40f - 10f), 0f, new Vector3(-10.80f, -178.50f - 0.4f, -1183.00f - 14f), 0f, false, true);
-            voidSupplyNetwork.Patch();
-
-            var secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false);
-            secretTeleporter.Patch();
-
-            var kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(1500f, -2000f, 0f), 180f, false, false, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { AUHandler.OmegaCubeTechType }, "KooshBasePortalTerminal", "Insert omega cube"), "SecretBaseAuxiliary");
-            kooshBaseDevSecret.SetNetworkColor(new Color(4, 4, 11));
-            kooshBaseDevSecret.Patch();
+            
         }
 
         #endregion

@@ -28,11 +28,6 @@ namespace RotA.Prefabs.AlienBase
             techType = this.TechType
         };
 
-        public override List<SpawnLocation> CoordinatedSpawns => new()
-        {
-            new SpawnLocation(new Vector3(365.86f, -330.00f, -1735.00f))
-        };
-
         public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
         {
             if (prefab == null)
