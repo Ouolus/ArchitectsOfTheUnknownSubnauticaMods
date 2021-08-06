@@ -20,6 +20,9 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return SpawnPrefab(Mod.voidDoor_blue.ClassID, new Vector3(0f, platformY, 62f));
             yield return SpawnPrefab(Mod.voidDoor_purple.ClassID, new Vector3(0f, platformY, 62f));
             yield return SpawnPrefab(vfx_entrance, new Vector3(-0.5f, 4f + platformY, 62f), new Vector3(90, 0, 0), new Vector3(1.30f, 1.5f, 1.30f));
+
+            yield return GenerateCable(new Vector3(373, -402.5f, -1868), Vector3.down, new Vector3(373, -480, -1868),
+                Vector3.down, Vector3.zero, 0f, 3f, true, false);
         }
     }
 }
