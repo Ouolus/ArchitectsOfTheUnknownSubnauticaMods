@@ -146,12 +146,6 @@ namespace ArchitectsLibrary
             
             PatchBuildables();
 
-            DecorationTechs.ForEach(x =>
-            {
-                CraftDataHandler.AddToGroup(DecorationGroup, DecorationCategory, x);
-                CraftDataHandler.SetBackgroundType(x, AlienBackground);
-            });
-
             achievementData.Load();
 
             PatchAchievements();
@@ -230,7 +224,6 @@ namespace ArchitectsLibrary
             
             precursorCubes.ForEach(cube => cube.Patch());
 
-            new CustomBuilder().Patch();
 
             prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
