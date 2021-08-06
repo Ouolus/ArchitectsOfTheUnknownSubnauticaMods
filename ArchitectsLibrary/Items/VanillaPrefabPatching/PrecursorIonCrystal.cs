@@ -6,7 +6,7 @@ using UWE;
 
 namespace ArchitectsLibrary.Items.VanillaPrefabPatching
 {
-    class PrecursorIonCrystal : PrefabPatching
+    class PrecursorIonCrystal : VanillaPrefab
     {
         public PrecursorIonCrystal()
             : base("38ebd2e5-9dcc-4d7a-ada4-86a22e01191a", "PrecursorIonCrystalAL", TechType.PrecursorIonCrystal)

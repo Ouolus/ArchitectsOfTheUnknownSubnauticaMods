@@ -46,7 +46,7 @@ namespace ArchitectsLibrary
 
         internal static PrecursorFabricator PrecursorFabricator;
 
-        static List<PrefabPatching> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
+        static List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
         static TechType alienTechnologyMasterTech;
         static PrecursorAlloyIngot precursorAlloy;
         static Emerald emerald;

@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace ArchitectsLibrary.Items.VanillaPrefabPatching
 {
-    class PrefabPatching : ModPrefab
+    class VanillaPrefab : ModPrefab
     {
-        public PrefabPatching(string classId, string prefabFileName, TechType techType)
+        public VanillaPrefab(string classId, string prefabFileName, TechType techType)
             : base(classId, prefabFileName, techType)
         {}
 

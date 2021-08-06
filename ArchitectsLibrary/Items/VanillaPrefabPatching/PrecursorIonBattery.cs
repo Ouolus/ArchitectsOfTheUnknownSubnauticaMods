@@ -4,7 +4,7 @@ using UWE;
 
 namespace ArchitectsLibrary.Items.VanillaPrefabPatching
 {
-    class PrecursorIonBattery : PrefabPatching
+    class PrecursorIonBattery : VanillaPrefab
     {
         public PrecursorIonBattery()
             : base("811c128d-a85f-4b0a-b9c4-4071db4fb7aa", "PrecursorIonBatteryAL", TechType.PrecursorIonBattery)
