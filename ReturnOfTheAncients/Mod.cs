@@ -223,11 +223,6 @@
         {
             CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1245, -40, -716)));
             CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1450, -100, 180)));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1386, -117, 346)));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1244, -117, 989)));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1122, -117, 1420)));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(-1370, -60, -29f)));
-            CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(new SpawnInfo(gargJuvenilePrefab.TechType, new Vector3(1430, -300, 1547)));
         }
 
         static void PatchInitializers()
