@@ -9,9 +9,9 @@ namespace RotA.Mono.AlienTech
         Renderer renderer;
         Material material;
         Light[] lights;
-        private float lightBaseIntensity = 3f;
-        private float minFlickerSpeed = 0.2f;
-        private float maxFlickerSpeed = 0.3f;
+        private float lightBaseIntensity = 5f;
+        private float minFlickerSpeed = 0.05f;
+        private float maxFlickerSpeed = 0.5f;
 
         void Start()
         {
