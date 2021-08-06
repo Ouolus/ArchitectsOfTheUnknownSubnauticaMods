@@ -254,14 +254,6 @@
             PrecursorFabricatorService.SubscribeToFabricator(ionKnife.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(ionKnife.TechType);
 
-            var terminalBuilder = new DataTerminalBuilder();
-
-            terminalBuilder.SetupStoryGoal(ency_warpCannonTerminal);
-            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
-            terminalBuilder.SetupUnlockables(techTypeToAnalyze: warpMasterTech);
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
-            warpCannonTerminal.Patch();
-
             gargPoster = new();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });

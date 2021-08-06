@@ -309,6 +309,12 @@ namespace RotA
             terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
             eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", terminalBuilder.GetTerminal());
             eggRoomTerminal.Patch();
+            
+            terminalBuilder.SetupStoryGoal(ency_warpCannonTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(techTypeToAnalyze: warpMasterTech);
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
+            warpCannonTerminal.Patch();
             #endregion
 
             #region Secret base
