@@ -50,7 +50,7 @@ namespace ArchitectsLibrary
 
         static List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
 
-        static List<Spawnable> advancedMaterials = new() { new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new ReinforcedGlass() };
+        static List<Spawnable> advancedMaterials = new() { new AotuPoster(), new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new ReinforcedGlass() };
 
         static List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
 
@@ -62,8 +62,6 @@ namespace ArchitectsLibrary
         
         static TechType alienTechnologyMasterTech;
         
-        static AotuPoster aotuPoster;
-
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
         static BuildablePlatform buildablePlatform;
@@ -231,10 +229,7 @@ namespace ArchitectsLibrary
             advancedMaterials.ForEach(one => one.Patch());
             
             precursorCubes.ForEach(cube => cube.Patch());
-            
-            aotuPoster = new AotuPoster();
-            aotuPoster.Patch();
-            
+
             new CustomBuilder().Patch();
 
             prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);

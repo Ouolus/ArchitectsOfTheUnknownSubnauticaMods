@@ -193,10 +193,10 @@
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
     <Compile Include="Interfaces\ISeaMothOnUse.cs" />
     <Compile Include="Items\AdvancedMaterials\AlienCompositeGlass.cs" />
+    <Compile Include="Items\AdvancedMaterials\AotuPoster.cs" />
     <Compile Include="Items\AdvancedMaterials\CobaltIngot.cs" />
     <Compile Include="Items\AdvancedMaterials\PrecursorAlloyIngot.cs" />
     <Compile Include="Items\AdvancedMaterials\ReinforcedGlass.cs" />
-    <Compile Include="Items\AotuPoster.cs" />
     <Compile Include="Items\Cubes\Electricube.cs" />
     <Compile Include="Items\Cubes\OmegaCube.cs" />
     <Compile Include="Items\Cubes\PrecursorIonCube.cs" />

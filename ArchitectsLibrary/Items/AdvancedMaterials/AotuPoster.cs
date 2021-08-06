@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using ArchitectsLibrary.API;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class AotuPoster : HolographicPoster
     {
