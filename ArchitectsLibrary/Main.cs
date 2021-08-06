@@ -1,31 +1,29 @@
-﻿using QModManager.API.ModLoading;
-using HarmonyLib;
-using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using ArchitectsLibrary.API;
-using ArchitectsLibrary.Items;
-using ArchitectsLibrary.Items.AdvancedMaterials;
-using ArchitectsLibrary.Items.Cubes;
-using ArchitectsLibrary.Items.Drillables;
-using ArchitectsLibrary.Items.Minerals;
-using ArchitectsLibrary.Items.VanillaPrefabPatching;
-using ArchitectsLibrary.Patches;
-using ArchitectsLibrary.Handlers;
-using ArchitectsLibrary.Utility;
-using CreatorKit.Patches;
-using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Crafting;
-using UnityEngine;
-using ArchitectsLibrary.Buildables;
-using ArchitectsLibrary.Configuration;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Utility;
+﻿using SMLHelper.V2.Assets;
 
 namespace ArchitectsLibrary
 {
+    using QModManager.API.ModLoading;
+    using HarmonyLib;
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using API;
+    using Buildables;
+    using Handlers;
+    using Items;
+    using Items.AdvancedMaterials;
+    using Items.Cubes;
+    using Items.Drillables;
+    using Items.Minerals;
+    using Items.VanillaPrefabPatching;
+    using Patches;
+    using Utility;
+    using SMLHelper.V2.Handlers;
+    using SMLHelper.V2.Crafting;
+    using UnityEngine;
+    using Configuration;
+    
     /// <summary>
     /// Please DO NOT use this class, its meant for only QModManager's Initializations of this Mod.
     /// </summary>
@@ -51,25 +49,20 @@ namespace ArchitectsLibrary
         internal static PrecursorFabricator PrecursorFabricator;
 
         static List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
+
+        static List<Spawnable> advancedMaterials = new() { new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new ReinforcedGlass() };
+
+        static List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
+
+        static List<ReskinSpawnable> drillables = new() { new DrillableCobalt(), new DrillableEmerald(), new DrillableMorganite(), new DrillableRedBeryl(), new DrillableSapphire() };
+
+        static List<ReskinSpawnable> minerals = new() { new Cobalt(), new Emerald(), new Morganite(), new RedBeryl(), new Sapphire() };
+        
+        
+        
         static TechType alienTechnologyMasterTech;
-        static PrecursorAlloyIngot precursorAlloy;
-        static Emerald emerald;
-        static DrillableEmerald drillableEmerald;
-        static Sapphire sapphire;
-        static DrillableSapphire drillableSapphire;
-        static RedBeryl redBeryl;
-        static DrillableRedBeryl drillableRedBeryl;
-        static ReinforcedGlass reinforcedGlass;
-        static AlienCompositeGlass alienCompositeGlass;
+        
         static AotuPoster aotuPoster;
-        static Morganite morganite;
-        static DrillableMorganite drillableMorganite;
-        static OmegaCube omegaCube;
-        static Electricube electricube;
-        static RedIonCube redIonCube;
-        static Cobalt cobalt;
-        static DrillableCobalt drillableCobalt;
-        static CobaltIngot cobaltIngot;
 
         static BuildableColumn buildableColumn;
         static BuildableArchway buildableArchway;
@@ -101,9 +94,9 @@ namespace ArchitectsLibrary
         internal static TechCategory DecorationCategory { get; private set; }
         internal static CraftData.BackgroundType AlienBackground { get; private set; }
 
-        const string encyKey_emerald = "EmeraldEncy";
+        internal const string encyKey_emerald = "EmeraldEncy";
 
-        private const string ionCubePickupSound = "event:/loot/pickup_precursorioncrystal";
+        internal const string ionCubePickupSound = "event:/loot/pickup_precursorioncrystal";
 
         /// <summary>
         /// Please DO NOT use this Method, its meant for only QModManager's Initializations of this Mod.
@@ -208,8 +201,7 @@ namespace ArchitectsLibrary
                 PrecursorFabricator.Root.GetTabNode(PrecursorFabricatorService.TabToNameID(entry.tab)).AddCraftingNode(entry.techType);
             }
 
-            KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, alienCompositeGlass.TechType, reinforcedGlass.TechType, electricube.TechType, redIonCube.TechType });
-            KnownTechHandler.SetAnalysisTechEntry(precursorAlloy.TechType, new List<TechType>() { precursorAlloy.TechType });
+            KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, AUHandler.AlienCompositeGlassTechType, AUHandler.ReinforcedGlassTechType, AUHandler.ElectricubeTechType, AUHandler.RedIonCubeTechType });
         }
 
         internal static void IonCubeCraftModelFix(GameObject prefab)
@@ -229,97 +221,17 @@ namespace ArchitectsLibrary
 
         static void PatchMinerals()
         {
-            emerald = new Emerald();
-            emerald.Patch();
-            AUHandler.EmeraldTechType = emerald.TechType;
-            ItemUtils.PatchEncy(encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small amounts in deep biomes, and in large deposits amongst areas with extensive sand dunes. While there are few known practical uses for this gemstone, a significant amount of this mineral has been observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
-            ItemUtils.MakeObjectScannable(emerald.TechType, encyKey_emerald, 3f);
-            CraftData.pickupSoundList.Add(emerald.TechType, ionCubePickupSound);
-
-            drillableEmerald = new DrillableEmerald();
-            drillableEmerald.Patch();
-            AUHandler.DrillableEmeraldTechType = drillableEmerald.TechType;
-            ItemUtils.MakeObjectScannable(drillableEmerald.TechType, encyKey_emerald, 5f);
-
-            cobalt = new Cobalt();
-            cobalt.Patch();
-            AUHandler.CobaltTechType = cobalt.TechType;
-            CraftData.pickupSoundList.Add(cobalt.TechType, ionCubePickupSound);
-
-            drillableCobalt = new DrillableCobalt();
-            drillableCobalt.Patch();
-            AUHandler.DrillableCobaltTechType = drillableCobalt.TechType;
-
-            cobaltIngot = new CobaltIngot();
-            cobaltIngot.Patch();
-            AUHandler.CobaltIngotTechType = cobaltIngot.TechType;
-            CraftData.pickupSoundList.Add(cobaltIngot.TechType, ionCubePickupSound);
-
-            precursorAlloy =  new PrecursorAlloyIngot();
-            precursorAlloy.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(precursorAlloy.TechType, PrecursorFabricatorTab.Materials);
-            AUHandler.PrecursorAlloyIngotTechType = precursorAlloy.TechType;
-            CraftData.pickupSoundList.Add(precursorAlloy.TechType, ionCubePickupSound);
-
-            sapphire = new Sapphire();
-            sapphire.Patch();
-            AUHandler.SapphireTechType = sapphire.TechType;
-            CraftData.pickupSoundList.Add(sapphire.TechType, ionCubePickupSound);
-
-            drillableSapphire = new DrillableSapphire();
-            drillableSapphire.Patch();
-            AUHandler.DrillableSapphireTechType = drillableSapphire.TechType;
-
-            redBeryl = new RedBeryl();
-            redBeryl.Patch();
-            AUHandler.RedBerylTechType = redBeryl.TechType;
-            CraftData.pickupSoundList.Add(redBeryl.TechType, ionCubePickupSound);
-
-            drillableRedBeryl = new DrillableRedBeryl();
-            drillableRedBeryl.Patch();
-            AUHandler.DrillableRedBerylTechType = drillableRedBeryl.TechType;
-
-            morganite = new Morganite();
-            morganite.Patch();
-            AUHandler.MorganiteTechType = morganite.TechType;
-            CraftData.pickupSoundList.Add(morganite.TechType, "event:/loot/pickup_glass");
-
-            drillableMorganite = new DrillableMorganite();
-            drillableMorganite.Patch();
-            AUHandler.DrillableMorganiteTechType = drillableMorganite.TechType;
-
-            electricube = new Electricube();
-            electricube.Patch();
-            AUHandler.ElectricubeTechType = electricube.TechType;
-            CraftData.pickupSoundList.Add(electricube.TechType, ionCubePickupSound);
-            PrecursorFabricatorService.SubscribeToFabricator(electricube.TechType, PrecursorFabricatorTab.Materials);
-
-            omegaCube = new OmegaCube();
-            omegaCube.Patch();
-            AUHandler.OmegaCubeTechType = omegaCube.TechType;
-            CraftData.pickupSoundList.Add(omegaCube.TechType, ionCubePickupSound);
-            PrecursorFabricatorService.SubscribeToFabricator(omegaCube.TechType, PrecursorFabricatorTab.Materials); 
+            minerals.ForEach(mineral => mineral.Patch());
             
-            redIonCube = new RedIonCube();
-            redIonCube.Patch();
-            AUHandler.RedIonCubeTechType = redIonCube.TechType;
-            CraftData.pickupSoundList.Add(redIonCube.TechType, ionCubePickupSound);
-            PrecursorFabricatorService.SubscribeToFabricator(redIonCube.TechType, PrecursorFabricatorTab.Materials);
-
-            reinforcedGlass = new ReinforcedGlass();
-            reinforcedGlass.Patch();
-            AUHandler.ReinforcedGlassTechType = reinforcedGlass.TechType;
-            CraftData.pickupSoundList.Add(reinforcedGlass.TechType, "event:/loot/pickup_glass");
-
-            alienCompositeGlass = new AlienCompositeGlass();
-            alienCompositeGlass.Patch();
-            PrecursorFabricatorService.SubscribeToFabricator(alienCompositeGlass.TechType, PrecursorFabricatorTab.Materials);
-            AUHandler.AlienCompositeGlassTechType = alienCompositeGlass.TechType;
-            CraftData.pickupSoundList.Add(alienCompositeGlass.TechType, "event:/loot/pickup_glass");
+            drillables.ForEach(drillable => drillable.Patch());
         }
 
         static void PatchItems()
         {
+            advancedMaterials.ForEach(one => one.Patch());
+            
+            precursorCubes.ForEach(cube => cube.Patch());
+            
             aotuPoster = new AotuPoster();
             aotuPoster.Patch();
             
@@ -328,7 +240,7 @@ namespace ArchitectsLibrary
             prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
-            CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(emerald.TechType, 2)} });
+            CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2)} });
             CraftDataHandler.SetCraftingTime(TechType.PrecursorIonCrystal, 30f);
             CraftData.groups[TechGroup.Resources][TechCategory.AdvancedMaterials].Add(TechType.PrecursorIonCrystal);
 

@@ -10,6 +10,12 @@
     {
         public RedIonCube() : base("RedIonCube", "Power cube", "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.RedIonCubeTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+            };
         }
 
         protected override TechData GetBlueprintRecipe()

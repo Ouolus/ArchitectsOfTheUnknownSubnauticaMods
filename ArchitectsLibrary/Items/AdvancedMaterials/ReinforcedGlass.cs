@@ -10,6 +10,11 @@
     {
         public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.ReinforcedGlassTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         public override TechGroup GroupForPDA => TechGroup.Resources;

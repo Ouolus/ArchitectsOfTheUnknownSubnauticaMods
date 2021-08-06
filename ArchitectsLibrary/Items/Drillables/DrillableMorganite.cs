@@ -12,6 +12,10 @@
 
         public DrillableMorganite() : base("DrillableMorganite", "Morganite", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableMorganiteTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

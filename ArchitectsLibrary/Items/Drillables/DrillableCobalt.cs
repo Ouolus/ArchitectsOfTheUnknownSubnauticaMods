@@ -12,6 +12,10 @@
 
         public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableCobaltTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

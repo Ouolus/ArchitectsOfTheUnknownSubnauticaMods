@@ -12,6 +12,10 @@
 
         public DrillableRedBeryl() : base("DrillableRedBeryl", "Red beryl", "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableRedBerylTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

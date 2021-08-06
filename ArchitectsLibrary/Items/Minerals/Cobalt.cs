@@ -1,11 +1,10 @@
-﻿
-
-namespace ArchitectsLibrary.Items.Minerals
+﻿namespace ArchitectsLibrary.Items.Minerals
 {
     using System.Collections.Generic;
     using API;
     using UnityEngine;
     using UWE;
+    using Handlers;
     class Cobalt : ReskinSpawnable
     {
         Atlas.Sprite sprite;
@@ -13,6 +12,11 @@ namespace ArchitectsLibrary.Items.Minerals
 
         public Cobalt() : base("Cobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.CobaltTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

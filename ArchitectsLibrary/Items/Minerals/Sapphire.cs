@@ -1,5 +1,6 @@
 ﻿namespace ArchitectsLibrary.Items.Minerals
 {
+    using Handlers;
     using System.Collections.Generic;
     using UnityEngine;
     using UWE;
@@ -12,6 +13,11 @@
 
         public Sapphire() : base("Sapphire", "Sapphire", "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.SapphireTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

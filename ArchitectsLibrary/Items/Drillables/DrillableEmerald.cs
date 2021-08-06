@@ -1,4 +1,6 @@
-﻿namespace ArchitectsLibrary.Items.Drillables
+﻿using ArchitectsLibrary.Utility;
+
+namespace ArchitectsLibrary.Items.Drillables
 {
     using UnityEngine;
     using API;
@@ -12,6 +14,11 @@
 
         public DrillableEmerald() : base("DrillableEmerald", "Emerald", "Be₃Al₂SiO₆. Beryl variant with applications in advanced alien fabrication.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableEmeraldTechType = TechType;
+                ItemUtils.MakeObjectScannable(TechType, Main.encyKey_emerald, 5f);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

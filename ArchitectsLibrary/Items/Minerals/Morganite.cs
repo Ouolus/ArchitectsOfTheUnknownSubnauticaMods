@@ -1,5 +1,6 @@
 ﻿namespace ArchitectsLibrary.Items.Minerals
 {
+    using Handlers;
     using System.Collections.Generic;
     using UnityEngine;
     using UWE;
@@ -12,7 +13,11 @@
 
         public Morganite() : base("Morganite", "Morganite", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
         {
-
+            OnFinishedPatching += () =>
+            {
+                AUHandler.MorganiteTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

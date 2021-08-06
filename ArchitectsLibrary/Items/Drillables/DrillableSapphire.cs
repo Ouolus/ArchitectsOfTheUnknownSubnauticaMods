@@ -12,6 +12,10 @@
 
         public DrillableSapphire() : base("DrillableSapphire", "Sapphire", "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableSapphireTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

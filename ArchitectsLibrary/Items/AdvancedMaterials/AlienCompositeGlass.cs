@@ -14,6 +14,12 @@ namespace ArchitectsLibrary.Items.AdvancedMaterials
     {
         public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
         {
+            OnFinishedPatching += () =>
+            {
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+                AUHandler.AlienCompositeGlassTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";

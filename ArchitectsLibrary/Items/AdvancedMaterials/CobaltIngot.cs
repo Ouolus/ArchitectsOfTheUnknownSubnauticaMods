@@ -22,6 +22,11 @@
 
         public CobaltIngot() : base("CobaltIngot", "Cobalt ingot", "Co. Condensed cobalt bar.")
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.CobaltIngotTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
