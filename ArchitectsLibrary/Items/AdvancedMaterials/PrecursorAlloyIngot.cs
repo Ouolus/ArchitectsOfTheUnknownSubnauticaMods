@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using ArchitectsLibrary.Utility;
 using ArchitectsLibrary.Handlers;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class PrecursorAlloyIngot : Craftable
     {

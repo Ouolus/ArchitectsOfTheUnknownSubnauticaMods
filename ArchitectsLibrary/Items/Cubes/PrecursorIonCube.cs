@@ -2,7 +2,7 @@ using ArchitectsLibrary.API;
 using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.Cubes
 {
     internal abstract class PrecursorIonCube : ReskinSpawnable
     {

@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     using SMLHelper.V2.Crafting;
     using System.Collections.Generic;

@@ -8,7 +8,7 @@ using ArchitectsLibrary.API;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class AlienCompositeGlass : ReskinSpawnable
     {

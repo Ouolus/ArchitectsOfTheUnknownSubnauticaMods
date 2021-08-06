@@ -1,6 +1,6 @@
 ﻿
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.Minerals
 {
     using System.Collections.Generic;
     using API;
