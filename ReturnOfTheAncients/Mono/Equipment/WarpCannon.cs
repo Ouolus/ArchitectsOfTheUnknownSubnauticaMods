@@ -558,7 +558,12 @@ namespace RotA.Mono.Equipment
                 Instantiate(warpInPrefab, playerPosition, Quaternion.identity);
                 Utils.PlayFMODAsset(portalOpenSound, playerPosition);
 
+                // initial wait time
                 yield return new WaitForSeconds(1.5f);
+                
+                // dynamically wait until the terrain is fully loaded.
+                var batch = LargeWorldStreamer.main.GetContainingBatch(playerPosition);
+                yield return new WaitUntil(() => LargeWorldStreamer.main.IsBatchReadyToCompile(batch));
 
                 teleportScreenController.StopTeleport();
                 Player.main.teleportingLoopSound.Stop();
