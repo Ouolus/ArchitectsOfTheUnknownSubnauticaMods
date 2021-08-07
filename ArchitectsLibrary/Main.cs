@@ -111,6 +111,8 @@ namespace ArchitectsLibrary
             
             PatchMinerals();
 
+            PatchItems();
+
             FixDisplayCaseItems();
 
             achievementData = new AchievementData();
@@ -141,8 +143,6 @@ namespace ArchitectsLibrary
             backgroundHovered = new Atlas.Sprite(assetBundle.LoadAsset<Sprite>("BackgroundHovered"));
 
             AlienBackground = BackgroundTypeHandler.AddBackgroundType("AlienBackground", background);
-
-            PatchItems();
             
             PatchBuildables();
 
