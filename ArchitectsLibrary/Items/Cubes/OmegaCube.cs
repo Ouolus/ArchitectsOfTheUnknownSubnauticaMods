@@ -14,7 +14,6 @@ namespace ArchitectsLibrary.Items.Cubes
             {
                 AUHandler.OmegaCubeTechType = TechType;
                 CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
-                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials); 
                 
                 DisplayCaseServices.WhitelistTechType(TechType);
                 DisplayCaseServices.SetOffset(TechType, new Vector3(0f, -0.25f, 0f));
