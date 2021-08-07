@@ -50,7 +50,7 @@ namespace ArchitectsLibrary
 
         static List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
 
-        static List<Spawnable> advancedMaterials = new() { new AotuPoster(), new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new ReinforcedGlass() };
+        static List<Spawnable> advancedMaterials = new() { new ReinforcedGlass(), new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new AotuPoster() };
 
         static List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
 
