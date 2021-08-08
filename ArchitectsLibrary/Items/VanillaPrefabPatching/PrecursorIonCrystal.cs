@@ -32,7 +32,7 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
+            _processedPrefab.name = "PrecursorIonCrystal";
             
             return prefab;
         }
@@ -58,8 +58,8 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
-            
+            _processedPrefab.name = "PrecursorIonCrystal";
+
             gameObject.Set(prefab);
         }
     }

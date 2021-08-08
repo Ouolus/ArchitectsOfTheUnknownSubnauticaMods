@@ -31,7 +31,7 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
+            _processedPrefab.name = "PrecursorIonPowerCell";
 
             return prefab;
         }
@@ -61,7 +61,7 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
+            _processedPrefab.name = "PrecursorIonPowerCell";
             
             gameObject.Set(prefab);
         }

@@ -12,7 +12,8 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
         // dont override the object's settings.
         protected sealed override void ProcessPrefab(GameObject go)
         {
-            
+            if (go.activeInHierarchy)
+                ModPrefabCache.AddPrefab(go);
         }
     }
 }

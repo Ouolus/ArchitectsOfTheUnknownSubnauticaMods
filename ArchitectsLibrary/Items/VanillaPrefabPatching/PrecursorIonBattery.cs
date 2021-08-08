@@ -1,4 +1,5 @@
 using System.Collections;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
@@ -31,7 +32,7 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
 
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
+            _processedPrefab.name = "PrecursorIonBattery";
 
             return prefab;
         }
@@ -61,8 +62,8 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             
             _processedPrefab = Object.Instantiate(prefab);
             _processedPrefab.SetActive(false);
-            _processedPrefab.name = ClassID;
-            
+            _processedPrefab.name = "PrecursorIonBattery";
+
             gameObject.Set(prefab);
         }
     }

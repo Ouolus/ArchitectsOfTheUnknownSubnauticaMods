@@ -149,6 +149,8 @@ namespace ArchitectsLibrary
             achievementData.Load();
 
             PatchAchievements();
+            
+            prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
             Harmony harmony = new Harmony($"ArchitectsOfTheUnknown_{myAssembly.GetName().Name}");
 
@@ -223,9 +225,6 @@ namespace ArchitectsLibrary
             advancedMaterials.ForEach(one => one.Patch());
             
             precursorCubes.ForEach(cube => cube.Patch());
-
-
-            prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2)} });
