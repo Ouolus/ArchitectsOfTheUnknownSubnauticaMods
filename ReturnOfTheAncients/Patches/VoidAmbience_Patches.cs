@@ -28,17 +28,17 @@ namespace RotA.Patches
             }
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                absorption = new Vector3(7f, 6f, 5f) / 1.8f,
-                ambientScale = 0f,
+                absorption = new Vector3(40, 15f, 9f) / 5f,
+                ambientScale = 0.5f,
                 emissiveScale = 0f,
-                sunlightScale = 1f,
+                sunlightScale = 1.1f,
                 murkiness = 0.82f,
                 startDistance = 100f,
-                scatteringColor = new Color(0f, 0f, 0.2f),
+                scatteringColor = new Color(0.3f, 0.3f, 0.3f),
                 temperature = 5f,
                 scattering = 0.25f
             };
-            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[7]);
+            PatchBiomeFog(__instance, voidBiomeName, voidWaterscapeSettings, __instance.biomeSkies[22]);
         }
 
         [HarmonyPostfix]
