@@ -11,7 +11,12 @@ namespace RotA.Patches
         [HarmonyPostfix]
         public static void Awake_Patch(GotoConsoleCommand __instance)
         {
-            AddTeleportPosition(ref __instance, "norotaspoilerslol", new Vector3(2000, -100, 0));
+            AddTeleportPosition(ref __instance, "lostriveroutpost", new Vector3(-730, -759, -224));
+            AddTeleportPosition(ref __instance, "supplycache", new Vector3(-16, -172, -1133));
+            AddTeleportPosition(ref __instance, "researchbase", new Vector3(-852, -189, -579));
+            AddTeleportPosition(ref __instance, "kooshzonebase", new Vector3(1483, -456, 1508));
+            AddTeleportPosition(ref __instance, "destroyedguardian", new Vector3(367, -335f, -1750));
+            AddTeleportPosition(ref __instance, "voidbase", new Vector3(372, -395, -1801));
         }
 
         static void AddTeleportPosition(ref GotoConsoleCommand gotoCmd, string name, Vector3 pos)
