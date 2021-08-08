@@ -28,13 +28,13 @@ namespace RotA.Patches
             }
             WaterscapeVolume.Settings voidWaterscapeSettings = new WaterscapeVolume.Settings()
             {
-                absorption = new Vector3(7f, 6f, 4f) / 1.8f,
+                absorption = new Vector3(7f, 6f, 5f) / 1.8f,
                 ambientScale = 0f,
                 emissiveScale = 0f,
                 sunlightScale = 1f,
                 murkiness = 0.82f,
                 startDistance = 100f,
-                scatteringColor = new Color(0f, 0f, 0.7f),
+                scatteringColor = new Color(0f, 0f, 0.2f),
                 temperature = 5f,
                 scattering = 0.25f
             };
