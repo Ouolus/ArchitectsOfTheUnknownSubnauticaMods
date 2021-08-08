@@ -8,7 +8,7 @@ using System.Collections;
 namespace ArchitectsLibrary.API
 {
     /// <summary>
-    /// A class that helps you with adding custom Architect Library posters. You do NOT need to worry about adding it to the precursor fabricator. Unlocks with Alloy Ingot unless specified otherwise.
+    /// A class that helps you with adding custom Architect Library posters. You do NOT need to worry about adding it to the precursor fabricator. Unlocks with 2 Titanium and an Emerald unless specified otherwise.
     /// </summary>
     public abstract class HolographicPoster : Equipable
     {
