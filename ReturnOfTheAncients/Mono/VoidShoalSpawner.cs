@@ -9,7 +9,7 @@ namespace RotA.Mono
         GameObject shoalPrefab_Spinefish;
         VFXSchoolFishManager shoalManager;
         private const string spinefishShoalClassId = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
-        private const int shoalCap = 20;
+        private const int shoalCap = 2;
         private bool canSpawn = false;
 
         private IEnumerator Start()
