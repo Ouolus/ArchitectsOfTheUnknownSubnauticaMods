@@ -13,10 +13,10 @@ namespace ArchitectsLibrary.Handlers
     public static class AUHandler
     {
         internal static readonly IDictionary<TechType, TechType> CustomCreatureEggDictionary = 
-            new HashDictionary<TechType, TechType>();
+            new Dictionary<TechType, TechType>();
 
         internal static readonly IDictionary<TechType, WaterParkCreatureParameters> CustomWaterParkCreatureParameters =
-            new HashDictionary<TechType, WaterParkCreatureParameters>();
+            new Dictionary<TechType, WaterParkCreatureParameters>();
 
         /// <summary>
         /// Gets the <see cref="PrecursorAlloyIngot"/>'s TechType so you can spawn it up in your Mod.
