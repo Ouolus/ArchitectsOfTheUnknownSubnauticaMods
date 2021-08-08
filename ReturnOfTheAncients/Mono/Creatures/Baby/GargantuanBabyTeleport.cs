@@ -56,7 +56,7 @@ namespace RotA.Mono.Creatures.Baby
         }
 
         public float warpInterval = 5f;
-        public float warpDistance = 30f;
+        public float warpDistance = 100f;
         public Creature creature;
         public GameObject cinematicTarget;
 

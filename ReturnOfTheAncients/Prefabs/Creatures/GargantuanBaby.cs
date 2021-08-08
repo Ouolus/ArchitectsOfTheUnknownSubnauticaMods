@@ -53,6 +53,7 @@ namespace RotA.Prefabs.Creatures
             avoid.scanRadius = 8f;
             avoid.avoidanceDistance = 5f;
             avoid.avoidanceDuration = 2f;
+            avoid.avoidTerrainOnly = true;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
 
