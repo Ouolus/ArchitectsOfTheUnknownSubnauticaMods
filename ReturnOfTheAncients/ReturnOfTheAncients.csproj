@@ -273,6 +273,7 @@
     <Compile Include="Prefabs\Modules\ExosuitZapModule.cs" />
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
+    <Compile Include="Prefabs\Placeable\GargantuanAdultToyNoHat.cs" />
     <Compile Include="Prefabs\Placeable\GargantuanAdultToy.cs" />
     <Compile Include="Prefabs\Placeable\GargantuanJuvenileToy.cs" />
     <Compile Include="Prefabs\Placeable\GargPoster.cs" />

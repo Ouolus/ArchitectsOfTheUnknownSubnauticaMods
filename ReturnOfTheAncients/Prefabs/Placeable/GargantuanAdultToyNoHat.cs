@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace RotA.Prefabs.Placeable
 {
-    class GargantuanAdultToy : ALPlaceable
+    class GargantuanAdultToyNoHat : ALPlaceable
     {
-        public GargantuanAdultToy()
-            : base("GargantuanAdultToy", "Gargantuan Adult Replica (With hat)", "A small-scale replica of an Adult Gargantuan Leviathan. Equipped with a cute hat to make it less terrifying.")
+        public GargantuanAdultToyNoHat()
+            : base("GargantuanAdultToyNoHat", "Gargantuan Adult Replica", "A small-scale replica of an Adult Gargantuan Leviathan. Approximately 0.16% the size of the actual creature.")
         {}
 
 
@@ -29,7 +29,7 @@ namespace RotA.Prefabs.Placeable
 
         public override GameObject GetModel()
         {
-            GameObject model = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanAdultToy"));
+            GameObject model = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanAdultToyNoHat"));
             MaterialUtils.ApplySNShaders(model);
             return model;
         }

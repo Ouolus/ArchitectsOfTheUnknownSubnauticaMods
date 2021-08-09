@@ -66,6 +66,7 @@
 
         internal static GargPoster gargPoster;
         internal static GargantuanAdultToy gargAdultToy;
+        internal static GargantuanAdultToyNoHat gargAdultToyNoHat;
         internal static GargantuanJuvenileToy gargJuvenileToy;
 
         public static WarpCannonPrefab warpCannon;
@@ -262,6 +263,9 @@
 
             gargAdultToy = new();
             gargAdultToy.Patch();
+
+            gargAdultToyNoHat = new();
+            gargAdultToyNoHat.Patch();
 
             gargJuvenileToy = new();
             gargJuvenileToy.Patch();
