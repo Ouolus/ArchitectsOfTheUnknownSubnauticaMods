@@ -130,35 +130,35 @@ namespace ArchitectsLibrary.API
         public enum PlacementFlags
         {
             /// <summary>
-            /// Can be placed on floors.
+            /// Can be placed on floors. Every placeable should include at least one of the the Ground, Walls, or Ceilings flags.
             /// </summary>
             Ground = 1,
             /// <summary>
-            /// Can be placed on walls.
+            /// Can be placed on walls. Every placeable should include at least one of the the Ground, Walls, or Ceilings flags.
             /// </summary>
             Walls = 2,
             /// <summary>
-            /// Can be placed on ceilings.
+            /// Can be placed on ceilings. Every placeable should include at least one of the the Ground, Walls, or Ceilings flags.
             /// </summary>
             Ceiling = 4,
             /// <summary>
-            /// Can be placed indoors.
+            /// Can be placed indoors. Every placeable should include either the Inside our Outside flag, or both.
             /// </summary>
             Inside = 8,
             /// <summary>
-            /// Can be placed outside.
+            /// Can be placed outside. Every placeable should include either the Inside our Outside flag, or both.
             /// </summary>
             Outside = 16,
             /// <summary>
-            /// Whether the poster aligns with surfaces. For posters on walls mainly.
+            /// Whether the poster aligns with surfaces. Used for wall-mounted things such as posters, mainly. If this flag is included, the forward direction (+Z) should be facing the player.
             /// </summary>
             AlignWithSurface = 32,
             /// <summary>
-            /// Allowed in Cyclops, Sea Voyager, etc...
+            /// Allowed in Cyclops, Sea Voyager, etc... Always include this flag unless there are interesting errors that come out of placing it in a cyclops.
             /// </summary>
             AllowedOnRigidbody = 64,
             /// <summary>
-            /// Allowed on constructed entities such as tables, desks, shelves, etc...
+            /// Allowed on constructed entities such as tables, desks, shelves, etc... Include this unless you want to limit your decoration to the floor only.
             /// </summary>
             AllowedOnConstructable = 128
         }
