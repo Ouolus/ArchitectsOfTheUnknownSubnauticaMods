@@ -7,7 +7,7 @@ namespace RotA.Prefabs.Placeable
     class GargantuanJuvenileToy : ALPlaceable
     {
         public GargantuanJuvenileToy()
-            : base("GargantuanJuvenileToy", "Gargantuan Juvenile Toy", "Gargantuan Juvenile Toy that makes me go yes.")
+            : base("GargantuanJuvenileToy", "Gargantuan Juvenile Replica", "A small-scale replica of a Juvenile Gargantuan Leviathan. Approximately 0.33% of the original size.")
         {}
 
 
