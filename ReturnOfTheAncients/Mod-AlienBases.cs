@@ -42,6 +42,8 @@ namespace RotA
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
+        public static DataTerminalPrefab sonicDeterrentTerminal;
+
         public static SecretBaseTerminal devSecretTerminal;
         public static DataTerminalPrefab devTerminalAlan;
         public static DataTerminalPrefab devTerminalHipnox;
@@ -315,6 +317,11 @@ namespace RotA
             terminalBuilder.SetupUnlockables(techTypeToAnalyze: warpMasterTech);
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
             warpCannonTerminal.Patch();
+
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(techTypeToAnalyze: AUHandler.BuildableSonicDeterrentTechType);
+            sonicDeterrentTerminal = new DataTerminalPrefab("SonicDeterrentTerminal", terminalBuilder.GetTerminal());
+            sonicDeterrentTerminal.Patch();
             #endregion
 
             #region Secret base
