@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AchievementServices.cs" />
+    <Compile Include="API\ALPlaceable.cs" />
     <Compile Include="API\BuildableIonCubePedestal.cs" />
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\GenericPrecursorDecoration.cs" />
