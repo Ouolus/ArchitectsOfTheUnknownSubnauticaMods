@@ -26,6 +26,6 @@ namespace RotA.Prefabs.Placeable
 
         protected override Atlas.Sprite GetItemSprite() => SpriteManager.defaultSprite;
 
-        public override GameObject GetModel() => Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanAdultToy");
+        public override GameObject GetModel() => Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanJuvenileToy");
     }
 }
