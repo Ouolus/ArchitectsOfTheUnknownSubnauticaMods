@@ -272,6 +272,7 @@ namespace ArchitectsLibrary
 
             buildableSonicDeterrent = new BuildableSonicDeterrent();
             buildableSonicDeterrent.Patch();
+            AUHandler.BuildableSonicDeterrentTechType = buildableSonicDeterrent.TechType;
 
             //exterior and interior
             buildablePlatform = new BuildablePlatform();

@@ -109,6 +109,11 @@ namespace ArchitectsLibrary.Handlers
         public static TechType AlienTechnologyMasterTech { get; internal set; }
 
         /// <summary>
+        /// Gets the TechType of the buildable Sonic Deterrent. This is public because it is NOT unlocked by default (too OP).
+        /// </summary>
+        public static TechType BuildableSonicDeterrentTechType { get; internal set; }
+
+        /// <summary>
         /// makes the object given Scannable from the Scanner Room.
         /// </summary>
         /// <param name="gameObject">the <see cref="GameObject"/> to make Scannable</param>
