@@ -29,7 +29,7 @@ namespace RotA.Prefabs.Placeable
 
         public override GameObject GetModel()
         {
-            GameObject model = Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanAdultToy");
+            GameObject model = GameObject.Instantiate(Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanAdultToy"));
             MaterialUtils.ApplySNShaders(model);
             return model;
         }
