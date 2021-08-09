@@ -274,6 +274,7 @@
     <Compile Include="Prefabs\Modules\SeamothElectricalDefenseMK2.cs" />
     <Compile Include="Prefabs\Modules\SuperDecoy.cs" />
     <Compile Include="Prefabs\Placeable\GargantuanAdultToy.cs" />
+    <Compile Include="Prefabs\Placeable\GargantuanJuvenileToy.cs" />
     <Compile Include="Prefabs\Placeable\GargPoster.cs" />
     <Compile Include="Prefabs\Signals\GenericSignalPrefab.cs" />
     <Compile Include="Prefabs\Initializers\AdultGargSpawnerInitializer.cs" />
