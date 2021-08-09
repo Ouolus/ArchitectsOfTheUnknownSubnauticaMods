@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RotA.Prefabs.Placeable
 {
-    public class GargantuanJuvenileToy : ALPlaceable
+    class GargantuanJuvenileToy : ALPlaceable
     {
         public GargantuanJuvenileToy()
             : base("GargantuanJuvenileToy", "Gargantuan Juvenile Toy", "Gargantuan Juvenile Toy that makes me go yes.")

@@ -64,7 +64,9 @@
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
 
-        public static GargPoster gargPoster;
+        internal static GargPoster gargPoster;
+        internal static GargantuanAdultToy gargAdultToy;
+        internal static GargantuanJuvenileToy gargJuvenileToy;
 
         public static WarpCannonPrefab warpCannon;
         public static IonKnifePrefab ionKnife;
@@ -257,6 +259,12 @@
             gargPoster = new();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
+
+            gargAdultToy = new();
+            gargAdultToy.Patch();
+
+            gargJuvenileToy = new();
+            gargJuvenileToy.Patch();
 
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
