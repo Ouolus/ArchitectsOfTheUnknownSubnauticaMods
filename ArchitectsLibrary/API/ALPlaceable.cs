@@ -106,6 +106,7 @@ namespace ArchitectsLibrary.API
                 placeTool.placementSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.LightStickPlace);
                 placeTool.alignWithSurface = GetPlacementMode.HasFlag(PlacementFlags.AlignWithSurface);
                 placeTool.allowedOnRigidBody = GetPlacementMode.HasFlag(PlacementFlags.AllowedOnRigidbody);
+                placeTool.allowedOnConstructable = GetPlacementMode.HasFlag(PlacementFlags.AllowedOnConstructable);
             }
             return cachedPrefab;
         }
@@ -156,6 +157,10 @@ namespace ArchitectsLibrary.API
             /// Allowed in Cyclops, Sea Voyager, etc...
             /// </summary>
             AllowedOnRigidbody = 64,
+            /// <summary>
+            /// Allowed on constructed entities such as tables, desks, shelves, etc...
+            /// </summary>
+            AllowedOnConstructable = 128
         }
     }
 }
