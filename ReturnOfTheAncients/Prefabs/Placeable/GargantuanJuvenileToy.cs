@@ -1,4 +1,5 @@
 using ArchitectsLibrary.API;
+using ArchitectsLibrary.Utility;
 using SMLHelper.V2.Crafting;
 using UnityEngine;
 
@@ -26,6 +27,11 @@ namespace RotA.Prefabs.Placeable
 
         protected override Atlas.Sprite GetItemSprite() => SpriteManager.defaultSprite;
 
-        public override GameObject GetModel() => Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanJuvenileToy");
+        public override GameObject GetModel()
+        {
+            GameObject model = Mod.gargAssetBundle.LoadAsset<GameObject>("GargantuanJuvenileToy");
+            MaterialUtils.ApplySNShaders(model);
+            return model;
+        }
     }
 }
