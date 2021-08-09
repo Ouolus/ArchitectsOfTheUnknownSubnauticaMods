@@ -11,7 +11,7 @@ namespace RotA.Prefabs.Placeable
         {}
 
 
-        public override PlacementFlags GetPlacementMode => PlacementFlags.Inside | PlacementFlags.AllowedOnRigidbody;
+        public override PlacementFlags GetPlacementMode => PlacementFlags.Inside | PlacementFlags.AllowedOnRigidbody | PlacementFlags.Ground;
 
         protected override TechData GetBlueprintRecipe() => new()
         {
