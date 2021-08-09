@@ -140,6 +140,7 @@ namespace RotA.Mono.AlienBaseSpawners
 
             //Left lower room (with relics)
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, 0f, 28), new Vector3(0f, -45f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(Mod.sonicDeterrentTerminal.ClassID, new Vector3(58.5f, 0f, 15), new Vector3(0f, 90, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(18, 0f, 24), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(26, 0f, 32), new Vector3(0f, -45f, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_square, new Vector3(40, 0f, 27), new Vector3(0f, -135f, 0f)));
