@@ -8,13 +8,16 @@ using System.Collections;
 namespace ArchitectsLibrary.API
 {
     /// <summary>
-    /// A class that helps you with adding custom Architect Library posters. You do NOT need to worry about adding it to the precursor fabricator. Unlocks with 2 Titanium and an Emerald unless specified otherwise.
+    /// A class that helps you with adding custom Architect Library posters. You do NOT need to worry about adding it to the precursor fabricator. Crafted with 2 Titanium and an Emerald unless specified otherwise.
     /// </summary>
     public abstract class HolographicPoster : Equipable
     {
         GameObject cachedPrefab;
 
         public override bool UnlockedAtStart => false;
+        /// <summary>
+        /// Unlocked along with all master tech by default.
+        /// </summary>
         public override TechType RequiredForUnlock => Handlers.AUHandler.AlienTechnologyMasterTech;
 
         /// <summary>
