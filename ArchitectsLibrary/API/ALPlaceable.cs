@@ -105,7 +105,7 @@ namespace ArchitectsLibrary.API
                 placeTool.hasAnimations = false;
                 placeTool.placementSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.LightStickPlace);
                 placeTool.alignWithSurface = GetPlacementMode.HasFlag(PlacementFlags.AlignWithSurface);
-                placeTool.allowedOnRigidBody = true;
+                placeTool.allowedOnRigidBody = GetPlacementMode.HasFlag(PlacementFlags.AllowedOnRigidbody);
             }
             return cachedPrefab;
         }
