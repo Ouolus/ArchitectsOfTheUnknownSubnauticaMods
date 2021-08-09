@@ -115,6 +115,8 @@ namespace ArchitectsLibrary
 
             FixDisplayCaseItems();
 
+            PatchBuildables();
+
             achievementData = new AchievementData();
             Config = OptionsPanelHandler.RegisterModOptions<Config>();
         }
@@ -144,8 +146,6 @@ namespace ArchitectsLibrary
 
             AlienBackground = BackgroundTypeHandler.AddBackgroundType("AlienBackground", background);
             
-            PatchBuildables();
-
             achievementData.Load();
 
             PatchAchievements();
