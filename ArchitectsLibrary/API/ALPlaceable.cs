@@ -106,6 +106,8 @@ namespace ArchitectsLibrary.API
                 placeTool.placementSound = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.LightStickPlace);
                 placeTool.alignWithSurface = GetPlacementMode.HasFlag(PlacementFlags.AlignWithSurface);
                 placeTool.allowedOnRigidBody = GetPlacementMode.HasFlag(PlacementFlags.AllowedOnRigidbody);
+
+                MaterialUtils.ApplySNShaders(cachedPrefab);
             }
             return cachedPrefab;
         }
