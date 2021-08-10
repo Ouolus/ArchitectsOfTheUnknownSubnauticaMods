@@ -319,6 +319,7 @@ namespace RotA
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
             warpCannonTerminal.Patch();
 
+            terminalBuilder.SetupStoryGoal(ency_buildablesonicdeterrent);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupUnlockables(techTypesToUnlock: new[] { AUHandler.BuildableSonicDeterrentTechType }, delay: 4f);
             terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
