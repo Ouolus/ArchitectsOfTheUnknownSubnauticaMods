@@ -45,6 +45,7 @@ namespace RotA
         public const string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
 
         public const string ionKnifeUseTextFormat = "IonKnifeUseFormat";
+        public const string ionKnifeUseTextNoCubeLoadedFormat = "IonKnifeUseNoCubeLoadedFormat";
         public const string ionKnifePrecursorIonCrystal = "IonKnifePrecursorIonCrystal";
         public const string ionKnifeElectricube = "IonKnifeElectricube";
         public const string ionKnifeRedIonCube = "IonKnifeRedIonCube";
@@ -72,6 +73,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(warpCannonNotEnoughPowerError, "Insufficient power.");
 
             LanguageHandler.SetLanguageLine(ionKnifeUseTextFormat, "{0}\nSwitch cube: {1}");
+            LanguageHandler.SetLanguageLine(ionKnifeUseTextNoCubeLoadedFormat, "Insert cube: {0}");
             LanguageHandler.SetLanguageLine(ionKnifePrecursorIonCrystal, "Ion cube: Standard heat knife, and can deliver a shock into creatures.");
             LanguageHandler.SetLanguageLine(ionKnifeElectricube, "Electricube: Not very lethal, and not warm enough to cook fish.\nWhen the blade hits an object, there is a chance it will warp the object in a random direction.");
             LanguageHandler.SetLanguageLine(ionKnifeRedIonCube, "Power cube: Very powerful and makes harvesting certain resources more efficient.\nThe heat energy may harm you while it is held, but it has restorative properties while attacking to counteract the effect.");
