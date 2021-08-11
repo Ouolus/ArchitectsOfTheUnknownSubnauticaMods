@@ -14,8 +14,8 @@ namespace ArchitectsLibrary.Buildables
         {
             AUHandler.BuildableSonicDeterrentTechType = TechType;
             
-            KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0],
-    UnlockSprite: Main.assetBundle.LoadAsset<Sprite>("SonicDeterrent_Popup"));
+            KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0], 
+                UnlockSprite: Main.assetBundle.LoadAsset<Sprite>("SonicDeterrent_Popup"));
         }
 
         protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(false, false, true, true, true, true, true, placeDefaultDistance: 8f, placeMinDistance: 5f, placeMaxDistance: 15f);
