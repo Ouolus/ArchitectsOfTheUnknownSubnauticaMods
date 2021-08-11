@@ -94,16 +94,6 @@
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
 
-        public static string warpCannonSwitchFireModeCurrentlyWarpKey = "WarpCannonSwitchFireModeWarp";
-        public static string warpCannonSwitchFireModeCurrentlyCreatureKey = "WarpCannonSwitchFireModeCreature";
-        public static string warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey = "WarpCannonSwitchFireModeManipulatePrimary";
-        public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
-        public static string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
-
-        public static string omegaTerminalHoverText = "OmegaTerminalHoverText";
-        public static string omegaTerminalInteract = "OmegaTerminalInteract";
-        public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
-
         [QModPatch]
         public static void Patch()
         {
