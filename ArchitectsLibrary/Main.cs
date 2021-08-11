@@ -58,32 +58,18 @@ namespace ArchitectsLibrary
 
         static List<ReskinSpawnable> minerals = new() { new Cobalt(), new Emerald(), new Morganite(), new RedBeryl(), new Sapphire() };
         
-        
+        static List<GenericPrecursorDecoration> buildables = new()
+        {
+            // exterior only
+            new BuildableColumn(), new BuildableArchway(), new BuildableSonicDeterrent(),
+            
+            // exterior and interior
+            new BuildablePlatform(), new BuildableRelicTank(), new BuildableLargeRelicTank(), new BuildableItemPedestal(), new BuildableSpecimenCases(), new BuildableDissectionTank(),
+            /*new BuildableAlienRobot(), new BuildableWarper(),*/ new BuildableInfoPanel(), new BuildableMicroscope(), new BuildableTable(), new BuildableColumnSmall(), 
+            new BuildablePedestal(), new BuildablePedestalLarge(), new BuildableLight1(), new BuildableLight2(), new BuildableLight3(), new BuildableLight4(), new BuildableLight5()
+        };
         
         static TechType alienTechnologyMasterTech;
-        
-        static BuildableColumn buildableColumn;
-        static BuildableArchway buildableArchway;
-        static BuildablePlatform buildablePlatform;
-        static BuildableLight1 buildableLight1;
-        static BuildableLight2 buildableLight2;
-        static BuildableLight3 buildableLight3;
-        static BuildableDissectionTank buildableDissectionTank;
-        static BuildableRelicTank buildableRelicTank;
-        static BuildableLargeRelicTank buildableLargeRelicTank;
-        static BuildableItemPedestal buildableItemPedestal;
-        static BuildableSpecimenCases buildableSpecimenCases;
-        static BuildableAlienRobot buildableAlienRobot;
-        static BuildableWarper buildableWarper;
-        static BuildableInfoPanel buildableInfoPanel;
-        static BuildableMicroscope buildableMicroscope;
-        static BuildableSonicDeterrent buildableSonicDeterrent;
-        static BuildableColumnSmall buildableColumnSmall;
-        static BuildableLight4 buildableLight4;
-        static BuildableLight5 buildableLight5;
-        static BuildablePedestal buildablePedestal;
-        static BuildablePedestalLarge buildablePedestalLarge;
-        static BuildableTable buildableTable;
 
         internal static AchievementData achievementData;
         internal static Config Config { get; private set; }
@@ -263,75 +249,7 @@ namespace ArchitectsLibrary
 
         static void PatchBuildables()
         {
-            //exterior only
-            buildableColumn = new BuildableColumn();
-            buildableColumn.Patch();
-
-            buildableArchway = new BuildableArchway();
-            buildableArchway.Patch();
-
-            buildableSonicDeterrent = new BuildableSonicDeterrent();
-            buildableSonicDeterrent.Patch();
-            AUHandler.BuildableSonicDeterrentTechType = buildableSonicDeterrent.TechType;
-
-            //exterior and interior
-            buildablePlatform = new BuildablePlatform();
-            buildablePlatform.Patch();
-
-            buildableRelicTank = new BuildableRelicTank();
-            buildableRelicTank.Patch();
-
-            buildableLargeRelicTank = new BuildableLargeRelicTank();
-            buildableLargeRelicTank.Patch();
-
-            buildableItemPedestal = new BuildableItemPedestal();
-            buildableItemPedestal.Patch();
-
-            buildableSpecimenCases = new BuildableSpecimenCases();
-            buildableSpecimenCases.Patch();
-
-            buildableDissectionTank = new BuildableDissectionTank();
-            buildableDissectionTank.Patch();
-
-            /*buildableAlienRobot = new BuildableAlienRobot();
-            buildableAlienRobot.Patch();
-
-            buildableWarper = new BuildableWarper();
-            buildableWarper.Patch();*/
-
-            buildableInfoPanel = new BuildableInfoPanel();
-            buildableInfoPanel.Patch();
-
-            buildableMicroscope = new BuildableMicroscope();
-            buildableMicroscope.Patch();
-
-            buildableTable = new BuildableTable();
-            buildableTable.Patch();
-
-            buildableColumnSmall = new BuildableColumnSmall();
-            buildableColumnSmall.Patch();
-
-            buildablePedestal = new BuildablePedestal();
-            buildablePedestal.Patch();
-
-            buildablePedestalLarge = new BuildablePedestalLarge();
-            buildablePedestalLarge.Patch();
-
-            buildableLight1 = new BuildableLight1();
-            buildableLight1.Patch();
-
-            buildableLight2 = new BuildableLight2();
-            buildableLight2.Patch();
-
-            buildableLight3 = new BuildableLight3();
-            buildableLight3.Patch();
-
-            buildableLight4 = new BuildableLight4();
-            buildableLight4.Patch();
-
-            buildableLight5 = new BuildableLight5();
-            buildableLight5.Patch();
-
+            buildables.ForEach(buildable => buildable.Patch());
         }
     }
 }
