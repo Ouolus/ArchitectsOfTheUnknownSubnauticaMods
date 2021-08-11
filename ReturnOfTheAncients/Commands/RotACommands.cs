@@ -40,7 +40,7 @@ namespace RotA.Commands
                         _commandList.AppendLine(consoleCommand.Command);
                 }
             }
-            ErrorMessage.AddMessage($"RotA commands list: {_commandList}");
+            ErrorMessage.AddMessage($"RotA commands list: \n{_commandList}");
         }
 
         [ConsoleCommand("secretbasecutscene")]
