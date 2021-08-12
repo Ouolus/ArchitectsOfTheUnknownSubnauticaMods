@@ -65,9 +65,9 @@ namespace RotA.Mono.Equipment
         {
             if (string.IsNullOrEmpty(UseTextLanguageKey))
             {
-                return Language.main.GetFormat(Mod.ionKnifeUseTextNoCubeLoadedFormat, new[] { uGUI.FormatButton(GameInput.Button.Reload)});
+                return Language.main.GetFormat(Mod.ionKnifeUseTextNoCubeLoadedFormat, uGUI.FormatButton(GameInput.Button.Reload));
             }
-            return Language.main.GetFormat(Mod.ionKnifeUseTextFormat, new[] { Language.main.Get(UseTextLanguageKey), uGUI.FormatButton(GameInput.Button.Reload) });
+            return Language.main.GetFormat(Mod.ionKnifeUseTextFormat, Language.main.Get(UseTextLanguageKey), uGUI.FormatButton(GameInput.Button.Reload));
         }
 
         public override void Awake()
