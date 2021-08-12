@@ -20,6 +20,8 @@ namespace RotA.Prefabs.Creatures
 
         public override EcoTargetType EcoTargetType => EcoTargetType.Leviathan;
 
+        public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(150f, 300f, 500f);
+
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             TrailManager trail = CreateTrail(prefab.SearchChild("Neck1"), components, 1f, maxSegmentOffset: 1.5f);
