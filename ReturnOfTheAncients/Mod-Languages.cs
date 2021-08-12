@@ -76,7 +76,7 @@ namespace RotA
             LanguageHandler.SetLanguageLine(ionKnifeUseTextNoCubeLoadedFormat, "Insert cube: {0}");
             LanguageHandler.SetLanguageLine(ionKnifePrecursorIonCrystal, "Ion cube: Standard heat knife, with some electric properties.");
             LanguageHandler.SetLanguageLine(ionKnifeElectricube, "Electricube: Not very lethal, and not warm enough to cook fish.\nWhen the blade hits an object, there is a chance it will warp the object in a random direction.");
-            LanguageHandler.SetLanguageLine(ionKnifeRedIonCube, "Power cube: Very powerful and makes harvesting certain resources more efficient.\nThe heat energy may harm you while it is held, but it has restorative properties while attacking to counteract the effect.");
+            LanguageHandler.SetLanguageLine(ionKnifeRedIonCube, "Power cube: Very powerful and makes harvesting certain resources more efficient.\nThe heat energy may harm you while it is held, but on contact with flesh it has restorative properties which counteract the effect.");
             LanguageHandler.SetLanguageLine(ionKnifeOmegaCube, "Omega cube: Incredibly powerful and emits a bright light.\nAn object in contact with the blade will experience an unusual influx of kinetic energy. Reason unknown.");
 
             LanguageHandler.SetLanguageLine(omegaTerminalHoverText, "Omega terminal");
