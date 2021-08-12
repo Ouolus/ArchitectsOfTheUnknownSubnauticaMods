@@ -262,6 +262,7 @@
     <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
+    <Compile Include="Prefabs\Creatures\Guardian.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
     <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
