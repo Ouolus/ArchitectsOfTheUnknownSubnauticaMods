@@ -41,6 +41,7 @@
         public static SkeletonGarg spookySkeletonGargPrefab;
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
+        public static Guardian guardian;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
@@ -210,6 +211,9 @@
 
             aquariumGuppy = new AquariumGuppy("AquariumGuppy", "Unknown Fish", "An interesting fish.", assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
             aquariumGuppy.Patch();
+
+            guardian = new Guardian("Guardian", "Guardian", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature_Prefab"), null);
+            guardian.Patch();
         }
 
         static void InitSpawns()
