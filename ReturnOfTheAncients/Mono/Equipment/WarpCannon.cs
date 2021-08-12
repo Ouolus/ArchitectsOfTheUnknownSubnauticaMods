@@ -81,6 +81,16 @@ namespace RotA.Mono.Equipment
             };
         }
 
+        public override bool OnRightHandHeld()
+        {
+            if (GetChargePercent() >= 1f)
+            {
+                OnRightHandUp();
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Simply checks if <paramref name="y"/> is above the water level.
         /// </summary>
