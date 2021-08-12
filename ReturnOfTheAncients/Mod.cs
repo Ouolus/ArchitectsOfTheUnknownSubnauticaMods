@@ -214,6 +214,9 @@
 
             guardian = new Guardian("Guardian", "Guardian", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature_Prefab"), null);
             guardian.Patch();
+
+            var g = new Guardian("Guardian2", "Guardian 2", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature2_Prefab"), null);
+            g.Patch();
         }
 
         static void InitSpawns()
