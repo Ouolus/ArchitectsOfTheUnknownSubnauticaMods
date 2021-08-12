@@ -246,6 +246,7 @@ namespace RotA.Mono.Equipment
             {
                 PlaySwitchSound(null);
                 pointLight.enabled = false;
+                UseTextLanguageKey = null;
             }
         }
 
