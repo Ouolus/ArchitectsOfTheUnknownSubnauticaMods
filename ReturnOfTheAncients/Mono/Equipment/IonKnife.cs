@@ -22,6 +22,8 @@ namespace RotA.Mono.Equipment
         public FMODAsset StrongHitFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
         
         public FMODAsset WarpFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+
+        public string UseTextLanguageKey { get; set; }
         
         // the blade objects to disable when the knife is depleted
         public GameObject[] bladeObjects;
@@ -58,6 +60,15 @@ namespace RotA.Mono.Equipment
         private static readonly int _squaresColor = Shader.PropertyToID("_SquaresColor");
 
         public override string animToolName => TechType.Knife.AsString(true);
+
+        public override string GetCustomUseText()
+        {
+            if (UseTextLanguageKey == null)
+            {
+                return Language.main.GetFormat(Mod.ionKnifeUseTextNoCubeLoadedFormat, uGUI.FormatButton(GameInput.Button.Reload));
+            }
+            return Language.main.GetFormat(Mod.ionKnifeUseTextFormat, new[] { UseTextLanguageKey, uGUI.FormatButton(GameInput.Button.Reload) });
+        }
 
         public override void Awake()
         {
