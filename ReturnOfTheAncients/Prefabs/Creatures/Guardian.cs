@@ -22,8 +22,10 @@ namespace RotA.Prefabs.Creatures
 
         public override void AddCustomBehaviour(CreatureComponents components)
         {
-            TrailManager trail = CreateTrail(prefab.SearchChild("Neck1"), components, 1f, multiplier: 0.15f);
-            trail.rollMultiplier = new AnimationCurve(new[] { new Keyframe(0f, 0.6f), new Keyframe(0.2f, 1.2f), new Keyframe(0.5f, 1f), new Keyframe(1f, 0.6f) });
+            TrailManager trail = CreateTrail(prefab.SearchChild("Neck1"), components, 7f, maxSegmentOffset: 0.8f);
+            trail.pitchMultiplier = new AnimationCurve(new[] { new Keyframe(0f, 0f), new Keyframe(1f, 0.8f) });
+            trail.yawMultiplier = new AnimationCurve(new[] { new Keyframe(0f, 0f), new Keyframe(1f, 0.8f) });
+            trail.rollMultiplier = new AnimationCurve(new[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 1f) });
         }
 
         public override void SetLiveMixinData(ref LiveMixinData liveMixinData)
