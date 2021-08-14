@@ -164,7 +164,40 @@ namespace RotA.Mono.Equipment
 
         public override bool OnRightHandDown()
         {
+            if (currentAction is IIonKnifeRightHand rightHand)
+                return !energyMixin.IsDepleted() && rightHand.OnRightHandDown(this);
+            
             return !energyMixin.IsDepleted();
+        }
+
+        public override bool OnRightHandHeld()
+        {
+            if (currentAction is IIonKnifeRightHand rightHand)
+            {
+                return !energyMixin.IsDepleted() && rightHand.OnRightHandHeld(this);
+            }
+
+            return false;
+        }
+
+        public override bool OnRightHandUp()
+        {
+            if (currentAction is IIonKnifeRightHand rightHand)
+            {
+                return rightHand.OnRightHandUp(this);
+            }
+
+            return false;
+        }
+
+        public override bool GetUsedToolThisFrame()
+        {
+            if (currentAction is IIonKnifeUsedTool usedTool)
+            {
+                return usedTool.GetUsedToolThisFrame(this);
+            }
+
+            return false;
         }
 
         public void SetMaterialColors(Color color, Color specColor, Color detailsColor, Color squareColor)

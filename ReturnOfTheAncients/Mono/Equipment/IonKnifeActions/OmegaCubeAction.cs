@@ -3,10 +3,17 @@ using UnityEngine;
 
 namespace RotA.Mono.Equipment.IonKnifeActions
 {
-    public class OmegaCubeAction : IIonKnifeAction
+    public class OmegaCubeAction : IIonKnifeAction, IIonKnifeRightHand, IIonKnifeUsedTool
     {
         float hitForce = 65f;
         float useMassPercent = 0.6f; //percent of how much the knife's knockback is affected by the creature's mass. a higher value means it knocks bigger creatures such as leviathans less far.
+
+        bool isCharging;
+        float timeStartedCharging;
+        float maxChargeSeconds = 2.1f;
+        float chargeAmount;
+
+        bool rightHandUp;
 
         public void Initialize(IonKnife ionKnife)
         {
@@ -34,14 +41,75 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (hitRb != null)
             {
                 Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
-                hitRb.AddForce(playerDirection * hitForce * useMassPercent, ForceMode.Impulse);
-                hitRb.AddForce(playerDirection * hitForce * (1f - useMassPercent), ForceMode.VelocityChange);
+                if (chargeAmount > 0f)
+                {
+                    hitRb.AddForce(playerDirection * (hitForce * useMassPercent) * chargeAmount, ForceMode.Impulse);
+                    hitRb.AddForce(playerDirection * (hitForce * (1f - useMassPercent)) * chargeAmount, ForceMode.VelocityChange);
+                }
             }
         }
 
         public void OnUpdate(IonKnife ionKnife)
         {
 
+        }
+
+        public bool OnRightHandDown(IonKnife ionKnife)
+        {
+            BeginCharge();
+            return false;
+        }
+
+        public bool OnRightHandHeld(IonKnife ionKnife)
+        {
+            if (chargeAmount >= 1f)
+            {
+                EndCharge();
+                return false;
+            }
+            
+            Charge();
+            return true;
+        }
+
+        public bool OnRightHandUp(IonKnife ionKnife)
+        {
+            EndCharge();
+            return true;
+        }
+
+        public bool GetUsedToolThisFrame(IonKnife ionKnife)
+        {
+            var result = rightHandUp;
+            if (rightHandUp) rightHandUp = false;
+            return result;
+        }
+
+        void BeginCharge()
+        {
+            if (isCharging)
+                return;
+
+            isCharging = true;
+            rightHandUp = false;
+            timeStartedCharging = Time.time;
+        }
+
+        void Charge()
+        {
+            if (!isCharging)
+            {
+                return;
+            }
+            float timeCharged = Time.time - timeStartedCharging;
+            float chargeScale = Mathf.Clamp01(timeCharged / maxChargeSeconds);
+            chargeAmount = chargeScale;
+        }
+
+        void EndCharge()
+        {
+            rightHandUp = true;
+            isCharging = false;
         }
     }
 }

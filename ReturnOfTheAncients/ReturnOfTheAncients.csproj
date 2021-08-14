@@ -142,6 +142,8 @@
     <Compile Include="Interfaces\IDataTerminal.cs" />
     <Compile Include="Interfaces\IDataTerminalBuilder.cs" />
     <Compile Include="Interfaces\IIonKnifeAction.cs" />
+    <Compile Include="Interfaces\IIonKnifeRightHand.cs" />
+    <Compile Include="Interfaces\IIonKnifeUsedTool.cs" />
     <Compile Include="Mod-AlienBases.cs" />
     <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
