@@ -74,7 +74,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (chargeAmount >= 1f)
             {
                 EndCharge();
-                return false;
+                return true;
             }
             
             Charge();
@@ -99,8 +99,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (isCharging)
                 return;
             
-            if (!chargingSound.GetIsStartingOrPlaying())
-                chargingSound.Start();
+            chargingSound.StartEvent();
 
             isCharging = true;
             rightHandUp = false;
@@ -120,7 +119,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         void EndCharge()
         {
             if (chargingSound.GetIsStartingOrPlaying())
-                chargingSound.Stop();
+                chargingSound.Stop(false);
             
             rightHandUp = true;
             isCharging = false;
