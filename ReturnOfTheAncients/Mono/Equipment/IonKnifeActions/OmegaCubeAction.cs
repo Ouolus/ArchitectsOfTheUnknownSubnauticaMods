@@ -22,7 +22,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         {
             if (chargingSound == null)
             {
-                chargingSound = ionKnife.gameObject.AddComponent<FMOD_StudioEventEmitter>();
+                chargingSound = ionKnife.gameObject.EnsureComponent<FMOD_StudioEventEmitter>();
                 chargingSound.path = SNAudioEvents.Paths.StasisRifleCharge;
             }
             

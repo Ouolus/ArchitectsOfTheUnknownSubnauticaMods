@@ -43,6 +43,8 @@ namespace RotA.Mono.Equipment
         
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
+        private FMOD_StudioEventEmitter chargingSound;
+
         private Light pointLight;
         
         private readonly FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
@@ -76,6 +78,18 @@ namespace RotA.Mono.Equipment
             pointLight = gameObject.EnsureComponent<Light>();
             pointLight.type = LightType.Point;
             pointLight.enabled = false;
+        }
+
+        public override void OnHolster()
+        {
+            if (chargingSound == null)
+                chargingSound = gameObject.GetComponent<FMOD_StudioEventEmitter>();
+
+            if (chargingSound != null)
+            {
+                if (chargingSound.GetIsStartingOrPlaying())
+                    chargingSound.Stop(false);
+            }
         }
 
         public override void OnToolUseAnim(GUIHand guiHand)
