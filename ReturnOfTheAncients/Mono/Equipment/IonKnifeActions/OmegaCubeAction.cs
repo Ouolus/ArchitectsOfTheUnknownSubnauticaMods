@@ -8,12 +8,12 @@ namespace RotA.Mono.Equipment.IonKnifeActions
     {
         FMOD_StudioEventEmitter chargingSound;
 
-        float hitForce = 65f;
+        float hitForce = 120f;
         float useMassPercent = 0.6f; //percent of how much the knife's knockback is affected by the creature's mass. a higher value means it knocks bigger creatures such as leviathans less far.
 
         bool isCharging;
         float timeStartedCharging;
-        float maxChargeSeconds = 1.7f;
+        float maxChargeSeconds = 3.7f;
         float chargeAmount;
 
         bool rightHandUp;
