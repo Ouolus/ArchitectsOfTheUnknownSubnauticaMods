@@ -347,7 +347,7 @@ namespace RotA.Mono.Equipment
         void OnHit(LiveMixin lm)
         {
             if (currentAction != null)
-                currentAction.OnHit(this, lm);
+                currentAction.OnSwing(this, lm);
         }
     }
 }

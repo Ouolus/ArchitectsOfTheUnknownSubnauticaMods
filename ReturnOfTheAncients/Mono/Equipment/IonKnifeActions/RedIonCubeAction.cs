@@ -31,7 +31,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             }
         }
 
-        public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {

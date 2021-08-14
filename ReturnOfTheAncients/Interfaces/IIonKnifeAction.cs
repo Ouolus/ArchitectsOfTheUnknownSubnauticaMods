@@ -15,7 +15,7 @@ namespace RotA.Interfaces
         /// </summary>
         /// <param name="ionKnife">Ion Knife instance.</param>
         /// <param name="hitLiveMixin">the hit LiveMixin component.</param>
-        void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin);
+        void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin);
 
         /// <summary>
         /// Called every frame when the knife is ACTIVE only

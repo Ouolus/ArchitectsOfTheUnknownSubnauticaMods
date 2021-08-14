@@ -20,7 +20,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.SetLightAppearance(new Color(.20f, .55f, .14f), 6f);
         }
 
-        public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin)
         {
             
         }
