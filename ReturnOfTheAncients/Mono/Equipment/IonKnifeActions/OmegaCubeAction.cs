@@ -48,7 +48,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             }
             if (hitGameObject != null)
             {
-                Rigidbody hitRb = hitGameObject.GetComponent<Rigidbody>();
+                Rigidbody hitRb = hitGameObject.GetComponentInParent<Rigidbody>();
                 if (hitRb != null)
                 {
                     Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
