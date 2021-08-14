@@ -54,6 +54,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 {
                     hitRb.AddForce(playerDirection * (hitForce * useMassPercent) * chargeAmount, ForceMode.Impulse);
                     hitRb.AddForce(playerDirection * (hitForce * (1f - useMassPercent)) * chargeAmount, ForceMode.VelocityChange);
+                    chargeAmount = 0f;
                 }
             }
         }
