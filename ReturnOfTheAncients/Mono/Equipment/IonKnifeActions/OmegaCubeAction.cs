@@ -77,8 +77,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 EndCharge();
                 return true;
             }
+            if (isCharging)
+                Charge();
             
-            Charge();
             return true;
         }
 
