@@ -47,7 +47,7 @@ namespace RotA.Mono.Cinematics
             Invoke(nameof(SpawnGarg), 6.9f); // nice
             Invoke(nameof(PlayRoarSound), 7f);
             Invoke(nameof(PlayXLPDVfx), 14f);
-            Invoke(nameof(DestroySunbeamWreck), 30f);
+            Invoke(nameof(DestroySunbeamWreck), 16.3f);
             Invoke(nameof(StartFadingOut), 55f);
             Invoke(nameof(EndCinematic), 60f);
         }
