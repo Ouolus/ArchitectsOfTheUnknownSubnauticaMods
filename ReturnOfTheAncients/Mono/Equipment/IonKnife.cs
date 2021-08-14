@@ -105,6 +105,7 @@ namespace RotA.Mono.Equipment
                     obj = volumeUser.GetMostRecent().gameObject;
                 }
             }
+            bool calledSwingMethod = false;
             if (obj)
             {
                 var lm = obj.GetComponentInParent<LiveMixin>();
@@ -118,7 +119,8 @@ namespace RotA.Mono.Equipment
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        OnHit(lm);
+                        OnSwing(lm);
+                        calledSwingMethod = true;
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
@@ -129,6 +131,10 @@ namespace RotA.Mono.Equipment
                 {
                     obj = null;
                 }
+            }
+            if (!calledSwingMethod)
+            {
+                OnSwing(null);
             }
             if (obj == null && guiHand.GetActiveTarget() == null)
             {
@@ -344,7 +350,7 @@ namespace RotA.Mono.Equipment
                 currentAction.OnUpdate(this);
         }
 
-        void OnHit(LiveMixin lm)
+        void OnSwing(LiveMixin lm)
         {
             if (currentAction != null)
                 currentAction.OnSwing(this, lm);
