@@ -10,7 +10,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         bool isCharging;
         float timeStartedCharging;
-        float maxChargeSeconds = 2.1f;
+        float maxChargeSeconds = 1.7f;
         float chargeAmount;
 
         bool rightHandUp;
