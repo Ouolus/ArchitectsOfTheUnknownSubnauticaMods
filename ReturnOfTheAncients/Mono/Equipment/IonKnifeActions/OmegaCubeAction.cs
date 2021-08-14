@@ -46,15 +46,18 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, ionKnife.transform);
             }
-            Rigidbody hitRb = hitLiveMixin.GetComponent<Rigidbody>();
-            if (hitRb != null)
+            if (hitLiveMixin != null)
             {
-                Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
-                if (chargeAmount > 0f)
+                Rigidbody hitRb = hitLiveMixin.GetComponent<Rigidbody>();
+                if (hitRb != null)
                 {
-                    hitRb.AddForce(playerDirection * (hitForce * useMassPercent) * chargeAmount, ForceMode.Impulse);
-                    hitRb.AddForce(playerDirection * (hitForce * (1f - useMassPercent)) * chargeAmount, ForceMode.VelocityChange);
-                    chargeAmount = 0f;
+                    Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
+                    if (chargeAmount > 0f)
+                    {
+                        hitRb.AddForce(playerDirection * (hitForce * useMassPercent) * chargeAmount, ForceMode.Impulse);
+                        hitRb.AddForce(playerDirection * (hitForce * (1f - useMassPercent)) * chargeAmount, ForceMode.VelocityChange);
+                        chargeAmount = 0f;
+                    }
                 }
             }
         }
