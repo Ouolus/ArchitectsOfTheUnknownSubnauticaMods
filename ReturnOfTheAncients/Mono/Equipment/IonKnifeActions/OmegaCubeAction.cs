@@ -1,3 +1,4 @@
+using ArchitectsLibrary.API;
 using RotA.Interfaces;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 {
     public class OmegaCubeAction : IIonKnifeAction, IIonKnifeRightHand, IIonKnifeUsedTool
     {
+        FMOD_StudioEventEmitter chargingSound;
+
         float hitForce = 65f;
         float useMassPercent = 0.6f; //percent of how much the knife's knockback is affected by the creature's mass. a higher value means it knocks bigger creatures such as leviathans less far.
 
@@ -17,6 +20,12 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void Initialize(IonKnife ionKnife)
         {
+            if (chargingSound == null)
+            {
+                chargingSound = ionKnife.gameObject.AddComponent<FMOD_StudioEventEmitter>();
+                chargingSound.path = SNAudioEvents.Paths.StasisRifleCharge;
+            }
+            
             ionKnife.Damage = new[] { 40f, 60f, 40f };
             ionKnife.AttackDistance = 1.8f;
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Electrical, DamageType.Normal };
@@ -89,6 +98,9 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         {
             if (isCharging)
                 return;
+            
+            if (!chargingSound.GetIsStartingOrPlaying())
+                chargingSound.Start();
 
             isCharging = true;
             rightHandUp = false;
@@ -98,16 +110,18 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         void Charge()
         {
             if (!isCharging)
-            {
                 return;
-            }
-            float timeCharged = Time.time - timeStartedCharging;
-            float chargeScale = Mathf.Clamp01(timeCharged / maxChargeSeconds);
+            
+            var timeCharged = Time.time - timeStartedCharging;
+            var chargeScale = Mathf.Clamp01(timeCharged / maxChargeSeconds);
             chargeAmount = chargeScale;
         }
 
         void EndCharge()
         {
+            if (chargingSound.GetIsStartingOrPlaying())
+                chargingSound.Stop();
+            
             rightHandUp = true;
             isCharging = false;
         }
