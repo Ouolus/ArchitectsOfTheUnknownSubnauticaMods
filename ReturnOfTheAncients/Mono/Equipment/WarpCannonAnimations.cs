@@ -18,7 +18,7 @@ namespace RotA.Mono.Equipment
         readonly int param_fire = Animator.StringToHash("fire");
         readonly int param_fireFast = Animator.StringToHash("fire_fast");
 
-        const float warpCannonScreenShakeScale = 4f;
+        const float warpCannonScreenShakeScale = 10f;
 
         public float SpinSpeed
         {
