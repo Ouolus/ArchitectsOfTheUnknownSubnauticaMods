@@ -45,7 +45,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.SetLightAppearance(new Color(.5f, 0f, 1f), 6f);
         }
 
-        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin, GameObject hitGameObject)
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {

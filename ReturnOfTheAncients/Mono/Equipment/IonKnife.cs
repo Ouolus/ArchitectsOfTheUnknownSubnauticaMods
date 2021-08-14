@@ -119,7 +119,7 @@ namespace RotA.Mono.Equipment
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        OnSwing(lm);
+                        OnSwing(lm, obj);
                         calledSwingMethod = true;
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
@@ -134,7 +134,7 @@ namespace RotA.Mono.Equipment
             }
             if (!calledSwingMethod)
             {
-                OnSwing(null);
+                OnSwing(null, obj);
             }
             if (obj == null && guiHand.GetActiveTarget() == null)
             {
@@ -350,10 +350,10 @@ namespace RotA.Mono.Equipment
                 currentAction.OnUpdate(this);
         }
 
-        void OnSwing(LiveMixin lm)
+        void OnSwing(LiveMixin lm, GameObject hitGo)
         {
             if (currentAction != null)
-                currentAction.OnSwing(this, lm);
+                currentAction.OnSwing(this, lm, hitGo);
         }
     }
 }

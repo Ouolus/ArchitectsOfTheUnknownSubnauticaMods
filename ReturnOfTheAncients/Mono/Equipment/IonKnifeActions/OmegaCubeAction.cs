@@ -40,15 +40,15 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.SetLightAppearance(new Color(1f, 1.5f, 1.25f) / 1.5f, 20f, 1.2f);
         }
 
-        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin, GameObject hitGameObject)
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {
                 Utils.PlayFMODAsset(ionKnife.StrongHitFishSound, ionKnife.transform);
             }
-            if (hitLiveMixin != null)
+            if (hitGameObject != null)
             {
-                Rigidbody hitRb = hitLiveMixin.GetComponent<Rigidbody>();
+                Rigidbody hitRb = hitGameObject.GetComponent<Rigidbody>();
                 if (hitRb != null)
                 {
                     Vector3 playerDirection = ionKnife.usingPlayer.viewModelCamera.transform.forward;
