@@ -18,6 +18,7 @@ namespace RotA.Mono.Equipment
         readonly int param_fire = Animator.StringToHash("fire");
         readonly int param_fireFast = Animator.StringToHash("fire_fast");
 
+        const float minSpinSpeedForShake = 0.3f;
         const float warpCannonScreenShakeScale = 10f;
 
         public float SpinSpeed
@@ -66,9 +67,9 @@ namespace RotA.Mono.Equipment
             actualBattery = Mathf.MoveTowards(actualBattery, batteryTarget, Time.deltaTime * 2f);
             animator.SetFloat(param_speed, SpinSpeedToDisplay);
             animator.SetFloat(param_battery, actualBattery);
-            if (SpinSpeedToDisplay > 0.1f)
+            if (SpinSpeedToDisplay > minSpinSpeedForShake)
             {
-                MainCameraControl.main.ShakeCamera(SpinSpeedToDisplay * warpCannonScreenShakeScale, 0.3f, MainCameraControl.ShakeMode.BuildUp, 1f);
+                MainCameraControl.main.ShakeCamera(SpinSpeedToDisplay * warpCannonScreenShakeScale, 0.1f, MainCameraControl.ShakeMode.BuildUp, 1f);
             }
         }
 
