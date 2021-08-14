@@ -138,7 +138,7 @@ namespace RotA
 
             PatchEncy(ency_omegaCubeFabricator, modEncyPath_tech, "Omega Cube Fabrication Device", "A powerful device which is obviously alien in design. Appears to be a fabrication device of some sort.\n\nThe data terminal connected to the fabricator has an incomplete set of data. It is emitting a broadcast, which reads in English: \"Project 'Omega' formula is 95% complete. Data sets missing: '1'. Data set type: 'biometric data'. Species name: 'Gargantuan Leviathan'. Data must be obtained from an adult specimen.\"\n\nYou must scan an adult Gargantuan Leviathan to complete this formula. Good luck.");
 
-            PatchEncy(ency_buildablesonicdeterrent, modEncyPath_tech, "Constructable Sonic Deterrent", "A device that emits ionic energy pulses, which unusually affect psychological functions of nearby creatures by invoking intense levels of fear. Effective against both passive and hostile fauna. Be wary of any degenerative effects the high amplitude pulses may have on your nervous system.", "SonicDeterrent_Popup");
+            PatchEncy(ency_buildablesonicdeterrent, modEncyPath_tech, "Constructable Sonic Deterrent", "A device that emits ionic energy pulses, which unusually affect the behavior of nearby creatures by invoking intense levels of fear. Effective against both passive and hostile fauna. Be wary of any degenerative effects the high amplitude pulses may have on your nervous system.", "SonicDeterrent_Popup");
         }
         #endregion
     }
