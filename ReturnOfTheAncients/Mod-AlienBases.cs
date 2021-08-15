@@ -204,7 +204,7 @@ namespace RotA
             var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", supplyCachePos);
             supplyCacheBase.Patch();
 
-            var supplyCacheExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBaseExterior", supplyCachePos, LargeWorldEntity.CellLevel.Far);
+            var supplyCacheExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("SupplyCacheBaseExterior", supplyCachePos, LargeWorldEntity.CellLevel.Far);
             supplyCacheExterior.Patch();
 
             //Research base (Sparse reef)
@@ -213,7 +213,7 @@ namespace RotA
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", researchBasePos);
             researchBase.Patch();
 
-            var researchBaseExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("ResearchBaseExterior", researchBasePos, LargeWorldEntity.CellLevel.Far);
+            var researchBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("ResearchBaseExterior", researchBasePos, LargeWorldEntity.CellLevel.Far);
             researchBaseExterior.Patch();
 
             //Koosh zone base (Koosh/bulb zone)
@@ -222,7 +222,7 @@ namespace RotA
             var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", kooshBasePos);
             kooshBase.Patch();
 
-            var kooshBaseExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("KooshZoneBaseExterior", kooshBasePos, LargeWorldEntity.CellLevel.Far);
+            var kooshBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("KooshZoneBaseExterior", kooshBasePos, LargeWorldEntity.CellLevel.Far);
             kooshBaseExterior.Patch();
 
             //Void base
