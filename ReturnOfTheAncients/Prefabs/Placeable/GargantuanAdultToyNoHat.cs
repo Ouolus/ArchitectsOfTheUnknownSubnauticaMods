@@ -25,7 +25,7 @@ namespace RotA.Prefabs.Placeable
             }
         };
 
-        protected override Atlas.Sprite GetItemSprite() => SpriteManager.defaultSprite;
+        protected override Atlas.Sprite GetItemSprite() => new(Mod.gargAssetBundle.LoadAsset<Sprite>("GargAdultToy_Icon"));
 
         public override GameObject GetModel()
         {
