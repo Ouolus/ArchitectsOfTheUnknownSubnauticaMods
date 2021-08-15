@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
-    public abstract class CacheBaseExteriorSpawner : AlienBaseSpawner
+    public class CacheBaseExteriorSpawner : AlienBaseSpawner
     {
         public override IEnumerator ConstructBase()
         {
