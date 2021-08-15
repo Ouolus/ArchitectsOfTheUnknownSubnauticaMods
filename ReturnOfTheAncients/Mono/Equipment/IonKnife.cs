@@ -197,7 +197,7 @@ namespace RotA.Mono.Equipment
                 return !energyMixin.IsDepleted() && rightHand.OnRightHandHeld(this);
             }
 
-            return true;
+            return !energyMixin.IsDepleted();
         }
 
         public override bool OnRightHandUp()
