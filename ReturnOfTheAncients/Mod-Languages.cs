@@ -90,6 +90,7 @@ namespace RotA
 
         static void PatchEncys()
         {
+            //cut content
             PatchEncy(ency_tertiaryOutpostTerminalGrassy, modEncyPath_terminalInfo, "Tertiary Outpost C Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source. You just read cut content, by the way :)", "Popup_Blue", "TO_G_Ency");
 
             PatchEncy(ency_tertiaryOutpostTerminalSparseReef, modEncyPath_terminalInfo, "Tertiary Outpost A Analysis", "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Alien robot:\nThese devices are a common occurence in all alien technology. However, they are likely present in this base only to repair alien machinery while it is charging in the claw device.", "Popup_Blue", "TO_S_Ency");
