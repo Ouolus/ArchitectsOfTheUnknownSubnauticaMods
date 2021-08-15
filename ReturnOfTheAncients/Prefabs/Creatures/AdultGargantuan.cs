@@ -53,7 +53,7 @@ namespace RotA.Prefabs.Creatures
         public override void AddCustomBehaviour(CreatureComponents components)
         {
             base.AddCustomBehaviour(components);
-            Renderer mainRenderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer mainRenderer = prefab.SearchChild("Gargantuan.004").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
             Renderer insideRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             UpdateGargTransparentMaterial(mainRenderer.materials[0]);
