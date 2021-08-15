@@ -23,7 +23,7 @@ namespace RotA.Prefabs.Creatures
 
         public override bool CanBeScaredByElectricity => true;
 
-        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 200, 3f);
+        public override UBERMaterialProperties MaterialSettings => new UBERMaterialProperties(2f, 100, 3f);
 
         public override ScannableItemData ScannableSettings => new ScannableItemData(true, 10f, Mod.modEncyPath_gargantuan, Mod.gargAssetBundle.LoadAsset<Sprite>("Adult_Popup"), Mod.gargAssetBundle.LoadAsset<Texture2D>("Adult_Ency"));
 
