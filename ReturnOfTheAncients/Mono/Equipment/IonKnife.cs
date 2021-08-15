@@ -63,6 +63,8 @@ namespace RotA.Mono.Equipment
 
         public override string animToolName => TechType.Knife.AsString(true);
 
+        private bool rightHandDown;
+
         public override string GetCustomUseText()
         {
             if (string.IsNullOrEmpty(UseTextLanguageKey))
@@ -197,7 +199,7 @@ namespace RotA.Mono.Equipment
                 return !energyMixin.IsDepleted() && rightHand.OnRightHandHeld(this);
             }
 
-            return !energyMixin.IsDepleted();
+            return false;
         }
 
         public override bool OnRightHandUp()
