@@ -180,7 +180,7 @@ namespace RotA.Mono.Cinematics
             prefab.transform.forward = Vector3.forward;
             prefab.transform.localScale = Vector3.one * 9f;
             MaterialUtils.ApplySNShaders(prefab);
-            Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer renderer = prefab.SearchChild("Gargantuan.004").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
             Renderer insidesRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
