@@ -188,7 +188,8 @@ namespace RotA.Mono.Equipment
         {
             if (currentAction is IIonKnifeRightHand rightHand)
                 return !energyMixin.IsDepleted() && rightHand.OnRightHandDown(this);
-            
+
+            rightHandDown = true;            
             return !energyMixin.IsDepleted();
         }
 
@@ -208,7 +209,7 @@ namespace RotA.Mono.Equipment
             {
                 return rightHand.OnRightHandUp(this);
             }
-
+            rightHandDown = false;
             return false;
         }
 
@@ -219,7 +220,7 @@ namespace RotA.Mono.Equipment
                 return usedTool.GetUsedToolThisFrame(this);
             }
 
-            return false;
+            return rightHandDown;
         }
 
         public void SetMaterialColors(Color color, Color specColor, Color detailsColor, Color squareColor)
@@ -343,7 +344,10 @@ namespace RotA.Mono.Equipment
         void OnInitialize()
         {
             if (currentAction != null)
+            {
+                rightHandDown = false;
                 currentAction.Initialize(this);
+            }
         }
 
         void OnUpdate()
