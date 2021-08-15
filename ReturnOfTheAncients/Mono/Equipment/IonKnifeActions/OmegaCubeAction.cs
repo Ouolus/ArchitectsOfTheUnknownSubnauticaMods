@@ -16,7 +16,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
         float maxChargeSeconds = 3.7f;
         float chargeAmount;
 
-        bool rightHandUp;
+        bool rightHandDown;
 
         public void Initialize(IonKnife ionKnife)
         {
@@ -94,8 +94,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public bool GetUsedToolThisFrame(IonKnife ionKnife)
         {
-            var result = rightHandUp;
-            if (rightHandUp) rightHandUp = false;
+            var result = rightHandDown;
+            if (rightHandDown) rightHandDown = false;
             return result;
         }
 
@@ -107,7 +107,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             chargingSound.StartEvent();
 
             isCharging = true;
-            rightHandUp = false;
+            rightHandDown = false;
             timeStartedCharging = Time.time;
         }
 
@@ -126,7 +126,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             if (chargingSound.GetIsStartingOrPlaying())
                 chargingSound.Stop(false);
             
-            rightHandUp = true;
+            rightHandDown = true;
             isCharging = false;
         }
     }
