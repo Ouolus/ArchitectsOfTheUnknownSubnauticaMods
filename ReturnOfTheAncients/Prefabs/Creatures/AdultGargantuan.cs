@@ -117,7 +117,7 @@ namespace RotA.Prefabs.Creatures
         {
             material.SetFloat("_Fresnel", 1);
             material.SetFloat("_SpecInt", 50);
-            material.SetFloat("_GlowStrength", 6f);
+            material.SetFloat("_GlowStrength", 2.5f);
             material.SetFloat("_GlowStrengthNight", 6f);
         }
 
