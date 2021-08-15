@@ -148,6 +148,7 @@
     <Compile Include="Mod-Languages.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Mono\AlienBaseSpawners\AlienBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\CacheBaseExteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecretBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\ResearchBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\SecondaryContainmentFacility.cs" />
@@ -156,7 +157,7 @@
     <Compile Include="Mono\AlienBaseSpawners\BonesFieldsOutpostSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\CablesNearGuardian.cs" />
     <Compile Include="Mono\AlienBaseSpawners\OutpostBaseSpawner.cs" />
-    <Compile Include="Mono\AlienBaseSpawners\SecondaryBaseSpawner.cs" />
+    <Compile Include="Mono\AlienBaseSpawners\CacheBaseSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseInteriorSpawner.cs" />
     <Compile Include="Mono\AlienBaseSpawners\VoidBaseSpawner.cs" />
     <Compile Include="Mono\AlienTech\AudioClipEmitter.cs" />

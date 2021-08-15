@@ -198,25 +198,46 @@ namespace RotA
             var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
             guardianCablesInitializer.Patch();
 
-            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183)); //Crag field
+            //supply cache (Crag field)
+            var supplyCachePos = new Vector3(-13, -175.81f, -1183);
+
+            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", supplyCachePos);
             supplyCacheBase.Patch();
 
-            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
+            var supplyCacheExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBaseExterior", supplyCachePos, LargeWorldEntity.CellLevel.Far);
+            supplyCacheExterior.Patch();
+
+            //Research base (Sparse reef)
+            var researchBasePos = new Vector3(-860, -187, -641);
+
+            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", researchBasePos);
             researchBase.Patch();
 
-            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
+            var researchBaseExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("ResearchBaseExterior", researchBasePos, LargeWorldEntity.CellLevel.Far);
+            researchBaseExterior.Patch();
+
+            //Koosh zone base (Koosh/bulb zone)
+            var kooshBasePos = new Vector3(1480, -457, 1457);
+
+            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", kooshBasePos);
             kooshBase.Patch();
 
-            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1920), 300f, LargeWorldEntity.CellLevel.Far); //Void
+            var kooshBaseExterior = new AlienBaseInitializer<SupplyCacheBaseSpawner>("KooshZoneBaseExterior", kooshBasePos, LargeWorldEntity.CellLevel.Far);
+            kooshBaseExterior.Patch();
+
+            //Void base
+            var voidBasePos = new Vector3(373, -400, -1920);
+
+            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); //Void
             voidBase.Patch();
 
-            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1920), 90, LargeWorldEntity.CellLevel.Medium); //Void
+            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", voidBasePos, LargeWorldEntity.CellLevel.Medium); //Void
             voidBaseInterior.Patch();
 
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
 
-            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), 350f, LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
+            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
             secretBase.Patch();
         }
 

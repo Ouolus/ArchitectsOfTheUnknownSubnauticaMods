@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
-    public class ResearchBaseSpawner : SecondaryBaseSpawner
+    public class ResearchBaseSpawner : CacheBaseSpawner
     {
         protected override string MainTerminalClassId => Mod.guardianTerminal.ClassID;
 
