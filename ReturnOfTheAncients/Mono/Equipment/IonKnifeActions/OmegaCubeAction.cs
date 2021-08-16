@@ -72,7 +72,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         public void OnUpdate(IonKnife ionKnife)
         {
-
+            if (chargeAmount >= 0.2f)
+            {
+                MainCameraControl.main.ShakeCamera(chargeAmount * 3f, 0.1f, MainCameraControl.ShakeMode.Linear, 1f);
+            }
         }
 
         public bool OnRightHandDown(IonKnife ionKnife)
