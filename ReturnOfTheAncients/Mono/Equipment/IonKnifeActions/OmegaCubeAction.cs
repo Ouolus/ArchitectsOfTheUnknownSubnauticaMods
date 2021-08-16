@@ -18,6 +18,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         bool swing;
 
+        float[] baseDamageAmounts = new[] { 40f, 60f, 40f };
+
         public void Initialize(IonKnife ionKnife)
         {
             if (chargingSound == null)
@@ -26,7 +28,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                 chargingSound.path = SNAudioEvents.Paths.AntechamberConstructIonCubeLoop;
             }
             
-            ionKnife.Damage = new[] { 40f, 60f, 40f };
+            ionKnife.Damage = baseDamageAmounts;
             ionKnife.AttackDistance = 1.8f;
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Electrical, DamageType.Normal };
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
@@ -59,7 +61,13 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                     }
                 }
             }
+            ionKnife.Damage = GetDamageAmountsArray(1f - chargeAmount);
             chargeAmount = 0f;
+        }
+
+        float[] GetDamageAmountsArray(float multiplier)
+        {
+            return new float[] { baseDamageAmounts[0] * multiplier, baseDamageAmounts[1] * multiplier, baseDamageAmounts[2] * multiplier };
         }
 
         public void OnUpdate(IonKnife ionKnife)
