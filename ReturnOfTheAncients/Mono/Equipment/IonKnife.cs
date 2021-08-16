@@ -116,12 +116,12 @@ namespace RotA.Mono.Equipment
                     if (lm)
                     {
                         bool wasAlive = lm.IsAlive();
+                        OnSwing(lm, obj);
                         for (int i = 0; i < Damage.Length; i++)
                         {
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        OnSwing(lm, obj);
                         calledSwingMethod = true;
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
