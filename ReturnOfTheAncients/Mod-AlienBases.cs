@@ -216,6 +216,9 @@ namespace RotA
             var researchBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("ResearchBaseExterior", researchBasePos, LargeWorldEntity.CellLevel.Far);
             researchBaseExterior.Patch();
 
+            var researchBaseHint = new AlienBaseInitializer<ResearchBaseHint>("ResearchBaseHint", new Vector3(-718, -197, -637), LargeWorldEntity.CellLevel.Medium);
+            researchBaseHint.Patch();
+
             //Koosh zone base (Koosh/bulb zone)
             var kooshBasePos = new Vector3(1480, -457, 1457);
 
