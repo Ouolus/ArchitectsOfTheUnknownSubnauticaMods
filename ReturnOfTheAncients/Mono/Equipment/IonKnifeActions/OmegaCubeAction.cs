@@ -29,7 +29,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             }
             
             ionKnife.Damage = baseDamageAmounts;
-            ionKnife.AttackDistance = 1.8f;
+            ionKnife.AttackDistance = 3f;
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Electrical, DamageType.Normal };
             ionKnife.PlaySwitchSound("event:/env/damage/cold_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
