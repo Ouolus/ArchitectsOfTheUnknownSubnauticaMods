@@ -13,9 +13,9 @@ namespace ArchitectsLibrary.Items.Cubes
 
         public sealed override float CraftingTime => 30f;
         
-        public sealed override TechGroup GroupForPDA => TechGroup.Resources;
+        public override TechGroup GroupForPDA => TechGroup.Resources;
 
-        public sealed override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected abstract int Capacity { get; }
 
