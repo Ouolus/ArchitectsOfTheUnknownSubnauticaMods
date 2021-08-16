@@ -20,6 +20,8 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         float[] baseDamageAmounts = new[] { 40f, 60f, 40f };
 
+        float[] cachedDamageAmounts = new float[3];
+
         public void Initialize(IonKnife ionKnife)
         {
             if (chargingSound == null)
@@ -67,7 +69,11 @@ namespace RotA.Mono.Equipment.IonKnifeActions
 
         float[] GetDamageAmountsArray(float multiplier)
         {
-            return new float[] { baseDamageAmounts[0] * multiplier, baseDamageAmounts[1] * multiplier, baseDamageAmounts[2] * multiplier };
+            for (int i = 0; i < cachedDamageAmounts.Length; i++)
+            {
+                cachedDamageAmounts[i] = baseDamageAmounts[i] * multiplier;
+            }
+            return cachedDamageAmounts;
         }
 
         public void OnUpdate(IonKnife ionKnife)
