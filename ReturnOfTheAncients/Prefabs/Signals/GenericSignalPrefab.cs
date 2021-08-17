@@ -16,7 +16,7 @@ namespace RotA.Prefabs.Signals
         int defaultColorIndex;
         string pingTypeName;
         string labelKey;
-        SignalPingVoiceLine.Data voiceLineData;
+        PlayVoiceLineTrigger.Data voiceLineData;
 
         /// <summary>
         /// Constructor for a generic signal.
@@ -28,7 +28,7 @@ namespace RotA.Prefabs.Signals
         /// <param name="position"></param>
         /// <param name="defaultColorIndex"></param>
         /// <param name="voiceLineSettings">Settings related to the voice line that plays when approaching the signal. By default does no voice line.</param>
-        public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0, SignalPingVoiceLine.Data voiceLineSettings = default)
+        public GenericSignalPrefab(string classId, string textureName, string displayName, string label, Vector3 position, int defaultColorIndex = 0, PlayVoiceLineTrigger.Data voiceLineSettings = default)
             : base(classId, displayName, ".")
         {
             this.pingTypeName = classId;
@@ -85,7 +85,7 @@ namespace RotA.Prefabs.Signals
 
             if (voiceLineData.hasVoiceLine)
             {
-                var signalPingVoiceLine = obj.EnsureComponent<SignalPingVoiceLine>();
+                var signalPingVoiceLine = obj.EnsureComponent<PlayVoiceLineTrigger>();
                 signalPingVoiceLine.audioClip = voiceLineData.audioClip;
                 signalPingVoiceLine.delay = voiceLineData.delay;
                 signalPingVoiceLine.storyGoalKey = voiceLineData.storyGoalKey;

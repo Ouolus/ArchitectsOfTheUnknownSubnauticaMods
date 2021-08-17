@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {
-    public class SignalPingVoiceLine : MonoBehaviour
+    public class PlayVoiceLineTrigger : MonoBehaviour
     {
         public struct Data
         {
