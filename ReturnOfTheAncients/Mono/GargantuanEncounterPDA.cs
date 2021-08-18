@@ -10,7 +10,7 @@ namespace RotA.Mono
     public class GargantuanEncounterPDA : MonoBehaviour
     {
         StoryGoal goal = new StoryGoal("GargantuanEncounter", Story.GoalType.Story, 0f);
-        public float maxDistance = 125f;
+        public float maxDistance = 300f;
 
         void Start()
         {
