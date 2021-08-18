@@ -41,7 +41,7 @@ namespace RotA.Mono.AlienTech
             IngameMenu.main.mainPanel.SetActive(false);
             AchievementServices.CompleteAchievement("TouchBlackHole");
             yield return new WaitForSeconds(0.5f);
-            IngameMenu.main.SaveGame();
+            yield return IngameMenu.main.SaveGameAsync();
             ErrorMessage.AddMessage("Save file corrupted.");
             GameObject whiteout = GameObject.Instantiate(Mod.assetBundle.LoadAsset<GameObject>("BlackHoleScreenEffect"));
             GameObject.DontDestroyOnLoad(whiteout);

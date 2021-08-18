@@ -137,7 +137,7 @@ namespace RotA.Mono.Cinematics
             GameObject imgObj = CreateMemeOverlay();
             yield return new WaitForSecondsRealtime(2.8f);
             Destroy(imgObj);
-            IngameMenu.main.SaveGame();
+            yield return IngameMenu.main.SaveGameAsync();
             setTimeScaleLateUpdate = false;
             Time.timeScale = 1f;
             CutToCredits();
