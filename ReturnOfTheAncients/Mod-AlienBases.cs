@@ -189,13 +189,13 @@ namespace RotA
 
         static void PatchAlienBases()
         {
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); // Sparse reef
             outpostAInitializer.Patch();
 
-            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
+            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); // Bones fields
             outpostBInitializer.Patch();
 
-            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
+            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); // Crag field
             guardianCablesInitializer.Patch();
 
             //supply cache (Crag field)
@@ -231,16 +231,16 @@ namespace RotA
             //Void base
             var voidBasePos = new Vector3(373, -400, -1920);
 
-            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); //Void
+            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); // Void
             voidBase.Patch();
 
-            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", voidBasePos, LargeWorldEntity.CellLevel.Medium); //Void
+            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", voidBasePos, LargeWorldEntity.CellLevel.Medium); // Void
             voidBaseInterior.Patch();
 
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), LargeWorldEntity.CellLevel.Far); // Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
 
-            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
+            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), LargeWorldEntity.CellLevel.Far); // Under aurora (Out of bounds)
             secretBase.Patch();
         }
 
