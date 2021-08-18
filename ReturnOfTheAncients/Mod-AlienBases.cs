@@ -198,7 +198,7 @@ namespace RotA
             var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); // Crag field
             guardianCablesInitializer.Patch();
 
-            //supply cache (Crag field)
+            // supply cache (Crag field)
             var supplyCachePos = new Vector3(-13, -175.81f, -1183);
 
             var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", supplyCachePos);
@@ -207,7 +207,7 @@ namespace RotA
             var supplyCacheExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("SupplyCacheBaseExterior", supplyCachePos, LargeWorldEntity.CellLevel.Far);
             supplyCacheExterior.Patch();
 
-            //Research base (Sparse reef)
+            // Research base (Sparse reef)
             var researchBasePos = new Vector3(-860, -187, -641);
 
             var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", researchBasePos);
@@ -219,7 +219,7 @@ namespace RotA
             var researchBaseHint = new AlienBaseInitializer<ResearchBaseHint>("ResearchBaseHint", new Vector3(-718, -197, -637), LargeWorldEntity.CellLevel.Medium);
             researchBaseHint.Patch();
 
-            //Koosh zone base (Koosh/bulb zone)
+            // Koosh zone base (Koosh/bulb zone)
             var kooshBasePos = new Vector3(1480, -457, 1457);
 
             var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", kooshBasePos);
@@ -228,7 +228,7 @@ namespace RotA
             var kooshBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("KooshZoneBaseExterior", kooshBasePos, LargeWorldEntity.CellLevel.Far);
             kooshBaseExterior.Patch();
 
-            //Void base
+            // Void base
             var voidBasePos = new Vector3(373, -400, -1920);
 
             var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); // Void
