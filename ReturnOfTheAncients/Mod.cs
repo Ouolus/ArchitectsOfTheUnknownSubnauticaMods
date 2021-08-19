@@ -43,8 +43,8 @@
         public static AquariumGuppy aquariumGuppy;
         public static Guardian guardian;
         
-        public static GhostSkeletonPose1 skeletonPose1;
-        public static GhostSkeletonPose2 skeletonPose2;
+        public static GhostSkeletonPose1 ghostSkeletonPose1;
+        public static GhostSkeletonPose2 ghostSkeletonPose2;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
@@ -221,11 +221,11 @@
             var g = new Guardian("Guardian2", "Guardian 2", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature2_Prefab"), null);
             g.Patch();
 
-            skeletonPose1 = new();
-            skeletonPose1.Patch();
+            ghostSkeletonPose1 = new();
+            ghostSkeletonPose1.Patch();
 
-            skeletonPose2 = new();
-            skeletonPose2.Patch();
+            ghostSkeletonPose2 = new();
+            ghostSkeletonPose2.Patch();
         }
 
         static void InitSpawns()
