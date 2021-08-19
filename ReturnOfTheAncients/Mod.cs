@@ -43,8 +43,8 @@
         public static AquariumGuppy aquariumGuppy;
         public static Guardian guardian;
         
-        private static GhostSkeletonPose1 skeletonPose1;
-        private static GhostSkeletonPose2 skeletonPose2;
+        public static GhostSkeletonPose1 skeletonPose1;
+        public static GhostSkeletonPose2 skeletonPose2;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
