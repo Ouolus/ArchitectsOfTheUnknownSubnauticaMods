@@ -23,6 +23,10 @@ namespace RotA.Prefabs.Creatures.Skeletons
             prefab.AddComponent<SkyApplier>().renderers = prefab.GetComponentsInChildren<Renderer>();
             prefab.AddComponent<TechTag>().type = TechType;
             prefab.AddComponent<PrefabIdentifier>().ClassId = ClassID;
+            prefab.AddComponent<ConstructionObstacle>();
+            var rb = prefab.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.mass = 1000f;
             return prefab;
         }
     }
