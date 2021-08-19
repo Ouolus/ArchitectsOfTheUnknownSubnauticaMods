@@ -91,6 +91,7 @@ namespace RotA.Prefabs.Creatures
             }
 
             components.worldForces.waterDepth = -30f;
+            components.worldForces.aboveWaterGravity = 25f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
