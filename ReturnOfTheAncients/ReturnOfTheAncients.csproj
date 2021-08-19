@@ -267,10 +267,11 @@
     <Compile Include="Prefabs\Creatures\GargantuanBaby.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanBase.cs" />
     <Compile Include="Prefabs\Creatures\GargantuanJuvenile.cs" />
-    <Compile Include="Prefabs\Creatures\GhostSkeletonPose1.cs" />
-    <Compile Include="Prefabs\Creatures\GhostSkeletonPose2.cs" />
     <Compile Include="Prefabs\Creatures\Guardian.cs" />
     <Compile Include="Prefabs\Creatures\SkeletonGarg.cs" />
+    <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeleton.cs" />
+    <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeletonPose1.cs" />
+    <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeletonPose2.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
     <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />

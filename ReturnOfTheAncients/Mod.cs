@@ -14,6 +14,7 @@
     using Prefabs.AlienBase;
     using Prefabs.AlienBase.DataTerminal;
     using Prefabs.Creatures;
+    using Prefabs.Creatures.Skeletons;
     using Prefabs.Equipment;
     using Prefabs.Initializers;
     using Prefabs.Modules;
