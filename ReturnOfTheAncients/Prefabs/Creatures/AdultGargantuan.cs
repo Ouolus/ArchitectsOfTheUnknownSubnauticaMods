@@ -89,6 +89,8 @@ namespace RotA.Prefabs.Creatures
                     renderer.material.SetFloat("_SpecInt", 30f);
                 }
             }
+
+            components.worldForces.waterDepth = -30f;
         }
 
         public static void UpdateGargTransparentMaterial(Material material)
