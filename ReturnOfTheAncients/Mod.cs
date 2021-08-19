@@ -42,6 +42,9 @@
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
         public static Guardian guardian;
+        
+        private static GhostSkeletonPose1 skeletonPose1;
+        private static GhostSkeletonPose2 skeletonPose2;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
@@ -217,6 +220,12 @@
 
             var g = new Guardian("Guardian2", "Guardian 2", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature2_Prefab"), null);
             g.Patch();
+
+            skeletonPose1 = new();
+            skeletonPose1.Patch();
+
+            skeletonPose2 = new();
+            skeletonPose2.Patch();
         }
 
         static void InitSpawns()
