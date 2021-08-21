@@ -253,19 +253,19 @@ namespace RotA
             #region Outposts
             terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalGrassy);
             terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
-            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
             tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalGrassy.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalSparseReef);
             terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
-            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
             tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalSparseReef.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalLostRiver);
             terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
-            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
             tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalLostRiver.Patch();
             #endregion
@@ -273,31 +273,31 @@ namespace RotA
             #region Cache bases
             terminalBuilder.SetupStoryGoal(ency_distressSignal, 6);
             terminalBuilder.SetupPingClassIds(new [] { signal_ruinedGuardian.ClassID });
-            terminalBuilder.SetupAudio("DataTerminalDistress", "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupAudio("DataTerminalDistress", "GuardianTerminalSubtitles");
             guardianTerminal = new DataTerminalPrefab("GuardianTerminal", terminalBuilder.GetTerminal());
             guardianTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_supplyCacheTerminal);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             supplyCacheTerminal = new DataTerminalPrefab("SupplyCacheTerminal", terminalBuilder.GetTerminal());
             supplyCacheTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_researchBaseTerminal);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", terminalBuilder.GetTerminal());
             researchBaseTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_kooshBaseTerminal);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", terminalBuilder.GetTerminal());
             kooshBaseTerminal.Patch();
 
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupUnlockables(new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType }, delay: 4.6f);
-            terminalBuilder.SetupAudio("DataTerminalIonicPulse", "Synthesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
+            terminalBuilder.SetupAudio("DataTerminalIonicPulse", "IonicPulseTerminalSubtitles");
             archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", terminalBuilder.GetTerminal());
             archElectricityTerminal.Patch();
 
@@ -315,40 +315,40 @@ namespace RotA
             #region Voidbase
             terminalBuilder.SetupStoryGoal(ency_voidBaseTerminal);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", terminalBuilder.GetTerminal());
             voidBaseTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_cachePings);
             terminalBuilder.SetupPingClassIds(new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID });
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.blueTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
             cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", terminalBuilder.GetTerminal());
             cachePingsTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_alienSpam);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             voidbaseSpamTerminal = new DataTerminalPrefab("SpamTerminal", terminalBuilder.GetTerminal());
             voidbaseSpamTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_eggRoom);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", terminalBuilder.GetTerminal());
             eggRoomTerminal.Patch();
             
             terminalBuilder.SetupStoryGoal(ency_warpCannonTerminal);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupUnlockables(techTypeToAnalyze: warpMasterTech);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
             warpCannonTerminal.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_buildablesonicdeterrent);
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupUnlockables(techTypesToUnlock: new[] { AUHandler.BuildableSonicDeterrentTechType }, delay: 4f);
-            terminalBuilder.SetupAudio("DataTerminalEncy", "Downloading alien data... Download complete.");
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             sonicDeterrentTerminal = new DataTerminalPrefab("SonicDeterrentTerminal", terminalBuilder.GetTerminal());
             sonicDeterrentTerminal.Patch();
             #endregion
@@ -357,38 +357,38 @@ namespace RotA
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupFX(new Color(0.65f, 0f, 0.75f), false);
             terminalBuilder.SetupAchievement("DevSecretAchievement");
-            terminalBuilder.SetupAudio("PDAThanksForDownloading", "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
+            terminalBuilder.SetupAudio("PDAThanksForDownloading", "ThanksForDownloadingSubtitles");
             devSecretTerminal = new SecretBaseTerminal("DevSecretTerminal", terminalBuilder.GetTerminal());
             devSecretTerminal.Patch();
 
-            devTerminalAlan = GetDevNameTerminal("DevSecretAlan", "PDAAlan", "Al-An", new Color(1f, 0f, 0.75f));
+            devTerminalAlan = GetDevNameTerminal("DevSecretAlan", "PDAAlan",  new Color(1f, 0f, 0.75f));
             devTerminalAlan.Patch();
 
-            devTerminalHipnox = GetDevNameTerminal("DevSecretHipnox", "PDAHipnox", "Hipnox", new Color(0.28f, 0.69f, 1f));
+            devTerminalHipnox = GetDevNameTerminal("DevSecretHipnox", "PDAHipnox", new Color(0.28f, 0.69f, 1f));
             devTerminalHipnox.Patch();
 
-            devTerminalLee23 = GetDevNameTerminal("DevSecretLee23", "PDALee23", "Lee23", new Color(0.33f, 1f, 0.64f));
+            devTerminalLee23 = GetDevNameTerminal("DevSecretLee23", "PDALee23", new Color(0.33f, 1f, 0.64f));
             devTerminalLee23.Patch();
 
-            devTerminalMetious = GetDevNameTerminal("DevSecretMetious", "PDAMetious", "Metious", Color.magenta);
+            devTerminalMetious = GetDevNameTerminal("DevSecretMetious", "PDAMetious", Color.magenta);
             devTerminalMetious.Patch();
 
-            devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter", "N8Crafter", Color.cyan);
+            devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter",  Color.cyan);
             devTerminalN8crafter.Patch();
 
-            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "SlendyPlayz", new Color(0.8f, 0.8f, 0.8f));
+            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", new Color(0.8f, 0.8f, 0.8f));
             devTerminalSlendyPlayz.Patch();
 
-            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0f, 0f));
+            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", new Color(1f, 0f, 0f));
             devTerminalTori.Patch();
             #endregion
         }
 
-        static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, string name, Color color)
+        static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, Color color)
         {
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
             terminalBuilder.SetupFX(color, false);
-            terminalBuilder.SetupAudio(audioFile, name);
+            terminalBuilder.SetupAudio(audioFile, classId);
             return new DataTerminalPrefab(classId, terminalBuilder.GetTerminal());
         }
 

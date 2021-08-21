@@ -66,6 +66,9 @@
 
     // Items and item tooltips
     
+    "GargantuanEgg": "Gargantuan Egg",
+    "Tooltip_GargantuanEgg": "Gargantuan Leviathan babies hatch from these.",
+
     "WarpCannon": "Handheld Warping Device",
     "Tooltip_WarpCannon": "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function.",
 
@@ -87,5 +90,19 @@
     // Alien base
     "OmegaTerminalHoverText": "Omega Terminal",
     "OmegaTerminalInteract": "Insert data",
-    "OmegaCubeRegenerateCube": "Generate Omega Cube"
+    "OmegaCubeRegenerateCube": "Generate Omega Cube",
+
+    // Subtitles
+    "DetectingAlienBroadcastSubtitles": "Detecting an alien broadcast. Uploading co-ordinates to PDA.",
+    "GuardianTerminalSubtitles": "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.",
+    "DownloadingAlienDataSubtitles": "Downloading alien data... Download complete.",
+    "IonicPulseTerminalSubtitles": "Synthesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.",
+    "ThanksForDownloadingSubtitles": "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.",
+    "DevSecretAlan": "Al-An",
+    "DevSecretHipnox": "Hipnox",
+    "DevSecretLee23": "Lee23",
+    "DevSecretMetious": "Metious",
+    "DevSecretN8": "N8Crafter",
+    "DevSecretSlendy": "SlendyPlayz",
+    "DevSecretTori": "Tori Chibi"
 }
