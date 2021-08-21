@@ -259,11 +259,13 @@ namespace RotA
 
             terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalSparseReef);
             terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalSparseReef.Patch();
 
             terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalLostRiver);
             terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
             tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalLostRiver.Patch();
             #endregion
