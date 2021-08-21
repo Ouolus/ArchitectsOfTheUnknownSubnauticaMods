@@ -32,7 +32,7 @@ namespace RotA
         const string ency_alienSpam = "PrecursorSpam";
         const string ency_eggRoom = "PrecursorEggRoomy";
         const string ency_aquariumSkeleton = "BabyGargSkeleton";
-        const string ency_blackHole = "";
+        const string ency_blackHole = "ResearchBaseSingularity";
         const string ency_warpCannonTerminal = "WarpCannonTerminal";
         const string ency_omegaCubeFabricator = "OmegaCubeFabricator";
         const string ency_buildablesonicdeterrent = "BuildableSonicDeterrent";
