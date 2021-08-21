@@ -4,13 +4,13 @@ namespace RotA
     
     public partial class Mod
     {
+        public const string modEncyPath_root = "RotA";
+        public const string modEncyPath_terminalInfo = "RotA/RotATerminalInformation";
+        public const string modEncyPath_tech = "RotA/RotAPrecursorTech";
+        public const string modEncyPath_relics = "RotA/RotAPrecursorRelics";
         public const string modEncyPath_gargantuan = "RotA/RotAGargantuanLeviathan";
         public const string modEncyPath_analysis = "RotA/RotAPrecursorAnalysis";
         
-        const string modEncyPath_root = "RotA";
-        const string modEncyPath_terminalInfo = "RotA/RotATerminalInformation";
-        const string modEncyPath_tech = "RotA/RotAPrecursorTech";
-        const string modEncyPath_relics = "RotA/RotAPrecursorRelics";
         const string ency_tertiaryOutpostTerminalGrassy = "TertiaryOutpostTerminal1";
         const string ency_tertiaryOutpostTerminalSparseReef = "TertiaryOutpostTerminal2";
         const string ency_tertiaryOutpostTerminalLostRiver = "TertiaryOutpostTerminal3";

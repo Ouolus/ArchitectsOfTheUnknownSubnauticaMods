@@ -2,6 +2,7 @@
     // These are comments. They are considered invalid by a lot of JSON editors but still work anyway.
 
     //Databank paths
+    
     "EncyPath_Lifeforms/Fauna/Titans": "Titans",
     "EncyPath_RotA": "Return of the Ancients",
     "EncyPath_RotA/RotAPrecursorAnalysis": "Analysis",
