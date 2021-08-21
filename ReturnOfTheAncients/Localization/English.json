@@ -11,9 +11,7 @@
     "EncyPath_RotA/RotAGargantuanLeviathan": "Gargantuan Leviathan",
     
     // Databank entries
-    // Format for Databank entries:
-    // Title: "Ency_{Key}"
-    // Contents: "EncyDesc_{Key}"
+
     "Ency_TertiaryOutpostTerminal1": "Tertiary Outpost C Analysis",
     "EncyDesc_TertiaryOutpostTerminal1": "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source. You just read cut content, by the way :)",
     "Ency_TertiaryOutpostTerminal2": "Tertiary Outpost A Analysis",
