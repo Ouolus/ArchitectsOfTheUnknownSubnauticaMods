@@ -300,5 +300,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)mod_SN1.json" "$(OutDir)mod.json" /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)Localization" "$(OutDir)Localization" /e /y /i /r</PostBuildEvent>
   </PropertyGroup>
 </Project>
