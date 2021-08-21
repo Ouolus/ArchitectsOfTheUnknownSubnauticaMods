@@ -12,8 +12,6 @@
         public const string orangeTerminalCID = "dd3bf908-badb-4c8c-a195-eb50be09df63";
         public const string blueTerminalCID = "b629c806-d3cd-4ee4-ae99-7b1359b60049";
         
-        string subtitlesKey;
-        
         GameObject _processedPrefab;
 
         DataTerminal _dataTerminal;
@@ -22,11 +20,6 @@
             : base(classId, "Data terminal", ".")
         {
             _dataTerminal = dataTerminal;
-            if (!string.IsNullOrEmpty(_dataTerminal.AudioSettings.Subtitles))
-            {
-                subtitlesKey = classId + "Subtitles";
-                LanguageHandler.SetLanguageLine(subtitlesKey, _dataTerminal.AudioSettings.Subtitles);
-            }
         }
 
         public override WorldEntityInfo EntityInfo => new WorldEntityInfo()
@@ -98,7 +91,7 @@
             {
                 var playAudio = obj.AddComponent<StoryHandTargetPlayAudioClip>();
                 playAudio.clipPrefix = _dataTerminal.AudioSettings?.AudioPrefix;
-                playAudio.subtitlesKey = subtitlesKey;
+                playAudio.subtitlesKey = _dataTerminal.AudioSettings.SubtitlesKey;
             }
             if (!string.IsNullOrEmpty(_dataTerminal.AchievementId))
             {

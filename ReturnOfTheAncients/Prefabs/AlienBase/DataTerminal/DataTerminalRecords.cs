@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RotA.Prefabs.AlienBase.DataTerminal
 {
-    public record RAudioSettings(string AudioPrefix, string Subtitles);
+    public record RAudioSettings(string AudioPrefix, string SubtitlesKey);
 
     public record RFxSettings(Color? FxColor, bool HideSymbol);
 

@@ -6,7 +6,7 @@ namespace RotA.Prefabs
     public class GargantuanEgg : EggPrefab
     {
         public GargantuanEgg()
-            : base("GargantuanEgg", "Gargantuan Egg", "Gargantuan Leviathans hatch from these.")
+            : base("GargantuanEgg", LanguageSystem.Get("GargantuanEgg"), LanguageSystem.GetTooltip("GargantuanEgg"))
         { LateEnhancements += InitializeObject; }
 
         public override TechType HatchingCreature => Mod.gargBabyPrefab.TechType;

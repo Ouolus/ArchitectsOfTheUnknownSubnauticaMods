@@ -13,9 +13,9 @@ namespace RotA.Prefabs.AlienBase.DataTerminal
             Reset();
         }
 
-        public void SetupAudio(string audioPrefix, string subtitles)
+        public void SetupAudio(string audioPrefix, string subtitlesKey)
         {
-            _dataTerminal.AudioSettings = new RAudioSettings(audioPrefix, subtitles);
+            _dataTerminal.AudioSettings = new RAudioSettings(audioPrefix, subtitlesKey);
         }
 
         public void SetupPingClassIds(string[] pingClassIds)

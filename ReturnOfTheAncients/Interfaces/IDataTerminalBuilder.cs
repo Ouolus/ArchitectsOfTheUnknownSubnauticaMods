@@ -9,8 +9,8 @@ namespace RotA.Interfaces
         /// A method that takes enough information to setup an AudioSettings
         /// </summary>
         /// <param name="audioPrefix">The audio prefix string</param>
-        /// <param name="subtitles">Subtitles</param>
-        void SetupAudio(string audioPrefix, string subtitles);
+        /// <param name="subtitlesKey">The key of the subtitle text</param>
+        void SetupAudio(string audioPrefix, string subtitlesKey);
 
         /// <summary>
         /// Setup PingType classIDs
