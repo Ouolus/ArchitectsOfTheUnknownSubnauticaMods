@@ -354,7 +354,7 @@
             renderer.material.SetTexture("_Illum", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
         }
 
-        static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
+        static void PatchEncy(string key, string path, string popupName = null, string encyImageName = null)
         {
             Sprite popup = null;
             if (!string.IsNullOrEmpty(popupName))
@@ -374,8 +374,6 @@
                 popup = popup,
                 image = encyImg
             });
-            LanguageHandler.SetLanguageLine("Ency_" + key, title);
-            LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
         }
 
         static void MakeObjectScannable(TechType techType, string encyKey, float scanTime)
