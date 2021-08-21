@@ -79,6 +79,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                 {
                     held.transform.position = behaviour.FixJuvenileFishHoldPosition(holdPoint, holdPoint.position);
                 }
+                else if (IsHoldingLargeSub())
+                {
+                    held.transform.position = holdPoint.position + (holdPoint.forward * -15f);
+                }
                 else
                 {
                     held.transform.position = holdPoint.position;
