@@ -131,6 +131,7 @@
     <Compile Include="API\EggPrefab.cs" />
     <Compile Include="API\GenericPrecursorDecoration.cs" />
     <Compile Include="API\HolographicPoster.cs" />
+    <Compile Include="API\LanguageSystem.cs" />
     <Compile Include="API\PrecursorFabricatorService.cs" />
     <Compile Include="API\DisplayCaseServices.cs" />
     <Compile Include="API\ReskinSpawnable.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="MonoBehaviours\StagedGrowing.cs" />
     <Compile Include="MonoBehaviours\WarperBuildableFix.cs" />
     <Compile Include="Patches\BuilderPatches.cs" />
+    <Compile Include="Patches\LanguagePatches.cs" />
     <Compile Include="Patches\uGUI_BuilderMenuPatches.cs" />
     <Compile Include="Patches\CraftingMenuPatches.cs" />
     <Compile Include="Patches\InspectOnFirstPickupPatches.cs" />
