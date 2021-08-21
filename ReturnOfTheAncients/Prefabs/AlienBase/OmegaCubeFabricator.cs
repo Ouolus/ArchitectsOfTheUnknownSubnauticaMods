@@ -98,9 +98,10 @@ namespace RotA.Prefabs.AlienBase
                 main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);
             }
             prefab.SearchChild("xTopGlow").transform.localPosition = new Vector3(0f, 0f, -8f);
-            prefab.SearchChild("xElecCubeTopUpper").transform.localPosition = new Vector3(0f, -0.1f, -11f);
-            prefab.SearchChild("xElecCubeTop").transform.localPosition = new Vector3(0f, -0.1f, -9f);
-            prefab.SearchChild("xBeam").transform.localPosition = new Vector3(0f, -0.1f, 2f);
+            prefab.SearchChild("xElecCubeTopUpper").transform.localPosition = new Vector3(0f, -0.1f, -6.5f);
+            prefab.SearchChild("xElecCubeTop").transform.localPosition = new Vector3(0f, -0.1f, -7f);
+            prefab.SearchChild("xBeam").transform.localPosition = new Vector3(0f, -0.1f, 7f);
+            prefab.SearchChild("xBeamCircuit").transform.localPosition = new Vector3(0f, -0.05f, 7f);
             return prefab;
         }
 
