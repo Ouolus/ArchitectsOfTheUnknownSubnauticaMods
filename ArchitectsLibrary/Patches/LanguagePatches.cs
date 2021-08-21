@@ -41,7 +41,7 @@ namespace ArchitectsLibrary.Patches
 
             void SetLanguages(string file)
             {
-                var deserialize = JsonConvert.DeserializeObject<Dictionary<string, string>>(file);
+                var deserialize = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(file));
                 if (deserialize is null)
                     return;
                 
@@ -50,8 +50,7 @@ namespace ArchitectsLibrary.Patches
                 foreach (var kvp in deserialize)
                 {
                     LanguageSystem.currentLanguageStrings[kvp.Key] = kvp.Value;
-                    if (!kvp.Key.StartsWith("Tooltip_"))
-                        LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
+                    LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
                 }
             }
         }
