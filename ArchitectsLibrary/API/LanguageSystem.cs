@@ -10,6 +10,7 @@ namespace ArchitectsLibrary.API
     public static class LanguageSystem
     {
         internal static List<string> languagePaths = new();
+        internal static Dictionary<string, string> currentLanguageStrings = new();
 
         /// <summary>
         /// Registers a folder path as a Multi-Language folder
@@ -20,5 +21,12 @@ namespace ArchitectsLibrary.API
             var path = Path.Combine(Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), languageFolderName);
             languagePaths.Add(path);
         }
+
+        /// <summary>
+        /// Gets the translation of the key
+        /// </summary>
+        /// <param name="key">the key</param>
+        /// <returns>the translation string</returns>
+        public static string Get(string key) => currentLanguageStrings.GetOrDefault(key, "undefined");
     }
 }
