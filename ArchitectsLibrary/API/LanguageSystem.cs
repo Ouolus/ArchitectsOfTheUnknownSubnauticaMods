@@ -16,7 +16,7 @@ namespace ArchitectsLibrary.API
         /// Registers a folder path as a Multi-Language folder
         /// </summary>
         /// <param name="languageFolderName">the folder name</param>
-        public static void RegisterLocalization(string languageFolderName = "Languages")
+        public static void RegisterLocalization(string languageFolderName = "Localization")
         {
             var path = Path.Combine(Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), languageFolderName);
             languagePaths.Add(path);
