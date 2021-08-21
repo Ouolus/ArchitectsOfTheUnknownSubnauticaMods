@@ -387,13 +387,13 @@ namespace RotA.Mono.Creatures.GargEssentials
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
             {
-                behaviour.GetBloodEffectFromCreature(fish, 40f, 2f);
+                behaviour.GetBloodEffectFromCreature(fish, 40f, 4f);
                 behaviour.timeSpawnBloodAgain = Time.time + 1f;
             }
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow)
             {
-                behaviour.GetBloodEffectFromCreature(fish, 20f, 2f);
+                behaviour.GetBloodEffectFromCreature(fish, 20f, 4f);
                 behaviour.timeSpawnBloodAgain = Time.time + 1f;
             }
 
