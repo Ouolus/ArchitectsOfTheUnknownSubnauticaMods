@@ -150,7 +150,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         {
             if (HeldVehicle != null)
             {
-                ReleaseVehicle();
+                ReleaseHeld();
             }
         }
 
@@ -303,8 +303,8 @@ namespace RotA.Mono.Creatures.GargEssentials
             ToggleSubrootColliders(false);
             subRoot.rigidbody.isKinematic = true;
             InvokeRepeating(nameof(DamageVehicle), 1f, 1f);
-            float attackLength = 10f;
-            Invoke(nameof(ReleaseVehicle), attackLength);
+            float attackLength = 12f;
+            Invoke(nameof(ReleaseHeld), attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             behaviour.timeCanAttackAgain = Time.time + attackLength + 1f;
         }
@@ -351,7 +351,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             vehicleGrabSound.Play();
             InvokeRepeating(nameof(DamageVehicle), 1f, 1f);
             float attackLength = 4f;
-            Invoke(nameof(ReleaseVehicle), attackLength);
+            Invoke(nameof(ReleaseHeld), attackLength);
             if (Player.main.GetVehicle() == HeldVehicle)
             {
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
@@ -397,7 +397,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 behaviour.timeSpawnBloodAgain = Time.time + 1f;
             }
 
-            Invoke(nameof(ReleaseVehicle), 5f);
+            Invoke(nameof(ReleaseHeld), 5f);
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         /// <summary>
         /// Try to release the held vehicle or subroot
         /// </summary>
-        public void ReleaseVehicle()
+        public void ReleaseHeld()
         {
             if (HeldVehicle != null)
             {
