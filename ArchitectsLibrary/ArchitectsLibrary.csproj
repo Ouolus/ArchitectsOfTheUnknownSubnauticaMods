@@ -113,7 +113,7 @@
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>$(DepDir)\UnityEngine.TextRenderingModule.dll</HintPath>
-	  <Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(DepDir)\UnityEngine.UI.dll</HintPath>
@@ -138,11 +138,9 @@
     <Compile Include="API\SNAudioEvents.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
-    <Compile Include="Buildables\BuildableElectricubePedestal.cs" />
     <Compile Include="Buildables\BuildableItemPedestal.cs" />
     <Compile Include="Buildables\BuildablePedestal.cs" />
     <Compile Include="Buildables\BuildablePedestalLarge.cs" />
-    <Compile Include="Buildables\BuildableRedIonCubePedestal.cs" />
     <Compile Include="Buildables\BuildableSonicDeterrent.cs" />
     <Compile Include="Buildables\BuildableMicroscope.cs" />
     <Compile Include="Buildables\BuildableAlienRobot.cs" />
