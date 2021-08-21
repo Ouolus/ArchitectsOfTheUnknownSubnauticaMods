@@ -32,7 +32,7 @@ namespace RotA.Prefabs.AlienBase
             MaterialUtils.ApplySNShaders(prefab, 8f);
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
             OmegaFabricatorRoot fabricatorRootComponent = prefab.EnsureComponent<OmegaFabricatorRoot>();
-            fabricatorRootComponent.animator = prefab.GetComponent<Animator>();
+            fabricatorRootComponent.animator = prefab.GetComponentInChildren<Animator>();
             fabricatorRootComponent.constructSoundEmitter = prefab.EnsureComponent<FMOD_CustomLoopingEmitter>();
             fabricatorRootComponent.constructSoundEmitter.asset = ScriptableObject.CreateInstance<FMODAsset>();
             fabricatorRootComponent.constructSoundEmitter.asset.path = "event:/env/antechamber_scan_loop";
