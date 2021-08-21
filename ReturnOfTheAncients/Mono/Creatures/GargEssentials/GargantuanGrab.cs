@@ -302,6 +302,11 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 freezeRb.enabled = false;
             }
+            Stabilizer stabilizer = subRoot.GetComponent<Stabilizer>();
+            if (stabilizer)
+            {
+                stabilizer.enabled = false;
+            }
 
             subrootStoredColliders = subRoot.GetComponentsInChildren<Collider>(false);
             ToggleSubrootColliders(false);
@@ -457,6 +462,11 @@ namespace RotA.Mono.Creatures.GargEssentials
                 if (freezeRb)
                 {
                     freezeRb.enabled = true;
+                }
+                Stabilizer stabilizer = heldSubroot.GetComponent<Stabilizer>();
+                if (stabilizer)
+                {
+                    stabilizer.enabled = true;
                 }
 
                 heldSubroot.rigidbody.isKinematic = false;
