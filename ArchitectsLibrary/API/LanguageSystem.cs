@@ -28,5 +28,13 @@ namespace ArchitectsLibrary.API
         /// <param name="key">the key</param>
         /// <returns>the translation string</returns>
         public static string Get(string key) => currentLanguageStrings.GetOrDefault(key, "undefined");
+        
+        /// <summary>
+        /// Gets a translation of a tooltip of a TechType. Same as <see cref="Get"/> but the format is "Tooltip_{<paramref name="key"/>}"
+        /// </summary>
+        /// <param name="key">the key</param>
+        /// <returns>the translation string</returns>
+        public static string GetTooltip(string key) => currentLanguageStrings.GetOrDefault($"Tooltip_{key}", "undefined");
+
     }
 }
