@@ -30,7 +30,7 @@ namespace RotA
         const string ency_precblade = "PrecursorBlade";
         const string ency_precbuilder = "PrecursorBuilder";
         const string ency_alienSpam = "PrecursorSpam";
-        const string ency_eggRoom = "PrecursorEggRoomy";
+        const string ency_eggRoom = "PrecursorEggRoom";
         const string ency_aquariumSkeleton = "BabyGargSkeleton";
         const string ency_blackHole = "ResearchBaseSingularity";
         const string ency_warpCannonTerminal = "WarpCannonTerminal";
