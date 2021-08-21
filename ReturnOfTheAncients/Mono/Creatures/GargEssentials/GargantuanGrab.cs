@@ -452,7 +452,7 @@ namespace RotA.Mono.Creatures.GargEssentials
                 FreezeRigidbodyWhenFar freezeRb = heldSubroot.GetComponent<FreezeRigidbodyWhenFar>();
                 if (freezeRb)
                 {
-                    freezeRb.enabled = false;
+                    freezeRb.enabled = true;
                 }
 
                 heldSubroot.rigidbody.isKinematic = false;
