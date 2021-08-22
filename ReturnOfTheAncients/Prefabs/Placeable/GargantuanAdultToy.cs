@@ -8,7 +8,7 @@ namespace RotA.Prefabs.Placeable
     class GargantuanAdultToy : ALPlaceable
     {
         public GargantuanAdultToy()
-            : base("GargantuanAdultToy", "Gargantuan Adult Replica (With hat)", "A small-scale replica of an Adult Gargantuan Leviathan. Equipped with a cute hat to make it less terrifying.")
+            : base("GargantuanAdultToy", LanguageSystem.Get("GargantuanAdultToy"), LanguageSystem.GetTooltip("GargantuanAdultToy"))
         {}
 
 

@@ -11,8 +11,8 @@ namespace RotA.Prefabs.Modules
     public class ExosuitZapModule : VehicleUpgrade, IVehicleOnEquip
     {
         public ExosuitZapModule()
-            : base("ExosuitZapModule", "Prawn Suit Ion Defense Module",
-        "When taking damage, it generates a small electrical pulse designed to ward off aggressive fauna. Generates an ionic energy pulse if necessary. Doesn't stack.")
+            : base("ExosuitZapModule", LanguageSystem.Get("ExosuitZapModule"),
+        LanguageSystem.GetTooltip("ExosuitZapModule"))
         {
             OnFinishedPatching += () =>
             {

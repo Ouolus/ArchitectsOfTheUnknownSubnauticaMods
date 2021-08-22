@@ -71,6 +71,35 @@
 
     "WarpCannon": "Handheld Warping Device",
     "Tooltip_WarpCannon": "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function.",
+    
+    "IonKnife": "Ion Knife",
+    "Tooltip_IonKnife": "An upgrade to the standard Survival Knife, utilizing alien technology. Different variants of ion cubes can be fitted into the device, which all have varying effects on the device's function.",
+    
+    "GargantuanAdultToy": "Gargantuan Adult Replica (With hat)",
+    "Tooltip_GargantuanAdultToy": "A small-scale replica of an Adult Gargantuan Leviathan. Equipped with a cute hat to make it less terrifying.",
+    
+    "GargantuanAdultToyNoHat": "Gargantuan Adult Replica",
+    "Tooltip_GargantuanAdultToyNoHat": "A small-scale replica of an Adult Gargantuan Leviathan. Approximately 0.16% the size of the actual creature.",
+    
+    "GargantuanJuvenileToy": "Gargantuan Juvenile Replica",
+    "Tooltip_GargantuanJuvenileToy": "A small-scale replica of a Juvenile Gargantuan Leviathan. Approximately 0.33% of the original size.",
+    
+    "GargantuanPoster": "Leviathan Holographic Projector",
+    "Tooltip_GargantuanPoster": "An approximation of the appearance of an ancient leviathan, projected with holographic technology.",
+    
+    // Modules
+    
+    "ExosuitDashModule": "Prawn Suit Ion Dash Module",
+    "Tooltip_ExosuitDashModule": "Allows the pilot to dash quickly in any direction, utilizing the Prawn Suit's built-in thrusters. Doesn't stack.",
+    
+    "ExosuitZapModule": "Prawn Suit Ion Defense Module",
+    "Tooltip_ExosuitZapModule": "When taking damage, it generates a small electrical pulse designed to ward off aggressive fauna. Generates an ionic energy pulse if necessary. Doesn't stack.",
+    
+    "SeamothElectricalDefenseMK2": "Seamoth Ion Perimeter Defense System",
+    "Tooltip_SeamothElectricalDefenseMK2": "Generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.",
+    
+    "CyclopsDecoyMk2": "Creature Decoy MK2",
+    "Tooltip_CyclopsDecoyMk2": "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.",
 
     // Tools
 
