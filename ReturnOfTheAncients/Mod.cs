@@ -46,6 +46,7 @@
         
         public static GhostSkeletonPose1 ghostSkeletonPose1;
         public static GhostSkeletonPose2 ghostSkeletonPose2;
+        public static GhostSkeletonPose3 ghostSkeletonPose3;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
@@ -229,6 +230,9 @@
 
             ghostSkeletonPose2 = new();
             ghostSkeletonPose2.Patch();
+            
+            ghostSkeletonPose3 = new();
+            ghostSkeletonPose3.Patch();
         }
 
         static void InitSpawns()

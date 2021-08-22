@@ -272,6 +272,7 @@
     <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeleton.cs" />
     <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeletonPose1.cs" />
     <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeletonPose2.cs" />
+    <Compile Include="Prefabs\Creatures\Skeletons\GhostSkeletonPose3.cs" />
     <Compile Include="Prefabs\Creatures\VoidGargantuanPrefab.cs" />
     <Compile Include="Prefabs\Equipment\IonKnifePrefab.cs" />
     <Compile Include="Prefabs\Equipment\WarpCannonPrefab.cs" />
