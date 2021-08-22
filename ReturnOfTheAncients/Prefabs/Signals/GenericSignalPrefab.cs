@@ -43,7 +43,7 @@ namespace RotA.Prefabs.Signals
                 registeredPingTypes.Add(pingType);
                 LanguageHandler.SetLanguageLine(pingTypeName, displayName);
 
-                labelKey = string.Format("{0}_label", new object[] { pingTypeName });
+                labelKey = $"Label_{pingTypeName}";
                 LanguageHandler.SetLanguageLine(labelKey, label);
             };
         }

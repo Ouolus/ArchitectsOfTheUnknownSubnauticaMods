@@ -226,19 +226,19 @@
     // Label is what you see in the world. Name is what you see in the beacon manager.
 
     "CragFieldBaseSignal": "Downloaded co-ordinates",
-    "CragFieldBaseSignal_label": "Alien Signal",
+    "Label_CragFieldBaseSignal": "Alien Signal",
     "SparseReefBaseSignal": "Downloaded co-ordinates",
-    "SparseReefBaseSignal_label": "Alien Signal",
+    "Label_SparseReefBaseSignal": "Alien Signal",
     "KooshZoneBaseSignal": "Downloaded co-ordinates",
-    "KooshZoneBaseSignal_label": "Alien Signal",
+    "Label_KooshZoneBaseSignal": "Alien Signal",
     "BloodKelpCacheSignal": "Blood Kelp Zone Sanctuary",
-    "BloodKelpCacheSignal_label": "Alien Signal (535m)",
+    "Label_BloodKelpCacheSignal": "Alien Signal (535m)",
     "SparseReefCacheSignal": "Deep Sparse Reef Sanctuary",
-    "SparseReefCacheSignal_label": "Alien Signal (287m)",
+    "Label_SparseReefCacheSignal": "Alien Signal (287m)",
     "DunesCacheSignal": "Dunes Sanctuary",
-    "DunesCacheSignal_label": "Alien Signal (380m)",
+    "Label_DunesCacheSignal": "Alien Signal (380m)",
     "LostRiverCacheSignal": "Lost River Laboratory Cache",
-    "LostRiverCacheSignal_label": "Alien Signal (685m underground)",
+    "Label_LostRiverCacheSignal": "Alien Signal (685m underground)",
     "RuinedGuardianSignal": "Unidentified tracking chip",
-    "RuinedGuardianSignal_label": "Distress signal"
+    "Label_RuinedGuardianSignal": "Distress signal"
 }
