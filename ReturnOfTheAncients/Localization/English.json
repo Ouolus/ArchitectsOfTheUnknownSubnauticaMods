@@ -88,11 +88,34 @@
     "IonKnifeOmegaCube": "Omega cube: Incredibly powerful and emits a bright light.\nThe blade can be charged to force any object in contact with it to experience a massive influx of kinetic energy. Reason unknown.",
     
     // Alien base
+    
     "OmegaTerminalHoverText": "Omega Terminal",
     "OmegaTerminalInteract": "Insert data",
     "OmegaCubeRegenerateCube": "Generate Omega Cube",
+    "Door": "Door",
+    "AlienStructure": "Alien Structure",
+    "SupplyCacheDoor": "Supply Cache Door",
+    "ResearchBaseDoor": "Research Base Door",
+    "KooshBaseDoor": "Bulb Zone Base Door",
+    
+    // Guardian
+    
+    "GuardianTailfin": "Mechanical Segment",
+    
+    // Relics
+    
+    "PrecursorIngotRelic": "Alien Structural Alloy",
+    "PrecursorRifleRelic": "Alien Rifle",
+    "PrecursorBladeRelic": "Alien Knife",
+    "PrecursorBuilderRelic": "Alien Construction Tool",
+    
+    // Alien Tech
+    "VoidbaseAquariumSkeleton": "Leviathan Skeletal Remains",
+    
+    
 
     // Subtitles
+    
     "DetectingAlienBroadcastSubtitles": "Detecting an alien broadcast. Uploading co-ordinates to PDA.",
     "GuardianTerminalSubtitles": "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.",
     "DownloadingAlienDataSubtitles": "Downloading alien data... Download complete.",

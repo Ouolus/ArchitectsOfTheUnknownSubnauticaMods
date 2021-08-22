@@ -96,80 +96,80 @@ namespace RotA
             infectionTesterTerminal = new InfectionTesterTerminal("InfectionTesterTerminal");
             infectionTesterTerminal.Patch();
 
-            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", LanguageSystem.Get("SupplyCacheDoor"), orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
 
-            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", LanguageSystem.Get("ResearchBaseDoor"), whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_researchBase.Patch();
 
-            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", "Bulb Zone base door", purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", LanguageSystem.Get("KooshBaseDoor"), purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_kooshBase.Patch();
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
             const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
-            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
+            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
             voidDoor_red.Patch();
 
-            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-5f, 0f, 14.5f), Vector3.up * 90f, bigDoor, false);
+            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", LanguageSystem.Get("Door"), blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-5f, 0f, 14.5f), Vector3.up * 90f, bigDoor, false);
             voidDoor_blue.Patch();
 
-            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-3.5f, 0f, 11f), Vector3.up * 45f, bigDoor, false);
+            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", LanguageSystem.Get("Door"), purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-3.5f, 0f, 11f), Vector3.up * 45f, bigDoor, false);
             voidDoor_purple.Patch();
 
-            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(3.5f, 0f, 11f), Vector3.up * 315f, bigDoor, false);
+            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", LanguageSystem.Get("Door"), orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(3.5f, 0f, 11f), Vector3.up * 315f, bigDoor, false);
             voidDoor_orange.Patch();
 
-            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
+            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", LanguageSystem.Get("Door"), whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
             voidDoor_white.Patch();
 
-            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(-4f, 0f, 4f), Vector3.up * -90f, bigDoor, true);
+            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", LanguageSystem.Get("Door"), infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(-4f, 0f, 4f), Vector3.up * -90f, bigDoor, true);
             voidDoor_interior_infectionTest.Patch();
 
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInteriorL", "Door", redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
+            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInteriorL", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
             voidDoor_interior_left.Patch();
 
-            voidDoor_interior_right = new PrecursorDoorPrefab("VoidDoorInteriorR", "Door", redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(4f, 0f, -3f), terminalLocalRotation: Vector3.up * 270f);
+            voidDoor_interior_right = new PrecursorDoorPrefab("VoidDoorInteriorR", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(4f, 0f, -3f), terminalLocalRotation: Vector3.up * 270f);
             voidDoor_interior_right.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
             MakeObjectScannable(prop_ruinedGuardian.TechType, ency_ruinedGuardian, 6f);
 
-            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", LanguageSystem.Get("AlienStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
 
-            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
+            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", LanguageSystem.Get("AlienStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
             secretBaseModel.Patch();
 
-            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
+            voidBaseModel = new VoidBaseModel("VoidBaseModel", LanguageSystem.Get("AlienStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
             MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
 
-            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
+            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", LanguageSystem.Get("GuardianTailfin"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
 
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", LanguageSystem.Get("PrecursorIngotRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
 
-            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
+            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", LanguageSystem.Get("PrecursorRifleRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
 
-            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", LanguageSystem.Get("PrecursorBladeRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
 
-            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", "Alien Construction Tool", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
+            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", LanguageSystem.Get("PrecursorBuilderRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
             builderRelic.Patch();
             MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
 
-            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
+            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", LanguageSystem.Get("VoidbaseAquariumSkeleton"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
             MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
 
