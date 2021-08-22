@@ -142,10 +142,10 @@ namespace RotA
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
 
-            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", LanguageSystem.Get("AlienStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
+            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", LanguageSystem.Default, LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
             secretBaseModel.Patch();
 
-            voidBaseModel = new VoidBaseModel("VoidBaseModel", LanguageSystem.Get("AlienStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
+            voidBaseModel = new VoidBaseModel("VoidBaseModel", LanguageSystem.Get("VoidbaseStructure"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
             MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
 

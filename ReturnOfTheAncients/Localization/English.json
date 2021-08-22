@@ -137,20 +137,25 @@
     
     // Alien base
     
+    "OmegaCubeFabricator": "Fabricator Device",
     "OmegaTerminalHoverText": "Omega Terminal",
     "OmegaTerminalInteract": "Insert data",
     "OmegaCubeRegenerateCube": "Generate Omega Cube",
     "Door": "Door",
     "AlienStructure": "Alien Structure",
+    "VoidbaseStructure": "Suspended Platform",
     "SupplyCacheDoor": "Supply Cache Door",
     "ResearchBaseDoor": "Research Base Door",
     "KooshBaseDoor": "Bulb Zone Base Door",
     "VoidbaseAquariumSkeleton": "Leviathan Skeletal Remains",
     "TabletTerminal": "Forcefield Control",
+    "InfectionTesterTerminal": "Forcefield Control",
+    "ResearchBaseBlackHole": "Contained singularity",
     
     // Guardian
     
     "GuardianTailfin": "Mechanical Segment",
+    "RuinedGuardian": "Mysterious wreckage",
     
     // Relics
     
