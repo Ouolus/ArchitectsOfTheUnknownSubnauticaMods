@@ -83,7 +83,7 @@ namespace RotA.Commands
             {
                 if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoid(Clone)", ECCLibrary.ECCStringComparison.Equals))
                 {
-                    go.FindChild("AdultGargModel").SetActive(false);
+                    go.FindChild("Gargantuan_AdultV3").SetActive(false);
                     GameObject trollFace = go.FindChild("TrollFace");
                     trollFace.SetActive(true);
                     trollFace.EnsureComponent<TrollFaceTracker>().enabled = true;
@@ -99,7 +99,7 @@ namespace RotA.Commands
                 }
                 if (ECCLibrary.ECCHelpers.CompareStrings(go.name, "GargantuanVoidTroll", ECCLibrary.ECCStringComparison.Contains))
                 {
-                    go.FindChild("AdultGargModel").SetActive(true);
+                    go.FindChild("Gargantuan_AdultV3").SetActive(true);
                     GameObject trollFace = go.FindChild("TrollFace");
                     trollFace.SetActive(false);
                     GargantuanRoar roar = go.GetComponent<GargantuanRoar>();
