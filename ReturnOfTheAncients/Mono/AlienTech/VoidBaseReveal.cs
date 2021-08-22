@@ -30,7 +30,7 @@ namespace RotA.Mono.AlienTech
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
             if (Time.time > timeVoiceNotifyAgain)
             {
-                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog", "Translation: 'Infected individuals are not permitted to enter this facility. Housed specimen may be at risk of infection.'");
+                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog");
                 timeVoiceNotifyAgain = Time.time + 60f;
             }
             SetExitCooldown(2f);
@@ -139,7 +139,7 @@ namespace RotA.Mono.AlienTech
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
                 AchievementServices.CompleteAchievement("VisitVoidBase");
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter");
             }
         }
 

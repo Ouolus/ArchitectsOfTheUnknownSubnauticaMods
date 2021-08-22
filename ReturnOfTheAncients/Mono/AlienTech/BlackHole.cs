@@ -37,7 +37,7 @@ namespace RotA.Mono.AlienTech
 
         IEnumerator Crash()
         {
-            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole5"), "BlackHoleInteract5", "Error.... error... error");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole5"), "BlackHoleInteract5");
             IngameMenu.main.mainPanel.SetActive(false);
             AchievementServices.CompleteAchievement("TouchBlackHole");
             yield return new WaitForSeconds(0.5f);
@@ -54,17 +54,17 @@ namespace RotA.Mono.AlienTech
             audioClipLength = 1f;
             if (attemptsNow == 2)
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole1"), "BlackHoleInteract1", "I strongly advise against interacting with this singularity. I calculate a 99.9% chance of immediate termination.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole1"), "BlackHoleInteract1");
                 audioClipLength = 8f;
             }
             else if (attemptsNow == 1)
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole2"), "BlackHoleInteract2", "The safety of yourself and this PDA, please refrain.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole2"), "BlackHoleInteract2");
                 audioClipLength = 3f;
             }
             else if (attemptsNow == 0)
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole4"), "BlackHoleInteract4", "Do not attempt. You still have an unsettled debt with Alterra Corporation requiring your attention.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDABlackHole4"), "BlackHoleInteract4");
                 audioClipLength = 5f;
             }
         }

@@ -90,7 +90,6 @@ namespace RotA.Prefabs.Signals
                 signalPingVoiceLine.delay = voiceLineData.delay;
                 signalPingVoiceLine.storyGoalKey = voiceLineData.storyGoalKey;
                 signalPingVoiceLine.subtitleKey = voiceLineData.subtitleKey;
-                signalPingVoiceLine.subtitleDisplayText = voiceLineData.subtitleDisplayText;
             }
 
             obj.EnsureComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.Global;
