@@ -166,6 +166,9 @@
     
     "GuardianTailfin": "Mechanical Segment",
     "RuinedGuardian": "Mysterious Wreckage",
+
+    "Guardian": "Guardian",
+    "Tooltip_Guardian": "An ancient Alien sentry unit.",
     
     // Relics
     
