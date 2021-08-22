@@ -305,10 +305,10 @@
 
         static void PatchSignals()
         {
-            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", LanguageSystem.Get("RotASignalCragFieldBaseName"), LanguageSystem.Get("RotASignalCragFieldBaseLabel"), new Vector3(3, -173, -1069), 5, new(true, "SupplyCacheBaseSubtitle", "SupplyCacheBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //white tablet icon
+            signal_cragFieldBase = new("CragFieldBaseSignal", "Precursor_Symbol04", LanguageSystem.Get("OutpostCSignal"), LanguageSystem.Get("OutpostCSignal_label"), new Vector3(3, -173, -1069), 5, new(true, "SupplyCacheBaseSubtitle", "SupplyCacheBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //white tablet icon
             signal_cragFieldBase.Patch();
 
-            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", LanguageSystem.Get("RotASignalSparseReefBaseName"), LanguageSystem.Get("RotASignalSparseReefBaseLabel"), new Vector3(-617, -182f, -598f), 5, new(true, "ResearchBaseSubtitle", "ResearchBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //red tablet icon
+            signal_sparseReefBase = new("SparseReefBaseSignal", "Precursor_Symbol01", LanguageSystem.Get("RotASignalSparseReefBaseName"), LanguageSystem.Get("RotASignalSparseReefBaseLabel"), new Vector3(-617, -182f, -598f), 5, new(true, "ResearchBaseSubtitle", "ResearchBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //red tablet icon
             signal_sparseReefBase.Patch();
 
             signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", LanguageSystem.Get("RotASignalKooshZoneBaseName"), LanguageSystem.Get("RotASignalKooshZoneBaseLabel"), new Vector3(1489, -420, 1337), 5, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon

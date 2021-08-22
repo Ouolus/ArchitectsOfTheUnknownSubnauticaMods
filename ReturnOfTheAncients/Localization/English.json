@@ -222,20 +222,20 @@
     // Signals
     // Label is what you see in the world. Name is what you see in the beacon manager.
 
-    "RotASignalCragFieldBaseName": "Downloaded co-ordinates",
-    "RotASignalCragFieldBaseLabel": "Alien Signal",
-    "RotASignalSparseReefBaseName": "Downloaded co-ordinates",
-    "RotASignalSparseReefBaseLabel": "Alien Signal",
-    "RotASignalKooshZoneBaseName": "Downloaded co-ordinates",
-    "RotASignalKooshZoneBaseLabel": "Alien Signal",
-    "RotASignalBloodKelpName": "Blood Kelp Zone Sanctuary",
-    "RotASignalBloodKelpLabel": "Alien Signal (535m)",
-    "RotASignalSparseReefName": "Deep Sparse Reef Sanctuary",
-    "RotASignalSparseReefLabel": "Alien Signal (287m)",
-    "RotASignalDunesName": "Dunes Sanctuary",
-    "RotASignalDunesLabel": "Alien Signal (380m)",
-    "RotASignalLostRiverName": "Lost River Laboratory Cache",
-    "RotASignalLostRiverLabel": "Alien Signal (685m underground)",
-    "RotAGuardianSignalName": "Unidentified tracking chip",
-    "RotAGuardianSignalLabel": "Distress signal"
+    "CragFieldBaseSignal": "Downloaded co-ordinates",
+    "CragFieldBaseSignal_label": "Alien Signal",
+    "SparseReefBaseSignal": "Downloaded co-ordinates",
+    "SparseReefBaseSignal_label": "Alien Signal",
+    "KooshZoneBaseSignal": "Downloaded co-ordinates",
+    "KooshZoneBaseSignal_label": "Alien Signal",
+    "BloodKelpCacheSignal": "Blood Kelp Zone Sanctuary",
+    "BloodKelpCacheSignal_label": "Alien Signal (535m)",
+    "SparseReefCacheSignal": "Deep Sparse Reef Sanctuary",
+    "SparseReefCacheSignal_label": "Alien Signal (287m)",
+    "DunesCacheSignal": "Dunes Sanctuary",
+    "DunesCacheSignal_label": "Alien Signal (380m)",
+    "LostRiverCacheSignal": "Lost River Laboratory Cache",
+    "LostRiverCacheSignal_label": "Alien Signal (685m underground)",
+    "RuinedGuardianSignal": "Unidentified tracking chip",
+    "RuinedGuardianSignal_label": "Distress signal"
 }
