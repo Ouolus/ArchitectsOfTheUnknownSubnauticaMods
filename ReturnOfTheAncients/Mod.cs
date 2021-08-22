@@ -200,22 +200,22 @@
 
         static void PatchCreatures()
         {
-            gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan Leviathan Juvenile", "A titan-class lifeform. How did it get in your inventory?", gargAssetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
+            gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", LanguageSystem.Get("GargantuanJuvenile"), LanguageSystem.GetTooltip("GargantuanJuvenile"), gargAssetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
 
-            gargVoidPrefab = new GargantuanVoid("GargantuanVoid", "Gargantuan Leviathan", "A titan-class lifeform. Indigineous to the void.", gargAssetBundle.LoadAsset<GameObject>("GargAdult_Prefab"), null);
+            gargVoidPrefab = new GargantuanVoid("GargantuanVoid", LanguageSystem.Get("GargantuanVoid"), LanguageSystem.GetTooltip("GargantuanVoid"), gargAssetBundle.LoadAsset<GameObject>("GargAdult_Prefab"), null);
             gargVoidPrefab.Patch();
 
-            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan Baby", "A very young specimen, raised in containment. Playful.", gargAssetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), gargAssetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
+            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", LanguageSystem.Get("GargantuanBaby"), LanguageSystem.GetTooltip("GargantuanBaby"), gargAssetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), gargAssetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
             gargBabyPrefab.Patch();
 
-            spookySkeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan Skeleton", "Spooky.", gargAssetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
+            spookySkeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", LanguageSystem.Get("SkeletonGargantuan"), LanguageSystem.GetTooltip("SkeletonGargantuan"), gargAssetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
             spookySkeletonGargPrefab.Patch();
 
             gargEgg = new GargantuanEgg();
             gargEgg.Patch();
 
-            aquariumGuppy = new AquariumGuppy("AquariumGuppy", "Unknown Fish", "An interesting fish.", assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
+            aquariumGuppy = new AquariumGuppy("AquariumGuppy", LanguageSystem.Get("AquariumGuppy"), LanguageSystem.GetTooltip("AquariumGuppy"), assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
             aquariumGuppy.Patch();
 
             guardian = new Guardian("Guardian", "Guardian", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature_Prefab"), null);

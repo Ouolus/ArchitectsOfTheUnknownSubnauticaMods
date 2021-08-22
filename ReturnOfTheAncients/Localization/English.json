@@ -64,6 +64,24 @@
     "Ency_BuildableSonicDeterrent": "Constructable Sonic Deterrent",
     "EncyDesc_BuildableSonicDeterrent": "A device that emits ionic energy pulses, which unusually affect the behavior of nearby creatures by invoking intense levels of fear. Effective against both passive and hostile fauna. Be wary of any degenerative effects the high amplitude pulses may have on your nervous system.",
 
+    // Gargantuan Leviathan
+    "GargantuanJuvenile": "Gargantuan Leviathan Juvenile",
+    "Tooltip_GargantuanJuvenile": "A titan-class lifeform.",
+    
+    "GargantuanVoid": "Gargantuan Leviathan",
+    "Tooltip_GargantuanVoid": "A titan-class lifeform. Indigineous to the void.",
+    
+    "GargantuanBaby": "Gargantuan Baby",
+    "Tooltip_GargantuanBaby": "A very young specimen, raised in containment. Playful.",
+    
+    "SkeletonGargantuan": "Gargantuan Skeleton",
+    "Tooltip_SkeletonGargantuan": "Spooky Scary Skeleton.",
+    
+    // Creatures
+    "AquariumGuppy": "Unknown Fish",
+    "Tooltip_AquariumGuppy": "An interesting fish.",
+    
+    
     // Items and item tooltips
     
     "GargantuanEgg": "Gargantuan Egg",
@@ -101,7 +119,7 @@
     "CyclopsDecoyMk2": "Creature Decoy MK2",
     "Tooltip_CyclopsDecoyMk2": "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.",
 
-    // Tools
+    // Tools Prompts
 
     "WarpCannonSwitchFireModeWarp": "Teleport to base: {1}\nCurrent mode: Personal teleportation. Switch fire mode: {0}",
     "WarpCannonSwitchFireModeCreature": "Warp in creatures: {1}\nCurrent mode: Creature summon. Switch fire mode: {0}",
@@ -126,6 +144,7 @@
     "SupplyCacheDoor": "Supply Cache Door",
     "ResearchBaseDoor": "Research Base Door",
     "KooshBaseDoor": "Bulb Zone Base Door",
+    "VoidbaseAquariumSkeleton": "Leviathan Skeletal Remains",
     
     // Guardian
     
@@ -137,11 +156,6 @@
     "PrecursorRifleRelic": "Alien Rifle",
     "PrecursorBladeRelic": "Alien Knife",
     "PrecursorBuilderRelic": "Alien Construction Tool",
-    
-    // Alien Tech
-    "VoidbaseAquariumSkeleton": "Leviathan Skeletal Remains",
-    
-    
 
     // Subtitles
     
