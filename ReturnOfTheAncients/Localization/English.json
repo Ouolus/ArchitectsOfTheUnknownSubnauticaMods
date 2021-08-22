@@ -165,7 +165,7 @@
     // Guardian
     
     "GuardianTailfin": "Mechanical Segment",
-    "RuinedGuardian": "Mysterious wreckage",
+    "RuinedGuardian": "Mysterious Wreckage",
     
     // Relics
     
@@ -216,5 +216,6 @@
 
     //Hand targets
 
-    "BlackHoleHandTarget": "Do not touch"
+    "BlackHoleHandTarget": "Do not touch",
+    "InfectionTesterTerminalHandTarget": "Deactivate Forcefield"
 }
