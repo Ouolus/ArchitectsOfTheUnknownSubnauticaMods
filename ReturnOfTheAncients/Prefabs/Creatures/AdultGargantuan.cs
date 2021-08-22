@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.API;
+using ECCLibrary;
 using RotA.Mono;
 using RotA.Mono.Creatures.GargEssentials;
 using UnityEngine;
@@ -43,8 +44,8 @@ namespace RotA.Prefabs.Creatures
 
         public override bool RoarDoesDamage => true;
 
-        public override string GetEncyTitle => "Gargantuan Leviathan";
-        public override string GetEncyDesc => "Adult gargantuan text";
+        public override string GetEncyTitle => LanguageSystem.Get("Ency_GargantuanAdult");
+        public override string GetEncyDesc => LanguageSystem.Get("EncyDesc_GargantuanAdult");
 
         public override bool AdvancedCollisions => false;
 

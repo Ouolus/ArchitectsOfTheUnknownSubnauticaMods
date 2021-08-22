@@ -1,4 +1,5 @@
-﻿using ArchitectsLibrary.Utility;
+﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.Utility;
 using UnityEngine;
 
 namespace RotA.Prefabs.Creatures.Skeletons
@@ -7,7 +8,7 @@ namespace RotA.Prefabs.Creatures.Skeletons
 
     public abstract class GhostSkeleton : Spawnable
     {
-        protected GhostSkeleton(string classId) : base(classId, "Ghost Leviathan Skeleton", "The remains of a once powerful Ghost Leviathan.")
+        protected GhostSkeleton(string classId) : base(classId, LanguageSystem.Get("GhostLeviathanSkeleton"), LanguageSystem.GetTooltip("GhostLeviathanSkeleton"))
         {
         }
         

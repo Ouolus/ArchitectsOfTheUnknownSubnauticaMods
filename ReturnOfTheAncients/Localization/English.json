@@ -13,6 +13,13 @@
     
     // Databank entries
 
+    "Ency_GargantuanAdult": "Gargantuan Leviathan",
+    "EncyDesc_GargantuanAdult": "Adult gargantuan text",
+    "Ency_GargantuanBaby": "Gargantuan Leviathan Baby",
+    "EncyDesc_GargantuanBaby": "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.",
+    "Ency_GargantuanJuvenile": "Gargantuan Leviathan Juvenile",
+    "EncyDesc_GargantuanJuvenile": "Juvenile gargantuan text",
+
     "Ency_TertiaryOutpostTerminal1": "Tertiary Outpost C Analysis",
     "EncyDesc_TertiaryOutpostTerminal1": "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source. You just read cut content, by the way :)",
     "Ency_TertiaryOutpostTerminal2": "Tertiary Outpost A Analysis",
@@ -82,6 +89,9 @@
 
     "AquariumGuppy": "Unknown Fish",
     "Tooltip_AquariumGuppy": "An interesting fish.",
+
+    "GhostLeviathanSkeleton": "Ghost Leviathan Skeleton",
+    "Tooltip_GhostLeviathanSkeleton": "The remains of a once powerful Ghost Leviathan.",
     
     // Items and item tooltips
     
