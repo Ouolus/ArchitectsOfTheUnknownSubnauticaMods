@@ -207,5 +207,9 @@
     "SupplyCacheBaseSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
     "ResearchBaseSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
     "KooshBaseSignalSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
-    "GuardianEncounterSubtitle": "This machine appears to have recently collapsed to the seafloor. Further research required."
+    "GuardianEncounterSubtitle": "This machine appears to have recently collapsed to the seafloor. Further research required.",
+
+    //Error messages
+
+    "OmegaFabricatorFailErrorMessage": "Project \"Omega\" formula incomplete. Further research required."
 }

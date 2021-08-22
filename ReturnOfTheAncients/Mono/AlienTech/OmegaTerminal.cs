@@ -40,7 +40,7 @@ namespace RotA.Mono.AlienTech
 
         public void FailInteractionAgain()
         {
-            ErrorMessage.AddMessage("Project \"Omega\" formula incomplete. Further research required.");
+            ErrorMessage.AddMessage(Language.main.Get("OmegaFabricatorFailErrorMessage"));
         }
 
         public void SuccessInteraction()
