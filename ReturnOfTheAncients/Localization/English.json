@@ -65,6 +65,7 @@
     "EncyDesc_BuildableSonicDeterrent": "A device that emits ionic energy pulses, which unusually affect the behavior of nearby creatures by invoking intense levels of fear. Effective against both passive and hostile fauna. Be wary of any degenerative effects the high amplitude pulses may have on your nervous system.",
 
     // Gargantuan Leviathan
+    
     "GargantuanJuvenile": "Gargantuan Leviathan Juvenile",
     "Tooltip_GargantuanJuvenile": "A titan-class lifeform.",
     
@@ -78,9 +79,9 @@
     "Tooltip_SkeletonGargantuan": "Spooky Scary Skeleton.",
     
     // Creatures
+
     "AquariumGuppy": "Unknown Fish",
     "Tooltip_AquariumGuppy": "An interesting fish.",
-    
     
     // Items and item tooltips
     
