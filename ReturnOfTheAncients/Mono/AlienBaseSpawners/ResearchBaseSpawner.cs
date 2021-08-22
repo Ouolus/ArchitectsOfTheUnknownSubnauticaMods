@@ -34,7 +34,7 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(supplies_redTablet, new Vector3(centerLocalX, floorLocalY + 2.5f, 17.5f - 0.825f + 1f), new Vector3(90f, 0f, 0f), Vector3.one * 1.5f));
 
             //Outside
-            yield return StartCoroutine(SpawnPrefabGlobally(Mod.ghostSkeletonPose3.ClassID, new Vector3(-866.40f, -191.00f, -586.30f), new Vector3(355.00f, 320.72f, 0f), Vector3.one));
+            yield return StartCoroutine(SpawnPrefabGlobally(Mod.ghostSkeletonPose3.ClassID, new Vector3(-866.40f, -191.00f, -581.00f), new Vector3(355.00f, 320.72f, 0f), Vector3.one));
             yield return StartCoroutine(SpawnPrefabGlobally(Mod.guardianTailfinModel.ClassID, new Vector3(-847.15f, -193.53f, -593.49f), new Vector3(353.23f, 0f, 358.68f), Vector3.one));
         }
 
