@@ -14,7 +14,7 @@ namespace RotA.Mono.AlienTech
         public void OnHandHover(GUIHand hand)
         {
             HandReticle.main.SetIcon(HandReticle.IconType.HandDeny);
-            HandReticle.main.SetInteractText("Do not touch");
+            HandReticle.main.SetInteractText(LanguageSystem.Get("BlackHoleHandTarget"));
         }
 
         public void OnHandClick(GUIHand hand)

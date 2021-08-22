@@ -212,5 +212,9 @@
     //Error messages
 
     "OmegaFabricatorFailErrorMessage": "Project \"Omega\" formula incomplete. Further research required.",
-    "BlackHoleCrashErrorMessage": "Save Error: File corrupted."
+    "BlackHoleCrashErrorMessage": "Save Error: File corrupted.",
+
+    //Hand targets
+
+    "BlackHoleHandTarget": "Do not touch"
 }
