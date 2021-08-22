@@ -1,4 +1,5 @@
-﻿using Story;
+﻿using ArchitectsLibrary.API;
+using Story;
 using UnityEngine;
 
 namespace RotA.Mono.AlienTech
@@ -40,7 +41,7 @@ namespace RotA.Mono.AlienTech
 
         public void FailInteractionAgain()
         {
-            ErrorMessage.AddMessage(Language.main.Get("OmegaFabricatorFailErrorMessage"));
+            ErrorMessage.AddMessage(LanguageSystem.Get("OmegaFabricatorFailErrorMessage"));
         }
 
         public void SuccessInteraction()
