@@ -11,6 +11,7 @@ namespace ArchitectsLibrary.API
     {
         internal static List<string> languagePaths = new();
         internal static Dictionary<string, string> currentLanguageStrings = new();
+        internal static Dictionary<string, string> fallbackLanguageStrings = new();
 
         /// <summary>
         /// A read-only property of "Undefined" string literal.

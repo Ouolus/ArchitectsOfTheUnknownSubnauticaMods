@@ -9,6 +9,8 @@ namespace ArchitectsLibrary.Patches
 {
     internal static class LanguagePatches
     {
+        private const string FallbackLanguage = "English"; 
+        
         internal static void Patch(Harmony harmony)
         {
             var orig = AccessTools.Method(typeof(Language), nameof(Language.LoadLanguageFile));
@@ -26,31 +28,41 @@ namespace ArchitectsLibrary.Patches
 
         private static void LoadLanguages(string language, string languageFolder)
         {
+            string fallbackPath = Path.Combine(languageFolder, $"{FallbackLanguage}.json");
             var file = Path.Combine(languageFolder, language + ".json");
-            if (!File.Exists(file))
+            if (!File.Exists(file)) // if the preferred language doesn't have a file, use english, and return.
             {
-                file = Path.Combine(languageFolder, "English.json");
+                file = fallbackPath;
                 if (File.Exists(file))
                 {
-                    SetLanguages(file);
+                    SetLanguages(file, false);
                     return;
                 }
             }
             
-            SetLanguages(file);
+            SetLanguages(file, false); // load the preferred language
+            
+            if (language != FallbackLanguage) SetLanguages(fallbackPath, true); // if the current language is not already the fallback, then load the fallback language. some mixed in english is much better than raw language keys.
 
-            void SetLanguages(string file)
+            void SetLanguages(string fileToSet, bool loadIntoFallback)
             {
-                var deserialize = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(file));
+                var deserialize = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(fileToSet));
                 if (deserialize is null)
                     return;
+
+                var dictionary = loadIntoFallback
+                    ? LanguageSystem.fallbackLanguageStrings
+                    : LanguageSystem.currentLanguageStrings;
                 
-                LanguageSystem.currentLanguageStrings.Clear();
+                dictionary.Clear();
                 
                 foreach (var kvp in deserialize)
                 {
-                    LanguageSystem.currentLanguageStrings[kvp.Key] = kvp.Value;
-                    LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
+                    dictionary[kvp.Key] = kvp.Value;
+                    if (!loadIntoFallback || LanguageSystem.currentLanguageStrings.ContainsKey(kvp.Key)) //If we are loading a fallback language, we should ONLY set a language line if a translation for the key doesn't already exist. Fallback should never override current language.
+                    {
+                        LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
+                    }
                 }
             }
         }
