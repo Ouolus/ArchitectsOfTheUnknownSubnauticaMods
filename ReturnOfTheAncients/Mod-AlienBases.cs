@@ -1,3 +1,5 @@
+using ArchitectsLibrary.API;
+
 namespace RotA
 {
     using ArchitectsLibrary.Handlers;
@@ -136,38 +138,38 @@ namespace RotA
             prop_ruinedGuardian.Patch();
             MakeObjectScannable(prop_ruinedGuardian.TechType, ency_ruinedGuardian, 6f);
 
-            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
 
-            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", "Alien Structure", "A large alien structure. (Lee23 7/9/2021 6:59 PM EST)", assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
+            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
             secretBaseModel.Patch();
 
-            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
+            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
             MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
 
-            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
+            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
 
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
 
-            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", "An alien rifle.", assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
+            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
 
-            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
 
-            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", "Alien Construction Tool", "An alien construction tool.", assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
+            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", "Alien Construction Tool", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
             builderRelic.Patch();
             MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
 
-            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", "The remains of a juvenile leviathan specimen.", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
+            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
             MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
 
