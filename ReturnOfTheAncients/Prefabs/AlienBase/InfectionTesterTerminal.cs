@@ -1,4 +1,5 @@
-﻿using RotA.Mono.AlienTech;
+﻿using ArchitectsLibrary.API;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -11,7 +12,7 @@ namespace RotA.Prefabs.AlienBase
         const string baseClassId = "b1f54987-4652-4f62-a983-4bf3029f8c5b";
 
         public InfectionTesterTerminal(string classId)
-            : base(classId, "Forcefield Control", ".")
+            : base(classId, LanguageSystem.Get("InfectionTesterTerminal"), LanguageSystem.Default)
         {
         }
 

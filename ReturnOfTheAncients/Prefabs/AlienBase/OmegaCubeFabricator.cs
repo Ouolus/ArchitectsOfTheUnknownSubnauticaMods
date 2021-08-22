@@ -1,4 +1,5 @@
-﻿using ArchitectsLibrary.Utility;
+﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.Utility;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace RotA.Prefabs.AlienBase
     {
         GameObject _processedPrefab;
         
-        public OmegaCubeFabricator() : base("OmegaCubeFabricator", "Fabricator Device", "Fabricates omega cubes.")
+        public OmegaCubeFabricator() : base("OmegaCubeFabricator", LanguageSystem.Get("OmegaCubeFabricator"), LanguageSystem.Default)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.API;
+using ECCLibrary;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -17,7 +18,7 @@ namespace RotA.Prefabs.AlienBase
         private bool voidInteriorDoor;
 
         public PrecursorDoorPrefab(string classId, string displayName, string terminalClassId, string doorKey, bool overrideTerminalPosition = false, Vector3 terminalLocalPosition = default, Vector3 terminalLocalRotation = default, string rootPrefabClassId = "b816abb4-8f6c-4d70-b4c5-662e69696b23", bool replaceForcefield = false)
-            : base(classId, displayName, ".")
+            : base(classId, displayName, LanguageSystem.Default)
         {
             this.terminalClassId = terminalClassId;
             this.overrideTerminalPosition = overrideTerminalPosition;

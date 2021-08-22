@@ -169,7 +169,7 @@ namespace RotA
             builderRelic.Patch();
             MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
 
-            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", LanguageSystem.Get("VoidbaseAquariumSkeleton"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
+            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
             MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
 

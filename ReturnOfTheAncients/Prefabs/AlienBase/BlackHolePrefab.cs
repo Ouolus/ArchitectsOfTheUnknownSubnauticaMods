@@ -1,4 +1,5 @@
-﻿using RotA.Mono.AlienTech;
+﻿using ArchitectsLibrary.API;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace RotA.Prefabs.AlienBase
 {
     public class BlackHolePrefab : Spawnable
     {        
-        public BlackHolePrefab() : base("ResearchBaseBlackHole", "Contained singularity", "...")
+        public BlackHolePrefab() : base("ResearchBaseBlackHole", LanguageSystem.Get("ResearchBaseBlackHole"), LanguageSystem.Default)
         {
         }
 

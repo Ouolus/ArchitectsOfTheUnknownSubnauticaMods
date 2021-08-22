@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Assets;
+﻿using ArchitectsLibrary.API;
+using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
 
@@ -10,7 +11,7 @@ namespace RotA.Prefabs.AlienBase
         private float triggerRadius;
 
         public TabletTerminalPrefab(string classId, PrecursorKeyTerminal.PrecursorKeyType keyType, float triggerRadius = 12f)
-            : base(classId, "Forcefield Control", ".")
+            : base(classId, LanguageSystem.Get("TabletTerminal"), LanguageSystem.Default)
         {
             this.keyType = keyType;
             this.triggerRadius = triggerRadius;
