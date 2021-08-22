@@ -9,9 +9,9 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public static class LanguageSystem
     {
-        internal static List<string> languagePaths = new();
-        internal static Dictionary<string, string> currentLanguageStrings = new();
-        internal static Dictionary<string, string> fallbackLanguageStrings = new();
+        internal static readonly List<string> LanguagePaths = new();
+        internal static readonly Dictionary<string, string> CurrentLanguageStrings = new();
+        internal static readonly Dictionary<string, string> FallbackLanguageStrings = new();
 
         /// <summary>
         /// A read-only property of "Undefined" string literal.
@@ -25,7 +25,7 @@ namespace ArchitectsLibrary.API
         public static void RegisterLocalization(string languageFolderName = "Localization")
         {
             var path = Path.Combine(Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), languageFolderName);
-            languagePaths.Add(path);
+            LanguagePaths.Add(path);
         }
 
         /// <summary>
@@ -33,14 +33,27 @@ namespace ArchitectsLibrary.API
         /// </summary>
         /// <param name="key">the key</param>
         /// <returns>the translation string</returns>
-        public static string Get(string key) => currentLanguageStrings.GetOrDefault(key, Default);
+        public static string Get(string key)
+        {
+            if (CurrentLanguageStrings.TryGetValue(key, out var translation))
+            {
+                return translation;
+            }
+            return FallbackLanguageStrings.GetOrDefault(key, Default);
+        }
         
         /// <summary>
         /// Gets a translation of a tooltip of a TechType. Same as <see cref="Get"/> but grabs a translation by the key "Tooltip_{<paramref name="key"/>}"
         /// </summary>
         /// <param name="key">the key</param>
         /// <returns>the translation string</returns>
-        public static string GetTooltip(string key) => currentLanguageStrings.GetOrDefault($"Tooltip_{key}", Default);
-
+        public static string GetTooltip(string key)
+        {
+            if (CurrentLanguageStrings.TryGetValue($"Tooltip_{key}", out var translation))
+            {
+                return translation;
+            }
+            return FallbackLanguageStrings.GetOrDefault($"Tooltip_{key}", Default);
+        }
     }
 }

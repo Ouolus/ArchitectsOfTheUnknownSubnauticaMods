@@ -20,7 +20,7 @@ namespace ArchitectsLibrary.Patches
 
         private static void LoadLanguageFilePrefix(string language)
         {
-            foreach (var languagePath in LanguageSystem.languagePaths)
+            foreach (var languagePath in LanguageSystem.LanguagePaths)
             {
                 LoadLanguages(language, languagePath);
             }
@@ -51,15 +51,15 @@ namespace ArchitectsLibrary.Patches
                     return;
 
                 var dictionary = loadIntoFallback
-                    ? LanguageSystem.fallbackLanguageStrings
-                    : LanguageSystem.currentLanguageStrings;
+                    ? LanguageSystem.FallbackLanguageStrings
+                    : LanguageSystem.CurrentLanguageStrings;
                 
                 dictionary.Clear();
                 
                 foreach (var kvp in deserialize)
                 {
                     dictionary[kvp.Key] = kvp.Value;
-                    if (!loadIntoFallback || LanguageSystem.currentLanguageStrings.ContainsKey(kvp.Key)) //If we are loading a fallback language, we should ONLY set a language line if a translation for the key doesn't already exist. Fallback should never override current language.
+                    if (!loadIntoFallback || LanguageSystem.CurrentLanguageStrings.ContainsKey(kvp.Key)) //If we are loading a fallback language, we should ONLY set a language line if a translation for the key doesn't already exist. Fallback should never override current language.
                     {
                         LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
                     }
