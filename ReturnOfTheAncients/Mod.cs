@@ -94,8 +94,6 @@
         private const string assetBundleName = "projectancientsassets";
         private const string gargAssetBundleName = "gargantuanassets";
         
-        private const string alienSignalName = "Alien Signal";
-
         public static Config config = OptionsPanelHandler.Main.RegisterModOptions<Config>();
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
@@ -307,28 +305,28 @@
 
         static void PatchSignals()
         {
-            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(3, -173, -1069), 5, new(true, "SupplyCacheBaseSubtitle", "SupplyCacheBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //white tablet icon
+            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", LanguageSystem.Get("RotASignalCragFieldBaseName"), LanguageSystem.Get("RotASignalCragFieldBaseLabel"), new Vector3(3, -173, -1069), 5, new(true, "SupplyCacheBaseSubtitle", "SupplyCacheBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //white tablet icon
             signal_cragFieldBase.Patch();
 
-            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-617, -182f, -598f), 5, new(true, "ResearchBaseSubtitle", "ResearchBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //red tablet icon
+            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", LanguageSystem.Get("RotASignalSparseReefBaseName"), LanguageSystem.Get("RotASignalSparseReefBaseLabel"), new Vector3(-617, -182f, -598f), 5, new(true, "ResearchBaseSubtitle", "ResearchBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 5, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
+            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", LanguageSystem.Get("RotASignalKooshZoneBaseName"), LanguageSystem.Get("RotASignalKooshZoneBaseLabel"), new Vector3(1489, -420, 1337), 5, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
-            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
+            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", LanguageSystem.Get("RotAGuardianSignalName"), LanguageSystem.Get("RotAGuardianSignalLabel"), new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
             signal_ruinedGuardian.Patch();
 
-            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
+            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", LanguageSystem.Get("RotASignalBloodKelpName"), LanguageSystem.Get("RotASignalBloodKelpLabel"), new Vector3(-554, -534, 1518), defaultColorIndex: 2);
             signal_cache_bloodKelp.Patch();
 
-            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
+            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", LanguageSystem.Get("RotASignalSparseReefName"), LanguageSystem.Get("RotASignalSparseReefLabel"), new Vector3(-929, -287, -760), defaultColorIndex: 1);
             signal_cache_sparseReef.Patch();
 
-            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
+            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", LanguageSystem.Get("RotASignalDunesName"), LanguageSystem.Get("RotASignalDunesLabel"), new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
             signal_cache_dunes.Patch();
 
-            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
+            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", LanguageSystem.Get("RotASignalLostRiverName"), LanguageSystem.Get("RotASignalLostRiverLabel"), new Vector3(-1111, -685, -655), defaultColorIndex: 3);
             signal_cache_lostRiver.Patch();
         }
 
