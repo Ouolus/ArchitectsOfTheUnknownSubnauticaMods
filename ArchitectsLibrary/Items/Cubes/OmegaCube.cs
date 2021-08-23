@@ -8,7 +8,7 @@ namespace ArchitectsLibrary.Items.Cubes
     
     class OmegaCube : PrecursorIonCube
     {
-        public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
+        public OmegaCube() : base("OmegaCube", LanguageSystem.Get("OmegaCube"), LanguageSystem.GetTooltip("OmegaCube"))
         {
             OnFinishedPatching += () =>
             {

@@ -87,4 +87,14 @@
   
   "ReinforcedGlass": "Reinforced glass",
   "Tooltip_ReinforcedGlass": "Strong, highly scratch resistant glass synthesized from sapphire crystal."
+  
+  // Cubes
+  "Electricube": "Electricube",
+  "Tooltip_Electricube": "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.",
+  
+  "OmegaCube": "Omega cube",
+  "Tooltip_OmegaCube": "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.",
+  
+  "RedIonCube": "Power cube",
+  "Tooltip_RedIonCube": "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.",
 }

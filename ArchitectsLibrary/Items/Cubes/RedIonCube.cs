@@ -8,7 +8,7 @@
     
     class RedIonCube : PrecursorIonCube
     {
-        public RedIonCube() : base("RedIonCube", "Power cube", "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.")
+        public RedIonCube() : base("RedIonCube", LanguageSystem.Get("RedIonCube"), LanguageSystem.GetTooltip("RedIonCube"))
         {
             OnFinishedPatching += () =>
             {
