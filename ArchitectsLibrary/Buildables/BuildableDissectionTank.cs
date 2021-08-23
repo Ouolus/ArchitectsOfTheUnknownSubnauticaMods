@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableDissectionTank : GenericPrecursorDecoration
     {
-        public BuildableDissectionTank() : base("BuildableDissectionTank", "Dissection Tank", "A decorational tank. Placeable inside and outside.")
+        public BuildableDissectionTank() : base("BuildableDissectionTank", LanguageSystem.Get("BuildableDissectionTank"), LanguageSystem.GetTooltip("BuildableDissectionTank"))
         {
         }
 

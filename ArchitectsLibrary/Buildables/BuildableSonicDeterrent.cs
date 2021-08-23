@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableSonicDeterrent : GenericPrecursorDecoration
     {
-        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", "Sonic Deterrent", "A large alien object that wards off fauna. Most effective against larger fauna.")
+        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", LanguageSystem.Get("BuildableSonicDeterrent"), LanguageSystem.GetTooltip("BuildableSonicDeterrent"))
         {
             OnFinishedPatching += () =>
             {

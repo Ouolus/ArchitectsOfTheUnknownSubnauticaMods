@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableAlienRobot : GenericPrecursorDecoration
     {
-        public BuildableAlienRobot() : base("BuildableAlienRobot", "Alien Robot", "An alien robot that wanders around. Placeable inside and outside.")
+        public BuildableAlienRobot() : base("BuildableAlienRobot", LanguageSystem.Get("BuildableAlienRobot"), LanguageSystem.GetTooltip("BuildableAlienRobot"))
         {
         }
 

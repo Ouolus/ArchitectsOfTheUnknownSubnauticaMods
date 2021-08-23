@@ -10,7 +10,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableItemPedestal : GenericPrecursorDecoration
     {
-        public BuildableItemPedestal() : base("BuildableItemPedestal", "Empty Item Pedestal", "A large pedestal that can be used to display a single item. Placeable inside and outside.")
+        public BuildableItemPedestal() : base("BuildableItemPedestal", LanguageSystem.Get("BuildableItemPedestal"), LanguageSystem.GetTooltip("BuildableItemPedestal"))
         {
         }
 

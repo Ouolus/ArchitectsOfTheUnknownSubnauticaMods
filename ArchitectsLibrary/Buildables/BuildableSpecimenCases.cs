@@ -6,7 +6,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableSpecimenCases : GenericPrecursorDecoration
     {
-        public BuildableSpecimenCases() : base("BuildableSpecimenCases", "Specimen Cases", "A large alien object, which has many small storage slots. Placeable inside and outside.")
+        public BuildableSpecimenCases() : base("BuildableSpecimenCases", LanguageSystem.Get("BuildableSpecimenCases"), LanguageSystem.GetTooltip("BuildableSpecimenCases"))
         {
         }
 
