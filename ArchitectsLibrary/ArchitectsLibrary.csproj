@@ -246,6 +246,7 @@
     <Compile Include="Utility\MaterialUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Localization\English.json" />
     <Content Include="mod_SN1.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
