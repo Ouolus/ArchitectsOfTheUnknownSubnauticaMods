@@ -112,5 +112,11 @@
   "Tooltip_RedBeryl": "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.",
   
   "Sapphire": "Sapphire",
-  "Tooltip_Sapphire": "Al₂O₃. Valuable insulative properties and applications in glass reinforcement."
+  "Tooltip_Sapphire": "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.",
+  
+  // Prompts
+  "WaterParkNoEnoughSizePrompt": "Cannot drop {0} in the ACU, requires at least {1} stacked ACUs to be dropped in.",
+  "BuilderIncrementSizePrompt": "Increment the size ({0})",
+  "BuilderDecrementSizePrompt": "Decrement the size ({0})",
+  "BuilderResetSizePrompt": "Reset the size ({0})"
 }
