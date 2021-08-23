@@ -48,27 +48,6 @@ namespace ArchitectsLibrary
 
         internal static PrecursorFabricator PrecursorFabricator;
 
-        static List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
-
-        static List<Spawnable> advancedMaterials = new() { new ReinforcedGlass(), new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new AotuPoster() };
-
-        static List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
-
-        static List<ReskinSpawnable> drillables = new() { new DrillableCobalt(), new DrillableEmerald(), new DrillableMorganite(), new DrillableRedBeryl(), new DrillableSapphire() };
-
-        static List<ReskinSpawnable> minerals = new() { new Cobalt(), new Emerald(), new Morganite(), new RedBeryl(), new Sapphire() };
-        
-        static List<GenericPrecursorDecoration> buildables = new()
-        {
-            // exterior only
-            new BuildableColumn(), new BuildableArchway(), new BuildableSonicDeterrent(),
-            
-            // exterior and interior
-            new BuildablePlatform(), new BuildableRelicTank(), new BuildableLargeRelicTank(), new BuildableItemPedestal(), new BuildableSpecimenCases(), new BuildableDissectionTank(),
-            /*new BuildableAlienRobot(), new BuildableWarper(),*/ new BuildableInfoPanel(), new BuildableMicroscope(), new BuildableTable(), new BuildableColumnSmall(), 
-            new BuildablePedestal(), new BuildablePedestalLarge(), new BuildableLight1(), new BuildableLight2(), new BuildableLight3(), new BuildableLight4(), new BuildableLight5()
-        };
-        
         static TechType alienTechnologyMasterTech;
 
         internal static AchievementData achievementData;
@@ -135,6 +114,8 @@ namespace ArchitectsLibrary
             achievementData.Load();
 
             PatchAchievements();
+
+            List<VanillaPrefab> prefabPatchings = new() { new PrecursorIonCrystal(), new PrecursorIonBattery(), new PrecursorIonPowerCell() };
             
             prefabPatchings.ForEach(PrefabHandler.RegisterPrefab);
 
@@ -202,15 +183,19 @@ namespace ArchitectsLibrary
 
         static void PatchMinerals()
         {
+            List<ReskinSpawnable> minerals = new() { new Cobalt(), new Emerald(), new Morganite(), new RedBeryl(), new Sapphire() };
             minerals.ForEach(mineral => mineral.Patch());
             
+            List<ReskinSpawnable> drillables = new() { new DrillableCobalt(), new DrillableEmerald(), new DrillableMorganite(), new DrillableRedBeryl(), new DrillableSapphire() };
             drillables.ForEach(drillable => drillable.Patch());
         }
 
         static void PatchItems()
         {
+            List<Spawnable> advancedMaterials = new() { new ReinforcedGlass(), new AlienCompositeGlass(), new CobaltIngot(), new PrecursorAlloyIngot(), new AotuPoster() };
             advancedMaterials.ForEach(one => one.Patch());
             
+            List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
             precursorCubes.ForEach(cube => cube.Patch());
 
             PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
@@ -250,6 +235,16 @@ namespace ArchitectsLibrary
 
         static void PatchBuildables()
         {
+            List<GenericPrecursorDecoration> buildables = new()
+            {
+                // exterior only
+                new BuildableColumn(), new BuildableArchway(), new BuildableSonicDeterrent(),
+            
+                // exterior and interior
+                new BuildablePlatform(), new BuildableRelicTank(), new BuildableLargeRelicTank(), new BuildableItemPedestal(), new BuildableSpecimenCases(), new BuildableDissectionTank(),
+                /*new BuildableAlienRobot(), new BuildableWarper(),*/ new BuildableInfoPanel(), new BuildableMicroscope(), new BuildableTable(), new BuildableColumnSmall(), 
+                new BuildablePedestal(), new BuildablePedestalLarge(), new BuildableLight1(), new BuildableLight2(), new BuildableLight3(), new BuildableLight4(), new BuildableLight5()
+            };
             buildables.ForEach(buildable => buildable.Patch());
         }
     }
