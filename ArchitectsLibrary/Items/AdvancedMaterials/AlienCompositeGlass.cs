@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class AlienCompositeGlass : ReskinSpawnable
     {
-        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
+        public AlienCompositeGlass() : base("AlienCompositeGlass", LanguageSystem.Get("AlienCompositeGlass"), LanguageSystem.GetTooltip("AlienCompositeGlass"))
         {
             OnFinishedPatching += () =>
             {

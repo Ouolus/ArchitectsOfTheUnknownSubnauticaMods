@@ -8,7 +8,7 @@
     
     class ReinforcedGlass : ReskinSpawnable
     {
-        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
+        public ReinforcedGlass() : base("ReinforcedGlass", LanguageSystem.Get("ReinforcedGlass"), LanguageSystem.GetTooltip("ReinforcedGlass"))
         {
             OnFinishedPatching += () =>
             {

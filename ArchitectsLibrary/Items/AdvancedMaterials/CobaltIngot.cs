@@ -10,17 +10,8 @@
     class CobaltIngot : ReskinSpawnable
     {
         Atlas.Sprite sprite;
-        protected override string ReferenceClassId => "4ae90608-40da-45ce-8480-e2f0133f96b2";
 
-        public override TechGroup GroupForPDA => TechGroup.Resources;
-        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
-
-        public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
-        public override string[] StepsToFabricatorTab => new string[] { "Resources", "AdvancedMaterials" };
-
-        public override TechType RequiredForUnlock => AUHandler.CobaltTechType;
-
-        public CobaltIngot() : base("CobaltIngot", "Cobalt ingot", "Co. Condensed cobalt bar.")
+        public CobaltIngot() : base("CobaltIngot", LanguageSystem.Get("CobaltIngot"), LanguageSystem.GetTooltip("CobaltIngot"))
         {
             OnFinishedPatching += () =>
             {
@@ -39,6 +30,16 @@
             renderer.material.SetColor("_Color", new Color(5f, 5f, 5f));
             renderer.material.SetFloat("_Shininess", 5f);
         }
+        
+        protected override string ReferenceClassId => "4ae90608-40da-45ce-8480-e2f0133f96b2";
+
+        public override TechGroup GroupForPDA => TechGroup.Resources;
+        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+
+        public override CraftTree.Type FabricatorType => CraftTree.Type.Fabricator;
+        public override string[] StepsToFabricatorTab => new string[] { "Resources", "AdvancedMaterials" };
+
+        public override TechType RequiredForUnlock => AUHandler.CobaltTechType;
 
         protected override Atlas.Sprite GetItemSprite()
         {

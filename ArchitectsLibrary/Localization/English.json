@@ -66,9 +66,25 @@
   "Tooltip_BuildableAlienRobot": "An alien robot that wanders around. Placeable inside and outside.",
   
   "BuildableWarper": "Warper",
-  "Tooltip_BuildableWarper": "A Self-Warping Quarantine Enforcer Unit that attacks infected creatures."
+  "Tooltip_BuildableWarper": "A Self-Warping Quarantine Enforcer Unit that attacks infected creatures.",
   // ..................................................................................................
   
   "PrecursorFabricator": "Alien Fabricator",
   "Tooltip_PrecursorFabricator": "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts."
+  
+  // Advanced Materials
+  "AlienCompositeGlass": "Alien composite glass",
+  "Tooltip_AlienCompositeGlass": "Extremely resistant glass, infused with alien technology.",
+  
+  "AotuPoster": "Architects of the Unknown holographic projector",
+  "Tooltip_AotuPoster": "A team logo, projected with holographic technology.",
+  
+  "CobaltIngot": "Cobalt ingot",
+  "Tooltip_CobaltIngot": "Co. Condensed cobalt bar.",
+  
+  "PrecursorIngot": "Alien Alloy Ingot",
+  "Tooltip_PrecursorIngot": "An alien resource with mysterious properties and unprecedented integrity.",
+  
+  "ReinforcedGlass": "Reinforced glass",
+  "Tooltip_ReinforcedGlass": "Strong, highly scratch resistant glass synthesized from sapphire crystal."
 }

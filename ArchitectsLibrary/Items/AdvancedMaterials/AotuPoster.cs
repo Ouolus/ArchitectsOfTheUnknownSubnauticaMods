@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class AotuPoster : HolographicPoster
     {
-        public AotuPoster() : base("AotuPoster", "Architects of the Unknown holographic projector", "A team logo, projected with holographic technology.")
+        public AotuPoster() : base("AotuPoster", LanguageSystem.Get("AotuPoster"), LanguageSystem.GetTooltip("AotuPoster"))
         {
         }
 

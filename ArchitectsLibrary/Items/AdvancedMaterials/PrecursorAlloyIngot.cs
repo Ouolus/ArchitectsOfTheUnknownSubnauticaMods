@@ -14,7 +14,7 @@ namespace ArchitectsLibrary.Items.AdvancedMaterials
         GameObject prefab;
         Atlas.Sprite sprite;
 
-        public PrecursorAlloyIngot() : base("PrecursorIngot", "Alien Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
+        public PrecursorAlloyIngot() : base("PrecursorIngot", LanguageSystem.Get("PrecursorIngot"), LanguageSystem.GetTooltip("PrecursorIngot"))
         {
             OnFinishedPatching += () =>
             {
