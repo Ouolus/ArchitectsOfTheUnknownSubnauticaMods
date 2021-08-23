@@ -10,7 +10,7 @@
     {
         protected override string ReferenceClassId => "b3db72b6-f0cf-4234-be74-d98bd4c49797";
 
-        public DrillableMorganite() : base("DrillableMorganite", "Morganite", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
+        public DrillableMorganite() : base("DrillableMorganite", LanguageSystem.Get("DrillableMorganite"), LanguageSystem.GetTooltip("DrillableMorganite"))
         {
             OnFinishedPatching += () =>
             {

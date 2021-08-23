@@ -97,4 +97,20 @@
   
   "RedIonCube": "Power cube",
   "Tooltip_RedIonCube": "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.",
+  
+  // Drillables
+  "DrillableCobalt": "Cobalt",
+  "Tooltip_DrillableCobalt": "Co. Applications in magnetic, high-strength alloy fabrication.",
+  
+  "DrillableEmerald": "Emerald",
+  "Tooltip_DrillableEmerald": "Be₃Al₂SiO₆. Beryl variant with applications in advanced alien fabrication.",
+  
+  "DrillableMorganite": "Morganite",
+  "Tooltip_DrillableMorganite": "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.",
+  
+  "DrillableRedBeryl": "Red beryl",
+  "Tooltip_DrillableRedBeryl": "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.",
+  
+  "DrillableSapphire": "Sapphire",
+  "Tooltip_DrillableSapphire": "Al₂O₃. Valuable insulative properties and applications in glass reinforcement."
 }
