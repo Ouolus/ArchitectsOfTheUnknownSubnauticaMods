@@ -10,7 +10,7 @@
     {
         protected override string ReferenceClassId => "109bbd29-c445-4ad8-a4bf-be7bc6d421d6";
 
-        public DrillableSapphire() : base("DrillableSapphire", LanguageSystem.Get("DrillableSapphire"), LanguageSystem.GetTooltip("DrillableSapphire"))
+        public DrillableSapphire() : base("DrillableSapphire", LanguageSystem.Get("Sapphire"), LanguageSystem.GetTooltip("Sapphire"))
         {
             OnFinishedPatching += () =>
             {
