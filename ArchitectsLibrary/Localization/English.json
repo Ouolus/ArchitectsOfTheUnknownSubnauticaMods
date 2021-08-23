@@ -70,7 +70,7 @@
   // ..................................................................................................
   
   "PrecursorFabricator": "Alien Fabricator",
-  "Tooltip_PrecursorFabricator": "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts."
+  "Tooltip_PrecursorFabricator": "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.",
   
   // Advanced Materials
   "AlienCompositeGlass": "Alien composite glass",
@@ -86,7 +86,7 @@
   "Tooltip_PrecursorIngot": "An alien resource with mysterious properties and unprecedented integrity.",
   
   "ReinforcedGlass": "Reinforced glass",
-  "Tooltip_ReinforcedGlass": "Strong, highly scratch resistant glass synthesized from sapphire crystal."
+  "Tooltip_ReinforcedGlass": "Strong, highly scratch resistant glass synthesized from sapphire crystal.",
   
   // Cubes
   "Electricube": "Electricube",
