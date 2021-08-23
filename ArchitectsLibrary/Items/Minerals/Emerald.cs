@@ -13,7 +13,7 @@ namespace ArchitectsLibrary.Items.Minerals
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "6e7f3d62-7e76-4415-af64-5dcd88fc3fe4";
 
-        public Emerald() : base("Emerald", "Emerald", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
+        public Emerald() : base("Emerald", LanguageSystem.Get("Emerald"), LanguageSystem.GetTooltip("Emerald"))
         {
             OnFinishedPatching += () =>
             {

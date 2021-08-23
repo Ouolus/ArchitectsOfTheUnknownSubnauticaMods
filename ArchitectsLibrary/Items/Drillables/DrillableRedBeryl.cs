@@ -10,7 +10,7 @@
     {
         protected override string ReferenceClassId => "fb5de2b6-1fe8-44fc-a555-dc0a09dc292a";
 
-        public DrillableRedBeryl() : base("DrillableRedBeryl", LanguageSystem.Get("DrillableRedBeryl"), LanguageSystem.GetTooltip("DrillableRedBeryl"))
+        public DrillableRedBeryl() : base("DrillableRedBeryl", LanguageSystem.Get("RedBeryl"), LanguageSystem.GetTooltip("RedBeryl"))
         {
             OnFinishedPatching += () =>
             {

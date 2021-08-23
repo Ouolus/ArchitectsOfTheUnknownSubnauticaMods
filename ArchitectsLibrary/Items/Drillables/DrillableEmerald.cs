@@ -12,7 +12,7 @@ namespace ArchitectsLibrary.Items.Drillables
     {
         protected override string ReferenceClassId => "4f441e53-7a9a-44dc-83a4-b1791dc88ffd";
 
-        public DrillableEmerald() : base("DrillableEmerald", LanguageSystem.Get("DrillableEmerald"), LanguageSystem.GetTooltip("DrillableEmerald"))
+        public DrillableEmerald() : base("DrillableEmerald", LanguageSystem.Get("Emerald"), LanguageSystem.GetTooltip("Emerald"))
         {
             OnFinishedPatching += () =>
             {

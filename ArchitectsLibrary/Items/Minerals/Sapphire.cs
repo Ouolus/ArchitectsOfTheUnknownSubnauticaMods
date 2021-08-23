@@ -11,7 +11,7 @@
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "87293f19-cca3-46e6-bb3d-6e8dc579e27b";
 
-        public Sapphire() : base("Sapphire", "Sapphire", "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.")
+        public Sapphire() : base("Sapphire", LanguageSystem.Get("Sapphire"), LanguageSystem.GetTooltip("Sapphire"))
         {
             OnFinishedPatching += () =>
             {

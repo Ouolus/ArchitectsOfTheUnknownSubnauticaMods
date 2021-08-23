@@ -10,7 +10,7 @@
     {
         protected override string ReferenceClassId => "b3db72b6-f0cf-4234-be74-d98bd4c49797";
 
-        public DrillableMorganite() : base("DrillableMorganite", LanguageSystem.Get("DrillableMorganite"), LanguageSystem.GetTooltip("DrillableMorganite"))
+        public DrillableMorganite() : base("DrillableMorganite", LanguageSystem.Get("Morganite"), LanguageSystem.GetTooltip("Morganite"))
         {
             OnFinishedPatching += () =>
             {
