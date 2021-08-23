@@ -68,6 +68,8 @@ namespace ArchitectsLibrary
         [QModPrePatch]
         public static void PreLoad()
         {
+            LanguageSystem.RegisterLocalization();
+            
             fabBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, fabBundleName));
             assetBundle = AssetBundle.LoadFromFile(Path.Combine(AssetsFolder, assetBundleName));
             
