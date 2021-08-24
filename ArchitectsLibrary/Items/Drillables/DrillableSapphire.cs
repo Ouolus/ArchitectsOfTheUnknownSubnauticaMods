@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Drillables
 {
     using UnityEngine;
     using API;
@@ -10,8 +10,12 @@
     {
         protected override string ReferenceClassId => "109bbd29-c445-4ad8-a4bf-be7bc6d421d6";
 
-        public DrillableSapphire() : base("DrillableSapphire", "Sapphire", "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.")
+        public DrillableSapphire() : base("DrillableSapphire", LanguageSystem.Get("Sapphire"), LanguageSystem.GetTooltip("Sapphire"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableSapphireTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

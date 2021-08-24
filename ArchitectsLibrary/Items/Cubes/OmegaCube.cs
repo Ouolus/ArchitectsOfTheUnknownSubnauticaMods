@@ -1,5 +1,6 @@
-namespace ArchitectsLibrary.Items 
+namespace ArchitectsLibrary.Items.Cubes 
 {
+    using Handlers;
     using SMLHelper.V2.Crafting;
     using System.Collections.Generic;
     using API;
@@ -7,10 +8,13 @@ namespace ArchitectsLibrary.Items
     
     class OmegaCube : PrecursorIonCube
     {
-        public OmegaCube() : base("OmegaCube", "Omega cube", "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.")
+        public OmegaCube() : base("OmegaCube", LanguageSystem.Get("OmegaCube"), LanguageSystem.GetTooltip("OmegaCube"))
         {
             OnFinishedPatching += () =>
             {
+                AUHandler.OmegaCubeTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+                
                 DisplayCaseServices.WhitelistTechType(TechType);
                 DisplayCaseServices.SetOffset(TechType, new Vector3(0f, -0.25f, 0f));
             };

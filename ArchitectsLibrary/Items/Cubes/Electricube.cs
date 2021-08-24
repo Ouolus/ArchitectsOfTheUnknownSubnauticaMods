@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Cubes
 {
     using SMLHelper.V2.Crafting;
     using System.Collections.Generic;
@@ -8,8 +8,14 @@
     
     class Electricube : PrecursorIonCube
     {
-        public Electricube() : base("Electricube", "Electricube", "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.")
+        public Electricube() : base("Electricube", LanguageSystem.Get("Electricube"), LanguageSystem.GetTooltip("Electricube"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.ElectricubeTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+            };
         }
 
         protected override TechData GetBlueprintRecipe()

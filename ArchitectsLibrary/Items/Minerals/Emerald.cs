@@ -1,4 +1,7 @@
-﻿namespace ArchitectsLibrary.Items
+﻿using ArchitectsLibrary.Handlers;
+using ArchitectsLibrary.Utility;
+
+namespace ArchitectsLibrary.Items.Minerals
 {
     using System.Collections.Generic;
     using UnityEngine;
@@ -10,8 +13,15 @@
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "6e7f3d62-7e76-4415-af64-5dcd88fc3fe4";
 
-        public Emerald() : base("Emerald", "Emerald", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
+        public Emerald() : base("Emerald", LanguageSystem.Get("Emerald"), LanguageSystem.GetTooltip("Emerald"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.EmeraldTechType = TechType;
+                ItemUtils.PatchEncy(Main.encyKey_emerald, "PlanetaryGeology", "Emerald Crystal", "A relatively tough, green mineral and a variation of beryl. Can be found in small amounts in deep biomes, and in large deposits amongst areas with extensive sand dunes. While there are few known practical uses for this gemstone, a significant amount of this mineral has been observed in alien technology.\n\nAssessment: May have applications in the fabrication of alien technology");
+                ItemUtils.MakeObjectScannable(TechType, Main.encyKey_emerald, 3f);
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

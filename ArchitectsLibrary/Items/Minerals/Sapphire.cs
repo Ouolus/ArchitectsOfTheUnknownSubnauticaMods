@@ -1,5 +1,6 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Minerals
 {
+    using Handlers;
     using System.Collections.Generic;
     using UnityEngine;
     using UWE;
@@ -10,8 +11,13 @@
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "87293f19-cca3-46e6-bb3d-6e8dc579e27b";
 
-        public Sapphire() : base("Sapphire", "Sapphire", "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.")
+        public Sapphire() : base("Sapphire", LanguageSystem.Get("Sapphire"), LanguageSystem.GetTooltip("Sapphire"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.SapphireTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

@@ -8,12 +8,18 @@ using ArchitectsLibrary.API;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class AlienCompositeGlass : ReskinSpawnable
     {
-        public AlienCompositeGlass() : base("AlienCompositeGlass", "Alien composite glass", "Extremely resistant glass, infused with alien technology.")
+        public AlienCompositeGlass() : base("AlienCompositeGlass", LanguageSystem.Get("AlienCompositeGlass"), LanguageSystem.GetTooltip("AlienCompositeGlass"))
         {
+            OnFinishedPatching += () =>
+            {
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+                AUHandler.AlienCompositeGlassTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         protected override string ReferenceClassId => "7965512f-39fe-4770-9060-98bf149bca2e";

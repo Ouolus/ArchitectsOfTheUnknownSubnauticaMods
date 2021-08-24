@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableTable : GenericPrecursorDecoration
     {
-        public BuildableTable() : base("BuildableAlienTable", "Alien Lab Table", "A long table that can be used for decoration. Placeable inside and outside.")
+        public BuildableTable() : base("BuildableAlienTable", LanguageSystem.Get("BuildableAlienTable"), LanguageSystem.GetTooltip("BuildableAlienTable"))
         {
         }
 

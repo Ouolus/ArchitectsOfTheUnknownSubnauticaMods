@@ -1,5 +1,6 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Minerals
 {
+    using Handlers;
     using System.Collections.Generic;
     using UnityEngine;
     using UWE;
@@ -10,9 +11,13 @@
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "3b52098a-4b58-467c-a29a-1d1b6d92ec3e";
 
-        public RedBeryl() : base("RedBeryl", "Red beryl", "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.")
+        public RedBeryl() : base("RedBeryl", LanguageSystem.Get("RedBeryl"), LanguageSystem.GetTooltip("RedBeryl"))
         {
-
+            OnFinishedPatching += () =>
+            {
+                AUHandler.RedBerylTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

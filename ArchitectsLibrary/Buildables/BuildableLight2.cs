@@ -6,7 +6,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableLight2 : GenericPrecursorDecoration
     {
-        public BuildableLight2() : base("BuildablePrecursorLight2", "Alien Activated Light", "A decorational light, that activates within range. Placeable inside and outside.")
+        public BuildableLight2() : base("BuildablePrecursorLight2", LanguageSystem.Get("BuildablePrecursorLight2"), LanguageSystem.GetTooltip("BuildablePrecursorLight2"))
         {
         }
 

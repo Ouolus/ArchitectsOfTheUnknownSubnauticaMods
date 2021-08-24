@@ -1,5 +1,6 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Minerals
 {
+    using Handlers;
     using System.Collections.Generic;
     using UnityEngine;
     using UWE;
@@ -10,9 +11,13 @@
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "8ef17c52-2aa8-46b6-ada3-c3e3c4a78dd6";
 
-        public Morganite() : base("Morganite", "Morganite", "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.")
+        public Morganite() : base("Morganite", LanguageSystem.Get("Morganite"), LanguageSystem.GetTooltip("Morganite"))
         {
-
+            OnFinishedPatching += () =>
+            {
+                AUHandler.MorganiteTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

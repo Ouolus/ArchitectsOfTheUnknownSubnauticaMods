@@ -9,7 +9,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableMicroscope : GenericPrecursorDecoration
     {
-        public BuildableMicroscope() : base("BuildableMicroscope", "Alien Microscope", "What appears to be an advanced microscope. Non-functional. Placeable inside and outside.")
+        public BuildableMicroscope() : base("BuildableMicroscope", LanguageSystem.Get("BuildableMicroscope"), LanguageSystem.GetTooltip("BuildableMicroscope"))
         {
         }
 

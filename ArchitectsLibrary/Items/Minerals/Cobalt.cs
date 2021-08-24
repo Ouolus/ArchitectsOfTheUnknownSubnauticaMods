@@ -1,18 +1,22 @@
-﻿
-
-namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Minerals
 {
     using System.Collections.Generic;
     using API;
     using UnityEngine;
     using UWE;
+    using Handlers;
     class Cobalt : ReskinSpawnable
     {
         Atlas.Sprite sprite;
         protected override string ReferenceClassId => "3c5bd4db-953d-4d23-92be-f5a3b76b2e25";
 
-        public Cobalt() : base("Cobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
+        public Cobalt() : base("Cobalt", LanguageSystem.Get("Cobalt"), LanguageSystem.GetTooltip("Cobalt"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.CobaltTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

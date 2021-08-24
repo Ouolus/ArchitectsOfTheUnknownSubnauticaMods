@@ -1,21 +1,28 @@
-﻿using System.Collections;
-using SMLHelper.V2.Assets;
+﻿using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
-using SMLHelper.V2.Utility;
+using SMLHelper.V2.Handlers;
 using UnityEngine;
 using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Utility;
 using ArchitectsLibrary.Handlers;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     class PrecursorAlloyIngot : Craftable
     {
         GameObject prefab;
         Atlas.Sprite sprite;
 
-        public PrecursorAlloyIngot() : base("PrecursorIngot", "Alien Alloy Ingot", "An alien resource with mysterious properties and unprecedented integrity.")
+        public PrecursorAlloyIngot() : base("PrecursorIngot", LanguageSystem.Get("PrecursorIngot"), LanguageSystem.GetTooltip("PrecursorIngot"))
         {
+            OnFinishedPatching += () =>
+            {
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+                AUHandler.PrecursorAlloyIngotTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new List<TechType>() { TechType });
+            };
         }
 
         protected override TechData GetBlueprintRecipe()

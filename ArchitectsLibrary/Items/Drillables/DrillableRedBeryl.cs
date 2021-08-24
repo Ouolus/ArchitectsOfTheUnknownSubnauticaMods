@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Drillables
 {
     using UnityEngine;
     using API;
@@ -10,8 +10,12 @@
     {
         protected override string ReferenceClassId => "fb5de2b6-1fe8-44fc-a555-dc0a09dc292a";
 
-        public DrillableRedBeryl() : base("DrillableRedBeryl", "Red beryl", "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.")
+        public DrillableRedBeryl() : base("DrillableRedBeryl", LanguageSystem.Get("RedBeryl"), LanguageSystem.GetTooltip("RedBeryl"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableRedBerylTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

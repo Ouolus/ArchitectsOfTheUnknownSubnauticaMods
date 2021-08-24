@@ -1,4 +1,5 @@
 using System.Collections;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Utility;
 using ArchitectsLibrary.Handlers;
 using FMODUnity;
@@ -18,7 +19,7 @@ namespace ArchitectsLibrary.Buildables
         Atlas.Sprite sprite;
 
         public PrecursorFabricator()
-            : base("PrecursorFabricator", "Alien Fabricator", "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.")
+            : base("PrecursorFabricator", LanguageSystem.Get("PrecursorFabricator"), LanguageSystem.GetTooltip("PrecursorFabricator"))
         {
             OnFinishedPatching += () =>
             {

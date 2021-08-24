@@ -1,0 +1,122 @@
+{
+  // Buildables
+  
+  "BuildableArchway": "Alien Door Structure",
+  "Tooltip_BuildableArchway": "A large object, likely used as a door frame. Decorational.",
+  
+  "BuildableColumn": "Alien Column Structure",
+  "Tooltip_BuildableColumn": "A tall, column-like object with a complex design. Decorational.",
+  
+  "BuildableColumnSmall": "Small Alien Column Structure",
+  "Tooltip_BuildableColumnSmall": "A tall, column-like object with a complex design. Placeable inside and outside.",
+  
+  "BuildableDissectionTank": "Dissection Tank",
+  "Tooltip_BuildableDissectionTank": "A decorational tank. Placeable inside and outside.",
+  
+  "BuildableInfoPanel": "Alien Map",
+  "Tooltip_BuildableInfoPanel": "A map of an unknown alien structure. Placeable inside and outside.",
+  
+  "BuildableItemPedestal": "Empty Item Pedestal",
+  "Tooltip_BuildableItemPedestal": "A large pedestal that can be used to display a single item. Placeable inside and outside.",
+  
+  "BuildableLargeRelicTank": "Long Relic Case",
+  "Tooltip_BuildableLargeRelicTank": "A large, empty relic case. Can hold 3 items. Placeable inside and outside.",
+  
+  "BuildablePrecursorLight1": "Large Alien Activated Light",
+  "Tooltip_BuildablePrecursorLight1": "A decorational light, that activates within range. Placeable inside and outside.",
+  
+  "BuildablePrecursorLight2": "Alien Activated Light",
+  "Tooltip_BuildablePrecursorLight2": "A decorational light, that activates within range. Placeable inside and outside.",
+  
+  "BuildablePrecursorLight3": "Large Alien Light",
+  "Tooltip_BuildablePrecursorLight3": "A decorational light. Placeable inside and outside.",
+  
+  "BuildablePrecursorLight4": "Small Alien Light",
+  "Tooltip_BuildablePrecursorLight4": "A decorational light. Activates within range. Placeable inside and outside.",
+  
+  "BuildablePrecursorLight5": "Small Alien Spotlight",
+  "Tooltip_BuildablePrecursorLight5": "A decorational light. Placeable inside and outside.",
+  
+  "BuildableMicroscope": "Alien Microscope",
+  "Tooltip_BuildableMicroscope": "What appears to be an advanced microscope. Non-functional. Placeable inside and outside.",
+  
+  "BuildablePedestal": "Alien Pedestal",
+  "Tooltip_BuildablePedestal": "A pedestal that can be used for decoration. Placeable inside and outside.",
+  
+  "BuildablePedestalLarge": "Tall Alien Pedestal",
+  "Tooltip_BuildablePedestalLarge": "A large pedestal that can be used for decoration. Placeable inside and outside.",
+  
+  "BuildablePlatform": "Alien Platform",
+  "Tooltip_BuildablePlatform": "A large, flat platform, for decoration. Placeable inside and outside.",
+  
+  "BuildableRelicTank": "Relic Case",
+  "Tooltip_BuildableRelicTank": "An empty relic case. Can hold 1 item. Placeable inside and outside.",
+  
+  "BuildableSonicDeterrent": "Sonic Deterrent",
+  "Tooltip_BuildableSonicDeterrent": "A large alien object that wards off fauna. Most effective against larger fauna.",
+  
+  "BuildableSpecimenCases": "Specimen Cases",
+  "Tooltip_BuildableSpecimenCases": "A large alien object, which has many small storage slots. Placeable inside and outside.",
+  
+  "BuildableAlienTable": "Alien Lab Table",
+  "Tooltip_BuildableAlienTable": "A long table that can be used for decoration. Placeable inside and outside.",
+  
+  // ......................................Cut content.................................................
+  "BuildableAlienRobot": "Alien Robot",
+  "Tooltip_BuildableAlienRobot": "An alien robot that wanders around. Placeable inside and outside.",
+  
+  "BuildableWarper": "Warper",
+  "Tooltip_BuildableWarper": "A Self-Warping Quarantine Enforcer Unit that attacks infected creatures.",
+  // ..................................................................................................
+  
+  "PrecursorFabricator": "Alien Fabricator",
+  "Tooltip_PrecursorFabricator": "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.",
+  
+  // Advanced Materials
+  "AlienCompositeGlass": "Alien composite glass",
+  "Tooltip_AlienCompositeGlass": "Extremely resistant glass, infused with alien technology.",
+  
+  "AotuPoster": "Architects of the Unknown holographic projector",
+  "Tooltip_AotuPoster": "A team logo, projected with holographic technology.",
+  
+  "CobaltIngot": "Cobalt ingot",
+  "Tooltip_CobaltIngot": "Co. Condensed cobalt bar.",
+  
+  "PrecursorIngot": "Alien Alloy Ingot",
+  "Tooltip_PrecursorIngot": "An alien resource with mysterious properties and unprecedented integrity.",
+  
+  "ReinforcedGlass": "Reinforced glass",
+  "Tooltip_ReinforcedGlass": "Strong, highly scratch resistant glass synthesized from sapphire crystal.",
+  
+  // Cubes
+  "Electricube": "Electricube",
+  "Tooltip_Electricube": "A high capacity energy source with a similar structure to the Ion Cube. Has applications in biomechanical materials and warping technology.",
+  
+  "OmegaCube": "Omega cube",
+  "Tooltip_OmegaCube": "Complex alien material with gargantuan energy capacity. Applications in warp drive technology.",
+  
+  "RedIonCube": "Power cube",
+  "Tooltip_RedIonCube": "A high capacity energy source with a similar structure to the Ion Cube. Capable of releasing massive amounts of energy in a short burst. Applications in powerful offensive and defensive technology.",
+  
+  // Minerals (same as their Drillable equivalent)
+  "Cobalt": "Cobalt",
+  "Tooltip_Cobalt": "Co. Applications in magnetic, high-strength alloy fabrication.",
+  
+  "DrillableEmerald": "Emerald",
+  "Tooltip_DrillableEmerald": "Be₃Al₂SiO₆. Beryl variant with applications in advanced alien fabrication.",
+  
+  "Morganite": "Morganite",
+  "Tooltip_Morganite": "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.",
+  
+  "RedBeryl": "Red beryl",
+  "Tooltip_RedBeryl": "Be₃Al₂Si₆O₁₈. Very rare mineral with applications in advanced alien fabrication.",
+  
+  "Sapphire": "Sapphire",
+  "Tooltip_Sapphire": "Al₂O₃. Valuable insulative properties and applications in glass reinforcement.",
+  
+  // Prompts
+  "WaterParkNoEnoughSizePrompt": "Cannot drop {0} in the ACU, requires at least {1} stacked ACUs to be dropped in.",
+  "BuilderIncrementSizePrompt": "Increment the size ({0})",
+  "BuilderDecrementSizePrompt": "Decrement the size ({0})",
+  "BuilderResetSizePrompt": "Reset the size ({0})"
+}

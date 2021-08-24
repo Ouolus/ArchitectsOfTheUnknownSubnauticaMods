@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.Drillables
 {
     using UnityEngine;
     using API;
@@ -10,8 +10,12 @@
     {
         protected override string ReferenceClassId => "a05fe1c9-ae0d-43db-a12c-865992808cb2";
 
-        public DrillableCobalt() : base("DrillableCobalt", "Cobalt", "Co. Applications in magnetic, high-strength alloy fabrication.")
+        public DrillableCobalt() : base("DrillableCobalt", LanguageSystem.Get("Cobalt"), LanguageSystem.GetTooltip("Cobalt"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.DrillableCobaltTechType = TechType;
+            };
         }
 
         protected override void ApplyChangesToPrefab(GameObject prefab)

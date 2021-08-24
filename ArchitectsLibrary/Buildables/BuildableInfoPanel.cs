@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableInfoPanel : GenericPrecursorDecoration
     {
-        public BuildableInfoPanel() : base("BuildableInfoPanel", "Alien Map", "A map of an unknown alien structure. Placeable inside and outside.")
+        public BuildableInfoPanel() : base("BuildableInfoPanel", LanguageSystem.Get("BuildableInfoPanel"), LanguageSystem.GetTooltip("BuildableInfoPanel"))
         {
         }
 

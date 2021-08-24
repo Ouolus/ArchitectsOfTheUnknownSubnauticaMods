@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items
+﻿namespace ArchitectsLibrary.Items.AdvancedMaterials
 {
     using SMLHelper.V2.Crafting;
     using System.Collections.Generic;
@@ -8,8 +8,13 @@
     
     class ReinforcedGlass : ReskinSpawnable
     {
-        public ReinforcedGlass() : base("ReinforcedGlass", "Reinforced glass", "Strong, highly scratch resistant glass synthesized from sapphire crystal.")
+        public ReinforcedGlass() : base("ReinforcedGlass", LanguageSystem.Get("ReinforcedGlass"), LanguageSystem.GetTooltip("ReinforcedGlass"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.ReinforcedGlassTechType = TechType;
+                CraftData.pickupSoundList.Add(TechType, "event:/loot/pickup_glass");
+            };
         }
 
         public override TechGroup GroupForPDA => TechGroup.Resources;

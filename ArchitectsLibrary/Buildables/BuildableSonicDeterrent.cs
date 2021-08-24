@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using ArchitectsLibrary.API;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.MonoBehaviours;
+using SMLHelper.V2.Handlers;
 
 namespace ArchitectsLibrary.Buildables
 {
     class BuildableSonicDeterrent : GenericPrecursorDecoration
     {
-        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", "Sonic Deterrent", "A large alien object that wards off fauna. Most effective against larger fauna.")
+        public BuildableSonicDeterrent() : base("BuildableSonicDeterrent", LanguageSystem.Get("BuildableSonicDeterrent"), LanguageSystem.GetTooltip("BuildableSonicDeterrent"))
         {
+            OnFinishedPatching += () =>
+            {
+                AUHandler.BuildableSonicDeterrentTechType = TechType;
+            
+                KnownTechHandler.SetAnalysisTechEntry(TechType, new TechType[0], 
+                    UnlockSprite: Main.assetBundle.LoadAsset<Sprite>("SonicDeterrent_Popup"));
+            };
         }
 
         protected override ConstructableSettings GetConstructableSettings => new ConstructableSettings(false, false, true, true, true, true, true, placeDefaultDistance: 8f, placeMinDistance: 5f, placeMaxDistance: 15f);
@@ -20,6 +28,8 @@ namespace ArchitectsLibrary.Buildables
         protected override string GetOriginalClassId => "c5512e00-9959-4f57-98ae-9a9962976eaa";
 
         protected override bool ExteriorOnly => true;
+
+        public override TechType RequiredForUnlock => TechType.None;
 
         protected override void EditPrefab(GameObject prefab)
         {

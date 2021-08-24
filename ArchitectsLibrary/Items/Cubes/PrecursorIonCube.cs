@@ -2,7 +2,7 @@ using ArchitectsLibrary.API;
 using ArchitectsLibrary.MonoBehaviours;
 using UnityEngine;
 
-namespace ArchitectsLibrary.Items
+namespace ArchitectsLibrary.Items.Cubes
 {
     internal abstract class PrecursorIonCube : ReskinSpawnable
     {
@@ -13,9 +13,9 @@ namespace ArchitectsLibrary.Items
 
         public sealed override float CraftingTime => 30f;
         
-        public sealed override TechGroup GroupForPDA => TechGroup.Resources;
+        public override TechGroup GroupForPDA => TechGroup.Resources;
 
-        public sealed override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
+        public override TechCategory CategoryForPDA => TechCategory.AdvancedMaterials;
 
         protected abstract int Capacity { get; }
 
