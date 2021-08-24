@@ -54,6 +54,10 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(Mod.voidDoor_interior_right.ClassID, new Vector3(-25.62f, secondFloorY, 2.72f), new Vector3(0f, 315f, 0f), Vector3.one * 1.2f));//Forcefield
 
             yield return StartCoroutine(SpawnPrefab(light_big_ceiling_animated, new Vector3(0f, 27.5f, -22.5f), new Vector3(0f, 180f, 0f), Vector3.one * 3.10f));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(0f, 26.5f, -15.5f), new Vector3(180f, 0f, 0f), Vector3.one * 2.25f));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(0f, 26.5f, -30f), new Vector3(180f, 0f, 0f), Vector3.one * 2.25f));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(-7.25f, 26.5f, -22.5f), new Vector3(180f, 0f, 0f), Vector3.one * 2.25f));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(7.25f, 26.5f, -22.5f), new Vector3(180f, 0f, 0f), Vector3.one * 2.25f));
 
             //Egg pedestal
             Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);
