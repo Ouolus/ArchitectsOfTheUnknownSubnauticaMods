@@ -102,8 +102,8 @@
   "Cobalt": "Cobalt",
   "Tooltip_Cobalt": "Co. Applications in magnetic, high-strength alloy fabrication.",
   
-  "DrillableEmerald": "Emerald",
-  "Tooltip_DrillableEmerald": "Be₃Al₂SiO₆. Beryl variant with applications in advanced alien fabrication.",
+  "Emerald": "Emerald",
+  "Tooltip_Emerald": "Be₃Al₂SiO₆. Beryl variant with applications in advanced alien fabrication.",
   
   "Morganite": "Morganite",
   "Tooltip_Morganite": "Be₃Al₂SiO₆. Rare mineral with applications in advanced alien fabrication.",
@@ -118,5 +118,13 @@
   "WaterParkNoEnoughSizePrompt": "Cannot drop {0} in the ACU, requires at least {1} stacked ACUs to be dropped in.",
   "BuilderIncrementSizePrompt": "Increment the size ({0})",
   "BuilderDecrementSizePrompt": "Decrement the size ({0})",
-  "BuilderResetSizePrompt": "Reset the size ({0})"
+  "BuilderResetSizePrompt": "Reset the size ({0})",
+
+  // Fabricator tabs
+  "FabricatorTab_AlienMaterials": "Alien Materials",
+  "FabricatorTab_AlienEquipment": "Equipment",
+  "FabricatorTab_AlienDevices": "Devices",
+  "FabricatorTab_AlienUpgrades": "Advanced Upgrade Modules",
+  "FabricatorTab_AlienDecorations": "Decoration Items",
+  "FabricatorTab_AlienEggs": "Eggs"
 }

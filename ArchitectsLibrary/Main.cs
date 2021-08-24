@@ -148,12 +148,12 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            PrecursorFabricator.Root.AddTabNode("AlienMaterials", "Alien Materials", assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
-            PrecursorFabricator.Root.AddTabNode("AlienEquipment", "Equipment", assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
-            PrecursorFabricator.Root.AddTabNode("AlienDevices", "Devices", assetBundle.LoadAsset<Sprite>("Tab_Devices"));
-            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", "Advanced Upgrade Modules", assetBundle.LoadAsset<Sprite>("Tab_Upgrades"));
-            PrecursorFabricator.Root.AddTabNode("AlienDecorations", "Decoration Items", assetBundle.LoadAsset<Sprite>("Tab_Decorations"));
-            PrecursorFabricator.Root.AddTabNode("AlienEggs", "Eggs", assetBundle.LoadAsset<Sprite>("Tab_Eggs"));
+            PrecursorFabricator.Root.AddTabNode("AlienMaterials", LanguageSystem.Get("FabricatorTab_AlienMaterials"), assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
+            PrecursorFabricator.Root.AddTabNode("AlienEquipment", LanguageSystem.Get("FabricatorTab_AlienEquipment"), assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
+            PrecursorFabricator.Root.AddTabNode("AlienDevices", LanguageSystem.Get("FabricatorTab_AlienDevices"), assetBundle.LoadAsset<Sprite>("Tab_Devices"));
+            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", LanguageSystem.Get("FabricatorTab_AlienUpgrades"), assetBundle.LoadAsset<Sprite>("Tab_Upgrades"));
+            PrecursorFabricator.Root.AddTabNode("AlienDecorations", LanguageSystem.Get("FabricatorTab_AlienDecorations"), assetBundle.LoadAsset<Sprite>("Tab_Decorations"));
+            PrecursorFabricator.Root.AddTabNode("AlienEggs", LanguageSystem.Get("FabricatorTab_AlienEggs"), assetBundle.LoadAsset<Sprite>("Tab_Eggs"));
 
             foreach (var entry in PrecursorFabricatorEntriesToAdd)
             {
