@@ -60,7 +60,7 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(7.25f, 26.5f, -22.5f), new Vector3(180f, 0f, 0f), Vector3.one * 2.25f));
 
             //Egg pedestal
-            Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 32f);
+            Vector3 centerRelicPlatformPosition = new Vector3(0f, secondFloorY, 35f);
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform2, centerRelicPlatformPosition + new Vector3(0f, 0.5f, 0f), Vector3.zero, new Vector3(2.7f, 2.2f, 2.7f)));
             yield return StartCoroutine(SpawnPrefab(structure_specialPlatform, centerRelicPlatformPosition + new Vector3(4f, 0f, 0f)));
