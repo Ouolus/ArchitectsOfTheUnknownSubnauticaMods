@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-using System.IO;
-using ArchitectsLibrary.API;
-using HarmonyLib;
-using Oculus.Newtonsoft.Json;
-using SMLHelper.V2.Handlers;
-
 namespace ArchitectsLibrary.Patches
 {
+    using API;
+    using System.Collections.Generic;
+    using System.IO;
+    using HarmonyLib;
+    using Oculus.Newtonsoft.Json;
+    using SMLHelper.V2.Handlers;
+    
     internal static class LanguagePatches
     {
-        private const string FallbackLanguage = "English"; 
-        
+        private const string FallbackLanguage = "English";
+
         internal static void Patch(Harmony harmony)
         {
             var orig = AccessTools.Method(typeof(Language), nameof(Language.LoadLanguageFile));
@@ -20,13 +20,18 @@ namespace ArchitectsLibrary.Patches
 
         private static void LoadLanguageFilePrefix(string language)
         {
+            LoadLanguages(language);
+        }
+
+        internal static void LoadLanguages(string language = FallbackLanguage)
+        {
             foreach (var languagePath in LanguageSystem.LanguagePaths)
             {
-                LoadLanguages(language, languagePath);
+                LoadLanguagesImpl(language, languagePath);
             }
         }
 
-        private static void LoadLanguages(string language, string languageFolder)
+        private static void LoadLanguagesImpl(string language, string languageFolder)
         {
             string fallbackPath = Path.Combine(languageFolder, $"{FallbackLanguage}.json");
             var file = Path.Combine(languageFolder, language + ".json");
@@ -59,7 +64,7 @@ namespace ArchitectsLibrary.Patches
                 foreach (var kvp in deserialize)
                 {
                     dictionary[kvp.Key] = kvp.Value;
-                    if (!loadIntoFallback || LanguageSystem.CurrentLanguageStrings.ContainsKey(kvp.Key)) //If we are loading a fallback language, we should ONLY set a language line if a translation for the key doesn't already exist. Fallback should never override current language.
+                    if (!loadIntoFallback || LanguageSystem.CurrentLanguageStrings.ContainsKey(kvp.Key)) // If we are loading a fallback language, we should ONLY set a language line if a translation for the key doesn't already exist. Fallback should never override current language.
                     {
                         LanguageHandler.SetLanguageLine(kvp.Key, kvp.Value);
                     }

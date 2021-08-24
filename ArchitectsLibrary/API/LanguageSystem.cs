@@ -1,9 +1,10 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-
 namespace ArchitectsLibrary.API
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Reflection;
+    using Patches;
+
     /// <summary>
     /// A class for Multi-Language localization.
     /// </summary>
@@ -12,6 +13,14 @@ namespace ArchitectsLibrary.API
         internal static readonly List<string> LanguagePaths = new();
         internal static readonly Dictionary<string, string> CurrentLanguageStrings = new();
         internal static readonly Dictionary<string, string> FallbackLanguageStrings = new();
+
+        static LanguageSystem()
+        {
+            if (CurrentLanguageStrings.Count > 0 || FallbackLanguageStrings.Count > 0)
+                return;
+
+            LanguagePatches.LoadLanguages();
+        }
 
         /// <summary>
         /// A read-only property of "Undefined" string literal.
