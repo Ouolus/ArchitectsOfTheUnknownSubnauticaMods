@@ -8,7 +8,7 @@ namespace RotA.Prefabs.Creatures.Skeletons
 
     public abstract class GhostSkeleton : Spawnable
     {
-        protected GhostSkeleton(string classId) : base(classId, LanguageSystem.Get("GhostLeviathanSkeleton"), LanguageSystem.GetTooltip("GhostLeviathanSkeleton"))
+        protected GhostSkeleton(string classId) : base(classId, LanguageSystem.Get(classId), LanguageSystem.GetTooltip(classId))
         {
         }
         
