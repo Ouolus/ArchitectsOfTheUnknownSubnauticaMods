@@ -90,14 +90,8 @@
     "AquariumGuppy": "Unknown Fish",
     "Tooltip_AquariumGuppy": "An interesting fish.",
 
-    "GhostSkeletonPose1": "Ghost Leviathan Skeleton",
-    "Tooltip_GhostSkeletonPose1": "The remains of a once powerful Ghost Leviathan.",
-    
-    "GhostSkeletonPose2": "Ghost Leviathan Skeleton",
-    "Tooltip_GhostSkeletonPose2": "The remains of a once powerful Ghost Leviathan.",
-
-    "GhostSkeletonPose3": "Ghost Leviathan Skeleton",
-    "Tooltip_GhostSkeletonPose3": "The remains of a once powerful Ghost Leviathan.",
+    "GhostLeviathanSkeleton": "Ghost Leviathan Skeleton",
+    "Tooltip_GhostLeviathanSkeleton": "The remains of a once powerful Ghost Leviathan.",
     
     // Items and item tooltips
     
