@@ -148,12 +148,12 @@ namespace ArchitectsLibrary
             PrecursorFabricator = new();
             PrecursorFabricator.Patch();
 
-            PrecursorFabricator.Root.AddTabNode("AlienMaterials", Language.main.Get("PrecursorFabricatorMenu_AlienMaterials"), assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
-            PrecursorFabricator.Root.AddTabNode("AlienEquipment", Language.main.Get("PrecursorFabricatorMenu_AlienEquipment"), assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
-            PrecursorFabricator.Root.AddTabNode("AlienDevices", Language.main.Get("PrecursorFabricatorMenu_AlienDevices"), assetBundle.LoadAsset<Sprite>("Tab_Devices"));
-            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", Language.main.Get("PrecursorFabricatorMenu_AlienUpgrades"), assetBundle.LoadAsset<Sprite>("Tab_Upgrades"));
-            PrecursorFabricator.Root.AddTabNode("AlienDecorations", Language.main.Get("PrecursorFabricatorMenu_AlienDecorations"), assetBundle.LoadAsset<Sprite>("Tab_Decorations"));
-            PrecursorFabricator.Root.AddTabNode("AlienEggs", Language.main.Get("PrecursorFabricatorMenu_AlienEggs"), assetBundle.LoadAsset<Sprite>("Tab_Eggs"));
+            PrecursorFabricator.Root.AddTabNode("AlienMaterials", LanguageSystem.Get("PrecursorFabricatorMenu_AlienMaterials"), assetBundle.LoadAsset<Sprite>("Tab_AlienMaterials"));
+            PrecursorFabricator.Root.AddTabNode("AlienEquipment", LanguageSystem.Get("PrecursorFabricatorMenu_AlienEquipment"), assetBundle.LoadAsset<Sprite>("Tab_Equipment"));
+            PrecursorFabricator.Root.AddTabNode("AlienDevices", LanguageSystem.Get("PrecursorFabricatorMenu_AlienDevices"), assetBundle.LoadAsset<Sprite>("Tab_Devices"));
+            PrecursorFabricator.Root.AddTabNode("AlienUpgrades", LanguageSystem.Get("PrecursorFabricatorMenu_AlienUpgrades"), assetBundle.LoadAsset<Sprite>("Tab_Upgrades"));
+            PrecursorFabricator.Root.AddTabNode("AlienDecorations", LanguageSystem.Get("PrecursorFabricatorMenu_AlienDecorations"), assetBundle.LoadAsset<Sprite>("Tab_Decorations"));
+            PrecursorFabricator.Root.AddTabNode("AlienEggs", LanguageSystem.Get("PrecursorFabricatorMenu_AlienEggs"), assetBundle.LoadAsset<Sprite>("Tab_Eggs"));
 
             foreach (var entry in PrecursorFabricatorEntriesToAdd)
             {
