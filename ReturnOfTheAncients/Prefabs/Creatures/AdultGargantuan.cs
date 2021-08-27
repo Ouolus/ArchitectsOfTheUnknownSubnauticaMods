@@ -44,9 +44,6 @@ namespace RotA.Prefabs.Creatures
 
         public override bool RoarDoesDamage => true;
 
-        public override string GetEncyTitle => LanguageSystem.Get("Ency_GargantuanAdult");
-        public override string GetEncyDesc => LanguageSystem.Get("EncyDesc_GargantuanAdult");
-
         public override bool AdvancedCollisions => false;
 
         public override bool HasEyeTracking => false;
