@@ -74,7 +74,7 @@ namespace RotA.Commands
             var position = spawned.transform.position;
             var eulerAngles = spawned.transform.eulerAngles;
             GUIUtility.systemCopyBuffer =
-                $"yield return StartCoroutine(SpawnPrefabGlobally({classId}, new Vector3({position.x}, {position.y}, {position.z}), new Vector3({eulerAngles.x}, {eulerAngles.y}, {eulerAngles.z}), Vector3.one * {scale}));";
+                $"yield return StartCoroutine(SpawnPrefabGlobally(classIdPlaceholder, new Vector3({position.x}f, {position.y}f, {position.z}f), new Vector3({eulerAngles.x}f, {eulerAngles.y}f, {eulerAngles.z}f), Vector3.one * {scale}f));";
         }
 
         //the commands below are just for fun
