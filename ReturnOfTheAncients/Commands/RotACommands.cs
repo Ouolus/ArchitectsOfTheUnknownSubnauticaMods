@@ -55,6 +55,25 @@ namespace RotA.Commands
             SunbeamGargController.PlayCinematic();
         }
 
+        [ConsoleCommand("placeprop")]
+        public static void PlaceProp(string classId, bool randomizeDirection = false, float scale = 1f)
+        {
+            if (string.IsNullOrEmpty(classId))
+            {
+                ErrorMessage.AddMessage("usage: placeprop [ClassId]");
+                return;
+            }
+            UWE.PrefabDatabase.TryGetPrefab(classId, out GameObject prefab);
+            if (prefab == null)
+            {
+                ErrorMessage.AddMessage(string.Format("No prefab found by ClassId {0}", classId));
+                return;
+            }
+            GameObject spawned = Utils.CreatePrefab(prefab, 100f, randomizeDirection);
+            spawned.transform.localScale = Vector3.one * scale;
+            
+        }
+
         //the commands below are just for fun
 
         [ConsoleCommand("clonegarg")]
