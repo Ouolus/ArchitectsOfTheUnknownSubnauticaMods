@@ -38,7 +38,7 @@ namespace RotA.Prefabs.Creatures
 
         public override BehaviourLODLevelsStruct BehaviourLODSettings => new BehaviourLODLevelsStruct(20000, 40000, 100000);
 
-        public override float TurnSpeed => 0.01f;
+        public override float TurnSpeed => 0.1f;
 
         public override (float, float) RoarSoundMinMax => (75f, 1000f);
 
@@ -67,6 +67,9 @@ namespace RotA.Prefabs.Creatures
             components.locomotion.maxAcceleration = 45f;
             components.swimRandom.swimForward = 1f;
             prefab.GetComponent<StayAtLeashPosition>().swimVelocity = 20f;
+
+            components.locomotion.forwardRotationSpeed = 0.04f;
+            components.locomotion.upRotationSpeed = 0.08f;
 
             prefab.AddComponent<GargantuanEncounterPDA>();
 
