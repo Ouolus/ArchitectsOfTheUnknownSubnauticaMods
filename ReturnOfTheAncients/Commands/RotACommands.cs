@@ -71,7 +71,10 @@ namespace RotA.Commands
             }
             GameObject spawned = Utils.CreatePrefab(prefab, 100f, randomizeDirection);
             spawned.transform.localScale = Vector3.one * scale;
-            
+            var position = spawned.transform.position;
+            var eulerAngles = spawned.transform.eulerAngles;
+            GUIUtility.systemCopyBuffer =
+                $"yield return StartCoroutine(SpawnPrefabGlobally({classId}, new Vector3({position.x}, {position.y}, {position.z}), new Vector3({eulerAngles.x}, {eulerAngles.y}, {eulerAngles.z}), Vector3.one * {scale}));";
         }
 
         //the commands below are just for fun
