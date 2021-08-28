@@ -76,6 +76,19 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_blueLight, new Vector3(-889.2529f, -200.5325f, -576.9055f), new Vector3(21.1193f, 4.758039f, 25.12779f), Vector3.one * 2f));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_blueLight, new Vector3(-820.6724f, -190.5986f, -581.2459f), new Vector3(333.3828f, 356.8796f, 13.13683f), Vector3.one * 2f));
             yield return StartCoroutine(SpawnPrefabGlobally(ambience_blueLight, new Vector3(-834.8636f, -193.3038f, -590.0609f), new Vector3(0.6323666f, 359.982f, 356.737f), Vector3.one * 2f));
+            
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefishSchool, new Vector3(-876.9934f, -190.6699f, -573.249f), new Vector3(1.024529E-05f, 1.024529E-05f, 90f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefishSchool, new Vector3(-893.5179f, -200.3974f, -563.6702f), new Vector3(332.5789f, 353.3982f, 26.6015f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefishSchool, new Vector3(-854.9252f, -190.0722f, -583.5249f), new Vector3(30.39336f, 358.706f, 355.2386f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefishSchool, new Vector3(-830.5646f, -189.9017f, -584.551f), new Vector3(30.92347f, 0.8453048f, 3.055326f), Vector3.one * 1f));
+            
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-858.993f, -190.2926f, -582.5228f), new Vector3(333.9375f, 356.0052f, 17.13866f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-842.1801f, -190.2635f, -584.4377f), new Vector3(30.98928f, 359.4052f, 357.8546f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-836.3348f, -190.2062f, -586.6735f), new Vector3(331.1273f, 0.7277125f, 357.1737f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-832.0217f, -190.2176f, -584.1539f), new Vector3(30.92347f, 0.8453048f, 3.055326f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-874.3054f, -194.1232f, -576.4335f), new Vector3(353.309f, 0.9482155f, 343.8859f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-879.1423f, -194.1212f, -572.5372f), new Vector3(2.464251f, 0.3014353f, 13.94583f), Vector3.one * 1f));
+            yield return StartCoroutine(SpawnPrefabGlobally(creature_holefish, new Vector3(-894.6833f, -204.0494f, -563.9638f), new Vector3(349.0472f, 358.7157f, 13.33627f), Vector3.one * 1f));
         }
 
         protected override float MainTerminalZOffset => 12f;

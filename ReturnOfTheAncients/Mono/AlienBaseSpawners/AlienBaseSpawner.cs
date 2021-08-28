@@ -84,6 +84,8 @@ namespace RotA.Mono.AlienBaseSpawners
         public const string supplies_cutefishegg = "b78912bc-0191-4455-a9de-3b708e165393";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
+        public const string creature_holefishSchool = "a7b70c23-8e57-43e0-ab39-e02a29341376";
+        public const string creature_holefish = "495befa0-0e6b-400d-9734-227e5a732f75";
         public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
