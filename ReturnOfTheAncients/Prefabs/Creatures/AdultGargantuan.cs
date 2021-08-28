@@ -68,8 +68,8 @@ namespace RotA.Prefabs.Creatures
             components.swimRandom.swimForward = 1f;
             prefab.GetComponent<StayAtLeashPosition>().swimVelocity = 20f;
 
-            components.locomotion.forwardRotationSpeed = 0.04f;
-            components.locomotion.upRotationSpeed = 0.08f;
+            components.locomotion.forwardRotationSpeed = 0.05f;
+            components.locomotion.upRotationSpeed = 1f;
 
             prefab.AddComponent<GargantuanEncounterPDA>();
 
