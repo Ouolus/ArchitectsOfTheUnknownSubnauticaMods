@@ -150,7 +150,7 @@ namespace ArchitectsLibrary.Buildables
             };
             fab.fabLight.transform.localPosition = new Vector3(0f, -0.22f, 0.8f);
 
-            fab.handOverText = $"Use {FriendlyName}";
+            fab.handOverText = LanguageSystem.Get("UseText_PrecursorFabricator");
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             
@@ -276,7 +276,7 @@ namespace ArchitectsLibrary.Buildables
             };
             fab.fabLight.transform.localPosition = new Vector3(0f, -0.22f, 0.8f);
 
-            fab.handOverText = $"Use {FriendlyName}";
+            fab.handOverText = LanguageSystem.Get("UseText_PrecursorFabricator");
 
             fab.powerRelay = PowerSource.FindRelay(fab.transform);
             

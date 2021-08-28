@@ -71,6 +71,7 @@
   
   "PrecursorFabricator": "Alien Fabricator",
   "Tooltip_PrecursorFabricator": "Advanced alien fabricator. Basic Alterra fabricator refitted with advanced alien technology, capable of creating powerful artifacts.",
+  "UseText_PrecursorFabricator": "Use Alien Fabricator",
   
   // Advanced Materials
   "AlienCompositeGlass": "Alien composite glass",
