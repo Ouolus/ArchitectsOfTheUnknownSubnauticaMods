@@ -16,7 +16,7 @@ namespace RotA.Prefabs.Creatures
 
         public override string AttachBoneName => "AttachBone";
 
-        public override float VehicleDamagePerSecond => 60f;
+        public override float VehicleDamagePerSecond => 70;
 
         public override bool OneShotsPlayer => true;
 
