@@ -233,7 +233,7 @@ namespace RotA
             // Void base
             var voidBasePos = new Vector3(373, -400, -1920);
 
-            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.VeryFar); // Void
+            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); // Void
             voidBase.Patch();
 
             var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", voidBasePos, LargeWorldEntity.CellLevel.Medium); // Void
