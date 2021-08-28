@@ -84,6 +84,7 @@ namespace RotA.Prefabs.AlienBase
         {
             GameObject prefab = GameObject.Instantiate(originalPrefab);
             prefab.name = "OmegaElecArc";
+            prefab.GetComponent<VFXElectricArcs>().Start();
             prefab.SetActive(false);
             prefab.SearchChild("ElecArcTarget").transform.localPosition = new Vector3(0f, -11f, 0f);
             return prefab;
