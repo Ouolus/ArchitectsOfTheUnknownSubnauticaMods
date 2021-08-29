@@ -7,7 +7,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
-    using static GragantuanConditions;
+    using static GargantuanConditions;
     
     public class GargantuanMouthAttack : MeleeAttack
     {
@@ -17,8 +17,6 @@
         GargantuanBehaviour behaviour;
         GargantuanGrab grab;
         PlayerCinematicController playerDeathCinematic;
-        readonly List<Type> _adultGargGrabbable = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid), typeof(SeaTreader), typeof(Reefback) };
-        readonly List<Type> _juvenileGargGrabbable = new() { typeof(ReaperLeviathan), typeof(SeaTreader), typeof(Shocker) };
 
         public GameObject throat;
         public bool canAttackPlayer = true;
@@ -26,6 +24,8 @@
         public string attachBoneName;
         public bool canPerformCyclopsCinematic;
         public GargGrabFishMode grabFishMode;
+        private static readonly int GargBiteAnimParam = Animator.StringToHash("bite");
+        private static readonly int GargRandomAnimParam = Animator.StringToHash("random");
 
         void Start()
         {
@@ -153,13 +153,12 @@
                     {
                         return;
                     }
-                    if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow || grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
+                    if (grabFishMode is GargGrabFishMode.LeviathansOnlyAndSwallow or GargGrabFishMode.LeviathansOnlyNoSwallow) //leviathan attack animation
                     {
                         Creature otherCreature = target.GetComponent<Creature>();
                         if (otherCreature is not null && otherCreature.liveMixin.IsAlive())
                         {
-                            var otherCreatureType = otherCreature.GetType();
-                            if ((grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow && _adultGargGrabbable.Contains(otherCreatureType)) || (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow && _juvenileGargGrabbable.Contains(otherCreatureType)))
+                            if ((grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow && GargantuanConditions.AdultCanGrab(target)) || (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow && GargantuanConditions.JuvenileCanGrab(target)))
                             {
                                 gargantuan.Aggression.Value -= 0.6f;
                                 gargantuan.Hunger.Value = 0f;
@@ -213,15 +212,15 @@
         }
         private bool CanAttackTargetFromPosition(GameObject target) //A quick raycast check to stop the Gargantuan from attacking through walls. Taken from the game's code (shh).
         {
-            Vector3 direction = target.transform.position - transform.position;
-            float magnitude = direction.magnitude;
-            int num = UWE.Utils.RaycastIntoSharedBuffer(transform.position, direction, magnitude, -5, QueryTriggerInteraction.Ignore);
+            var direction = target.transform.position - transform.position;
+            var magnitude = direction.magnitude;
+            var num = UWE.Utils.RaycastIntoSharedBuffer(transform.position, direction, magnitude, -5, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < num; i++)
             {
-                Collider collider = UWE.Utils.sharedHitBuffer[i].collider;
+                var collider = UWE.Utils.sharedHitBuffer[i].collider;
                 var attachedRigidbody = collider.attachedRigidbody;
-                GameObject gameObject = (attachedRigidbody != null) ? attachedRigidbody.gameObject : collider.gameObject;
-                if (!(gameObject == target) && !(gameObject == base.gameObject) && !(gameObject.GetComponent<Creature>() != null))
+                GameObject hitGameObject = (attachedRigidbody != null) ? attachedRigidbody.gameObject : collider.gameObject;
+                if (!(hitGameObject == target) && !(hitGameObject == base.gameObject) && !(hitGameObject.GetComponent<Creature>() != null))
                 {
                     return false;
                 }
@@ -242,8 +241,8 @@
         }
         private IEnumerator PerformBiteAttack(GameObject target, float damage) //A delayed attack, to let him chomp down first.
         {
-            animator.SetFloat("random", UnityEngine.Random.value);
-            animator.SetTrigger("bite");
+            animator.SetFloat(GargRandomAnimParam, UnityEngine.Random.value);
+            animator.SetTrigger(GargBiteAnimParam);
             attackSource.clip = biteClipPool.GetRandomClip();
             attackSource.Play();
             yield return new WaitForSeconds(0.5f);
@@ -273,7 +272,6 @@
             attackSource.clip = cinematicClipPool.GetRandomClip();
             attackSource.Play();
             behaviour.timeCanAttackAgain = Time.time + length;
-            MainCameraControl.main.ShakeCamera(5f, length, MainCameraControl.ShakeMode.BuildUp); //camera shake doesnt actually work during cinematics
             yield return new WaitForSeconds(length / 3f);
             var position = transform.position;
             Player.main.liveMixin.TakeDamage(5f, position, DamageType.Normal, gameObject);

@@ -1,9 +1,11 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
     // General Condition-based static class
-    public static class GragantuanConditions
+    public static class GargantuanConditions
     {
         public static bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
         {
@@ -77,6 +79,33 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 return true;
             }
+            return false;
+        }
+        
+        private static readonly List<Type> AdultGargGrabbable = new() { typeof(SeaDragon), typeof(ReaperLeviathan), typeof(GhostLeviathan), typeof(GhostLeviatanVoid), typeof(SeaTreader), typeof(Reefback) };
+        private static readonly List<Type> JuvenileGargGrabbable = new() { typeof(ReaperLeviathan), typeof(SeaTreader), typeof(Shocker) };
+
+        public static bool AdultCanGrab(GameObject go)
+        {
+            var creature = go.GetComponent<Creature>();
+            if (creature != null)
+            {
+                var otherCreatureType = creature.GetType();
+                if (AdultGargGrabbable.Contains(otherCreatureType)) return true;
+            }
+
+            return false;
+        }
+        
+        public static bool JuvenileCanGrab(GameObject go)
+        {
+            var creature = go.GetComponent<Creature>();
+            if (creature != null)
+            {
+                var otherCreatureType = creature.GetType();
+                if (JuvenileGargGrabbable.Contains(otherCreatureType)) return true;
+            }
+
             return false;
         }
     }

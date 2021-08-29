@@ -2,7 +2,7 @@
 {
     using ECCLibrary;
     using UnityEngine;
-    using static GragantuanConditions;
+    using static GargantuanConditions;
     
     public class GargantuanRoar : MonoBehaviour
     {

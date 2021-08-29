@@ -28,7 +28,7 @@ namespace RotA.Mono
         {
             if (Vector3.Distance(transform.position, Player.main.transform.position) < maxDistance)
             {
-                if (!GragantuanConditions.PlayerInPrecursorBase())
+                if (!GargantuanConditions.PlayerInPrecursorBase())
                 {
                     if (StoryGoalManager.main.OnGoalComplete(goal.key))
                     {
