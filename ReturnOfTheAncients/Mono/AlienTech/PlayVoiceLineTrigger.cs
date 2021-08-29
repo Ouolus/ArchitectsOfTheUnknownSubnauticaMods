@@ -3,23 +3,21 @@ using UnityEngine;
 
 namespace RotA.Mono.AlienTech
 {
-    public class SignalPingVoiceLine : MonoBehaviour
+    public class PlayVoiceLineTrigger : MonoBehaviour
     {
         public struct Data
         {
             public bool hasVoiceLine;
             public string subtitleKey;
             public string storyGoalKey;
-            public string subtitleDisplayText;
             public AudioClip audioClip;
             public float delay;
 
-            public Data(bool hasVoiceLine, string subtitleKey, string storyGoalKey, string subtitleDisplayText, AudioClip audioClip, float delay)
+            public Data(bool hasVoiceLine, string subtitleKey, string storyGoalKey, AudioClip audioClip, float delay)
             {
                 this.hasVoiceLine = hasVoiceLine;
                 this.subtitleKey = subtitleKey;
                 this.storyGoalKey = storyGoalKey;
-                this.subtitleDisplayText = subtitleDisplayText;
                 this.audioClip = audioClip;
                 this.delay = delay;
             }
@@ -27,7 +25,6 @@ namespace RotA.Mono.AlienTech
 
         public string subtitleKey;
         public string storyGoalKey;
-        public string subtitleDisplayText;
         public AudioClip audioClip;
         public float delay;
 
@@ -35,7 +32,7 @@ namespace RotA.Mono.AlienTech
         {
             if (other.gameObject.Equals(Player.main.gameObject))
             {
-                if (StoryGoalManager.main.OnGoalComplete(subtitleKey))
+                if (StoryGoalManager.main.OnGoalComplete(storyGoalKey))
                 {
                     Invoke(nameof(PlayVoiceLine), delay);
                 }
@@ -44,7 +41,7 @@ namespace RotA.Mono.AlienTech
 
         private void PlayVoiceLine()
         {
-            CustomPDALinesManager.PlayPDAVoiceLine(audioClip, subtitleKey, subtitleDisplayText);
+            CustomPDALinesManager.PlayPDAVoiceLine(audioClip, subtitleKey);
         }
     }
 }

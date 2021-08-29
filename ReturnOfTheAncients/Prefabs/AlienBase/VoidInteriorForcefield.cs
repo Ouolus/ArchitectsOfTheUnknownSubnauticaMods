@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.API;
+using ECCLibrary;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -8,7 +9,7 @@ namespace RotA.Prefabs.AlienBase
     //For the large doors inside the void base
     public class VoidInteriorForcefield : Spawnable
     {
-        public VoidInteriorForcefield() : base("VoidInteriorForcefield", "Forcefield", ".")
+        public VoidInteriorForcefield() : base("VoidInteriorForcefield", LanguageSystem.Default, LanguageSystem.Default)
         {
         }
 

@@ -1,0 +1,244 @@
+{
+    // These are comments. They are considered invalid by a lot of JSON editors but still work anyway.
+
+    //Databank paths
+    
+    "EncyPath_Lifeforms/Fauna/Titans": "Titans",
+    "EncyPath_RotA": "Return of the Ancients",
+    "EncyPath_RotA/RotAPrecursorAnalysis": "Analysis",
+    "EncyPath_RotA/RotATerminalInformation": "Information",
+    "EncyPath_RotA/RotAPrecursorTech": "Technology",
+    "EncyPath_RotA/RotAPrecursorRelics": "Relics",
+    "EncyPath_RotA/RotAGargantuanLeviathan": "Gargantuan Leviathan",
+    
+    // Databank entries
+
+    "Ency_GargantuanVoid": "Gargantuan Leviathan",
+    "EncyDesc_GargantuanVoid": "Adult gargantuan text",
+    "Ency_GargantuanBaby": "Gargantuan Leviathan Baby",
+    "EncyDesc_GargantuanBaby": "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.",
+    "Ency_GargantuanJuvenile": "Gargantuan Leviathan Juvenile",
+    "EncyDesc_GargantuanJuvenile": "Juvenile gargantuan text",
+
+    "Ency_TertiaryOutpostTerminal1": "Tertiary Outpost C Analysis",
+    "EncyDesc_TertiaryOutpostTerminal1": "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source. You just read cut content, by the way :)",
+    "Ency_TertiaryOutpostTerminal2": "Tertiary Outpost A Analysis",
+    "EncyDesc_TertiaryOutpostTerminal2": "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Alien robot:\nThese devices are a common occurence in all alien technology. However, they are likely present in this base only to repair alien machinery while it is charging in the claw device.",
+    "Ency_TertiaryOutpostTerminal3": "Tertiary Outpost B Analysis",
+    "EncyDesc_TertiaryOutpostTerminal3": "An alien outpost, likely used as a charging system for powered devices.\n\n1. Data Terminal:\nAn alien data terminal with a blue holographic symbol. Contains co-ordinates pointing to two secondary outposts.\n\n2. Charging device:\nA claw-shaped device that can output large amounts of energy, from an unknown source.\n\n3. Orange Tablet:\nA rare alien artifact. It was likely put here for future use, but was never reclaimed.",
+    "Ency_SupplyCacheTerminal": "Resource Storage Facility",
+    "EncyDesc_SupplyCacheTerminal": "This large structure appears to be designed to hold valuable resources for potential future use.\n\nAnalysis:\n- Large pillar-shaped storage units line either side of the interior. The materials inside are condensed as far as physically possible in order to maintain a minuscule volume.\n- Several exploitable mineral deposits are found loosely scattered in the base. A potential reason for this is an overflow of dedicated storage.\n- Several small alien structural alloy ingots are on display in the base. Their purpose appears to be aesthetic. Retrieval methods are still unknown.\n- The arch-like structure situated in the back of the cache, if not decorational, was likely used for quick transportation of supplies.",
+    "Ency_ResearchBaseTerminal": "Weapons Research Facility",
+    "EncyDesc_ResearchBaseTerminal": "This outpost acted as a hub for the testing of extremely destructive technology. Examples of this technology include a powerful ionic pulse defense mechanism, a kind of sentry unit, and a uniquely designed weapon.\n\nAnalysis:\n- Lacking extensive decorations and structures, this base appears to be solely dedicated to research of destructive technology.\n- Mentions of a project under the name \"GUARDIAN\" are present, but any files that may have pertained to this project are either missing, corrupt, or encrypted.\n- The development and usage of this technology appears to have contributed to the destruction of the local ecosystem, which was once flourishing with life.\n\nThe technology in this base may be exploited for personal use. Use with caution.",
+    "Ency_KooshBaseTerminal": "Alien Datacenter",
+    "EncyDesc_KooshBaseTerminal": "???",
+    "Ency_RuinedGuardian": "Mysterious Wreckage",
+    "EncyDesc_RuinedGuardian": "The shattered remains of a vast alien machine.\n\n1. Purpose:\nThe exact purpose of this device remains vague, but the hydrodynamic build, reinforced structure and various defence mechanisms suggest a mobile sentry. It was presumably tasked with guarding a location of significant importance from nearby roaming leviathan class lifeforms.\n\n2. Damage:\nAnalysis of the wreck reveals extensive damage in various places, which resulted in a near total system failure. The damage is consistent with being crushed, despite the extraordinary integrity of the construction material. The current state of the remains indicate the incident occurred recently and within the vicinity, despite no obvious culprit being found nearby. Whatever its purpose, it has obviously failed.\n\nAssessment: Further Research Required. Caution is advised.",
+    "Ency_GuardianTerminal": "Alien Distress Signal",
+    "EncyDesc_GuardianTerminal": "This Data Terminal has given your PDA access to an encrypted tracking network. The only activity on the network is a distress signal from over a kilometer away. Proceed with caution.",
+    "Ency_ArchitectElectricity": "Ionic Pulse Nanotechnology",
+    "EncyDesc_ArchitectElectricity": "(Cut content). This Data Terminal contains the blueprints for an advanced nanotechnology used to generate a powerful plasma-based charge with a distinctive green glow. The applications of this medium include transferring high amounts of energy and incapacitating large fauna.\n\nYour PDA has generated several new upgrade blueprints which exploit this discovery.\n\nSynthesized blueprints:\n- Seamoth Perimeter Defense MK2\n- Prawn Suit Ion Defense Module\n- Creature Decoy MK2\n- Prawn Suit Ion Dash Module",
+    "Ency_VoidBaseTerminal": "Omega Research Apparatus",
+    "EncyDesc_VoidBaseTerminal": "This data terminal contains schematics and statistics relating to the facility. Analysis is shown below.\n\nDue to the outbreak of the kharaa bacterium, the aliens were desperate to develop a vaccine. The only known cure at the time, found in the last known 'Emperor', is too diluted to provide any definite use.\n\nDue to belief that more of these Emperors may exist, far away from the crater, this apparatus was constructed. While initially appearing similar to any other alien structure on the planet, with the primary focus being research, schematics show an odd ability to expand downwards over half a kilometer, exposing a significant number of complex machines.\n\nThis machinery was designed to communicate with and attract any stray Emperors. Obviously, this plan has failed. However, it did attract another unusual juvenile specimen.\n\nThe base was eventually repurposed for vaccine development studies and a project under the name \"OMEGA\".",
+    "Ency_GuardianTailfin": "Alien Machine Tail Segment",
+    "EncyDesc_GuardianTailfin": "The tail of some sort of segmented machine. A lack of obvious damage suggests it was designed for intentional uncoupling when in danger.",
+    "Ency_SecondaryBaseModel": "Cache Structure",
+    "EncyDesc_SecondaryBaseModel": "A large structure with a mysterious design, used as long-term storage of data and resources. The entrance is forcefield-protected and airlocked, most likely to protect the valuables inside.",
+    "Ency_VoidBaseModel": "Suspended Platform",
+    "EncyDesc_VoidBaseModel": "A massive structure, over 300 meters in height. It is impossible to determine any applications of a base this large in such a dangerous area.\n\nThe unique design with the majority of the interior being inaccessible suggests a non-conventional use. More information may be located inside the structure.",
+    "Ency_PrecursorIngot": "Alien Structural Alloy",
+    "EncyDesc_PrecursorIngot": "An unnamed alloy with unprecedented integrity. Appears to be non-malleable with any known technology. Luminescent detailing also suggests complex inner circuitry.\n\nNo practical applications can be simulated for this object.",
+    "Ency_CachePings": "Caches Location Data",
+    "EncyDesc_CachePings": "This Data Terminal contains a map with the co-ordinates of many locations, with data related to each. These co-ordinates have been uploaded to your PDA.\n\nLocational data:\n- Sanctuary Alpha: Found in the depths of a barren biome. Requires a purple tablet.\n- Sanctuary Beta: Found deep underwater in a dark cave system. Requires a purple tablet.\n- Sanctuary Cappa: Found near a mysterious crater. Requires a purple tablet.\n- Laboratory: Found in a frigid cave system. Requires an orange tablet.\n\nCo-ordinates that are unusually pointing to the equator have not been uploaded. Traveling that far of a distance would be close to impossible.",
+    "Ency_PrecursorRifle": "Alien Rifle Variant",
+    "EncyDesc_PrecursorRifle": "This weapon strongly resembles a similar alien device found on the planet. The coloration however appears more close to the distinct architectural style of the aliens. Being powered by ion energy, it must have been extremely powerful.",
+    "Ency_PrecursorBlade": "Alien Knife",
+    "EncyDesc_PrecursorBlade": "An alien knife with obvious applications. The material that composes the blade cannot be identified. It has some resemblance to an Ion Cube, but is a different color and appears to contain several times as much energy. Further research required.",
+    "Ency_PrecursorBuilder": "Alien Construction Tool",
+    "EncyDesc_PrecursorBuilder": "An ancient construction tool that appears uncannily similar to the Alterra Habitat Builder.\n\nThis device was likely used to design and create large structures with ease, including all of the alien structures found on the planet. The fact that it has been left in stasis on site suggests this was the last structure it has ever built.",
+    "Ency_PrecursorSpam": "Alien Document",
+    "EncyDesc_PrecursorSpam": "This data terminal consists primarily of text in several unknown languages. Partially translated text is displayed below:\n\nTransfer of \u2580\u2596\u2517\u259b\u2584\u2596 failed. Sector Zero study of \u259c\u259a\u2523 \u259c\u259a\u2517\u2523\u2517\u252b\u2513\u250f\u2513 terminated for \u259b\u2584\u2596\u2505\u2517\u2596.\n\n\u2523\u2517\u250f\u259b\u2584\u2596\u259c\u250f\u2523 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523.\n\nVaccine progress: Awaiting termination.\n\nEmperor Apparatus status: Functioning.\n\n\u2523\u2517\u2596\u2503\u2580\u259a\u2597\u250f\u250f\u2513. \u2596\u251b\u2580\u2517\u259e\u2503\u250f\u2584 distress \u2580\u2596\u2517\u259b\u2596\u259c\u259a\u2523 data \u2505\u2596\u2517\u2501\u2596 \u2596\u2513\u252b\u259e\u2523 \u259a \u259b\u2584\u2505\u2517\u2596 \u259a \u2596\u259e\u2523\u2517\u2596\u2517\u2523 \u259a\u251b\u2598\u259e\u2501\u2596\u2505 \u259e\u2523\u2517\u2596\u2517\u2523.\n\n'Architects of the \u259a\u251b\u2598\u259e' status: missing. \u2501\u2596\u2505.\n\n\u2580\u2596\u2517\u259b\u259a\u2523 \u259c\u259a\u2517 \u259c\u259a.\n\nSpecimen of the Ancients terminated. Error: termination failed.",
+    "Ency_PrecursorEggRoom": "Research Laboratory Logs",
+    "EncyDesc_PrecursorEggRoom": "This document is portrayed in a way that is universally understood. File too large to upload to PDA.\n\nTranscript:\n- Unknown creature is approaching facility from below.\n- Creature appears to act extremely aggressive.\n- Creature has been captured for vaccine research.\n- Specimen analysis: Juvenile leviathan-class creature. Has very few similarities in DNA with any other species observed on the planet.\n- 1 DNA match found: Egg Specimen 18.\n- Specimen interestingly has no signs of infection. Preparing specimen for Kharaa testing procedures.\n- [PERFORMING PLANET-WIDE QUARANTINE. VACCINE DEVELOPMENT TERMINATED. SPECIMEN PLACED IN LONG-TERM STORAGE TANK]",
+    "Ency_BabyGargSkeleton": "Encased Gargantuan Skeleton",
+    "EncyDesc_BabyGargSkeleton": "The skeletal remains of a leviathan specimen, encased in a sealed environment, with few signs of decay. Judging by the bone structure and density, it was likely a juvenile specimen. Carbon dating suggests it has died approximately one thousand years ago.\n\nRelative intactness of the bones suggests it has died of starvation or another natural cause. It was likely abandoned after a certain event.\n\nInterestingly, the ancient ecosystem inside the tank is still thriving, and has no signs of Kharra affecting it.",
+    "Ency_ResearchBaseSingularity": "Contained Singularity",
+    "EncyDesc_ResearchBaseSingularity": "A highly unstable object with immeasurably high mass contained via gravity manipulation. If released it could absorb the entire solar system in a relatively short amount of time. It was likely designed to be used as a weapon, a quarantine failsafe option, or at the very least a way to intimidate other species. If that is true, it has certainly succeeded.\n\nAssessment: Do not touch.",
+    "Ency_WarpCannonTerminal": "Handheld Warping Device Schematics",
+    "EncyDesc_WarpCannonTerminal": "This terminal contains schematics for alien warp technology, which utilizes the unnatural properties of Electricubes. As a result of this finding, your PDA has synthesized blueprints for a Handheld Warping Device.\n\nWarping Device Operation:\nEnergy is quickly routed through the system from the battery up into the barrel, where it can be released in a controlled pulse. The magnitude and effects of this pulse can be adjusted by precise mechanical rotations to the four calibration discs.\n\nThese pulses generate a warping field that transports atoms from a point to another at extremely fast speeds.\n\nPractical uses include personal teleportation and manipulation of the state of objects in the environment.",
+    "Ency_OmegaCubeFabricator": "Omega Cube Fabrication Device",
+    "EncyDesc_OmegaCubeFabricator": "A powerful device which is obviously alien in design. Appears to be a fabrication device of some sort.\n\nThe data terminal connected to the fabricator has an incomplete set of data. It is emitting a broadcast, which reads in English: \"Project 'Omega' formula is 95% complete. Data sets missing: '1'. Data set type: 'biometric data'. Species name: 'Gargantuan Leviathan'. Data must be obtained from an adult specimen.\"\n\nYou must scan an adult Gargantuan Leviathan to complete this formula. Good luck.",
+    "Ency_BuildableSonicDeterrent": "Constructable Sonic Deterrent",
+    "EncyDesc_BuildableSonicDeterrent": "A device that emits ionic energy pulses, which unusually affect the behavior of nearby creatures by invoking intense levels of fear. Effective against both passive and hostile fauna. Be wary of any degenerative effects the high amplitude pulses may have on your nervous system.",
+
+    // Gargantuan Leviathan
+
+    "GargantuanJuvenile": "Gargantuan Leviathan Juvenile",
+    "Tooltip_GargantuanJuvenile": "A titan-class lifeform.",
+    
+    "GargantuanVoid": "Gargantuan Leviathan",
+    "Tooltip_GargantuanVoid": "A titan-class lifeform. Indigineous to the void.",
+    
+    "GargantuanBaby": "Gargantuan Baby",
+    "Tooltip_GargantuanBaby": "A very young specimen, raised in containment. Playful.",
+    
+    "SkeletonGargantuan": "Gargantuan Skeleton",
+    "Tooltip_SkeletonGargantuan": "Spooky Scary Skeleton.",
+    
+    // Creatures
+
+    "AquariumGuppy": "Unknown Fish",
+    "Tooltip_AquariumGuppy": "An interesting fish.",
+
+    "GhostLeviathanSkeleton": "Ghost Leviathan Skeleton",
+    "Tooltip_GhostLeviathanSkeleton": "The remains of a once powerful Ghost Leviathan.",
+    
+    // Items and item tooltips
+    
+    "GargantuanEgg": "Gargantuan Egg",
+    "Tooltip_GargantuanEgg": "Gargantuan Leviathan babies hatch from these.",
+
+    "WarpCannon": "Handheld Warping Device",
+    "Tooltip_WarpCannon": "Alien warping technology refitted into a compact handheld tool for personal use. Requires ion batteries to function.",
+    
+    "IonKnife": "Ion Knife",
+    "Tooltip_IonKnife": "An upgrade to the standard Survival Knife, utilizing alien technology. Different variants of ion cubes can be fitted into the device, which all have varying effects on the device's function.",
+    
+    "GargantuanAdultToy": "Gargantuan Adult Replica (With hat)",
+    "Tooltip_GargantuanAdultToy": "A small-scale replica of an Adult Gargantuan Leviathan. Equipped with a cute hat to make it less terrifying.",
+    
+    "GargantuanAdultToyNoHat": "Gargantuan Adult Replica",
+    "Tooltip_GargantuanAdultToyNoHat": "A small-scale replica of an Adult Gargantuan Leviathan. Approximately 0.16% the size of the actual creature.",
+    
+    "GargantuanJuvenileToy": "Gargantuan Juvenile Replica",
+    "Tooltip_GargantuanJuvenileToy": "A small-scale replica of a Juvenile Gargantuan Leviathan. Approximately 0.33% of the original size.",
+    
+    "GargantuanPoster": "Leviathan Holographic Projector",
+    "Tooltip_GargantuanPoster": "An approximation of the appearance of an ancient leviathan, projected with holographic technology.",
+    
+    // Modules
+    
+    "ExosuitDashModule": "Prawn Suit Ion Dash Module",
+    "Tooltip_ExosuitDashModule": "Allows the pilot to dash quickly in any direction, utilizing the Prawn Suit's built-in thrusters. Doesn't stack.",
+    
+    "ExosuitZapModule": "Prawn Suit Ion Defense Module",
+    "Tooltip_ExosuitZapModule": "When taking damage, it generates a small electrical pulse designed to ward off aggressive fauna. Generates an ionic energy pulse if necessary. Doesn't stack.",
+    
+    "SeamothElectricalDefenseMK2": "Seamoth Ion Perimeter Defense System",
+    "Tooltip_SeamothElectricalDefenseMK2": "Generates a powerful ionic energy field designed to ward off large aggressive fauna. Doesn't stack.",
+    
+    "CyclopsDecoyMk2": "Creature Decoy MK2",
+    "Tooltip_CyclopsDecoyMk2": "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.",
+
+    // Tools Prompts
+
+    "WarpCannonSwitchFireModeWarp": "Teleport to base: {1}\nCurrent mode: Personal teleportation. Switch fire mode: {0}",
+    "WarpCannonSwitchFireModeCreature": "Warp in creatures: {1}\nCurrent mode: Creature summon. Switch fire mode: {0}",
+    "WarpCannonSwitchFireModeManipulatePrimary": "Create exit portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}",
+    "WarpCannonSwitchFireModeManipulateSecond": "Create entrance portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}",
+    "WarpCannonNotEnoughPowerError": "Insufficient power.",
+
+    "IonKnifeUseFormat": "{0}\nSwitch cube: {1}",
+    "IonKnifeUseNoCubeLoadedFormat": "Insert cube: {0}",
+    "IonKnifePrecursorIonCrystal": "Ion cube: Standard heat knife, with some electric properties.",
+    "IonKnifeElectricube": "Electricube: Not very lethal, and not warm enough to cook fish.\nWhen the blade hits an object, there is a chance it will warp the object in a random direction.",
+    "IonKnifeRedIonCube": "Power cube: Very powerful and makes harvesting certain resources more efficient.\nThe heat energy may harm you while it is held, but on contact with flesh it has restorative properties which counteract the effect.",
+    "IonKnifeOmegaCube": "Omega cube: Incredibly powerful and emits a bright light.\nThe blade can be charged to force any object in contact with it to experience a massive influx of kinetic energy. Reason unknown.",
+    
+    // Alien base
+    
+    "OmegaCubeFabricator": "Fabricator Device",
+    "OmegaTerminalHoverText": "Omega Terminal",
+    "OmegaTerminalInteract": "Insert specimen data",
+    "OmegaCubeRegenerateCube": "Generate Omega Cube",
+    "Door": "Door",
+    "SecondaryBaseModel": "Alien Structure",
+    "VoidBaseModel": "Suspended Platform",
+    "SupplyCacheDoor": "Supply Cache Door",
+    "ResearchBaseDoor": "Research Base Door",
+    "KooshBaseDoor": "Bulb Zone Base Door",
+    "VoidbaseAquariumSkeleton": "Leviathan Skeletal Remains",
+    "TabletTerminal": "Forcefield Control",
+    "InfectionTesterTerminal": "Forcefield Control",
+    "ResearchBaseBlackHole": "Contained singularity",
+    
+    // Guardian
+    
+    "GuardianTailfin": "Mechanical Segment",
+    "RuinedGuardian": "Mysterious Wreckage",
+
+    "Guardian": "Guardian",
+    "Tooltip_Guardian": "An ancient Alien sentry unit.",
+    
+    // Relics
+    
+    "PrecursorIngotRelic": "Alien Structural Alloy",
+    "PrecursorRifleRelic": "Alien Rifle",
+    "PrecursorBladeRelic": "Alien Knife",
+    "PrecursorBuilderRelic": "Alien Construction Tool",
+
+    // Subtitles
+    
+    "DetectingAlienBroadcastSubtitles": "Detecting an alien broadcast. Uploading co-ordinates to PDA.",
+    "GuardianTerminalSubtitles": "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.",
+    "DownloadingAlienDataSubtitles": "Downloading alien data... Download complete.",
+    "IonicPulseTerminalSubtitles": "Synthesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.",
+    "ThanksForDownloadingSubtitles": "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.",
+    "DevSecretAlan": "Al-An",
+    "DevSecretHipnox": "Hipnox",
+    "DevSecretLee23": "Lee23",
+    "DevSecretMetious": "Metious",
+    "DevSecretN8": "N8Crafter",
+    "DevSecretSlendy": "SlendyPlayz",
+    "DevSecretTori": "Tori Chibi",
+    "PDAExplosionRoar": "Minor tectonic activity detected. Pattern inconsistent with the quantum detonation of the Aurora's drive core. Point of origin somewhere within 3 kilometers. Extreme caution is advised.",
+    "PDAGargEncounter": "Warning: passive bio scan is limited to 500 meters in any direction. Please manually scan the object for a more comprehensive measurement.",
+    "WarpCannonPickupVoiceline": "The Handheld Warping Device enables both short and long range teleportation for the user. Be cautious of the various side effects of teleportation, including sudden death and failure of proper materialization.",
+    "GargantuanEggPickupVoiceline": "This egg is unusually large, and likely hosts the embryo of a leviathan class lifeform within.",
+    "ColorIonCubePickupVoiceline": "The various Ion Cubes are essential in the fabrication of alien technology, but require rare resources and large quantities of energy to fabricate. Despite their colorful appearance and vague resemblance to candy, eating them is ill-advised.",
+    "VoidBaseWarningLog": "Translation: 'Infected individuals are not permitted to enter this facility. Housed specimen may be at risk of infection.'",
+    "VoidBaseEncounter": "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.",
+    "PDAScanAdultGargantuan": "The odds of surviving an encounter with an apex class leviathan are three thousand seven hundred twenty to one. Are you certain - \u259b\u2584\u2596\u2505\u2517\u2596\u2523\u2517\u250f\u259b\u2584\u2596\u259c\u250f\u2523 - you are ready to die?",
+    "BlackHoleInteract1": "I strongly advise against interacting with this singularity. I calculate a 99.9% chance of immediate termination.",
+    "BlackHoleInteract2": "For the safety of yourself and this PDA, please refrain.",
+    "BlackHoleInteract4": "Do not attempt. You still have an unsettled debt with Alterra Corporation requiring your attention.",
+    "BlackHoleInteract5": "Error.... error... error",
+    "PDADeathImminent": "Warning: Death imminent.",
+    "OmegaFabricatorFailVoiceline": "Project \"Omega\" formula incomplete. Further research required.",
+    "OmegaFabricatorSuccessVoiceline": "Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized.",
+    "OmegaFabricatorSuccessAgainVoiceline": "Beginning fabrication process...",
+    "SupplyCacheBaseSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
+    "ResearchBaseSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
+    "KooshBaseSignalSubtitle": "Biological signal interference detected. True signal source is likely to be somewhere in the area.",
+    "GuardianEncounterSubtitle": "This machine appears to have recently collapsed to the seafloor. Further research required.",
+
+    // Error messages
+
+    "OmegaFabricatorFailErrorMessage": "Project \"Omega\" formula incomplete. Further research required.",
+    "BlackHoleCrashErrorMessage": "Save Error: File corrupted.",
+
+    // Hand targets
+
+    "BlackHoleHandTarget": "Do not touch",
+    "InfectionTesterTerminalHandTarget": "Deactivate Forcefield",
+
+    // Signals
+    // Label is what you see in the world. Name is what you see in the beacon manager.
+
+    "CragFieldBaseSignal": "Downloaded co-ordinates",
+    "Label_CragFieldBaseSignal": "Alien Signal",
+    "SparseReefBaseSignal": "Downloaded co-ordinates",
+    "Label_SparseReefBaseSignal": "Alien Signal",
+    "KooshZoneBaseSignal": "Downloaded co-ordinates",
+    "Label_KooshZoneBaseSignal": "Alien Signal",
+    "BloodKelpCacheSignal": "Blood Kelp Zone Sanctuary",
+    "Label_BloodKelpCacheSignal": "Alien Signal (535m)",
+    "SparseReefCacheSignal": "Deep Sparse Reef Sanctuary",
+    "Label_SparseReefCacheSignal": "Alien Signal (287m)",
+    "DunesCacheSignal": "Dunes Sanctuary",
+    "Label_DunesCacheSignal": "Alien Signal (380m)",
+    "LostRiverCacheSignal": "Lost River Laboratory Cache",
+    "Label_LostRiverCacheSignal": "Alien Signal (685m underground)",
+    "RuinedGuardianSignal": "Unidentified tracking chip",
+    "Label_RuinedGuardianSignal": "Distress signal"
+}

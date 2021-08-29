@@ -1,4 +1,5 @@
-﻿using RotA.Mono.Singletons;
+﻿using ArchitectsLibrary.API;
+using RotA.Mono.Singletons;
 using UnityEngine;
 
 namespace RotA.Prefabs.Creatures
@@ -16,5 +17,8 @@ namespace RotA.Prefabs.Creatures
             base.AddCustomBehaviour(components);
             prefab.AddComponent<VoidGargSingleton>();
         }
+
+        public override string GetEncyTitle => LanguageSystem.Get("Ency_GargantuanVoid");
+        public override string GetEncyDesc => LanguageSystem.Get("EncyDesc_GargantuanVoid");
     }
 }

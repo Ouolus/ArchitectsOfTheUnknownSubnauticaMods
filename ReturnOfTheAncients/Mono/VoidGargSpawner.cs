@@ -12,7 +12,7 @@ namespace RotA.Mono
         private float timeToSpawnGarg;
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
-        private const float spawnYLevel = -400;
+        private const float spawnYLevel = -540;
         private const float leashYOffset = 300f;
         private Player player;
 
@@ -21,7 +21,7 @@ namespace RotA.Mono
         private void Start()
         {
             player = Player.main;
-            InvokeRepeating("UpdateSpawn", 1f, 4f);
+            InvokeRepeating(nameof(UpdateSpawn), 1f, 4f);
             adultPrefab = Mod.gargVoidPrefab.TechType;
         }
 

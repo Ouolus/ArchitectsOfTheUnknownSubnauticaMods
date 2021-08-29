@@ -36,15 +36,16 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = new[] { DamageType.Electrical };
             ionKnife.PlaySwitchSound("event:/env/green_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.diamondBlade;
-            ionKnife.ResourceBonus = 1;
-            
+            ionKnife.ResourceBonus = 0;
+            ionKnife.UseTextLanguageKey = Mod.ionKnifeElectricube;
+
             ionKnife.SetMaterialColors(new Color(.5f, 0f, 1f) * .7f, new Color(0f, 0f, .9f),
                 new Color(1f, 0f ,1f), new Color(0.5f, 0f, 0.5f));
 
             ionKnife.SetLightAppearance(new Color(.5f, 0f, 1f), 6f);
         }
 
-        public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin, GameObject hitGameObject)
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {

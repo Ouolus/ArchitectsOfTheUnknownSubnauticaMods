@@ -22,6 +22,8 @@ namespace RotA.Mono.Equipment
         public FMODAsset StrongHitFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.TigerPlantHitPlayer);
         
         public FMODAsset WarpFishSound { get; } = SNAudioEvents.GetFmodAsset(SNAudioEvents.Paths.WarperPortalOpen);
+
+        public string UseTextLanguageKey { get; set; }
         
         // the blade objects to disable when the knife is depleted
         public GameObject[] bladeObjects;
@@ -41,6 +43,8 @@ namespace RotA.Mono.Equipment
         
         private FMOD_CustomLoopingEmitter switchModeEmitter;
 
+        private FMOD_StudioEventEmitter chargingSound;
+
         private Light pointLight;
         
         private readonly FMODAsset underWaterMissSound = SNAudioEvents.GetFmodAsset("event:/tools/knife/swing");
@@ -59,12 +63,35 @@ namespace RotA.Mono.Equipment
 
         public override string animToolName => TechType.Knife.AsString(true);
 
+        private bool rightHandDown;
+
+        public override string GetCustomUseText()
+        {
+            if (string.IsNullOrEmpty(UseTextLanguageKey))
+            {
+                return Language.main.GetFormat(Mod.ionKnifeUseTextNoCubeLoadedFormat, uGUI.FormatButton(GameInput.Button.Reload));
+            }
+            return Language.main.GetFormat(Mod.ionKnifeUseTextFormat, Language.main.Get(UseTextLanguageKey), uGUI.FormatButton(GameInput.Button.Reload));
+        }
+
         public override void Awake()
         {
             base.Awake();
             pointLight = gameObject.EnsureComponent<Light>();
             pointLight.type = LightType.Point;
             pointLight.enabled = false;
+        }
+
+        public override void OnHolster()
+        {
+            if (chargingSound == null)
+                chargingSound = gameObject.GetComponent<FMOD_StudioEventEmitter>();
+
+            if (chargingSound != null)
+            {
+                if (chargingSound.GetIsStartingOrPlaying())
+                    chargingSound.Stop(false);
+            }
         }
 
         public override void OnToolUseAnim(GUIHand guiHand)
@@ -80,6 +107,7 @@ namespace RotA.Mono.Equipment
                     obj = volumeUser.GetMostRecent().gameObject;
                 }
             }
+            bool calledSwingMethod = false;
             if (obj)
             {
                 var lm = obj.GetComponentInParent<LiveMixin>();
@@ -88,12 +116,13 @@ namespace RotA.Mono.Equipment
                     if (lm)
                     {
                         bool wasAlive = lm.IsAlive();
+                        OnSwing(lm, obj);
                         for (int i = 0; i < Damage.Length; i++)
                         {
                             lm.TakeDamage(Damage[i], position, DamageType[i]);
                         }
                         GiveResourceOnDamage(obj, lm.IsAlive(), wasAlive);
-                        OnHit(lm);
+                        calledSwingMethod = true;
                     }
                     Utils.PlayFMODAsset(hitSound, transform);
                     var vfxSurface = obj.GetComponent<VFXSurface>();
@@ -104,6 +133,10 @@ namespace RotA.Mono.Equipment
                 {
                     obj = null;
                 }
+            }
+            if (!calledSwingMethod)
+            {
+                OnSwing(null, obj);
             }
             if (obj == null && guiHand.GetActiveTarget() == null)
             {
@@ -153,7 +186,41 @@ namespace RotA.Mono.Equipment
 
         public override bool OnRightHandDown()
         {
+            if (currentAction is IIonKnifeRightHand rightHand)
+                return !energyMixin.IsDepleted() && rightHand.OnRightHandDown(this);
+
+            rightHandDown = true;            
             return !energyMixin.IsDepleted();
+        }
+
+        public override bool OnRightHandHeld()
+        {
+            if (currentAction is IIonKnifeRightHand rightHand)
+            {
+                return !energyMixin.IsDepleted() && rightHand.OnRightHandHeld(this);
+            }
+
+            return false;
+        }
+
+        public override bool OnRightHandUp()
+        {
+            if (currentAction is IIonKnifeRightHand rightHand)
+            {
+                return rightHand.OnRightHandUp(this);
+            }
+            rightHandDown = false;
+            return false;
+        }
+
+        public override bool GetUsedToolThisFrame()
+        {
+            if (currentAction is IIonKnifeUsedTool usedTool)
+            {
+                return usedTool.GetUsedToolThisFrame(this);
+            }
+
+            return rightHandDown;
         }
 
         public void SetMaterialColors(Color color, Color specColor, Color detailsColor, Color squareColor)
@@ -235,6 +302,7 @@ namespace RotA.Mono.Equipment
             {
                 PlaySwitchSound(null);
                 pointLight.enabled = false;
+                UseTextLanguageKey = null;
             }
         }
 
@@ -276,7 +344,10 @@ namespace RotA.Mono.Equipment
         void OnInitialize()
         {
             if (currentAction != null)
+            {
+                rightHandDown = false;
                 currentAction.Initialize(this);
+            }
         }
 
         void OnUpdate()
@@ -285,10 +356,10 @@ namespace RotA.Mono.Equipment
                 currentAction.OnUpdate(this);
         }
 
-        void OnHit(LiveMixin lm)
+        void OnSwing(LiveMixin lm, GameObject hitGo)
         {
             if (currentAction != null)
-                currentAction.OnHit(this, lm);
+                currentAction.OnSwing(this, lm, hitGo);
         }
     }
 }

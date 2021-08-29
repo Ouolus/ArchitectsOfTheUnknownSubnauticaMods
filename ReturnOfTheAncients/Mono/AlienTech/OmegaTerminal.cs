@@ -1,4 +1,5 @@
-﻿using Story;
+﻿using ArchitectsLibrary.API;
+using Story;
 using UnityEngine;
 
 namespace RotA.Mono.AlienTech
@@ -35,17 +36,17 @@ namespace RotA.Mono.AlienTech
 
         public void FailInteraction()
         {
-            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFail"), "OmegaFabricatorFailVoiceline", "Project \"Omega\" formula incomplete. Further research required.");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFail"), "OmegaFabricatorFailVoiceline");
         }
 
         public void FailInteractionAgain()
         {
-            ErrorMessage.AddMessage("Project \"Omega\" formula incomplete. Further research required.");
+            ErrorMessage.AddMessage(LanguageSystem.Get("OmegaFabricatorFailErrorMessage"));
         }
 
         public void SuccessInteraction()
         {
-            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorSuccess"), "OmegaFabricatorSuccessVoiceline", "Research Specimen Omega biometric data uploaded to terminal. Project Omega formula finalized.");
+            CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorSuccess"), "OmegaFabricatorSuccessVoiceline");
             fabricator.AttemptToGenerateCube();
         }
 
@@ -53,7 +54,7 @@ namespace RotA.Mono.AlienTech
         {
             if (fabricator.CanGenerateCube())
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFabricate"), "OmegaFabricatorSuccessAgainVoiceline", "Beginning fabrication process...");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("OmegaFabricatorFabricate"), "OmegaFabricatorSuccessAgainVoiceline");
                 fabricator.AttemptToGenerateCube();
             }
         }

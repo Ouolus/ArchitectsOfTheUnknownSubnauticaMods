@@ -1,4 +1,5 @@
 using RotA.Mono.Equipment;
+using UnityEngine;
 
 namespace RotA.Interfaces
 {
@@ -11,11 +12,12 @@ namespace RotA.Interfaces
         void Initialize(IonKnife ionKnife);
 
         /// <summary>
-        /// Called when the knife hits an object.
+        /// Called when the knife is swung.
         /// </summary>
         /// <param name="ionKnife">Ion Knife instance.</param>
-        /// <param name="hitLiveMixin">the hit LiveMixin component.</param>
-        void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin);
+        /// <param name="hitLiveMixin">the hit LiveMixin component. May be null.</param>
+        /// <param name="hitGameObject">the hit GameObject. May be null</param>
+        void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin, GameObject hitGameObject);
 
         /// <summary>
         /// Called every frame when the knife is ACTIVE only

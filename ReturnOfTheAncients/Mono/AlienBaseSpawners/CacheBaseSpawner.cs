@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
-    public abstract class SecondaryBaseSpawner : AlienBaseSpawner
+    public abstract class CacheBaseSpawner : AlienBaseSpawner
     {
         public const float centerLocalX = 2.2f;
         public const float floorLocalY = -2.885f;
@@ -13,9 +13,6 @@ namespace RotA.Mono.AlienBaseSpawners
 
         public override IEnumerator ConstructBase()
         {
-            TaskResult<GameObject> baseModel = new TaskResult<GameObject>();
-            yield return SpawnPrefab(Mod.secondaryBaseModel.ClassID, Vector3.zero, baseModel);
-            yield return StartCoroutine(GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", Mod.precursorAtmosphereVolume.ClassID));
             yield return StartCoroutine(SpawnPrefab(airlock_1, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), Vector3.zero, new Vector3(0.76f, 1f, 1f)));
             yield return StartCoroutine(SpawnPrefab(vfx_entrance, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), new Vector3(90f, 0f, 0f), new Vector3(0.76f, 1f, 1f)));
             Vector3 floorLightRotation = new Vector3(0f, 0f, 0f);

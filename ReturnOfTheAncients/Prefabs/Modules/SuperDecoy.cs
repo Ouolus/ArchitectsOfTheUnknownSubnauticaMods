@@ -4,13 +4,14 @@ using SMLHelper.V2.Assets;
 using SMLHelper.V2.Crafting;
 using SMLHelper.V2.Handlers;
 using System.Collections;
+using ArchitectsLibrary.API;
 using UnityEngine;
 
 namespace RotA.Prefabs.Modules
 {
     public class SuperDecoy : Equipable
     {
-        public SuperDecoy() : base("CyclopsDecoyMk2", "Creature Decoy MK2", "Attracts creatures to its location using ionic energy pulses. Can be deployed by hand or by a submarine. Reclaimable once deployed.")
+        public SuperDecoy() : base("CyclopsDecoyMk2", LanguageSystem.Get("CyclopsDecoyMk2"), LanguageSystem.GetTooltip("CyclopsDecoyMk2"))
         {
             OnFinishedPatching += () =>
             {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ECCLibrary;
 using RotA.Mono.AlienBaseSpawners;
 using SMLHelper.V2.Assets;
@@ -13,8 +14,8 @@ namespace RotA.Prefabs.Initializers
         private LargeWorldEntity.CellLevel cellLevel;
         Vector3 position;
 
-        public AlienBaseInitializer(string classId, Vector3 coords, float distanceToLoad = 200f, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Medium)
-            : base(classId, ".", ".")
+        public AlienBaseInitializer(string classId, Vector3 coords, LargeWorldEntity.CellLevel cellLevel = LargeWorldEntity.CellLevel.Medium)
+            : base(classId, LanguageSystem.Default, LanguageSystem.Default)
         {
             this.cellLevel = cellLevel;
             position = coords;

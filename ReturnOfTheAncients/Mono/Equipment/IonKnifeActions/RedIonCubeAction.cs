@@ -14,11 +14,12 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             ionKnife.DamageType = new[] { DamageType.Heat, DamageType.Normal };
             ionKnife.PlaySwitchSound("event:/env/pink_artifact_loop");
             ionKnife.VfxEventType = VFXEventTypes.heatBlade;
-            ionKnife.ResourceBonus = 1;
+            ionKnife.ResourceBonus = 3;
+            ionKnife.UseTextLanguageKey = Mod.ionKnifeRedIonCube;
 
             ionKnife.SetMaterialColors(new Color(1f, 0.2f, 0f), new Color(1f, 0.2f, 0f), 
                 Color.red, new Color(0.5f, 0.5f, 0.5f));
-            ionKnife.SetLightAppearance(new Color(1f, 0.2f, 0f), 8f);
+            ionKnife.SetLightAppearance(new Color(1f, 0.2f, 0f), 12f, 1.3f);
         }
 
         public void OnUpdate(IonKnife ionKnife)
@@ -30,7 +31,7 @@ namespace RotA.Mono.Equipment.IonKnifeActions
             }
         }
 
-        public void OnHit(IonKnife ionKnife, LiveMixin hitLiveMixin)
+        public void OnSwing(IonKnife ionKnife, LiveMixin hitLiveMixin, GameObject hitGameObject)
         {
             if (IonKnife.IsCreature(hitLiveMixin))
             {

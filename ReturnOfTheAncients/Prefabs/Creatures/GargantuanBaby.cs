@@ -1,4 +1,5 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.API;
+using ECCLibrary;
 using RotA.Mono.Creatures.Baby;
 using RotA.Mono.Creatures.CreatureActions;
 using UnityEngine;
@@ -18,8 +19,8 @@ namespace RotA.Prefabs.Creatures
 
         public override ScannableItemData ScannableSettings => new ScannableItemData(true, 4f, Mod.modEncyPath_gargantuan, Mod.gargAssetBundle.LoadAsset<Sprite>("Juvenile_Popup"), Mod.gargAssetBundle.LoadAsset<Texture2D>("Baby_Ency"));
 
-        public override string GetEncyTitle => "Gargantuan Leviathan Baby";
-        public override string GetEncyDesc => "A very young specimen, hatched from the last known egg of its species.\n\n1. Appearance:\nThis creature appears significantly similar to elder members of its species. However, a thick growing shell suggests this creature is millenniums away from complete loss of scales, which can be observed in only the most ancient specimens.\n\n2. Behavior:\nUnusually, this apex predator appears to be quite attached to its adopter. It goes to the extent of warding off predators much larger than itself if it ensures protection.\n\nAssessment: Valuable survival tool. Treat with care. Always be wary of betrayal.";
+        public override string GetEncyTitle => LanguageSystem.Get("Ency_GargantuanBaby");
+        public override string GetEncyDesc => LanguageSystem.Get("EncyDesc_GargantuanBaby");
 
 
         public GargantuanBaby(string classId, string friendlyName, string description, GameObject model, Texture2D spriteTexture) : base(classId, friendlyName, description, model, spriteTexture)
@@ -42,7 +43,7 @@ namespace RotA.Prefabs.Creatures
             followPlayer.maxYPos = -8f;
             var babyComponent = prefab.AddComponent<GargantuanBabyTeleport>();
             components.locomotion.driftFactor = 1f;
-            components.locomotion.forwardRotationSpeed = 0.4f;
+            components.locomotion.forwardRotationSpeed = 1f;
             components.locomotion.upRotationSpeed = 3f;
             components.locomotion.maxAcceleration = 15f;
             prefab.GetComponent<AttackLastTarget>().swimInterval = 0.01f;
@@ -53,6 +54,7 @@ namespace RotA.Prefabs.Creatures
             avoid.scanRadius = 8f;
             avoid.avoidanceDistance = 5f;
             avoid.avoidanceDuration = 2f;
+            avoid.avoidTerrainOnly = true;
 
             prefab.EnsureComponent<GargantuanBabyGrowthManager>();
 

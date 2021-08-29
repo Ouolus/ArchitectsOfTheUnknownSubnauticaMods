@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ECCLibrary;
 using RotA.Mono;
 using SMLHelper.V2.Assets;
@@ -10,7 +11,7 @@ namespace RotA.Prefabs.Initializers
     class MiscInitializers : Spawnable
     {
         public MiscInitializers()
-            : base("MiscRotAInitializers", ".", ".")
+            : base("MiscRotAInitializers", LanguageSystem.Default, LanguageSystem.Default)
         {
         }
 

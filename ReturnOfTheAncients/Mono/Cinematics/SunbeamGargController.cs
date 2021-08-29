@@ -13,7 +13,7 @@ namespace RotA.Mono.Cinematics
     public class SunbeamGargController : MonoBehaviour
     {
         private Vector3 gargsSpawnPosition = new Vector3(800, 200, 3600);
-        private Vector3 explosionSpawnPosition = new Vector3(630, 958, 3601);
+        private Vector3 explosionSpawnPosition = new Vector3(750, 1700, 3600);
         public bool forceSpecialCutscene = false;
         private BoundingSphere secretCutsceneBounds = new BoundingSphere(new Vector3(372, 0, 1113), 100f);
         private GameObject spawnedGarg;
@@ -33,18 +33,23 @@ namespace RotA.Mono.Cinematics
             }
         }
 
+        public static void PlayCinematic()
+        {
+            new GameObject("SunbeamGargController").AddComponent<SunbeamGargController>();
+        }
+
         private void Start()
         {
             initialized = true;
             defaultFarplane = CurrentFarplaneDistance;
             farplaneTarget = 20000f;
             Invoke(nameof(SpawnWreckPrefab), 7.4f);
-            Invoke(nameof(SpawnGarg), 6.9f);
-            Invoke(nameof(PlayRoarSound), 4f);
-            Invoke(nameof(PlayXLPDVfx), 13.1f);
-            Invoke(nameof(DestroySunbeamWreck), 15);
-            Invoke(nameof(StartFadingOut), 25f);
-            Invoke(nameof(EndCinematic), 30f);
+            Invoke(nameof(SpawnGarg), 6.9f); // nice
+            Invoke(nameof(PlayRoarSound), 7f);
+            Invoke(nameof(PlayXLPDVfx), 14f);
+            Invoke(nameof(DestroySunbeamWreck), 16.3f);
+            Invoke(nameof(StartFadingOut), 55f);
+            Invoke(nameof(EndCinematic), 60f);
         }
 
         void PlayRoarSound()
@@ -175,7 +180,7 @@ namespace RotA.Mono.Cinematics
             prefab.transform.forward = Vector3.forward;
             prefab.transform.localScale = Vector3.one * 9f;
             MaterialUtils.ApplySNShaders(prefab);
-            Renderer renderer = prefab.SearchChild("Gargantuan.001").GetComponent<SkinnedMeshRenderer>();
+            Renderer renderer = prefab.SearchChild("Gargantuan.004").GetComponent<SkinnedMeshRenderer>();
             Renderer eyeRenderer = prefab.SearchChild("Gargantuan.002").GetComponent<SkinnedMeshRenderer>();
             Renderer insidesRenderer = prefab.SearchChild("Gargantuan.003").GetComponent<SkinnedMeshRenderer>();
             AdultGargantuan.UpdateGargTransparentMaterial(renderer.materials[0]);
@@ -190,7 +195,7 @@ namespace RotA.Mono.Cinematics
             lod.closeThreshold = 7500f;
             lod.farThreshold = 10000f;
             List<Transform> spines = new List<Transform>();
-            GameObject currentSpine = prefab.SearchChild("Spine");
+            GameObject currentSpine = prefab.SearchChild("Spine.005");
             while (currentSpine != null)
             {
                 currentSpine = currentSpine.SearchChild("Spine", ECCStringComparison.StartsWith);
@@ -225,8 +230,8 @@ namespace RotA.Mono.Cinematics
             trail.rootTransform = prefab.transform;
             trail.rootSegment = trail.transform;
             trail.levelOfDetail = lod;
-            trail.segmentSnapSpeed = 0.075f / 4.5f;
-            trail.maxSegmentOffset = 700f;
+            trail.segmentSnapSpeed = 0.075f / 10f;
+            trail.maxSegmentOffset = 600f;
             trail.allowDisableOnScreen = false;
             AnimationCurve decreasing = new AnimationCurve(new Keyframe[] { new Keyframe(0f, 0.25f), new Keyframe(1f, 0.75f) });
             trail.pitchMultiplier = decreasing;

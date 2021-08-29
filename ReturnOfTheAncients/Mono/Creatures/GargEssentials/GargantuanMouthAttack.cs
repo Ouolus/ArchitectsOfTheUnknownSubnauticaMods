@@ -265,7 +265,7 @@
         {
             if (oneShotPlayer)
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(ECCAudio.LoadAudioClip("PDADeathImminent"), "DeathImminent", "Warning: Death imminent.");
+                CustomPDALinesManager.PlayPDAVoiceLine(ECCAudio.LoadAudioClip("PDADeathImminent"), "PDADeathImminent");
             }
             playerDeathCinematic.enabled = true;
             playerDeathCinematic.StartCinematicMode(player);

@@ -12,8 +12,9 @@
     using Patches;
     using Prefabs;
     using Prefabs.AlienBase;
-    using Prefabs.Buildable;
+    using Prefabs.AlienBase.DataTerminal;
     using Prefabs.Creatures;
+    using Prefabs.Creatures.Skeletons;
     using Prefabs.Equipment;
     using Prefabs.Initializers;
     using Prefabs.Modules;
@@ -41,6 +42,11 @@
         public static SkeletonGarg spookySkeletonGargPrefab;
         public static GargantuanEgg gargEgg;
         public static AquariumGuppy aquariumGuppy;
+        public static Guardian guardian;
+        
+        public static GhostSkeletonPose1 ghostSkeletonPose1;
+        public static GhostSkeletonPose2 ghostSkeletonPose2;
+        public static GhostSkeletonPose3 ghostSkeletonPose3;
 
         public static GameObject electricalDefensePrefab;
         static SeamothElectricalDefenseMK2 electricalDefenseMk2;
@@ -64,7 +70,10 @@
         public static AlienRelicPrefab bladeRelic;
         public static AlienRelicPrefab builderRelic;
 
-        public static GargPoster gargPoster;
+        internal static GargPoster gargPoster;
+        internal static GargantuanAdultToy gargAdultToy;
+        internal static GargantuanAdultToyNoHat gargAdultToyNoHat;
+        internal static GargantuanJuvenileToy gargJuvenileToy;
 
         public static WarpCannonPrefab warpCannon;
         public static IonKnifePrefab ionKnife;
@@ -85,21 +94,9 @@
         private const string assetBundleName = "projectancientsassets";
         private const string gargAssetBundleName = "gargantuanassets";
         
-        private const string alienSignalName = "Alien Signal";
-
         public static Config config = OptionsPanelHandler.Main.RegisterModOptions<Config>();
 
         private static Assembly myAssembly = Assembly.GetExecutingAssembly();
-
-        public static string warpCannonSwitchFireModeCurrentlyWarpKey = "WarpCannonSwitchFireModeWarp";
-        public static string warpCannonSwitchFireModeCurrentlyCreatureKey = "WarpCannonSwitchFireModeCreature";
-        public static string warpCannonSwitchFireModeCurrentlyManipulateFirePrimaryKey = "WarpCannonSwitchFireModeManipulatePrimary";
-        public static string warpCannonSwitchFireModeCurrentlyManipulateFireSecondaryKey = "WarpCannonSwitchFireModeManipulateSecond";
-        public static string warpCannonNotEnoughPowerError = "WarpCannonNotEnoughPowerError";
-
-        public static string omegaTerminalHoverText = "OmegaTerminalHoverText";
-        public static string omegaTerminalInteract = "OmegaTerminalInteract";
-        public static string omegaTerminalRegenerateCube = "OmegaCubeRegenerateCube";
 
         [QModPatch]
         public static void Patch()
@@ -125,6 +122,8 @@
             ConsoleCommandsHandler.Main.RegisterConsoleCommands(typeof(RotACommands));
 
             PatchLanguage();
+
+            LanguageSystem.RegisterLocalization();
 
             #region Tech
             architectElectricityMasterTech = TechTypeHandler.AddTechType("ArchitectElectricityMaster", "Ionic Pulse Technology", "Plasma-generating nanotechnology with defensive and offensive capabilities.", false);
@@ -200,23 +199,38 @@
 
         static void PatchCreatures()
         {
-            gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", "Gargantuan Leviathan Juvenile", "A titan-class lifeform. How did it get in your inventory?", gargAssetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
+            gargJuvenilePrefab = new GargantuanJuvenile("GargantuanJuvenile", LanguageSystem.Get("GargantuanJuvenile"), LanguageSystem.GetTooltip("GargantuanJuvenile"), gargAssetBundle.LoadAsset<GameObject>("GargJuvenile_Prefab"), null);
             gargJuvenilePrefab.Patch();
 
-            gargVoidPrefab = new GargantuanVoid("GargantuanVoid", "Gargantuan Leviathan", "A titan-class lifeform. Indigineous to the void.", gargAssetBundle.LoadAsset<GameObject>("GargAdult_Prefab"), null);
+            gargVoidPrefab = new GargantuanVoid("GargantuanVoid", LanguageSystem.Get("GargantuanVoid"), LanguageSystem.GetTooltip("GargantuanVoid"), gargAssetBundle.LoadAsset<GameObject>("GargAdult_Prefab"), null);
             gargVoidPrefab.Patch();
 
-            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", "Gargantuan Baby", "A very young specimen, raised in containment. Playful.", gargAssetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), gargAssetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
+            gargBabyPrefab = new GargantuanBaby("GargantuanBaby", LanguageSystem.Get("GargantuanBaby"), LanguageSystem.GetTooltip("GargantuanBaby"), gargAssetBundle.LoadAsset<GameObject>("GargBaby_Prefab"), gargAssetBundle.LoadAsset<Texture2D>("GargantuanBaby_Icon"));
             gargBabyPrefab.Patch();
 
-            spookySkeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", "Gargantuan Skeleton", "Spooky.", gargAssetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
+            spookySkeletonGargPrefab = new SkeletonGarg("SkeletonGargantuan", LanguageSystem.Get("SkeletonGargantuan"), LanguageSystem.GetTooltip("SkeletonGargantuan"), gargAssetBundle.LoadAsset<GameObject>("SkeletonGarg_Prefab"), null);
             spookySkeletonGargPrefab.Patch();
 
             gargEgg = new GargantuanEgg();
             gargEgg.Patch();
 
-            aquariumGuppy = new AquariumGuppy("AquariumGuppy", "Unknown Fish", "An interesting fish.", assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
+            aquariumGuppy = new AquariumGuppy("AquariumGuppy", LanguageSystem.Get("AquariumGuppy"), LanguageSystem.GetTooltip("AquariumGuppy"), assetBundle.LoadAsset<GameObject>("AquariumGuppy"), null);
             aquariumGuppy.Patch();
+
+            guardian = new Guardian("Guardian", "Guardian", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature_Prefab"), null);
+            guardian.Patch();
+
+            var g = new Guardian("Guardian2", "Guardian 2", "Guardian that makes me go yes", assetBundle.LoadAsset<GameObject>("GuardianCreature2_Prefab"), null);
+            g.Patch();
+
+            ghostSkeletonPose1 = new();
+            ghostSkeletonPose1.Patch();
+
+            ghostSkeletonPose2 = new();
+            ghostSkeletonPose2.Patch();
+            
+            ghostSkeletonPose3 = new();
+            ghostSkeletonPose3.Patch();
         }
 
         static void InitSpawns()
@@ -254,12 +268,18 @@
             PrecursorFabricatorService.SubscribeToFabricator(ionKnife.TechType, PrecursorFabricatorTab.Equipment);
             DisplayCaseServices.WhitelistTechType(ionKnife.TechType);
 
-            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", ency_warpCannonTerminal, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: warpMasterTech);
-            warpCannonTerminal.Patch();
-
             gargPoster = new();
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
+
+            gargAdultToy = new();
+            gargAdultToy.Patch();
+
+            gargAdultToyNoHat = new();
+            gargAdultToyNoHat.Patch();
+
+            gargJuvenileToy = new();
+            gargJuvenileToy.Patch();
 
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
@@ -285,28 +305,28 @@
 
         static void PatchSignals()
         {
-            signal_cragFieldBase = new("OutpostCSignal", "Precursor_Symbol04", "Downloaded co-ordinates", alienSignalName, new Vector3(-11, -178, -1155), 3); //white tablet icon
+            signal_cragFieldBase = new("CragFieldBaseSignal", "Precursor_Symbol04", LanguageSystem.Get("OutpostCSignal"), LanguageSystem.Get("OutpostCSignal_label"), new Vector3(3, -173, -1069), 5, new(true, "SupplyCacheBaseSubtitle", "SupplyCacheBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //white tablet icon
             signal_cragFieldBase.Patch();
 
-            signal_sparseReefBase = new("OutpostDSignal", "Precursor_Symbol01", "Downloaded co-ordinates", alienSignalName, new Vector3(-810f, -184f, -590f), 3); //red tablet icon
+            signal_sparseReefBase = new("SparseReefBaseSignal", "Precursor_Symbol01", LanguageSystem.Get("RotASignalSparseReefBaseName"), LanguageSystem.Get("RotASignalSparseReefBaseLabel"), new Vector3(-617, -182f, -598f), 5, new(true, "ResearchBaseSubtitle", "ResearchBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //red tablet icon
             signal_sparseReefBase.Patch();
 
-            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", "Downloaded co-ordinates", alienSignalName, new Vector3(1489, -420, 1337), 3, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", "Biological signal interference detected. True signal source is likely to be somewhere in the area.", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
+            signal_kooshZoneBase = new("KooshZoneBaseSignal", "Precursor_Symbol05", LanguageSystem.Get("RotASignalKooshZoneBaseName"), LanguageSystem.Get("RotASignalKooshZoneBaseLabel"), new Vector3(1489, -420, 1337), 5, new(true, "KooshBaseSignalSubtitle", "KooshBaseEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAKooshZoneBaseEncounter"), 2f)); //purple tablet icon
             signal_kooshZoneBase.Patch();
 
-            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", "Unidentified tracking chip", "Distress signal", new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", "This machine appears to have recently collapsed to the seafloor. Further research required.", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
+            signal_ruinedGuardian = new("RuinedGuardianSignal", "RuinedGuardian_Ping", LanguageSystem.Get("RotAGuardianSignalName"), LanguageSystem.Get("RotAGuardianSignalLabel"), new Vector3(367, -333, -1747), 0, new(true, "GuardianEncounterSubtitle", "GuardianEncounter", Mod.assetBundle.LoadAsset<AudioClip>("PDAGuardianEncounter"), 3f));
             signal_ruinedGuardian.Patch();
 
-            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", "Blood Kelp Zone Sanctuary", alienSignalName + " (535m)", new Vector3(-554, -534, 1518), defaultColorIndex: 2);
+            signal_cache_bloodKelp = new("BloodKelpCacheSignal", "CacheSymbol1", LanguageSystem.Get("RotASignalBloodKelpName"), LanguageSystem.Get("RotASignalBloodKelpLabel"), new Vector3(-554, -534, 1518), defaultColorIndex: 2);
             signal_cache_bloodKelp.Patch();
 
-            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", "Deep Sparse Reef Sanctuary", alienSignalName + " (287m)", new Vector3(-929, -287, -760), defaultColorIndex: 1);
+            signal_cache_sparseReef = new("SparseReefCacheSignal", "CacheSymbol2", LanguageSystem.Get("RotASignalSparseReefName"), LanguageSystem.Get("RotASignalSparseReefLabel"), new Vector3(-929, -287, -760), defaultColorIndex: 1);
             signal_cache_sparseReef.Patch();
 
-            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", "Dunes Sanctuary", alienSignalName + " (380m)", new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
+            signal_cache_dunes = new("DunesCacheSignal", "CacheSymbol3", LanguageSystem.Get("RotASignalDunesName"), LanguageSystem.Get("RotASignalDunesLabel"), new Vector3(-1187, -378, 1130), defaultColorIndex: 4);
             signal_cache_dunes.Patch();
 
-            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", "Lost River Laboratory Cache", alienSignalName + " (685m)", new Vector3(-1111, -685, -655), defaultColorIndex: 3);
+            signal_cache_lostRiver = new("LostRiverCacheSignal", "CacheSymbol4", LanguageSystem.Get("RotASignalLostRiverName"), LanguageSystem.Get("RotASignalLostRiverLabel"), new Vector3(-1111, -685, -655), defaultColorIndex: 3);
             signal_cache_lostRiver.Patch();
         }
 
@@ -336,7 +356,7 @@
             renderer.material.SetTexture("_Illum", assetBundle.LoadAsset<Texture2D>("alienupgrademodule_illum"));
         }
 
-        static void PatchEncy(string key, string path, string title, string desc, string popupName = null, string encyImageName = null)
+        static void PatchEncy(string key, string path, string popupName = null, string encyImageName = null)
         {
             Sprite popup = null;
             if (!string.IsNullOrEmpty(popupName))
@@ -356,8 +376,6 @@
                 popup = popup,
                 image = encyImg
             });
-            LanguageHandler.SetLanguageLine("Ency_" + key, title);
-            LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
         }
 
         static void MakeObjectScannable(TechType techType, string encyKey, float scanTime)

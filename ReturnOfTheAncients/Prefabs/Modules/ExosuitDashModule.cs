@@ -11,8 +11,8 @@ namespace RotA.Prefabs.Modules
     public class ExosuitDashModule : VehicleUpgrade, IVehicleOnEquip
     {
         public ExosuitDashModule()
-            : base("ExosuitDashModule", "Prawn Suit Ion Dash Module",
-        "Allows the pilot to dash quickly in any direction, utilizing the Prawn Suit's built-in thrusters. Doesn't stack.")
+            : base("ExosuitDashModule", LanguageSystem.Get("ExosuitDashModule"),
+        LanguageSystem.GetTooltip("ExosuitDashModule"))
         {
             OnFinishedPatching += () =>
             {

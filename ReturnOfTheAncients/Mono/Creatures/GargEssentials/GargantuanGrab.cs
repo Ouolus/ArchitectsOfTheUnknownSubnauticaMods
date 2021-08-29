@@ -79,6 +79,10 @@ namespace RotA.Mono.Creatures.GargEssentials
                 {
                     held.transform.position = behaviour.FixJuvenileFishHoldPosition(holdPoint, holdPoint.position);
                 }
+                else if (IsHoldingLargeSub())
+                {
+                    held.transform.position = holdPoint.position + (holdPoint.forward * -15f);
+                }
                 else
                 {
                     held.transform.position = holdPoint.position;
@@ -150,7 +154,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         {
             if (HeldVehicle != null)
             {
-                ReleaseVehicle();
+                ReleaseHeld();
             }
         }
 
@@ -298,13 +302,18 @@ namespace RotA.Mono.Creatures.GargEssentials
             {
                 freezeRb.enabled = false;
             }
+            Stabilizer stabilizer = subRoot.GetComponent<Stabilizer>();
+            if (stabilizer)
+            {
+                stabilizer.enabled = false;
+            }
 
             subrootStoredColliders = subRoot.GetComponentsInChildren<Collider>(false);
             ToggleSubrootColliders(false);
             subRoot.rigidbody.isKinematic = true;
             InvokeRepeating(nameof(DamageVehicle), 1f, 1f);
-            float attackLength = 10f;
-            Invoke(nameof(ReleaseVehicle), attackLength);
+            float attackLength = 12f;
+            Invoke(nameof(ReleaseHeld), attackLength);
             MainCameraControl.main.ShakeCamera(7f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
             behaviour.timeCanAttackAgain = Time.time + attackLength + 1f;
         }
@@ -351,7 +360,7 @@ namespace RotA.Mono.Creatures.GargEssentials
             vehicleGrabSound.Play();
             InvokeRepeating(nameof(DamageVehicle), 1f, 1f);
             float attackLength = 4f;
-            Invoke(nameof(ReleaseVehicle), attackLength);
+            Invoke(nameof(ReleaseHeld), attackLength);
             if (Player.main.GetVehicle() == HeldVehicle)
             {
                 MainCameraControl.main.ShakeCamera(4f, attackLength, MainCameraControl.ShakeMode.BuildUp, 1.2f);
@@ -387,17 +396,17 @@ namespace RotA.Mono.Creatures.GargEssentials
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyAndSwallow)
             {
-                behaviour.GetBloodEffectFromCreature(fish, 40f, 2f);
+                behaviour.GetBloodEffectFromCreature(fish, 40f, 4f);
                 behaviour.timeSpawnBloodAgain = Time.time + 1f;
             }
 
             if (grabFishMode == GargGrabFishMode.LeviathansOnlyNoSwallow)
             {
-                behaviour.GetBloodEffectFromCreature(fish, 20f, 2f);
+                behaviour.GetBloodEffectFromCreature(fish, 20f, 4f);
                 behaviour.timeSpawnBloodAgain = Time.time + 1f;
             }
 
-            Invoke(nameof(ReleaseVehicle), 5f);
+            Invoke(nameof(ReleaseHeld), 5f);
         }
 
         /// <summary>
@@ -428,7 +437,7 @@ namespace RotA.Mono.Creatures.GargEssentials
         /// <summary>
         /// Try to release the held vehicle or subroot
         /// </summary>
-        public void ReleaseVehicle()
+        public void ReleaseHeld()
         {
             if (HeldVehicle != null)
             {
@@ -452,7 +461,12 @@ namespace RotA.Mono.Creatures.GargEssentials
                 FreezeRigidbodyWhenFar freezeRb = heldSubroot.GetComponent<FreezeRigidbodyWhenFar>();
                 if (freezeRb)
                 {
-                    freezeRb.enabled = false;
+                    freezeRb.enabled = true;
+                }
+                Stabilizer stabilizer = heldSubroot.GetComponent<Stabilizer>();
+                if (stabilizer)
+                {
+                    stabilizer.enabled = true;
                 }
 
                 heldSubroot.rigidbody.isKinematic = false;

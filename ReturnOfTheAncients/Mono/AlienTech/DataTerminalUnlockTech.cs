@@ -8,7 +8,14 @@ namespace RotA.Mono.AlienTech
     {
         public TechType[] techsToUnlock;
 
+        public float delay;
+
         public void OnStoryHandTarget()
+        {
+            Invoke(nameof(Unlock), delay);
+        }
+
+        void Unlock()
         {
             CoroutineHost.StartCoroutine(DelayedUnlock());
         }

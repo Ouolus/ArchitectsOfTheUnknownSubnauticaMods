@@ -14,10 +14,12 @@ namespace RotA.Prefabs.AlienBase
         
         readonly float scale;
         readonly GameObject model;
-        public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model, float scale) : base(classId, friendlyName, description)
+        readonly bool useOmegaCubeMaterial;
+        public AlienRelicPrefab(string classId, string friendlyName, string description, GameObject model, float scale, bool useOmegaCubeMaterial = false) : base(classId, friendlyName, description)
         {
             this.model = model;
             this.scale = scale;
+            this.useOmegaCubeMaterial = useOmegaCubeMaterial;
         }
 
 #if SN1
@@ -46,6 +48,22 @@ namespace RotA.Prefabs.AlienBase
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
             MaterialUtils.FixIonCubeMaterials(obj, 1f);
+            if (useOmegaCubeMaterial)
+            {
+                foreach (var renderer in obj.GetComponentsInChildren<Renderer>(true))
+                {
+                    for (int i = 0; i < renderer.materials.Length; i++)
+                    {
+                        if (renderer.materials[i].name.ToLower().Contains("precursor_crystal_cube"))
+                        {
+                            renderer.materials[i].SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
+                            renderer.materials[i].SetColor("_SpecColor", new Color(1f, 1f, 1f));
+                            renderer.materials[i].SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
+                            renderer.materials[i].SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
+                        }
+                    }
+                }
+            }
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;
@@ -80,6 +98,22 @@ namespace RotA.Prefabs.AlienBase
             ECCHelpers.ApplySNShaders(obj, new UBERMaterialProperties(8f, 1f, 2f));
             MaterialUtils.ApplyPrecursorMaterials(obj, 35f);
             MaterialUtils.FixIonCubeMaterials(obj, 1f);
+                        if (useOmegaCubeMaterial)
+            {
+                foreach (var renderer in obj.GetComponentsInChildren<Renderer>(true))
+                {
+                    for (int i = 0; i < renderer.materials.Length; i++)
+                    {
+                        if (renderer.materials[i].name.ToLower().Contains("precursor_crystal_cube"))
+                        {
+                            renderer.materials[i].SetColor("_Color", new Color(0.3f, 0.3f, 0.3f));
+                            renderer.materials[i].SetColor("_SpecColor", new Color(1f, 1f, 1f));
+                            renderer.materials[i].SetColor("_DetailsColor", new Color(1f, 2f, 1.25f));
+                            renderer.materials[i].SetColor("_SquaresColor", new Color(0.5f, 0.5f, 0.5f));
+                        }
+                    }
+                }
+            }
             var soundEmitter = obj.EnsureComponent<FMOD_CustomLoopingEmitter>();
             soundEmitter.asset = relicSoundAsset;
             soundEmitter.playOnAwake = true;

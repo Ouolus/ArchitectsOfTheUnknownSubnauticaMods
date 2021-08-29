@@ -1,5 +1,5 @@
 ﻿using ECCLibrary;
-using RotA.Mono;
+using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
 using UWE;
@@ -13,17 +13,22 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private Vector3 teleportPosition;
         private float teleportAngle;
         private bool disablePlatform;
-        private bool omegaTeleporter;
         private string overrideId;
 
-        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, string overrideId) : base(classId, "", "")
+        private Color? fxColor;
+        
+        public TeleporterFramePrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, string overrideId) : base(classId, "", "")
         {
             this.teleporterId = teleporterId;
             this.teleportPosition = teleportPosition;
             this.teleportAngle = teleportAngle;
             this.disablePlatform = disablePlatform;
-            this.omegaTeleporter = omegaTeleporter;
             this.overrideId = overrideId;
+        }
+
+        public void SetColor(Color color)
+        {
+            fxColor = color;
         }
 
 #if SN1
@@ -46,6 +51,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
+            var rt = obj.AddComponent<RotaTeleporter>();
+            rt.fxColor = fxColor;
             return obj;
         }
 #elif SN1_exp
@@ -70,6 +77,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
                 collidersParent.GetChild(5).gameObject.SetActive(false);
                 collidersParent.GetChild(6).gameObject.SetActive(false);
             }
+            var rt = obj.AddComponent<RotaTeleporter>();
+            rt.fxColor = fxColor;
             gameObject.Set(obj);
         }
 #endif
@@ -85,7 +94,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
 
         protected override void ProcessPrefab(GameObject go)
         {
-            
+            go.name = ClassID;
+            //dont override techtype
         }
     }
 }
