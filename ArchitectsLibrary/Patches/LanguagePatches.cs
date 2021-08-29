@@ -27,11 +27,11 @@ namespace ArchitectsLibrary.Patches
         {
             foreach (var languagePath in LanguageSystem.LanguagePaths)
             {
-                LoadLanguagesImpl(language, languagePath);
+                LoadLanguageImpl(language, languagePath);
             }
         }
 
-        private static void LoadLanguagesImpl(string language, string languageFolder)
+        internal static void LoadLanguageImpl(string language, string languageFolder)
         {
             string fallbackPath = Path.Combine(languageFolder, $"{FallbackLanguage}.json");
             var file = Path.Combine(languageFolder, language + ".json");

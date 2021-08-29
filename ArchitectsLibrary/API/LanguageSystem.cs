@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ArchitectsLibrary.API
 {
     using System.Collections.Generic;
@@ -13,9 +15,16 @@ namespace ArchitectsLibrary.API
         internal static readonly List<string> LanguagePaths = new();
         internal static readonly Dictionary<string, string> CurrentLanguageStrings = new();
         internal static readonly Dictionary<string, string> FallbackLanguageStrings = new();
+        private static readonly string DefaultLanguage;
 
         static LanguageSystem()
         {
+            string savedLanguagePath = PlayerPrefs.GetString("Language", null);
+            if (!string.IsNullOrEmpty(savedLanguagePath))
+            {
+                DefaultLanguage = Path.GetFileNameWithoutExtension(savedLanguagePath);
+            }
+
             if (CurrentLanguageStrings.Count > 0 || FallbackLanguageStrings.Count > 0)
                 return;
 
@@ -35,6 +44,10 @@ namespace ArchitectsLibrary.API
         {
             var path = Path.Combine(Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), languageFolderName);
             LanguagePaths.Add(path);
+            if (!string.IsNullOrEmpty(DefaultLanguage))
+            {
+                LanguagePatches.LoadLanguageImpl(DefaultLanguage, path);
+            }
         }
 
         /// <summary>
