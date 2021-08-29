@@ -1,18 +1,27 @@
+using System.Collections;
 using UnityEngine;
 using ArchitectsLibrary.Handlers;
 using ArchitectsLibrary.API;
+using mset;
 
 namespace ArchitectsLibrary.MonoBehaviours
 {
     class PrecursorFabricator : Fabricator
     {
 	    private const float DefaultPowerUsage = 100f;
-	    
-        public override void Start()
+	    private Sky baseInteriorSky;
+	    private float originalBrightness;
+	    private float timeEndFlicker;
+	    private const float FlickerIntervalMin = 0.08f;
+	    private const float FlickerIntervalMax = 0.25f;
+
+	    public override void Start()
         {
             base.Start();
 			spawnAnimationDelay = 4f;
 			AchievementServices.CompleteAchievement("BuildPrecursorFabricator");
+			var currentBase = gameObject.GetComponentInParent<BaseRoot>();
+			if (currentBase != null) baseInteriorSky = currentBase.interiorSky;
         }
 
         public override void Craft(TechType techType, float duration)
@@ -43,6 +52,22 @@ namespace ArchitectsLibrary.MonoBehaviours
 			}
 		}
 
+        private IEnumerator FlickerCoroutine(float duration)
+        {
+	        if (baseInteriorSky)
+	        {
+		        yield break;
+	        }
+	        timeEndFlicker = Time.time + duration;
+	        originalBrightness = baseInteriorSky.masterIntensity;
+	        while (Time.time < timeEndFlicker)
+	        {
+		        baseInteriorSky.masterIntensity = Random.Range(0f, originalBrightness);
+		        yield return new WaitForSeconds(Random.Range(FlickerIntervalMin, FlickerIntervalMax));
+	        }
+	        baseInteriorSky.masterIntensity = originalBrightness;
+        }
+
         private bool IsIonCube(TechType techType)
         {
 	        return techType == TechType.PrecursorIonCrystal || techType == AUHandler.ElectricubeTechType ||
@@ -53,7 +78,11 @@ namespace ArchitectsLibrary.MonoBehaviours
         {
             base.OnCraftingBegin(techType, duration);
 			_progressDelayScalar = 4f / duration;
-		}
+			if (PrecursorFabricatorService.FlickerItems.Contains(techType))
+			{
+				StartCoroutine(FlickerCoroutine(5f));
+			}
+        }
 
 		public override void LateUpdate()
 		{
