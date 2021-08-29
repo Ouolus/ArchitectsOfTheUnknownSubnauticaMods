@@ -54,7 +54,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         private IEnumerator FlickerCoroutine(float duration)
         {
-	        if (baseInteriorSky)
+	        if (baseInteriorSky == null)
 	        {
 		        yield break;
 	        }
