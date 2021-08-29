@@ -12,8 +12,8 @@ namespace ArchitectsLibrary.MonoBehaviours
 	    private Sky baseInteriorSky;
 	    private float originalBrightness;
 	    private float timeEndFlicker;
-	    private const float FlickerIntervalMin = 0.02f;
-	    private const float FlickerIntervalMax = 0.08f;
+	    private const float FlickerIntervalMin = 0.04f;
+	    private const float FlickerIntervalMax = 0.2f;
 
 	    public override void Start()
         {
@@ -62,7 +62,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 	        originalBrightness = baseInteriorSky.masterIntensity;
 	        while (Time.time < timeEndFlicker)
 	        {
-		        baseInteriorSky.masterIntensity = Random.Range(originalBrightness / 3f, originalBrightness);
+		        baseInteriorSky.masterIntensity = Random.Range(originalBrightness / 4f, originalBrightness);
 		        yield return new WaitForSeconds(Random.Range(FlickerIntervalMin, FlickerIntervalMax));
 	        }
 	        baseInteriorSky.masterIntensity = originalBrightness;
@@ -80,7 +80,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 			_progressDelayScalar = 4f / duration;
 			if (PrecursorFabricatorService.FlickerItems.Contains(techType))
 			{
-				StartCoroutine(FlickerCoroutine(5f));
+				StartCoroutine(FlickerCoroutine(4f));
 			}
         }
 
