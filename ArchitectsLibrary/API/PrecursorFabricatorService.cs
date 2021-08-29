@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ArchitectsLibrary.API
 {
     /// <summary>
@@ -5,6 +7,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public static class PrecursorFabricatorService
     {
+        internal static Dictionary<TechType, float> itemEnergyUsage = new();
+        
         /// <summary>
         /// Adds a Crafting Node to the Precursor Fabricator.
         /// </summary>
@@ -20,6 +24,10 @@ namespace ArchitectsLibrary.API
             }
             
             Main.PrecursorFabricatorEntriesToAdd.Add(entry);
+            if (entry.overridePowerUsage.HasValue)
+            {
+                itemEnergyUsage.Add(entry.techType, entry.overridePowerUsage.Value);
+            }
         }
 
         /// <summary>
@@ -30,6 +38,17 @@ namespace ArchitectsLibrary.API
         public static void SubscribeToFabricator(TechType techType, PrecursorFabricatorTab tab)
         {
             SubscribeToFabricator(new PrecursorFabricatorEntry(techType, tab));
+        }
+        
+        /// <summary>
+        /// Adds a Crafting Node to the Precursor Fabricator. This overload requires slightly less writing than the other, but does the same thing.
+        /// </summary>
+        /// <param name="techType">The TechType of the item to add to the fabricator.</param>
+        /// <param name="tab">The tab that the item will go to.</param>
+        /// <param name="overridePowerUsage">The amount of power the Precursor Fabricator requires when crafting this item.</param>
+        public static void SubscribeToFabricator(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage)
+        {
+            SubscribeToFabricator(new PrecursorFabricatorEntry(techType, tab, overridePowerUsage));
         }
 
         internal static string TabToNameID(PrecursorFabricatorTab tab)
@@ -56,6 +75,10 @@ namespace ArchitectsLibrary.API
         
         internal readonly PrecursorFabricatorTab tab;
 
+        internal readonly float? overridePowerUsage;
+
+        internal readonly bool flickerLights;
+
         /// <summary>
         /// Constructor for this struct.
         /// </summary>
@@ -65,6 +88,24 @@ namespace ArchitectsLibrary.API
         {
             this.techType = techType;
             this.tab = tab;
+            this.overridePowerUsage = null;
+            this.flickerLights = false;
+        }
+
+        /// <summary>
+        /// Constructor for this struct.
+        /// </summary>
+        /// <param name="techType">The TechType of the item to add to the fabricator.</param>
+        /// <param name="tab">The tab that the item will go to.</param>
+        /// <param name="overridePowerUsage">The amount of power the Precursor Fabricator requires when crafting this item.</param>
+        public PrecursorFabricatorEntry(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage,
+            bool flickerLights = false)
+
+        {
+            this.techType = techType;
+            this.tab = tab;
+            this.overridePowerUsage = overridePowerUsage;
+            this.flickerLights = false;
         }
     }
 
