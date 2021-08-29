@@ -12,8 +12,8 @@ namespace ArchitectsLibrary.MonoBehaviours
 	    private Sky baseInteriorSky;
 	    private float originalBrightness;
 	    private float timeEndFlicker;
-	    private const float FlickerIntervalMin = 0.08f;
-	    private const float FlickerIntervalMax = 0.25f;
+	    private const float FlickerIntervalMin = 0.02f;
+	    private const float FlickerIntervalMax = 0.08f;
 
 	    public override void Start()
         {
@@ -62,7 +62,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 	        originalBrightness = baseInteriorSky.masterIntensity;
 	        while (Time.time < timeEndFlicker)
 	        {
-		        baseInteriorSky.masterIntensity = Random.Range(0f, originalBrightness);
+		        baseInteriorSky.masterIntensity = Random.Range(originalBrightness / 3f, originalBrightness);
 		        yield return new WaitForSeconds(Random.Range(FlickerIntervalMin, FlickerIntervalMax));
 	        }
 	        baseInteriorSky.masterIntensity = originalBrightness;
