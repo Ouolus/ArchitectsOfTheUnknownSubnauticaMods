@@ -30,7 +30,7 @@ namespace RotA.Mono.AlienTech
             Utils.PlayFMODAsset(turnOnSound, lightsParent);
             if (Time.time > timeVoiceNotifyAgain)
             {
-                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog", "Translation: 'Infected individuals are not permitted to enter this facility. Housed specimen may be at risk of infection.'");
+                CustomPDALinesManager.PlayPDAVoiceLineFMOD("event:/player/gunterminal_access_denied", "VoidBaseWarningLog");
                 timeVoiceNotifyAgain = Time.time + 60f;
             }
             SetExitCooldown(2f);
@@ -77,22 +77,21 @@ namespace RotA.Mono.AlienTech
         protected override void Setup()
         {
             lightsParent = gameObject.SearchChild("Lights").transform;
-            interiorMaterials = new Material[13];
-            Renderer muralRenderer = gameObject.SearchChild("VoidBaseV2Mural").GetComponent<Renderer>();
+            interiorMaterials = new Material[12];
+            Renderer muralRenderer = gameObject.SearchChild("MuralTileEdit2").GetComponent<Renderer>();
             Renderer interiorRenderer = gameObject.SearchChild("VoidBaseV2Interior").GetComponent<Renderer>();
             interiorMaterials[0] = muralRenderer.sharedMaterials[0];
-            interiorMaterials[1] = muralRenderer.sharedMaterials[1];
-            interiorMaterials[2] = interiorRenderer.sharedMaterials[0];
-            interiorMaterials[3] = interiorRenderer.sharedMaterials[1];
-            interiorMaterials[4] = interiorRenderer.sharedMaterials[2];
-            interiorMaterials[5] = interiorRenderer.sharedMaterials[3];
-            interiorMaterials[6] = interiorRenderer.sharedMaterials[4];
-            interiorMaterials[7] = interiorRenderer.sharedMaterials[5];
-            interiorMaterials[8] = interiorRenderer.sharedMaterials[6];
-            interiorMaterials[9] = interiorRenderer.sharedMaterials[7];
-            interiorMaterials[10] = interiorRenderer.sharedMaterials[8];
-            interiorMaterials[11] = interiorRenderer.sharedMaterials[9];
-            interiorMaterials[12] = interiorRenderer.sharedMaterials[10];
+            interiorMaterials[1] = interiorRenderer.sharedMaterials[0];
+            interiorMaterials[2] = interiorRenderer.sharedMaterials[1];
+            interiorMaterials[3] = interiorRenderer.sharedMaterials[2];
+            interiorMaterials[4] = interiorRenderer.sharedMaterials[3];
+            interiorMaterials[5] = interiorRenderer.sharedMaterials[4];
+            interiorMaterials[6] = interiorRenderer.sharedMaterials[5];
+            interiorMaterials[7] = interiorRenderer.sharedMaterials[6];
+            interiorMaterials[8] = interiorRenderer.sharedMaterials[7];
+            interiorMaterials[9] = interiorRenderer.sharedMaterials[8];
+            interiorMaterials[10] = interiorRenderer.sharedMaterials[9];
+            interiorMaterials[11] = interiorRenderer.sharedMaterials[10];
             SetMaterialBrightness(0f);
             turnOnSound = ScriptableObject.CreateInstance<FMODAsset>();
             turnOnSound.path = "event:/env/antechamber_lights_on";
@@ -140,7 +139,7 @@ namespace RotA.Mono.AlienTech
             if (StoryGoalManager.main.OnGoalComplete(approachBaseGoal.key))
             {
                 AchievementServices.CompleteAchievement("VisitVoidBase");
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter", "Detecting unusual biological signatures originating from beyond this doorway. Approach with caution.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("VoidBaseEncounter"), "VoidBaseEncounter");
             }
         }
 

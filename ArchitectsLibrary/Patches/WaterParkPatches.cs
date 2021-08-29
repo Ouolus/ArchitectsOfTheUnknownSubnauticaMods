@@ -27,7 +27,7 @@ namespace ArchitectsLibrary.Patches
                 }
                 else
                 {
-                    ErrorMessage.main.AddHint($"Cannot drop {Language.main.Get(tt)} in the ACU, requires at least {maxHeight} stacked ACUs to be dropped in.");
+                    ErrorMessage.main.AddHint(Language.main.GetFormat("WaterParkNoEnoughSizePrompt", Language.main.Get(tt), maxHeight));
                     __result = false;
                 }
 

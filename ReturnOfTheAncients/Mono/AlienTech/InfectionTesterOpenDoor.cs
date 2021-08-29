@@ -1,5 +1,6 @@
 ﻿using Story;
 using System;
+using ArchitectsLibrary.API;
 using UnityEngine;
 
 namespace RotA.Mono.AlienTech
@@ -67,7 +68,7 @@ namespace RotA.Mono.AlienTech
             {
                 return;
             }
-            HandReticle.main.SetInteractText("Deactivate forcefield");
+            HandReticle.main.SetInteractText(LanguageSystem.Get("InfectionTesterTerminalHandTarget"));
             HandReticle.main.SetIcon(HandReticle.IconType.Interact, 1f);
         }
 

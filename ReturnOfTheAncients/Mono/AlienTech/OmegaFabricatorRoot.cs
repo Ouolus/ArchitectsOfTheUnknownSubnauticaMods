@@ -199,8 +199,8 @@ namespace RotA.Mono.AlienTech
             }
             currentCube = cube;
             constructSoundEmitter.Play();
-            yield return new WaitForSeconds(4f);
             StartFabricationAnimation();
+            yield return new WaitForSeconds(4f);
             cube.SetActive(true);
             yield return new WaitForSeconds(animationLength);
             cubeBeingBuilt = false;

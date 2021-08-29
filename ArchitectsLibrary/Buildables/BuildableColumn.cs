@@ -5,7 +5,7 @@ namespace ArchitectsLibrary.Buildables
 {
     class BuildableColumn : GenericPrecursorDecoration
     {
-        public BuildableColumn() : base("BuildableColumn", "Alien Column Structure", "A tall, column-like object with a complex design. Decorational.")
+        public BuildableColumn() : base("BuildableColumn", LanguageSystem.Get("BuildableColumn"), LanguageSystem.GetTooltip("BuildableColumn"))
         {
         }
 

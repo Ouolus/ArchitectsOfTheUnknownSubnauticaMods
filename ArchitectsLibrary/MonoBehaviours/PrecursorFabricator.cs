@@ -16,16 +16,20 @@ namespace ArchitectsLibrary.MonoBehaviours
         public override void Craft(TechType techType, float duration)
         {
 			float powerToConsume = 100f;
-			bool useMassiveEnergy = techType == TechType.PrecursorIonCrystal || techType == AUHandler.ElectricubeTechType;
-			if (useMassiveEnergy)
+			if (PrecursorFabricatorService.ItemEnergyUsage.TryGetValue(techType, out float overrideEnergyUsage))
+			{
+				powerToConsume = overrideEnergyUsage;
+			}
+			bool isIonCube = IsIonCube(techType);
+			if (isIonCube)
             {
 				powerToConsume = 1000f;
             }
 			if (GameModeUtils.RequiresPower() && powerRelay.GetPower() < powerToConsume)
 			{
-                if (useMassiveEnergy)
+                if (isIonCube)
                 {
-					ErrorMessage.AddMessage($"Energy cubes require {powerToConsume} energy to craft.");
+					ErrorMessage.AddMessage($"Ion cubes require {powerToConsume} energy to craft.");
 				}
                 else
                 {
@@ -52,6 +56,12 @@ namespace ArchitectsLibrary.MonoBehaviours
 				OnCraftingBegin(techType, duration);
 			}
 		}
+
+        private bool IsIonCube(TechType techType)
+        {
+	        return techType == TechType.PrecursorIonCrystal || techType == AUHandler.ElectricubeTechType ||
+	               techType == AUHandler.RedIonCubeTechType;
+        }
 
         public override void OnCraftingBegin(TechType techType, float duration)
         {

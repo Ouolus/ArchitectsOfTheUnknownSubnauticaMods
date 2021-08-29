@@ -43,6 +43,7 @@ namespace RotA.Patches
             if (BlackHole.solarSystemDestroyed)
             {
                 newMusic.path = "event:/env/music/dunes_background_music";
+                __instance.background = null;
             }
             else
             {

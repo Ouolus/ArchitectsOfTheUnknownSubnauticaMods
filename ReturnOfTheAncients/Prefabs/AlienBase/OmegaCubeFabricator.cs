@@ -1,4 +1,5 @@
-﻿using ArchitectsLibrary.Utility;
+﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.Utility;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace RotA.Prefabs.AlienBase
     {
         GameObject _processedPrefab;
         
-        public OmegaCubeFabricator() : base("OmegaCubeFabricator", "Fabricator Device", "Fabricates omega cubes.")
+        public OmegaCubeFabricator() : base("OmegaCubeFabricator", LanguageSystem.Get("OmegaCubeFabricator"), LanguageSystem.Default)
         {
         }
 
@@ -32,7 +33,7 @@ namespace RotA.Prefabs.AlienBase
             MaterialUtils.ApplySNShaders(prefab, 8f);
             MaterialUtils.ApplyPrecursorMaterials(prefab, 8f);
             OmegaFabricatorRoot fabricatorRootComponent = prefab.EnsureComponent<OmegaFabricatorRoot>();
-            fabricatorRootComponent.animator = prefab.GetComponent<Animator>();
+            fabricatorRootComponent.animator = prefab.GetComponentInChildren<Animator>();
             fabricatorRootComponent.constructSoundEmitter = prefab.EnsureComponent<FMOD_CustomLoopingEmitter>();
             fabricatorRootComponent.constructSoundEmitter.asset = ScriptableObject.CreateInstance<FMODAsset>();
             fabricatorRootComponent.constructSoundEmitter.asset.path = "event:/env/antechamber_scan_loop";
@@ -83,6 +84,7 @@ namespace RotA.Prefabs.AlienBase
         {
             GameObject prefab = GameObject.Instantiate(originalPrefab);
             prefab.name = "OmegaElecArc";
+            prefab.GetComponent<VFXElectricArcs>().Start();
             prefab.SetActive(false);
             prefab.SearchChild("ElecArcTarget").transform.localPosition = new Vector3(0f, -11f, 0f);
             return prefab;
@@ -98,9 +100,10 @@ namespace RotA.Prefabs.AlienBase
                 main.startSize = new ParticleSystem.MinMaxCurve(ps.main.startSize.constant / 2f);
             }
             prefab.SearchChild("xTopGlow").transform.localPosition = new Vector3(0f, 0f, -8f);
-            prefab.SearchChild("xElecCubeTopUpper").transform.localPosition = new Vector3(0f, -0.1f, -11f);
-            prefab.SearchChild("xElecCubeTop").transform.localPosition = new Vector3(0f, -0.1f, -9f);
-            prefab.SearchChild("xBeam").transform.localPosition = new Vector3(0f, -0.1f, 2f);
+            prefab.SearchChild("xElecCubeTopUpper").transform.localPosition = new Vector3(0f, -0.1f, -6.5f);
+            prefab.SearchChild("xElecCubeTop").transform.localPosition = new Vector3(0f, -0.1f, -7f);
+            prefab.SearchChild("xBeam").transform.localPosition = new Vector3(0f, -0.1f, 7f);
+            prefab.SearchChild("xBeamCircuit").transform.localPosition = new Vector3(0f, -0.05f, 7f);
             return prefab;
         }
 

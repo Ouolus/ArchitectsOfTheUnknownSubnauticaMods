@@ -10,9 +10,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_outpost_1, Vector3.zero));
             yield return StartCoroutine(SpawnPrefabsArray(box2x1x2, 2f, new Vector3(10, 1, 10), Vector3.one, new Vector3(0f, -7.3f, 0f)));
             const float yOffset = -7.3f;
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(-4f, yOffset, 1f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(4f, yOffset, -6f)));
-            yield return StartCoroutine(SpawnPrefab(supplies_drillableTitanium, new Vector3(1f, yOffset, 3f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_ionCrystal_rectangle, new Vector3(0f, yOffset, 0f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, 7f)));
             yield return StartCoroutine(SpawnPrefab(pedestal_empty2, new Vector3(7f, yOffset, -9f)));

@@ -26,9 +26,9 @@ namespace ArchitectsLibrary.Patches
             harmony.Patch(orig3, postfix: postfix3);
         }
         
-        static string IncrementMessage => $"Increment the size ({LanguageUtils.FormatKeyCode(Main.Config.IncrementSize)})";
-        static string DecrementMessage => $"Decrement the size ({LanguageUtils.FormatKeyCode(Main.Config.DecrementSize)})";
-        static string ResetMsg => $"Reset the size ({LanguageUtils.FormatKeyCode(KeyCode.T)})";
+        static string IncrementMessage => Language.main.GetFormat("BuilderIncrementSizePrompt", LanguageUtils.FormatKeyCode(Main.Config.IncrementSize));
+        static string DecrementMessage => Language.main.GetFormat("BuilderDecrementSizePrompt", LanguageUtils.FormatKeyCode(Main.Config.DecrementSize));
+        static string ResetMsg => Language.main.GetFormat("BuilderResetSizePrompt", LanguageUtils.FormatKeyCode(KeyCode.T));
         static string Txt => $"{IncrementMessage}\n{DecrementMessage}\n{ResetMsg}";
 
         static bool initialized;

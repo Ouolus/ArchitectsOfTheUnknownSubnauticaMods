@@ -10,7 +10,7 @@ namespace RotA.Mono
     public class GargantuanEncounterPDA : MonoBehaviour
     {
         StoryGoal goal = new StoryGoal("GargantuanEncounter", Story.GoalType.Story, 0f);
-        public float maxDistance = 125f;
+        public float maxDistance = 300f;
 
         void Start()
         {
@@ -32,7 +32,7 @@ namespace RotA.Mono
                 {
                     if (StoryGoalManager.main.OnGoalComplete(goal.key))
                     {
-                        CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAGargEncounter"), "PDAGargEncounter", "Warning: passive bio scan is limited to 500 meters in any direction. Please manually scan the object for a more comprehensive measurement");
+                        CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAGargEncounter"), "PDAGargEncounter");
                         Destroy(this);
                     }
                 }

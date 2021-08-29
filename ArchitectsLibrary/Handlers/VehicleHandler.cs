@@ -9,8 +9,8 @@ namespace ArchitectsLibrary.Handlers
     /// </summary>
     public static class VehicleHandler
     {
-        internal static IDictionary<TechType, float> CustomEnergyCosts = new HashDictionary<TechType, float>();
-        internal static IDictionary<TechType, float> CustomMaxCharges = new HashDictionary<TechType, float>();
+        internal static IDictionary<TechType, float> CustomEnergyCosts = new Dictionary<TechType, float>();
+        internal static IDictionary<TechType, float> CustomMaxCharges = new Dictionary<TechType, float>();
         
         /// <summary>
         /// Amount of Energy this <see cref="TechType"/> Module will cost on use

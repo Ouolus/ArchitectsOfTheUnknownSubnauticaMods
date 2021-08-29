@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using ECCLibrary;
 using RotA.Mono;
 using SMLHelper.V2.Assets;
@@ -12,7 +13,7 @@ namespace RotA.Prefabs.Initializers
     class AdultGargSpawnerInitializer : Spawnable
     {
         public AdultGargSpawnerInitializer()
-            : base("AdultGargSpawner", ".", ".")
+            : base("AdultGargSpawner", LanguageSystem.Default, LanguageSystem.Default)
         {
         }
 

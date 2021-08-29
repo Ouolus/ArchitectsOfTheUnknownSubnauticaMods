@@ -1,11 +1,12 @@
-﻿using ECCLibrary;
+﻿using ArchitectsLibrary.API;
+using ECCLibrary;
 using UnityEngine;
 
 namespace RotA.Prefabs.AlienBase
 {
     public class AquariumSkeleton : GenericWorldPrefab
     {
-        public AquariumSkeleton(string classId, string friendlyName, string description, GameObject model, UBERMaterialProperties materialProperties, LargeWorldEntity.CellLevel cellLevel, bool applyPrecursorMaterial = true) : base(classId, friendlyName, description, model, materialProperties, cellLevel, applyPrecursorMaterial)
+        public AquariumSkeleton(string classId, GameObject model, UBERMaterialProperties materialProperties, LargeWorldEntity.CellLevel cellLevel, bool applyPrecursorMaterial = true) : base(classId, LanguageSystem.Get("VoidbaseAquariumSkeleton"), LanguageSystem.Default, model, materialProperties, cellLevel, applyPrecursorMaterial)
         {
         }
 

@@ -48,15 +48,13 @@ namespace RotA.Patches
 
         static void BeginRoar()
         {
-            CoroutineHost.StartCoroutine(Roar());
+            CoroutineHost.StartCoroutine(SunbeamGargEventCoroutine());
         }
 
-        static IEnumerator Roar()
+        static IEnumerator SunbeamGargEventCoroutine()
         {
             yield return new WaitForSeconds(30.3f);
-            GameObject sunbeamGargController = new GameObject("SunbeamGargController");
-            sunbeamGargController.AddComponent<SunbeamGargController>();
-
+            SunbeamGargController.PlayCinematic();
         }
     }
 }

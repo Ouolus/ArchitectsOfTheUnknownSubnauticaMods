@@ -94,7 +94,7 @@
         {
             if (grab.HeldVehicle is not null)
             {
-                grab.ReleaseVehicle();
+                grab.ReleaseHeld();
             }
             else
             {

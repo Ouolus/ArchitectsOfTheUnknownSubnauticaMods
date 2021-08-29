@@ -17,7 +17,7 @@ namespace RotA.Mono
                 default:
                     return;
                 case "Pickup_WarpCannon":
-                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("WarpCannonPickup"), "WarpCannonPickupVoiceline", "The Handheld Warping Device enables both short and long range teleportation for the user. Be cautious of the various side effects of teleportation, including sudden death and failure of proper materialization.");
+                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("WarpCannonPickup"), "WarpCannonPickupVoiceline");
                     AchievementServices.CompleteAchievement("CraftWarpCannon");
                     return;
                 case "Pickup_Electricube":
@@ -27,7 +27,7 @@ namespace RotA.Mono
                     OnIonCubePickedUp();
                     return;
                 case "Pickup_GargantuanEggUndiscovered":
-                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("GargEggPickup"), "GargantuanEggPickupVoiceline", "This egg is unusually large, and likely hosts the embryo of a leviathan class lifeform within.");
+                    CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("GargEggPickup"), "GargantuanEggPickupVoiceline");
                     return;
 
             }
@@ -37,7 +37,7 @@ namespace RotA.Mono
         {
             if (StoryGoalManager.main.OnGoalComplete(colorfulIonCubeStoryGoal.key))
             {
-                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("IonCubePickup"), "ColorIonCubePickupVoiceline", "The various Ion Cubes are essential in the fabrication of alien technology, but require rare resources and large quantities of energy to fabricate. Despite their colorful appearance and vague resemblance to candy, eating them is ill-advised.");
+                CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("IonCubePickup"), "ColorIonCubePickupVoiceline");
             }
         }
 

@@ -11,11 +11,16 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         private TeleporterFramePrefab frame;
         private CustomItemSettings customItemSettings;
 
-        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, bool omegaTeleporter, CustomItemSettings customItemSettings = default) : base(classId, "", "")
+        public TeleporterPrimaryPrefab(string classId, string teleporterId, Vector3 teleportPosition, float teleportAngle, bool disablePlatform, CustomItemSettings customItemSettings = default) : base(classId, "", "")
         {
-            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, omegaTeleporter, null);
+            frame = new TeleporterFramePrefab(string.Format("{0}Frame", classId), teleporterId, teleportPosition, teleportAngle, disablePlatform, null);
             frame.Patch();
             this.customItemSettings = customItemSettings;
+        }
+
+        public void SetColor(Color color)
+        {
+            frame.SetColor(color);
         }
 
 #if SN1

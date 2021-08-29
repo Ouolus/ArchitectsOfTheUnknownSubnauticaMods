@@ -1364,7 +1364,16 @@
             <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
             <param name="filePath">The file path on disk of the sound file to load</param>
             <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
-            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+            <returns>the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#RegisterCustomSound(System.String,UnityEngine.AudioClip,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a custom sound by an <see cref="T:UnityEngine.AudioClip"/> instance. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="audio">The AudioClip to register.</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>the <see cref="T:FMOD.Sound"/> registered.</returns>
         </member>
         <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.SMLHelper#V2#Interfaces#ICustomSoundHandler#RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
             <summary>
@@ -1386,7 +1395,7 @@
             </summary>
             <param name="id">The Id of the custom sound</param>
             <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
-            <returns>Returns true or false depending on if the id was found</returns>
+            <returns>true or false depending on if the id was found</returns>
         </member>
         <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.RegisterCustomSound(System.String,System.String,SMLHelper.V2.Utility.SoundChannel)">
             <summary>
@@ -1395,7 +1404,16 @@
             <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
             <param name="filePath">The file path on disk of the sound file to load</param>
             <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
-            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+            <returns>the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.RegisterCustomSound(System.String,UnityEngine.AudioClip,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a custom sound by an <see cref="T:UnityEngine.AudioClip"/> instance. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="audio">The AudioClip to register.</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>the <see cref="T:FMOD.Sound"/> registered.</returns>
         </member>
         <member name="M:SMLHelper.V2.Handlers.CustomSoundHandler.RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
             <summary>
@@ -1417,7 +1435,7 @@
             </summary>
             <param name="id">The Id of the custom sound</param>
             <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
-            <returns>Returns true or false depending on if the id was found</returns>
+            <returns>true or false depending on if the id was found</returns>
         </member>
         <member name="T:SMLHelper.V2.Handlers.PingHandler">
             <summary>
@@ -3268,7 +3286,16 @@
             <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
             <param name="filePath">The file path on disk of the sound file to load</param>
             <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
-            <returns>Returns the <see cref="T:FMOD.Sound"/> loaded</returns>
+            <returns>the <see cref="T:FMOD.Sound"/> loaded</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.RegisterCustomSound(System.String,UnityEngine.AudioClip,SMLHelper.V2.Utility.SoundChannel)">
+            <summary>
+            Register a custom sound by an <see cref="T:UnityEngine.AudioClip"/> instance. Some vanilla game sounds can be overridden by matching the id to the <see cref="F:FMODAsset.path"/>.
+            </summary>
+            <param name="id">The Id of your custom sound which is used when checking which sounds to play.</param>
+            <param name="audio">The AudioClip to register.</param>
+            <param name="soundChannel">The sound channel to get the volume to play the sound at. defaults to <see cref="F:SMLHelper.V2.Utility.SoundChannel.Master"/></param>
+            <returns>the <see cref="T:FMOD.Sound"/> registered.</returns>
         </member>
         <member name="M:SMLHelper.V2.Interfaces.ICustomSoundHandler.RegisterCustomSound(System.String,FMOD.Sound,SMLHelper.V2.Utility.SoundChannel)">
             <summary>
@@ -3290,7 +3317,7 @@
             </summary>
             <param name="id">The Id of the custom sound</param>
             <param name="sound">Outputs the <see cref="T:FMOD.Sound"/> if found and null if not found.</param>
-            <returns>Returns true or false depending on if the id was found</returns>
+            <returns>true or false depending on if the id was found</returns>
         </member>
         <member name="T:SMLHelper.V2.Interfaces.IModOptionAttribute">
             <summary>
@@ -4632,6 +4659,66 @@
             <param name="serializer"></param>
             <returns></returns>
         </member>
+        <member name="T:SMLHelper.V2.Json.Converters.Vector2Converter">
+            <summary>
+            A Vector2 json converter that simplifies the Vector2 to only x,y serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2Converter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2Converter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2Converter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Json.Converters.Vector2IntConverter">
+            <summary>
+            A Vector2Int json converter that simplifies the Vector2Int to only x,y serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2IntConverter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2IntConverter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector2IntConverter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
         <member name="T:SMLHelper.V2.Json.Converters.Vector3Converter">
             <summary>
             A Vector3 json converter that simplifies the Vector3 to only x,y,z serialization.
@@ -4653,6 +4740,66 @@
             <param name="serializer"></param>
         </member>
         <member name="M:SMLHelper.V2.Json.Converters.Vector3Converter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Json.Converters.Vector3IntConverter">
+            <summary>
+            A Vector3Int json converter that simplifies the Vector3Int to only x,y,z serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3IntConverter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3IntConverter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector3IntConverter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Deserialize and read the current object.
+            </summary>
+            <param name="reader"></param>
+            <param name="objectType"></param>
+            <param name="existingValue"></param>
+            <param name="serializer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SMLHelper.V2.Json.Converters.Vector4Converter">
+            <summary>
+            A Vector4 json converter that simplifies the Vector4 to only x,y,z,w serialization.
+            </summary>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector4Converter.CanConvert(System.Type)">
+            <summary>
+            A method that determines when this converter should process.
+            </summary>
+            <param name="objectType">the current object type</param>
+            <returns></returns>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector4Converter.WriteJson(Oculus.Newtonsoft.Json.JsonWriter,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            A method that tells Newtonsoft how to Serialize the current object.
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="M:SMLHelper.V2.Json.Converters.Vector4Converter.ReadJson(Oculus.Newtonsoft.Json.JsonReader,System.Type,System.Object,Oculus.Newtonsoft.Json.JsonSerializer)">
             <summary>
             A method that tells Newtonsoft how to Deserialize and read the current object.
             </summary>
@@ -5230,6 +5377,31 @@
             <param name="path">The path of the sound. Relative to the base game folder.</param>
             <param name="mode"></param>
             <returns>The <see cref="T:FMOD.Sound"/> instance</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Utility.AudioUtils.CreateSound(UnityEngine.AudioClip,FMOD.MODE)">
+            <summary>
+            Creates a <see cref="T:FMOD.Sound"/> instance from an <see cref="T:UnityEngine.AudioClip"/>. Can be stored and later used with <see cref="M:SMLHelper.V2.Utility.AudioUtils.PlaySound(FMOD.Sound)"/>
+            </summary>
+            <param name="audio">the AudioClip to make a Sound instance of.</param>
+            <param name="mode"></param>
+            <returns>The <see cref="T:FMOD.Sound"/> instance.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Utility.AudioUtils.PlaySound(UnityEngine.AudioClip,FMOD.MODE)">
+            <summary>
+            Plays a <see cref="T:FMOD.Sound"/> from an <see cref="T:UnityEngine.AudioClip"/>.
+            </summary>
+            <param name="audio">The AudioClip of the sound.</param>
+            <param name="mode"></param>
+            <returns>The channel on which the sound was created.</returns>
+        </member>
+        <member name="M:SMLHelper.V2.Utility.AudioUtils.PlaySound(UnityEngine.AudioClip,SMLHelper.V2.Utility.SoundChannel,FMOD.MODE)">
+            <summary>
+            Plays a <see cref="T:FMOD.Sound"/> from an <see cref="T:UnityEngine.AudioClip"/>. Has overload for controlling volume.
+            </summary>
+            <param name="audio">The AudioClip of the sound.</param>
+            <param name="mode"></param>
+            <param name="volumeControl">Which volume control to adjust sound levels by. How loud sound is.</param>
+            <returns>The channel on which the sound was created</returns>
         </member>
         <member name="M:SMLHelper.V2.Utility.AudioUtils.PlaySound(System.String,FMOD.MODE)">
             <summary>

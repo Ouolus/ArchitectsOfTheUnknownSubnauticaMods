@@ -5,7 +5,7 @@ namespace RotA.Prefabs.Placeable
 {
     public class GargPoster : HolographicPoster
     {
-        public GargPoster() : base("GargantuanPoster", "Leviathan Holographic Projector", "An approximation of the appearance of an ancient leviathan, projected with holographic technology.")
+        public GargPoster() : base("GargantuanPoster", LanguageSystem.Get("GargantuanPoster"), LanguageSystem.GetTooltip("GargantuanPoster"))
         {
         }
 

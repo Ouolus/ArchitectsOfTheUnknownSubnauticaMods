@@ -1,3 +1,5 @@
+using ArchitectsLibrary.API;
+
 namespace RotA
 {
     using ArchitectsLibrary.Handlers;
@@ -6,6 +8,7 @@ namespace RotA
     using Prefabs.Initializers;
     using Prefabs;
     using Prefabs.AlienBase;
+    using Prefabs.AlienBase.DataTerminal;
     using ECCLibrary;
     using UnityEngine;
     
@@ -24,6 +27,8 @@ namespace RotA
         public static BlackHolePrefab blackHole;
         public static OmegaCubeFabricator omegaCubeFabricator;
 
+        public static DataTerminalBuilder terminalBuilder = new();
+        
         public static DataTerminalPrefab tertiaryOutpostTerminalGrassy;
         public static DataTerminalPrefab tertiaryOutpostTerminalSparseReef;
         public static DataTerminalPrefab tertiaryOutpostTerminalLostRiver;
@@ -34,12 +39,14 @@ namespace RotA
         public static DataTerminalPrefab archElectricityTerminal;
         public static DataTerminalPrefab voidBaseTerminal;
         public static DataTerminalPrefab cachePingsTerminal;
-        public static DataTerminalPrefab spamTerminal;
+        public static DataTerminalPrefab voidbaseSpamTerminal;
         public static DataTerminalPrefab eggRoomTerminal;
         public static DataTerminalPrefab warpCannonTerminal;
         public static DataTerminalPrefab precursorMasterTechTerminal;
         public static DataTerminalPrefab redTabletHolder;
-        public static DataTerminalPrefab devSecretTerminal;
+        public static DataTerminalPrefab sonicDeterrentTerminal;
+
+        public static SecretBaseTerminal devSecretTerminal;
         public static DataTerminalPrefab devTerminalAlan;
         public static DataTerminalPrefab devTerminalHipnox;
         public static DataTerminalPrefab devTerminalLee23;
@@ -89,80 +96,80 @@ namespace RotA
             infectionTesterTerminal = new InfectionTesterTerminal("InfectionTesterTerminal");
             infectionTesterTerminal.Patch();
 
-            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", "Supply cache door", orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_supplyCache = new PrecursorDoorPrefab("SupplyCacheDoor", LanguageSystem.Get("SupplyCacheDoor"), orangeTabletTerminal.ClassID, "SupplyCacheDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_supplyCache.Patch();
 
-            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", "Research base door", whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_researchBase = new PrecursorDoorPrefab("ResearchBaseDoor", LanguageSystem.Get("ResearchBaseDoor"), whiteTabletTerminal.ClassID, "ResearchBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_researchBase.Patch();
 
-            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", "Bulb Zone base door", purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
+            door_kooshBase = new PrecursorDoorPrefab("KooshBaseDoor", LanguageSystem.Get("KooshBaseDoor"), purpleTabletTerminal.ClassID, "KooshBaseDoor", true, new Vector3(0f, -0.2f, 8f), new Vector3(0f, 0f, 0f));
             door_kooshBase.Patch();
 
             const string bigDoor = "4ea69565-60e4-4554-bbdb-671eaba6dffb";
             const string smallDoor = "caaad5e8-4923-4f66-8437-f49914bc5347";
-            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", "Door", redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
+            voidDoor_red = new PrecursorDoorPrefab("VoidDoorRed", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorRed", true, new Vector3(0f, 0f, 9.5f), Vector3.up * 0f, bigDoor, false);
             voidDoor_red.Patch();
 
-            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", "Door", blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-5f, 0f, 14.5f), Vector3.up * 90f, bigDoor, false);
+            voidDoor_blue = new PrecursorDoorPrefab("VoidDoorBlue", LanguageSystem.Get("Door"), blueTabletTerminal.ClassID, "VoidDoorBlue", true, new Vector3(-5f, 0f, 14.5f), Vector3.up * 90f, bigDoor, false);
             voidDoor_blue.Patch();
 
-            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", "Door", purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-3.5f, 0f, 11f), Vector3.up * 45f, bigDoor, false);
+            voidDoor_purple = new PrecursorDoorPrefab("VoidDoorPurple", LanguageSystem.Get("Door"), purpleTabletTerminal.ClassID, "VoidDoorPurple", true, new Vector3(-3.5f, 0f, 11f), Vector3.up * 45f, bigDoor, false);
             voidDoor_purple.Patch();
 
-            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", "Door", orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(3.5f, 0f, 11f), Vector3.up * 315f, bigDoor, false);
+            voidDoor_orange = new PrecursorDoorPrefab("VoidDoorOrange", LanguageSystem.Get("Door"), orangeTabletTerminal.ClassID, "VoidDoorOrange", true, new Vector3(3.5f, 0f, 11f), Vector3.up * 315f, bigDoor, false);
             voidDoor_orange.Patch();
 
-            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", "Door", whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
+            voidDoor_white = new PrecursorDoorPrefab("VoidDoorWhite", LanguageSystem.Get("Door"), whiteTabletTerminal.ClassID, "VoidDoorWhite", true, new Vector3(5f, 0f, 14.5f), Vector3.up * -90f, bigDoor, false);
             voidDoor_white.Patch();
 
-            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", "Door", infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(-4f, 0f, 4f), Vector3.up * -90f, bigDoor, true);
+            voidDoor_interior_infectionTest = new PrecursorDoorPrefab("VoidDoorInfectionTest", LanguageSystem.Get("Door"), infectionTesterTerminal.ClassID, "VoidDoorInfectionTest", true, new Vector3(-4f, 0f, 4f), Vector3.up * -90f, bigDoor, true);
             voidDoor_interior_infectionTest.Patch();
 
             voidInteriorForcefield = new VoidInteriorForcefield();
             voidInteriorForcefield.Patch();
 
-            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInteriorL", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
+            voidDoor_interior_left = new PrecursorDoorPrefab("VoidDoorInteriorL", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(-4f, 0f, -3f), terminalLocalRotation: Vector3.up * 90f);
             voidDoor_interior_left.Patch();
 
-            voidDoor_interior_right = new PrecursorDoorPrefab("VoidDoorInteriorR", "Door", purpleTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(4f, 0f, -3f), terminalLocalRotation: Vector3.up * 270f);
+            voidDoor_interior_right = new PrecursorDoorPrefab("VoidDoorInteriorR", LanguageSystem.Get("Door"), redTabletTerminal.ClassID, "VoidDoorInterior", rootPrefabClassId: smallDoor, overrideTerminalPosition: true, terminalLocalPosition: new Vector3(4f, 0f, -3f), terminalLocalRotation: Vector3.up * 270f);
             voidDoor_interior_right.Patch();
 
             prop_ruinedGuardian = new RuinedGuardianPrefab();
             prop_ruinedGuardian.Patch();
             MakeObjectScannable(prop_ruinedGuardian.TechType, ency_ruinedGuardian, 6f);
 
-            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
+            secondaryBaseModel = new GenericWorldPrefab("SecondaryBaseModel", LanguageSystem.Get("SecondaryBaseModel"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SmallCache_Prefab"), new UBERMaterialProperties(7f, 35f, 1f), LargeWorldEntity.CellLevel.Far);
             secondaryBaseModel.Patch();
             MakeObjectScannable(secondaryBaseModel.TechType, ency_secondaryBaseModel, 6f);
 
-            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", "Alien Structure", "A large alien structure. (Lee23 7/9/2021 6:59 PM EST)", assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
+            secretBaseModel = new GenericWorldPrefab("SecretBaseModel", LanguageSystem.Default, LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("SecretRoom_Prefab"), new UBERMaterialProperties(8f, 3f, 1f), LargeWorldEntity.CellLevel.Far);
             secretBaseModel.Patch();
 
-            voidBaseModel = new VoidBaseModel("VoidBaseModel", "Alien Structure", "A large alien structure.", assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
+            voidBaseModel = new VoidBaseModel("VoidBaseModel", LanguageSystem.Get("VoidBaseModel"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("VoidBase_Prefab"), new UBERMaterialProperties(6f, 15f, 1f), LargeWorldEntity.CellLevel.VeryFar);
             voidBaseModel.Patch();
             MakeObjectScannable(voidBaseModel.TechType, ency_voidBaseModel, 6f);
 
-            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", "Mechanical Segment", "A tail.", assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
+            guardianTailfinModel = new GenericWorldPrefab("GuardianTailfin", LanguageSystem.Get("GuardianTailfin"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("GuardianTailfin_Prefab"), new UBERMaterialProperties(7f, 1f, 1f), LargeWorldEntity.CellLevel.Near);
             guardianTailfinModel.Patch();
             MakeObjectScannable(guardianTailfinModel.TechType, ency_tailfin, 2f);
 
-            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", "Alien Structural Alloy", "An alien ingot.", assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
+            ingotRelic = new AlienRelicPrefab("PrecursorIngotRelic", LanguageSystem.Get("PrecursorIngotRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorIngot_Prefab"), 0.3f);
             ingotRelic.Patch();
             MakeObjectScannable(ingotRelic.TechType, ency_precingot, 2f);
 
-            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", "Alien Rifle", "An alien rifle.", assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
+            rifleRelic = new AlienRelicPrefab("PrecursorRifleRelic", LanguageSystem.Get("PrecursorRifleRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorRifle_Prefab"), 0.2f);
             rifleRelic.Patch();
             MakeObjectScannable(rifleRelic.TechType, ency_precrifle, 2f);
 
-            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", "Alien Knife", "An alien knife.", assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f);
+            bladeRelic = new AlienRelicPrefab("PrecursorBladeRelic", LanguageSystem.Get("PrecursorBladeRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBlade_Prefab"), 0.8f, true);
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
 
-            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", "Alien Construction Tool", "An alien construction tool.", assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
+            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", LanguageSystem.Get("PrecursorBuilderRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
             builderRelic.Patch();
             MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
 
-            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", "Leviathan Skeletal Remains", "The remains of a juvenile leviathan specimen.", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
+            aquariumSkeleton = new AquariumSkeleton("VoidbaseAquariumSkeleton", assetBundle.LoadAsset<GameObject>("AquariumSkeleton"), new UBERMaterialProperties(4f, 1f, 1f), LargeWorldEntity.CellLevel.Medium, false);
             aquariumSkeleton.Patch();
             MakeObjectScannable(aquariumSkeleton.TechType, ency_aquariumSkeleton, 5f);
 
@@ -184,34 +191,58 @@ namespace RotA
 
         static void PatchAlienBases()
         {
-            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); //Sparse reef
+            var outpostAInitializer = new AlienBaseInitializer<OutpostBaseSpawner>("GargOutpostA", new Vector3(-702, -213, -780)); // Sparse reef
             outpostAInitializer.Patch();
 
-            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); //Bones fields
+            var outpostBInitializer = new AlienBaseInitializer<BonesFieldsOutpostSpawner>("GargOutpostB", new Vector3(-726, -757, -218)); // Bones fields
             outpostBInitializer.Patch();
 
-            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); //Crag field
+            var guardianCablesInitializer = new AlienBaseInitializer<CablesNearGuardian>("GuardianCables", new Vector3(373, -358, -1762)); // Crag field
             guardianCablesInitializer.Patch();
 
-            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", new Vector3(-13, -175.81f, -1183)); //Crag field
+            // supply cache (Crag field)
+            var supplyCachePos = new Vector3(-13, -175.81f, -1183);
+
+            var supplyCacheBase = new AlienBaseInitializer<SupplyCacheBaseSpawner>("SupplyCacheBase", supplyCachePos);
             supplyCacheBase.Patch();
 
-            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", new Vector3(-860, -187, -641)); //Sparse reef
+            var supplyCacheExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("SupplyCacheBaseExterior", supplyCachePos, LargeWorldEntity.CellLevel.Far);
+            supplyCacheExterior.Patch();
+
+            // Research base (Sparse reef)
+            var researchBasePos = new Vector3(-860, -187, -641);
+
+            var researchBase = new AlienBaseInitializer<ResearchBaseSpawner>("ResearchBase", researchBasePos);
             researchBase.Patch();
 
-            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", new Vector3(1480, -457, 1457)); //Koosh/bulb zone
+            var researchBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("ResearchBaseExterior", researchBasePos, LargeWorldEntity.CellLevel.Far);
+            researchBaseExterior.Patch();
+
+            var researchBaseHint = new AlienBaseInitializer<ResearchBaseHint>("ResearchBaseHint", new Vector3(-718, -197, -637), LargeWorldEntity.CellLevel.Medium);
+            researchBaseHint.Patch();
+
+            // Koosh zone base (Koosh/bulb zone)
+            var kooshBasePos = new Vector3(1480, -457, 1457);
+
+            var kooshBase = new AlienBaseInitializer<KooshBaseSpawner>("KooshZoneBase", kooshBasePos);
             kooshBase.Patch();
 
-            var eggBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", new Vector3(373, -400, -1880 - 40f), 300f, LargeWorldEntity.CellLevel.Far); //Void
-            eggBase.Patch();
+            var kooshBaseExterior = new AlienBaseInitializer<CacheBaseExteriorSpawner>("KooshZoneBaseExterior", kooshBasePos, LargeWorldEntity.CellLevel.Far);
+            kooshBaseExterior.Patch();
 
-            var eggBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", new Vector3(373, -400, -1880 - 40f), 90, LargeWorldEntity.CellLevel.Medium); //Void
-            eggBaseInterior.Patch();
+            // Void base
+            var voidBasePos = new Vector3(373, -400, -1920);
 
-            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), 350f, LargeWorldEntity.CellLevel.Far); //Dunes (Out of bounds)
+            var voidBase = new AlienBaseInitializer<VoidBaseSpawner>("VoidBase", voidBasePos, LargeWorldEntity.CellLevel.Far); // Void
+            voidBase.Patch();
+
+            var voidBaseInterior = new AlienBaseInitializer<VoidBaseInteriorSpawner>("VoidBaseInterior", voidBasePos, LargeWorldEntity.CellLevel.Medium); // Void
+            voidBaseInterior.Patch();
+
+            var secondaryContainmentFacility = new AlienBaseInitializer<SecondaryContainmentFacility>("SecondaryContaimentFacility", new Vector3(-1088, -1440, 192), LargeWorldEntity.CellLevel.Far); // Dunes (Out of bounds)
             secondaryContainmentFacility.Patch();
 
-            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), 350f, LargeWorldEntity.CellLevel.Far); //Under aurora (Out of bounds)
+            var secretBase = new AlienBaseInitializer<SecretBaseSpawner>("SecretBaseSpawner", new Vector3(1500f, -2000f, 0f), LargeWorldEntity.CellLevel.Far); // Under aurora (Out of bounds)
             secretBase.Patch();
         }
 
@@ -221,76 +252,146 @@ namespace RotA
 
         static void PatchAlienTerminals()
         {
-            tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", ency_tertiaryOutpostTerminalGrassy, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            #region Outposts
+            terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalGrassy);
+            terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
+            tertiaryOutpostTerminalGrassy = new DataTerminalPrefab("TertiaryOutpostTerminal1", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalGrassy.Patch();
 
-            tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", ency_tertiaryOutpostTerminalSparseReef, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalSparseReef);
+            terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
+            tertiaryOutpostTerminalSparseReef = new DataTerminalPrefab("TertiaryOutpostTerminal2", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalSparseReef.Patch();
 
-            tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", ency_tertiaryOutpostTerminalLostRiver, new string[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID }, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.");
+            terminalBuilder.SetupStoryGoal(ency_tertiaryOutpostTerminalLostRiver);
+            terminalBuilder.SetupPingClassIds(new[] { signal_cragFieldBase.ClassID, signal_sparseReefBase.ClassID, signal_kooshZoneBase.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
+            tertiaryOutpostTerminalLostRiver = new DataTerminalPrefab("TertiaryOutpostTerminal3", terminalBuilder.GetTerminal());
             tertiaryOutpostTerminalLostRiver.Patch();
+            #endregion
 
-            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", ency_distressSignal, new string[] { signal_ruinedGuardian.ClassID }, "DataTerminalDistress", DataTerminalPrefab.blueTerminalCID, delay: 6f, subtitles: "Detecting an alien distress broadcast. Uploading co-ordinates to PDA.");
+            #region Cache bases
+            terminalBuilder.SetupStoryGoal(ency_distressSignal, 6);
+            terminalBuilder.SetupPingClassIds(new [] { signal_ruinedGuardian.ClassID });
+            terminalBuilder.SetupAudio("DataTerminalDistress", "GuardianTerminalSubtitles");
+            guardianTerminal = new DataTerminalPrefab("GuardianTerminal", terminalBuilder.GetTerminal());
             guardianTerminal.Patch();
 
-            supplyCacheTerminal = new DataTerminalPrefab("SupplyCacheTerminal", ency_supplyCacheTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, audioClipPrefix: "DataTerminalEncy", delay: 5f, subtitles: "Downloading alien data... Download complete.");
+            terminalBuilder.SetupStoryGoal(ency_supplyCacheTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            supplyCacheTerminal = new DataTerminalPrefab("SupplyCacheTerminal", terminalBuilder.GetTerminal());
             supplyCacheTerminal.Patch();
 
-            researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", ency_researchBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            terminalBuilder.SetupStoryGoal(ency_researchBaseTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            researchBaseTerminal = new DataTerminalPrefab("ResearchBaseTerminal", terminalBuilder.GetTerminal());
             researchBaseTerminal.Patch();
 
-            kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", ency_kooshBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
+            terminalBuilder.SetupStoryGoal(ency_kooshBaseTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            kooshBaseTerminal = new DataTerminalPrefab("KooshBaseTerminal", terminalBuilder.GetTerminal());
             kooshBaseTerminal.Patch();
 
-            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToUnlock: new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType }, audioClipPrefix: "DataTerminalIonicPulse", delay: 4.6f, subtitles: "Snythesizing Ionic Energy Pulse blueprints from alien data. Blueprints stored to databank.");
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(new[] { superDecoy.TechType, exosuitDashModule.TechType, exosuitZapModule.TechType, ionKnife.TechType, electricalDefenseMk2.TechType }, delay: 4.6f);
+            terminalBuilder.SetupAudio("DataTerminalIonicPulse", "IonicPulseTerminalSubtitles");
+            archElectricityTerminal = new DataTerminalPrefab("ArchElectricityTerminal", terminalBuilder.GetTerminal());
             archElectricityTerminal.Patch();
 
-            voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", ency_voidBaseTerminal, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
-            voidBaseTerminal.Patch();
-
-            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", ency_cachePings, terminalClassId: DataTerminalPrefab.blueTerminalCID, audioClipPrefix: "DataTerminalOutpost", delay: 5f, subtitles: "Detecting an alien broadcast. Uploading co-ordinates to PDA.", pingClassId: new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID });
-            cachePingsTerminal.Patch();
-
-            spamTerminal = new DataTerminalPrefab("SpamTerminal", ency_alienSpam, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
-            spamTerminal.Patch();
-
-            eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", ency_eggRoom, terminalClassId: DataTerminalPrefab.greenTerminalCID, delay: 5f, audioClipPrefix: "DataTerminalEncy", subtitles: "Downloading alien data... Download complete.");
-            eggRoomTerminal.Patch();
-
-            precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, techToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(techTypeToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", terminalBuilder.GetTerminal());
             precursorMasterTechTerminal.Patch();
 
-            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", null, hideSymbol: true, overrideColor: true, fxColor: new Color(1f, 0.5f, 0.5f), disableInteraction: true);
+            terminalBuilder.SetupFX(new Color(1f, 0.5f, 0.5f), true);
+            terminalBuilder.SetupInteractable(false);
+            redTabletHolder = new DataTerminalPrefab("RedTabletHolder", terminalBuilder.GetTerminal());
             redTabletHolder.Patch();
+            #endregion
 
-            devSecretTerminal = new DataTerminalPrefab("DevSecretTerminal", null, terminalClassId: DataTerminalPrefab.orangeTerminalCID, overrideColor: true, fxColor: new Color(0.65f, 0f, 0.75f), achievement: "DevSecretAchievement", audioClipPrefix: "PDAThanksForDownloading", subtitles: "Thank you for downloading the Return of the Ancients mod. The Architects of the Unknown team appreciates your support.");
+            #region Voidbase
+            terminalBuilder.SetupStoryGoal(ency_voidBaseTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            voidBaseTerminal = new DataTerminalPrefab("VoidBaseTerminal", terminalBuilder.GetTerminal());
+            voidBaseTerminal.Patch();
+
+            terminalBuilder.SetupStoryGoal(ency_cachePings);
+            terminalBuilder.SetupPingClassIds(new[] { signal_cache_bloodKelp.ClassID, signal_cache_sparseReef.ClassID, signal_cache_dunes.ClassID, signal_cache_lostRiver.ClassID });
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.blueTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalOutpost", "DetectingAlienBroadcastSubtitles");
+            cachePingsTerminal = new DataTerminalPrefab("CachePingsTerminal", terminalBuilder.GetTerminal());
+            cachePingsTerminal.Patch();
+
+            terminalBuilder.SetupStoryGoal(ency_alienSpam);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            voidbaseSpamTerminal = new DataTerminalPrefab("SpamTerminal", terminalBuilder.GetTerminal());
+            voidbaseSpamTerminal.Patch();
+
+            terminalBuilder.SetupStoryGoal(ency_eggRoom);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            eggRoomTerminal = new DataTerminalPrefab("EggRoomTerminal", terminalBuilder.GetTerminal());
+            eggRoomTerminal.Patch();
+            
+            terminalBuilder.SetupStoryGoal(ency_warpCannonTerminal);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(techTypeToAnalyze: warpMasterTech);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            warpCannonTerminal = new DataTerminalPrefab("WarpCannonTerminal", terminalBuilder.GetTerminal());
+            warpCannonTerminal.Patch();
+
+            terminalBuilder.SetupStoryGoal(ency_buildablesonicdeterrent);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupUnlockables(techTypesToUnlock: new[] { AUHandler.BuildableSonicDeterrentTechType }, delay: 4f);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
+            sonicDeterrentTerminal = new DataTerminalPrefab("SonicDeterrentTerminal", terminalBuilder.GetTerminal());
+            sonicDeterrentTerminal.Patch();
+            #endregion
+
+            #region Secret base
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
+            terminalBuilder.SetupFX(new Color(0.65f, 0f, 0.75f), false);
+            terminalBuilder.SetupAchievement("DevSecretAchievement");
+            terminalBuilder.SetupAudio("PDAThanksForDownloading", "ThanksForDownloadingSubtitles");
+            devSecretTerminal = new SecretBaseTerminal("DevSecretTerminal", terminalBuilder.GetTerminal());
             devSecretTerminal.Patch();
 
-            devTerminalAlan = GetDevNameTerminal("DevSecretAlan", "PDAAlan", "Al-An", new Color(1f, 0f, 0.75f));
+            devTerminalAlan = GetDevNameTerminal("DevSecretAlan", "PDAAlan",  new Color(1f, 0f, 0.75f));
             devTerminalAlan.Patch();
 
-            devTerminalHipnox = GetDevNameTerminal("DevSecretHipnox", "PDAHipnox", "Hipnox", new Color(0.28f, 0.69f, 1f));
+            devTerminalHipnox = GetDevNameTerminal("DevSecretHipnox", "PDAHipnox", new Color(0.28f, 0.69f, 1f));
             devTerminalHipnox.Patch();
 
-            devTerminalLee23 = GetDevNameTerminal("DevSecretLee23", "PDALee23", "Lee23", new Color(0.33f, 1f, 0.64f));
+            devTerminalLee23 = GetDevNameTerminal("DevSecretLee23", "PDALee23", new Color(0.33f, 1f, 0.64f));
             devTerminalLee23.Patch();
 
-            devTerminalMetious = GetDevNameTerminal("DevSecretMetious", "PDAMetious", "Metious", Color.magenta);
+            devTerminalMetious = GetDevNameTerminal("DevSecretMetious", "PDAMetious", Color.magenta);
             devTerminalMetious.Patch();
 
-            devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter", "N8Crafter", Color.cyan);
+            devTerminalN8crafter = GetDevNameTerminal("DevSecretN8", "PDAN8Crafter",  Color.cyan);
             devTerminalN8crafter.Patch();
 
-            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", "Slendy Playz", new Color(0.8f, 0.8f, 0.8f));
+            devTerminalSlendyPlayz = GetDevNameTerminal("DevSecretSlendy", "PDASlendyPlayz", new Color(0.8f, 0.8f, 0.8f));
             devTerminalSlendyPlayz.Patch();
 
-            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", "Tori Chibi", new Color(1f, 0f, 0f));
+            devTerminalTori = GetDevNameTerminal("DevSecretTori", "PDATori", new Color(1f, 0f, 0f));
             devTerminalTori.Patch();
+            #endregion
         }
 
-        static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, string name, Color color)
+        static DataTerminalPrefab GetDevNameTerminal(string classId, string audioFile, Color color)
         {
-            return new DataTerminalPrefab(classId, null, terminalClassId: DataTerminalPrefab.greenTerminalCID, overrideColor: true, fxColor: color, audioClipPrefix: audioFile, subtitles: name);
+            terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.greenTerminalCID);
+            terminalBuilder.SetupFX(color, false);
+            terminalBuilder.SetupAudio(audioFile, classId);
+            return new DataTerminalPrefab(classId, terminalBuilder.GetTerminal());
         }
 
         #endregion
@@ -311,7 +412,8 @@ namespace RotA
             var secretTeleporter = new TeleporterNetwork("SCFSecretTeleporter", new Vector3(218f, -1376, -260f), 150f, new Vector3(-959, -1440, 76f), 206f, false, false);
             secretTeleporter.Patch();
 
-            var kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(1500f, -2000f, 0f), 180f, false, false, true, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { AUHandler.OmegaCubeTechType }, "KooshBasePortalTerminal", "Insert omega cube"), "SecretBaseAuxiliary");
+            var kooshBaseDevSecret = new TeleporterNetwork("KooshBaseDevSecret", new Vector3(1480 + 2.2f, -457 - 0.4f - 2.89f, 1457 - 14f), 0f, new Vector3(1500f, -2000f, 0f), 180f, false, false, new TeleporterPrimaryPrefab.CustomItemSettings(new TechType[] { AUHandler.OmegaCubeTechType }, "KooshBasePortalTerminal", "Insert omega cube"), "SecretBaseAuxiliary");
+            kooshBaseDevSecret.SetNetworkColor(new Color(4, 4, 11));
             kooshBaseDevSecret.Patch();
         }
 

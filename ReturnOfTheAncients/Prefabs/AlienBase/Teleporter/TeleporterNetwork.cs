@@ -13,15 +13,21 @@ namespace RotA.Prefabs.AlienBase.Teleporter
         public float masterAngle, auxiliaryAngle;
         public bool oneWay;
 
-        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false, bool omegaTeleporter = false, TeleporterPrimaryPrefab.CustomItemSettings customItemSettings = default, string auxiliaryOverrideId = null)
+        public TeleporterNetwork(string classIdRoot, Vector3 masterCoords, float masterAngle, Vector3 auxiliaryCoords, float auxiliaryAngle, bool disablePlatformOnPrimary = false, bool disablePlatformOnAuxiliary = false, TeleporterPrimaryPrefab.CustomItemSettings customItemSettings = default, string auxiliaryOverrideId = null)
         {
             this.classIdRoot = classIdRoot;
             this.masterCoords = masterCoords;
             this.auxiliaryCoords = auxiliaryCoords;
             this.masterAngle = masterAngle;
             this.auxiliaryAngle = auxiliaryAngle;
-            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary, omegaTeleporter, customItemSettings);
-            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, omegaTeleporter, auxiliaryOverrideId);
+            primaryTeleporter = new TeleporterPrimaryPrefab(string.Format("{0}Primary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(auxiliaryCoords, auxiliaryAngle), auxiliaryAngle, disablePlatformOnPrimary, customItemSettings);
+            auxiliaryTeleporter = new TeleporterFramePrefab(string.Format("{0}Auxiliary", classIdRoot), classIdRoot, GetPlayerSpawnPosition(masterCoords, masterAngle), masterAngle, disablePlatformOnAuxiliary, auxiliaryOverrideId);
+        }
+
+        public void SetNetworkColor(Color color)
+        {
+            primaryTeleporter.SetColor(color);
+            auxiliaryTeleporter.SetColor(color);
         }
 
         public void Patch()

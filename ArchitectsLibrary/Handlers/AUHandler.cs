@@ -13,10 +13,10 @@ namespace ArchitectsLibrary.Handlers
     public static class AUHandler
     {
         internal static readonly IDictionary<TechType, TechType> CustomCreatureEggDictionary = 
-            new HashDictionary<TechType, TechType>();
+            new Dictionary<TechType, TechType>();
 
         internal static readonly IDictionary<TechType, WaterParkCreatureParameters> CustomWaterParkCreatureParameters =
-            new HashDictionary<TechType, WaterParkCreatureParameters>();
+            new Dictionary<TechType, WaterParkCreatureParameters>();
 
         /// <summary>
         /// Gets the <see cref="PrecursorAlloyIngot"/>'s TechType so you can spawn it up in your Mod.
@@ -107,6 +107,11 @@ namespace ArchitectsLibrary.Handlers
         /// Gets the TechType that is used to unlock all basic alien technology. Return of the Ancients unlocks this in the Supply Cache base.
         /// </summary>
         public static TechType AlienTechnologyMasterTech { get; internal set; }
+
+        /// <summary>
+        /// Gets the TechType of the buildable Sonic Deterrent. This is public because it is NOT unlocked by default (too OP).
+        /// </summary>
+        public static TechType BuildableSonicDeterrentTechType { get; internal set; }
 
         /// <summary>
         /// makes the object given Scannable from the Scanner Room.

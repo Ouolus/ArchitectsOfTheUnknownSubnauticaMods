@@ -84,9 +84,12 @@ namespace RotA.Mono.AlienBaseSpawners
         public const string supplies_cutefishegg = "b78912bc-0191-4455-a9de-3b708e165393";
         public const string creature_alienRobot = "4fae8fa4-0280-43bd-bcf1-f3cba97eed77";
         public const string creature_spinefishSchool = "2d3ea578-e4fa-4246-8bc9-ed8e66dec781";
+        public const string creature_holefishSchool = "a7b70c23-8e57-43e0-ab39-e02a29341376";
+        public const string creature_holefish = "495befa0-0e6b-400d-9734-227e5a732f75";
         public const string creature_rockgrub = "8e82dc63-5991-4c63-a12c-2aa39373a7cf";
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
+        public const string ambience_blueLight = "30730b57-d076-4692-bc56-c40bf2aedc13";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
         public const string natural_rockBlade2 = "282cdcbc-8670-4f9a-ae1d-9d8a09f9e880";
@@ -135,6 +138,7 @@ namespace RotA.Mono.AlienBaseSpawners
         /// Faces up by default.
         /// </summary>
         public const string vfx_entrance = "8b5e6a02-533c-44cb-9f34-d2773aa82dc4";
+        public const string vfx_bubbles = "a5b073a5-4bce-4bcf-8aaf-1e7f57851ba0";
         public const string hugeExteriorCube = "b9df161b-529f-422c-8a9f-f3a7a25e57df";
 
         public const string alterra_abandonedbase2 = "a1e2f322-7080-48ca-8eaf-a05afff8585d";
@@ -308,9 +312,9 @@ namespace RotA.Mono.AlienBaseSpawners
         /// <param name="terrainAttachForward"></param>
         /// <param name="offsetDirection"></param>
         /// <param name="quadraticMagnitude"></param>
-        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f)
+        public IEnumerator GenerateCable(Vector3 baseAttachPosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale = 1f, bool hasBase = true, bool hasClaw = true)
         {
-            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale);
+            List<CableSegment> segments = GetCableSegments(baseAttachPosition, baseAttachForward, terrainPosition, terrainAttachForward, offsetDirection, quadraticMagnitude, scale, hasBase, hasClaw);
             foreach (CableSegment segment in segments)
             {
                 yield return SpawnPrefabGlobally(segment.classId, segment.position, segment.forward, true, scale);
@@ -318,11 +322,17 @@ namespace RotA.Mono.AlienBaseSpawners
         }
 
         const float midCableSpacing = 1.05f;
-        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale)
+        private List<CableSegment> GetCableSegments(Vector3 basePosition, Vector3 baseAttachForward, Vector3 terrainPosition, Vector3 terrainAttachForward, Vector3 offsetDirection, float quadraticMagnitude, float scale, bool hasBase, bool hasClaw)
         {
             List<CableSegment> segments = new List<CableSegment>();
-            segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
-            segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
+            if (hasBase)
+            {
+                segments.Add(new CableSegment(cables_attachToBase, basePosition, baseAttachForward));
+            }
+            if (hasClaw)
+            {
+                segments.Add(new CableSegment(cables_attachToWall, terrainPosition, terrainAttachForward));
+            }
             int maxSegments = Mathf.RoundToInt(Vector3.Distance(basePosition, terrainPosition) / (midCableSpacing * scale));
             for (int i = 0; i < maxSegments; i++)
             {

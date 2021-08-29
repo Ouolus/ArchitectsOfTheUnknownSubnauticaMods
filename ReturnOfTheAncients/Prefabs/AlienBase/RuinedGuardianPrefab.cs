@@ -3,6 +3,7 @@ using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using System.Collections;
 using System.Collections.Generic;
+using ArchitectsLibrary.API;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
 using UWE;
@@ -14,7 +15,7 @@ namespace RotA.Prefabs.AlienBase
         static GameObject prefab;
         const string volumetricLight = "aa6b2ede-a1bf-4f70-980c-9ed2a51375a1";
 
-        public RuinedGuardianPrefab() : base("RuinedGuardian", "Mysterious wreckage", "")
+        public RuinedGuardianPrefab() : base("RuinedGuardian", LanguageSystem.Get("RuinedGuardian"), LanguageSystem.Default)
         {
         }
 
