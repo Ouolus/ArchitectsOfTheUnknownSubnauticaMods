@@ -7,7 +7,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public static class PrecursorFabricatorService
     {
-        internal static Dictionary<TechType, float> itemEnergyUsage = new();
+        internal static readonly Dictionary<TechType, float> ItemEnergyUsage = new();
+        internal static readonly List<TechType> FlickerItems = new();
         
         /// <summary>
         /// Adds a Crafting Node to the Precursor Fabricator.
@@ -24,9 +25,14 @@ namespace ArchitectsLibrary.API
             }
             
             Main.PrecursorFabricatorEntriesToAdd.Add(entry);
-            if (entry.overridePowerUsage.HasValue)
+            if (entry.overridePowerUsage is > 0f)
             {
-                itemEnergyUsage.Add(entry.techType, entry.overridePowerUsage.Value);
+                ItemEnergyUsage.Add(entry.techType, entry.overridePowerUsage.Value);
+            }
+
+            if (entry.flickerLights)
+            {
+                FlickerItems.Add(entry.techType);
             }
         }
 
@@ -97,15 +103,14 @@ namespace ArchitectsLibrary.API
         /// </summary>
         /// <param name="techType">The TechType of the item to add to the fabricator.</param>
         /// <param name="tab">The tab that the item will go to.</param>
-        /// <param name="overridePowerUsage">The amount of power the Precursor Fabricator requires when crafting this item.</param>
-        public PrecursorFabricatorEntry(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage,
-            bool flickerLights = false)
-
+        /// <param name="overridePowerUsage">The amount of power the Precursor Fabricator requires when crafting this item. -1 uses default power.</param>
+        /// <param name="flickerLights">Whether crafting this item causes base lights to flicker or not.</param>
+        public PrecursorFabricatorEntry(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage = -1f, bool flickerLights = false)
         {
             this.techType = techType;
             this.tab = tab;
             this.overridePowerUsage = overridePowerUsage;
-            this.flickerLights = false;
+            this.flickerLights = flickerLights;
         }
     }
 

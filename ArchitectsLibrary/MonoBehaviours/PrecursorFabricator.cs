@@ -16,7 +16,7 @@ namespace ArchitectsLibrary.MonoBehaviours
         public override void Craft(TechType techType, float duration)
         {
 			float powerToConsume = 100f;
-			if (PrecursorFabricatorService.itemEnergyUsage.TryGetValue(techType, out float overrideEnergyUsage))
+			if (PrecursorFabricatorService.ItemEnergyUsage.TryGetValue(techType, out float overrideEnergyUsage))
 			{
 				powerToConsume = overrideEnergyUsage;
 			}
