@@ -52,9 +52,9 @@ namespace ArchitectsLibrary.API
         /// <param name="techType">The TechType of the item to add to the fabricator.</param>
         /// <param name="tab">The tab that the item will go to.</param>
         /// <param name="overridePowerUsage">The amount of power the Precursor Fabricator requires when crafting this item.</param>
-        public static void SubscribeToFabricator(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage)
+        public static void SubscribeToFabricator(TechType techType, PrecursorFabricatorTab tab, float overridePowerUsage = -1f, bool flickerLights = false)
         {
-            SubscribeToFabricator(new PrecursorFabricatorEntry(techType, tab, overridePowerUsage));
+            SubscribeToFabricator(new PrecursorFabricatorEntry(techType, tab, overridePowerUsage, flickerLights));
         }
 
         internal static string TabToNameID(PrecursorFabricatorTab tab)

@@ -200,7 +200,7 @@ namespace ArchitectsLibrary
             List<PrecursorIonCube> precursorCubes = new() { new Electricube(), new OmegaCube(), new RedIonCube() };
             precursorCubes.ForEach(cube => cube.Patch());
 
-            PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials);
+            PrecursorFabricatorService.SubscribeToFabricator(TechType.PrecursorIonCrystal, PrecursorFabricatorTab.Materials, 1000f, true);
             CraftDataHandler.SetTechData(TechType.PrecursorIonCrystal, new TechData {craftAmount = 1, Ingredients = new List<Ingredient>() { new Ingredient(AUHandler.EmeraldTechType, 2)} });
             CraftDataHandler.SetCraftingTime(TechType.PrecursorIonCrystal, 30f);
             CraftData.groups[TechGroup.Resources][TechCategory.AdvancedMaterials].Add(TechType.PrecursorIonCrystal);

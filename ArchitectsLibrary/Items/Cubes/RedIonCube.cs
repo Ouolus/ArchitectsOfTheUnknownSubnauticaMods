@@ -14,7 +14,7 @@
             {
                 AUHandler.RedIonCubeTechType = TechType;
                 CraftData.pickupSoundList.Add(TechType, Main.ionCubePickupSound);
-                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials);
+                PrecursorFabricatorService.SubscribeToFabricator(TechType, PrecursorFabricatorTab.Materials, 1000f, true);
             };
         }
 
