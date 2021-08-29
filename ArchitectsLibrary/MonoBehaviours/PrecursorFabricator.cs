@@ -13,7 +13,7 @@ namespace ArchitectsLibrary.MonoBehaviours
 	    private float originalBrightness;
 	    private float timeEndFlicker;
 	    private const float FlickerIntervalMin = 0.04f;
-	    private const float FlickerIntervalMax = 0.2f;
+	    private const float FlickerIntervalMax = 0.1f;
 
 	    public override void Start()
         {
