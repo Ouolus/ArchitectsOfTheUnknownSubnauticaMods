@@ -6,6 +6,8 @@ namespace ArchitectsLibrary.MonoBehaviours
 {
     class PrecursorFabricator : Fabricator
     {
+	    private const float DefaultPowerUsage = 100f;
+	    
         public override void Start()
         {
             base.Start();
@@ -15,26 +17,10 @@ namespace ArchitectsLibrary.MonoBehaviours
 
         public override void Craft(TechType techType, float duration)
         {
-			float powerToConsume = 100f;
-			if (PrecursorFabricatorService.ItemEnergyUsage.TryGetValue(techType, out float overrideEnergyUsage))
+			float powerToConsume = PrecursorFabricatorService.ItemEnergyUsage.GetOrDefault(techType, DefaultPowerUsage);
+			if (GameModeUtils.RequiresPower() && powerRelay != null && powerRelay.GetPower() < powerToConsume)
 			{
-				powerToConsume = overrideEnergyUsage;
-			}
-			bool isIonCube = IsIonCube(techType);
-			if (isIonCube)
-            {
-				powerToConsume = 1000f;
-            }
-			if (GameModeUtils.RequiresPower() && powerRelay.GetPower() < powerToConsume)
-			{
-                if (isIonCube)
-                {
-					ErrorMessage.AddMessage($"Ion cubes require {powerToConsume} energy to craft.");
-				}
-                else
-                {
-					ErrorMessage.AddMessage($"Crafting of this item requires {powerToConsume} energy.");
-				}
+				ErrorMessage.AddMessage($"Crafting of this item requires {powerToConsume} energy.");
 				return;
 			}
 			if (!CrafterLogic.ConsumeResources(techType))
