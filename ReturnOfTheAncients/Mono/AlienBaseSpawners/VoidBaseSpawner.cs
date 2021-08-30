@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace RotA.Mono.AlienBaseSpawners
 {
     public class VoidBaseSpawner : AlienBaseSpawner
     {
-        private const float platformY = 0f;
+        private const float platformY = 130f;
 
         public override IEnumerator ConstructBase()
         {
