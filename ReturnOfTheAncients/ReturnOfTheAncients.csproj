@@ -110,7 +110,7 @@
       <HintPath>$(DepDir)\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.ResourceManager">
+    <Reference Include="Unity.ResourceManager" Condition="'$(Configuration)' != 'SN1'">
       <HintPath>$(DepDir)\Unity.ResourceManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
