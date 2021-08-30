@@ -5,12 +5,12 @@ namespace RotA.Mono.AlienBaseSpawners
 {
     public class VoidBaseSpawner : AlienBaseSpawner
     {
-        private const float platformY = 130f;
+        private const float platformY = -130f;
 
         public override IEnumerator ConstructBase()
         {
             TaskResult<GameObject> baseModel = new TaskResult<GameObject>();
-            yield return SpawnPrefab(Mod.voidBaseModel.ClassID, new Vector3(0f, -platformY, 0f), baseModel);
+            yield return SpawnPrefab(Mod.voidBaseModel.ClassID, new Vector3(0f, platformY, 0f), baseModel);
             yield return GenerateAtmospheres(baseModel.Get(), "AtmosphereRoot", Mod.precursorAtmosphereVolume.ClassID);
 
             //Exterior platform
