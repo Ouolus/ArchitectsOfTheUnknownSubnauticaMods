@@ -45,7 +45,7 @@ dotnet_naming_rule.public_fields_rule.severity = warning
 dotnet_naming_rule.public_fields_rule.style = lower_camel_case_style
 dotnet_naming_rule.public_fields_rule.symbols = public_fields_symbols
 dotnet_naming_rule.static_readonly_rule.severity = warning
-dotnet_naming_rule.static_readonly_rule.style = lower_camel_case_style
+dotnet_naming_rule.static_readonly_rule.style = pascal_case_style
 dotnet_naming_rule.static_readonly_rule.symbols = static_readonly_symbols
 
 # Unity's serialized fields rule
@@ -59,6 +59,9 @@ dotnet_naming_style.k_upper_camel_case_style.required_prefix = k
 
 # camelCase rule
 dotnet_naming_style.lower_camel_case_style.capitalization = camel_case
+
+# PascalCase rule
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
 # Private fields rule (_camelCase)
 dotnet_naming_style.lower_camel_case_style_1.capitalization = camel_case
