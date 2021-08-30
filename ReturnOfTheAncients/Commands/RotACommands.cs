@@ -11,6 +11,12 @@ namespace RotA.Commands
     public static class RotACommands
     {
         private static StringBuilder _commandList;
+
+        private static TechType[] _tablets =
+        {
+            TechType.PrecursorKey_Blue, TechType.PrecursorKey_Orange, TechType.PrecursorKey_Purple,
+            TechType.PrecursorKey_Red, TechType.PrecursorKey_White
+        };
         
         // commands must be public and static
         
@@ -63,10 +69,10 @@ namespace RotA.Commands
                 ErrorMessage.AddMessage("usage: placeprop [ClassId]");
                 return;
             }
-            UWE.PrefabDatabase.TryGetPrefab(classId, out GameObject prefab);
+            UWE.PrefabDatabase.TryGetPrefab(classId, out var prefab);
             if (prefab == null)
             {
-                ErrorMessage.AddMessage(string.Format("No prefab found by ClassId {0}", classId));
+                ErrorMessage.AddMessage($"No prefab found by ClassId {classId}");
                 return;
             }
             GameObject spawned = Utils.CreatePrefab(prefab, 100f, randomizeDirection);
@@ -76,9 +82,7 @@ namespace RotA.Commands
             GUIUtility.systemCopyBuffer =
                 $"yield return StartCoroutine(SpawnPrefabGlobally(classIdPlaceholder, new Vector3({position.x}f, {position.y}f, {position.z}f), new Vector3({eulerAngles.x}f, {eulerAngles.y}f, {eulerAngles.z}f), Vector3.one * {scale}f));";
         }
-
-        //the commands below are just for fun
-
+        
         [ConsoleCommand("clonegarg")]
         public static void CloneGarg()
         {
@@ -134,6 +138,15 @@ namespace RotA.Commands
                     go.GetComponent<TrollVoice>().enabled = false;
                     trollFace.GetComponent<TrollFaceTracker>().enabled = false;
                 }
+            }
+        }
+
+        [ConsoleCommand("tablets")]
+        public static void Tablets()
+        {
+            foreach (var tablet in _tablets)
+            {
+                CraftData.AddToInventory(tablet);
             }
         }
     }
