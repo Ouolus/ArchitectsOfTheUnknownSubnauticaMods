@@ -1,10 +1,12 @@
-using ArchitectsLibrary.MonoBehaviours;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Crafting;
-using UnityEngine;
+// TODO: delete whenever the Alien Builder is ready.
 
 namespace ArchitectsLibrary.Items
 {
+    using MonoBehaviours;
+    using SMLHelper.V2.Assets;
+    using SMLHelper.V2.Crafting;
+    using UnityEngine;
+    
     // in-complete custom builder class, merely serves as a test for the custom builder API
     internal class CustomBuilder : Equipable
     {
