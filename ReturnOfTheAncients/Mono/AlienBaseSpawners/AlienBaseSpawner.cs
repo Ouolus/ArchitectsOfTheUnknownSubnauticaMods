@@ -1,4 +1,4 @@
-﻿using ECCLibrary;
+using ECCLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,6 +90,7 @@ namespace RotA.Mono.AlienBaseSpawners
         public const string atmosphereVolume_cache = "f5dc3fa5-7ef7-429e-9dc6-2ea0e97b6187";
         public const string ambience_greenLight = "0b359b03-92e4-40df-81ed-aad488a7f13e";
         public const string ambience_blueLight = "30730b57-d076-4692-bc56-c40bf2aedc13";
+        public const string ambience_ghostSkeletonLight = "a1f8e7cf-83ae-438c-9197-3321374eca56";
         public const string airlock_1 = "03809334-e82d-40f5-9ccd-920e753887de";
         public const string natural_rockBlade1 = "f0438971-2761-412c-bc42-df80577de473";
         public const string natural_rockBlade2 = "282cdcbc-8670-4f9a-ae1d-9d8a09f9e880";
