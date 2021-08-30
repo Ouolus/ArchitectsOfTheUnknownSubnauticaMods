@@ -142,9 +142,9 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(49, secondFloorY, 9), Vector3.up * -45f));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(41, secondFloorY, 1), Vector3.up * -45f));
 
-            yield return StartCoroutine(GenerateCable(new Vector3(401, -382f + 130f, -1875f - 20f), Vector3.up, new Vector3(401, -382f + 130f + 15f, -1875f - 20f), Vector3.up, Vector3.zero, 0f));
+            yield return StartCoroutine(GenerateCable(new Vector3(401, -382f, -1875f - 20f), Vector3.up, new Vector3(401, -382f + 15f, -1875f - 20f), Vector3.up, Vector3.zero, 0f));
 
-            yield return StartCoroutine(GenerateCable(new Vector3(345f, -382f + 130f, -1875f - 20f), Vector3.up, new Vector3(345f, -382f + 130f + 15f, -1875f - 20f), Vector3.up, Vector3.zero, 0f));
+            yield return StartCoroutine(GenerateCable(new Vector3(345f, -382f, -1875f - 20f), Vector3.up, new Vector3(345f, -382f + 15f, -1875f - 20f), Vector3.up, Vector3.zero, 0f));
 
             // Left lower room (with relics)
             yield return StartCoroutine(SpawnPrefab(Mod.cachePingsTerminal.ClassID, new Vector3(22, firstFloorY, 28), new Vector3(0f, -45f, 0f)));
