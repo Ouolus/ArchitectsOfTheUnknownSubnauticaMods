@@ -1,4 +1,4 @@
-﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.API;
 using ArchitectsLibrary.Utility;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
@@ -23,7 +23,7 @@ namespace RotA.Prefabs.AlienBase
                 return _processedPrefab;
             }
             
-            //prefab essentials
+            // prefab essentials
             GameObject model = Mod.assetBundle.LoadAsset<GameObject>("OmegaCubeFabricator");
             GameObject prefab = GameObject.Instantiate(model);
             prefab.SetActive(false);
@@ -38,7 +38,7 @@ namespace RotA.Prefabs.AlienBase
             fabricatorRootComponent.constructSoundEmitter.asset = ScriptableObject.CreateInstance<FMODAsset>();
             fabricatorRootComponent.constructSoundEmitter.asset.path = "event:/env/antechamber_scan_loop";
 
-            //drillable base
+            // drillable base
             PrefabDatabase.TryGetPrefab("2db600ca-25f7-4000-93a5-f8c2a4ec0387", out GameObject drillableIonCubePrefab);
             var drillableBase = GameObject.Instantiate(drillableIonCubePrefab, prefab.transform);
             drillableBase.transform.localPosition = Vector3.zero;
@@ -46,12 +46,13 @@ namespace RotA.Prefabs.AlienBase
             drillableBase.transform.localScale = new(1.5f, 1.5f, 1.5f);
             drillableBase.TryDestroyChildComponent<PrefabPlaceholder>();
             drillableBase.TryDestroyChildComponent<PrefabPlaceholdersGroup>();
+            Object.DestroyImmediate(drillableBase.GetComponent<SphereCollider>());
             drillableBase.GetComponentInChildren<VFXVolumetricLight>().color = new(0.25f, 1f, 0.63f);
             drillableBase.GetComponentInChildren<Light>().color = new(0.25f, 1f, 0.63f);
             DestroyPrefabComponents(drillableBase);
             fabricatorRootComponent.generateCubeTransform = drillableBase.SearchChild("DrillablePrecursorIonCrystal(Placeholder)").transform;
 
-            //terminal
+            // terminal
             PrefabDatabase.TryGetPrefab("b629c806-d3cd-4ee4-ae99-7b1359b60049", out GameObject terminalPrefab);
             var terminal = GameObject.Instantiate(terminalPrefab, prefab.SearchChild("OmegaCubeTerminalSpawn").transform);
             terminal.transform.localPosition = Vector3.zero;
@@ -71,7 +72,7 @@ namespace RotA.Prefabs.AlienBase
             fabricatorRootComponent.vfxController.emitters[0].fx = CreateNewElecArcPrefab(originalController.emitters[0].fx);
             fabricatorRootComponent.vfxController.emitters[1].fx = CreateNewBeamPrefab(originalController.emitters[1].fx);
 
-            //component connections
+            // component connections
             fabricatorRootComponent.terminal = terminalComponent;
             terminalComponent.fabricator = fabricatorRootComponent;
 
