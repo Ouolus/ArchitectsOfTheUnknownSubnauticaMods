@@ -6,10 +6,10 @@ namespace RotA.Mono.AlienBaseSpawners
 {
     public class VoidBaseInteriorSpawner : AlienBaseSpawner
     {
-        private float firstFloorY = 0 + 130;
-        private float firstCeilingY = 15 + 130;
-        private float secondFloorY = 18 + 130;
-        private float secondCeilingY = 33 + 130;
+        private float firstFloorY = 0;
+        private float firstCeilingY = 15;
+        private float secondFloorY = 18;
+        private float secondCeilingY = 33;
 
         public override IEnumerator ConstructBase()
         {
