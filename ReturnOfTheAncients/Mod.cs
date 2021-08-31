@@ -1,4 +1,4 @@
-﻿namespace RotA
+namespace RotA
 {
     using System.Runtime.InteropServices;
     using FMOD;
@@ -272,14 +272,26 @@
             gargPoster.Patch();
             KnownTechHandler.SetAnalysisTechEntry(gargPoster.TechType, new List<TechType>() { gargPoster.TechType });
 
+            void FixGargToyDisplayCase(TechType techType, float scale)
+            {
+                DisplayCaseServices.WhitelistTechType(techType);
+                DisplayCaseServices.SetScaleInRelicTank(techType, scale);
+                DisplayCaseServices.SetScaleInPedestal(techType, 1f);
+                DisplayCaseServices.SetScaleInSpecimenCase(techType, scale);
+                DisplayCaseServices.SetOffset(techType, new Vector3(0f, -0.2f, 0f));
+            }
+
             gargAdultToy = new();
             gargAdultToy.Patch();
+            FixGargToyDisplayCase(gargAdultToy.TechType, 0.4f);
 
             gargAdultToyNoHat = new();
             gargAdultToyNoHat.Patch();
+            FixGargToyDisplayCase(gargAdultToyNoHat.TechType, 0.4f);
 
             gargJuvenileToy = new();
             gargJuvenileToy.Patch();
+            FixGargToyDisplayCase(gargJuvenileToy.TechType, 1f);
 
             electricalDefenseMk2 = new();
             electricalDefenseMk2.Patch();
