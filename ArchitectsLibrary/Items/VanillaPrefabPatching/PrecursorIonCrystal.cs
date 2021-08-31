@@ -27,7 +27,7 @@ namespace ArchitectsLibrary.Items.VanillaPrefabPatching
             var obj = Resources.Load<GameObject>("WorldEntities/Natural/PrecursorIonCrystal");
             var prefab = Object.Instantiate(obj);
 
-            prefab.EnsureComponent<PrecursorIonStorage>()._capacity = 1000000;
+            prefab.EnsureComponent<PrecursorIonStorage>()._capacity = 300000;
             Main.IonCubeCraftModelFix(prefab);
             
             _processedPrefab = Object.Instantiate(prefab);
