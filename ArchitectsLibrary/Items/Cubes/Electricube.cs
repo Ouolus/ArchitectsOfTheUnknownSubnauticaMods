@@ -30,7 +30,7 @@ namespace ArchitectsLibrary.Items.Cubes
             };
         }
 
-        protected override int Capacity => 1000000;
+        protected override int Capacity => 300000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {

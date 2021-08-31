@@ -30,7 +30,7 @@
             };
         }
 
-        protected override int Capacity => 3000000;
+        protected override int Capacity => 600000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
