@@ -1,4 +1,4 @@
-﻿namespace ArchitectsLibrary.Items.Cubes
+namespace ArchitectsLibrary.Items.Cubes
 {
     using SMLHelper.V2.Crafting;
     using System.Collections.Generic;
@@ -30,7 +30,7 @@
             };
         }
 
-        protected override int Capacity => 2000000;
+        protected override int Capacity => 1000000;
 
         protected override void ApplyChangesToPrefab(GameObject prefab)
         {
