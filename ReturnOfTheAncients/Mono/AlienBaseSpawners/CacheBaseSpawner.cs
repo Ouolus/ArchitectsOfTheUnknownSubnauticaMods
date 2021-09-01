@@ -16,8 +16,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(airlock_1, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), Vector3.zero, new Vector3(0.76f, 1f, 1f)));
             yield return StartCoroutine(SpawnPrefab(vfx_entrance, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), new Vector3(90f, 0f, 0f), new Vector3(0.76f, 1f, 1f)));
             Vector3 floorLightRotation = new Vector3(0f, 0f, 0f);
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 3f, -3.17f, MainTerminalZOffset + 3f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 3f, -3.17f, MainTerminalZOffset + 3f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(MainTerminalClassId, new Vector3(centerLocalX, floorLocalY, MainTerminalZOffset), new Vector3(0f, 180f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
