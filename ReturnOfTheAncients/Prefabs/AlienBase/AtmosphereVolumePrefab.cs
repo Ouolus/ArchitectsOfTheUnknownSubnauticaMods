@@ -7,25 +7,23 @@ namespace RotA.Prefabs.AlienBase
 {
     public class AtmosphereVolumePrefab : Spawnable
     {
-        GameObject cachedPrefab;
-        string baseClassId;
+        private GameObject cachedPrefab;
+        private string baseClassId;
+        private string biomeName;
 
-        public AtmosphereVolumePrefab(string newClassId, string classId = "d645d7c7-76a2-4818-86b0-5c3e37a51e31") : base(newClassId, LanguageSystem.Default, LanguageSystem.Default) //the default class id here is that of the Antechamber atmosphere volume
+        public AtmosphereVolumePrefab(string newClassId, string classId = "d645d7c7-76a2-4818-86b0-5c3e37a51e31", string biomeName = "SafeZone") : base(newClassId, LanguageSystem.Default, LanguageSystem.Default) // the default class id here is that of the Antechamber atmosphere volume
         {
             baseClassId = classId;
+            this.biomeName = biomeName;
         }
-
-        void ApplyChangesToPrefab(GameObject prefab)
-        {
-            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.VeryFar;
-        }
+        
 #if SN1
         public override GameObject GetGameObject()
         {
             if (cachedPrefab == null)
             {
                 PrefabDatabase.TryGetPrefab(baseClassId, out GameObject prefab);
-                cachedPrefab = GameObject.Instantiate(prefab);
+                cachedPrefab = Object.Instantiate(prefab);
                 cachedPrefab.SetActive(false);
                 ApplyChangesToPrefab(cachedPrefab);
             }
@@ -46,5 +44,17 @@ namespace RotA.Prefabs.AlienBase
             gameObject.Set(cachedPrefab);
         }
 #endif
+        
+        private void ApplyChangesToPrefab(GameObject prefab)
+        {
+            prefab.GetComponent<LargeWorldEntity>().cellLevel = LargeWorldEntity.CellLevel.VeryFar;
+            var atm = prefab.GetComponent<AtmosphereVolume>();
+            if (!atm)
+                return;
+
+            atm.overrideBiome = biomeName;
+            if (atm.settings != null)
+                atm.settings.overrideBiome = biomeName;
+        }
     }
 }
