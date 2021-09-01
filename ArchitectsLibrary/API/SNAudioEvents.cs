@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SMLHelper.V2.Handlers;
+using SMLHelper.V2.Utility;
 using UnityEngine;
 
 namespace ArchitectsLibrary.API
@@ -22,6 +19,37 @@ namespace ArchitectsLibrary.API
             FMODAsset asset = ScriptableObject.CreateInstance<FMODAsset>();
             asset.path = audioPath;
             return asset;
+        }
+
+        /// <summary>
+        /// Loads and registers all of the <see cref="AudioClip"/>s that exist in the passed Asset Bundle as FMOD sounds.
+        /// </summary>
+        /// <param name="assetBundle">the bundle to register its Audioclips as FMOD sounds.</param>
+        public static void LoadAllClipsToFmod(AssetBundle assetBundle)
+        {
+            var clips = assetBundle.LoadAllAssets<AudioClip>();
+            if (clips is null)
+                return;
+
+            foreach (var clip in clips)
+            {
+                var soundChannel = GetSoundChannel(clip.name);
+                CustomSoundHandler.RegisterCustomSound(clip.name, clip, soundChannel);
+            }
+        }
+
+        private static SoundChannel GetSoundChannel(string clipName)
+        {
+            if (clipName.StartsOrEndsWith("Ambient"))
+                return SoundChannel.Ambient;
+
+            if (clipName.StartsOrEndsWith("Voice"))
+                return SoundChannel.Voice;
+
+            if (clipName.StartsOrEndsWith("Music"))
+                return SoundChannel.Music;
+
+            return SoundChannel.Master;
         }
 
         /// <summary>
