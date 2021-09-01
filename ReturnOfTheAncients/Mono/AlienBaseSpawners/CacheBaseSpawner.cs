@@ -17,12 +17,13 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(vfx_entrance, new Vector3(centerLocalX, floorLocalY + 2.38f, 24f), new Vector3(90f, 0f, 0f), new Vector3(0.76f, 1f, 1f)));
             Vector3 floorLightRotation = new Vector3(0f, 0f, 0f);
             yield return StartCoroutine(SpawnPrefab(MainTerminalClassId, new Vector3(centerLocalX, floorLocalY, MainTerminalZOffset), new Vector3(0f, 180f, 0f)));
+            yield return StartCoroutine(SpawnPrefab(light_big_ceiling_animated, new Vector3(centerLocalX, ceilingLocalY, MainTerminalZOffset), new Vector3(0f, 0f, 0f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX - 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(centerLocalX + 3f, floorLocalY, MainTerminalZOffset), Vector3.zero, new Vector3(1f, 1.7f, 1f)));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.17f, 0f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 18f, -3.17f, 0f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 10f, -3.17f, 0f), floorLightRotation));
-            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 18f, -3.17f, 0f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 10f, -3.22f, 0f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX + 18f, -3.22f, 0f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 10f, -3.22f, 0f), floorLightRotation));
+            yield return StartCoroutine(SpawnPrefab(light_big_animated, new Vector3(centerLocalX - 18f, -3.22f, 0f), floorLightRotation));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX + 5f, floorLocalY, 5f)));
             yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(centerLocalX - 5f, floorLocalY, 5f)));
             yield return StartCoroutine(SpawnPrefab(natural_lr_hangingplant1_2, new Vector3(2f, ceilingLocalY, 3f)));
