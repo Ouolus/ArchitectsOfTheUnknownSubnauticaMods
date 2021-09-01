@@ -165,7 +165,7 @@ namespace RotA
             bladeRelic.Patch();
             MakeObjectScannable(bladeRelic.TechType, ency_precblade, 2f);
 
-            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", LanguageSystem.Get("PrecursorBuilderRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.8f);
+            builderRelic = new AlienRelicPrefab("PrecursorBuilderRelic", LanguageSystem.Get("PrecursorBuilderRelic"), LanguageSystem.Default, assetBundle.LoadAsset<GameObject>("PrecursorBuilder_Prefab"), 0.6f);
             builderRelic.Patch();
             MakeObjectScannable(builderRelic.TechType, ency_precbuilder, 3f);
 
