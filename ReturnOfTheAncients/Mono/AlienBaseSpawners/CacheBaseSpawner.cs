@@ -36,8 +36,8 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(natural_lr_hangingplant1_3, new Vector3(-4f, ceilingLocalY, -1.5f)));
             yield return StartCoroutine(SpawnPrefab(natural_lr_hangingplant1_2, new Vector3(-5f, ceilingLocalY, -5f)));
 
-            if (!string.IsNullOrEmpty(TabletClassId)) yield return StartCoroutine(SpawnPrefab(prop_tabletPedestal, new Vector3(centerLocalX, -3.17f, 17f), Vector3.zero, Vector3.one * 0.5f));
-            if (!string.IsNullOrEmpty(TabletClassId)) yield return StartCoroutine(SpawnPrefab(TabletClassId, new Vector3(centerLocalX, floorLocalY + 1.07f, 17f), new Vector3(22.5f, 0f, 0f)));
+            if (!string.IsNullOrEmpty(TabletClassId)) yield return StartCoroutine(SpawnPrefab(prop_tabletPedestal, new Vector3(centerLocalX, -2.87f, 17f), Vector3.zero, Vector3.one * 0.5f));
+            if (!string.IsNullOrEmpty(TabletClassId)) yield return StartCoroutine(SpawnPrefab(TabletClassId, new Vector3(centerLocalX, floorLocalY + 1.37f, 17f), new Vector3(22.5f, 0f, 0f)));
         }
 
         protected virtual string TabletClassId
