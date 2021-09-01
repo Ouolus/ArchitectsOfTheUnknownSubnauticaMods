@@ -1,4 +1,5 @@
-﻿using SMLHelper.V2.Json;
+﻿using Oculus.Newtonsoft.Json;
+using SMLHelper.V2.Json;
 using SMLHelper.V2.Options.Attributes;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace RotA
         public bool OverrideLoadingScreen = true;
         [Slider(Label = "Roar screen shake intensity", Tooltip = "The intensity of the shaking effect created by the Gargantuan Adult's roar.", DefaultValue = 50f, Min = 0f, Max = 100f, Step = 1f)]
         public float RoarScreenShakeIntensity = 50f;
+        
+        [JsonIgnore]
         public float GetRoarScreenShakeNormalized
         {
             get
