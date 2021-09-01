@@ -8,7 +8,7 @@ namespace RotA.Mono.AlienTech
 {
     public class VoidBaseReveal : OnBiomeChanged, IStoryGoalListener
     {
-        public override string[] TargetBiomes => new string[] { "Prison_Antechamber", "PrecursorGun", "SafeZone" };
+        public override string[] TargetBiomes => new string[] { "Prison_Antechamber", "PrecursorGun", "Precursor" };
         private Transform lightsParent;
         private Material[] interiorMaterials;
         private FMODAsset turnOnSound;

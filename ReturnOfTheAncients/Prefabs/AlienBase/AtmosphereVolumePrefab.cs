@@ -11,7 +11,7 @@ namespace RotA.Prefabs.AlienBase
         private string baseClassId;
         private string biomeName;
 
-        public AtmosphereVolumePrefab(string newClassId, string classId = "d645d7c7-76a2-4818-86b0-5c3e37a51e31", string biomeName = "SafeZone") : base(newClassId, LanguageSystem.Default, LanguageSystem.Default) // the default class id here is that of the Antechamber atmosphere volume
+        public AtmosphereVolumePrefab(string newClassId, string classId = "d645d7c7-76a2-4818-86b0-5c3e37a51e31", string biomeName = "Precursor") : base(newClassId, LanguageSystem.Default, LanguageSystem.Default) // the default class id here is that of the Antechamber atmosphere volume
         {
             baseClassId = classId;
             this.biomeName = biomeName;
