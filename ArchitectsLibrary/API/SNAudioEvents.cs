@@ -25,7 +25,7 @@ namespace ArchitectsLibrary.API
         /// Loads and registers all of the <see cref="AudioClip"/>s that exist in the passed Asset Bundle as FMOD sounds.
         /// </summary>
         /// <param name="assetBundle">the bundle to register its Audioclips as FMOD sounds.</param>
-        public static void LoadAllClipsToFmod(AssetBundle assetBundle)
+        public static void RegisterAllClipsToFmod(AssetBundle assetBundle)
         {
             var clips = assetBundle.LoadAllAssets<AudioClip>();
             if (clips is null)
