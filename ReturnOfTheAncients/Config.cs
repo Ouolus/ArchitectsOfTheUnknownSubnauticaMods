@@ -16,13 +16,8 @@ namespace RotA
         public float RoarScreenShakeIntensity = 50f;
         
         [JsonIgnore]
-        public float GetRoarScreenShakeNormalized
-        {
-            get
-            {
-                return RoarScreenShakeIntensity / 100f;
-            }
-        }
+        public float GetRoarScreenShakeNormalized => RoarScreenShakeIntensity / 100f;
+        
         [Keybind("Warp to base key", Tooltip = "The key that needs to be pressed (twice) to return to your base.")]
         public KeyCode WarpToBaseKey = KeyCode.B;
 
