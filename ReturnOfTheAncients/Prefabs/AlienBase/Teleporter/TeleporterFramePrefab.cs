@@ -1,4 +1,5 @@
 ﻿using ECCLibrary;
+using mset;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -53,6 +54,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             }
             var rt = obj.AddComponent<RotaTeleporter>();
             rt.fxColor = fxColor;
+            var skyApplier = teleporter.GetComponent<SkyApplier>();
+            skyApplier.applySky = null;
             return obj;
         }
 #elif SN1_exp
@@ -79,6 +82,8 @@ namespace RotA.Prefabs.AlienBase.Teleporter
             }
             var rt = obj.AddComponent<RotaTeleporter>();
             rt.fxColor = fxColor;
+            var skyApplier = teleporter.GetComponent<SkyApplier>();
+            skyApplier.applySky = null;
             gameObject.Set(obj);
         }
 #endif
