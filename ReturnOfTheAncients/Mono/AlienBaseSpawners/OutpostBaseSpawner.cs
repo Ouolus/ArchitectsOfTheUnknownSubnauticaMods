@@ -19,8 +19,6 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(0f, yOffset, -6f)));
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(-5f, yOffset, -4f)));
             yield return StartCoroutine(SpawnPrefab(starfish, new Vector3(3f, yOffset, 3f)));
-            yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(3f, yOffset, 3f)));
-            yield return StartCoroutine(SpawnPrefab(creature_alienRobot, new Vector3(-3f, yOffset, -3f)));
             yield return StartCoroutine(SpawnPrefab(structure_column, new Vector3(0, 0, 0)));
             yield return StartCoroutine(SpawnPrefab(prop_claw, new Vector3(0, -2, 0)));
             const float smallLightYOffset = -4.3f;
