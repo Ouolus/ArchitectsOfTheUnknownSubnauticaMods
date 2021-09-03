@@ -305,6 +305,7 @@ namespace RotA
 
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupUnlockables(techTypeToAnalyze: AUHandler.AlienTechnologyMasterTech);
+            terminalBuilder.SetupAudio("DataTerminalEncy", "DownloadingAlienDataSubtitles");
             precursorMasterTechTerminal = new DataTerminalPrefab("MasterTechTerminal", terminalBuilder.GetTerminal());
             precursorMasterTechTerminal.Patch();
 
