@@ -1,4 +1,4 @@
-﻿using ArchitectsLibrary.API;
+using ArchitectsLibrary.API;
 using RotA.Mono.AlienTech;
 using SMLHelper.V2.Assets;
 using UnityEngine;
@@ -46,7 +46,8 @@ namespace RotA.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = disableGun.curedUseSound;
+            openDoor.curedUseEmitter = openDoor.gameObject.AddComponent<FMOD_CustomEmitter>();
+            openDoor.curedUseEmitter.SetAsset(disableGun.curedUseSound);
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;
@@ -88,7 +89,8 @@ namespace RotA.Prefabs.AlienBase
             openDoor.glowRing = disableGun.glowRing;
             openDoor.useSound = disableGun.useSound;
             openDoor.openLoopSound = disableGun.openLoopSound;
-            openDoor.curedUseSound = disableGun.curedUseSound;
+            openDoor.curedUseEmitter = openDoor.gameObject.AddComponent<FMOD_CustomEmitter>();
+            openDoor.curedUseEmitter.SetAsset(disableGun.curedUseSound);
             openDoor.accessGrantedSound = disableGun.accessGrantedSound;
             openDoor.accessDeniedSound = disableGun.accessDeniedSound;
             openDoor.cinematic = disableGun.cinematic;

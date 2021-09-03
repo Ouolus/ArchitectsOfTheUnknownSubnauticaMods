@@ -1,4 +1,4 @@
-﻿using Story;
+using Story;
 using System;
 using ArchitectsLibrary.API;
 using UnityEngine;
@@ -80,7 +80,8 @@ namespace RotA.Mono.AlienTech
                 Inventory.main.ReturnHeld(true);
                 if (playerCured)
                 {
-                    Utils.PlayFMODAsset(curedUseSound, transform, 20f);
+                    curedUseEmitter.Play();
+                    Invoke(nameof(StopUseSoundDelayed), 21f);
                 }
                 else
                 {
@@ -93,6 +94,11 @@ namespace RotA.Mono.AlienTech
                 cinematic.StartCinematicMode(hand.player);
                 Invoke(playerCured ? "SetLightAccessGranted" : "SetLightAccessDenied", 5.75f);
             }
+        }
+
+        private void StopUseSoundDelayed()
+        {
+            curedUseEmitter.Stop();
         }
 
         private void SetLightAccessGranted()
@@ -156,7 +162,7 @@ namespace RotA.Mono.AlienTech
 
         public FMODAsset useSound;
 
-        public FMODAsset curedUseSound;
+        public FMOD_CustomEmitter curedUseEmitter;
 
         public FMOD_CustomLoopingEmitter openLoopSound;
 
