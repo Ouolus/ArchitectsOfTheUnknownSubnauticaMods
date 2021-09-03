@@ -171,7 +171,7 @@ namespace RotA.Mono.AlienBaseSpawners
             yield return StartCoroutine(SpawnPrefab(light_small_spotlight_2, new Vector3(-22, firstCeilingY, 28), Vector3.right * 90f));
             yield return StartCoroutine(SpawnPrefab(light_verybig_novolumetrics, new Vector3(-22, firstCeilingY, 28), new Vector3(0f, 45f, 180f)));
 
-            yield return StartCoroutine(SpawnPrefab(Mod.omegaCubeFabricator.ClassID, new Vector3(-36, firstFloorY, 14)));
+            yield return StartCoroutine(SpawnPrefab(Mod.omegaCubeFabricator.ClassID, new Vector3(-37f, firstFloorY, 15.5f)));
         }
     }
 }
