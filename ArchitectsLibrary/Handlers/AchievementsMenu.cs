@@ -45,7 +45,7 @@ namespace ArchitectsLibrary.Handlers
                         go.SearchChild("CompletionIcon").SetActive(a.GetComplete);
                         GameObject completionBar = go.SearchChild("CompletionBar");
                         completionBar.SetActive(!a.GetComplete & a.HasMultipleTasks);
-                        completionBar.transform.Find("Bar").localScale = new Vector3(a.GetCompletionPercent, 1f, 1f);
+                        completionBar.transform.Find("Mask/Bar").localScale = new Vector3(a.GetCompletionPercent, 1f, 1f);
                         GameObject completionText = go.SearchChild("CompletionText");
                         completionText.SetActive(!a.GetComplete & a.HasMultipleTasks);
                         completionText.GetComponent<Text>().text = a.showAsPercent ? string.Format("{0}%", Mathf.Round(a.GetCompletionPercent * 100f)) : string.Format("{0}/{1}", a.tasksDone, a.totalTasks);
