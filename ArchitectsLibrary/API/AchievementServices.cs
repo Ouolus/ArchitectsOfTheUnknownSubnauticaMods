@@ -50,7 +50,7 @@ namespace ArchitectsLibrary.API
         /// <param name="showAsPercent">For achievements where total tasks > 1. Whether to show the completion as 'X/Y' or as 'N%".</param>
         public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked, int totalTasks = 1, bool showAsPercent = false)
         {
-            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked, totalTasks));
+            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked, totalTasks, showAsPercent));
         }
 
         /// <summary>
