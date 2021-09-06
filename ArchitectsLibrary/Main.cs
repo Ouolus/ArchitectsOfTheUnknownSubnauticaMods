@@ -133,6 +133,7 @@ namespace ArchitectsLibrary
             uGUI_InventoryTabPatches.Patch(harmony);
             uGUI_BuilderMenuPatches.Patch(harmony);
             uGUI_ItemSelectorPatches.Patch(harmony);
+            uGUI_MainMenuPatches.Patch(harmony);
             LanguagePatches.Patch(harmony);
 
             QModManager.Utility.Logger.Log(QModManager.Utility.Logger.Level.Info, "ArchitectsLibrary successfully finished Patching!");

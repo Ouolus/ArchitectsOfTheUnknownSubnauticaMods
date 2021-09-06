@@ -120,6 +120,7 @@
   "BuilderIncrementSizePrompt": "Increment the size ({0})",
   "BuilderDecrementSizePrompt": "Decrement the size ({0})",
   "BuilderResetSizePrompt": "Reset the size ({0})",
+  "Achievements": "Achievements",
 
   // Precursor Fabricator tabs
   "PrecursorFabricatorMenu_AlienMaterials": "Alien Materials",
