@@ -1,3 +1,4 @@
+using ArchitectsLibrary.Handlers;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,7 @@ namespace ArchitectsLibrary.Patches
             achievementsButton.transform.SetSiblingIndex(1);
             var button = achievementsButton.GetComponentInParent<Button>();
             button.onClick = new Button.ButtonClickedEvent();
-            button.onClick.AddListener(Application.Quit);
+            button.onClick.AddListener(AchievementsMenu.Show);
         }
     }
 }
