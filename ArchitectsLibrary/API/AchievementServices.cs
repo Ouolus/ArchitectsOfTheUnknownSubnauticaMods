@@ -124,7 +124,7 @@ namespace ArchitectsLibrary.API
         private static void ShowAchievementCompletePopup(string id)
         {
             Achievement achievement = GetAchievement(id);
-            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, Language.main.Get("AchievementComplete"), string.Format(AchievementNotificationFormat, achievement.name, achievement.unlockedDescription), null, GetAchievementSprite(id, false));
+            uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, Language.main.Get("AchievementComplete"), string.Format(AchievementNotificationFormat, Language.main.Get(achievement.name), Language.main.Get(achievement.unlockedDescription)), null, GetAchievementSprite(id, false));
             uGUI_PopupNotification.main.TryPlaySound(UnlockSound);
         }
 
