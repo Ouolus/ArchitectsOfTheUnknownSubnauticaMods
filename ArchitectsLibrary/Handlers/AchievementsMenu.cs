@@ -66,11 +66,29 @@ namespace ArchitectsLibrary.Handlers
             var list = new List<AchievementDisplayData>();
             foreach (var pair in AchievementServices.registeredAchievements)
             {
-                var completion = Main.achievementData.achievements == null ? 0 : Main.achievementData.achievements.GetOrDefault(pair.Key, 0);
+                var tasksCompleted = Main.achievementData.achievements == null ? 0 : Main.achievementData.achievements.GetOrDefault(pair.Key, 0);
                 var a = pair.Value;
-                list.Add(new AchievementDisplayData(a.name, a.unlockedDescription, completion, a.totalTasks, false, a.icon));
+                list.Add(new AchievementDisplayData(a.name, DescriptionToShow(a, tasksCompleted), tasksCompleted, a.totalTasks, false, IconToShow(a, tasksCompleted)));
             }
             return list;
+        }
+
+        private static string DescriptionToShow(AchievementServices.Achievement achievement, int tasksCompleted)
+        {
+            if (tasksCompleted >= achievement.totalTasks)
+            {
+                return achievement.unlockedDescription;
+            }
+            return achievement.lockedDescription;
+        }
+
+        private static Sprite IconToShow(AchievementServices.Achievement achievement, int tasksCompleted)
+        {
+            if (achievement.hideWhenLocked && tasksCompleted < achievement.totalTasks)
+            {
+                return Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon");
+            }
+            return achievement.icon;
         }
 
         // internal struct that defines how an achievement is displayed in the menu, so both vanilla and custom achievments can utilize the same system
