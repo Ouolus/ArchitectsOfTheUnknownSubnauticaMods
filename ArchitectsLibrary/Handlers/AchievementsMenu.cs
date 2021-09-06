@@ -104,7 +104,7 @@ namespace ArchitectsLibrary.Handlers
 
             public bool GetComplete => totalTasks == tasksDone;
             public bool HasMultipleTasks => totalTasks > 1;
-            public float GetCompletionPercent => tasksDone / totalTasks;
+            public float GetCompletionPercent => (float)tasksDone / (float)totalTasks;
 
             public AchievementDisplayData(string displayText, string descriptionText, int tasksDone, int totalTasks, bool showAsPercent, Sprite icon) // for custom achievements which have more to them
             {
