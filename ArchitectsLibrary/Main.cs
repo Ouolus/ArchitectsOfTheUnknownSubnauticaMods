@@ -1,4 +1,4 @@
-﻿using SMLHelper.V2.Assets;
+using SMLHelper.V2.Assets;
 
 namespace ArchitectsLibrary
 {
@@ -181,7 +181,7 @@ namespace ArchitectsLibrary
 
         static void PatchAchievements()
         {
-            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "Architect", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "This achievement is locked.", "Constructed a Precursor Fabricator.", true, 1);
+            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "AchievementBuildPrecursorFabricatorName", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "AchievementGenericLocked", "AchievementBuildPrecursorFabricatorUnlocked", true, 1);
         }
 
         static void PatchMinerals()

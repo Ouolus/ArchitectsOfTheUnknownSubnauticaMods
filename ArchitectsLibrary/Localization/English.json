@@ -123,6 +123,11 @@
   "Achievements": "Achievements",
   "AchievementComplete": "Achievement complete!",
 
+  // Achievements
+  "AchievementGenericLocked": "This achievement is locked",,
+  "AchievementBuildPrecursorFabricatorName": "Architect",
+  "AchievementBuildPrecursorFabricatorUnlocked": "Constructed a Precursor Fabricator.",
+
   // Precursor Fabricator tabs
   "PrecursorFabricatorMenu_AlienMaterials": "Alien Materials",
   "PrecursorFabricatorMenu_AlienEquipment": "Equipment",
