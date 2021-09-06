@@ -7,6 +7,8 @@ namespace ArchitectsLibrary.Patches
     [HarmonyPatch(typeof(uGUI_MainMenu))]
     internal static class uGUI_MainMenuPatches
     {
+        private const string kAchievementsButtonName = "Achievements";
+        
         internal static void Patch(Harmony harmony)
         {
             var orig = AccessTools.Method(typeof(uGUI_MainMenu), nameof(uGUI_MainMenu.Awake));
@@ -19,22 +21,21 @@ namespace ArchitectsLibrary.Patches
         private static void AwakePostfix(uGUI_MainMenu __instance)
         {
             var buttonsPanel = __instance.transform.Find("Panel/MainMenu/PrimaryOptions/MenuButtons");
-            if (buttonsPanel != null)
-            {
-                const string buttonName = "Achievements";
-                var playButton = buttonsPanel.GetChild(0).gameObject;
-                if (playButton == null) 
-                    return;
+            if (buttonsPanel == null) 
+                return;
+            
+            var playButton = buttonsPanel.GetChild(0).gameObject;
+            if (playButton == null) 
+                return;
                 
-                var achievementsButton = Object.Instantiate(playButton, buttonsPanel);
-                achievementsButton.GetComponentInChildren<Text>().text = buttonName;
-                achievementsButton.GetComponentInChildren<TranslationLiveUpdate>().translationKey = buttonName;
-                achievementsButton.name = buttonName;
-                achievementsButton.transform.SetSiblingIndex(1);
-                var button = achievementsButton.GetComponentInParent<Button>();
-                button.onClick = new Button.ButtonClickedEvent();
-                button.onClick.AddListener(Application.Quit);
-            }
+            var achievementsButton = Object.Instantiate(playButton, buttonsPanel);
+            achievementsButton.GetComponentInChildren<Text>().text = kAchievementsButtonName;
+            achievementsButton.GetComponentInChildren<TranslationLiveUpdate>().translationKey = kAchievementsButtonName;
+            achievementsButton.name = kAchievementsButtonName;
+            achievementsButton.transform.SetSiblingIndex(1);
+            var button = achievementsButton.GetComponentInParent<Button>();
+            button.onClick = new Button.ButtonClickedEvent();
+            button.onClick.AddListener(Application.Quit);
         }
     }
 }
