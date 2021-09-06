@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,13 +41,14 @@ namespace ArchitectsLibrary.API
         /// Registers an achievement into the game.
         /// </summary>
         /// <param name="id">The ID to be used for unlocking this achievement or checking it is locked.</param>
-        /// <param name="name">The name of the achievement shown in the popup and in the achievement list.</param>
+        /// <param name="name">The LANGUAGE KEY of the name of the achievement shown in the popup and in the achievement list.</param>
         /// <param name="icon">The icon of the achievement shown in the popup and in the achievement list. Should be 256x128 and should respect the curved rectangular shape of the popup frame. If left null, uses a default sprite.</param>
-        /// <param name="lockedDescription">The description shown in the achievements list before you unlock this achievement.</param>
-        /// <param name="unlockedDescription">The description shown in the achievements list after you unlock this achievement.</param>
+        /// <param name="lockedDescription">The LANGUAGE KEY of the description shown in the achievements list before you unlock this achievement.</param>
+        /// <param name="unlockedDescription">The LANGUAGE KEY of the description shown in the achievements list after you unlock this achievement.</param>
         /// <param name="hideIconWhenLocked">Determines if the icon in the list should be shown as a question mark when it has not been unlocked.</param>
         /// <param name="totalTasks">The amount of times a specific task must be completed in order for the achievement to be unlocked.</param>
-        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked, int totalTasks = 1)
+        /// <param name="showAsPercent">For achievements where total tasks > 1. Whether to show the completion as 'X/Y' or as 'N%".</param>
+        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked, int totalTasks = 1, bool showAsPercent = false)
         {
             registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked, totalTasks));
         }
@@ -159,8 +160,9 @@ namespace ArchitectsLibrary.API
             public string unlockedDescription;
             public bool hideWhenLocked;
             public int totalTasks;
+            public bool showAsPercent;
 
-            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideWhenLocked, int totalTasks)
+            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideWhenLocked, int totalTasks, bool showAsPercent)
             {
                 this.id = id;
                 this.name = name;
@@ -169,6 +171,7 @@ namespace ArchitectsLibrary.API
                 this.unlockedDescription = unlockedDescription;
                 this.hideWhenLocked = hideWhenLocked;
                 this.totalTasks = totalTasks;
+                this.showAsPercent = showAsPercent;
             }
         }
     }

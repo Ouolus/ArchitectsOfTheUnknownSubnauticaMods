@@ -68,7 +68,7 @@ namespace ArchitectsLibrary.Handlers
             {
                 var tasksCompleted = Main.achievementData.achievements == null ? 0 : Main.achievementData.achievements.GetOrDefault(pair.Key, 0);
                 var a = pair.Value;
-                list.Add(new AchievementDisplayData(a.name, DescriptionToShow(a, tasksCompleted), tasksCompleted, a.totalTasks, false, IconToShow(a, tasksCompleted)));
+                list.Add(new AchievementDisplayData(a.name, DescriptionToShow(a, tasksCompleted), tasksCompleted, a.totalTasks, a.showAsPercent, IconToShow(a, tasksCompleted)));
             }
             return list;
         }
@@ -106,7 +106,7 @@ namespace ArchitectsLibrary.Handlers
             public bool HasMultipleTasks => totalTasks > 1;
             public float GetCompletionPercent => (float)tasksDone / (float)totalTasks;
 
-            public AchievementDisplayData(string displayText, string descriptionText, int tasksDone, int totalTasks, bool showAsPercent, Sprite icon) // for custom achievements which have more to them
+            public AchievementDisplayData(string displayText, string descriptionText, int tasksDone, int totalTasks, bool showAsPercent, Sprite icon) // for custom achievements which can have multiple tasks
             {
                 isVanillaAchievement = false;
 
