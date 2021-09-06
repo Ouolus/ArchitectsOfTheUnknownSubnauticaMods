@@ -132,14 +132,14 @@
 
     // Tools Prompts
 
-    "WarpCannonSwitchFireModeWarp": "Teleport to base: {1}\nCurrent mode: Personal teleportation. Switch fire mode: {0}",
-    "WarpCannonSwitchFireModeCreature": "Warp in creatures: {1}\nCurrent mode: Creature summon. Switch fire mode: {0}",
-    "WarpCannonSwitchFireModeManipulatePrimary": "Create exit portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}",
-    "WarpCannonSwitchFireModeManipulateSecond": "Create entrance portal: {1}\nCurrent mode: Environment manipulation. Switch fire mode: {0}",
+    "WarpCannonSwitchFireModeWarp": "Teleport to base: ({1})\nCurrent mode: Personal teleportation. Switch fire mode ({0})",
+    "WarpCannonSwitchFireModeCreature": "Warp in creatures: ({1})\nCurrent mode: Creature summon. Switch fire mode ({0})",
+    "WarpCannonSwitchFireModeManipulatePrimary": "Create exit portal: ({1})\nCurrent mode: Environment manipulation. Switch fire mode ({0})",
+    "WarpCannonSwitchFireModeManipulateSecond": "Create entrance portal: ({1})\nCurrent mode: Environment manipulation. Switch fire mode: ({0})",
     "WarpCannonNotEnoughPowerError": "Insufficient power.",
 
-    "IonKnifeUseFormat": "{0}\nSwitch cube: {1}",
-    "IonKnifeUseNoCubeLoadedFormat": "Insert cube: {0}",
+    "IonKnifeUseFormat": "{0}\nSwitch cube ({1})",
+    "IonKnifeUseNoCubeLoadedFormat": "Insert cube ({0})",
     "IonKnifePrecursorIonCrystal": "Ion cube: Standard heat knife, with some electric properties.",
     "IonKnifeElectricube": "Electricube: Not very lethal, and not warm enough to cook fish.\nWhen the blade hits an object, there is a chance it will warp the object in a random direction.",
     "IonKnifeRedIonCube": "Power cube: Very powerful and makes harvesting certain resources more efficient.\nThe heat energy may harm you while it is held, but on contact with flesh it has restorative properties which counteract the effect.",
