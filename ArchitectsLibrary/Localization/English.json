@@ -124,7 +124,7 @@
   "AchievementComplete": "Achievement complete!",
 
   // Achievements
-  "AchievementGenericLocked": "This achievement is locked",
+  "AchievementGenericLocked": "This achievement is hidden.",
   "AchievementBuildPrecursorFabricatorName": "Architect",
   "AchievementBuildPrecursorFabricatorUnlocked": "Constructed a Precursor Fabricator.",
 
