@@ -240,5 +240,18 @@
     "LostRiverCacheSignal": "Lost River Laboratory Cache",
     "Label_LostRiverCacheSignal": "Alien Signal (685m underground)",
     "RuinedGuardianSignal": "Unidentified tracking chip",
-    "Label_RuinedGuardianSignal": "Distress signal"
+    "Label_RuinedGuardianSignal": "Distress signal",
+
+    // Achievements
+    "AchievementCraftWarpCannonName": "Hybrid Technology",
+    "AchievementCraftWarpCannonUnlocked": "Obtained the Handheld Warping Device.",
+    "AchievementVisitVoidBaseName": "Structure over the Abyss",
+    "AchievementVisitVoidBaseUnlocked": "Encountered the alien structure in the crater edge.",
+    "AchievementTouchBlackHoleName": "Do Not Touch",
+    "AchievementTouchBlackHoleUnlocked": "You interacted with the singularity. Really...?",
+    "AchievementWarpFarName": "Teleportation Master",
+    "AchievementWarpFarUnlocked": "Warped 2000 meters.",
+    "AchievementWarpFarLocked": "Warp 2000 meters.",
+    "AchievementDevSecretName": "Unknown Architects",
+    "AchievementDevSecretUnlocked": "Found the Hallway of the Architects."
 }
