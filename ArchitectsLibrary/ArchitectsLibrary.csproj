@@ -183,6 +183,7 @@
     <Compile Include="CreatorKit\UI\UIPopups.cs" />
     <Compile Include="CreatorKit\Utility\Utils.cs" />
     <Compile Include="CreatorKit\SNCreatorKit.cs" />
+    <Compile Include="Handlers\AchievementsMenu.cs" />
     <Compile Include="Handlers\AUHandler.cs" />
     <Compile Include="Handlers\BuilderManager.cs" />
     <Compile Include="Handlers\VehicleHandler.cs" />
