@@ -125,12 +125,12 @@ namespace RotA
             #endregion
 
             #region Achievements
-            AchievementServices.RegisterAchievement("CraftWarpCannon", "AchievementCraftWarpCannonName", assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "AchievementGenericLocked", "AchievementCraftWarpCannonUnlocked", true);
-            AchievementServices.RegisterAchievement("VisitVoidBase", "AchievementVisitVoidBaseName", assetBundle.LoadAsset<Sprite>("Popup_Green"), "AchievementGenericLocked", "AchievementVisitVoidBaseUnlocked", true);
-            AchievementServices.RegisterAchievement("TouchBlackHole", "AchievementTouchBlackHoleName", assetBundle.LoadAsset<Sprite>("Popup_Green"), "AchievementGenericLocked", "AchievementTouchBlackHoleUnlocked", true);
-            AchievementServices.RegisterAchievement("WarpFar", "AchievementWarpFarName", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "AchievementWarpFarLocked", "AchievementWarpFarUnlocked", true, 2000);
-            AchievementServices.RegisterAchievement("DevSecret", "AchievementDevSecretName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementGenericLocked", "AchievementDevSecretUnlocked", true);
-            AchievementServices.RegisterAchievement("YeetGarryfish", "AchievementYeetGarryfishName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementYeetGarryfishLocked", "AchievementYeetGarryfishUnlocked", true, 3);
+            AchievementServices.RegisterAchievement("CraftWarpCannon", "AchievementCraftWarpCannonName", assetBundle.LoadAsset<Sprite>("WarpCannon_Popup"), "AchievementGenericLocked", "AchievementCraftWarpCannonUnlocked");
+            AchievementServices.RegisterAchievement("VisitVoidBase", "AchievementVisitVoidBaseName", assetBundle.LoadAsset<Sprite>("Popup_Green"), "AchievementGenericLocked", "AchievementVisitVoidBaseUnlocked");
+            AchievementServices.RegisterAchievement("TouchBlackHole", "AchievementTouchBlackHoleName", assetBundle.LoadAsset<Sprite>("Popup_Green"), "AchievementGenericLocked", "AchievementTouchBlackHoleUnlocked");
+            AchievementServices.RegisterAchievement("WarpFar", "AchievementWarpFarName", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "AchievementWarpFarLocked", "AchievementWarpFarUnlocked", 2000);
+            AchievementServices.RegisterAchievement("DevSecret", "AchievementDevSecretName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementGenericLocked", "AchievementDevSecretUnlocked");
+            AchievementServices.RegisterAchievement("YeetGarryfish", "AchievementYeetGarryfishName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementYeetGarryfishLocked", "AchievementYeetGarryfishUnlocked", 3);
             #endregion
             
             PatchCraftablesAndBuildables();
