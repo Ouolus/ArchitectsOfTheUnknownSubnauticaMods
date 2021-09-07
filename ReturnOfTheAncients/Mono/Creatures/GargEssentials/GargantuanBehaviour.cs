@@ -26,7 +26,7 @@
             stealth = gameObject.GetComponent<GargantuanStealth>();
         }
 
-        public bool GetInStealthMode()
+        public bool IsInStealthMode()
         {
             return stealth != null && stealth.StealthActive;
         }

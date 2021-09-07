@@ -194,6 +194,8 @@ namespace RotA.Prefabs.Creatures
             if (CanRoar)
             {
                 GargantuanRoar roar = prefab.AddComponent<GargantuanRoar>();
+                roar.gargantuanBehaviour = gargantuanBehaviour;
+
                 roar.closeSoundsPrefix = CloseRoarPrefix;
                 roar.distantSoundsPrefix = DistantRoarPrefix;
                 roar.minDistance = RoarSoundMinMax.Item1;

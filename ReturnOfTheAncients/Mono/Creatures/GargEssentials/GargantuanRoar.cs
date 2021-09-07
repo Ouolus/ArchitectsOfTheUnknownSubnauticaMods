@@ -4,9 +4,10 @@
     using UnityEngine;
     using static GargantuanConditions;
     
-    public class GargantuanRoar : MonoBehaviour
+    class GargantuanRoar : MonoBehaviour
     {
         public AudioSource audioSource;
+        public GargantuanBehaviour gargantuanBehaviour;
         ECCAudio.AudioClipPool closeSounds;
         ECCAudio.AudioClipPool farSounds;
         Creature creature;
@@ -42,6 +43,11 @@
             if (!creature.liveMixin.IsAlive())
             {
                 Destroy(this);
+                return;
+            }
+
+            if (gargantuanBehaviour.IsInStealthMode())
+            {
                 return;
             }
             if (Time.time > timeRoarAgain)
