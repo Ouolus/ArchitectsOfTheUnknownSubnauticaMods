@@ -62,6 +62,15 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                         hitRb.AddForce(playerDirection * (hitForce * (1f - useMassPercent)) * chargeAmount, ForceMode.VelocityChange);
                     }
                 }
+
+                var tag = hitGameObject.GetComponent<TechTag>();
+                if (tag)
+                {
+                    if (tag.type == TechType.GarryFish)
+                    {
+                        AchievementServices.ChangeAchievementCompletion("YeetGarryfish", 1);
+                    }
+                }
             }
             ionKnife.Damage = GetDamageAmountsArray(1f - chargeAmount);
             chargeAmount = 0f;

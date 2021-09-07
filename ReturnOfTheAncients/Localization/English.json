@@ -253,5 +253,8 @@
     "AchievementWarpFarUnlocked": "Warped 2000 meters.",
     "AchievementWarpFarLocked": "Warp 2000 meters.",
     "AchievementDevSecretName": "Unknown Architects",
-    "AchievementDevSecretUnlocked": "Found the Hallway of the Architects."
+    "AchievementDevSecretUnlocked": "Found the Hallway of the Architects.",
+    "AchievementYeetGarryfishName": "Into Orbit",
+    "AchievementYeetGarryfishLocked": "Launch 3 Garryfish high into the sky with only an Ion Knife.",
+    "AchievementYeetGarryfishUnlocked": "It was fun."
 }
