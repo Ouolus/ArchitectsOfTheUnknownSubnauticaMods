@@ -12,8 +12,8 @@ namespace RotA.Mono
         private float timeToSpawnGarg;
         private TechType adultPrefab;
         private const float spawnOutDistance = 100f;
-        private const float spawnYLevel = -540;
-        private const float leashYOffset = 300f;
+        private const float spawnYLevel = -940;
+        private const float leashYOffset = 700f;
         private Player player;
 
         bool coroutinePlaying = false;
