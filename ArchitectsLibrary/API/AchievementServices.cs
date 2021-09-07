@@ -45,12 +45,11 @@ namespace ArchitectsLibrary.API
         /// <param name="icon">The icon of the achievement shown in the popup and in the achievement list. Should be 256x128 and should respect the curved rectangular shape of the popup frame. If left null, uses a default sprite.</param>
         /// <param name="lockedDescription">The LANGUAGE KEY of the description shown in the achievements list before you unlock this achievement.</param>
         /// <param name="unlockedDescription">The LANGUAGE KEY of the description shown in the achievements list after you unlock this achievement.</param>
-        /// <param name="hideIconWhenLocked">Determines if the icon in the list should be shown as a question mark when it has not been unlocked.</param>
         /// <param name="totalTasks">The amount of times a specific task must be completed in order for the achievement to be unlocked.</param>
         /// <param name="showAsPercent">For achievements where total tasks > 1. Whether to show the completion as 'X/Y' or as 'N%".</param>
-        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideIconWhenLocked, int totalTasks = 1, bool showAsPercent = false)
+        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks = 1, bool showAsPercent = false)
         {
-            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, hideIconWhenLocked, totalTasks, showAsPercent));
+            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, totalTasks, showAsPercent));
         }
 
         /// <summary>
@@ -158,18 +157,16 @@ namespace ArchitectsLibrary.API
             public Sprite icon;
             public string lockedDescription;
             public string unlockedDescription;
-            public bool hideWhenLocked;
             public int totalTasks;
             public bool showAsPercent;
 
-            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, bool hideWhenLocked, int totalTasks, bool showAsPercent)
+            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks, bool showAsPercent)
             {
                 this.id = id;
                 this.name = name;
                 this.icon = icon;
                 this.lockedDescription = lockedDescription;
                 this.unlockedDescription = unlockedDescription;
-                this.hideWhenLocked = hideWhenLocked;
                 this.totalTasks = totalTasks;
                 this.showAsPercent = showAsPercent;
             }

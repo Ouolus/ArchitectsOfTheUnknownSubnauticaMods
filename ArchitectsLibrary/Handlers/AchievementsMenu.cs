@@ -84,7 +84,7 @@ namespace ArchitectsLibrary.Handlers
 
         private static Sprite IconToShow(AchievementServices.Achievement achievement, int tasksCompleted)
         {
-            if (achievement.hideWhenLocked && tasksCompleted < achievement.totalTasks)
+            if (tasksCompleted < achievement.totalTasks)
             {
                 return Main.assetBundle.LoadAsset<Sprite>("DefaultAchievementIcon");
             }

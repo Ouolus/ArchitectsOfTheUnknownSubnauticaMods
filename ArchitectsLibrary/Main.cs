@@ -181,7 +181,7 @@ namespace ArchitectsLibrary
 
         static void PatchAchievements()
         {
-            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "AchievementBuildPrecursorFabricatorName", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "AchievementGenericLocked", "AchievementBuildPrecursorFabricatorUnlocked", true, 1);
+            AchievementServices.RegisterAchievement("BuildPrecursorFabricator", "AchievementBuildPrecursorFabricatorName", assetBundle.LoadAsset<Sprite>("AchievementIcon_Architect"), "AchievementGenericLocked", "AchievementBuildPrecursorFabricatorUnlocked", 1);
         }
 
         static void PatchMinerals()
