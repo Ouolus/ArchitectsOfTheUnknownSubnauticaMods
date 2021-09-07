@@ -194,6 +194,7 @@
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanGrab.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanMouthAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanRoar.cs" />
+    <Compile Include="Mono\Creatures\GargEssentials\GargantuanStealth.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanSwimAmbience.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargantuanTentacleAttack.cs" />
     <Compile Include="Mono\Creatures\GargEssentials\GargEyeFixer.cs" />

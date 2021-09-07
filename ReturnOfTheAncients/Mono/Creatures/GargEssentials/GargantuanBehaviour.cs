@@ -9,6 +9,7 @@
         
         internal GargantuanRoar roar;
         internal LastTarget lastTarget;
+        internal GargantuanStealth stealth;
         internal float timeSpawnBloodAgain;
         internal float bloodDestroyTime;
         internal float timeCanAttackAgain;
@@ -22,6 +23,7 @@
             creature = GetComponent<Creature>();
             roar = GetComponent<GargantuanRoar>();
             lastTarget = gameObject.GetComponent<LastTarget>();
+            stealth = gameObject.GetComponent<GargantuanStealth>();
         }
 
         public bool CanEat(GameObject target)

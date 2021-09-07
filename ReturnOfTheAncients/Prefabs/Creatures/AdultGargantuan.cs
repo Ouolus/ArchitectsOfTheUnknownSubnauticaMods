@@ -16,6 +16,8 @@ namespace RotA.Prefabs.Creatures
 
         public override string AttachBoneName => "AttachBone";
 
+        public override bool EnableStealth => true;
+
         public override float VehicleDamagePerSecond => 70;
 
         public override bool OneShotsPlayer => true;

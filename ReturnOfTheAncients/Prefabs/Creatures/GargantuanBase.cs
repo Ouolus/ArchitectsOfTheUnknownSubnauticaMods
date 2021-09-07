@@ -145,7 +145,13 @@ namespace RotA.Prefabs.Creatures
 
             components.locomotion.maxAcceleration = 27f;
 
-            prefab.EnsureComponent<GargantuanBehaviour>();
+            var gargantuanBehaviour = prefab.EnsureComponent<GargantuanBehaviour>();
+
+            if (EnableStealth)
+            {
+                var stealth = prefab.EnsureComponent<GargantuanStealth>();
+                stealth.gargBehaviour = gargantuanBehaviour;
+            }
             
             GargantuanGrab gargantuanGrab = prefab.EnsureComponent<GargantuanGrab>();
             gargantuanGrab.attachBoneName = AttachBoneName;
@@ -230,6 +236,14 @@ namespace RotA.Prefabs.Creatures
             MakeAggressiveTo(60f, 2, EcoTargetType.Whale, 0.23f, 2.3f);
             MakeAggressiveTo(250f, 7, EcoTargetType.Leviathan, 0.3f, 5f);
             MakeAggressiveTo(200f, 7, Mod.superDecoyTargetType, 0f, 5f);
+        }
+
+        public virtual bool EnableStealth
+        {
+            get
+            {
+                return false;
+            }
         }
 
         public virtual bool HasEyeTracking
