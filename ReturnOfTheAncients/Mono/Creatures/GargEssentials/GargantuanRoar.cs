@@ -22,15 +22,16 @@
         public bool screenShake;
         public bool roarDoesDamage;
 
-        float timeRoarAgain = 0f;
-        float timeUpdateShakeAgain = 0f;
+        float _timeRoarAgain = 0f;
+        float _timeUpdateShakeAgain = 0f;
 
-        private float[] clipSampleData = new float[1024];
-        private float clipLoudness = 0f;
+        private readonly float[] _clipSampleData = new float[1024];
+        private float _clipLoudness = 0f;
 
-        private float maxDamageDistance = 200f;
-        private float roarMaxDamagePerSecond = 6f;
+        private const float kMAXDamageDistance = 200f;
+        private const float kRoarMaxDamagePerSecond = 6f;
         private float timeStopDamaging = 0f;
+        private bool _hasRoaredOnce;
 
         private void Start()
         {
@@ -46,31 +47,31 @@
                 return;
             }
 
-            if (gargantuanBehaviour.IsInStealthMode())
+            if (_hasRoaredOnce && gargantuanBehaviour.IsInStealthMode())
             {
                 return;
             }
-            if (Time.time > timeRoarAgain)
+            if (Time.time > _timeRoarAgain)
             {
                 PlayOnce(out float roarLength, RoarMode.Automatic);
             }
             if (screenShake)
             {
-                if (Time.time > timeUpdateShakeAgain && audioSource.isPlaying)
+                if (Time.time > _timeUpdateShakeAgain && audioSource.isPlaying)
                 {
                     if (PlayerIsKillable())
                     {
-                        audioSource.clip.GetData(clipSampleData, audioSource.timeSamples);
-                        clipLoudness = 0f;
-                        foreach (var sample in clipSampleData)
+                        audioSource.clip.GetData(_clipSampleData, audioSource.timeSamples);
+                        _clipLoudness = 0f;
+                        foreach (var sample in _clipSampleData)
                         {
-                            clipLoudness += (Mathf.Abs(sample) * Mod.config.GetRoarScreenShakeNormalized);
+                            _clipLoudness += (Mathf.Abs(sample) * Mod.config.GetRoarScreenShakeNormalized);
                         }
-                        if (clipLoudness > 0.8f)
+                        if (_clipLoudness > 0.8f)
                         {
-                            MainCameraControl.main.ShakeCamera(clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
+                            MainCameraControl.main.ShakeCamera(_clipLoudness / 50f, 1f, MainCameraControl.ShakeMode.Linear, 1f);
                         }
-                        timeUpdateShakeAgain = Time.time + 0.5f;
+                        _timeUpdateShakeAgain = Time.time + 0.5f;
                     }
                 }
             }
@@ -90,24 +91,25 @@
             creature.GetAnimator().SetFloat("random", Random.value);
             creature.GetAnimator().SetTrigger("roar");
             float timeToWait = roarLength + Random.Range(delayMin, delayMax);
-            timeRoarAgain = Time.time + timeToWait;
+            _timeRoarAgain = Time.time + timeToWait;
             timeStopDamaging = Time.time + 6f;
+            _hasRoaredOnce = true;
         }
 
         void DoDamage()
         {
             return;
             float distance = Vector3.Distance(Player.main.transform.position, transform.position);
-            if (distance < maxDamageDistance)
+            if (distance < kMAXDamageDistance)
             {
-                float distanceScalar = Mathf.Clamp(1f - (distance / maxDamageDistance), 0.01f, 1f);
-                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * roarMaxDamagePerSecond, transform.position, DamageType.Normal, gameObject);
+                float distanceScalar = Mathf.Clamp(1f - (distance / kMAXDamageDistance), 0.01f, 1f);
+                Player.main.liveMixin.TakeDamage(distanceScalar * Time.deltaTime * kRoarMaxDamagePerSecond, transform.position, DamageType.Normal, gameObject);
             }
         }
 
         public void DelayTimeOfNextRoar(float length)
         {
-            timeRoarAgain = Mathf.Max(timeRoarAgain + length, timeRoarAgain);
+            _timeRoarAgain = Mathf.Max(_timeRoarAgain + length, _timeRoarAgain);
         }
 
         private AudioClip GetAudioClip(float distance, RoarMode roarMode)
