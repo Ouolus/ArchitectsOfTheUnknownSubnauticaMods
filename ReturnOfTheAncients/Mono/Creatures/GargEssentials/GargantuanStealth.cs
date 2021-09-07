@@ -9,10 +9,16 @@ namespace RotA.Mono.Creatures.GargEssentials
     class GargantuanStealth : MonoBehaviour
     {
         public GargantuanBehaviour gargBehaviour;
+        public bool StealthActive { get; private set; }
 
         private const float kStealthMaxYLevel = -200f;
 
-        public bool StealthActive()
+        private void UpdateStealthState()
+        {
+            StealthActive = GetStealthState();
+        }
+
+        private bool GetStealthState()
         {
             if (gargBehaviour.lastTarget.target != null)
             {
@@ -29,7 +35,7 @@ namespace RotA.Mono.Creatures.GargEssentials
 
         private void Update()
         {
-            
+            UpdateStealthState();
         }
     }
 }

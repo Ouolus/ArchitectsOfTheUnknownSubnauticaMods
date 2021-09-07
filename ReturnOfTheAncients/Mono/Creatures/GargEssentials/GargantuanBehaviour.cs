@@ -9,13 +9,13 @@
         
         internal GargantuanRoar roar;
         internal LastTarget lastTarget;
-        internal GargantuanStealth stealth;
         internal float timeSpawnBloodAgain;
         internal float bloodDestroyTime;
         internal float timeCanAttackAgain;
         
         Creature creature;
         GargantuanGrab grab;
+        GargantuanStealth stealth;
 
         void Start()
         {
@@ -24,6 +24,11 @@
             roar = GetComponent<GargantuanRoar>();
             lastTarget = gameObject.GetComponent<LastTarget>();
             stealth = gameObject.GetComponent<GargantuanStealth>();
+        }
+
+        public bool GetInStealthMode()
+        {
+            return stealth != null && stealth.StealthActive;
         }
 
         public bool CanEat(GameObject target)
