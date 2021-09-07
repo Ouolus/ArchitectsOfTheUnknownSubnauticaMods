@@ -359,7 +359,7 @@ namespace RotA
             #region Secret base
             terminalBuilder.SetupTemplateTerminal(DataTerminalPrefab.orangeTerminalCID);
             terminalBuilder.SetupFX(new Color(0.65f, 0f, 0.75f), false);
-            terminalBuilder.SetupAchievement("DevSecretAchievement");
+            terminalBuilder.SetupAchievement("DevSecret");
             terminalBuilder.SetupAudio("PDAThanksForDownloading", "ThanksForDownloadingSubtitles");
             devSecretTerminal = new SecretBaseTerminal("DevSecretTerminal", terminalBuilder.GetTerminal());
             devSecretTerminal.Patch();
