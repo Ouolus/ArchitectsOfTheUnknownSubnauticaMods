@@ -9,7 +9,7 @@
     using UnityEngine;
     using static GargantuanConditions;
     
-    public class GargantuanMouthAttack : MeleeAttack
+    class GargantuanMouthAttack : MeleeAttack
     {
         AudioSource attackSource;
         ECCAudio.AudioClipPool biteClipPool;

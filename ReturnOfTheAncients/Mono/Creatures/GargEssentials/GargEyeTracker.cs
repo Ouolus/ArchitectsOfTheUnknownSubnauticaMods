@@ -2,7 +2,7 @@
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
-    public class GargEyeTracker : MonoBehaviour
+    class GargEyeTracker : MonoBehaviour
     {
         Quaternion defaultLocalRotation;
 

@@ -5,7 +5,7 @@ namespace RotA.Mono.Creatures.GargEssentials
     using Prefabs.Creatures;
     using UnityEngine;
 
-    public class GargantuanGrab : MonoBehaviour
+    class GargantuanGrab : MonoBehaviour
     {
         public float vehicleDamagePerSecond;
         public GargGrabFishMode grabFishMode;

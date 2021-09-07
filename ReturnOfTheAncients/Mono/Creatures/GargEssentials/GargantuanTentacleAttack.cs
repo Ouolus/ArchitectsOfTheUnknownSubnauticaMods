@@ -4,7 +4,7 @@
     using System.Collections;
     using UnityEngine;
     
-    public class GargantuanTentacleAttack : MeleeAttack
+    class GargantuanTentacleAttack : MeleeAttack
     {
         GargantuanGrab grab;
         AudioSource attackSource;

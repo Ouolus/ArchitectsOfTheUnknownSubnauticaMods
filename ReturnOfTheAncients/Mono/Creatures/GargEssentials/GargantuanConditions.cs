@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace RotA.Mono.Creatures.GargEssentials
 {
     // General Condition-based static class
-    public static class GargantuanConditions
+    static class GargantuanConditions
     {
         public static bool CanSwallowWhole(GameObject gameObject, LiveMixin liveMixin)
         {

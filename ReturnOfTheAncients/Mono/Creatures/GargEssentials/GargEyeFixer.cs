@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
-    public class GargEyeFixer : MonoBehaviour
+    class GargEyeFixer : MonoBehaviour
     {
         private Vector3 overrideScale = new Vector3(0.9f, 0.9f, 0.9f);
 

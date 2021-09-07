@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RotA.Mono.Creatures.GargEssentials
 {
-    public class GargantuanSwimAmbience : MonoBehaviour
+    class GargantuanSwimAmbience : MonoBehaviour
     {
         public string swimSoundPrefix = "garg_swim_loop_2";
         public int audioSourceCount = 2;
