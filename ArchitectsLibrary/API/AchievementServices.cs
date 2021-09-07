@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ArchitectsLibrary.Configuration;
+using UnityEngine.Events;
 
 namespace ArchitectsLibrary.API
 {
@@ -48,9 +49,10 @@ namespace ArchitectsLibrary.API
         /// <param name="totalTasks">The amount of times a specific task must be completed in order for the achievement to be unlocked.</param>
         /// <param name="showAsPercent">For achievements where total tasks > 1. Whether to show the completion as 'X/Y' or as 'N%".</param>
         /// <param name="technical">Achievements marked as "technical" will NEVER be seen by the player and are only used for game logic.</param>
-        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks = 1, bool showAsPercent = false, bool technical = false)
+        /// <param name="callback">The action that is executed when the achievement is complete. Must be a static method.</param>
+        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks = 1, bool showAsPercent = false, bool technical = false, UnityAction callback = null)
         {
-            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, totalTasks, showAsPercent, technical));
+            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, totalTasks, showAsPercent, technical, callback));
         }
 
         /// <summary>
@@ -69,7 +71,7 @@ namespace ArchitectsLibrary.API
         /// <param name="tasks">The tasks done for this achievement.</param>
         public static void SetAchievementCompletion(string id, int tasks)
         {
-            var wasIncomplete = !GetAchievementComplete(id);
+            var wasAlreadyComplete = GetAchievementComplete(id);
             if (Main.achievementData.achievements.ContainsKey(id))
             {
                 Main.achievementData.achievements[id] = tasks;
@@ -80,10 +82,12 @@ namespace ArchitectsLibrary.API
             }
             Main.achievementData.Save();
             var achievementData = GetAchievement(id);
-            if (wasIncomplete && !achievementData.technical && tasks >= achievementData.totalTasks)
-            {
-                ShowAchievementCompletePopup(id);
-            }
+            
+            if (wasAlreadyComplete || achievementData.technical || tasks < achievementData.totalTasks)
+                return;
+            
+            achievementData.callback?.Invoke();
+            ShowAchievementCompletePopup(id);
         }
 
         /// <summary>
@@ -166,8 +170,9 @@ namespace ArchitectsLibrary.API
             public int totalTasks;
             public bool showAsPercent;
             public bool technical;
+            public UnityAction callback;
 
-            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks, bool showAsPercent, bool technical)
+            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks, bool showAsPercent, bool technical, UnityAction callback)
             {
                 this.id = id;
                 this.name = name;
@@ -177,6 +182,7 @@ namespace ArchitectsLibrary.API
                 this.totalTasks = totalTasks;
                 this.showAsPercent = showAsPercent;
                 this.technical = technical;
+                this.callback = callback;
             }
         }
     }
