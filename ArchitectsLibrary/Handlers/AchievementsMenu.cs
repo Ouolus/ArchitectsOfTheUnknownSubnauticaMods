@@ -66,6 +66,10 @@ namespace ArchitectsLibrary.Handlers
             var list = new List<AchievementDisplayData>();
             foreach (var pair in AchievementServices.registeredAchievements)
             {
+                if (pair.Value.technical)
+                {
+                    continue;
+                }
                 var tasksCompleted = Main.achievementData.achievements == null ? 0 : Main.achievementData.achievements.GetOrDefault(pair.Key, 0);
                 var a = pair.Value;
                 list.Add(new AchievementDisplayData(Language.main.Get(a.name), Language.main.Get(DescriptionToShow(a, tasksCompleted)), tasksCompleted, a.totalTasks, a.showAsPercent, IconToShow(a, tasksCompleted)));

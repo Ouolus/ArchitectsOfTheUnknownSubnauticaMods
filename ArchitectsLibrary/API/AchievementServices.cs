@@ -47,9 +47,10 @@ namespace ArchitectsLibrary.API
         /// <param name="unlockedDescription">The LANGUAGE KEY of the description shown in the achievements list after you unlock this achievement.</param>
         /// <param name="totalTasks">The amount of times a specific task must be completed in order for the achievement to be unlocked.</param>
         /// <param name="showAsPercent">For achievements where total tasks > 1. Whether to show the completion as 'X/Y' or as 'N%".</param>
-        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks = 1, bool showAsPercent = false)
+        /// <param name="technical">Achievements marked as "technical" will NEVER be seen by the player and are only used for game logic.</param>
+        public static void RegisterAchievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks = 1, bool showAsPercent = false, bool technical = false)
         {
-            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, totalTasks, showAsPercent));
+            registeredAchievements.Add(id, new Achievement(id, name, icon, lockedDescription, unlockedDescription, totalTasks, showAsPercent, technical));
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace ArchitectsLibrary.API
         /// <param name="tasks">The tasks done for this achievement.</param>
         public static void SetAchievementCompletion(string id, int tasks)
         {
-            bool wasIncomplete = !GetAchievementComplete(id);
+            var wasIncomplete = !GetAchievementComplete(id);
             if (Main.achievementData.achievements.ContainsKey(id))
             {
                 Main.achievementData.achievements[id] = tasks;
@@ -78,7 +79,8 @@ namespace ArchitectsLibrary.API
                 Main.achievementData.achievements.Add(id, tasks);
             }
             Main.achievementData.Save();
-            if (wasIncomplete && tasks >= GetAchievement(id).totalTasks)
+            var achievementData = GetAchievement(id);
+            if (wasIncomplete && !achievementData.technical && tasks >= achievementData.totalTasks)
             {
                 ShowAchievementCompletePopup(id);
             }
@@ -117,12 +119,16 @@ namespace ArchitectsLibrary.API
         public static int GetTasksCompleted(string achievementId)
         {
             Main.achievementData.Load();
+            if (Main.achievementData.achievements == null)
+            {
+                return 0;
+            }
             return Main.achievementData.achievements.GetOrDefault(achievementId, 0);
         }
 
         private static void ShowAchievementCompletePopup(string id)
         {
-            Achievement achievement = GetAchievement(id);
+            var achievement = GetAchievement(id);
             uGUI_PopupNotification.main.Set(PDATab.None, string.Empty, Language.main.Get("AchievementComplete"), string.Format(AchievementNotificationFormat, Language.main.Get(achievement.name), Language.main.Get(achievement.unlockedDescription)), null, GetAchievementSprite(id, false));
             uGUI_PopupNotification.main.TryPlaySound(UnlockSound);
         }
@@ -159,8 +165,9 @@ namespace ArchitectsLibrary.API
             public string unlockedDescription;
             public int totalTasks;
             public bool showAsPercent;
+            public bool technical;
 
-            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks, bool showAsPercent)
+            public Achievement(string id, string name, Sprite icon, string lockedDescription, string unlockedDescription, int totalTasks, bool showAsPercent, bool technical)
             {
                 this.id = id;
                 this.name = name;
@@ -169,6 +176,7 @@ namespace ArchitectsLibrary.API
                 this.unlockedDescription = unlockedDescription;
                 this.totalTasks = totalTasks;
                 this.showAsPercent = showAsPercent;
+                this.technical = technical;
             }
         }
     }
