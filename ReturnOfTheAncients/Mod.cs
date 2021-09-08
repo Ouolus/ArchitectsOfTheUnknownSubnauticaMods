@@ -131,6 +131,7 @@ namespace RotA
             AchievementServices.RegisterAchievement("WarpFar", "AchievementWarpFarName", assetBundle.LoadAsset<Sprite>("Warper_Popup"), "AchievementWarpFarLocked", "AchievementWarpFarUnlocked", 2000);
             AchievementServices.RegisterAchievement("DevSecret", "AchievementDevSecretName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementGenericLocked", "AchievementDevSecretUnlocked");
             AchievementServices.RegisterAchievement("YeetGarryfish", "AchievementYeetGarryfishName", assetBundle.LoadAsset<Sprite>("Garryfish_Popup"), "AchievementYeetGarryfishLocked", "AchievementYeetGarryfishUnlocked", 3);
+            AchievementServices.RegisterAchievement("PetBird", "AchievementPetBirdName", assetBundle.LoadAsset<Sprite>("Skyray_Popup"), "AchievementPetBirdLocked", "AchievementPetBirdUnlocked", 1);
             #endregion
             
             PatchCraftablesAndBuildables();

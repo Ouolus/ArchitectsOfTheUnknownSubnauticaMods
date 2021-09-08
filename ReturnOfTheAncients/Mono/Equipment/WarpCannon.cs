@@ -1,4 +1,5 @@
-﻿using RotA.Mono.Singletons;
+using ArchitectsLibrary.API;
+using RotA.Mono.Singletons;
 using RotA.Mono.VFX;
 using System.Collections;
 using System.Collections.Generic;
@@ -258,7 +259,11 @@ namespace RotA.Mono.Equipment
             bool inBase = Player.main.IsInSub() || Player.main.precursorOutOfWater;
             if (inBase)
             {
-                //skyray fixes
+                if (techType == TechType.Skyray)
+                {
+                    AchievementServices.CompleteAchievement("PetBird");
+                }
+                // skyray fixes
                 var flyAboveMinHeight = spawnedCreatureObj.GetComponent<FlyAboveMinHeight>();
                 if (flyAboveMinHeight is not null)
                 {
@@ -269,7 +274,7 @@ namespace RotA.Mono.Equipment
                 {
                     Destroy(drowning);
                 }
-                //base sky applier fixes
+                // base sky applier fixes
                 SkyApplier creatureSkyApplier = spawnedCreatureObj.GetComponent<SkyApplier>();
                 if (creatureSkyApplier is not null)
                 {

@@ -256,5 +256,8 @@
     "AchievementDevSecretUnlocked": "Found the Hallway of the Architects.",
     "AchievementYeetGarryfishName": "Into Orbit",
     "AchievementYeetGarryfishLocked": "Launch 3 Garryfish high into the sky with only an Ion Knife.",
-    "AchievementYeetGarryfishUnlocked": "It was fun."
+    "AchievementYeetGarryfishUnlocked": "It was fun.",
+    "AchievementPetBirdName": "Pet Bird",
+    "AchievementPetBirdLocked": "Warp a Skyray into your base.",
+    "AchievementPetBirdUnlocked": "Warped a Skyray into your base."
 }
