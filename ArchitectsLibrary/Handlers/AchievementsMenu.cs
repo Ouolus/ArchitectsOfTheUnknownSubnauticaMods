@@ -23,17 +23,16 @@ namespace ArchitectsLibrary.Handlers
                 _current = Object.Instantiate(Main.assetBundle.LoadAsset<GameObject>(kPrefabName));
                 _current.transform.SetParent(mainMenu.transform.GetChild(0), false);
                 _current.transform.localScale = Vector3.one;
-                _current.transform.Find("CloseButton").GetComponent<Button>().onClick.AddListener(Hide);
+                _current.transform.Find("BackButton").GetComponent<Button>().onClick.AddListener(Hide);
 
                 var displayData = GetDisplayData();
                 if (displayData != null && displayData.Count > 0)
                 {
-                    var layoutGroupParent = _current.transform.Find("Viewport/VerticalLayoutGroup");
+                    var layoutGroupParent = _current.transform.Find("Viewport/Content/VerticalLayoutGroup");
                     for (var i = 0; i < displayData.Count; i++)
                     {
                         var a = displayData[i];
-                        var go = Object.Instantiate(Main.assetBundle.LoadAsset<GameObject>(a.isVanillaAchievement ? kVanillaButtonPrefabName : kButtonPrefabName));
-                        go.transform.SetParent(layoutGroupParent, false);
+                        var go = Object.Instantiate(Main.assetBundle.LoadAsset<GameObject>(a.isVanillaAchievement ? kVanillaButtonPrefabName : kButtonPrefabName), layoutGroupParent, false);
                         go.transform.localScale = Vector3.one * 20f;
 
                         // basic achievement stuff
@@ -48,7 +47,7 @@ namespace ArchitectsLibrary.Handlers
                         completionBar.transform.Find("Mask/Bar").localScale = new Vector3(a.GetCompletionPercent, 1f, 1f);
                         GameObject completionText = go.SearchChild("CompletionText");
                         completionText.SetActive(!a.GetComplete & a.HasMultipleTasks);
-                        completionText.GetComponent<Text>().text = a.showAsPercent ? string.Format("{0}%", Mathf.Round(a.GetCompletionPercent * 100f)) : string.Format("{0}/{1}", a.tasksDone, a.totalTasks);
+                        completionText.GetComponent<Text>().text = a.showAsPercent ? $"{Mathf.Round(a.GetCompletionPercent * 100f)}%" : $"{a.tasksDone}/{a.totalTasks}";
                     }
                 }
             }
