@@ -63,13 +63,10 @@ namespace RotA.Mono.Equipment.IonKnifeActions
                     }
                 }
 
-                var tag = hitGameObject.GetComponent<TechTag>();
-                if (tag)
+                TechType tt = CraftData.GetTechType(hitGameObject);
+                if (tt == TechType.GarryFish)
                 {
-                    if (tag.type == TechType.GarryFish)
-                    {
-                        AchievementServices.ChangeAchievementCompletion("YeetGarryfish", 1);
-                    }
+                    AchievementServices.ChangeAchievementCompletion("YeetGarryfish", 1);
                 }
             }
             ionKnife.Damage = GetDamageAmountsArray(1f - chargeAmount);
