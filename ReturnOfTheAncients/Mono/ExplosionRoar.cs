@@ -1,3 +1,4 @@
+using ArchitectsLibrary.API;
 using ECCLibrary;
 using Story;
 using System.Collections;
@@ -35,6 +36,7 @@ namespace RotA.Mono
             yield return new WaitForSeconds(5f);
             CustomPDALinesManager.PlayPDAVoiceLine(Mod.assetBundle.LoadAsset<AudioClip>("PDAExplosionRoar"), "PDAExplosionRoar");
             StoryGoalManager.main.OnGoalComplete(storyGoalName);
+            AchievementServices.CompleteAchievement("ExplosionRoar");
         }
     }
 }

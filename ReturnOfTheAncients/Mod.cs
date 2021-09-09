@@ -132,6 +132,9 @@ namespace RotA
             AchievementServices.RegisterAchievement("DevSecret", "AchievementDevSecretName", assetBundle.LoadAsset<Sprite>("Popup_Purple"), "AchievementGenericLocked", "AchievementDevSecretUnlocked");
             AchievementServices.RegisterAchievement("YeetGarryfish", "AchievementYeetGarryfishName", assetBundle.LoadAsset<Sprite>("Garryfish_Popup"), "AchievementYeetGarryfishLocked", "AchievementYeetGarryfishUnlocked", 3);
             AchievementServices.RegisterAchievement("PetBird", "AchievementPetBirdName", assetBundle.LoadAsset<Sprite>("Skyray_Popup"), "AchievementPetBirdLocked", "AchievementPetBirdUnlocked", 1);
+
+            // technical achievements
+            AchievementServices.RegisterAchievement("ExplosionRoar", LanguageSystem.Default, null, LanguageSystem.Default, LanguageSystem.Default, totalTasks: 1, technical: true);
             #endregion
             
             PatchCraftablesAndBuildables();
