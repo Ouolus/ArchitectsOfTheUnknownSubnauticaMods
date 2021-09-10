@@ -152,6 +152,7 @@
     <Compile Include="Prefabs\SkyRayEgg.cs" />
     <Compile Include="Prefabs\RiverProwlerEgg.cs" />
     <Compile Include="Prefabs\WarperEgg.cs" />
+    <Compile Include="Prefabs\WarperRelicCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

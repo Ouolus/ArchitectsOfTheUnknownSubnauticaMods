@@ -37,6 +37,7 @@ namespace CreatureEggs
         internal static WarperEgg warperEgg = new();
         internal static RiverProwlerEgg riverProwlerEgg = new();
         internal static SkyRayEgg skyRayEgg = new();
+        internal static WarperRelicCase warperRelicCase = new();
 
         public static List<TechType> TechTypesToSkyApply = new() { TechType.SeaDragon, TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaEmperorJuvenile, TechType.SeaEmperorBaby, TechType.SeaEmperor };
         public static List<TechType> TechTypesToMakePickupable = new() { TechType.GhostLeviathan, TechType.GhostLeviathanJuvenile, TechType.SeaDragon };
@@ -69,6 +70,7 @@ namespace CreatureEggs
             warperEgg.Patch();
             riverProwlerEgg.Patch();
             skyRayEgg.Patch();
+            warperRelicCase.Patch();
 
             PrecursorFabricatorService.SubscribeToFabricator(robotEgg.TechType, PrecursorFabricatorTab.Eggs);
             PrecursorFabricatorService.SubscribeToFabricator(warperEgg.TechType, PrecursorFabricatorTab.Eggs);
