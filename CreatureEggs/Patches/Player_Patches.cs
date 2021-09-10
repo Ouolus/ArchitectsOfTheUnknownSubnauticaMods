@@ -30,6 +30,7 @@ namespace CreatureEggs.Patches
                 AquariumFish aquariumFish = prefab.EnsureComponent<AquariumFish>();
 
                 Eatable eatable = prefab.EnsureComponent<Eatable>();
+                int modelIndex = 0;
                 switch (techType)
                 {
                     case TechType.Bleeder:
@@ -39,24 +40,20 @@ namespace CreatureEggs.Patches
                     case TechType.Biter:
                         eatable.foodValue = 22f;
                         eatable.waterValue = 4f;
+                        modelIndex = 1;
                         break;
                     case TechType.Blighter:
                         eatable.foodValue = 19f;
                         eatable.waterValue = 5f;
+                        modelIndex = 1;
                         break;
                     default:
                         eatable.foodValue = 10f;
                         eatable.waterValue = 2f;
                         break;
                 }
-                GameObject obj = GameObject.Instantiate(prefab.gameObject);
 
-                foreach (Component component in obj.GetComponents<Component>())
-                {
-                    GameObject.DestroyImmediate(component);
-                }
-                aquariumFish.model = obj;
-                obj.SetActive(false);
+                aquariumFish.model = prefab.transform.GetChild(modelIndex).gameObject;
             }
         }
     }
