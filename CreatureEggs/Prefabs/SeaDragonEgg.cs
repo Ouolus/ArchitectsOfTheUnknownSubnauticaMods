@@ -17,26 +17,12 @@ namespace CreatureEggs.Prefabs
         public override TechType HatchingCreature => TechType.SeaDragon;
         public override Sprite ItemSprite => LoadSprite("SeaDragonEgg");
         public override string AssetsFolder => Main.AssetsFolder;
-        public override List<LootDistributionData.BiomeData> BiomesToSpawnIn => new List<LootDistributionData.BiomeData>()
+
+        public override List<SpawnLocation> CoordinatedSpawns => new()
         {
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.InactiveLavaZone_Chamber_Ceiling,
-                count = 1,
-                probability = 0.1f
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.InactiveLavaZone_Chamber_Lava,
-                count = 1,
-                probability = 0.25f,
-            },
-            new LootDistributionData.BiomeData()
-            {
-                biome = BiomeType.ActiveLavaZone_Chamber_Floor,
-                count = 1,
-                probability = 0.15f
-            }
+            new SpawnLocation(new Vector3(280.3136f, -1424.429f, 47.60991f), new Vector3(358.9967f, 359.7135f, 31.86873f)),
+            new SpawnLocation(new Vector3(64.13924f, -1190.633f, 144.4159f), new Vector3(22.92112f, 355.978f, 340.3481f)),
+            new SpawnLocation(new Vector3(-42.29882f, -1165.697f, 28.27014f), new Vector3(297.1068f, 0.0009694131f, -0.001585252f))
         };
 
         public void InitializeObject(GameObject prefab)
