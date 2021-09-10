@@ -154,7 +154,8 @@ namespace ArchitectsLibrary.API
         {
             SeamothModule,
             ExosuitModule,
-            VehicleModule
+            VehicleModule,
+            Cyclops
         }
     }
 }
