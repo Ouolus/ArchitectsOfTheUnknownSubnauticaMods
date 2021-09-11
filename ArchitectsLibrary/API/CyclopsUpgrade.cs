@@ -26,6 +26,11 @@ namespace ArchitectsLibrary.API
             OnFinishedPatching += () =>
             {
                 CraftDataHandler.SetEquipmentType(TechType, EquipmentType.CyclopsModule);
+
+                if (this is ICyclopsOnEquip cyclopsOnEquip)
+                {
+                    UpgradeConsolePatches.CyclopsOnEquips[this.TechType] = cyclopsOnEquip;
+                }
             };
         }
         
