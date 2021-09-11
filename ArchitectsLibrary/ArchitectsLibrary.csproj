@@ -241,6 +241,7 @@
     <Compile Include="Patches\uGUI_InventoryTabPatches.cs" />
     <Compile Include="Patches\uGUI_ItemSelectorPatches.cs" />
     <Compile Include="Patches\uGUI_MainMenuPatches.cs" />
+    <Compile Include="Patches\UpgradeConsolePatches.cs" />
     <Compile Include="Patches\VehiclePatches.cs" />
     <Compile Include="Patches\WaterParkPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
