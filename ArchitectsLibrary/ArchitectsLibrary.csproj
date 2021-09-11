@@ -136,6 +136,7 @@
     <Compile Include="API\DisplayCaseServices.cs" />
     <Compile Include="API\ReskinSpawnable.cs" />
     <Compile Include="API\SNAudioEvents.cs" />
+    <Compile Include="API\CyclopsUpgrade.cs" />
     <Compile Include="API\VehicleUpgrade.cs" />
     <Compile Include="Buildables\BuildableColumnSmall.cs" />
     <Compile Include="Buildables\BuildableItemPedestal.cs" />
