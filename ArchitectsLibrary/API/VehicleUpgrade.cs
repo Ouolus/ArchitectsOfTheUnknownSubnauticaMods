@@ -14,8 +14,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class VehicleUpgrade : Craftable
     {
-        readonly Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
-            (x) => (EquipmentType)Enum.Parse(typeof(EquipmentType), x.ToString());
+        private readonly Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
+            moduleEquipmentType => (EquipmentType)moduleEquipmentType;
         
         /// <summary>
         /// Initializes a new <see cref="VehicleUpgrade"/>
@@ -152,10 +152,9 @@ namespace ArchitectsLibrary.API
         /// </summary>
         public enum ModuleEquipmentType
         {
-            SeamothModule,
-            ExosuitModule,
-            VehicleModule,
-            Cyclops
+            SeamothModule = 13,
+            ExosuitModule = 14,
+            VehicleModule = 9,
         }
     }
 }
