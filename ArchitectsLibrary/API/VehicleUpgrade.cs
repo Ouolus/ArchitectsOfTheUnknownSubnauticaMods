@@ -14,8 +14,8 @@ namespace ArchitectsLibrary.API
     /// </summary>
     public abstract class VehicleUpgrade : Craftable
     {
-        readonly Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
-            (x) => (EquipmentType)Enum.Parse(typeof(EquipmentType), x.ToString());
+        private readonly Func<ModuleEquipmentType, EquipmentType> ParseAsEquipmentType =
+            moduleEquipmentType => (EquipmentType)moduleEquipmentType;
         
         /// <summary>
         /// Initializes a new <see cref="VehicleUpgrade"/>
@@ -23,12 +23,13 @@ namespace ArchitectsLibrary.API
         /// <param name="classId">The main internal identifier for this item. Your item's <see cref="TechType"/> will be created using this name.</param>
         /// <param name="friendlyName">The name displayed in-game for this item whether in the open world or in the inventory.</param>
         /// <param name="description">The description for this item, Typically seen in the PDA, Inventory, or crafting screens.</param>
-        public VehicleUpgrade(string classId, string friendlyName, string description)
+        protected VehicleUpgrade(string classId, string friendlyName, string description)
             : base(classId, friendlyName, description)
         {
             OnFinishedPatching += () =>
             {
-                CraftDataHandler.SetEquipmentType(this.TechType, ParseAsEquipmentType(EquipmentType));
+                if (EquipmentType != ModuleEquipmentType.None)
+                    CraftDataHandler.SetEquipmentType(this.TechType, ParseAsEquipmentType(EquipmentType));
                 CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType);
                 
                 if (MaxCharge.HasValue)
@@ -152,9 +153,10 @@ namespace ArchitectsLibrary.API
         /// </summary>
         public enum ModuleEquipmentType
         {
-            SeamothModule,
-            ExosuitModule,
-            VehicleModule
+            None = 0,
+            SeamothModule = 13,
+            ExosuitModule = 14,
+            VehicleModule = 9,
         }
     }
 }
