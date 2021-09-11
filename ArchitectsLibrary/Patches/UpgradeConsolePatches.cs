@@ -23,7 +23,7 @@ namespace ArchitectsLibrary.Patches
             if (item == null || item.item == null) return;
             if (CyclopsOnEquips.TryGetValue(item.item.GetTechType(), out ICyclopsOnEquip cyclopsOnEquip))
             {
-                SubRoot subRoot = __instance.GetComponentInChildren<SubRoot>();
+                SubRoot subRoot = __instance.GetComponentInParent<SubRoot>();
                 if (subRoot)
                 {
                     cyclopsOnEquip.OnEquip(slot, true, subRoot);
@@ -36,7 +36,7 @@ namespace ArchitectsLibrary.Patches
             if (item == null || item.item == null) return;
             if (CyclopsOnEquips.TryGetValue(item.item.GetTechType(), out ICyclopsOnEquip cyclopsOnEquip))
             {
-                SubRoot subRoot = __instance.GetComponentInChildren<SubRoot>();
+                SubRoot subRoot = __instance.GetComponentInParent<SubRoot>();
                 if (subRoot)
                 {
                     cyclopsOnEquip.OnEquip(slot, false, subRoot);
