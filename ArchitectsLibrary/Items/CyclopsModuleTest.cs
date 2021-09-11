@@ -1,4 +1,5 @@
 using ArchitectsLibrary.API;
+using ArchitectsLibrary.Interfaces;
 using SMLHelper.V2.Crafting;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,16 @@ using System.Threading.Tasks;
 
 namespace ArchitectsLibrary.Items
 {
-    class CyclopsModuleTest : CyclopsUpgrade
+    class CyclopsModuleTest : CyclopsUpgrade, ICyclopsOnEquip
     {
         public CyclopsModuleTest() : base("CyclopsModuleTest", LanguageSystem.Default, LanguageSystem.Default)
         {
+        }
+
+        public void OnEquip(string slotID, bool equipped, SubRoot sub)
+        {
+            ErrorMessage.AddMessage("Test module equipped: " + equipped);
+            ErrorMessage.AddMessage("Sub is null: " + (sub == null));
         }
 
         protected override TechData GetBlueprintRecipe()
