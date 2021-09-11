@@ -28,7 +28,8 @@ namespace ArchitectsLibrary.API
         {
             OnFinishedPatching += () =>
             {
-                CraftDataHandler.SetEquipmentType(this.TechType, ParseAsEquipmentType(EquipmentType));
+                if (EquipmentType != ModuleEquipmentType.None)
+                    CraftDataHandler.SetEquipmentType(this.TechType, ParseAsEquipmentType(EquipmentType));
                 CraftDataHandler.SetQuickSlotType(this.TechType, QuickSlotType);
                 
                 if (MaxCharge.HasValue)
@@ -152,6 +153,7 @@ namespace ArchitectsLibrary.API
         /// </summary>
         public enum ModuleEquipmentType
         {
+            None = 0,
             SeamothModule = 13,
             ExosuitModule = 14,
             VehicleModule = 9,
