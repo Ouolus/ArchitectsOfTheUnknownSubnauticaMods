@@ -10,7 +10,7 @@ using UnityEngine;
 namespace ArchitectsLibrary.API
 {
     /// <summary>
-    /// an abstract class inheriting from <see cref="Craftable"/> that simplifies the process of making a Custom Seamoth Upgrade.
+    /// an abstract class inheriting from <see cref="Craftable"/> that simplifies the process of making a custom seamoth/exosuit upgrade.
     /// </summary>
     public abstract class VehicleUpgrade : Craftable
     {
