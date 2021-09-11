@@ -1,7 +1,7 @@
 namespace ArchitectsLibrary.Interfaces
 {
     /// <summary>
-    /// Used for when a module is enabled or disabled.
+    /// Used for when a module is enabled or disabled. For small vehicles only.
     /// </summary>
     public interface IVehicleOnToggleOnce
     {

@@ -1,7 +1,7 @@
 namespace ArchitectsLibrary.Interfaces
 {
     /// <summary>
-    /// Used for when a module is equipped.
+    /// Used for when a module is equipped into a small vehicle.
     /// </summary>
     public interface IVehicleOnEquip
     {

@@ -190,6 +190,7 @@
     <Compile Include="Handlers\VehicleHandler.cs" />
     <Compile Include="DictionaryInit.cs" />
     <Compile Include="Interfaces\IBuilderGroups.cs" />
+    <Compile Include="Interfaces\ICyclopsOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleOnce.cs" />
     <Compile Include="Interfaces\IVehicleOnEquip.cs" />
     <Compile Include="Interfaces\IVehicleOnToggleRepeating.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Items\Cubes\PrecursorIonCube.cs" />
     <Compile Include="Items\Cubes\RedIonCube.cs" />
     <Compile Include="Items\CustomBuilder.cs" />
+    <Compile Include="Items\CyclopsModuleTest.cs" />
     <Compile Include="Items\Drillables\DrillableCobalt.cs" />
     <Compile Include="Items\Drillables\DrillableEmerald.cs" />
     <Compile Include="Items\Drillables\DrillableMorganite.cs" />

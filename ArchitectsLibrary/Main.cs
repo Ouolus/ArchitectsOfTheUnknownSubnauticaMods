@@ -167,6 +167,10 @@ namespace ArchitectsLibrary
             }
 
             KnownTechHandler.SetAnalysisTechEntry(alienTechnologyMasterTech, new List<TechType>() { PrecursorFabricator.TechType, TechType.PrecursorIonCrystal, AUHandler.AlienCompositeGlassTechType, AUHandler.ReinforcedGlassTechType, AUHandler.ElectricubeTechType, AUHandler.RedIonCubeTechType });
+
+            var testModule = new Items.CyclopsModuleTest();
+            testModule.Patch();
+            
         }
 
         internal static void IonCubeCraftModelFix(GameObject prefab)

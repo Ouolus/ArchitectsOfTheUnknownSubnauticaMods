@@ -1,7 +1,7 @@
 namespace ArchitectsLibrary.Interfaces
 {
     /// <summary>
-    /// Used for when a module is toggled on and has a repeating action, on an interval.
+    /// Used for when a module is toggled on and has a repeating action, on an interval. For small vehicles only.
     /// </summary>
     public interface IVehicleOnToggleRepeating
     {
