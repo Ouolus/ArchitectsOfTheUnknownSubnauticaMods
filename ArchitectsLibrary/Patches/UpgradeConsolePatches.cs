@@ -11,10 +11,10 @@ namespace ArchitectsLibrary.Patches
 
         internal static void Patch(Harmony harmony)
         {            
-            harmony.Patch(AccessTools.Method(typeof(SubRoot), nameof(UpgradeConsole.OnEquip)),
+            harmony.Patch(AccessTools.Method(typeof(UpgradeConsole), nameof(UpgradeConsole.OnEquip)),
                 postfix: new HarmonyMethod(AccessTools.Method(typeof(UpgradeConsolePatches), nameof(OnEquip_Postfix))));
 
-            harmony.Patch(AccessTools.Method(typeof(SubRoot), nameof(UpgradeConsole.OnUnequip)),
+            harmony.Patch(AccessTools.Method(typeof(UpgradeConsole), nameof(UpgradeConsole.OnUnequip)),
                 postfix: new HarmonyMethod(AccessTools.Method(typeof(UpgradeConsolePatches), nameof(OnUnequip_Postfix))));
         }
 
